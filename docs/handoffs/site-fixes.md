@@ -5,7 +5,7 @@ A full local test of Clear House on 2026-10-24 found the problems below. Fix eac
 ## Ground rules (from the project owner)
 
 - **Push every change.** After each fix, run exactly: `git add -A`, `git commit -m "What I changed"`, `git pull`, `git push`. Write a plain commit message saying what changed.
-- **No the developer attribution.** No `Co-Authored-By: the developer` line in commits, and no "Generated with the developer Code" line in PRs.
+- **No AI-tool attribution.** No AI co-author lines in commits and no tool attribution lines in PRs.
 - **Ask the owner** whenever a fix needs a judgment call. This file marks those spots with **Ask first**.
 - Before `git add -A`, run `git status` and make sure nothing private gets committed (`.env`, `.cache/`, local launch configs).
 - Don't change rent, vacancy, eligibility or availability-review dates while fixing photos (see `data/README.md` → "Listing photos").
@@ -21,7 +21,7 @@ python backend/app.py                                 # serves http://localhost:
 - Pages: `/` = about page (`frontend/about.html`, which now also shows the listings map from `frontend/listing-map.js`), `/app` = tools page (`frontend/index.html`), `/resources` = programs page (`frontend/resources.html`).
 - Tests: `python -m unittest discover -s backend -p 'test_*.py'` (everything passes without keys except `test_gemma`, see issue 6). Catalog check: `python backend/catalog.py --check` (expect "Catalog valid: 405 records").
 - There is **no `.env`** on the owner's machine, so the Gemini and Google Maps features can't be tested end to end. Without keys they show "not set up" messages, which is correct. Don't create keys or put them in files yourself.
-- **macOS quirk:** the the developer desktop browser pane's launcher can't read `~/Documents` (macOS privacy), so `preview_start` with a launch config fails with `Operation not permitted`. Start the server from the shell in the background, then open `http://localhost:8000/app` with `preview_start` and a `url`.
+- **macOS quirk:** the desktop app's built-in browser pane launcher can't read `~/Documents` (macOS privacy), so `preview_start` with a launch config fails with `Operation not permitted`. Start the server from the shell in the background, then open `http://localhost:8000/app` with `preview_start` and a `url`.
 - **zsh quirk when testing with curl:** pass headers inline, e.g. `-H 'Content-Type: application/json'`. A header kept in an unquoted shell variable is not split in zsh, so the server silently gets no JSON body.
 
 ---
