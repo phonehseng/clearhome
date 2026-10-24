@@ -459,6 +459,90 @@
       "status": "needs_verified_property_photo",
       "photo_reviewed_on": "2026-10-24",
       "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Fourteen35",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-fourteen35-apt-201-room-a-in-4-bedroom-apartment"
+      ],
+      "official_source": "https://granitesl.appfolio.com/listings/detail/5afce595-4747-414b-88d7-315d3bcad62b",
+      "provider_website": "https://granitesl.appfolio.com/listings/detail/5afce595-4747-414b-88d7-315d3bcad62b",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
+    },
+    {
+      "community": "1203 North Main Street",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-1203-north-main-apt-m-room-a-in-4-bedroom-apartment"
+      ],
+      "official_source": "https://granitesl.appfolio.com/listings/detail/0bb3581a-2283-4fcd-b164-6e7ae8fa2b33",
+      "provider_website": "https://granitesl.appfolio.com/listings/detail/0bb3581a-2283-4fcd-b164-6e7ae8fa2b33",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
+    },
+    {
+      "community": "University Terrace Condos",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-university-terrace-1205d-bed-space-in-4-bedroom-condo"
+      ],
+      "official_source": "https://granitesl.appfolio.com/listings/detail/702e28e5-42fe-4f94-8bb7-6c3ef1af8add",
+      "provider_website": "https://granitesl.appfolio.com/listings/detail/702e28e5-42fe-4f94-8bb7-6c3ef1af8add",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
+    },
+    {
+      "community": "Brexx at Blacksburg",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-brexx-talmadge-5x5-5-room-in-5-bedroom-apartment"
+      ],
+      "official_source": "https://www.brexxblacksburg.com/floor-plans/",
+      "provider_website": "https://www.brexxblacksburg.com/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
+    },
+    {
+      "community": "Pheasant Run Townhomes",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-pheasant-run-townhomes-433-janie-lane-4-bedroom-townhome"
+      ],
+      "official_source": "https://rainespropertymanagement.com/rentals/20592",
+      "provider_website": "https://rainespropertymanagement.com/rentals/20592",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
+    },
+    {
+      "community": "Oak Manor",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-oak-manor-108-nottingham-court-4-bedroom-townhome"
+      ],
+      "official_source": "https://rainespropertymanagement.com/rentals/19669",
+      "provider_website": "https://rainespropertymanagement.com/rentals/19669",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
+    },
+    {
+      "community": "Piedmont",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-piedmont-1738-donlee-drive-3-bedroom-home"
+      ],
+      "official_source": "https://rainespropertymanagement.com/rentals/24054",
+      "provider_website": "https://rainespropertymanagement.com/rentals/24054",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
     }
   ]
 }
