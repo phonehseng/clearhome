@@ -7,6 +7,8 @@ import gzip
 import json
 import os
 import math
+import threading
+from datetime import date
 
 from flask import Flask, Response, jsonify, request, send_from_directory, send_file, stream_with_context
 
@@ -15,7 +17,7 @@ from live_search import search as live_search
 import nearby
 import walkable
 from matcher import gemma_unavailable, find_help
-from catalog import filter_catalog, group_listings, load_catalog, STATUSES
+from catalog import REVIEW_PATH, REVIEW_STATES, filter_catalog, group_listings, load_catalog, load_reviews, validate_resources, STATUSES
 from listing_photos import cached_photo, photo_mimetype, PhotoUnavailable
 from redact import redact
 from sources import refresh_in_background
@@ -176,6 +178,65 @@ def _slim_card(card):
 @app.get("/resources")
 def resources_page():
     return send_from_directory(FRONTEND, "resources.html")
+
+
+@app.get("/review")
+def review_page():
+    return send_from_directory(FRONTEND, "review.html")
+
+
+_review_lock = threading.Lock()
+REVIEW_FIELDS = ('id', 'name', 'community', 'floor_plan', 'type', 'jurisdiction', 'area', 'region', 'address', 'phone',
+                 'monthly_rent', 'rent_basis', 'source_url', 'website', 'last_verified', 'minimum_age', 'lat', 'lon')
+
+
+def _can_review():
+    """Decisions are saved to data/listing_review.json, so only on a teammate's own computer (never the hosted site)."""
+    return not READ_ONLY and request.remote_addr in {"127.0.0.1", "::1"}
+
+
+@app.get("/api/review")
+def review_list():
+    """Every record (shown or not) with the team's decision on it, for the hand-review page."""
+    shown = {r['id'] for r in filter_catalog(load_catalog())}
+    rows = []
+    for r in load_catalog(include_unverified=True):
+        if not isinstance(r, dict) or not r.get('id'):
+            continue
+        avail = r.get('availability') if isinstance(r.get('availability'), dict) else {}
+        rows.append({k: r.get(k) for k in REVIEW_FIELDS} | {
+            'availability': {k: avail.get(k) for k in ('status', 'checked_on', 'review_due', 'available_from', 'evidence')},
+            'verified': r.get('verified') is True, 'problems': validate_resources([r])[:3], 'shown': r['id'] in shown,
+            'has_photo': bool(r.get('photo'))})
+    return jsonify(records=rows, decisions=load_reviews(), can_edit=_can_review())
+
+
+@app.post("/api/review")
+def review_save():
+    if not _can_review():
+        return jsonify(error="Review decisions can only be saved on a local copy (python backend/app.py), then committed."), 403
+    body = _body()
+    rid, state, note = body.get("id"), body.get("state"), body.get("note") or ""
+    if not isinstance(rid, str) or not isinstance(note, str) or len(note) > 500 or state not in REVIEW_STATES | {"clear"}:
+        return jsonify(error="Send an id, a state (verified, flagged, hidden or clear) and an optional note."), 400
+    if not any(isinstance(r, dict) and r.get('id') == rid for r in load_catalog(include_unverified=True)):
+        return jsonify(error="No record has that id."), 404
+    with _review_lock:
+        try:
+            data = json.loads(REVIEW_PATH.read_text())
+        except (OSError, ValueError):
+            data = {}
+        decisions = data.get("decisions") if isinstance(data.get("decisions"), dict) else {}
+        if state == "clear":
+            decisions.pop(rid, None)
+        else:
+            decisions[rid] = {"state": state, "note": note.strip(), "on": date.today().isoformat()}
+        data = {"about": "Team decisions from the /review page. hidden = kept out of every answer and list.",
+                "decisions": dict(sorted(decisions.items()))}
+        tmp = REVIEW_PATH.with_suffix(".tmp")
+        tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+        tmp.replace(REVIEW_PATH)
+    return jsonify(ok=True, decisions=load_reviews())
 
 
 @app.get("/api/places")
