@@ -114,3 +114,27 @@ Spot-check before approving: HUD tax-credit records sometimes list an owner's of
 Both categories are supported. `affordable_listing`/`affordable_property` require `affordability.status: documented` with a program description, exact supporting official source, evidence, and review date. `rental_listing` requires `affordability.status: standard_rental` with provider rental evidence and a review date. Regular means the advertised rental is recorded without claiming an income-restricted/subsidized unit; it does not prove that a building has no affordable units. Never infer program status from price or old tax-credit records alone. The catalog validator and listings API reject housing records without category evidence.
 
 `/api/listings?housing_type=all|affordable|regular` controls browsing. Budget filtering applies to both rental categories. Park Place is now explicitly a regular advertised senior rental because its current subsidy/program status is not established. The Reserve at Eisenhower adds provider-advertised regular options. The Spire's unresolved prices remain unknown. See sources on the cards; no website review guarantees live inventory or household eligibility.
+
+## Community cards and duplicate prevention
+
+The flat `/api/listings` response remains available. Add `group_by=community` for one
+card per community with matching records in `floor_plans`; `count` then counts community
+cards/programs and `option_count` counts the matching source records. Budget, category,
+location, and availability filters run before grouping. `sort=rent_asc` puts known starting
+rents first, lowest to highest; unknown prices come last. `sort=recommended` keeps availability
+priority. The tools page defaults to lowest rent and offers an up-to-$1,500 shortcut.
+
+The validator rejects repeated housing options even when imports use a different ID.
+Runtime loading also keeps the newest reviewed snapshot of an identical option, including
+closures, so old advertisements cannot revive a newer closure. Different floor plans and
+AMI/program tiers remain distinct. Community grouping uses the street address and
+jurisdiction; housing-authority programs retain separate cards. Missing building numbers
+also require a matching community name to avoid combining unrelated buildings on one road.
+
+The October 24 budget expansion added five communities, three with provider-advertised
+options below $1,500. See the dated expansion notes in [VERIFICATION.md](VERIFICATION.md)
+for exact prices, sources, unknowns, and the mixed-income classification caveat.
+
+```sh
+python -m unittest discover -s backend -p 'test_listing_groups.py' -v
+```

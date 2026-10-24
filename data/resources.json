@@ -5648,5 +5648,339 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     }
+  },
+  {
+    "id": "virginia-gardens-one-bedroom",
+    "name": "Virginia Gardens — 1 Bedroom 1 Bath",
+    "community": "Virginia Gardens",
+    "record_kind": "floor_plan",
+    "floor_plan": "1 Bedroom 1 Bath",
+    "type": "affordable_listing",
+    "address": "1718 S Taylor Street #102, Arlington, VA 22204",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "area": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-673-7040",
+    "website": "https://www.virginiagardensapts.com/floorplans/1-bedroom-1-bath",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; the provider determines eligibility and the applicable income tier.",
+    "cost": "Advertised starting rent of $1,413/month. Ask for all mandatory fees, utilities, deposits, and lease terms.",
+    "monthly_rent": 1413,
+    "rent_basis": "advertised_starting_base_rent",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": 629,
+    "accessible": null,
+    "accessibility_notes": "Accessible features for the specific offered apartment are not confirmed; ask leasing.",
+    "requirements": "Income guidelines apply. Confirm the offered unit’s income tier and household limits with leasing; prepare the documentation requested by the provider.",
+    "minimum_age": null,
+    "source_url": "https://www.virginiagardensapts.com/floorplans/1-bedroom-1-bath",
+    "sources": [
+      {
+        "url": "https://www.virginiagardensapts.com/floorplans/1-bedroom-1-bath",
+        "role": "provider"
+      },
+      {
+        "url": "https://ahcommunities.org/property/virginia-gardens/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "The leasing page advertises apartment 1706-004 as available now, starting at $1,413. Confirm that this unit and price remain available.",
+      "source_url": "https://www.virginiagardensapts.com/floorplans/1-bedroom-1-bath",
+      "source_updated_on": null
+    },
+    "notes": "The owner lists the community at 1700 S Taylor St; the leasing site lists its office at 1718 S Taylor Street #102. Confirm the meeting address and the offered unit before visiting.",
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted housing · LIHTC",
+      "evidence": "AHC identifies Virginia Gardens as income-restricted and LIHTC housing. The leasing floor-plan page also states that income guidelines apply.",
+      "source_url": "https://ahcommunities.org/property/virginia-gardens/",
+      "checked_on": "2026-10-24",
+      "method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Virginia-Gardens-Featured%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/virginia-gardens/",
+      "alt": "Virginia Gardens apartment building exterior",
+      "credit": "AHC / official community page",
+      "reviewed_on": "2026-10-24",
+      "caption": "Owner’s community photo; not a photo of the specific offered apartment."
+    }
+  },
+  {
+    "id": "gates-ballston-studio",
+    "name": "Gates of Ballston — Studio",
+    "community": "Gates of Ballston",
+    "record_kind": "floor_plan",
+    "floor_plan": "Studio",
+    "type": "rental_listing",
+    "address": "4108 4th Street N #100, Arlington, VA 22203",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "area": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-560-3560",
+    "website": "https://www.thegatesapts.com/floorplans/studio",
+    "hours": null,
+    "who_it_serves": "Prospective renters; confirm the advertised unit’s income restrictions and screening criteria with leasing.",
+    "cost": "Advertised starting rent of $1,453/month. Ask for all mandatory fees, utilities, deposits, and lease terms.",
+    "monthly_rent": 1453,
+    "rent_basis": "advertised_starting_base_rent",
+    "currency": "USD",
+    "bedrooms": 0,
+    "bathrooms": 1,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible features for the specific offered apartment are not confirmed; ask leasing.",
+    "requirements": "Contact leasing before applying to confirm income limits, household requirements, documents, fees, and whether applications or a waitlist are being accepted.",
+    "minimum_age": null,
+    "source_url": "https://www.thegatesapts.com/floorplans/studio",
+    "sources": [
+      {
+        "url": "https://www.thegatesapts.com/floorplans/studio",
+        "role": "provider"
+      },
+      {
+        "url": "https://ahcommunities.org/property/gates-of-ballston/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "The studio page lists apartment 2242-4 at $1,453 with an application link. A separate page header quotes $1,450; this record uses the specific unit’s higher quoted price. Move-in date is not confirmed.",
+      "source_url": "https://www.thegatesapts.com/floorplans/studio",
+      "source_updated_on": null
+    },
+    "notes": "This mixed-income building includes affordable homes, but the quoted studio’s income-restricted status is unconfirmed. Ask which program, if any, applies. A starting rate is not the full monthly cost.",
+    "affordability": {
+      "status": "standard_rental",
+      "program": "Provider-advertised rental · unit program unconfirmed",
+      "evidence": "The official leasing page lists a studio for rent. The owner describes a mixed-income community; the advertised studio’s affordable-unit designation is not established, so it is recorded as a regular rental.",
+      "source_url": "https://www.thegatesapts.com/floorplans/studio",
+      "checked_on": "2026-10-24",
+      "method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Gates-of-Ballston-Featured%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/gates-of-ballston/",
+      "alt": "Gates of Ballston building exterior",
+      "credit": "AHC / official community page",
+      "reviewed_on": "2026-10-24",
+      "caption": "Owner’s community photo; not a photo of the specific offered apartment."
+    }
+  },
+  {
+    "id": "harvey-hall-studio",
+    "name": "Harvey Hall — Studio",
+    "community": "Harvey Hall",
+    "record_kind": "floor_plan",
+    "floor_plan": "Studio",
+    "type": "rental_listing",
+    "address": "850 S Greenbrier Street, Arlington, VA 22204",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "area": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-636-9990",
+    "website": "https://www.harveyhallapts.com/floorplans/studio",
+    "hours": null,
+    "who_it_serves": "Prospective renters; confirm the advertised unit’s income restrictions and screening criteria with leasing.",
+    "cost": "Advertised starting rent of $1,475/month. Ask for all mandatory fees, utilities, deposits, and lease terms.",
+    "monthly_rent": 1475,
+    "rent_basis": "advertised_starting_base_rent",
+    "currency": "USD",
+    "bedrooms": 0,
+    "bathrooms": 1,
+    "square_feet": 320,
+    "accessible": null,
+    "accessibility_notes": "Accessible features for the specific offered apartment are not confirmed; ask leasing.",
+    "requirements": "Contact leasing before applying to confirm income limits, household requirements, documents, fees, and whether applications or a waitlist are being accepted.",
+    "minimum_age": null,
+    "source_url": "https://www.harveyhallapts.com/floorplans/studio",
+    "sources": [
+      {
+        "url": "https://www.harveyhallapts.com/floorplans/studio",
+        "role": "provider"
+      },
+      {
+        "url": "https://ahcommunities.org/property/harvey-hall/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "The provider lists studio apartment 514 at $1,475 with an application link. The move-in date is not confirmed for this specific unit.",
+      "source_url": "https://www.harveyhallapts.com/floorplans/studio",
+      "source_updated_on": null
+    },
+    "notes": "A website advertisement is not a reservation. Confirm the exact unit, full monthly cost, and move-in date directly before paying.",
+    "affordability": {
+      "status": "standard_rental",
+      "program": "Provider-advertised rental · unit program unconfirmed",
+      "evidence": "The official leasing site advertises this studio for rent. The owner describes a mixed-income LIHTC community; the studio’s applicable income tier is not established. It is recorded as a regular advertised rental.",
+      "source_url": "https://www.harveyhallapts.com/floorplans/studio",
+      "checked_on": "2026-10-24",
+      "method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Harvey-Hall-Featured%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/harvey-hall/",
+      "alt": "Harvey Hall building exterior",
+      "credit": "AHC / official community page",
+      "reviewed_on": "2026-10-24",
+      "caption": "Owner’s community photo; not a photo of the specific offered apartment."
+    }
+  },
+  {
+    "id": "terwilliger-place-community",
+    "name": "Terwilliger Place — One-, two-, and three-bedroom community",
+    "community": "Terwilliger Place",
+    "record_kind": "community",
+    "floor_plan": "One-, two-, and three-bedroom community",
+    "type": "affordable_listing",
+    "address": "3445 Washington Boulevard, Arlington, VA 22201",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "area": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "757-664-9045",
+    "website": "https://truegroundhousing.org/what-we-do/real-estate/communities/arlington-county/terwilliger-place/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households. The owner describes a veteran preference for 50% of the community; this is a preference, not a veteran-only restriction.",
+    "cost": "Current rent is not published in the reviewed source. Ask leasing for a written quote including fees and utilities.",
+    "monthly_rent": null,
+    "rent_basis": "not_published",
+    "currency": "USD",
+    "bedrooms": null,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible features for the specific offered apartment are not confirmed; ask leasing.",
+    "requirements": "Ask leasing about household income tiers, the veteran preference, application documents, current rents, vacancies, and waitlist acceptance. No particular income tier or rent is promised here.",
+    "minimum_age": null,
+    "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/arlington-county/terwilliger-place/",
+    "sources": [
+      {
+        "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/arlington-county/terwilliger-place/",
+        "role": "provider"
+      },
+      {
+        "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/arlington-county/terwilliger-place/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "The owner describes the operating affordable community and gives leasing contacts, but does not confirm a currently vacant apartment or an open waitlist on the reviewed page.",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/arlington-county/terwilliger-place/",
+      "source_updated_on": null
+    },
+    "notes": "A website advertisement is not a reservation. Confirm the exact unit, full monthly cost, and move-in date directly before paying.",
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted housing · LIHTC",
+      "evidence": "True Ground describes this as an affordable rental community with LIHTC financing and income-restricted apartments.",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/arlington-county/terwilliger-place/",
+      "checked_on": "2026-10-24",
+      "method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "fields-manassas-community",
+    "name": "The Fields of Manassas — Two- and three-bedroom community",
+    "community": "The Fields of Manassas",
+    "record_kind": "community",
+    "floor_plan": "Two- and three-bedroom community",
+    "type": "affordable_listing",
+    "address": "7431 Willoughby Lane, Manassas, VA 20109",
+    "city": "Manassas",
+    "jurisdiction": "Prince William County",
+    "area": "Prince William County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-331-0777",
+    "website": "https://www.thefieldsmanassas.com/floorplans",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; the provider determines eligibility and the applicable income tier.",
+    "cost": "Rent is not published. The floor-plan page lists a $500 deposit for the displayed plans; confirm all current charges and the offered unit’s deposit directly.",
+    "monthly_rent": null,
+    "rent_basis": "not_published",
+    "currency": "USD",
+    "bedrooms": null,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible features for the specific offered apartment are not confirmed; ask leasing.",
+    "requirements": "Contact leasing before applying to confirm income limits, household requirements, documents, fees, and whether applications or a waitlist are being accepted.",
+    "minimum_age": null,
+    "source_url": "https://www.thefieldsmanassas.com/floorplans",
+    "sources": [
+      {
+        "url": "https://www.thefieldsmanassas.com/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.thefieldsmanassas.com/floorplans",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "The provider shows two- and three-bedroom plans with “Call for details” rather than a rent or confirmed vacancy. Contact leasing to ask about applications, prices, and waitlists.",
+      "source_url": "https://www.thefieldsmanassas.com/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "A website advertisement is not a reservation. Confirm the exact unit, full monthly cost, and move-in date directly before paying.",
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted housing · tax-credit community",
+      "evidence": "The provider explicitly identifies The Fields of Manassas as a tax-credit community offering affordable housing with income eligibility requirements.",
+      "source_url": "https://www.thefieldsmanassas.com/floorplans",
+      "checked_on": "2026-10-24",
+      "method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
+      "individual_eligibility_confirmed": false
+    }
   }
 ]

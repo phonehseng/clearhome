@@ -12,7 +12,7 @@ from advisor import ask, programs, warm_examples
 from extract_text import extract_text
 from lease_checker import check_listing, explain_lease
 from matcher import find_help
-from catalog import filter_catalog, load_catalog, STATUSES
+from catalog import filter_catalog, group_listings, load_catalog, STATUSES
 from listing_photos import cached_photo, photo_mimetype, PhotoUnavailable
 from redact import redact
 from sources import refresh_in_background
@@ -54,6 +54,12 @@ def listing_photo(resource_id):
 @app.get("/api/listings")
 def listings():
     """Browse the reviewed catalog without an AI call or API key."""
+    grouping = request.args.get('group_by', '')
+    sort = request.args.get('sort', 'recommended')
+    if grouping not in {'', 'community'}:
+        return jsonify(error='group_by must be community when supplied.'), 400
+    if sort not in {'recommended', 'rent_asc'}:
+        return jsonify(error='sort must be recommended or rent_asc.'), 400
     housing_type = request.args.get("housing_type", "all")
     category_types = {"all": ["affordable_listing", "rental_listing", "housing_authority"], "affordable": ["affordable_listing", "housing_authority"], "regular": ["rental_listing"]}
     if housing_type not in category_types:
@@ -84,7 +90,12 @@ def listings():
     rows = [r for r in filter_catalog(load_catalog(), filters) if isinstance(r.get("availability"), dict)]
     if status:
         rows = [r for r in rows if r.get("availability", {}).get("status") == status]
-    return jsonify(listings=rows, count=len(rows), notice="Official-source web review, not a live vacancy feed. Confirm rent, eligibility and availability directly. Closed or overdue records are excluded.")
+    option_count = len(rows)
+    if grouping == 'community':
+        rows = group_listings(rows, sort=sort)
+    elif sort == 'rent_asc':
+        rows.sort(key=lambda row: (row.get('monthly_rent') is None, row.get('monthly_rent') or 0))
+    return jsonify(listings=rows, count=len(rows), option_count=option_count, notice="Official-source web review, not a live vacancy feed. Confirm rent, eligibility and availability directly. Closed or overdue records are excluded.")
 
 
 @app.get("/resources")

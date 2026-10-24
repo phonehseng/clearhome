@@ -7,6 +7,8 @@ import argparse
 import copy
 import json
 import math
+import re
+import unicodedata
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -16,6 +18,76 @@ STATUSES = {'available_now', 'advertised_vacancy', 'upcoming', 'leasing', 'waitl
 # affordable_property: an income-restricted building from a public database, without unit-level availability.
 TYPES = {'rental_listing', 'affordable_listing', 'affordable_property', 'emergency_shelter', 'rental_assistance', 'housing_authority', 'legal_aid', 'food_support', 'other'}
 STATUS_ORDER = {key: i for i, key in enumerate(['available_now', 'advertised_vacancy', 'upcoming', 'leasing', 'waitlist_open', 'contact_for_availability', 'needs_recheck', 'closed'])}
+HOUSING_TYPES = {'affordable_listing', 'affordable_property', 'rental_listing'}
+
+
+def _normalized(value):
+    return ' '.join(re.findall(r'\w+', unicodedata.normalize('NFKC', '' if value is None else str(value)).casefold()))
+
+
+def community_key(row):
+    """Group physical communities, keeping separate programs at an agency distinct."""
+    if row.get('type') not in HOUSING_TYPES:
+        return ('resource', row.get('id'))
+    street = re.sub(r'\([^)]*\)', '', str(row.get('address') or '').split(',')[0])
+    words = _normalized(street).split()
+    abbreviations = {'road': 'rd', 'street': 'st', 'avenue': 'ave', 'boulevard': 'blvd',
+                     'drive': 'dr', 'court': 'ct', 'lane': 'ln', 'south': 's', 'north': 'n',
+                     'east': 'e', 'west': 'w', 'terrace': 'ter', 'place': 'pl'}
+    address = ' '.join(abbreviations.get(word, word) for word in words)
+    # A street without a building number must not merge unrelated properties.
+    name = '' if words and words[0].isdigit() else _normalized(row.get('community') or row.get('name') or row.get('id'))
+    return ('community', _normalized(row.get('jurisdiction') or row.get('city')), address, name)
+
+
+def listing_key(row):
+    if row.get('type') not in HOUSING_TYPES:
+        return ('resource', row.get('id'))
+    category = row.get('affordability') if isinstance(row.get('affordability'), dict) else {}
+    unit = str(row.get('unit_number') or row.get('id')) if row.get('record_kind') == 'unit' else None
+    return (community_key(row), row.get('type'), _normalized(row.get('floor_plan')),
+            str(row.get('bedrooms')), str(row.get('bathrooms')), str(row.get('record_kind')),
+            _normalized(category.get('program')),
+            unit)
+
+
+def deduplicate_listings(rows):
+    """Prefer the latest review of an identical option, including newer closures.
+
+    Price and status are not identity fields: a changed price or closed record
+    must replace the older snapshot instead of creating another recommendation.
+    """
+    unique = {}
+    def rank(row):
+        availability = row.get('availability') or {}
+        return (_date(availability.get('checked_on')) or _date(row.get('last_verified')) or date.min,
+                availability.get('status') == 'closed', _date(row.get('last_verified')) or date.min)
+    for row in rows:
+        key = listing_key(row)
+        if key not in unique or rank(row) > rank(unique[key]):
+            unique[key] = row
+    return list(unique.values())
+
+
+def group_listings(rows, sort='recommended'):
+    """Group only the already-filtered options; never reintroduce excluded plans."""
+    grouped = {}
+    for row in deduplicate_listings(rows):
+        grouped.setdefault(community_key(row), []).append(row)
+    cards = []
+    def price(row):
+        value = row.get('monthly_rent')
+        return value if _number(value) else math.inf
+    for options in grouped.values():
+        options.sort(key=lambda row: (price(row), row.get('floor_plan') or row['name']))
+        card = copy.deepcopy(options[0])
+        card['floor_plans'] = copy.deepcopy(options)
+        cards.append(card)
+    if sort == 'rent_asc':
+        cards.sort(key=lambda row: (price(row), (row.get('community') or row['name']).casefold()))
+    else:
+        cards.sort(key=lambda row: min(STATUS_ORDER.get(p.get('availability', {}).get('status'), 5) for p in row['floor_plans']))
+    return cards
 
 def _date(value):
     try:
@@ -52,7 +124,7 @@ def validate_resources(records):
     """Return actionable data errors; never modify records or mark them verified."""
     if not isinstance(records, list):
         return ['Catalog must be a JSON array.']
-    errors, seen = [], set()
+    errors, seen, listings_seen = [], set(), {}
     for index, row in enumerate(records):
         if not isinstance(row, dict):
             errors.append(f'Entry {index}: expected an object.')
@@ -71,6 +143,12 @@ def validate_resources(records):
             errors.append(f'{label}: unsupported resource type.')
         if row.get('verified') is not True:
             continue  # Drafts may be incomplete but can never be recommended.
+        if row.get('type') in HOUSING_TYPES:
+            key = listing_key(row)
+            if key in listings_seen:
+                errors.append(f'{label}: duplicate housing option of {listings_seen[key]}; update the existing record instead.')
+            else:
+                listings_seen[key] = label
         if not _https(row.get('source_url')) or not _date(row.get('last_verified')):
             errors.append(f'{label}: verified resources need an HTTPS source and review date.')
         if any(word in str(row).upper() for word in ('PLACEHOLDER', 'REPLACE WITH')):
@@ -111,7 +189,7 @@ def load_catalog(path=None, include_unverified=False):
     if include_unverified:
         return rows
     # Reject invalid data individually so a malformed entry cannot become a recommendation.
-    return [r for r in rows if isinstance(r, dict) and r.get('verified') is True and not validate_resources([r])]
+    return deduplicate_listings([r for r in rows if isinstance(r, dict) and r.get('verified') is True and not validate_resources([r])])
 
 def effective_availability(resource, today=None):
     """Derive staleness without silently changing the reviewed evidence in the file."""

@@ -36,3 +36,38 @@ Property thumbnails link to images published on the provider pages already cited
 Housing records now carry separate category/program evidence. The original 12 affordable communities retain their official owner/provider or public-agency evidence. Park Place is categorized as a regular advertised 55+ rental: historical affordable designation is not used to claim a current subsidized unit. Eligibility must be confirmed directly. Arbelo minimum-income notes were corrected to refer only to the relevant unit size. The Spire's conflicting and changing base/promotional prices remain unquoted numerically.
 
 [The Reserve at Eisenhower provider page](https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments) advertises The Allison (one bedroom, base rent $1,966, 12-month term, October 23 date) and The Brookdale (two bedrooms, base rent $2,384, 12-month term, October 29 date). Header and unit prices differ; records state the unit-level advertised base rent and require a written total-cost quote. These are regular rental options, not affordable-program claims. The source review did not establish household eligibility, an accessible vacancy, or a reserved unit. No provider contact was made. Availability dates remain snapshots requiring rechecking.
+
+## Community browsing and budget expansion — October 24, 2026
+
+The browser now shows one card per physical community, with separate floor-plan prices,
+requirements, status evidence, and sources inside the card. Plans are filtered before
+being grouped: a $1,500 budget cannot pull a more expensive plan back into a result.
+Distinct AMI tiers remain separate options. Matching imported options are identified by
+normalized address, jurisdiction, floor plan, bedroom/bathroom counts, category/program,
+and record kind. The newest reviewed snapshot wins; a newer closure is retained rather
+than reviving an older advertisement. The validator rejects duplicate housing options
+with different IDs. Separate housing-authority programs are not combined merely because
+they share an office.
+
+Five communities were added after reviewing official owner/leasing pages:
+
+| Community | Recorded starting rent | Availability evidence | Source |
+| --- | --- | --- | --- |
+| Virginia Gardens, Arlington | $1,413, 1 bedroom | Provider advertises unit 1706-004 available now; income guidelines apply. | [Leasing page](https://www.virginiagardensapts.com/floorplans/1-bedroom-1-bath), [AHC owner](https://ahcommunities.org/property/virginia-gardens/) |
+| Gates of Ballston, Arlington | $1,453, studio | Unit 2242-4 is advertised with an application link; move-in date unconfirmed. The header quotes $1,450, so the record uses the specific unit’s higher price. | [Leasing page](https://www.thegatesapts.com/floorplans/studio), [AHC owner](https://ahcommunities.org/property/gates-of-ballston/) |
+| Harvey Hall, Arlington | $1,475, studio | Unit 514 is advertised with an application link; move-in date unconfirmed. | [Leasing page](https://www.harveyhallapts.com/floorplans/studio), [AHC owner](https://ahcommunities.org/property/harvey-hall/) |
+| Terwilliger Place, Arlington | Not published | Affordable community confirmed; neither a current vacancy nor open waitlist established. Veteran preference is not a veteran-only restriction. | [Owner page](https://truegroundhousing.org/what-we-do/real-estate/communities/arlington-county/terwilliger-place/) |
+| The Fields of Manassas, Prince William County | Not published | Tax-credit community confirmed; provider asks applicants to call for prices and availability. | [Provider page](https://www.thefieldsmanassas.com/floorplans) |
+
+Gates of Ballston and Harvey Hall are mixed-income communities. Their advertised studios’
+program designations are unconfirmed, so these records are regular advertised rentals,
+not promises of a subsidized or income-restricted studio. Virginia Gardens has explicit
+owner evidence of income restrictions. All five records have a seven-day review window
+ending October 31, 2026. Unknown rents remain excluded from numeric budget matches.
+The three quoted rents are starting figures; mandatory charges may exceed the search
+budget. No phone confirmation or live reservation was made.
+
+The three AHC properties use actual building photos linked on their owner pages, not the
+stock lifestyle photos in some leasing galleries. The photo cache now permits the exact
+owner host `ahcommunities.org`. Download failures retain the existing labeled fallback.
+Terwilliger Place and The Fields of Manassas have no newly invented photo or price.

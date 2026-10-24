@@ -31,13 +31,13 @@
     .listings-section .section-heading p{margin-top:7px}
     .catalog-label{font-size:10px;letter-spacing:1px;color:var(--muted);white-space:nowrap}
     .catalog-notice{padding:14px 17px;background:#edf1f5;border:1px solid var(--line);border-radius:8px;font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:20px}
-    .browse-filters{display:grid;grid-template-columns:1.1fr 1.1fr 1.1fr 1fr auto;gap:13px;align-items:end}
+    .browse-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;align-items:end}
     .browse-filters>div{min-width:0}
     .browse-filters :is(input,select){width:100%;min-width:0;min-height:45px;border:1px solid #b8c2ce;border-radius:7px;background:#fff;color:var(--ink);padding:10px;font-size:12px}
     .browse-hint{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.8}
     .browse-message{margin:20px 0 15px;font-size:13px;color:var(--muted)}
     .browse-message[data-state=error]{padding:17px;background:#fff3ef;color:#8c3e30;border:1px solid #eed1c9;border-radius:8px}
-    .listings-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .listings-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
     .housing-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:23px;display:flex;flex-direction:column;min-width:0}
     .housing-status{display:inline-flex;align-self:start;padding:4px 8px;background:#edf1f5;border-radius:5px;font-size:10px;font-weight:600;color:#465b73;margin-bottom:14px}
     .housing-status[data-status=waitlist_open]{background:#f8efdf;color:#7a592b}
@@ -139,6 +139,22 @@
     .photo-dialog p{font-size:12px;line-height:1.8;margin:12px 0}
     .photo-dialog a{font-size:12px}
     @media(max-width:560px){.photo-dialog{padding:16px}.photo-dialog h2{font-size:18px}.property-photo,.photo-unavailable{right:17px}.housing-card .eligibility-item p{font-size:13px}}
+    .housing-card .housing-category{font-size:11px;color:var(--muted);margin:2px 98px 10px 0;line-height:1.7}
+    .housing-card .rent-caveat{font-size:11px;line-height:1.7;color:var(--muted);margin-bottom:12px}
+    .housing-card .floor-plans-details{margin-top:auto}
+    .floor-plans-details>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none;min-height:40px}
+    .floor-plans-details>summary::-webkit-details-marker{display:none}
+    .floor-plans-details>summary::after{content:'+';font-size:20px;color:var(--muted)}
+    .floor-plans-details[open]>summary::after{content:'−'}
+    .floor-plan-list{display:grid;gap:14px;margin-top:12px}
+    .floor-plan-option{border:1px solid var(--line);border-radius:8px;padding:15px;min-width:0;overflow-wrap:anywhere}
+    .floor-plan-option h4{font-size:14px;line-height:1.6;margin:0 0 6px}
+    .housing-card .floor-plan-option .option-price{font-size:16px;font-weight:650;color:var(--ink);margin:6px 0}
+    .housing-card .floor-plan-option .option-status{font-size:11px;color:var(--muted);margin:8px 0 12px}
+    .floor-plan-option .eligibility-grid a{font-size:12px}
+    .budget-shortcut{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:15px 0 0;font-size:12px;color:var(--muted)}
+    .budget-shortcut button{border:1px solid #8797b8;border-radius:20px;background:var(--white);color:var(--ink);padding:8px 14px;font-size:12px;min-height:44px}
+    .budget-shortcut button[aria-pressed=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
     /* Follow the device theme. Neutral surfaces keep text and controls distinct. */
     @media (prefers-color-scheme: dark) {
       :root {
@@ -191,6 +207,8 @@
       :root .photo-dialog button { background: var(--sage); border-color: var(--control-border); color: var(--ink); }
       :root .photo-dialog img { background: var(--field); }
       :root .photo-dialog::backdrop { background: #090b10cc; }
+      :root .budget-shortcut button { border-color: var(--control-border); }
+      :root .budget-shortcut button[aria-pressed=true] { background: var(--blue); color: var(--accent-ink); border-color: var(--blue); }
     }
   </style>
 </head>
@@ -227,9 +245,11 @@
       <div><label for="browse-location">City or county</label><select id="browse-location" name="location"><option value="">All Northern Virginia</option><option>Alexandria City</option><option>Arlington County</option><option>Fairfax City</option><option>Fairfax County</option><option>Falls Church City</option><option>Loudoun County</option><option>Manassas City</option><option>Manassas Park City</option><option>Prince William County</option></select></div>
       <div><label for="browse-status">Availability</label><select id="browse-status" name="status"><option value="">Openings & waitlists</option><option value="available_now">Advertised available now</option><option value="advertised_vacancy">Advertised vacancies</option><option value="upcoming">Upcoming availability</option><option value="leasing">Now leasing</option><option value="waitlist_open">Open waitlists</option><option value="contact_for_availability">Contact for availability</option></select></div>
       <div><label for="browse-rent">Maximum monthly rent</label><input id="browse-rent" name="max_rent" type="number" min="0" placeholder="Any budget" inputmode="decimal"></div>
+      <div><label for="browse-sort">Sort by</label><select id="browse-sort" name="sort"><option value="rent_asc">Lowest advertised rent</option><option value="recommended">Availability first</option></select></div>
       <button class="primary" type="submit">Update results</button>
     </form>
-    <p class="browse-hint">Rent filters use advertised starting prices and exclude unknown rents for apartment listings. Housing-program waitlists may have no quoted rent.</p>
+    <div class="budget-shortcut"><button type="button" id="budget-under-1500" aria-pressed="false">Up to $1,500 / month</button><span>Explore lower-cost options</span></div>
+    <p class="browse-hint">One card per community. Expand floor plans for each option’s price, eligibility, and availability. Starting rents may exclude fees and utilities; unknown rents are excluded by the budget filter. Program waitlists may have no quoted rent.</p>
     <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p>
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
     <button id="show-more-listings" class="more-listings" type="button" hidden>Show more opportunities</button>
@@ -260,13 +280,40 @@
     if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return 'not recorded';
     const date = new Date(value + 'T12:00:00'); return Number.isNaN(date.valueOf()) ? 'not recorded' : date.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
   }
+  function rentLabel(row) {
+    return typeof row.monthly_rent==='number' && Number.isFinite(row.monthly_rent) ? `From $${row.monthly_rent.toLocaleString('en-US')} / month` : 'Rent: confirm with provider';
+  }
+  function eligibilityDetails(row) {
+      const availability = row.availability || {};
+      const details = housingElement('details','eligibility-details'); details.append(housingElement('summary','','Eligibility & important details'));
+      details.dataset.key='eligibility:'+row.id;
+      const information=housingElement('div','eligibility-grid');
+      const groups=[
+        ['Housing category & program',row.affordability?.program],
+        ['Who can apply',[row.minimum_age ? `Age requirement: ${row.minimum_age} and older.` : null,row.who_it_serves].filter(Boolean).join(' ')],
+        ['Before you apply',row.requirements],
+        ['Rent & additional costs',row.cost],
+        ['Availability & timing',[statusLabels[availability.status],availability.available_from ? 'Advertised move-in: '+reviewedDate(availability.available_from)+'.' : null,availability.evidence].filter(Boolean).join(' ')],
+        ['Accessibility',row.accessibility_notes || 'Ask the provider about accessible units and features.'],
+        ['Confirm with leasing',row.notes]
+      ];
+      groups.forEach(([title,text])=>{if(!text)return;const group=housingElement('section','eligibility-item');group.append(housingElement('h4','',title),housingElement('p','',text));information.append(group);});
+      details.append(information,housingElement('div','eligibility-footer','The provider makes the final eligibility decision. Confirm costs and availability before applying or paying.'));
+      if(row.affordability){const proof=housingElement('div','eligibility-item');proof.append(housingElement('h4','',row.type==='rental_listing'?'Rental source':'Affordability source'),housingElement('p','',row.affordability.evidence));const link=sourceLink(row.affordability.source_url,'Read source evidence ↗');if(link)proof.append(link);information.append(proof);}
+      const planSource=sourceLink(row.source_url,'View this option’s provider source ↗'); if(planSource) information.append(planSource);
+      return details;
+  }
   function renderHousing() {
+    const expanded=new Set([...listingsGrid.querySelectorAll('details[open]')].map(el=>el.dataset.key));
     listingsGrid.replaceChildren();
     housingRows.slice(0,visibleHousingCount).forEach(row => {
+      const plans = row.floor_plans?.length ? row.floor_plans : [row];
       const availability = row.availability || {};
+      const statuses = new Set(plans.map(p=>p.availability?.status));
       const card = housingElement('article','housing-card');
-      const photo = row.photo;
-      const photoUrl = '/media/listings/' + encodeURIComponent(row.id);
+      const photoRow=plans.find(p=>p.photo) || row;
+      const photo = photoRow.photo;
+      const photoUrl = '/media/listings/' + encodeURIComponent(photoRow.id);
       const safePhoto = photo && sourceLink(photo.url, 'Photo') && sourceLink(photo.source_url, 'Photo source');
       if (safePhoto) {
         const button = housingElement('button','property-photo'); button.type='button'; button.setAttribute('aria-label',`Enlarge photo of ${row.community || row.name}`); button.setAttribute('aria-haspopup','dialog');
@@ -282,47 +329,60 @@
           photoDialog.showModal();document.body.style.overflow='hidden';
         });card.append(button);
       } else card.append(housingElement('span','photo-unavailable',row.type==='housing_authority'?'Housing program':'Photo not provided'));
-      const status = housingElement('span','housing-status',statusLabels[availability.status] || 'Contact for availability'); status.dataset.status = availability.status || ''; card.append(status);
+      const status = housingElement('span','housing-status',statuses.size>1 ? 'Availability varies by plan' : statusLabels[availability.status] || 'Contact for availability'); status.dataset.status = statuses.size>1 ? 'mixed' : availability.status || ''; card.append(status);
       card.append(housingElement('h3','',row.community || row.name));
-      if(['documented','standard_rental'].includes(row.affordability?.status))card.append(housingElement('p','housing-plan',row.affordability.program));
-      if (row.floor_plan) card.append(housingElement('p','housing-plan',row.floor_plan));
+      const categories=new Set(plans.map(p=>p.type));
+      const category=categories.size>1 ? 'Affordable & regular options' : row.type==='rental_listing' ? 'Regular rental · program status unconfirmed' : row.type==='housing_authority' ? 'Housing program' : 'Income-restricted housing';
+      card.append(housingElement('p','housing-category',category));
+      if(plans.length===1 && row.floor_plan)card.append(housingElement('p','housing-plan',row.floor_plan));
       card.append(housingElement('p','housing-location',row.address || [row.city,row.jurisdiction].filter(Boolean).join(' · ')));
-      if (row.minimum_age) card.append(housingElement('p','housing-age',`For adults ${row.minimum_age}+`));
+      const ages=[...new Set(plans.map(p=>p.minimum_age))];
+      if(ages.length===1 && row.minimum_age)card.append(housingElement('p','housing-age',`For adults ${row.minimum_age}+`));
+      else if(ages.some(Boolean))card.append(housingElement('p','housing-age','Some options have age requirements'));
       const rent = housingElement('p','housing-rent');
       if (typeof row.monthly_rent === 'number' && Number.isFinite(row.monthly_rent)) {
         rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US')}`; rent.append(housingElement('small','',' / month'));
       } else rent.textContent = 'Rent: confirm with provider';
       card.append(rent);
+      card.append(housingElement('p','rent-caveat',typeof row.monthly_rent!=='number' ? 'Ask the provider for rent, fees & utilities' : plans.length>1 ? 'Lowest starting rent among matching plans · fees may apply' : 'Advertised starting rent · confirm fees & utilities'));
       const features = [];
-      if (row.bedrooms !== null && row.bedrooms !== undefined) features.push(row.bedrooms === 0 ? 'Studio' : `${row.bedrooms} bed`);
-      if (row.bathrooms) features.push(`${row.bathrooms} bath`);
-      if (availability.available_from) features.push('From ' + reviewedDate(availability.available_from));
-      features.push(row.accessible === true ? 'Accessible unit documented' : 'Unit accessibility not confirmed');
+      const bedrooms=[...new Set(plans.map(p=>p.bedrooms).filter(b=>b!=null))].sort((a,b)=>a-b);
+      if(bedrooms.length)features.push(bedrooms.map(b=>b===0?'Studio':`${b} bed`).join(' / '));
+      if(plans.length===1 && row.bathrooms)features.push(`${row.bathrooms} bath`);
+      if(plans.length>1)features.push(`${plans.length} matching plans`);
+      features.push(plans.every(p=>p.accessible===true) ? 'Accessible unit documented' : 'Confirm unit accessibility');
       card.append(housingElement('p','housing-features',features.join(' · ')));
-      const details = housingElement('details','eligibility-details'); details.append(housingElement('summary','','Eligibility & important details'));
-      const information=housingElement('div','eligibility-grid');
-      const groups=[
-        ['Housing category & program',row.affordability?.program],
-        ['Who can apply',[row.minimum_age ? `Age requirement: ${row.minimum_age} and older.` : null,row.who_it_serves].filter(Boolean).join(' ')],
-        ['Before you apply',row.requirements],
-        ['Rent & additional costs',row.cost],
-        ['Availability & timing',[statusLabels[availability.status],availability.available_from ? 'Advertised move-in: '+reviewedDate(availability.available_from)+'.' : null,availability.evidence].filter(Boolean).join(' ')],
-        ['Accessibility',row.accessibility_notes || 'Ask the provider about accessible units and features.'],
-        ['Confirm with leasing',row.notes]
-      ];
-      groups.forEach(([title,text])=>{if(!text)return;const group=housingElement('section','eligibility-item');group.append(housingElement('h4','',title),housingElement('p','',text));information.append(group);});
-      details.append(information,housingElement('div','eligibility-footer','The provider makes the final eligibility decision. Confirm costs and availability before applying or paying.'));
-      if(row.affordability){const proof=housingElement('div','eligibility-item');proof.append(housingElement('h4','',row.type==='rental_listing'?'Rental source':'Affordability source'),housingElement('p','',row.affordability.evidence));const link=sourceLink(row.affordability.source_url,'Read source evidence ↗');if(link)proof.append(link);information.append(proof);}
-      card.append(details);
+      if (plans.length > 1) {
+        const details=housingElement('details','floor-plans-details');
+        details.dataset.key='plans:'+row.id;
+        details.append(housingElement('summary','',`${plans.length} floor plans & eligibility`));
+        const options=housingElement('div','floor-plan-list');
+        plans.forEach(plan=>{
+          const option=housingElement('section','floor-plan-option');
+          option.append(housingElement('h4','',plan.floor_plan || plan.name));
+          option.append(housingElement('p','option-price',rentLabel(plan)));
+          const planFeatures=[];
+          if(plan.bedrooms!=null)planFeatures.push(plan.bedrooms===0?'Studio':`${plan.bedrooms} bed`);
+          if(plan.bathrooms)planFeatures.push(`${plan.bathrooms} bath`);
+          if(plan.square_feet)planFeatures.push(`${plan.square_feet.toLocaleString('en-US')} sq ft`);
+          option.append(housingElement('p','housing-features',planFeatures.join(' · ')));
+          option.append(housingElement('p','option-status',statusLabels[plan.availability?.status] || 'Contact for availability'));
+          option.append(eligibilityDetails(plan)); options.append(option);
+        });
+        details.append(options);card.append(details);
+      } else card.append(eligibilityDetails(row));
       const actions = housingElement('div','housing-actions');
-      const source = sourceLink(row.source_url,'View provider source ↗'); if (source) actions.append(source);
+      const source = sourceLink(row.source_url,plans.length>1?'Starting-price source ↗':'View provider source ↗'); if (source) actions.append(source);
       if (row.phone && /^\+?[0-9 ()-]+$/.test(row.phone)) { const phone = housingElement('a','','Call leasing office'); phone.href='tel:'+row.phone.replace(/[^0-9+]/g,''); actions.append(phone); }
-      card.append(actions,housingElement('p','housing-reviewed',`Source reviewed ${reviewedDate(availability.checked_on || row.last_verified)}`)); listingsGrid.append(card);
+      const reviewDates=plans.map(p=>p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
+      const reviewed=reviewDates[0]===reviewDates[reviewDates.length-1] ? reviewedDate(reviewDates[0]) : `${reviewedDate(reviewDates[0])} – ${reviewedDate(reviewDates[reviewDates.length-1])}`;
+      card.append(actions,housingElement('p','housing-reviewed',`Source reviewed ${reviewed}`)); listingsGrid.append(card);
     });
+    listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
     moreListings.hidden = visibleHousingCount >= housingRows.length;
-    moreListings.textContent = `Show more opportunities (${Math.max(0,housingRows.length-visibleHousingCount)} remaining)`;
+    moreListings.textContent = `Show more communities (${Math.max(0,housingRows.length-visibleHousingCount)} remaining)`;
     browseMessage.dataset.state = 'success';
-    browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} housing opportunities and programs. Multiple floor plans may belong to one community.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
+    browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs. Floor plans are grouped together.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
   }
   async function loadHousing() {
     if (browseRequest) browseRequest.abort();
@@ -330,7 +390,7 @@
     const timeout = setTimeout(()=>controller.abort(),30000);
     const button = browseForm.querySelector('button'); button.disabled = true; listingsGrid.setAttribute('aria-busy','true');
     listingsGrid.replaceChildren(); moreListings.hidden = true; browseMessage.dataset.state='loading'; browseMessage.textContent='Looking through reviewed housing opportunities…';
-    const params = new URLSearchParams(); for (const [key,value] of new FormData(browseForm)) if (value.trim()) params.set(key,value.trim());
+    const params = new URLSearchParams({group_by:'community'}); for (const [key,value] of new FormData(browseForm)) if (value.trim()) params.set(key,value.trim());
     try {
       const response = await fetch('/api/listings?' + params.toString(), {signal:controller.signal}); const data = await response.json();
       if (!response.ok || !Array.isArray(data.listings)) throw new Error(data.error || 'We couldn’t load housing opportunities.');
@@ -341,7 +401,12 @@
       browseMessage.dataset.state='error'; browseMessage.textContent=error.name==='AbortError' ? 'Loading took too long. Select Update results to try again.' : 'We couldn’t load the housing catalog. Select Update results to retry. If you just updated the app, restart your local server.';
     } finally {clearTimeout(timeout); if (browseRequest===controller) {button.disabled=false;listingsGrid.setAttribute('aria-busy','false');}}
   }
-  browseForm.addEventListener('submit',event=>{event.preventDefault();loadHousing();});
+  const budgetShortcut=document.getElementById('budget-under-1500');
+  const rentFilter=document.getElementById('browse-rent');
+  function updateBudgetShortcut(){budgetShortcut.setAttribute('aria-pressed',String(rentFilter.value==='1500'));}
+  budgetShortcut.addEventListener('click',()=>{rentFilter.value='1500';document.getElementById('browse-sort').value='rent_asc';updateBudgetShortcut();browseForm.requestSubmit();});
+  rentFilter.addEventListener('input',updateBudgetShortcut);
+  browseForm.addEventListener('submit',event=>{event.preventDefault();updateBudgetShortcut();loadHousing();});
   moreListings.addEventListener('click',()=>{visibleHousingCount+=6;renderHousing();});
   loadHousing();
   const tabs = [...document.querySelectorAll('[role=tab]')];

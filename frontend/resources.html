@@ -350,15 +350,18 @@
 
     // A few current listings.
     const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
-    fetch('/api/listings').then(r => r.json()).then(data => {
+    fetch('/api/listings?housing_type=affordable&group_by=community&sort=rent_asc').then(r => r.json()).then(data => {
       const box = document.getElementById('listings');
       box.replaceChildren();
       (data.listings || []).slice(0, 8).forEach(l => {
         const card = el('article', { class: 'item' });
-        card.append(el('span', { class: 'badge' }, STATUS[l.availability?.status] || 'Check availability'));
-        card.append(el('h3', {}, l.name));
+        const plans=l.floor_plans || [l];
+        const statuses=new Set(plans.map(p=>p.availability?.status));
+        card.append(el('span', { class: 'badge' }, statuses.size>1 ? 'Availability varies by plan' : STATUS[l.availability?.status] || 'Check availability'));
+        card.append(el('h3', {}, l.community || l.name));
         card.append(el('span', { class: 'meta' }, [l.city, l.jurisdiction].filter(Boolean).join(' · ')));
         if (typeof l.monthly_rent === 'number') card.append(el('span', { class: 'rent' }, `From $${l.monthly_rent.toLocaleString()}/month`));
+        if(plans.length>1)card.append(el('p', {}, `${plans.length} matching floor plans. Starting rent shown for the lowest-priced plan; eligibility and fees vary.`));
         if (l.who_it_serves) card.append(el('p', {}, l.who_it_serves));
         const actions = el('div', { class: 'actions' });
         if (l.phone) actions.append(el('a', { href: 'tel:' + l.phone.replace(/[^0-9+]/g, '') }, l.phone));
