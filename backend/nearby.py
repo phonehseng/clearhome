@@ -138,8 +138,29 @@ def _commutes(homes, lat, lon):
     return out
 
 
+NEAR_ME = re.compile(r"\bnear (?:me|here|my (?:current )?location|where i am)\b", re.I)
+
+
+def _coords(profile):
+    c = (profile or {}).get("coords")
+    if isinstance(c, dict) and all(isinstance(c.get(k), (int, float)) and not isinstance(c.get(k), bool) for k in ("lat", "lon")):
+        if -90 <= c["lat"] <= 90 and -180 <= c["lon"] <= 180:
+            return round(c["lat"], 3), round(c["lon"], 3)  # about 100 m; never stored
+    return None
+
+
 def answer(question, profile=None):
     """Text answer for a "near X" question, or None if the question isn't one."""
+    me = _coords(profile)
+    if me and NEAR_ME.search(question or "") and not URGENT.search(question):
+        inside = any(_miles(me[0], me[1], lat, lon) <= r for _, lat, lon, r in REGIONS)
+        if not inside:
+            return ("You look to be outside the areas Clear House covers (Northern Virginia and Blacksburg). "
+                    "For housing help where you are, call 211.")
+        return _homes_near("your location", me[0], me[1], question, profile)
+    if NEAR_ME.search(question or ""):
+        return ("I can look near you if you tap **Near me** above the map and allow location, or tell me a place, "
+                "like \"near my office at 1800 Tysons Blvd\".")
     place, vague = extract_place(question)
     if vague:
         return (f"Happy to look near your {vague}. What's the address or the name of the place? For example: "
@@ -153,6 +174,10 @@ def answer(question, profile=None):
     if name == "outside":
         return ("That place looks outside the areas Clear House covers (Northern Virginia and Blacksburg). "
                 "For other areas, call 211 for local housing help.")
+    return _homes_near(name, lat, lon, question, profile)
+
+
+def _homes_near(name, lat, lon, question, profile):
     profile = profile or {}
     filters = {"types": ["affordable_listing", "rental_listing"], "age": 62 if profile.get("senior") else 30,
                "age_group": "senior" if profile.get("senior") else "general"}
