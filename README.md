@@ -54,6 +54,7 @@ python backend/app.py
 Open http://localhost:8000.
 
 - `python backend/test_gemma.py` checks that your key works.
+- `python backend/discover.py --limit 5` uses Gemma to extract source-backed rental candidates into the review queue (requires your local `.env` API key).
 - Browse readable housing cards without an AI key at `http://localhost:8000/app#listings`. The raw JSON data endpoint is `http://localhost:8000/api/listings`.
 - `python backend/catalog.py --check` validates the source catalog.
 - `python -m unittest discover -s backend -p 'test_catalog.py' -v` runs offline catalog/matching/API checks.

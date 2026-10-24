@@ -53,7 +53,11 @@ def listing_photo(resource_id):
 @app.get("/api/listings")
 def listings():
     """Browse the reviewed catalog without an AI call or API key."""
-    filters = {"types": ["affordable_listing", "housing_authority"]}
+    housing_type = request.args.get("housing_type", "all")
+    category_types = {"all": ["affordable_listing", "rental_listing", "housing_authority"], "affordable": ["affordable_listing", "housing_authority"], "regular": ["rental_listing"]}
+    if housing_type not in category_types:
+        return jsonify(error="housing_type must be all, affordable, or regular."), 400
+    filters = {"types": category_types[housing_type]}
     location = request.args.get("location", "").strip()
     if location:
         filters["locations"] = [location]

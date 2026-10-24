@@ -25,6 +25,7 @@ TYPES = [
     "rental_assistance",
     "legal_aid",
     "affordable_listing",
+    "rental_listing",
     "affordable_property",
     "food_support",
     "housing_authority",
@@ -63,6 +64,7 @@ def extract_filters(message):
     """Normalize model filters; preserve explicit form fields on parse failure."""
     prompt = f"""Extract housing filters from the message below. Return ONLY a JSON object with these keys:
 - "types": list of the resource types that fit what the person needs, chosen from {TYPES}
+- For a general rental search, include both affordable_listing and rental_listing. For an explicitly affordable-only search, omit rental_listing. For regular rentals only, use rental_listing.
 - "max_budget_per_month": number or null
 - "needs_accessible": true or false
 - "urgency": "emergency" if they have nowhere safe to stay tonight or soon, otherwise "soon" or "planning"
@@ -120,6 +122,7 @@ def write_answer(message, filters, matches):
 
 Rules:
 - This service covers Northern Virginia (Fairfax County, Arlington, Alexandria, Loudoun and Prince William). If the person is clearly looking elsewhere, say so and suggest calling 211.
+- For housing, describe the documented affordability.program and any income restrictions. rental_listing is a regular rental with no affordable-program claim. Affordable-program participation does not mean every household qualifies or every advertised unit is reserved at that rate. Never claim 100% accuracy or provider confirmation based on web review.
 - Recommend only resources from the list. Never invent places, phone numbers, prices or addresses.
 - For each recommendation give the name, phone, address, cost, requirements, source_url and availability.checked_on (or last_verified). Say when accessibility is unknown.
 - When a resource has how_to_apply, include those steps in short plain language. For shelters, say to call the intake line first, since most beds are assigned through it.

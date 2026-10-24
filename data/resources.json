@@ -63,6 +63,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted housing program",
+      "evidence": "Provider states household income limits and 50%, 60%, and 70% AMI bands; the applicable unit tier must be confirmed.",
+      "source_url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station/affordable",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -129,6 +138,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted housing program",
+      "evidence": "Provider states household income limits and 50%, 60%, and 70% AMI bands; the applicable unit tier must be confirmed.",
+      "source_url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station/affordable",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -191,6 +209,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted housing program",
+      "evidence": "Provider states household income limits and 50%, 60%, and 70% AMI bands; the applicable unit tier must be confirmed.",
+      "source_url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station/affordable",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -257,6 +284,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted affordable housing",
+      "evidence": "Owner explicitly identifies the community as income-restricted affordable housing.",
+      "source_url": "https://ahcommunities.org/property/arbor-heights/",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -323,6 +359,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted affordable housing",
+      "evidence": "Owner explicitly identifies the community as income-restricted affordable housing.",
+      "source_url": "https://ahcommunities.org/property/arbor-heights/",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -389,6 +434,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted affordable housing",
+      "evidence": "Provider publishes income eligibility rules and identifies 50% and 60% floor-plan tiers.",
+      "source_url": "https://www.glenridgecommons.com/eligibility",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -455,6 +509,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted affordable housing",
+      "evidence": "Provider publishes income eligibility rules and identifies 50% and 60% floor-plan tiers.",
+      "source_url": "https://www.glenridgecommons.com/eligibility",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -521,6 +584,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted affordable housing",
+      "evidence": "Provider publishes income eligibility rules and identifies 50% and 60% floor-plan tiers.",
+      "source_url": "https://www.glenridgecommons.com/eligibility",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -583,6 +655,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted rental waitlist",
+      "evidence": "Provider describes income-restricted pre-applications, income limits, and waitlist placement.",
+      "source_url": "https://www.riverwoodsvaapartments.com/va/woodbridge/floorplans",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -645,6 +726,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted rental waitlist",
+      "evidence": "Provider describes income-restricted pre-applications, income limits, and waitlist placement.",
+      "source_url": "https://www.riverwoodsvaapartments.com/va/woodbridge/floorplans",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -700,7 +790,16 @@
     },
     "notes": "One-, two-, and three-bedroom income-restricted homes. Do not visit until the provider permits site access; the county describes ongoing construction. Exact rent and current units are unconfirmed.",
     "area": "Loudoun County",
-    "photo": null
+    "photo": null,
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted affordable housing",
+      "evidence": "Provider identifies income-restricted homes with maximum income and eligibility requirements.",
+      "source_url": "https://liveatlanticblvd.com/",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
   },
   {
     "id": "linden-senior",
@@ -762,6 +861,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "LIHTC affordable senior housing",
+      "evidence": "Owner identifies affordable senior homes for adults 55+ at 30–60% AMI, with LIHTC financing.",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/loudoun-county/the-linden-senior-residences/",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -789,7 +897,7 @@
     "square_feet": 677,
     "accessible": null,
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
-    "requirements": "City lists minimum annual income of $47,430 for the one-bedroom or $54,090 for the two-bedroom; maximums vary by household size. Confirm full eligibility with the provider.",
+    "requirements": "City October 5, 2026 publication lists minimum annual household income of $47,430 for this unit size; maximum income varies by household size. Confirm current limits and full eligibility directly.",
     "minimum_age": null,
     "source_url": "https://www.arbelo-apartments.com/alexandria/arbelo/conventional/",
     "sources": [
@@ -828,6 +936,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "City committed-affordable rental housing",
+      "evidence": "City October 2026 affordable-unit publication lists Arbelo, rents, and minimum/maximum income requirements.",
+      "source_url": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -855,7 +972,7 @@
     "square_feet": 898,
     "accessible": null,
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
-    "requirements": "City lists minimum annual income of $47,430 for the one-bedroom or $54,090 for the two-bedroom; maximums vary by household size. Confirm full eligibility with the provider.",
+    "requirements": "City October 5, 2026 publication lists minimum annual household income of $54,090 for this unit size; maximum income varies by household size. Confirm current limits and full eligibility directly.",
     "minimum_age": null,
     "source_url": "https://www.arbelo-apartments.com/alexandria/arbelo/conventional/",
     "sources": [
@@ -894,6 +1011,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "City committed-affordable rental housing",
+      "evidence": "City October 2026 affordable-unit publication lists Arbelo, rents, and minimum/maximum income requirements.",
+      "source_url": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -912,7 +1038,7 @@
     "website": "https://www.spireapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
-    "cost": "Pricing needs confirmation: floor-plan page advertises $1,699; unit page lists $1,869 base rent plus $1,699 specials.",
+    "cost": "Provider pages show inconsistent base and promotional rates. Obtain a written quote for ongoing monthly rent, utilities, and fees.",
     "monthly_rent": null,
     "rent_basis": null,
     "currency": "USD",
@@ -955,7 +1081,7 @@
       "source_updated_on": null,
       "auto_checked_at": "2026-10-24T17:10:10.964336+00:00"
     },
-    "notes": "Do not use the lowest advertised special to assert budget eligibility. Confirm base rent, promotion duration, total monthly cost, and accessibility directly.",
+    "notes": "Income-restricted property confirmed by owner and city. Published rents conflict and have changed across reviews; no numeric rent is used for budget matching.",
     "area": "Alexandria City",
     "photo": {
       "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1773%2Ch_1182%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.4%2Cg_auto/s3/2/85707/the%20spire%20alexandria%20va_header_2resized.jpg",
@@ -964,6 +1090,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "City committed-affordable rental housing",
+      "evidence": "City October 2026 affordable-unit publication identifies The Spire and income restrictions; owner also identifies income-restricted housing.",
+      "source_url": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -1018,7 +1153,16 @@
     },
     "notes": "Retained for audit and to prevent recommending a closed application window. Provider and city use different street-address descriptions; owner address is recorded. Not an active recommendation.",
     "area": "Alexandria City",
-    "photo": null
+    "photo": null,
+    "affordability": {
+      "status": "documented",
+      "program": "LIHTC affordable housing",
+      "evidence": "Owner describes 40–60% AMI housing through LIHTC; applications are closed.",
+      "source_url": "https://www.communityhousingpartners.org/properties/witter-place-apartments/",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
   },
   {
     "id": "brentwood-one-bedroom",
@@ -1080,6 +1224,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted rental waitlist",
+      "evidence": "Provider states that income-restricted pre-applications join a waitlist and links current income limits.",
+      "source_url": "https://www.brentwood-apts.com/va/manassas/floorplans",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -1146,6 +1299,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "City-listed dedicated affordable rental housing",
+      "evidence": "City identifies West Wood Oaks as dedicated affordable rental housing; specific unit program and applicant eligibility require provider confirmation.",
+      "source_url": "https://www.fairfaxva.gov/Services/Support-Programs/Housing-and-Homelessness",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -1154,7 +1316,7 @@
     "community": "Park Place Senior",
     "record_kind": "floor_plan",
     "floor_plan": "1 Bedroom 1 Bath",
-    "type": "affordable_listing",
+    "type": "rental_listing",
     "address": "9659 Manassas Drive, Manassas Park, VA 20111",
     "city": "Manassas Park",
     "jurisdiction": "Manassas Park City",
@@ -1163,7 +1325,7 @@
     "phone": "703-257-3455",
     "website": "https://www.parkplacesenior.com/",
     "hours": null,
-    "who_it_serves": "Adults aged 55+. Confirm current income restrictions and affordable-unit eligibility with management.",
+    "who_it_serves": "Adults aged 55+ meeting provider rental criteria. No current affordable-program or subsidy eligibility is asserted.",
     "cost": "Advertised starting monthly rent: $1,833. Utilities and fees must be confirmed.",
     "monthly_rent": 1833,
     "rent_basis": "starting_at",
@@ -1212,7 +1374,16 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
-    }
+    },
+    "affordability": {
+      "status": "standard_rental",
+      "program": "Regular advertised senior rental; affordable-program status unconfirmed",
+      "evidence": "Provider advertises one-bedroom rentals for adults 55+; current income-restricted program status is not established.",
+      "source_url": "https://www.parkplacesenior.com/floorplans",
+      "checked_on": "2026-10-24",
+      "individual_eligibility_confirmed": false
+    },
+    "review_notes": "Current rental details have provider evidence. Listed only as a regular rental; historical affordable designation is insufficient for the affordable category."
   },
   {
     "id": "broad-washington-adu",
@@ -1274,6 +1445,15 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community or model-home photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "documented",
+      "program": "Falls Church Affordable Dwelling Unit program",
+      "evidence": "Provider identifies ADU studios/two-bedrooms with income bands and regulatory rent caps; no specific affordable vacancy is confirmed.",
+      "source_url": "https://www.broadandwashington.com/housing-for-all",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
     }
   },
   {
@@ -1324,7 +1504,16 @@
     },
     "notes": "Program waitlist, not a vacant apartment. Priority and income qualification do not guarantee placement.",
     "area": "Falls Church City",
-    "photo": null
+    "photo": null,
+    "affordability": {
+      "status": "documented",
+      "program": "City affordable-housing waitlist",
+      "evidence": "City publishes household income limits, live/work application restrictions, and minimum income rules.",
+      "source_url": "https://fallschurchva.gov/687/Affordable-Dwelling-Unit-Program",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
   },
   {
     "id": "fairfax-coordinated-services-planning",
@@ -4443,5 +4632,137 @@
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
     "area": "Northern Virginia"
+  },
+  {
+    "id": "reserve-eisenhower-allison",
+    "name": "The Reserve at Eisenhower Apartments — The Allison",
+    "community": "The Reserve at Eisenhower Apartments",
+    "record_kind": "floor_plan",
+    "floor_plan": "The Allison",
+    "type": "rental_listing",
+    "address": "5000 Eisenhower Avenue, Alexandria, VA 22304",
+    "city": "Alexandria",
+    "jurisdiction": "Alexandria City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-664-1722",
+    "website": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+    "hours": null,
+    "who_it_serves": "Applicants meeting the property’s rental criteria. No income-restricted or subsidized unit eligibility is established.",
+    "cost": "Provider advertises base rent $1,966 on a 12-month lease. Header pricing differs; request estimated total monthly cost and a written unit quote.",
+    "monthly_rent": 1966,
+    "rent_basis": "advertised_base_rent",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": 744,
+    "accessible": null,
+    "accessibility_notes": "The accessibility of the advertised apartment is not confirmed.",
+    "requirements": "Confirm screening criteria, deposits, lease terms, recurring charges, and current availability directly with the property.",
+    "minimum_age": null,
+    "source_url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+    "sources": [
+      {
+        "url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+        "role": "provider"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": "2026-10-23",
+      "evidence": "Provider advertises The Allison at $1,966 for a 12-month lease, available 2026-10-23.",
+      "source_url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+      "source_updated_on": null,
+      "auto_checked_at": "2026-10-24T17:10:10.964336+00:00"
+    },
+    "notes": "Regular advertised rental, not a claim of affordable-program participation. Advertised prices and dates can change.",
+    "area": "Alexandria City",
+    "photo": {
+      "url": "https://media.equityapartments.com/images/c_crop%2Cx_0%2Cy_0%2Cw_1920%2Ch_1080/c_fill%2Cw_1920%2Ch_1080/q_auto%2Cf_auto/2293-3/the-reserve-at-eisenhower-apartments-building",
+      "source_url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+      "alt": "The Reserve at Eisenhower apartment building exterior",
+      "credit": "Equity Residential property listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Provider community photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "standard_rental",
+      "program": "Regular rental · no affordable-program claim",
+      "source_url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+      "checked_on": "2026-10-24",
+      "evidence": "Provider publishes standard floor-plan rental prices, 12-month terms, and unit availability; no subsidized eligibility is asserted.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "reserve-eisenhower-brookdale",
+    "name": "The Reserve at Eisenhower Apartments — The Brookdale",
+    "community": "The Reserve at Eisenhower Apartments",
+    "record_kind": "floor_plan",
+    "floor_plan": "The Brookdale",
+    "type": "rental_listing",
+    "address": "5000 Eisenhower Avenue, Alexandria, VA 22304",
+    "city": "Alexandria",
+    "jurisdiction": "Alexandria City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-664-1722",
+    "website": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+    "hours": null,
+    "who_it_serves": "Applicants meeting the property’s rental criteria. No income-restricted or subsidized unit eligibility is established.",
+    "cost": "Provider advertises base rent $2,384 on a 12-month lease. Header pricing differs; request estimated total monthly cost and a written unit quote.",
+    "monthly_rent": 2384,
+    "rent_basis": "advertised_base_rent",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "square_feet": 1048,
+    "accessible": null,
+    "accessibility_notes": "The accessibility of the advertised apartment is not confirmed.",
+    "requirements": "Confirm screening criteria, deposits, lease terms, recurring charges, and current availability directly with the property.",
+    "minimum_age": null,
+    "source_url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+    "sources": [
+      {
+        "url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+        "role": "provider"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "upcoming",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": "2026-10-29",
+      "evidence": "Provider advertises The Brookdale at $2,384 for a 12-month lease, available 2026-10-29.",
+      "source_url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+      "source_updated_on": null,
+      "auto_checked_at": "2026-10-24T17:10:10.964336+00:00"
+    },
+    "notes": "Regular advertised rental, not a claim of affordable-program participation. Advertised prices and dates can change.",
+    "area": "Alexandria City",
+    "photo": {
+      "url": "https://media.equityapartments.com/images/c_crop%2Cx_0%2Cy_0%2Cw_1920%2Ch_1080/c_fill%2Cw_1920%2Ch_1080/q_auto%2Cf_auto/2293-3/the-reserve-at-eisenhower-apartments-building",
+      "source_url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+      "alt": "The Reserve at Eisenhower apartment building exterior",
+      "credit": "Equity Residential property listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Provider community photo; the offered apartment may differ."
+    },
+    "affordability": {
+      "status": "standard_rental",
+      "program": "Regular rental · no affordable-program claim",
+      "source_url": "https://www.equityapartments.com/alexandria/van-dorn-metro/the-reserve-at-eisenhower-apartments",
+      "checked_on": "2026-10-24",
+      "evidence": "Provider publishes standard floor-plan rental prices, 12-month terms, and unit availability; no subsidized eligibility is asserted.",
+      "individual_eligibility_confirmed": false
+    }
   }
 ]

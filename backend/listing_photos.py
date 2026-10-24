@@ -18,7 +18,7 @@ from PIL import Image
 from catalog import load_catalog
 
 CACHE_DIR = Path(__file__).resolve().parent.parent / '.cache' / 'listing-photos'
-ALLOWED_HOSTS = {'medialibrarycfo.entrata.com', 'cdngeneral.rentcafe.com', 'resource.rentcafe.com', 'capi.myleasestar.com', 'cms.broadandwashington.com'}
+ALLOWED_HOSTS = {'media.equityapartments.com', 'medialibrarycfo.entrata.com', 'cdngeneral.rentcafe.com', 'resource.rentcafe.com', 'capi.myleasestar.com', 'cms.broadandwashington.com'}
 MAX_BYTES = 8 * 1024 * 1024
 _LOCK = threading.Lock()
 _LOCKS = {}

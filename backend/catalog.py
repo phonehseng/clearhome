@@ -14,7 +14,7 @@ from urllib.parse import urlsplit
 RESOURCES_PATH = Path(__file__).resolve().parent.parent / 'data' / 'resources.json'
 STATUSES = {'available_now', 'advertised_vacancy', 'upcoming', 'leasing', 'waitlist_open', 'contact_for_availability', 'closed'}
 # affordable_property: an income-restricted building from a public database, without unit-level availability.
-TYPES = {'affordable_listing', 'affordable_property', 'emergency_shelter', 'rental_assistance', 'housing_authority', 'legal_aid', 'food_support', 'other'}
+TYPES = {'rental_listing', 'affordable_listing', 'affordable_property', 'emergency_shelter', 'rental_assistance', 'housing_authority', 'legal_aid', 'food_support', 'other'}
 STATUS_ORDER = {key: i for i, key in enumerate(['available_now', 'advertised_vacancy', 'upcoming', 'leasing', 'waitlist_open', 'contact_for_availability', 'needs_recheck', 'closed'])}
 
 def _date(value):
@@ -31,6 +31,22 @@ def _https(value):
 
 def _number(value):
     return type(value) in (int, float) and math.isfinite(value) and value >= 0
+
+def documented_affordability(row):
+    """Evidence is required; a label, low price, or verified flag alone is insufficient."""
+    evidence = row.get('affordability')
+    return (isinstance(evidence, dict) and evidence.get('status') == 'documented'
+            and isinstance(evidence.get('program'), str) and bool(evidence['program'].strip())
+            and isinstance(evidence.get('evidence'), str) and bool(evidence['evidence'].strip())
+            and _https(evidence.get('source_url')) and _date(evidence.get('checked_on')) is not None)
+
+
+def documented_rental(row):
+    evidence = row.get('affordability')
+    return (isinstance(evidence, dict) and evidence.get('status') == 'standard_rental'
+            and isinstance(evidence.get('evidence'), str) and bool(evidence['evidence'].strip())
+            and _https(evidence.get('source_url')) and _date(evidence.get('checked_on')) is not None)
+
 
 def validate_resources(records):
     """Return actionable data errors; never modify records or mark them verified."""
@@ -66,7 +82,11 @@ def validate_resources(records):
         for field in ('bedrooms', 'minimum_age'):
             if row.get(field) is not None and (type(row[field]) is not int or row[field] < 0):
                 errors.append(f'{label}: {field} must be a nonnegative integer or null.')
-        if row.get('type') != 'affordable_listing':
+        if row.get('type') in {'affordable_listing', 'affordable_property'} and not documented_affordability(row):
+            errors.append(f'{label}: housing needs documented affordability evidence, source, program, and review date.')
+        if row.get('type') == 'rental_listing' and not documented_rental(row):
+            errors.append(f'{label}: regular rentals need provider evidence and a review date.')
+        if row.get('type') not in {'affordable_listing', 'rental_listing'}:
             continue
         for field in ('community', 'city', 'jurisdiction', 'address', 'verification_method'):
             if not isinstance(row.get(field), str) or not row[field].strip():
@@ -108,6 +128,10 @@ def filter_catalog(resources, filters=None, today=None):
     for resource in resources:
         if resource.get('verified') is not True:
             continue
+        if resource.get('type') in {'affordable_listing', 'affordable_property'} and not documented_affordability(resource):
+            continue
+        if resource.get('type') == 'rental_listing' and not documented_rental(resource):
+            continue
         row = copy.deepcopy(resource)
         if row.get('availability') is not None:
             row['availability'] = effective_availability(row, today)
@@ -119,7 +143,7 @@ def filter_catalog(resources, filters=None, today=None):
             continue
         if filters.get('needs_accessible') and row.get('accessible') is not True:
             continue
-        if row.get('type') == 'affordable_listing':
+        if row.get('type') in {'affordable_listing', 'affordable_property', 'rental_listing'}:
             budget = filters.get('max_budget_per_month')
             rent = row.get('monthly_rent')
             if _number(budget) and (not _number(rent) or rent > budget):
