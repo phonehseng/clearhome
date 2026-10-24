@@ -208,6 +208,12 @@
     /* Find form: optional details, instant options, then an optional assistant chat. */
     .find-select{width:100%;min-height:45px;border:1px solid #7a8ba7;border-radius:7px;background:var(--white);color:var(--ink);padding:10px 11px;font:inherit;font-size:13px}
     .find-select :is(option,optgroup){background:var(--white);color:var(--ink)}
+    /* "Pick an area" sits inside the location box as a soft pill, like the page's chips. */
+    .location-pick{flex:none;max-width:48%;min-height:34px;margin:6px 0;padding:6px 32px 6px 13px;border:1px solid var(--line);border-radius:999px;
+      background:#f3f6fd url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2323408f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 4.5 3 3 3-3'/%3E%3C/svg%3E") no-repeat right 12px center;
+      color:var(--blue);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;text-overflow:ellipsis;transition:background-color .15s,border-color .15s}
+    .location-pick:hover{background-color:#e2eafb;border-color:#6f8fd6}
+    .location-pick :is(option,optgroup){background:var(--white);color:var(--ink);font-weight:400}
     
     .find-checks{border:0;padding:0;margin:0 0 19px;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
     .find-checks legend{font-size:12px;font-weight:600;margin-bottom:8px;padding:0}
