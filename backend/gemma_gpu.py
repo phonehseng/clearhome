@@ -34,9 +34,11 @@ def _auth():
         return {"Authorization": f"Bearer {os.environ['GEMMA_GPU_TOKEN']}"}
     with _lock:
         if not _token["value"] or time.time() > _token["expires"]:
-            import google.auth.transport.requests
-            import google.oauth2.id_token
-            _token["value"] = google.oauth2.id_token.fetch_id_token(google.auth.transport.requests.Request(), url())
+            # On Cloud Run, the metadata server hands out an ID token for this service's own identity.
+            resp = requests.get("http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity",
+                                params={"audience": url(), "format": "full"}, headers={"Metadata-Flavor": "Google"}, timeout=5)
+            resp.raise_for_status()
+            _token["value"] = resp.text.strip()
             _token["expires"] = time.time() + 45 * 60  # ID tokens last an hour
         return {"Authorization": f"Bearer {_token['value']}"}
 
@@ -62,7 +64,8 @@ def stream(prompt):
                 yield text
             if data.get("done"):
                 return
-    except Exception:
+    except Exception as error:
+        print(f"Gemma GPU unavailable, using the Gemini API instead: {type(error).__name__}: {str(error)[:200]}", flush=True)
         _mark_cold()
         raise
 
