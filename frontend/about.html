@@ -308,6 +308,53 @@
     @media (min-width: 1100px){html{zoom:1.1} #listing-map,#walk-map{zoom:calc(1/1.1);width:110%} #listing-map{height:462px}}
     @media (min-width: 1400px){html{zoom:1.25} #listing-map,#walk-map{zoom:.8;width:125%} #listing-map{height:525px}}
     /* Google Maps can't draw inside a zoomed page, so the map boxes undo the zoom and grow to the same footprint. */
+
+    /* ===== Clean redesign: big centered type, lots of space, few words ===== */
+    .cl-hero{position:relative;min-height:calc(100vh - 80px);display:grid;place-items:center;text-align:center;padding:96px 20px 0;overflow:hidden;
+      background:linear-gradient(180deg,#5b8def 0%,#9fbff5 38%,#dbe8fc 70%,#f4f7fd 100%)}
+    .cl-hero-text{position:relative;z-index:2;max-width:900px}
+    .cl-chip{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;background:#ffffff33;border:1px solid #ffffff66;color:#fff;font-weight:600;font-size:15px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:0 0 22px}
+    .cl-ping{width:9px;height:9px;border-radius:50%;background:#ff8a1f;box-shadow:0 0 0 0 #ff8a1fb3;animation:ch-ping 1.8s ease-out infinite}
+    .cl-hero h1{font-size:clamp(54px,8.5vw,112px);line-height:1.02;letter-spacing:-.035em;color:#fff;margin:0;font-weight:800;text-shadow:0 10px 40px #1d3f9a40}
+    .cl-hero h1 span{color:#fff}
+    .cl-sub{font-size:clamp(18px,2vw,22px);color:#f4f7ff;margin:22px auto 34px;max-width:560px}
+    .cl-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .cl-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;background:#14203f;color:#fff;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 10px 30px #14203f33;transition:transform .15s,box-shadow .15s}
+    .cl-btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px #14203f40}
+    .cl-btn.ghost{background:#ffffffcc;color:#14203f;box-shadow:none;border:1px solid #ffffff}
+    .cl-hero-art{position:absolute;inset:auto 0 0 0;height:46%;z-index:1;opacity:.95}
+    .cl-hero-art svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(.9)}
+    .cl-section{max-width:1200px;margin:0 auto;padding:120px 24px 0;text-align:center}
+    .cl-title{font-size:clamp(36px,5vw,60px);letter-spacing:-.03em;line-height:1.08;margin:0;font-weight:700;color:#14203f}
+    .cl-title span{background:linear-gradient(90deg,#5b6b85,#a9b4c8);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .cl-lead{font-size:19px;color:#5b6b85;margin:16px auto 0;max-width:560px}
+    .cl-frame{margin:44px auto 0;padding:22px;border-radius:32px;background:linear-gradient(180deg,#e6eefc,#f6f9ff);box-shadow:0 30px 80px #23408f1f;text-align:left}
+    .cl-frame .hero-map{height:460px}
+    .cl-duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px;text-align:left}
+    .cl-card{border-radius:30px;padding:36px;background:#fff;border:1px solid #e3e9f6;box-shadow:0 20px 60px #23408f14;min-height:360px;display:flex;flex-direction:column}
+    .cl-card.blue{background:linear-gradient(160deg,#4f7ff0,#2f55b5);color:#fff;border:0}
+    .cl-card h3{font-size:30px;letter-spacing:-.02em;margin:0 0 10px;font-weight:700}
+    .cl-card h3 em{font-style:normal;padding:2px 10px;border-radius:10px;background:#ffffff2e;border:1px solid #ffffff55}
+    .cl-card:not(.blue) h3 em{background:#e8f0fe;border-color:#c7d7f8;color:#1a73e8}
+    .cl-card p{margin:0;font-size:17px;opacity:.85}
+    .cl-chat{margin-top:auto;display:grid;gap:10px;font-size:15px}
+    .cl-chat span{padding:12px 16px;border-radius:16px;max-width:88%}
+    .cl-chat .me{justify-self:end;background:#14203f;color:#fff}
+    .cl-chat .ai{background:#ffffff;color:#14203f}
+    .cl-list{list-style:none;margin:auto 0 0;padding:0;display:grid;gap:10px}
+    .cl-list li{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-radius:16px;background:#f3f6fd;font-size:15px}
+    .cl-list span{color:#5b6b85}
+    .cl-tags{list-style:none;padding:0;margin:30px 0 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .cl-tags li{padding:10px 18px;border-radius:999px;background:#fff;border:1px solid #e3e9f6;font-weight:600;font-size:15px;color:#14203f}
+    #google .google-grid{margin-top:44px;text-align:left}
+    #google .card p{font-size:15px}
+    #github .repo-card{margin-top:44px;text-align:left}
+    .cl-end{padding-bottom:110px}
+    .cl-end .cl-btn{margin-top:30px}
+    .cl-urgent{margin-top:26px;color:#5b6b85;font-size:16px}
+    .cl-urgent a{color:#c5221f;font-weight:700}
+    .header-links .cl-nav-btn{padding:9px 18px;border-radius:999px;background:#fff;color:#14203f!important;font-weight:700}
+    @media(max-width:820px){.cl-duo{grid-template-columns:1fr}.cl-section{padding-top:84px}.cl-frame{padding:12px}.cl-frame .hero-map{height:360px}}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -331,105 +378,64 @@
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a>
       <nav class="header-links" aria-label="Page navigation">
-        <a href="#how">How it works</a>
         <a href="#map">Map</a>
         <a href="#google">Built with Google</a>
         <a href="#github">GitHub</a>
-        <a href="/app">Open the tools</a>
-        <a href="/resources">Resources</a>
-        <a class="emergency-link" href="#emergency"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#help"/></svg>Need help now?</a>
+        <a class="cl-nav-btn" href="/app">Open Clear House</a>
       </nav>
     </div>
   </header>
 
-  <main id="main" class="container">
-    <section class="hero" aria-labelledby="hero-title">
-      <div>
-        <p class="eyebrow reveal"><span>Housing support for <span class="keep">Northern Virginia & Blacksburg</span></span></p>
+  <main id="main">
+    <section class="cl-hero" aria-labelledby="hero-title">
+      <div class="cl-hero-text">
+        <p class="cl-chip reveal"><span class="cl-ping" aria-hidden="true"></span>Northern Virginia &amp; Blacksburg</p>
         <h1 id="hero-title" class="reveal">Find your way <span>home.</span></h1>
-        <p class="reveal">Clear House helps people in Northern Virginia and Blacksburg find verified affordable homes, shelters and rent help near where they work or study, in plain language and for free.</p>
-        <div class="hero-actions reveal">
-          <a class="button" href="/app">Get started <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a>
-          <a class="link" href="/resources">Low-income housing resources</a>
-        </div>
+        <p class="cl-sub reveal">Checked homes, shelters and rent help. Ask in plain words.</p>
+        <div class="cl-actions reveal"><a class="cl-btn" href="/app">Open Clear House <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency">Need a place tonight?</a></div>
       </div>
-      <div class="reveal from-right">
-        <div class="hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><path d="M0 229c108-31 277-35 470-10v41H0Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><g class="tree t1"><path d="M76 230v-55" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/></g><g class="tree t2"><path d="M415 226v-83" stroke="#72855c" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/></g><g class="grass" transform="translate(40 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(450 233)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 226v-19m-9 9h26m-17 10v-19m9 19v-19" stroke="#f8f5e4" stroke-width="4"/><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g transform="scale(.8)"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg><div class="art-note"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#shield"/></svg>A little closer to your next chapter.</div></div>
-      </div>
+      <div class="cl-hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><path d="M0 229c108-31 277-35 470-10v41H0Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><g class="tree t1"><path d="M76 230v-55" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/></g><g class="tree t2"><path d="M415 226v-83" stroke="#72855c" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/></g><g class="grass" transform="translate(40 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(450 233)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 226v-19m-9 9h26m-17 10v-19m9 19v-19" stroke="#f8f5e4" stroke-width="4"/><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g transform="scale(.8)"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg></div>
     </section>
 
-    <section class="map-section" id="map" aria-labelledby="map-title">
-      <div class="section-heading">
-        <p class="eyebrow reveal">Every reviewed home, on a map</p>
-        <h2 id="map-title" class="reveal">Switch between Northern Virginia and Blacksburg, or look near you.</h2>
-        <p class="lead reveal">Blue houses are homes our team checked. Pick a neighborhood, tap a pin for rent and the provider's page, or open the tools to ask Gemma.</p>
-      </div>
-      <div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div>
-      <p style="margin-top:14px"><a class="link" href="/app">Open the full tools and ask Gemma →</a></p>
+    <section class="cl-section" id="map" aria-labelledby="map-title">
+      <h2 id="map-title" class="cl-title reveal">Every checked home, <span>on one map</span></h2>
+      <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p>
+      <div class="cl-frame reveal"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div></div>
     </section>
 
-
-    <section aria-labelledby="problem-title">
-      <div class="section-heading">
-        <p class="eyebrow reveal">The problem</p>
-        <h2 id="problem-title" class="reveal">Finding a safe, affordable home shouldn't be this hard.</h2>
-        <p class="lead reveal">Many renters spend more than 30% of their income on housing. When money is tight, every wrong step costs more.</p>
+    <section class="cl-section" id="how" aria-labelledby="how-title">
+      <h2 id="how-title" class="cl-title reveal">How Clear House <span>helps</span></h2>
+      <div class="cl-duo">
+        <article class="cl-card blue reveal from-left">
+          <h3>Ask <em>Gemma 4</em> anything</h3>
+          <p>Answers stream in seconds, only from checked resources.</p>
+          <div class="cl-chat" aria-hidden="true"><span class="me">Who helps with back rent in Alexandria?</span><span class="ai">Call <b>City of Alexandria Rent Relief</b> at 703-746-5700…</span></div>
+        </article>
+        <article class="cl-card reveal from-right">
+          <h3>Search <em>near my office</em></h3>
+          <p>Closest homes with real drive and transit times.</p>
+          <ul class="cl-list" aria-hidden="true"><li><b>Signature at Reston</b><span>0.3 mi · 3 min drive</span></li><li><b>Exo</b><span>0.6 mi · 6 min drive</span></li><li><b>The Point at Rise</b><span>0.9 mi · 6 min drive</span></li></ul>
+        </article>
       </div>
-      <div class="cards stagger">
-        <div class="card reveal"><span class="icon-badge"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#pin"/></svg></span><h3>Help is scattered</h3><p>Shelters, assistance programs and affordable listings live on dozens of different sites.</p></div>
-        <div class="card reveal"><span class="icon-badge"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#document"/></svg></span><h3>Rules are confusing</h3><p>Income limits, closed waitlists and program names make it hard to know what you can actually apply for.</p></div>
-        <div class="card reveal"><span class="icon-badge"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#search"/></svg></span><h3>Location matters</h3><p>A cheap place an hour from work or school isn't really affordable once you add the commute.</p></div>
-      </div>
+      <ul class="cl-tags reveal" aria-label="Our promise"><li>Checked sources only</li><li>No accounts</li><li>SSNs removed</li><li>911 and 211 first</li></ul>
     </section>
 
-    <section id="how" aria-labelledby="features-title">
-      <div class="section-heading">
-        <p class="eyebrow reveal">What Clear House does</p>
-        <h2 id="features-title" class="reveal">Three tools. One clear next step.</h2>
-      </div>
-      <div class="features">
-        <div class="feature reveal from-left">
-          <span class="icon-badge"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>
-          <div><h3>Find housing help</h3><p>Describe your situation in your own words. We match you to shelters, rental assistance and affordable housing from a list our team checked by hand. If it's urgent, shelters come first.</p></div>
-          <a class="link" href="/app">Try it</a>
-        </div>
-        <div class="feature reveal from-right">
-          <span class="icon-badge"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#document"/></svg></span>
-          <div><h3>Ask Gemma, live</h3><p>Ask in your own words and watch the answer stream in, using only our checked resources. Say "near my office at…" and get the closest homes with drive and transit times.</p></div>
-          <a class="link" href="/app">Try it</a>
-        </div>
-        <div class="feature reveal from-left">
-          <span class="icon-badge"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#search"/></svg></span>
-          <div><h3>See it on a map</h3><p>Every reviewed home is a pin on Google Maps, with Street View to check the building. Find homes within walking distance of a grocery store, pharmacy or bus stop.</p></div>
-          <a class="link" href="/app">Try it</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="google" aria-labelledby="google-title">
-      <div class="section-heading">
-        <p class="eyebrow reveal">Built with Google</p>
-        <h2 id="google-title" class="reveal">Gemma 4, Google Maps and Google Cloud, working together.</h2>
-        <p class="lead reveal">Every answer is grounded in our hand-checked list. Here is what each Google technology does in Clear House.</p>
-      </div>
+    <section class="cl-section" id="google" aria-labelledby="google-title">
+      <h2 id="google-title" class="cl-title reveal">Built with <span>Google</span></h2>
       <div class="google-grid stagger">
-        <div class="card reveal g-ai"><span class="g-tag ai">AI model</span><h3>Gemma 4 26B</h3><p><code>gemma-4-26b-a4b-it</code>, Google’s open model, writes the chat answers. It only uses the checked records we hand it, streams its answer word by word, and every reply says which model answered.</p></div>
-        <div class="card reveal g-ai"><span class="g-tag ai">AI model, self-hosted</span><h3>Gemma 4 on a Cloud Run GPU</h3><p>The same Gemma 4 26B (<code>gemma4:26b</code>) runs on our own NVIDIA L4 GPU on Cloud Run with reasoning turned off, so answers start in seconds. If it’s asleep, the app falls back to the Gemini API.</p></div>
-        <div class="card reveal g-gemini"><span class="g-tag gemini">Gemini API</span><h3>Gemini API + Google Search grounding</h3><p>Calls Gemma 4 from the server, and powers the live web search on the map: Gemma searches Google for new affordable listings, shown in orange until our team checks them.</p></div>
-        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><h3>Maps JavaScript API</h3><p>The listings map: a house pin for every reviewed home, county outlines, Northern Virginia and Blacksburg tabs, Street View to see a building, and a map that follows the chat and your filters.</p></div>
-        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><h3>Places API (New)</h3><p>Finds the place you mean when you ask for homes “near my office” or “near Inova Fairfax Hospital”, and the grocery stores, pharmacies and bus stops near each home.</p></div>
-        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Real drive, transit and walking times from each home to your office, school or a nearby grocery store, plus the walking route drawn on the map.</p></div>
-        <div class="card reveal g-cloud"><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the website and the Gemma GPU service. Both scale to zero when nobody’s using them, so the project only costs money while people use it.</p></div>
-        <div class="card reveal g-cloud"><span class="g-tag cloud">Cloud</span><h3>Cloud Build + Artifact Registry</h3><p>Builds every release of the site and the 17 GB Gemma image from our GitHub code, and stores them for Cloud Run.</p></div>
+        <div class="card reveal g-ai"><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Writes every chat answer.</p></div>
+        <div class="card reveal g-ai"><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Our own L4 GPU: answers in ~3 s.</p></div>
+        <div class="card reveal g-gemini"><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Finds new listings on the web.</p></div>
+        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>The map, pins and Street View.</p></div>
+        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds “near my office”.</p></div>
+        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Real commute times.</p></div>
+        <div class="card reveal g-cloud"><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site and the GPU.</p></div>
+        <div class="card reveal g-cloud"><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Ships every release.</p></div>
       </div>
     </section>
 
-    <section id="github" aria-labelledby="github-title">
-      <div class="section-heading">
-        <p class="eyebrow reveal">Open source</p>
-        <h2 id="github-title" class="reveal">Every line of Clear House is on GitHub.</h2>
-        <p class="lead reveal">The data, the Gemma prompts, the map and the tests are all public. Read it, run it, or improve it.</p>
-      </div>
+    <section class="cl-section" id="github" aria-labelledby="github-title">
+      <h2 id="github-title" class="cl-title reveal">Open source, <span>on GitHub</span></h2>
       <div class="repo-card reveal">
         <a class="repo-tree" href="https://github.com/phonehseng/mlhhackathonbacteriagang" target="_blank" rel="noopener" aria-label="Open the Clear House repository on GitHub">
           <span class="repo-tree-head"><i></i><i></i><i></i> mlhhackathonbacteriagang</span>
@@ -453,29 +459,10 @@
       </div>
     </section>
 
-
-
-    <section aria-labelledby="promise-title">
-      <div class="promise reveal">
-        <span class="icon-badge"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#shield"/></svg></span>
-        <div>
-          <p class="eyebrow">Our promise</p>
-          <h2 id="promise-title">Built to be careful with you.</h2>
-          <ul class="promises stagger">
-            <li class="reveal"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#shield"/></svg>We only recommend places from our hand-verified list. The AI is not allowed to make up addresses or phone numbers.</li>
-            <li class="reveal"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#lock"/></svg>SSNs and account numbers are stripped from your documents on our server before any AI sees them.</li>
-            <li class="reveal"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#shield"/></svg>No account needed, and we don't store what you type.</li>
-            <li class="reveal"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#phone"/></svg>Answers are guidance, not legal advice. We point you to real people, like 211 and tenant legal aid, for decisions.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta reveal" aria-labelledby="cta-title">
-      <h2 id="cta-title">Ready when you are.</h2>
-      <p>Start with a few words about what you need. You don't need all the answers.</p>
-      <a class="button" href="/app">Open Clear House <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a>
-      <p class="emergency" id="emergency"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#help"/></svg><span><strong>Need a safe place tonight?</strong> Call <a href="tel:211">211</a> for shelter and local help. In immediate danger, call <a href="tel:911">911</a>.</span></p>
+    <section class="cl-section cl-end reveal" aria-labelledby="cta-title">
+      <h2 id="cta-title" class="cl-title">Ready when <span>you are.</span></h2>
+      <a class="cl-btn" href="/app">Open Clear House <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <p class="cl-urgent" id="emergency">In danger? Call <a href="tel:911">911</a>. Need shelter tonight? Call <a href="tel:211">211</a>.</p>
     </section>
   </main>
 
@@ -534,10 +521,8 @@
     } else {
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+          // In view: play the entrance. Out of view: reset, so it plays again when you scroll back up or down.
+          entry.target.classList.toggle('visible', entry.isIntersecting);
         });
       }, { threshold: 0.12 });
       reveals.forEach(el => observer.observe(el));
@@ -550,7 +535,7 @@
         requestAnimationFrame(() => {
           pending = false;
           document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-            if (el.getBoundingClientRect().top < innerHeight) el.classList.add('visible');
+            const r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) el.classList.add('visible');  // only what's on screen
           });
         });
       }, { passive: true });

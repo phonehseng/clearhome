@@ -32,6 +32,11 @@
   function para(s, x, y, maxW, { size = 32, lh = 1.4, weight = 400, color = C.ink, alpha = 1, align = 'left' } = {}) {
     const lines = wrap(s, maxW, size, weight); lines.forEach((l, i) => text(l, x, y + i * size * lh, { size, weight, color, alpha, align })); return lines.length * size * lh;
   }
+  function mark(good, x, y, color) {  // a check or a cross drawn as lines, so every symbol matches the font style
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.beginPath();
+    if (good) { ctx.moveTo(x - 8, y); ctx.lineTo(x - 2, y + 7); ctx.lineTo(x + 9, y - 7); } else { ctx.moveTo(x - 7, y - 7); ctx.lineTo(x + 7, y + 7); ctx.moveTo(x + 7, y - 7); ctx.lineTo(x - 7, y + 7); }
+    ctx.stroke(); ctx.restore();
+  }
   function circle(x, y, r, fill, stroke, lw = 3) { ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); if (fill) { ctx.fillStyle = fill; ctx.fill(); } if (stroke) { ctx.lineWidth = lw; ctx.strokeStyle = stroke; ctx.stroke(); } }
   function shadow(blur = 30, y = 12, color = 'rgba(35,64,143,0.16)') { ctx.shadowColor = color; ctx.shadowBlur = blur; ctx.shadowOffsetY = y; }
   function noShadow() { ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0; }
@@ -209,7 +214,7 @@
         const a = prog(lt, .2 + k * (d * .33)); ctx.save(); ctx.globalAlpha = a; shadow(); fillRR(x, A.y + 210, colW, 520, 28, C.white); noShadow();
         fillRR(x, A.y + 210, colW, 90, [28, 28, 0, 0], fill); text(side.title, x + 36, A.y + 268, { size: 36, weight: 800, color: col });
         side.points.forEach((p, i) => { const pa = prog(lt, .5 + k * (d * .33) + i * .45); ctx.globalAlpha = a * pa;
-          const y = A.y + 360 + i * 110; circle(x + 54, y - 10, 18, fill); text(side.color === 'good' ? '✓' : '✕', x + 54, y - 9, { size: 24, weight: 800, color: col, align: 'center', base: 'middle' });
+          const y = A.y + 360 + i * 110; circle(x + 54, y - 10, 18, fill); mark(side.color === 'good', x + 54, y - 10, col);
           para(p, x + 90, y, colW - 120, { size: 28, weight: 600 }); });
         ctx.restore(); });
       if (s.winner !== 'none') { const k = prog(lt, d * .72, .5), x = A.x + 30 + (s.winner === 'right' ? colW + 40 : 0);
