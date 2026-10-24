@@ -51,9 +51,9 @@ Resource types remain `emergency_shelter`, `rental_assistance`, `legal_aid`, `af
 
 ## Deterministic matching
 
-The backend excludes closed, unverified, malformed, or overdue catalog records before asking Gemma to explain matches. It preserves explicit frontend location/budget inputs even when model filter extraction fails. Numeric budget filtering excludes unknown rents and rents above budget; a matching starting rent is only a potential option, not a full-cost guarantee. Accessibility filtering requires explicit `true`. Stated age and bedroom requirements are applied where known. For emergencies, waitlists and future lease-ups are not offered as immediate matches. No verified shelter match currently exists in this batch; 211/911 guidance remains available.
+The catalog browser and `/api/listings` exclude closed, unverified, malformed, or overdue records. Numeric budget filtering excludes unknown rents and rents above budget; a matching starting rent is only a potential option, not a full-cost guarantee. Accessibility filtering requires explicit `true`. Stated age and bedroom requirements are applied where known.
 
-Location filtering is text-based, not geocoding. Use `Fairfax City` or `Fairfax County` for a precise distinction. Age, income, household eligibility, and same-day placement are never guaranteed by these filters. Gemma explanations still require an API key and can make mistakes.
+Location filtering in the catalog API is text-based, not geocoding. Use `Fairfax City` or `Fairfax County` for a precise distinction. The team's existing AI matcher is maintained separately; these catalog API checks do not describe its behavior.
 
 ## Browse and validate
 
@@ -111,6 +111,6 @@ Spot-check before approving: HUD tax-credit records sometimes list an owner's of
 
 ## Affordable and regular rental categories
 
-Both categories are supported. `affordable_listing`/`affordable_property` require `affordability.status: documented` with a program description, exact supporting official source, evidence, and review date. `rental_listing` requires `affordability.status: standard_rental` with provider rental evidence and a review date. Regular means the advertised rental is recorded without claiming an income-restricted/subsidized unit; it does not prove that a building has no affordable units. Never infer program status from price or old tax-credit records alone. The catalog validator and matcher reject housing records without category evidence.
+Both categories are supported. `affordable_listing`/`affordable_property` require `affordability.status: documented` with a program description, exact supporting official source, evidence, and review date. `rental_listing` requires `affordability.status: standard_rental` with provider rental evidence and a review date. Regular means the advertised rental is recorded without claiming an income-restricted/subsidized unit; it does not prove that a building has no affordable units. Never infer program status from price or old tax-credit records alone. The catalog validator and listings API reject housing records without category evidence.
 
 `/api/listings?housing_type=all|affordable|regular` controls browsing. Budget filtering applies to both rental categories. Park Place is now explicitly a regular advertised senior rental because its current subsidy/program status is not established. The Reserve at Eisenhower adds provider-advertised regular options. The Spire's unresolved prices remain unknown. See sources on the cards; no website review guarantees live inventory or household eligibility.

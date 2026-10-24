@@ -2,7 +2,7 @@
 
 Usage:
     python backend/matcher.py "I have two kids, $900 a month, need a wheelchair-accessible place"
-    python backend/catalog.py --check                    # validate reviewed data offline
+    python backend/matcher.py --include-unverified "..."   # also use placeholder entries (testing only)
 """
 import json
 import os
@@ -12,8 +12,6 @@ import time
 
 from dotenv import load_dotenv
 from google import genai
-
-from catalog import filter_catalog, load_catalog
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 load_dotenv(os.path.join(ROOT, ".env"))
@@ -25,7 +23,6 @@ TYPES = [
     "rental_assistance",
     "legal_aid",
     "affordable_listing",
-    "rental_listing",
     "affordable_property",
     "food_support",
     "housing_authority",
@@ -57,51 +54,31 @@ def ask_gemma(prompt, attempts=3):
 
 
 def load_resources(include_unverified=False):
-    return load_catalog(RESOURCES_PATH, include_unverified=include_unverified)
+    with open(RESOURCES_PATH) as f:
+        resources = json.load(f)
+    if include_unverified:
+        return resources
+    return [r for r in resources if r.get("verified")]
 
 
 def extract_filters(message):
-    """Normalize model filters; preserve explicit form fields on parse failure."""
+    """Turn free text into structured filters. Falls back to no filters if parsing fails."""
     prompt = f"""Extract housing filters from the message below. Return ONLY a JSON object with these keys:
 - "types": list of the resource types that fit what the person needs, chosen from {TYPES}
-- For a general rental search, include both affordable_listing and rental_listing. For an explicitly affordable-only search, omit rental_listing. For regular rentals only, use rental_listing.
 - "max_budget_per_month": number or null
 - "needs_accessible": true or false
 - "urgency": "emergency" if they have nowhere safe to stay tonight or soon, otherwise "soon" or "planning"
-- "locations": list of requested Northern Virginia cities or counties, or an empty list when unspecified
-- "bedrooms": requested bedroom count as an integer (0 for studio), or null when unspecified
-- "age": the person's explicitly stated age as an integer, otherwise null; never infer age from student status
 
 Message: {message}"""
-    default = {"types": [], "max_budget_per_month": None, "needs_accessible": False,
-               "urgency": "soon", "locations": [], "bedrooms": None, "age": None}
+    default = {"types": [], "max_budget_per_month": None, "needs_accessible": False, "urgency": "soon"}
     try:
         text = ask_gemma(prompt)
         match = re.search(r"\{.*\}", text, re.DOTALL)
         parsed = json.loads(match.group(0))
-        if not isinstance(parsed, dict):
-            parsed = {}
     except Exception:
-        parsed = {}
+        return default
     filters = {**default, **{k: v for k, v in parsed.items() if k in default}}
-    filters["types"] = [t for t in filters["types"] if t in TYPES] if isinstance(filters["types"], list) else []
-    filters["locations"] = [v for v in filters["locations"] if isinstance(v, str) and v.strip()] if isinstance(filters["locations"], list) else []
-    filters["needs_accessible"] = filters["needs_accessible"] is True
-    if not isinstance(filters["urgency"], str) or filters["urgency"] not in {"emergency", "soon", "planning"}:
-        filters["urgency"] = "soon"
-    for key in ("bedrooms", "age"):
-        if type(filters[key]) is not int or filters[key] < 0:
-            filters[key] = None
-    budget = filters["max_budget_per_month"]
-    if type(budget) not in (int, float) or not 0 <= budget < float('inf'):
-        filters["max_budget_per_month"] = None
-    # Preserve explicit structured frontend fields even if model parsing fails.
-    location = re.search(r"^Location: ([^\n]+)\.$", message, re.MULTILINE)
-    if location:
-        filters["locations"] = [location.group(1)]
-    budget = re.search(r"^Maximum monthly budget: \$([0-9]+(?:\.[0-9]+)?)\.$", message, re.MULTILINE)
-    if budget:
-        filters["max_budget_per_month"] = float(budget.group(1))
+    filters["types"] = [t for t in filters["types"] if t in TYPES]
     return filters
 
 
@@ -114,7 +91,14 @@ def filter_resources(resources, filters):
     if filters.get("urgency") == "emergency" and "emergency_shelter" in (filters.get("types") or []) and "other" not in filters["types"]:
         # Intake lines and hotlines are filed as "other" but are the way into most shelters.
         filters = {**filters, "types": filters["types"] + ["other"]}
-    return filter_catalog(resources, filters)
+    matches = resources
+    if filters["types"]:
+        matches = [r for r in matches if r.get("type") in filters["types"]]
+    if filters["needs_accessible"]:
+        matches = [r for r in matches if r.get("accessible") is not False]
+    if filters["urgency"] == "emergency":
+        matches = sorted(matches, key=lambda r: r.get("type") != "emergency_shelter")
+    return matches
 
 
 def write_answer(message, filters, matches):
@@ -122,17 +106,11 @@ def write_answer(message, filters, matches):
 
 Rules:
 - This service covers Northern Virginia (Fairfax County, Arlington, Alexandria, Loudoun and Prince William). If the person is clearly looking elsewhere, say so and suggest calling 211.
-- For housing, describe the documented affordability.program and any income restrictions. rental_listing is a regular rental with no affordable-program claim. Affordable-program participation does not mean every household qualifies or every advertised unit is reserved at that rate. Never claim 100% accuracy or provider confirmation based on web review.
 - Recommend only resources from the list. Never invent places, phone numbers, prices or addresses.
 - For each recommendation give the name, phone, address, cost, requirements, source_url and availability.checked_on (or last_verified). Say when accessibility is unknown.
 - When a resource has how_to_apply, include those steps in short plain language. For shelters, say to call the intake line first, since most beds are assigned through it.
 - When a program has waitlist_status, state it plainly. Never say a waitlist is open unless waitlist_status is "open".
-- Availability is a website-advertised snapshot, not a provider-confirmed reservation. Never promise a unit or a place to stay tonight.
 - affordable_property entries are income-restricted buildings from a public database with no confirmed vacancy: tell the person to call and ask about openings or the waitlist.
-- State availability.status plainly: waitlist_open is a waitlist, upcoming is a future date, leasing is general lease-up, contact_for_availability has no confirmed vacancy. Never turn these into an available-now claim.
-- Starting rents are potential options only, not a guaranteed total cost. Utilities, fees, income qualification and final rent need confirmation. Do not invent unknown prices.
-- Read notes and cost for conflicting prices or temporary specials. Do not present a promotion as the ongoing rent.
-- Explain senior age limits and local live/work waitlist requirements where present. Do not assert eligibility without provider confirmation.
 - If nothing in the list fits, say so plainly and suggest calling 211 for local help.
 - If the person may be in danger tonight, mention calling 911 for emergencies and 211 for shelter.
 - Their budget is {filters['max_budget_per_month']} per month: only suggest listings that fit it, using each entry's cost text.

@@ -9,7 +9,6 @@ from unittest.mock import patch
 
 import catalog
 from catalog import effective_availability, filter_catalog, load_catalog, validate_resources
-import matcher
 
 REVIEW_DAY = date(2026, 10, 24)
 
@@ -84,30 +83,13 @@ class CatalogTests(unittest.TestCase):
         park = filter_catalog(listings, {'locations':['Manassas Park']}, today=REVIEW_DAY)
         self.assertTrue(all(r['city']=='Manassas Park' for r in park))
 
-    def test_malformed_model_filters_fall_back_to_explicit_form_values(self):
-        with patch.object(matcher,'ask_gemma',return_value='{"types":null,"locations":false,"max_budget_per_month":"free","needs_accessible":"yes","urgency":null}'):
-            filters = matcher.extract_filters('Location: Fairfax County.\nMaximum monthly budget: $1500.\nI need a room.')
-        self.assertEqual(filters['locations'], ['Fairfax County'])
-        self.assertEqual(filters['max_budget_per_month'], 1500)
-        self.assertEqual(filters['types'], [])
-        self.assertFalse(filters['needs_accessible'])
-        self.assertEqual(filters['urgency'],'soon')
 
-    def test_invalid_model_json_keeps_structured_budget(self):
-        with patch.object(matcher,'ask_gemma',return_value='not json'):
-            filters = matcher.extract_filters('Location: Northern Virginia.\nMaximum monthly budget: $900.\nI need housing.')
-        self.assertEqual(filters['max_budget_per_month'],900)
 
     def test_validator_rejects_duplicate_ids_and_missing_evidence(self):
         self.assertTrue(validate_resources([self.row,self.row]))
         self.row['availability']['evidence'] = None
         self.assertTrue(validate_resources([self.row]))
 
-    def test_empty_match_does_not_generate_an_answer(self):
-        with patch.object(matcher,'extract_filters',return_value={'types':['affordable_listing'],'max_budget_per_month':1}), patch.object(matcher,'ask_gemma') as model:
-            _, answer = matcher.find_help('I can pay $1 monthly.')
-        self.assertIn('211',answer)
-        model.assert_not_called()
 
 class FixedDate(date):
     @classmethod
@@ -123,8 +105,7 @@ class ListingsApiTests(unittest.TestCase):
         self.addCleanup(self.clock.stop)
 
     def test_read_catalog_without_ai(self):
-        with patch.object(matcher,'ask_gemma',side_effect=AssertionError('No AI should be called')):
-            response=self.client.get('/api/listings')
+        response=self.client.get('/api/listings')
         self.assertEqual(response.status_code,200)
         body=response.get_json()
         self.assertEqual(body['count'],len(body['listings']))
