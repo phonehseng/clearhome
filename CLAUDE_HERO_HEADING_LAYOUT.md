@@ -15,3 +15,7 @@ The regional eyebrow above **Find your way home.** currently reads **HOUSING SUP
 - Verify narrow mobile, tablet, desktop, and browser zoom layouts. Confirm that neither heading clips, overlaps, or creates horizontal scrolling.
 
 This is a request to change the displayed hero heading/layout, not to reorder listing results or change regional search behavior. Inspect the latest implementation before editing, then report what changed and how it was checked. This handoff does not implement the UI change.
+
+---
+
+**Implemented (2026-10-24).** The eyebrow now reads "Housing support for **Blacksburg & Northern Virginia**". "Housing support for" and the place names are two no-wrap groups, so it's one line when there's room and two deliberate lines otherwise (never an orphaned word, hanging "&", or stranded dot: the dot stays on the first line). Place names are slightly bolder; spacing to the headline is 14px. Note: the current headline is "A clearer path. A place to call home." (not "Find your way home."), and was left unchanged. Checked at 375px (2 lines), 768px (2 lines), 1024px (1 line): no clipping or horizontal scroll.
