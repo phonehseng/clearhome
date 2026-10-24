@@ -27,6 +27,11 @@ app = Flask(__name__, static_folder=None)
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024  # requests are small JSON; no uploads
 
 
+@app.get("/logo.svg")
+def logo():
+    return send_from_directory(FRONTEND, "logo.svg")
+
+
 @app.get("/favicon.svg")
 @app.get("/favicon.ico")
 @app.get("/apple-touch-icon.png")
