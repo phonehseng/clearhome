@@ -524,6 +524,12 @@
     .brand-mark{width:40px!important;height:40px!important;background:none!important;border-radius:12px;box-shadow:0 4px 14px #23408f40;overflow:visible}
     .brand-mark img{width:100%;height:100%;display:block}
     @media(max-width:560px){.brand-mark{width:34px!important;height:34px!important}}
+
+    /* Default size: the site reads best a bit larger, like 125% browser zoom, on desktop screens. Smaller
+       laptops get a gentler step and phones/tablets stay at 100% so layouts never get cramped. */
+    @media (min-width: 1100px){html{zoom:1.1} #listing-map,#walk-map{zoom:calc(1/1.1);width:110%} #listing-map{height:330px}}
+    @media (min-width: 1400px){html{zoom:1.25} #listing-map,#walk-map{zoom:.8;width:125%} #listing-map{height:375px}}
+    /* Google Maps can't draw inside a zoomed page, so the map boxes undo the zoom and grow to the same footprint. */
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
