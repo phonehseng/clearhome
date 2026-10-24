@@ -29,3 +29,11 @@ Please redesign and fix the Ask Gemma chatbot results presentation to the best o
 - Inspect rendered UI in the browser at representative widths and with mixed result data. Run relevant existing checks and report what changed, what was verified, and any limitations.
 
 This file is a handoff only; it does not implement the redesign or establish that the screenshot's defects have been reproduced locally.
+
+---
+
+**Implemented (2026-10-24).** Root cause of "Coming soonMargotAlexandria City…": the details wrapper only got a layout (`display:grid`) on photo cards, so no-photo cards ran their spans together; photo cards used a CSS background image with a text panel on top, which caused the overlap and the image strip.
+
+Chat results are now one compact component for every result: a 64px thumbnail (the provider's real photo with `object-fit:cover`, or a plain house icon, never a stand-in photo) beside status badge → title → locality · **rent** (when known) → address (wraps safely) → actions (phone, Source ↗, Map ↗ with descriptive labels, 30px+ targets). Cards sit in a responsive grid (one column in the chat at normal widths, two only when there's room), never stretch to fill height, and show 4 at first with a "Show N more" button. Answer-name links reveal and highlight their card. The question-at-top scrolling, streaming and history are unchanged; the composer stays visible.
+
+Checked in the browser with a mixed set near 425 Montgomery St (Margot and Ramsey Homes without photos, three with photos): fields separated, no horizontal overflow at desktop or 375px, "Show 1 more" works, composer visible. Reduced motion turns off the fade-in. The site is light-only now (dark mode was removed earlier), so there's no dark variant to check.
