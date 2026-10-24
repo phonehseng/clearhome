@@ -18,7 +18,9 @@ from PIL import Image
 from catalog import load_catalog
 
 CACHE_DIR = Path(__file__).resolve().parent.parent / '.cache' / 'listing-photos'
-ALLOWED_HOSTS = {'media.equityapartments.com', 'medialibrarycfo.entrata.com', 'cdngeneral.rentcafe.com', 'resource.rentcafe.com', 'capi.myleasestar.com', 'cms.broadandwashington.com', 'ahcommunities.org'}
+ALLOWED_HOSTS = {'media.equityapartments.com', 'medialibrarycfo.entrata.com', 'cdngeneral.rentcafe.com', 'resource.rentcafe.com', 'capi.myleasestar.com', 'cms.broadandwashington.com', 'ahcommunities.org',
+                 # Official owner photos: Fairfax County Redevelopment and Housing Authority (Wix-hosted), CHP, True Ground
+                 'static.wixstatic.com', 'www.communityhousingpartners.org', 'truegroundhousing.org'}
 MAX_BYTES = 8 * 1024 * 1024
 _LOCK = threading.Lock()
 _LOCKS = {}
@@ -57,7 +59,7 @@ def cached_photo(photo, cache_dir=None):
                     if len(content) > MAX_BYTES:
                         raise PhotoUnavailable('Photo exceeds download limit.')
             with Image.open(io.BytesIO(content)) as image:
-                if image.format not in {'JPEG','PNG','WEBP','AVIF'} or image.width*image.height > 40_000_000:
+                if image.format not in {'JPEG','PNG','WEBP','AVIF','GIF'} or image.width*image.height > 40_000_000:
                     raise PhotoUnavailable('Unsupported or oversized image.')
                 image.verify()
             directory.mkdir(parents=True, exist_ok=True)
