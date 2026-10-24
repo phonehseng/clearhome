@@ -233,7 +233,8 @@
     .assistant-head{display:flex;gap:11px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--line)}
     .assistant-head strong{display:block;font-size:14px}.assistant-head span{font-size:12px;color:var(--muted)}
     .assistant-avatar{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#254f40;color:#fff;flex-shrink:0}
-    .assistant-log{display:grid;gap:10px;padding:16px;max-height:560px;overflow-y:auto}
+    .assistant-log{position:relative;display:grid;align-content:start;gap:10px;padding:16px;max-height:560px;overflow-y:auto}
+    .assistant-log.chatting{height:min(560px,70vh)}  /* a fixed window once chatting, so each question can sit at its top */
     .msg{padding:11px 14px;border-radius:12px;max-width:88%;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.6}
     .msg.user{justify-self:end;background:#23408f;color:#fff;border-bottom-right-radius:4px}
     .msg.bot{background:var(--sage);border-bottom-left-radius:4px}
@@ -935,9 +936,20 @@
       const m = el('div', null, { class: 'msg bot' });
       if (state) m.dataset.state = state;
       setText(m, text);
-      log.append(m); log.scrollTop = log.scrollHeight; return m;
+      log.append(m); pinTurn(); return m;
     }
-    function userSay(text) { log.append(el('div', text, { class: 'msg user' })); log.scrollTop = log.scrollHeight; }
+    // A new question goes to the top of the chat box and its answer fills in below it, like a fresh page.
+    // Space under the answer is padded so the question can sit at the top even while the answer is short.
+    let turnStart = null;
+    function pinTurn(scroll) {
+      if (!turnStart) { log.scrollTop = log.scrollHeight; return; }
+      const top = turnStart.offsetTop - 12;  // the log is position:relative, so offsetTop is measured inside it
+      const last = log.lastElementChild;
+      const below = last.offsetTop + last.offsetHeight - turnStart.offsetTop;  // this turn's content so far
+      log.style.paddingBottom = `${Math.max(16, log.clientHeight - below - 12)}px`;
+      if (scroll) log.scrollTop = top;
+    }
+    function userSay(text) { log.classList.add('chatting'); turnStart = el('div', text, { class: 'msg user' }); log.append(turnStart); pinTurn(true); }
 
     // Streams the answer: a progress note right away, then Gemma's words as they're written.
     async function ask(question) {
@@ -948,7 +960,7 @@
       let note = 'Reading your question…';
       const timer = setInterval(() => { status.textContent = `${note} (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
       let answer = '', bubble = null;
-      const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); log.scrollTop = log.scrollHeight; };
+      const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); pinTurn(); };
       const finish = () => { clearInterval(timer); status.remove(); };
       try {
         const controller = new AbortController(); const stop = setTimeout(() => controller.abort(), 120000);
@@ -1001,7 +1013,7 @@
         if (typeof c.lat === 'number') links.append(el('a', 'Map ↗', { href: `https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lon}`, target: '_blank', rel: 'noopener' }));
         body.append(links); card.append(body); box.append(card);
       });
-      bubble.after(box);
+      bubble.after(box); pinTurn();
       // Turn each **name** in the answer into a link that brings its card into view.
       bubble.replaceChildren();
       text.split(/(\*\*[^*]+\*\*)/).forEach(part => {
@@ -1013,7 +1025,6 @@
         a.addEventListener('click', e => { e.preventDefault(); const card = document.getElementById(target); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); card.focus({ preventScroll: true }); card.classList.add('flash'); setTimeout(() => card.classList.remove('flash'), 1200); });
         bubble.append(a);
       });
-      log.scrollTop = log.scrollHeight;
     }
     // Other parts of the page (like the live web search) post short updates here.
     window.clearHouseAssistantNote = text => { if (!log.querySelector('.msg')) return; botSay(text, 'update'); };
@@ -1059,7 +1070,7 @@
           results.append(more);
         }
         // The assistant introduces itself once options are on screen; chatting is optional.
-        log.replaceChildren(); history = []; document.getElementById('assistant-chips').hidden = true;
+        log.replaceChildren(); history = []; turnStart = null; log.style.paddingBottom = ''; log.classList.remove('chatting'); document.getElementById('assistant-chips').hidden = true;
         const counts = [`${homeCount} home${homeCount === 1 ? '' : 's'}`];
         if (data.programs_relevant) counts.push(`${data.programs.length} program${data.programs.length === 1 ? '' : 's'}`);
         if (profile.tonight) counts.unshift(`${data.shelters.length} shelter option${data.shelters.length === 1 ? '' : 's'}`);
@@ -1072,6 +1083,9 @@
       button.disabled = false;
     });
 
+    // Wake our Gemma GPU (it sleeps when nobody's using it) once the chat is on screen.
+    const wake = new IntersectionObserver(entries => { if (entries.some(e => e.isIntersecting)) { wake.disconnect(); fetch('/api/gemma/warm', { method: 'POST' }).catch(() => {}); } });
+    wake.observe(document.getElementById('assistant'));
     const chips = document.getElementById('assistant-chips');
     chips.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { chips.hidden = true; ask(b.textContent); } });
     botSay("Hi, I'm Gemma, the Clear House assistant. Ask me about vouchers, rent help, shelters, or homes near a place, like your office or campus. I only use our checked resources.");

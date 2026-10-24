@@ -306,6 +306,14 @@ def ask_advisor():
         return _gemma_error(error)
 
 
+@app.post("/api/gemma/warm")
+def warm_gemma():
+    """The page calls this when the chat comes into view, so our Gemma GPU (which sleeps when idle) wakes up."""
+    import gemma_gpu
+    gemma_gpu.warm()
+    return jsonify(ok=True, gpu=bool(gemma_gpu.url()))
+
+
 @app.post("/api/ask/stream")
 def ask_advisor_stream():
     """The chat with live updates (server-sent events): what was found, then Gemma's answer as it's written."""

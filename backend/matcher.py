@@ -49,6 +49,12 @@ def _get_client():
 def ask_gemma(prompt, attempts=2):
     """Call Gemma, retrying once on a temporary server error. Rate limits (429) aren't retried: waiting out
     the free tier's per-minute limit would leave someone staring at a spinner."""
+    import gemma_gpu  # our own Gemma 4 GPU first, when it's set up and awake
+    if gemma_gpu.available():
+        try:
+            return gemma_gpu.ask(prompt)
+        except Exception:
+            pass  # still starting or unavailable: use the Gemini API instead
     for attempt in range(attempts):
         try:
             return _get_client().models.generate_content(model=MODEL, contents=prompt).text
@@ -61,6 +67,17 @@ def ask_gemma(prompt, attempts=2):
 def stream_gemma(prompt, thoughts=False):
     """Yield Gemma's answer text as it's written, so the chat can show it word by word.
     With thoughts=True, yields (is_thought, text) pairs so the chat can also show what Gemma is working on."""
+    import gemma_gpu  # our own Gemma 4 GPU first: no hidden reasoning, so words start in seconds
+    if gemma_gpu.available():
+        started = False
+        try:
+            for text in gemma_gpu.stream(prompt):
+                started = True
+                yield (False, text) if thoughts else text
+            return
+        except Exception:
+            if started:
+                raise  # part of an answer was already shown; don't start over with another model
     for chunk in _get_client().models.generate_content_stream(model=MODEL, contents=prompt):
         for part in (chunk.candidates[0].content.parts or []) if chunk.candidates and chunk.candidates[0].content else []:
             if not part.text:
