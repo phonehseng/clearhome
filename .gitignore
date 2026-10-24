@@ -22,3 +22,9 @@ build/
 
 # Locally cached real provider images
 .cache/
+
+# Rendered explainer videos and audio (large files)
+video/out/
+
+# Local editor/assistant settings
+.claude/

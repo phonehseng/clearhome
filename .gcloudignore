@@ -17,3 +17,6 @@ __pycache__/
 
 # The Gemma GPU image is built separately (see gemma/README.md)
 gemma/
+
+# The explainer video isn't part of the site
+video/
