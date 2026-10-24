@@ -413,6 +413,34 @@
     .page-birds{position:fixed;inset:auto 0 0 0;height:70vh;z-index:40;pointer-events:none}
     .page-birds>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(1.8)}
     @media(prefers-color-scheme:dark){.page-birds{opacity:.9}}
+
+    /* Simple lease/listing check: one drop zone, one button, results in clear sections. */
+    .drop-zone{display:grid;justify-items:center;gap:6px;text-align:center;padding:30px 18px;border:2px dashed #9db2e3;border-radius:16px;cursor:pointer;
+      background:#f3f6fdb3;transition:background .2s ease,border-color .2s ease,transform .2s ease;margin:4px 0 10px}
+    .drop-zone:hover,.drop-zone.dragging{background:#e2eafbcc;border-color:#2f55b5}
+    .drop-zone.dragging{transform:scale(1.01)}
+    .drop-zone:focus-within{outline:3px solid #e0a100;outline-offset:3px}
+    .drop-zone strong{font-size:15px}.drop-zone small{color:var(--muted);font-size:12px}
+    .drop-icon{width:58px;height:58px;display:grid;place-items:center;border-radius:16px;background:#d5e1f8;color:#23408f}
+    .drop-zone.has-file .drop-icon{background:#e3f3e6;color:#245b31}
+    .paste-box{margin:6px 0 14px}
+    .paste-box>summary{cursor:pointer;font-weight:600;font-size:13px;color:#2f55b5;padding:4px 0}
+    .paste-box textarea{margin-top:8px}
+    .check-button{width:100%;justify-content:center;min-height:50px;font-size:15px}
+    .review-result:empty{display:none}
+    .review-result{margin-top:18px;display:grid;gap:10px}
+    .review-loading{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:14px;padding:12px 0}
+    .review-loading::before{content:'';width:14px;height:14px;border:2px solid var(--line);border-top-color:#2f55b5;border-radius:50%;animation:spin .8s linear infinite}
+    .review-kind{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+    .risk-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px;width:fit-content}
+    .risk-badge.low{background:#e3f3e6;color:#245b31}.risk-badge.medium{background:#fbf1dc;color:#7a5410}.risk-badge.high{background:#fbe4e0;color:#8c2f22}
+    .review-section{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--white)}
+    .review-section h4{margin:0 0 6px;font-size:14px}
+    .review-section p,.review-section li{font-size:14px;line-height:1.6;margin:0}
+    .review-section ul{margin:0;padding-left:18px;display:grid;gap:4px}
+    .review-section.watch{border-left:4px solid #d9822b}.review-section.flags{border-left:4px solid #c0392b}
+    .review-error{background:#fff3ef;border:1px solid #eed1c9;color:#8c3e30;border-radius:12px;padding:12px 14px;font-size:14px}
+    .review-footnote{font-size:12px;color:var(--muted);margin-top:14px}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -466,7 +494,27 @@
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
       <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" placeholder="Ask a follow-up question…"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
     </div></section>
-    <section class="tool-panel" role="tabpanel" id="panel-lease" aria-labelledby="tab-lease" tabindex="0" hidden><div class="panel-heading"><h3>Know what you’re signing.</h3><span class="step-label">LEASE OR LISTING</span></div><p class="panel-description">Paste or upload a lease to get it explained in plain language, or a rental listing or landlord messages to check for scam warning signs. We’ll work out which it is.</p><a class="lease-guidance-link" href="/lease">Choose a listing for step-by-step lease guidance →</a><p class="panel-safety">Remove names, addresses, signatures, SSNs, and account details before pasting. Text is sent to our AI service for analysis. This is informational, not legal advice.</p><div class="upload-box"><label for="lease-file">Upload a lease or listing, or paste text below</label><input type="file" id="lease-file" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp" aria-describedby="upload-hint lease-file-status"><p class="upload-hint" id="upload-hint">PDF, Word (.docx), text, or a photo of each page · Under 10 MB. Text is extracted on our server before any AI sees it. SSN, card, and account number patterns are redacted; names and addresses are not. Review the text before submitting.</p><p id="lease-file-status" class="upload-status" role="status" aria-live="polite"></p></div><form class="text-form" data-endpoint="/api/review" data-loading="Reading it now. This usually takes 20 to 40 seconds…" data-submit="Check this"><label for="lease-text">Lease, listing, or landlord messages</label><textarea id="lease-text" required maxlength="15000" aria-describedby="lease-count" placeholder="Paste a lease section, a rental listing, or messages from a landlord…" rows="8"></textarea><div class="textarea-hint"><span>You can start with just one section.</span><span id="lease-count" class="character-count">0 / 15,000</span></div><div class="form-bottom"><span class="privacy-note">For advice, speak with a local tenant advocate.</span><button class="primary" type="submit"><span>Check this</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div></form><div class="result" role="status" aria-live="polite" aria-atomic="true"></div></section>
+    <section class="tool-panel" role="tabpanel" id="panel-lease" aria-labelledby="tab-lease" tabindex="0" hidden>
+      <div class="panel-heading"><h3>Check a lease or listing</h3></div>
+      <p class="panel-description">Add a lease, a rental listing, or messages from a landlord. We’ll explain it in plain words and point out anything risky.</p>
+      <label class="drop-zone" id="lease-drop" for="lease-file">
+        <input type="file" id="lease-file" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp" class="visually-hidden">
+        <span class="drop-icon"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#document"/></svg></span>
+        <strong id="drop-title">Drop a file or photo here, or tap to choose</strong>
+        <small>PDF, Word, text, or photos of each page</small>
+      </label>
+      <p id="lease-file-status" class="upload-status" role="status" aria-live="polite"></p>
+      <form id="review-form" novalidate>
+        <details class="paste-box" id="paste-box"><summary>Or paste text instead</summary>
+          <label for="lease-text" class="visually-hidden">Lease, listing, or landlord messages</label>
+          <textarea id="lease-text" maxlength="15000" aria-describedby="lease-count" placeholder="Paste a lease section, a rental listing, or messages from a landlord…" rows="6"></textarea>
+          <div class="textarea-hint"><span>Personal numbers like SSNs are removed before anything is checked.</span><span id="lease-count" class="character-count">0 / 15,000</span></div>
+        </details>
+        <button class="primary check-button" type="submit" id="review-button"><span>Check it</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button>
+      </form>
+      <div class="review-result" id="review-result" role="region" aria-live="polite" aria-label="Results"></div>
+      <p class="review-footnote">Plain-language information, not legal advice. Need help with a specific listing’s lease? <a href="/lease">Use the step-by-step lease guide</a>.</p>
+    </section>
   </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>You don’t need all the answers.</h3><p>A few details are enough to begin.</p><ol class="steps"><li><span class="step-number">1</span><div><strong>Share what matters</strong><p>Your area, budget, and what you need.</p></div></li><li><span class="step-number">2</span><div><strong>Explore your options</strong><p>Get guidance in clear, everyday language.</p></div></li><li><span class="step-number">3</span><div><strong>Confirm the details</strong><p>Contact providers about eligibility and availability.</p></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a safe place tonight?</h3><p>For shelter and local support, call 211. If you’re in immediate danger, call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><small>Don’t wait for an AI response in an emergency.</small></section></aside></div></section>
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
@@ -720,7 +768,7 @@
       if (data.text.length > 15000) throw new Error('This document exceeds 15,000 characters. Please paste one section at a time below.');
       const input = document.getElementById('lease-text'); input.value = data.text; input.dispatchEvent(new Event('input'));
       const r = data.redactions || {}; const removed = (r.ssn || 0) + (r.card || 0) + (r.account || 0); const ocrNote = data.ocr ? ' We read this from an image, so some words may be wrong.' : '';
-      leaseStatus.dataset.state = 'success'; leaseStatus.textContent = removed ? `Removed ${r.ssn || 0} SSN(s), ${r.account || 0} account number(s), and ${r.card || 0} card number(s). Review the text, remove names and addresses, then choose Explain this lease.` + ocrNote : 'Text loaded. No SSN or account number patterns were found.' + ocrNote + ' Review the text and remove personal details before choosing Explain this lease.';
+      leaseStatus.dataset.state = 'success'; leaseStatus.textContent = (removed ? `Got it. We removed ${removed} private number${removed === 1 ? '' : 's'} (like SSNs or account numbers).` : 'Got it.') + ocrNote + ' Tap “Check it” when you’re ready.';
     } catch (error) { leaseStatus.dataset.state = 'error'; leaseStatus.textContent = error.name === 'AbortError' ? 'The upload took too long. Try again or paste your text.' : error instanceof TypeError || error instanceof SyntaxError ? 'We couldn’t reach the upload service. Try again or paste your text.' : error.message; }
     finally { clearTimeout(timeout); leaseFile.disabled = false; leaseFile.value = ''; }
   });
@@ -1095,6 +1143,68 @@
         return data.results.length;
       } catch (err) { setStatus(err.message || 'Search failed. Please try again.'); return 0; }
     };
+  })();
+</script>
+
+<script>
+  // Lease/listing check: drop or paste, one button, answers shown as sections.
+  (() => {
+    const drop = document.getElementById('lease-drop'), file = document.getElementById('lease-file');
+    const form = document.getElementById('review-form'), text = document.getElementById('lease-text');
+    const out = document.getElementById('review-result'), button = document.getElementById('review-button');
+    const paste = document.getElementById('paste-box'), title = document.getElementById('drop-title');
+    if (!drop || !form) return;
+    ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('dragging'); }));
+    ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('dragging'); }));
+    drop.addEventListener('drop', e => {
+      const f = e.dataTransfer?.files?.[0]; if (!f) return;
+      const dt = new DataTransfer(); dt.items.add(f); file.files = dt.files; file.dispatchEvent(new Event('change'));
+    });
+    file.addEventListener('change', () => { const f = file.files?.[0]; if (f) { title.textContent = f.name; drop.classList.add('has-file'); } });
+    // The existing upload code fills the text box; show it under "See the text we read" so people can check it.
+    text.addEventListener('input', () => { if (drop.classList.contains('has-file')) paste.querySelector('summary').textContent = 'See the text we read'; });
+
+    const el = (tag, txt, cls) => { const n = document.createElement(tag); if (txt != null) n.textContent = txt; if (cls) n.className = cls; return n; };
+    const nice = t => { const x = t.toLowerCase(); return x.charAt(0).toUpperCase() + x.slice(1); };  // sentence case
+    function render(answer) {
+      out.replaceChildren();
+      const lines = answer.replace(/\*\*/g, '').split('\n').map(l => l.trim()).filter(Boolean);
+      let current = null; const sections = [];
+      for (const line of lines) {
+        const m = line.match(/^([A-Z][A-Z &/]{3,40}):\s*(.*)$/) || (line === line.toUpperCase() && /^[A-Z][A-Z &/]{3,40}$/.test(line) ? [line, line, ''] : null);
+        if (m) { current = { title: m[1].trim(), items: m[2] ? [m[2]] : [] }; sections.push(current); }
+        else if (current) current.items.push(line.replace(/^[-•*]\s*/, ''));
+        else sections.push(current = { title: '', items: [line] });
+      }
+      for (const sec of sections) {
+        const t = sec.title;
+        if (t === 'TYPE') { out.append(el('div', sec.items.join(' '), 'review-kind')); continue; }
+        if (t === 'RISK LEVEL') {
+          const level = (sec.items[0] || '').match(/low|medium|high/i)?.[0]?.toLowerCase() || 'medium';
+          out.append(el('div', `${nice(level)} scam risk`, `risk-badge ${level}`));
+          if (sec.items.length) out.append(el('p', sec.items.join(' ').replace(/^(low|medium|high)[.,:]?\s*/i, ''), 'review-kind-note'));
+          continue;
+        }
+        const box = el('section', null, 'review-section' + (/WATCH/.test(t) ? ' watch' : /RED FLAGS/.test(t) ? ' flags' : ''));
+        if (t) box.append(el('h4', nice(t)));
+        if (sec.items.length > 1) { const ul = el('ul'); sec.items.forEach(i => ul.append(el('li', i))); box.append(ul); }
+        else box.append(el('p', sec.items[0] || ''));
+        out.append(box);
+      }
+    }
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const value = text.value.trim();
+      if (!value) { out.replaceChildren(el('div', 'Add a file or paste some text first.', 'review-error')); return; }
+      button.disabled = true; out.replaceChildren(el('div', 'Reading it now. This usually takes 20 to 40 seconds…', 'review-loading'));
+      try {
+        const res = await fetch('/api/review', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: value }) });
+        const data = await res.json();
+        if (!res.ok || data.error) throw new Error(data.error || 'Something went wrong.');
+        render(data.answer); out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (err) { out.replaceChildren(el('div', (err.message || 'Something went wrong.') + ' Please try again.', 'review-error')); }
+      button.disabled = false;
+    });
   })();
 </script>
 </body>
