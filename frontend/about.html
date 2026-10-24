@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0d1738" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#14161b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0d1738">
   <meta name="description" content="Clear House helps people in Northern Virginia and Blacksburg find verified housing help, understand a lease, and spot rental scams.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -158,38 +157,7 @@
       .cta { padding: 38px 22px; }
     }
     :root { color-scheme: light; }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        color-scheme: dark;
-        --bg: #14161b; --ink: #f1f3f5; --muted: #bec5d0;
-        --line: #454b56; --card: #20242c; --soft: #292e38;
-        --blue: #acc6ff; --blue-2: #acc6ff; --navy: #191c23;
-        --control-border: #7c8798; --accent-ink: #152341;
-      }
-      .site-header { background: var(--bg); border-bottom: 1px solid var(--line); }
-      .site-header, .header-links a { color: var(--ink); }
-      .brand-mark { background: var(--blue); color: var(--accent-ink); }
-      .brand-dot { color: var(--muted); }
-      :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
-      .button, .skip-link { background: var(--blue); color: var(--accent-ink); box-shadow: none; }
-      .button:hover { background: #c4d6ff; }
-      .icon-badge { background: var(--soft); color: var(--blue); }
-      .header-links .emergency-link { background: #2e2922; border-color: #75634b; color: #f0cf9e; }
-      h1 span { color: var(--ink); }
-      .hero-art { background: var(--card); border-color: var(--line); }
-      .hero-art>svg { filter: saturate(.25) brightness(.75); }
-      .art-note { background: var(--soft); color: var(--ink); }
-      .card, .card:hover { box-shadow: none; }
-      .cta { background: var(--card); border: 1px solid var(--line); color: var(--ink); }
-      .cta h2 { color: var(--ink); }
-      .cta p { color: var(--muted); }
-      .cta .button { background: var(--blue); color: var(--accent-ink); }
-      .cta .button:hover { background: #c4d6ff; }
-      .cta .emergency { background: #2e2922; border-color: #75634b; color: #f0cf9e; }
-      .cta .emergency :is(strong,a,svg) { color: #ffe0b0; }
-      .font-switcher button { color: var(--accent-ink); }
-      .font-switcher output { background: var(--card); }
-    }
+    
 
     /* Richer scroll animations. Everything uses transform/opacity so it stays smooth; all of it is off with reduced motion. */
     .scroll-progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:50;transform-origin:0 50%;transform:scaleX(0);
