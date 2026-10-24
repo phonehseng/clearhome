@@ -1,4 +1,4 @@
-# Claude handoff: put Blacksburg first and polish the hero heading
+# Handoff: put Blacksburg first and polish the hero heading
 
 Please implement this latest user request for the homepage hero in `frontend/index.html`.
 

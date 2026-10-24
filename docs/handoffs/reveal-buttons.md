@@ -1,4 +1,4 @@
-# Claude handoff: housing listing reveal buttons
+# Handoff: housing listing reveal buttons
 
 Please implement and verify the user's latest request for listing reveal controls. This request supersedes earlier batch-size preferences in chat or handoff files.
 

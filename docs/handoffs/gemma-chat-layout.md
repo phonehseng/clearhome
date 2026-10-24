@@ -1,4 +1,4 @@
-# Claude handoff: polish Ask Gemma chat and housing result cards
+# Handoff: polish Ask Gemma chat and housing result cards
 
 Please redesign and fix the Ask Gemma chatbot results presentation to the best of your ability within the existing site's design. The user says the current layout looks awkward and wants it to look polished. This is a UI improvement request, not a request to intentionally worsen the design.
 

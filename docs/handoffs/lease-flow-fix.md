@@ -1,6 +1,6 @@
 # Lease guide readability and completion flow
 
-Claude: Implement this user-requested improvement to **Your lease, step by step**. This is a handoff; the fix has not been implemented or browser-verified here.
+Implement this user-requested improvement to **Your lease, step by step**. This is a handoff; the fix has not been implemented or browser-verified here.
 
 ## User feedback
 
