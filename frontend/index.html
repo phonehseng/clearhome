@@ -962,7 +962,9 @@
       const pending = botSay('Thinking it through. This usually takes 20 to 40 seconds…', 'loading');
       const timer = setInterval(() => { pending.textContent = `Thinking it through. This usually takes 20 to 40 seconds… (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
       try {
-        const res = await fetch('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile }) });
+        const controller = new AbortController(); const stop = setTimeout(() => controller.abort(), 100000);
+        const res = await fetch('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile }), signal: controller.signal });
+        clearTimeout(stop);
         const data = await res.json();
         clearInterval(timer); pending.remove();
         if (!res.ok || data.error) throw new Error(data.error || 'Something went wrong.');
@@ -970,7 +972,7 @@
         history.push({ role: 'user', text: question }, { role: 'assistant', text: data.answer });
       } catch (err) {
         clearInterval(timer); pending.remove();
-        botSay((err.message || 'We could not reach the assistant.') + ' For urgent help, call 211.', 'error');
+        botSay((err.name === 'AbortError' ? 'This is taking too long, the AI service is busy. Please try again in a minute.' : (err.message || 'We could not reach the assistant.')) + ' For urgent help, call 211.', 'error');
       }
       button.disabled = false;
     }
