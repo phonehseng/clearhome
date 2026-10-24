@@ -4764,5 +4764,889 @@
       "evidence": "Provider publishes standard floor-plan rental prices, 12-month terms, and unit availability; no subsidized eligibility is asserted.",
       "individual_eligibility_confirmed": false
     }
+  },
+  {
+    "id": "coan-pond-residences-efficiency",
+    "name": "Coan Pond Residences — Efficiency (single room occupancy)",
+    "community": "Coan Pond Residences",
+    "record_kind": "floor_plan",
+    "floor_plan": "Efficiency (single room occupancy)",
+    "type": "affordable_listing",
+    "address": "3700 Pender Drive, Fairfax, VA 22030",
+    "city": "Fairfax",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-246-5072",
+    "website": "https://www.fairfaxcounty.gov/housing/waitlist",
+    "hours": null,
+    "who_it_serves": "Single adults seeking single-room-occupancy efficiency housing in the Fairfax County Rental Program; eligibility must be confirmed with the property.",
+    "cost": "Rent not published on the county pages reviewed. Contact the property for rent and fees.",
+    "monthly_rent": null,
+    "rent_basis": null,
+    "currency": "USD",
+    "bedrooms": 0,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Apply using the county's Coan Pond Residences application (in person at 3700 Pender Drive, Fairfax). Confirm income limits, documentation, and rent with the property.",
+    "minimum_age": null,
+    "source_url": "https://www.fairfaxcounty.gov/housing/waitlist",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/waitlist",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/fairfax-county-rental-program",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "waitlist_open",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County waitlist page: \"Coan Pond Single Room Occupancy will also continue to accept applications.\" Apply in person at 3700 Pender Drive or call 703-246-5072.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/waitlist",
+      "source_updated_on": null
+    },
+    "notes": "Fairfax County Rental Program property with 19 efficiencies, managed by Pratum (Wedgewood office). Phone numbers conflict across county pages: waitlist page 703-246-5072; rental-program directory 703-246-0400; rental-program waitlist section 703-256-0400. The county links a Coan Pond application PDF (dated 12-4-24) that could not be read during review.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Rental Program (single room occupancy)",
+      "evidence": "County lists Coan Pond Residences (19 efficiencies) in the Fairfax County Rental Program and says it continues to accept applications.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/waitlist",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "redbud-glen-one-bedroom",
+    "name": "Redbud Glen (formerly Little River Glen IV) — One-bedroom",
+    "community": "Redbud Glen (formerly Little River Glen IV)",
+    "record_kind": "floor_plan",
+    "floor_plan": "One-bedroom",
+    "type": "affordable_listing",
+    "address": "4103 Barker Court, Fairfax, VA 22032",
+    "city": "Fairfax",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "1-888-355-7917",
+    "website": "https://www.littleriverglen4apts.com/",
+    "hours": null,
+    "who_it_serves": "Adults ages 62+ within published income limits ($68,880 for 1 person; $78,720 for 2 people per FCRHA page).",
+    "cost": "FCRHA lists rent of $1,495 per month. Utilities and fees must be confirmed.",
+    "monthly_rent": 1495,
+    "rent_basis": "advertised",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 62,
+    "source_url": "https://www.fcrha.org/properties/little-river-glen-iv/1",
+    "sources": [
+      {
+        "url": "https://www.fcrha.org/properties/little-river-glen-iv/1",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.littleriverglen4apts.com/",
+        "role": "provider"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "leasing",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "FCRHA page: \"Opening for immediate occupancy\" and \"Fall 2025: Applications are being accepted.\" County senior housing page still lists it as \"Opening Soon.\"",
+      "source_url": "https://www.fcrha.org/properties/little-river-glen-iv/1",
+      "source_updated_on": null
+    },
+    "notes": "60 one-bedroom apartments for ages 62+. Provider site (littleriverglen4apts.com) returned HTTP 403 and could not be read; facts come from FCRHA and county pages. Address is from the FCRHA map link. Applications phone 1-888-355-7917; FCRHA also lists a temporary office number 571-474-5523. Status text conflicts between FCRHA (open for occupancy) and county senior page (Opening Soon); call to confirm.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "FCRHA lists Redbud Glen as a 62+ community with rent of $1,495 and published income limits.",
+      "source_url": "https://www.fcrha.org/properties/little-river-glen-iv/1",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "little-river-glen-one-bedroom",
+    "name": "Little River Glen — One-bedroom",
+    "community": "Little River Glen",
+    "record_kind": "floor_plan",
+    "floor_plan": "One-bedroom",
+    "type": "affordable_listing",
+    "address": "4001 Barker Court, Fairfax, VA 22032",
+    "city": "Fairfax",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-544-7100",
+    "website": "https://www.littleriverglenapts.com/",
+    "hours": null,
+    "who_it_serves": "Adults ages 62+ within published income limits ($68,880 for 1 person; $78,720 for 2 people per FCRHA page).",
+    "cost": "Published rent range $890 to $2,315 per month; utilities included per county page. Subsidized units available. Rent varies by unit and program.",
+    "monthly_rent": 890,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 62,
+    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fcrha.org/properties/little-river-glen/1",
+        "role": "government"
+      },
+      {
+        "url": "https://www.littleriverglenapts.com/",
+        "role": "provider"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "source_updated_on": null
+    },
+    "notes": "120 one-bedroom units. Provider site returned HTTP 403; facts come from county and FCRHA pages. Address is from county senior page and FCRHA map link. FCRHA also lists temporary property number 571-474-5523.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "County lists Little River Glen as FCRHA senior independent living with rents $890 to $2,315.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "olley-glen-one-bedroom",
+    "name": "Olley Glen — One-bedroom",
+    "community": "Olley Glen",
+    "record_kind": "floor_plan",
+    "floor_plan": "One-bedroom",
+    "type": "affordable_listing",
+    "address": "4023 Olley Lane, Fairfax, VA",
+    "city": "Fairfax",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-544-6700",
+    "website": "https://www.olleyglenapts.com/",
+    "hours": null,
+    "who_it_serves": "Adults ages 62+ within published income limits ($68,880 for 1 person; $78,720 for 2 people per FCRHA page).",
+    "cost": "Published rent range $1,150 to $1,425 per month; utilities included per county page.",
+    "monthly_rent": 1150,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 62,
+    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fcrha.org/properties/olley-glen/1",
+        "role": "government"
+      },
+      {
+        "url": "https://www.olleyglenapts.com/",
+        "role": "provider"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "source_updated_on": null
+    },
+    "notes": "90 one-bedroom independent living apartments. County page gives the address as 4023 Olley Lane, Fairfax (ZIP not stated). Provider site returned HTTP 403.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "County and FCRHA list Olley Glen as 62+ senior housing with rents $1,150 to $1,425.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "gum-springs-glen-one-bedroom",
+    "name": "Gum Springs Glen — One-bedroom",
+    "community": "Gum Springs Glen",
+    "record_kind": "floor_plan",
+    "floor_plan": "One-bedroom",
+    "type": "affordable_listing",
+    "address": "7837 Richmond Highway, Alexandria, VA 22306",
+    "city": "Alexandria",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-780-9072",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Adults ages 62+; FCRHA page lists income limits of $57,400 (1 person) and $65,600 (2 people).",
+    "cost": "FCRHA lists $1,125 for the one-bedroom unit; county page says utilities included.",
+    "monthly_rent": 1125,
+    "rent_basis": "advertised",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 62,
+    "source_url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+    "sources": [
+      {
+        "url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+      "source_updated_on": null
+    },
+    "notes": "60 one- and two-bedroom units. No property website found. Income limits on FCRHA page ($57,400/1 person) are lower than those shown for other FCRHA senior sites; confirm with the property.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "FCRHA and county list Gum Springs Glen as 62+ senior independent living with rents $1,125 (1BR) to $1,360 (2BR).",
+      "source_url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "gum-springs-glen-two-bedroom",
+    "name": "Gum Springs Glen — Two-bedroom",
+    "community": "Gum Springs Glen",
+    "record_kind": "floor_plan",
+    "floor_plan": "Two-bedroom",
+    "type": "affordable_listing",
+    "address": "7837 Richmond Highway, Alexandria, VA 22306",
+    "city": "Alexandria",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-780-9072",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Adults ages 62+; FCRHA page lists income limits of $57,400 (1 person) and $65,600 (2 people). Two-bedroom units require a two-person household.",
+    "cost": "FCRHA lists $1,360 for the two-bedroom unit; county page says utilities included.",
+    "monthly_rent": 1360,
+    "rent_basis": "advertised",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 62,
+    "source_url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+    "sources": [
+      {
+        "url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+      "source_updated_on": null
+    },
+    "notes": "60 one- and two-bedroom units. No property website found. Income limits on FCRHA page ($57,400/1 person) are lower than those shown for other FCRHA senior sites; confirm with the property.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "FCRHA and county list Gum Springs Glen as 62+ senior independent living with rents $1,125 (1BR) to $1,360 (2BR).",
+      "source_url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "morris-glen-one-bedroom",
+    "name": "Morris Glen — One-bedroom",
+    "community": "Morris Glen",
+    "record_kind": "floor_plan",
+    "floor_plan": "One-bedroom",
+    "type": "affordable_listing",
+    "address": "7010 Schoonmaker Court, Alexandria, VA 22310",
+    "city": "Alexandria",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-719-7268",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Adults ages 62+ within published income limits ($68,880 for 1 person; $78,720 for 2 people per FCRHA page).",
+    "cost": "Published rent range $1,100 to $1,255 per month; utilities included per county page. Some subsidized units.",
+    "monthly_rent": 1100,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 62,
+    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fcrha.org/properties/morris-glen/1",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "source_updated_on": null
+    },
+    "notes": "60 one-bedroom units. FCRHA map link labels the location Franconia, VA 22310; county page says Alexandria. No property website found.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "County and FCRHA list Morris Glen as 62+ senior housing with rents $1,100 to $1,255.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "herndon-harbor-house-senior-apartment",
+    "name": "Herndon Harbor House I and II — Senior apartment",
+    "community": "Herndon Harbor House I and II",
+    "record_kind": "community",
+    "floor_plan": "Senior apartment",
+    "type": "affordable_listing",
+    "address": "873 Grace Street, Herndon, VA 20170",
+    "city": "Herndon",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-904-9444",
+    "website": "https://www.qpmgmt.com/properties/herndon-house/",
+    "hours": null,
+    "who_it_serves": "Adults ages 62+ (per county page); manager describes it as serving seniors with moderate incomes.",
+    "cost": "County lists rents of $1,160 to $1,270 per month with utilities included; a few subsidized units. Manager page does not list rents.",
+    "monthly_rent": 1160,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": null,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 62,
+    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.qpmgmt.com/properties/herndon-house/",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/waitlist",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "source_updated_on": null
+    },
+    "notes": "Bedroom mix not stated on the pages reviewed. Manager (QPM) page lists 873 Grace Street, Suite 200, Herndon, VA 20170 and the same phone, but no rents, age rule, or availability.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "County lists Herndon Harbor House I and II as FCRHA senior independent living with rents $1,160 to $1,270.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "atrium-at-metro-west-two-bedroom-one-bath",
+    "name": "Atrium at Metro West — Two-bedroom, one-bath",
+    "community": "Atrium at Metro West",
+    "record_kind": "floor_plan",
+    "floor_plan": "Two-bedroom, one-bath",
+    "type": "affordable_listing",
+    "address": "Vaden Drive, Fairfax, VA",
+    "city": "Fairfax",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-544-7100",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Adults ages 55+; minimum 2-person household; income limits $65,550 (2 persons) to $81,950 (4 persons) per county page.",
+    "cost": "County and FCRHA list $1,480 per month plus utilities.",
+    "monthly_rent": 1480,
+    "rent_basis": "advertised",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 55,
+    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fcrha.org/properties/atrium-at-metrowest/1",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "source_updated_on": null
+    },
+    "notes": "Two-bedroom condos. No street number published on county or FCRHA pages. FCRHA directs rental inquiries to the Pratum leasing office at 571-544-7100.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "County lists Atrium at Metro West as FCRHA 55+ housing with 2BR rents $1,480 to $1,485 plus utilities.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "atrium-at-metro-west-two-bedroom-two-bath",
+    "name": "Atrium at Metro West — Two-bedroom, two-bath",
+    "community": "Atrium at Metro West",
+    "record_kind": "floor_plan",
+    "floor_plan": "Two-bedroom, two-bath",
+    "type": "affordable_listing",
+    "address": "Vaden Drive, Fairfax, VA",
+    "city": "Fairfax",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-544-7100",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Adults ages 55+; minimum 2-person household; income limits $65,550 (2 persons) to $81,950 (4 persons) per county page.",
+    "cost": "County and FCRHA list $1,485 per month plus utilities.",
+    "monthly_rent": 1485,
+    "rent_basis": "advertised",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 55,
+    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fcrha.org/properties/atrium-at-metrowest/1",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "source_updated_on": null
+    },
+    "notes": "Two-bedroom condos. No street number published on county or FCRHA pages. FCRHA directs rental inquiries to the Pratum leasing office at 571-544-7100.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "County lists Atrium at Metro West as FCRHA 55+ housing with 2BR rents $1,480 to $1,485 plus utilities.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "saintsbury-plaza-two-bedroom",
+    "name": "Saintsbury Plaza — Two-bedroom condo",
+    "community": "Saintsbury Plaza",
+    "record_kind": "floor_plan",
+    "floor_plan": "Two-bedroom condo",
+    "type": "affordable_listing",
+    "address": "2901 Saintsbury Plaza, Fairfax, VA",
+    "city": "Fairfax",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-544-7100",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Adults ages 55+; minimum 2-person household; income limits $91,840 (2 people) to $118,080 (4 people).",
+    "cost": "County and FCRHA list $1,535 per month plus utilities.",
+    "monthly_rent": 1535,
+    "rent_basis": "advertised",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 55,
+    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fcrha.org/properties/saintsbury-plaza/1",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "source_updated_on": null
+    },
+    "notes": "6 two-bedroom condos. Phone conflict: county senior page lists 571-544-7100 (offsite at Little River Glen); FCRHA page lists 703-256-0400 for leasing. FCRHA map labels the location Oakton, VA 22031.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "County and FCRHA list Saintsbury Plaza as 55+ two-bedroom condos at $1,535 plus utilities.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "crest-of-alexandria-one-bedroom",
+    "name": "Crest of Alexandria — One-bedroom, one-bath",
+    "community": "Crest of Alexandria",
+    "record_kind": "floor_plan",
+    "floor_plan": "One-bedroom, one-bath",
+    "type": "affordable_listing",
+    "address": "Fairview Farm Drive, Alexandria, VA",
+    "city": "Alexandria",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-719-7268",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Adults ages 55+; income limits $80,360 (1 person) to $114,730 (4 people).",
+    "cost": "County lists $1,255 per month plus utilities.",
+    "monthly_rent": 1255,
+    "rent_basis": "advertised",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 55,
+    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fcrha.org/properties/crest-of-alexandria/1",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "source_updated_on": null
+    },
+    "notes": "Condos (11 two-bedroom, 2 one-bedroom). No street number published; leasing is handled offsite at Morris Glen (703-719-7268).",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "County and FCRHA list Crest of Alexandria as FCRHA 55+ condo housing with published rents and income limits.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "crest-of-alexandria-two-bedroom",
+    "name": "Crest of Alexandria — Two-bedroom, two-bath",
+    "community": "Crest of Alexandria",
+    "record_kind": "floor_plan",
+    "floor_plan": "Two-bedroom, two-bath",
+    "type": "affordable_listing",
+    "address": "Fairview Farm Drive, Alexandria, VA",
+    "city": "Alexandria",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-719-7268",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Adults ages 55+; income limits $80,360 (1 person) to $114,730 (4 people). Two-bedroom units require a 2-person household.",
+    "cost": "County lists $1,465 per month plus utilities. FCRHA page lists $1,465-$1,475; county page lists $1,465.",
+    "monthly_rent": 1465,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": 55,
+    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "sources": [
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+        "role": "government"
+      },
+      {
+        "url": "https://www.fcrha.org/properties/crest-of-alexandria/1",
+        "role": "government"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "County senior housing page says to contact the property for waitlist information; it states vacancies are filled from each community's waitlist and it is \"impossible to estimate when vacancies will become available.\"",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "source_updated_on": null
+    },
+    "notes": "Condos (11 two-bedroom, 2 one-bedroom). No street number published; leasing is handled offsite at Morris Glen (703-719-7268).",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Fairfax County Redevelopment and Housing Authority (FCRHA) senior housing",
+      "evidence": "County and FCRHA list Crest of Alexandria as FCRHA 55+ condo housing with published rents and income limits.",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
+  },
+  {
+    "id": "lindsay-hill-senior-apartments",
+    "name": "Lindsay Hill Senior Apartments — 1-2 bedroom",
+    "community": "Lindsay Hill Senior Apartments",
+    "record_kind": "community",
+    "floor_plan": "1-2 bedroom",
+    "type": "affordable_listing",
+    "address": "8915 Pink Carnation Court, Lorton, VA 22079",
+    "city": "Lorton",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-646-4701",
+    "website": "https://www.communityhousingpartners.org/lindsayhill",
+    "hours": null,
+    "who_it_serves": "Seniors (per property name); provider says income guidelines may apply. Age rule not stated on provider page.",
+    "cost": "Rent not published. Contact the Leasing Center.",
+    "monthly_rent": null,
+    "rent_basis": null,
+    "currency": "USD",
+    "bedrooms": null,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.communityhousingpartners.org/lindsayhill",
+    "sources": [
+      {
+        "url": "https://www.communityhousingpartners.org/lindsayhill",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.communityhousingpartners.org/properties/lindsay-hill-senior-apartments/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider page lists \"1-2 Bed\" and \"income guidelines may apply – contact the Leasing Center for details\"; no availability or waitlist stated.",
+      "source_url": "https://www.communityhousingpartners.org/lindsayhill",
+      "source_updated_on": null
+    },
+    "notes": "Community Housing Partners (nonprofit) property. Provider page also lists a tour line 571-348-3511 and links a tax-credit application file. Age requirement and rents not confirmed.",
+    "area": "Fairfax County",
+    "affordability": {
+      "status": "documented",
+      "program": "Tax-credit (LIHTC) senior apartments (provider links a tax credit application)",
+      "evidence": "Provider page links a \"taxcreditapplication2025\" file and says income guidelines may apply.",
+      "source_url": "https://www.communityhousingpartners.org/lindsayhill",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    }
   }
 ]

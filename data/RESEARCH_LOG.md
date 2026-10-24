@@ -22,3 +22,5 @@ runs `python backend/catalog.py --check` and `python backend/test_catalog.py`, a
 | Date | Topic | Records added | Notes |
 |---|---|---|---|
 | 2026-10-24 | Initial research (shelters, programs, open-data APIs) | 90 + 413 queued | First batch |
+| 2026-10-24 | 1. Recheck expiring listings | 0 | Nothing due; all review dates are 2026-10-31 |
+| 2026-10-24 | 2. Fairfax County and Fairfax City listings | 14 (11 communities) | Mostly FCRHA senior housing (55+/62+) from county pages; provider sites returned 403. Phone conflicts noted for Coan Pond and Saintsbury Plaza; Redbud Glen "leasing" vs county "Opening Soon". No Fairfax City properties publish affordable rents. |
