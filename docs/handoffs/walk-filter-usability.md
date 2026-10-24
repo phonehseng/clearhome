@@ -21,3 +21,10 @@ In `frontend/index.html`, the optional housing-search fields **Live near a…** 
 Test No preference, each amenity, changing walking time, clearing the amenity after a selection, and submitting the housing search. Preserve the existing walking-search API behavior and verify that the chosen maximum walking time is honored. Check mobile and desktop, keyboard navigation, and browser zoom. Report the changes, checks, commit, and any deployment limitations.
 
 This handoff requests implementation; it does not itself change the form.
+
+
+---
+
+**Implemented (2026-10-24).** The two fields are now one **Nearby essentials** group (a fieldset with a legend and connected helper text: "Find homes within your chosen walking time of a nearby service. The walk is measured from each home to that place, not from where you are now."). Labels are **Place to be near** and **Maximum walking time**; choices and values are unchanged. Fields sit in a compact two-column grid capped at 230px each (stacked on phones), with 15px text and 46px-tall controls. **Maximum walking time** and "The walk is nice to have, not a must" (moved into this group) are disabled until a place is chosen, and a live summary reads e.g. "Supermarket within a 10-minute walk of the home." Request logic is unchanged: no walking constraint is sent without a place.
+
+Checked in the browser: No preference → walking time disabled; Supermarket → enabled, summary updates, 15 minutes updates it; clearing the place disables it again; Pharmacy + 5 minutes + submit sends `requiredAmenity: "pharmacy", maxWalkingMinutes: 5, strict: true` to `/api/housing/search`.

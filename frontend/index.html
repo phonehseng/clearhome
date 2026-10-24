@@ -172,6 +172,20 @@
     .shelter-where{font-size:12.5px;color:var(--muted)}
     .web-search-btn{margin-top:8px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px dashed #d9822b;background:#fff8ef;color:#8a4b0f;font-size:12.5px;font-weight:650}
     .web-search-btn:hover{background:#fdeedd}
+    /* Nearby essentials: one group, read top to bottom; the walking time only applies once a place is chosen. */
+    .nearby-essentials{border:1px solid var(--line);border-radius:12px;padding:14px 16px 12px;margin:14px 0}
+    .nearby-essentials legend{font-weight:650;font-size:14px;padding:0 6px}
+    .nearby-essentials .opt{font-weight:400;color:var(--muted)}
+    .nearby-help{margin:0 0 10px;font-size:13px;color:var(--muted);line-height:1.5}
+    .nearby-grid{display:grid;grid-template-columns:repeat(2,minmax(0,230px));gap:12px 16px}
+    .nearby-grid label{display:block;font-size:13.5px;font-weight:600;margin-bottom:5px}
+    .nearby-grid .find-select{font-size:15px;min-height:46px}
+    .nearby-grid .find-select:disabled{opacity:.55;cursor:not-allowed}
+    .nearby-summary{margin:10px 0 6px;font-size:13px;color:var(--muted)}
+    .nearby-summary.on{color:#1d5d3f;font-weight:600}
+    .nearby-soft{display:flex;align-items:center;gap:8px;font-size:13px;min-height:36px}
+    .nearby-soft:has(input:disabled){opacity:.55}
+    @media(max-width:560px){.nearby-grid{grid-template-columns:1fr}}
     .map-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
     .map-tab{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:13px;font-weight:600;color:var(--ink);transition:background .15s,border-color .15s,color .15s}
     .map-tab:hover{border-color:#6f8fd6}
@@ -545,12 +559,20 @@
       <details class="more-options" id="more-options"><summary>More options <span>(optional)</span></summary><div class="more-options-body">
       <div class="input-row"><div><label for="income">Household income <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="income" name="income" type="number" min="0" max="10000000" placeholder="Before taxes" inputmode="decimal"><span>/ year</span></div></div><div><label for="household">People in your home <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="household" name="household" class="find-select"><option value="">Not sure</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6">6 or more</option></select></div></div>
       <div class="input-row"><div><label for="bedrooms">Bedrooms <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="bedrooms" name="bedrooms" class="find-select"><option value="">Any</option><option value="0">Studio</option><option value="1">1 bedroom</option><option value="2">2 bedrooms</option><option value="3">3 bedrooms</option><option value="4">4 or more</option></select></div><div><label for="timing">When do you need to move? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="timing" name="timing" class="find-select"><option value="">Not sure</option><option value="now">As soon as possible</option><option value="soon">In the next 3 months</option><option value="planning">Just planning ahead</option></select></div></div>
-      <div class="input-row"><div><label for="find-amenity">Live near a… <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="find-amenity" class="find-select"><option value="">No preference</option><option value="supermarket">Supermarket</option><option value="pharmacy">Pharmacy</option><option value="transit">Bus or train stop</option></select></div><div><label for="find-walk">Within a walk of</label><select id="find-walk" class="find-select"><option value="5">5 minutes</option><option value="10" selected>10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option></select></div></div>
+      <fieldset class="nearby-essentials" aria-describedby="nearby-help">
+        <legend>Nearby essentials <span class="opt">(optional)</span></legend>
+        <p id="nearby-help" class="nearby-help">Find homes within your chosen walking time of a nearby service. The walk is measured from each home to that place, not from where you are now.</p>
+        <div class="nearby-grid">
+          <div><label for="find-amenity">Place to be near</label><select id="find-amenity" class="find-select"><option value="">No preference</option><option value="supermarket">Supermarket</option><option value="pharmacy">Pharmacy</option><option value="transit">Bus or train stop</option></select></div>
+          <div><label for="find-walk">Maximum walking time</label><select id="find-walk" class="find-select" aria-describedby="find-walk-note" disabled><option value="5">5 minutes</option><option value="10" selected>10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option></select></div>
+        </div>
+        <p id="find-walk-note" class="nearby-summary" aria-live="polite">Choose a place to be near to set a walking time.</p>
+        <label class="nearby-soft"><input type="checkbox" id="find-walk-pref" disabled> The walk is nice to have, not a must</label>
+      </fieldset>
       <fieldset class="find-checks"><legend>Anything that applies? <span style="font-weight:400;color:var(--muted)">(optional)</span></legend>
         <label><input type="checkbox" id="accessible" name="accessible"> I need an accessible home</label>
         <label><input type="checkbox" id="senior" name="senior"> Someone in my home is 62 or older</label>
         <label><input type="checkbox" id="voucher" name="voucher"> I have a housing voucher</label>
-        <label><input type="checkbox" id="find-walk-pref"> The walk is nice to have, not a must</label>
       </fieldset>
       <label for="situation">Anything else we should know? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="situation" name="situation" maxlength="1700" aria-describedby="situation-hint situation-count" placeholder="For example: I’m a student and need to move next month."></textarea><div class="textarea-hint"><span id="situation-hint">If you write something here, our assistant will answer it after your options. Keep personal details out.</span><span class="character-count" id="situation-count">0 / 1,700</span></div><div class="examples"><span>Need a starting point?</span><button type="button" data-example="I’m a student looking for an affordable room near campus. My move-in date is flexible.">I’m a student</button><button type="button" data-example="I’m looking for affordable housing for my family. What programs or assistance might help us?">Housing for my family</button><button type="button" data-example="I need a safe place to stay tonight. Please help me find emergency shelter resources.">I need a place tonight</button></div></div></details><div class="form-bottom"><span class="privacy-note"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Recommendations from verified resources only</span><button class="primary" type="submit"><span>Show my options</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div>
     </form>
@@ -1142,6 +1164,15 @@
       const box = document.getElementById('location'); box.value = e.target.value; e.target.value = '';
       window.clearHouseMapGoTo?.(box.value); window.clearHouseOfferWebSearch?.(box.value);
     });
+    // Walking time and "nice to have" only mean something once a place to be near is chosen.
+    const amenitySel = document.getElementById('find-amenity'), walkSel = document.getElementById('find-walk'), walkSoft = document.getElementById('find-walk-pref'), walkNote = document.getElementById('find-walk-note');
+    function syncNearby() {
+      const chosen = amenitySel.value; walkSel.disabled = walkSoft.disabled = !chosen;
+      const label = amenitySel.selectedOptions[0].textContent;
+      walkNote.textContent = chosen ? `${label} within a ${walkSel.value}-minute walk of the home${walkSoft.checked ? ' (nice to have)' : ''}.` : 'Choose a place to be near to set a walking time.';
+      walkNote.classList.toggle('on', !!chosen);
+    }
+    [amenitySel, walkSel, walkSoft].forEach(x => x.addEventListener('change', syncNearby)); syncNearby();
     document.querySelectorAll('[data-tonight]').forEach(b => b.addEventListener('click', () => {
       document.getElementById('location').value = b.dataset.tonight;
       document.getElementById('tonight').checked = true;
