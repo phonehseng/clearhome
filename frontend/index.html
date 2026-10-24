@@ -428,7 +428,7 @@
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
     <div class="listing-reveal-actions">
       <button id="show-more-listings" class="more-listings" type="button" hidden>Show more communities</button>
-      <button id="show-all-listings" class="more-listings" type="button" hidden>Show all</button>
+      <button id="show-all-listings" class="more-listings" type="button" hidden>Show all communities</button>
     </div>
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
   </section>
@@ -605,8 +605,8 @@
     listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
     moreListings.hidden = visibleHousingCount >= housingRows.length;
     allListings.hidden = moreListings.hidden || housingRows.length-visibleHousingCount <= 20;
-    moreListings.textContent = 'Show more communities';
-    allListings.textContent = 'Show all';
+    moreListings.textContent = `Show more communities (${Math.max(0,housingRows.length-visibleHousingCount)} remaining)`;
+    allListings.textContent = 'Show all communities';
     browseMessage.dataset.state = 'success';
     browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs. Floor plans are grouped together.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
   }
