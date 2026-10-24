@@ -736,7 +736,8 @@
     const expanded=new Set([...listingsGrid.querySelectorAll('details[open]')].map(el=>el.dataset.key));
     listingsGrid.replaceChildren();
     const hasPhoto = row => (row.floor_plans?.length ? row.floor_plans : [row]).some(p => p.photo);
-    const ordered = document.getElementById('browse-sort').value==='rent_asc' ? housingRows : [...housingRows].sort((a, b) => hasPhoto(b) - hasPhoto(a));
+    // Listings with a photo always come first; the sort is stable, so the chosen order (like rent low to high) holds within each group.
+    const ordered = [...housingRows].sort((a, b) => hasPhoto(b) - hasPhoto(a));
     ordered.slice(0,visibleHousingCount).forEach(row => {
       const plans = row.floor_plans?.length ? row.floor_plans : [row];
       const availability = row.availability || {};
