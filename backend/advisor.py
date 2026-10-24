@@ -3,6 +3,7 @@
 Usage: python backend/advisor.py "How do I qualify for a housing voucher in Arlington?"
 """
 import json
+import re
 import sys
 import threading
 import time
@@ -145,12 +146,22 @@ def programs():
     return [_compact(r) for r in load_catalog() if r.get("type") in keep and not isinstance(r.get("availability"), dict)]
 
 
+# Common places people mention that are outside Clear House's service area.
+OUTSIDE = r"\b(richmond|baltimore|maryland|silver spring|bethesda|rockville|washington,? dc|d\.?c\.?|norfolk|virginia beach|chesapeake|charlottesville|roanoke|fredericksburg|stafford|winchester|harrisonburg|blacksburg|lynchburg|frederick)\b"
+
+
 def area_for(text):
     """Map free text like 'Reston' to a Northern Virginia jurisdiction ("Northern Virginia" if general, None if outside)."""
     t = (text or "").lower()
+    area = next((area for word, area in AREAS if word in t), None)
+    if area:
+        return area
+    if re.search(OUTSIDE, t):
+        return None
     if not t.strip() or "northern virginia" in t or t.strip() in ("nova", "northern va"):
         return "Northern Virginia"
-    return next((area for word, area in AREAS if word in t), None)
+    # A specific place we don't recognize is treated as outside; general requests cover the whole region.
+    return "Northern Virginia" if len(t.split()) > 2 else None
 
 
 def options(profile):

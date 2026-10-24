@@ -12,6 +12,8 @@ RUN pip install --no-cache-dir -r backend/requirements.txt
 COPY backend backend
 COPY frontend frontend
 COPY data data
+# Listing photos are pre-downloaded with `python backend/listing_photos.py` before deploying.
+COPY .cache/listing-photos .cache/listing-photos
 
 # The hosted copy is read-only (Cloud Run's disk resets) and pre-answers the example questions.
 ENV CLEARHOUSE_READ_ONLY=1 WARM_EXAMPLES=1 PYTHONUNBUFFERED=1

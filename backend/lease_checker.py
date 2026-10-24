@@ -7,6 +7,7 @@ Usage:
 import sys
 
 from matcher import ask_gemma
+from prompt_tools import document_kind, lease_excerpt
 
 MAX_CHARS = 15000
 
@@ -70,30 +71,33 @@ LISTING TEXT END"""
     return ask_gemma(prompt)
 
 
-def review(text):
-    """Explain a lease, or check a listing or landlord messages for scam signs. Gemma decides which it is."""
-    prompt = f"""You help renters with a document they pasted. {SHARED_RULES}
-
-First decide what it is and start with one line, exactly one of:
-TYPE: LEASE
-TYPE: LISTING OR MESSAGES
-TYPE: BOTH
-
-If it's a lease, write these sections:
-SUMMARY: 3 to 5 sentences covering rent, deposit, lease length and who pays what.
+LEASE_SECTIONS = """SUMMARY: 3 to 5 sentences covering rent, deposit, lease length and who pays what.
 KEY DATES AND COSTS: rent due date, late fees, deposit, renewal or notice deadlines.
 CLAUSES TO WATCH: clauses that could cost the renter money or limit their rights, each with one sentence on why it matters.
-QUESTIONS TO ASK THE LANDLORD: 3 to 5 questions.
+QUESTIONS TO ASK THE LANDLORD: 3 to 5 questions."""
+LISTING_SECTIONS = """RISK LEVEL: Low, Medium or High, with one sentence of reasoning. Say this is an estimate, not a verdict.
+RED FLAGS FOUND: each one quoted or described (money before a viewing, wire/gift cards/crypto, landlord abroad, rent far below market, pressure, no viewing, bank details up front).
+HOW TO CHECK: 3 to 5 concrete steps (view in person, search the address, reverse image search photos, never pay before signing)."""
 
-If it's a rental listing or messages from a landlord, write these sections:
-RISK LEVEL: Low, Medium or High, with one sentence of reasoning. Say this is an estimate, not a verdict.
-RED FLAGS FOUND: each one quoted or described. Common red flags: money before a viewing, wire transfer, gift cards or crypto, landlord "out of the country", rent far below market, pressure to act fast, refusing to show the unit, asking for bank details up front.
-HOW TO CHECK: 3 to 5 concrete steps, such as viewing in person, searching the address, reverse image searching photos, and never paying before signing a lease.
 
-If it's both, do both. Always end with WHERE TO GET HELP: a tenant legal aid group or calling 211.
+def review(text):
+    """Explain a lease, or check a listing or landlord messages for scam signs.
+
+    A keyword script decides which kind it is and trims long leases to the clauses that matter,
+    so Gemma gets one short set of instructions instead of both.
+    """
+    kind = document_kind(text)
+    body = lease_excerpt(text) if kind != "listing" else text[:4000]
+    sections = {"lease": LEASE_SECTIONS, "listing": LISTING_SECTIONS, "both": LEASE_SECTIONS + "\n" + LISTING_SECTIONS}[kind]
+    label = {"lease": "a lease", "listing": "a rental listing or landlord messages", "both": "a lease and a listing or messages"}[kind]
+    prompt = f"""You help renters understand {label}. {SHARED_RULES}
+
+Write these sections:
+{sections}
+WHERE TO GET HELP: a tenant legal aid group or calling 211.
 
 TEXT START
-{text[:MAX_CHARS]}
+{body}
 TEXT END"""
     return ask_gemma(prompt)
 

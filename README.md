@@ -34,6 +34,8 @@ To avoid made-up information, the assistant only recommends places from our hand
 | `backend/sources.py` | Pulls records from public open-data APIs (HUD tax-credit, subsidized and housing-authority data, Alexandria's affordable rentals, the NoVA shelter map) into a review queue. Runs in the background on searches, at most once a day. |
 | `backend/review.py` | Lets the team approve or reject queued records. Nothing from an API reaches users until it's approved. |
 | `backend/freshness.py` | Gemma rereads listing pages and takes down ones no longer offered. It can only hide listings, never add or revive them. |
+| `backend/walkable.py` | Walking-distance search: reviewed homes + Google Places + Google Routes walking times. See [WALKABILITY.md](WALKABILITY.md). |
+| `backend/prompt_tools.py` | Keyword scripts that read requests and trim documents before Gemma sees them, so prompts stay small. |
 | `frontend/index.html` | The web page. |
 | `data/resources.json` | The hand-verified resource list. See [data/README.md](data/README.md). |
 

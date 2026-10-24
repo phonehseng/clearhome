@@ -5,7 +5,10 @@
 .venv/
 venv/
 .git/
-.cache/
+# Ship the pre-downloaded listing photos (backend/listing_photos.py) so the hosted site
+# doesn't depend on provider websites; skip any other local caches.
+.cache/*
+!.cache/listing-photos/
 __pycache__/
 *.pyc
 .DS_Store

@@ -10,6 +10,7 @@ from flask import Flask, jsonify, request, send_from_directory, send_file
 
 from advisor import AREAS, ask, options, programs, warm_examples
 from live_search import search as live_search
+import walkable
 from extract_text import extract_text
 from lease_checker import answer_lease_question, check_listing, explain_lease, review
 from lease_journey import journey_context
@@ -159,6 +160,64 @@ def find_options():
                "accessible": body.get("accessible") is True, "senior": body.get("senior") is True, "tonight": body.get("tonight") is True}
     result = options(profile)
     return jsonify(result), (400 if "error" in result else 200)
+
+
+@app.get("/api/maps-config")
+def maps_config():
+    """The browser Maps key (restricted to this site's addresses), or null so the page uses its fallback."""
+    return jsonify(browser_key=os.environ.get("GOOGLE_MAPS_BROWSER_API_KEY") or None)
+
+
+@app.post("/api/housing/search")
+def housing_walk_search():
+    """Reviewed affordable homes near a supermarket, pharmacy or transit stop, with real walking times."""
+    body = request.get_json(silent=True) or {}
+    prompt = redact(str(body.get("prompt") or "")[:500])[0]
+    raw = body.get("filters") if isinstance(body.get("filters"), dict) else {}
+    overrides = {}
+    if isinstance(raw.get("location"), str) and raw["location"].strip():
+        overrides["location"] = raw["location"].strip()[:100]
+    if isinstance(raw.get("maxMonthlyRent"), (int, float)) and 0 < raw["maxMonthlyRent"] < 100_000:
+        overrides["max_rent"] = float(raw["maxMonthlyRent"])
+    if raw.get("requiredAmenity") in walkable.AMENITIES:
+        overrides["amenity"] = raw["requiredAmenity"]
+    if raw.get("maxWalkingMinutes") in (5, 10, 15, 20):
+        overrides["max_walk_minutes"] = raw["maxWalkingMinutes"]
+    if isinstance(raw.get("strict"), bool):
+        overrides["strict"] = raw["strict"]
+    if raw.get("sort") in ("best", "rent", "walk"):
+        overrides["sort"] = raw["sort"]
+    if not prompt and not overrides:
+        return jsonify(error="Describe what you're looking for, or pick some filters."), 400
+    result = walkable.search(prompt, overrides)
+    return jsonify(result), (400 if "error" in result else 200)
+
+
+@app.post("/api/housing/route")
+def housing_walk_route():
+    """Walking route line from a reviewed home to a place an earlier search returned."""
+    body = request.get_json(silent=True) or {}
+    home = next((r for r in load_catalog() if r.get("id") == body.get("housing_id")), None)
+    if not home or home.get("lat") is None or not isinstance(body.get("place_id"), str):
+        return jsonify(error="Route unavailable."), 404
+    try:
+        route = walkable.walking_route(home["lat"], home["lon"], body["place_id"])
+    except Exception:
+        route = None
+    return (jsonify(route), 200) if route else (jsonify(error="Walking route unavailable."), 404)
+
+
+@app.get("/api/place-photo")
+def place_photo():
+    """Google place photo, fetched server-side so the server key never reaches the browser."""
+    try:
+        found = walkable.place_photo(request.args.get("name", ""))
+    except Exception:
+        found = None
+    if not found:
+        return jsonify(error="Photo unavailable."), 404
+    data, mimetype = found
+    return app.response_class(data, mimetype=mimetype, headers={"Cache-Control": "private, max-age=3600"})
 
 
 @app.get("/api/boundaries")

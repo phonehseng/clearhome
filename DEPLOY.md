@@ -5,7 +5,8 @@ Clear House runs on Cloud Run in **us-east4 (Northern Virginia)**, in the `gen-l
 
 ## How the hosted copy differs
 
-- The Gemma key is stored in **Secret Manager** as `gemini-api-key`, never in the code or the container.
+- The Gemma and Google Maps keys are stored in **Secret Manager** (`gemini-api-key`, `google-maps-server-key`,
+  `google-maps-browser-key`), never in the code or the container.
 - `CLEARHOUSE_READ_ONLY=1`: Cloud Run's disk resets on every restart, so the hosted copy doesn't run the
   open-data review queue or the listing take-downs. Run those locally and push the data.
 - `WARM_EXAMPLES=1`: the example questions on the resources page are answered when the server starts.
@@ -13,11 +14,17 @@ Clear House runs on Cloud Run in **us-east4 (Northern Virginia)**, in the `gen-l
 
 ## Redeploy after changes
 
-Push your changes, then from the project folder:
+Push your changes, download the listing photos so they ship with the app, then deploy from the project folder:
+
+```bash
+python backend/listing_photos.py
+```
+
 
 ```bash
 gcloud run deploy clear-house --source . --region us-east4 \
-  --allow-unauthenticated --set-secrets GEMINI_API_KEY=gemini-api-key:latest \
+  --allow-unauthenticated \
+  --set-secrets GEMINI_API_KEY=gemini-api-key:latest,GOOGLE_MAPS_SERVER_API_KEY=google-maps-server-key:latest,GOOGLE_MAPS_BROWSER_API_KEY=google-maps-browser-key:latest \
   --max-instances 2 --memory 1Gi --cpu 1 --timeout 300
 ```
 

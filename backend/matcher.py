@@ -102,6 +102,7 @@ def filter_resources(resources, filters):
 
 
 def write_answer(message, filters, matches):
+    from prompt_tools import compact
     prompt = f"""You are a housing assistant helping a low-income person. Answer using ONLY the resources listed below.
 
 Rules:
@@ -119,13 +120,17 @@ Rules:
 Person's message: {message}
 
 Resources:
-{json.dumps(matches, indent=2)}"""
+{json.dumps(compact(matches), ensure_ascii=False)}"""
     return ask_gemma(prompt)
 
 
 def find_help(message, include_unverified=False):
     resources = load_resources(include_unverified)
-    filters = extract_filters(message)
+    # A keyword script reads most messages instantly; Gemma only parses ones it can't understand.
+    from prompt_tools import keyword_filters  # imported here: prompt_tools -> advisor -> matcher
+    filters, confident = keyword_filters(message)
+    if not confident:
+        filters = extract_filters(message)
     matches = filter_resources(resources, filters)
     if not matches:
         return filters, "I don't have a verified match for that yet. Please call 211 (or visit 211virginia.org) for local housing help."
