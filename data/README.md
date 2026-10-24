@@ -114,15 +114,3 @@ Spot-check before approving: HUD tax-credit records sometimes list an owner's of
 Both categories are supported. `affordable_listing`/`affordable_property` require `affordability.status: documented` with a program description, exact supporting official source, evidence, and review date. `rental_listing` requires `affordability.status: standard_rental` with provider rental evidence and a review date. Regular means the advertised rental is recorded without claiming an income-restricted/subsidized unit; it does not prove that a building has no affordable units. Never infer program status from price or old tax-credit records alone. The catalog validator and matcher reject housing records without category evidence.
 
 `/api/listings?housing_type=all|affordable|regular` controls browsing. Budget filtering applies to both rental categories. Park Place is now explicitly a regular advertised senior rental because its current subsidy/program status is not established. The Reserve at Eisenhower adds provider-advertised regular options. The Spire's unresolved prices remain unknown. See sources on the cards; no website review guarantees live inventory or household eligibility.
-
-## Gemma rental discovery
-
-```sh
-python backend/discover.py --limit 5
-```
-
-Gemma reads fetched provider text and extracts possible listings into `data/candidates.json`. Source pages must already be listed in catalog website/source URLs. Use `--source-url <known-url>` to target a specific approved page. The command uses the existing `GEMINI_API_KEY` in `.env` and `gemma-4-26b-a4b-it`; never paste a key into chat or commit it.
-
-The extractor requires matching source quotes, rejects invented property names and unsupported claims, and never marks discoveries verified or publishes them. Exact quotes support extraction, not truth, freshness, or eligibility. A reviewer must check the source context, resolve category, fill required fields and availability evidence, and then approve the candidate using the existing review workflow. Existing public-data refresh/import jobs remain available.
-
-This cloud session has no API key and its outbound policy does not allow Google/provider hosts. The implementation was tested offline with mocked model responses; no live Gemma extraction was executed here. Run the command locally with a configured key and internet access to perform the live pull.
