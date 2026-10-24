@@ -19,3 +19,5 @@ Validate that Show more adds 18, Show all reveals all remaining matches, and the
 ---
 
 **Implemented (2026-10-24, e83d1d9).** Show more reveals 18 per click with "Show more communities (N remaining)"; "Show all communities" has no count and hides when 18 or fewer remain (Show more already reveals them). Kept your primary/secondary styling and added a hover lift, a staggered fade-in for new cards, and a smooth scroll to the first new card (both off under reduced motion). Checked in the browser: 6 → 24 (231 → 213 remaining); Blacksburg 9 remaining → 15, both controls hidden, focus on the first new card. Deployed in the same Cloud Run release.
+
+**Sizing adjustment done (2026-10-24):** Show more is now sized to its label (about 349×48px, was about 360×57px): padding 11px 24px, 15px text, min-height 46px, one line on desktop and still wraps on narrow phones. Show all is unchanged as the smaller secondary link (44px tall).
