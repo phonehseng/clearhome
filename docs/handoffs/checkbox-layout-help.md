@@ -26,3 +26,8 @@ Inspect how the filters actually work and ensure the help text describes them ho
 - Preserve the fieldset/legend, associated checkbox labels, comfortable checkbox click targets, visible focus, and current field names/IDs and request semantics.
 - Check desktop, mobile, keyboard, touch, and long-label wrapping. Verify all three options still submit correctly and help remains short and unobtrusive.
 - Report the implemented changes, validation, and commit. This handoff does not itself implement the UI change.
+
+
+---
+
+**Implemented** in commits 091bbc7 (balanced three-column checkboxes with small hover/focus/tap help tips), a724a77 (a click or tap pins a tip open; a second click, Escape or an outside tap closes it) and 8f2da13. Verified 2026-10-24 in the browser: three columns on desktop; the ⓘ buttons are `type="button"`, sit outside the labels (opening a tip never ticks the checkbox), set `aria-expanded`, and close with Escape. Tip copy matches the filters: "Helps us find senior housing options. Age rules vary by property." and "A housing voucher helps pay rent. Ask the provider whether your voucher can be used." Field names, IDs and request semantics are unchanged.

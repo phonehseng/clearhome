@@ -1,0 +1,459 @@
+{
+ "total": 374.109,
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 16.532,
+   "cues": [
+    {
+     "text": "It's ten at night in Blacksburg, and someone has just realised they have nowhere safe to sleep.",
+     "start": 0.7,
+     "end": 5.939
+    },
+    {
+     "text": "Searching dozens of websites is the last thing they should have to do right now.",
+     "start": 6.389,
+     "end": 10.5
+    },
+    {
+     "text": "Today, we'll see how Clear House turns that search into one clear next step.",
+     "start": 10.95,
+     "end": 15.632
+    }
+   ]
+  },
+  {
+   "start": 16.532,
+   "end": 30.054,
+   "cues": [
+    {
+     "text": "Here's our question for today: how can one website find real housing help, fast, without making things up?",
+     "start": 17.232,
+     "end": 24.383
+    },
+    {
+     "text": "We'll go in five steps, from the problem itself to the AI that answers.",
+     "start": 24.833,
+     "end": 29.154
+    }
+   ]
+  },
+  {
+   "start": 30.054,
+   "end": 48.014,
+   "cues": [
+    {
+     "text": "Housing experts call a household cost burdened when housing takes more than thirty percent of its income.",
+     "start": 30.754,
+     "end": 36.622
+    },
+    {
+     "text": "Pay fifteen hundred dollars in rent on four thousand a month, and that's already thirty-seven and a half percent.",
+     "start": 37.072,
+     "end": 43.295
+    },
+    {
+     "text": "When money is that tight, every wrong step costs more.",
+     "start": 43.745,
+     "end": 47.114
+    }
+   ]
+  },
+  {
+   "start": 48.014,
+   "end": 67.015,
+   "cues": [
+    {
+     "text": "Shelters, rent help and affordable homes live on many different county, city and provider websites.",
+     "start": 48.714,
+     "end": 54.973
+    },
+    {
+     "text": "Some waitlists are closed, some listings are out of date, and scams target people in a hurry.",
+     "start": 55.423,
+     "end": 61.054
+    },
+    {
+     "text": "Clear House puts the checked options in one place, with the next step spelled out.",
+     "start": 61.504,
+     "end": 66.115
+    }
+   ]
+  },
+  {
+   "start": 67.015,
+   "end": 83.673,
+   "cues": [
+    {
+     "text": "Most people think a shelter is somewhere you simply walk into.",
+     "start": 67.715,
+     "end": 71.131
+    },
+    {
+     "text": "But many Northern Virginia shelters start with a call to an intake or referral line, which screens you and finds a bed.",
+     "start": 71.581,
+     "end": 78.027
+    },
+    {
+     "text": "So the most useful thing we can show is exactly who to call, and when.",
+     "start": 78.477,
+     "end": 82.773
+    }
+   ]
+  },
+  {
+   "start": 83.673,
+   "end": 103.798,
+   "cues": [
+    {
+     "text": "Underneath everything is a list of four hundred and nine resources, each checked against an official page.",
+     "start": 84.373,
+     "end": 90.343
+    },
+    {
+     "text": "That's three hundred and nine homes and floor plans, thirty-three emergency shelters and thirty-one help programs.",
+     "start": 90.793,
+     "end": 97.676
+    },
+    {
+     "text": "They cover two regions: Northern Virginia, and Blacksburg near Virginia Tech.",
+     "start": 98.126,
+     "end": 102.898
+    }
+   ]
+  },
+  {
+   "start": 103.798,
+   "end": 123.746,
+   "cues": [
+    {
+     "text": "Each record starts on an official provider or government page, never a search summary.",
+     "start": 104.498,
+     "end": 109.661
+    },
+    {
+     "text": "Phone numbers, addresses and rents are copied exactly, and anything unpublished is marked unknown, not guessed.",
+     "start": 110.111,
+     "end": 116.912
+    },
+    {
+     "text": "Every link says where it really goes, and every listing gets a date when it must be checked again.",
+     "start": 117.362,
+     "end": 122.846
+    }
+   ]
+  },
+  {
+   "start": 123.746,
+   "end": 140.121,
+   "cues": [
+    {
+     "text": "A listing that was true last month can quietly stop being true.",
+     "start": 124.446,
+     "end": 128.176
+    },
+    {
+     "text": "So homes drop out of search when their review date passes, about a week after they were checked.",
+     "start": 128.626,
+     "end": 134.001
+    },
+    {
+     "text": "Shelters never disappear for that reason; they simply go back to call to confirm.",
+     "start": 134.451,
+     "end": 139.221
+    }
+   ]
+  },
+  {
+   "start": 140.121,
+   "end": 154.427,
+   "cues": [
+    {
+     "text": "Quick check: if a home appears on a county list, what does that actually prove?",
+     "start": 140.821,
+     "end": 145.41
+    },
+    {
+     "text": "Think about it.",
+     "start": 145.859,
+     "end": 146.816
+    },
+    {
+     "text": "It proves the program is real and official, not that a unit is free today, so we say call to confirm.",
+     "start": 147.266,
+     "end": 153.527
+    }
+   ]
+  },
+  {
+   "start": 154.427,
+   "end": 166.322,
+   "cues": [
+    {
+     "text": "People don't think in counties; they think about work, school and the bus home.",
+     "start": 155.127,
+     "end": 159.921
+    },
+    {
+     "text": "So you can simply type: a place near my office at eighteen hundred Tysons Boulevard.",
+     "start": 160.371,
+     "end": 165.422
+    }
+   ]
+  },
+  {
+   "start": 166.322,
+   "end": 184.289,
+   "cues": [
+    {
+     "text": "A small script reads the place out of your sentence, and Google Places finds it on the map.",
+     "start": 167.022,
+     "end": 172.261
+    },
+    {
+     "text": "Checked homes are ranked by distance, and Google Routes adds real drive and transit times.",
+     "start": 172.711,
+     "end": 178.228
+    },
+    {
+     "text": "That whole answer arrives almost instantly, because it doesn't need an AI to guess.",
+     "start": 178.678,
+     "end": 183.389
+    }
+   ]
+  },
+  {
+   "start": 184.289,
+   "end": 196.507,
+   "cues": [
+    {
+     "text": "Here's a real answer from our tests for homes near Reston Town Center.",
+     "start": 184.989,
+     "end": 188.948
+    },
+    {
+     "text": "The closest checked home is three tenths of a mile away, about three minutes by car and seven by transit.",
+     "start": 189.398,
+     "end": 195.607
+    }
+   ]
+  },
+  {
+   "start": 196.507,
+   "end": 208.599,
+   "cues": [
+    {
+     "text": "The map works like a friend pointing at the right street while you talk.",
+     "start": 197.207,
+     "end": 200.873
+    },
+    {
+     "text": "When an answer names five homes, or you pick a neighbourhood like Reston, the map moves to show exactly those.",
+     "start": 201.323,
+     "end": 207.699
+    }
+   ]
+  },
+  {
+   "start": 208.599,
+   "end": 223.621,
+   "cues": [
+    {
+     "text": "For open questions, like how to qualify for a voucher, Clear House uses Gemma 4, Google's open model.",
+     "start": 209.299,
+     "end": 216.524
+    },
+    {
+     "text": "Specifically the twenty-six billion parameter version, and every answer says which model wrote it.",
+     "start": 216.974,
+     "end": 222.721
+    }
+   ]
+  },
+  {
+   "start": 223.621,
+   "end": 235.717,
+   "cues": [
+    {
+     "text": "The key idea is grounding: the AI may only answer from facts we hand it.",
+     "start": 224.321,
+     "end": 228.686
+    },
+    {
+     "text": "A script picks the dozen or so checked records that match your question, and Gemma writes from those alone.",
+     "start": 229.136,
+     "end": 234.817
+    }
+   ]
+  },
+  {
+   "start": 235.717,
+   "end": 248.802,
+   "cues": [
+    {
+     "text": "Your question goes in, and the matching records are ranked so the most useful ones come first.",
+     "start": 236.417,
+     "end": 241.899
+    },
+    {
+     "text": "Gemma's answer streams in word by word, and a script turns every named place into a linked card.",
+     "start": 242.349,
+     "end": 247.902
+    }
+   ]
+  },
+  {
+   "start": 248.802,
+   "end": 264.774,
+   "cues": [
+    {
+     "text": "On the hosted API, Gemma spent about seventy-two seconds reasoning before writing a single word.",
+     "start": 249.502,
+     "end": 255.38
+    },
+    {
+     "text": "That's far too long for someone looking for shelter tonight.",
+     "start": 255.83,
+     "end": 259.078
+    },
+    {
+     "text": "On our own GPU, the first words arrive in about three seconds.",
+     "start": 259.528,
+     "end": 263.874
+    }
+   ]
+  },
+  {
+   "start": 264.774,
+   "end": 285.367,
+   "cues": [
+    {
+     "text": "So we run the very same Gemma 4 model ourselves, on a Cloud Run service with an NVIDIA L4 GPU.",
+     "start": 265.474,
+     "end": 272.266
+    },
+    {
+     "text": "We switch off the long reasoning step, and the GPU sleeps when nobody is using it.",
+     "start": 272.716,
+     "end": 277.698
+    },
+    {
+     "text": "If it's asleep or busy, the site quietly falls back to the Gemini API, so the chat never breaks.",
+     "start": 278.148,
+     "end": 284.467
+    }
+   ]
+  },
+  {
+   "start": 285.367,
+   "end": 299.798,
+   "cues": [
+    {
+     "text": "Gemma writes the answers, Cloud Run hosts the site and the GPU, and Google Maps finds places and commute times.",
+     "start": 286.067,
+     "end": 293.501
+    },
+    {
+     "text": "Cloud Build packages every release, and Secret Manager keeps the keys out of the code.",
+     "start": 293.951,
+     "end": 298.898
+    }
+   ]
+  },
+  {
+   "start": 299.798,
+   "end": 313.267,
+   "cues": [
+    {
+     "text": "In an emergency, every page leads with nine one one and two one one, before any AI answer.",
+     "start": 300.498,
+     "end": 306.225
+    },
+    {
+     "text": "And Clear House never claims a bed is free; shelters always say call to confirm a bed tonight.",
+     "start": 306.675,
+     "end": 312.367
+    }
+   ]
+  },
+  {
+   "start": 313.267,
+   "end": 331.47,
+   "cues": [
+    {
+     "text": "There are no accounts, and Social Security and account numbers are removed before any text reaches the AI.",
+     "start": 313.967,
+     "end": 320.179
+    },
+    {
+     "text": "If you tap Near me, your location is rounded to about a hundred metres and never stored.",
+     "start": 320.629,
+     "end": 325.497
+    },
+    {
+     "text": "Domestic violence shelters never show an address, only the hotline to call.",
+     "start": 325.947,
+     "end": 330.57
+    }
+   ]
+  },
+  {
+   "start": 331.47,
+   "end": 344.822,
+   "cues": [
+    {
+     "text": "Many homes don't publish their rent, and a chatbot could easily invent one.",
+     "start": 332.17,
+     "end": 336.584
+    },
+    {
+     "text": "Instead, Clear House shows a clearly labeled estimate from similar checked homes nearby, and tells you to ask the provider.",
+     "start": 337.034,
+     "end": 343.922
+    }
+   ]
+  },
+  {
+   "start": 344.822,
+   "end": 358.008,
+   "cues": [
+    {
+     "text": "Last check: what happens if Gemma can't answer in time?",
+     "start": 345.522,
+     "end": 349.078
+    },
+    {
+     "text": "Think about it.",
+     "start": 349.528,
+     "end": 350.484
+    },
+    {
+     "text": "The chat still lists the checked resources that match, with phone numbers, so nobody is left with nothing.",
+     "start": 350.934,
+     "end": 357.108
+    }
+   ]
+  },
+  {
+   "start": 358.008,
+   "end": 374.109,
+   "cues": [
+    {
+     "text": "So: four hundred and nine checked resources, maps that think like you, and Gemma 4 answering in seconds on Google Cloud.",
+     "start": 358.708,
+     "end": 366.416
+    },
+    {
+     "text": "All of it grounded, private and honest about what it doesn't know.",
+     "start": 366.866,
+     "end": 370.433
+    },
+    {
+     "text": "A clearer path to a place to call home.",
+     "start": 370.883,
+     "end": 373.209
+    }
+   ]
+  }
+ ]
+}
