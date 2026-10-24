@@ -32,5 +32,17 @@ class EmergencyServiceTests(unittest.TestCase):
         self.assertEqual(len(rows), 1)
 
 
+    def test_blacksburg_tonight_lists_real_overnight_help_and_closed_shelters_last(self):
+        from advisor import options
+        shelters = options({"location": "Blacksburg", "tonight": True})["shelters"]
+        names = [r["name"] for r in shelters]
+        self.assertTrue(any("after-hours" in n for n in names))
+        self.assertEqual(shelters[-1].get("intake_status"), "closed")  # To Our House opens Nov 7
+        self.assertTrue(all(r.get("region") == "New River Valley" for r in shelters))
+        for r in shelters:  # confidential places never get an address to walk to
+            if r.get("confidential_location"):
+                self.assertFalse(r.get("public_intake_address"))
+
+
 if __name__ == "__main__":
     unittest.main()

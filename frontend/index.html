@@ -156,6 +156,20 @@
 
     /* Listings map in the hero. */
     .hero-map-wrap{min-width:0}
+    .tonight-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 4px}
+    .tonight-links span{flex-basis:100%;font-size:12px;font-weight:650;color:#6b4b12}
+    .tonight-links button{min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid #e3c98f;background:#fff8ea;font-size:13px;font-weight:650;color:#5a3f0c}
+    .tonight-links button:hover{background:#fdefd2}
+    /* Shelter cards: call first, how to get in, where to go. */
+    .opt-card.shelter{gap:6px}
+    .opt-card .opt-badge.confirm{background:#fbf1dc;color:#6b4b12}
+    .shelter-call{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:2px}
+    .shelter-call a{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border-radius:10px;background:#23408f;color:#fff;font-weight:700;text-decoration:none}
+    .shelter-call small{color:var(--muted);font-size:11.5px}
+    .opt-card details{font-size:12.5px;line-height:1.55}
+    .opt-card details summary{cursor:pointer;font-weight:650;min-height:32px;display:flex;align-items:center}
+    .opt-card details p{margin:4px 0}
+    .shelter-where{font-size:12.5px;color:var(--muted)}
     .map-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
     .map-tab{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:13px;font-weight:600;color:var(--ink);transition:background .15s,border-color .15s,color .15s}
     .map-tab:hover{border-color:#6f8fd6}
@@ -221,6 +235,7 @@
     .msg.bot{background:var(--sage);border-bottom-left-radius:4px}
     .msg.bot[data-state=loading]{color:var(--muted)}
     .msg.bot[data-state=error]{background:#fff3ef;color:#8c3e30}
+    .msg-engine{font-size:11.5px;color:var(--muted);margin:-4px 0 2px 4px}
     .msg.bot[data-state=notice]{background:#fbf1dc;color:#5a3f0c}
     .msg.bot[data-state=update]{background:transparent;border:1px dashed var(--line);color:var(--muted);font-size:13px}
     .msg.bot[data-state=loading]::before{content:'';display:inline-block;width:9px;height:9px;border:2px solid var(--line);border-top-color:#2f55b5;border-radius:50%;margin-right:8px;vertical-align:-1px;animation:spin .8s linear infinite}
@@ -380,10 +395,12 @@
     /* Background neighborhood, built from HTML and CSS: sun, clouds, hills, a back row of homes, two main
        houses with twinkling windows and chimney smoke, swaying trees and grass, and birds. Layers shift a
        little as you scroll (--sy, set by a small script) for depth. Sizes are in cqw so it scales like a picture. */
-    .scene{position:fixed;inset:auto 0 0 0;height:70vh;z-index:-1;pointer-events:none;overflow:hidden}
+    /* The box is the whole window so that, in short wide windows, the picture is only ever cropped at the top
+       of the screen, never in a straight line across the middle (which glass panels make look like a cut). */
+    .scene{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
     .sc-stage{position:absolute;left:50%;bottom:0;width:max(100%,126vh);aspect-ratio:470/260;transform:translateX(-50%);container-type:inline-size}
     .sc-stage>*{position:absolute;inset:0}
-    .sc-layer{transform:translateY(calc(var(--sy,0) * var(--depth) * -1cqw));will-change:transform}
+    .sc-layer{transform:translateY(calc(var(--sy,0) * var(--depth) * -1cqw))}
     .sc-fade{opacity:.6}
     .sc-stage i,.sc-stage b,.sc-stage span,.sc-stage div{position:absolute;display:block}
     .sc-town,.sc-grass{inset:0}
@@ -436,7 +453,7 @@
     @keyframes sc-sway{from{transform:rotate(-2.5deg)}to{transform:rotate(2.5deg)}}
     @keyframes sc-bush{from{transform:skewX(-4deg)}to{transform:skewX(4deg)}}
     @keyframes sc-blade{from{transform:rotate(calc(var(--r) - 12deg))}to{transform:rotate(calc(var(--r) + 12deg))}}
-    @keyframes sc-fly{from{transform:translateX(0)}to{transform:translateX(112cqw)}}
+    @keyframes sc-fly{0%{transform:translateX(0);opacity:0}8%{opacity:1}72%{opacity:1}88%{opacity:0}100%{transform:translateX(112cqw);opacity:0}}  /* fade in from the left, ease out before the right-hand panels */
     @keyframes sc-bob{from{transform:translateY(-.6cqw)}to{transform:translateY(.6cqw)}}
     @keyframes sc-flap{from{transform:rotate(-14deg)}to{transform:rotate(22deg)}}
     @keyframes sc-flap-r{from{transform:rotate(14deg)}to{transform:rotate(-22deg)}}
@@ -444,6 +461,8 @@
     body{-webkit-user-select:none;user-select:none}
     img,svg{-webkit-user-drag:none}
     :is(input,textarea,[contenteditable]){-webkit-user-select:text;user-select:text}
+    /* Except what people need to copy: chat answers, phone numbers and addresses. */
+    :is(.msg,.chat-card-address,.shelter-where,a[href^="tel:"],.housing-location,.opt-card .meta){-webkit-user-select:text;user-select:text}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -508,7 +527,7 @@
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What can we help you with?</h2><p>Start wherever you are. We’ll take it step by step.</p></div><div class="tools"><div class="tool-workspace">
     <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find housing help</strong><small>A place to start</small></span></button></div>
     <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Let’s find your next step.</h3><span class="step-label">HOUSING SUPPORT</span></div><p class="panel-description">Tell us what you need. We’ll look for support in our source-reviewed resource list.</p><form id="find-form" novalidate>
-      <div class="input-row"><div><label for="location">Where are you looking?</label><div class="input-wrapper"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg><input id="location" name="location" value="Northern Virginia" maxlength="100" autocomplete="address-level2" placeholder="City, town or county"></div></div><div><label for="budget">Monthly budget <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="budget" name="budget" type="number" min="0" max="100000" placeholder="Your maximum" inputmode="decimal"><span>/ month</span></div></div></div>
+      <div class="input-row"><div><label for="location">Where are you looking?</label><div class="input-wrapper"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg><input id="location" name="location" value="Northern Virginia" maxlength="100" autocomplete="off" list="location-places" placeholder="City, town, county or neighborhood"><label class="visually-hidden" for="location-pick">Pick an area</label><select id="location-pick" class="location-pick"><option value="">Pick an area</option><optgroup label="Regions"><option>Northern Virginia</option><option>Blacksburg</option></optgroup><optgroup label="Fairfax County"><option>Fairfax</option><option>Reston</option><option>Herndon</option><option>Chantilly</option><option>Centreville</option><option>Tysons</option><option>McLean</option><option>Vienna</option><option>Annandale</option><option>Springfield</option><option>Burke</option><option>Lorton</option></optgroup><optgroup label="Arlington County"><option>Ballston</option><option>Clarendon</option><option>Crystal City</option><option>Columbia Pike</option></optgroup><optgroup label="Alexandria"><option>Old Town Alexandria</option><option>Del Ray</option></optgroup><optgroup label="Cities"><option>Fairfax City</option><option>Falls Church</option><option>Manassas</option><option>Manassas Park</option></optgroup><optgroup label="Loudoun County"><option>Leesburg</option><option>Ashburn</option><option>Sterling</option><option>South Riding</option></optgroup><optgroup label="Prince William County"><option>Woodbridge</option><option>Dumfries</option><option>Gainesville</option></optgroup><optgroup label="Blacksburg area"><option>Virginia Tech</option><option>Christiansburg</option></optgroup></select><datalist id="location-places"><option value="Northern Virginia"></option><option value="Blacksburg"></option><option value="Fairfax County"></option><option value="Arlington County"></option><option value="Alexandria City"></option><option value="Loudoun County"></option><option value="Prince William County"></option><option value="Fairfax City"></option><option value="Falls Church City"></option><option value="Manassas City"></option><option value="Manassas Park City"></option><option value="Fairfax"></option><option value="Reston"></option><option value="Herndon"></option><option value="Chantilly"></option><option value="Centreville"></option><option value="Tysons"></option><option value="McLean"></option><option value="Vienna"></option><option value="Falls Church"></option><option value="Annandale"></option><option value="Springfield"></option><option value="Burke"></option><option value="Lorton"></option><option value="Ballston"></option><option value="Clarendon"></option><option value="Crystal City"></option><option value="Columbia Pike"></option><option value="Old Town Alexandria"></option><option value="Del Ray"></option><option value="Leesburg"></option><option value="Ashburn"></option><option value="Sterling"></option><option value="South Riding"></option><option value="Manassas"></option><option value="Woodbridge"></option><option value="Dumfries"></option><option value="Gainesville"></option><option value="Virginia Tech"></option><option value="Christiansburg"></option></datalist></div></div><div><label for="budget">Monthly budget <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="budget" name="budget" type="number" min="0" max="100000" placeholder="Your maximum" inputmode="decimal"><span>/ month</span></div></div></div>
       <label class="urgent-check"><input type="checkbox" id="tonight" name="tonight"> I need a safe place to stay tonight</label>
       <details class="more-options" id="more-options"><summary>More options <span>(optional)</span></summary><div class="more-options-body">
       <div class="input-row"><div><label for="income">Household income <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="income" name="income" type="number" min="0" max="10000000" placeholder="Before taxes" inputmode="decimal"><span>/ year</span></div></div><div><label for="household">People in your home <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="household" name="household" class="find-select"><option value="">Not sure</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6">6 or more</option></select></div></div>
@@ -532,12 +551,12 @@
     </div>
     <div class="find-results" id="find-results" role="region" aria-live="polite" aria-label="Your options" hidden></div>
     <div class="assistant" id="assistant">
-      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#home"/></svg></span><div><strong>Ask Gemma</strong><span>Answers stream in live, using only our checked resources.</span></div></div>
+      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#home"/></svg></span><div><strong>Ask Gemma 4</strong><span>Google’s Gemma 4 26B (gemma-4-26b-a4b-it). Answers stream in live, using only our checked resources.</span></div></div>
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
       <div class="assistant-chips" id="assistant-chips"><button type="button">How do I qualify for Section 8?</button><button type="button">Who helps with back rent in Alexandria?</button><button type="button">A room near Virginia Tech under $700</button><button type="button">Near my office at 1800 Tysons Blvd</button></div>
       <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" placeholder="Ask anything about housing, or “near my office at …”"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
     </div></section>
-  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>You don’t need all the answers.</h3><p>A few details are enough to begin.</p><ol class="steps"><li><span class="step-number">1</span><div><strong>Share what matters</strong><p>Your area, budget, and what you need.</p></div></li><li><span class="step-number">2</span><div><strong>Explore your options</strong><p>Get guidance in clear, everyday language.</p></div></li><li><span class="step-number">3</span><div><strong>Confirm the details</strong><p>Contact providers about eligibility and availability.</p></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a safe place tonight?</h3><p>For shelter and local support, call 211. If you’re in immediate danger, call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><small>Don’t wait for an AI response in an emergency.</small></section></aside></div></section>
+  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>You don’t need all the answers.</h3><p>A few details are enough to begin.</p><ol class="steps"><li><span class="step-number">1</span><div><strong>Share what matters</strong><p>Your area, budget, and what you need.</p></div></li><li><span class="step-number">2</span><div><strong>Explore your options</strong><p>Get guidance in clear, everyday language.</p></div></li><li><span class="step-number">3</span><div><strong>Confirm the details</strong><p>Contact providers about eligibility and availability.</p></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a safe place tonight?</h3><p>For shelter and local support, call 211. If you’re in immediate danger, call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Find somewhere to sleep tonight:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div><small>Don’t wait for an AI response in an emergency.</small></section></aside></div></section>
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
     <div class="section-heading"><div><h2 id="listings-title">Explore rentals & housing waitlists</h2><p>Compare income-restricted housing and regular rentals, each with published source evidence.</p></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
@@ -819,265 +838,7 @@
   }));
 </script>
 
-<script>
-  // One Google Maps loader for the listings map and the walking map (the browser key is restricted to our sites).
-  window.clearHouseLoadMaps = (() => { let ready = null; return () => ready || (ready = fetch('/api/maps-config').then(r => r.json()).then(cfg => new Promise((resolve, reject) => {
-    if (!cfg.browser_key) return reject(new Error('no key'));
-    window.__clearHouseMaps = () => resolve();
-    const sc = document.createElement('script');
-    sc.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(cfg.browser_key)}&libraries=geometry&loading=async&callback=__clearHouseMaps`;
-    sc.async = true; sc.onerror = () => reject(new Error('load failed')); document.head.append(sc);
-    setTimeout(() => reject(new Error('timeout')), 10000);
-  }))); })();
-  // Listings map: reviewed listings in blue, live web finds in orange, the chosen area outlined.
-  // Google Maps when the browser key works; Leaflet + OpenStreetMap as a fallback so the map never goes blank.
-  (() => {
-    const mapEl = document.getElementById('listing-map');
-    const statusEl = document.getElementById('map-status');
-    const webList = document.getElementById('web-results');
-    const setStatus = (text, state) => { statusEl.textContent = text; statusEl.dataset.state = state || ''; };
-    const el = (tag, text, attrs = {}) => { const n = document.createElement(tag); if (text != null) n.textContent = text; for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
-    const safeUrl = u => typeof u === 'string' && u.startsWith('https://') ? u : null;
-    const OUTLINE = { color: '#6f8fd6', weight: 1, fill: 0.03 }, HIGHLIGHT = { color: '#2f55b5', weight: 3, fill: 0.12 };
-    const HOUSE = 'M3 11 12 3l9 8v10h-6v-6H9v6H3z';
-    // What the map shows, kept apart from the map library so a fallback can redraw it.
-    const state = { boundaries: null, pins: [], webPins: [], selected: null, focused: null };
-    // Start on the busiest part of Northern Virginia (Arlington to Fairfax) at a zoom where pins don't overlap.
-    const START = { center: { lat: 38.86, lng: -77.19 }, zoom: 11 };
-    const REGIONS = { nova: [START.center, START.zoom], blacksburg: [{ lat: 37.2296, lng: -80.4139 }, 13] };
-    let view = null;
-
-    function googleView() {
-      const map = new google.maps.Map(mapEl, { center: { lat: 38.83, lng: -77.35 }, zoom: 9, mapTypeControl: false, fullscreenControl: false,
-        streetViewControl: true, clickableIcons: false, gestureHandling: 'cooperative' });
-      const info = new google.maps.InfoWindow(), areas = {}, web = [];
-      let all = null;
-      const style = f => { const s = f.getProperty('jurisdiction') === state.selected ? HIGHLIGHT : OUTLINE;
-        return { strokeColor: s.color, strokeWeight: s.weight, fillColor: s.color, fillOpacity: s.fill, clickable: false }; };
-      const pin = (p, list) => {
-        const m = new google.maps.Marker({ map, position: { lat: p.lat, lng: p.lon }, title: p.title,
-          icon: { path: HOUSE, scale: 1.1, fillColor: p.color, fillOpacity: 1, strokeColor: '#fff', strokeWeight: 1.6, anchor: new google.maps.Point(12, 21) } });
-        m.addListener('click', () => { info.setContent(p.popup); info.open({ map, anchor: m }); });
-        if (list) list.push(m);
-      };
-      return {
-        outlines(gj) {
-          all = new google.maps.LatLngBounds();
-          map.data.addGeoJson(gj).forEach(f => {
-            const b = new google.maps.LatLngBounds(); f.getGeometry().forEachLatLng(ll => { b.extend(ll); all.extend(ll); });
-            areas[f.getProperty('jurisdiction')] = b;
-          });
-          map.data.setStyle(style);
-          if (!state.focused) { map.setCenter(START.center); map.setZoom(START.zoom); }  // start close in, so pins don't pile up
-        },
-        pin: p => pin(p), webPin: p => pin(p, web),
-        clearWeb() { web.splice(0).forEach(m => m.setMap(null)); },
-        center(c, zoom) { map.setCenter(c); map.setZoom(zoom); },
-        me(lat, lon) {
-          if (this._me) this._me.setMap(null);
-          this._me = new google.maps.Marker({ map, position: { lat, lng: lon }, title: 'You are here', zIndex: 999,
-            icon: { path: google.maps.SymbolPath.CIRCLE, scale: 8, fillColor: '#e0a100', fillOpacity: 1, strokeColor: '#fff', strokeWeight: 3 } });
-        },
-        focus(points) {
-          if (points.length === 1) { map.setCenter({ lat: points[0][0], lng: points[0][1] }); map.setZoom(15); return; }
-          const b = new google.maps.LatLngBounds(); points.forEach(([lat, lon]) => b.extend({ lat, lng: lon }));
-          map.fitBounds(b, 40); google.maps.event.addListenerOnce(map, 'idle', () => { if (map.getZoom() > 15) map.setZoom(15); });
-        },
-        select(name) {
-          map.data.setStyle(style);
-          if (areas[name]) map.fitBounds(areas[name], 12);
-          else if (name === 'Blacksburg') { map.setCenter({ lat: 37.2296, lng: -80.4139 }); map.setZoom(13); }
-          else if (all) map.fitBounds(all, 10);
-        },
-      };
-    }
-
-    function leafletView() {
-      mapEl.replaceChildren();
-      const map = L.map(mapEl, { scrollWheelZoom: false, zoomControl: true }).setView([38.83, -77.35], 9);
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-      const areas = {}, web = L.layerGroup().addTo(map); let all = null;
-      const style = s => ({ color: s.color, weight: s.weight, fillOpacity: s.fill });
-      const icon = color => L.divIcon({ className: 'house-pin', iconSize: [24, 24], iconAnchor: [12, 22], popupAnchor: [0, -20],
-        html: `<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="${HOUSE}" fill="${color}" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/></svg>` });
-      const pin = (p, layer) => L.marker([p.lat, p.lon], { icon: icon(p.color), title: p.title, keyboard: true }).bindPopup(p.popup).addTo(layer);
-      return {
-        outlines(gj) {
-          const layer = L.geoJSON(gj, { style: style(OUTLINE), interactive: false }).addTo(map);
-          layer.eachLayer(l => { areas[l.feature.properties.jurisdiction] = l; });
-          all = layer.getBounds();
-          if (!state.focused) map.setView([START.center.lat, START.center.lng], START.zoom);
-        },
-        pin: p => pin(p, map), webPin: p => pin(p, web),
-        clearWeb() { web.clearLayers(); },
-        center(c, zoom) { map.setView([c.lat, c.lng], zoom); },
-        me(lat, lon) {
-          if (this._me) this._me.remove();
-          this._me = L.circleMarker([lat, lon], { radius: 8, color: '#fff', weight: 3, fillColor: '#e0a100', fillOpacity: 1 }).bindTooltip('You are here').addTo(map);
-        },
-        focus(points) {
-          if (points.length === 1) { map.setView(points[0], 15); return; }
-          map.fitBounds(points, { padding: [30, 30], maxZoom: 15 });
-        },
-        select(name) {
-          Object.values(areas).forEach(a => a.setStyle(style(OUTLINE)));
-          const a = areas[name];
-          if (a) { a.setStyle(style(HIGHLIGHT)); a.bringToFront(); map.fitBounds(a.getBounds(), { padding: [12, 12] }); }
-          else if (name === 'Blacksburg') map.setView([37.2296, -80.4139], 13);
-          else if (all) map.fitBounds(all, { padding: [10, 10] });
-        },
-      };
-    }
-
-    function draw(v) {
-      view = v;
-      if (state.boundaries) v.outlines(state.boundaries);
-      state.pins.forEach(v.pin); state.webPins.forEach(v.webPin);
-      if (state.me) v.me(...state.me);
-      if (state.focused) v.focus(state.focused); else if (state.region) v.center(...REGIONS[state.region]); else if (state.selected) v.select(state.selected);
-    }
-    function useLeaflet() { if (window.L && !(view && view.leaflet)) { draw(Object.assign(leafletView(), { leaflet: true })); } }
-    // A rejected key only shows up after the script loads; Google calls this global, so switch to Leaflet then.
-    window.gm_authFailure = useLeaflet;
-    window.clearHouseLoadMaps().then(() => draw(googleView())).catch(useLeaflet);
-
-    const addPin = p => { state.pins.push(p); view?.pin(p); };
-    const addWebPin = p => { state.webPins.push(p); view?.webPin(p); };
-    const clearWeb = () => { state.webPins = []; view?.clearWeb(); };
-
-    fetch('/api/boundaries').then(r => r.json()).then(gj => {
-      state.boundaries = gj; view?.outlines(gj);
-      if (document.getElementById('browse-location')?.value === 'Blacksburg') selectArea('Blacksburg');
-    }).catch(() => {});
-
-    function popup(lines, url, linkText) {
-      const box = el('div', null, { class: 'map-popup' });
-      lines.filter(Boolean).forEach((t, i) => box.append(el(i === 0 ? 'strong' : 'div', t)));
-      const link = safeUrl(url);
-      if (link) box.append(el('a', linkText, { href: link, target: '_blank', rel: 'noopener' }));
-      return box;
-    }
-    const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
-    fetch('/api/listings').then(r => r.json()).then(data => {
-      (data.listings || []).filter(l => typeof l.lat === 'number').forEach(l => addPin({ lat: l.lat, lon: l.lon, color: '#2f55b5', title: l.community || l.name,
-        popup: popup([l.community || l.name, l.floor_plan, typeof l.monthly_rent === 'number' ? ClearHouseRental.price(l) : null,
-                      STATUS[l.availability?.status], 'Reviewed by our team'], l.source_url, 'Provider page') }));
-    }).catch(() => {});
-
-    // Same place names the server understands; longest first so "manassas park" wins over "manassas".
-    const PLACES = [['blacksburg','Blacksburg'],['virginia tech','Blacksburg'],['manassas park','Manassas Park City'],['manassas','Manassas City'],['falls church','Falls Church City'],['fairfax city','Fairfax City'],['city of fairfax','Fairfax City'],['fairfax','Fairfax County'],['arlington','Arlington County'],['alexandria','Alexandria City'],['loudoun','Loudoun County'],['leesburg','Loudoun County'],['sterling','Loudoun County'],['ashburn','Loudoun County'],['prince william','Prince William County'],['woodbridge','Prince William County'],['dumfries','Prince William County']];
-    const areaFor = text => { const t = (text || '').toLowerCase(); return (PLACES.find(([w]) => t.includes(w)) || [])[1] || null; };
-    function selectArea(name) { state.selected = name || null; state.focused = null; state.region = null; view?.select(state.selected); markTab(name === 'Blacksburg' ? 'blacksburg' : name ? 'nova' : null); }
-    // Tabs above the map: jump between the two service regions, or find homes near where you are.
-    const tabs = [...document.querySelectorAll('.map-tab[data-region]')];
-    const whereBox = document.getElementById('location');
-    const fillWhere = text => { if (whereBox) whereBox.value = text; };  // no change event, so no web search is started
-    // Neighborhood centers (approximate) for the dropdown; the server reads the same names.
-    const HOODS = {
-      nova: [['Fairfax', 38.8462, -77.3064], ['Reston', 38.9586, -77.3570], ['Herndon', 38.9696, -77.3861], ['Chantilly', 38.8943, -77.4311],
-             ['Centreville', 38.8404, -77.4289], ['Tysons', 38.9187, -77.2311], ['McLean', 38.9339, -77.1773], ['Vienna', 38.9012, -77.2653],
-             ['Falls Church', 38.8823, -77.1711], ['Annandale', 38.8304, -77.1964], ['Springfield', 38.7893, -77.1872], ['Burke', 38.7934, -77.2717],
-             ['Arlington (Ballston)', 38.8821, -77.1112], ['Arlington (Crystal City)', 38.8576, -77.0514], ['Arlington (Columbia Pike)', 38.8625, -77.0906],
-             ['Alexandria (Old Town)', 38.8048, -77.0469], ['Alexandria (West End)', 38.8130, -77.1260], ['Leesburg', 39.1157, -77.5636], ['Ashburn', 39.0438, -77.4874],
-             ['Sterling', 39.0062, -77.4286], ['Manassas', 38.7509, -77.4753], ['Woodbridge', 38.6582, -77.2497], ['Dumfries', 38.5676, -77.3280], ['Gainesville', 38.7957, -77.6139]],
-      blacksburg: [['Virginia Tech campus', 37.2284, -80.4234], ['Downtown Blacksburg', 37.2296, -80.4139], ['North Main Street', 37.2480, -80.4180], ['Christiansburg', 37.1299, -80.4089]],
-    };
-    const hood = document.getElementById('map-hood');
-    function fillHoods(region) {
-      hood.replaceChildren(new Option(region === 'blacksburg' ? 'Area…' : 'Neighborhood…', ''));
-      HOODS[region].forEach(([name]) => hood.append(new Option(name, name)));
-    }
-    fillHoods('nova');
-    hood.addEventListener('change', () => {
-      const region = tabs.find(t => t.getAttribute('aria-pressed') === 'true')?.dataset.region || 'nova';
-      const pick = HOODS[region].find(([name]) => name === hood.value); if (!pick) return;
-      state.region = null; state.selected = null; state.focused = [[pick[1], pick[2]]];
-      view?.center({ lat: pick[1], lng: pick[2] }, 13);
-      const where = region === 'blacksburg' && !/christiansburg/i.test(pick[0]) ? `${pick[0]}, Blacksburg` : pick[0];
-      fillWhere(where); setStatus(`Showing ${pick[0]}.`);
-    });
-    // Which county or city a point falls in, from the same boundary outlines the map draws.
-    function areaAt(lat, lon) {
-      const inside = (ring) => { let hit = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) hit = !hit; } return hit; };
-      for (const f of state.boundaries?.features || []) {
-        const g = f.geometry; const polys = g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : [];
-        if (polys.some(p => inside(p[0]))) return f.properties.jurisdiction;
-      }
-      return Math.hypot(lat - 37.23, lon + 80.42) < 0.25 ? 'Blacksburg' : null;
-    }
-    const markTab = region => { if (region) tabs.forEach(t => t.setAttribute('aria-pressed', String(t.dataset.region === region))); };
-    tabs.forEach(t => t.addEventListener('click', () => {
-      state.region = t.dataset.region; state.focused = null; state.selected = null; markTab(state.region);
-      view?.center(...REGIONS[state.region]); fillHoods(state.region);
-      fillWhere(state.region === 'blacksburg' ? 'Blacksburg' : 'Northern Virginia');
-      setStatus(state.region === 'blacksburg' ? 'Showing Blacksburg and Virginia Tech.' : 'Showing Northern Virginia. Pick or type an area to zoom in.');
-    }));
-    const nearBtn = document.getElementById('near-me');
-    nearBtn?.addEventListener('click', () => {
-      if (!navigator.geolocation) { setStatus('Your browser can’t share your location. Type a place in the chat instead, like “near my office at …”.'); return; }
-      nearBtn.setAttribute('aria-busy', 'true'); setStatus('Finding your location…', 'loading');
-      navigator.geolocation.getCurrentPosition(pos => {
-        nearBtn.removeAttribute('aria-busy');
-        // Rounded to about 100 m before it leaves the browser; it isn't stored.
-        const lat = Math.round(pos.coords.latitude * 1000) / 1000, lon = Math.round(pos.coords.longitude * 1000) / 1000;
-        state.me = [lat, lon]; view?.me(lat, lon);
-        const here = areaAt(lat, lon);  // fill "Where are you looking?" with the county or city you're in
-        if (here) { fillWhere(here); markTab(here === 'Blacksburg' ? 'blacksburg' : 'nova'); fillHoods(here === 'Blacksburg' ? 'blacksburg' : 'nova'); }
-        state.focused = [[lat, lon]]; view?.center({ lat, lng: lon }, 13); setStatus('Showing homes near you.');
-        window.clearHouseAsk?.('Homes near my current location', { coords: { lat, lon } });
-      }, err => {
-        nearBtn.removeAttribute('aria-busy');
-        setStatus(err.code === 1 ? 'Location is off for this site. Allow it in your browser, or type a place in the chat.' : 'We couldn’t find your location. Try again, or type a place in the chat.');
-      }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
-    });
-    // Other parts of the page point the map at what they're showing: the places in Gemma's answer, or filter results.
-    window.clearHouseMapFocus = (rows, note) => {
-      const points = (rows || []).filter(r => typeof r.lat === 'number' && typeof r.lon === 'number').map(r => [r.lat, r.lon]).slice(0, 60);
-      if (!points.length) return;
-      state.focused = points; view?.focus(points);
-      if (note) setStatus(note);
-    };
-
-    let searchId = 0;
-    async function liveSearch(location) {
-      const id = ++searchId; clearWeb(); webList.hidden = true; webList.replaceChildren();
-      setStatus(`Gemma is searching the web for affordable listings in ${location}. This can take a minute…`, 'loading');
-      try {
-        const controller = new AbortController(); setTimeout(() => controller.abort(), 180000);
-        const res = await fetch('/api/live-search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ location }), signal: controller.signal });
-        const data = await res.json();
-        if (id !== searchId) return;
-        if (!res.ok || data.error) throw new Error(data.error || 'The web search did not work.');
-        const results = data.results || [];
-        if (!results.length) { setStatus(`No new web listings with a confirmed source in ${data.area}. The blue pins are our reviewed listings.`); return; }
-        setStatus(`Gemma found ${results.length} more on the web in ${data.area}. ${data.notice}`);
-        window.clearHouseAssistantNote?.(`Update: I found ${results.length} more listing${results.length === 1 ? '' : 's'} on the web in ${data.area}. They're the orange pins on the map, not checked by our team yet.`);
-        results.forEach(r => {
-          const lines = [r.name, r.address, r.rent_text, r.income_text, 'Found on the web, not checked by our team'];
-          if (typeof r.lat === 'number') addWebPin({ lat: r.lat, lon: r.lon, color: '#d9822b', title: r.name, popup: popup(lines, r.source_url, 'Source page') });
-          const li = el('li'); li.append(el('strong', r.name));
-          [r.address, r.rent_text, r.income_text].filter(Boolean).forEach(t => li.append(el('div', t)));
-          const link = safeUrl(r.source_url); if (link) li.append(el('a', 'Source page', { href: link, target: '_blank', rel: 'noopener' }));
-          webList.append(li);
-        });
-        webList.hidden = false;
-      } catch (err) {
-        if (id === searchId) setStatus(err.name === 'AbortError' ? 'The web search is taking too long. Our reviewed listings are still shown.' : (err.message || 'The web search did not work. Our reviewed listings are still shown.'));
-      }
-    }
-
-    // Follow the area people pick in "Browse" and the place they type in "Where are you looking?".
-    document.getElementById('browse-location')?.addEventListener('change', e => { selectArea(e.target.value); setStatus(e.target.value==='Blacksburg'?'Map centered on Blacksburg. Homes without confirmed coordinates remain in the list.':e.target.value ? `Showing ${e.target.value}.` : 'Pick or type an area to zoom in.'); });
-    const typed = document.getElementById('location');
-    typed?.addEventListener('change', () => {
-      const text = typed.value.trim(); const area = areaFor(text);
-      if (!text || /^northern virginia$/i.test(text)) { selectArea(null); setStatus('Pick or type an area to zoom in.'); return; }
-      if (!area) { setStatus('Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, or Woodbridge.'); return; }
-      selectArea(area); liveSearch(text);
-    });
-  })();
-</script>
+<script src="/listing-map.js"></script>
 
 <script>
   // Find form: instant options from the reviewed catalog, then an optional chat with the assistant.
@@ -1097,7 +858,57 @@
     // "I need a place tonight" example also ticks the tonight box.
     document.querySelectorAll('[data-example]').forEach(b => b.addEventListener('click', () => { document.getElementById('more-options').open = true; if (/tonight/i.test(b.textContent)) document.getElementById('tonight').checked = true; }));
 
+    // Links say where they go: a program page, an official county listing, or the provider's website.
+    function resourceLinks(r) {
+      if (Array.isArray(r.links) && r.links.length) return r.links.filter(l => safeUrl(l.url)).map(l => ({ url: l.url, label: l.label, note: l.note }));
+      const out = [], seen = new Set(), add = (url, label) => { if (safeUrl(url) && !seen.has(url)) { seen.add(url); out.push({ url, label }); } };
+      const sourceLabel = r.source_kind === 'official_directory' || /fairfaxcounty\.gov\/homeless\/emergency-shelters|directory|guide/i.test(r.source_url || '') ? 'Official county listing' : 'Program details';
+      add(r.source_url, sourceLabel); add(r.website, 'Provider website');
+      return out;
+    }
+    function shelterCard(r) {
+      const c = el('article', null, { class: 'opt-card shelter' });
+      // Never a promise of a bed: what the source supports, or "call to confirm".
+      const badge = r.intake_status === 'closed' ? (r.intake_status_note || 'Closed right now') : r.referral_required ? 'Referral or screening required' : 'Call to confirm a bed tonight';
+      c.append(el('span', badge, { class: 'opt-badge confirm' }));
+      c.append(el('strong', r.name));
+      const meta = [r.city || r.jurisdiction, r.distance_from_blacksburg].filter(Boolean).join(' · ');
+      if (meta) c.append(el('span', meta, { class: 'meta' }));
+      if (r.who_it_serves) c.append(el('span', r.who_it_serves.slice(0, 200), { class: 'meta' }));
+      if (r.phone) {
+        const call = el('div', null, { class: 'shelter-call' });
+        call.append(el('a', `Call ${r.phone}`, { href: tel(r.phone) }));
+        const role = { 'direct shelter line': 'Shelter’s own line', 'coordinated entry / referral line': 'Intake and referral line: they screen and refer you to a shelter' }[r.phone_role];
+        if (role) call.append(el('small', role));
+        c.append(call);
+      }
+      const steps = r.intake_steps || r.how_to_apply;
+      if (steps || r.intake_hours || r.after_hours || r.requirements) {
+        const d = el('details'); d.append(el('summary', 'How to get in'));
+        if (steps) d.append(el('p', steps));
+        if (r.intake_hours) d.append(el('p', 'Intake hours: ' + r.intake_hours));
+        if (r.requirements) d.append(el('p', 'Who it’s for: ' + r.requirements));
+        if (r.after_hours) d.append(el('p', 'If intake is closed or full: ' + r.after_hours));
+        c.append(d);
+      }
+      // Where to go: only a public intake entrance gets directions; offices and confidential sites don't.
+      const addr = r.public_intake_address || (r.address_kind === 'public intake entrance' ? r.address : null);
+      if (r.confidential_location) c.append(el('span', 'The location is kept private for safety. Call to arrange intake.', { class: 'shelter-where' }));
+      else if (addr) {
+        const where = el('span', 'Go to: ' + addr + ' ', { class: 'shelter-where' });
+        where.append(el('a', 'Get directions ↗', { href: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addr), target: '_blank', rel: 'noopener' }));
+        c.append(where);
+      } else if (r.address && r.address_kind === 'office, not a walk-in shelter') c.append(el('span', 'Office address (not a walk-in shelter): ' + r.address, { class: 'shelter-where' }));
+      if (r.transit) c.append(el('span', 'Getting there: ' + r.transit, { class: 'shelter-where' }));
+      const links = el('div', null, { class: 'opt-links' });
+      resourceLinks(r).forEach(l => { const a = el('a', l.label + ' ↗', { href: l.url, target: '_blank', rel: 'noopener' }); if (l.note) a.title = l.note; links.append(a); });
+      if (links.childNodes.length) c.append(links);
+      const notes = resourceLinks(r).filter(l => l.note).map(l => l.note);
+      if (notes.length) c.append(el('span', notes.join(' '), { class: 'shelter-where' }));
+      return c;
+    }
     function card(r, kind) {
+      if (kind === 'shelter') return shelterCard(r);
       const c = el('article', null, { class: 'opt-card' });
       if (kind === 'listing' && STATUS[r.availability_status]) c.append(el('span', STATUS[r.availability_status], { class: 'opt-badge' }));
       if (kind === 'program' && r.waitlist_status === 'closed') c.append(el('span', 'Waitlist closed', { class: 'opt-badge closed' }));
@@ -1110,8 +921,7 @@
       if (kind !== 'listing' && r.who_it_serves) c.append(el('span', r.who_it_serves.slice(0, 160), { class: 'meta' }));
       const links = el('div', null, { class: 'opt-links' });
       if (r.phone) links.append(el('a', r.phone, { href: tel(r.phone) }));
-      const site = safeUrl(r.website) || safeUrl(r.source_url);
-      if (site) links.append(el('a', 'Website', { href: site, target: '_blank', rel: 'noopener' }));
+      resourceLinks(r).slice(0, 2).forEach(l => links.append(el('a', l.label, { href: l.url, target: '_blank', rel: 'noopener' })));
       c.append(links);
       return c;
     }
@@ -1156,7 +966,7 @@
       const status = botSay('Reading your question…', 'loading');
       let note = 'Reading your question…';
       const timer = setInterval(() => { status.textContent = `${note} (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
-      let answer = '', bubble = null;
+      let answer = '', bubble = null, engine = '';
       const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); pinTurn(); };
       const finish = () => { clearInterval(timer); status.remove(); };
       try {
@@ -1172,7 +982,8 @@
           while ((cut = buffer.indexOf('\n\n')) >= 0) {
             const line = buffer.slice(0, cut).replace(/^data: /, ''); buffer = buffer.slice(cut + 2);
             let event; try { event = JSON.parse(line); } catch { continue; }
-            if (event.kind === 'status') { note = event.text; status.textContent = note; }
+            if (event.kind === 'engine') { engine = event.text; }
+            else if (event.kind === 'status') { note = event.text; status.textContent = note; }
             else if (event.kind === 'thinking') { note = `Gemma is thinking: ${event.text}`; status.textContent = note; }
             else if (event.kind === 'chunk') { if (!answer) finish(); answer += event.text; show(answer); }
             else if (event.kind === 'cards') { if (bubble && Array.isArray(event.text) && event.text.length) showCards(bubble, answer, event.text); }
@@ -1181,6 +992,7 @@
         }
         clearTimeout(stop); finish();
         if (!answer) throw new Error('No answer came back.');
+        if (engine) { const by = el('div', 'Answered by ' + engine, { class: 'msg-engine' }); (bubble.nextElementSibling?.classList.contains('chat-cards') ? bubble.nextElementSibling : bubble).after(by); pinTurn(); }
         history.push({ role: 'user', text: question }, { role: 'assistant', text: answer });
       } catch (err) {
         finish();
@@ -1309,6 +1121,19 @@
     const chips = document.getElementById('assistant-chips');
     chips.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { chips.hidden = true; ask(b.textContent); } });
     botSay("Hi, I'm Gemma, the Clear House assistant. Ask me about vouchers, rent help, shelters, or homes near a place, like your office or campus. I only use our checked resources.");
+
+    // "Pick an area" fills the box and moves the map there, the same as typing a place.
+    document.getElementById('location-pick').addEventListener('change', e => {
+      if (!e.target.value) return;
+      const box = document.getElementById('location'); box.value = e.target.value; e.target.value = '';
+      window.clearHouseMapGoTo?.(box.value);
+    });
+    document.querySelectorAll('[data-tonight]').forEach(b => b.addEventListener('click', () => {
+      document.getElementById('location').value = b.dataset.tonight;
+      document.getElementById('tonight').checked = true;
+      form.requestSubmit();
+      results.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    }));
 
     chatForm.addEventListener('submit', e => { e.preventDefault(); chips.hidden = true; const q = chatInput.value.trim(); if (!q) return; chatInput.value = ''; ask(q); });
     chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit(); } });
