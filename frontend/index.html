@@ -35,7 +35,9 @@
     .catalog-notice{padding:14px 17px;background:#edf1f5;border:1px solid var(--line);border-radius:8px;font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:20px}
     .browse-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;align-items:end}
     .browse-filters>div{min-width:0}
-    .browse-filters :is(input,select){width:100%;min-width:0;min-height:45px;border:1px solid #b8c2ce;border-radius:7px;background:#fff;color:var(--ink);padding:10px;font-size:12px}
+    .browse-filters :is(input,select){width:100%;min-width:0;min-height:48px;border:1px solid #b8c2ce;border-radius:7px;background:#fff;color:var(--ink);padding:11px 12px;font-size:14px}
+    /* Safari ignores height on native selects, so draw them ourselves with a chevron. */
+    :is(.browse-filters,#find-form) select:not(.location-pick){-webkit-appearance:none;appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23526079' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:12px 8px}
     .browse-hint{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.8}
     .browse-message{margin:20px 0 15px;font-size:13px;color:var(--muted)}
     .browse-message[data-state=error]{padding:17px;background:#fff3ef;color:#8c3e30;border:1px solid #eed1c9;border-radius:8px}
