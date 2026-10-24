@@ -334,6 +334,22 @@
       .housing-card.has-photo .photo-expand-mark{color:#e9eef8}
     }
     @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card.has-photo .card-glass{background:#fffffff0}}
+
+    /* Every card is liquid glass and cards in a row line up (same height, links at the bottom). */
+    .listings-grid{align-items:stretch}
+    .housing-card{height:100%}
+    .housing-card:not(.has-photo){background:linear-gradient(140deg,#ffffffb3 0%,#ffffff85 55%,#ffffffa6 100%);
+      backdrop-filter:blur(22px) saturate(1.8);-webkit-backdrop-filter:blur(22px) saturate(1.8);
+      border:1px solid #ffffffcc;border-radius:18px;box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff59,inset 0 0 22px #ffffff40,0 10px 30px #0b143321}
+    .housing-card:not(.has-photo)::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+      background:radial-gradient(120% 55% at 15% 0%,#ffffff99 0%,#ffffff00 45%)}
+    .housing-card.has-photo{border-radius:18px}
+    @media(prefers-color-scheme:dark){
+      .housing-card:not(.has-photo){background:linear-gradient(140deg,#1b2333b8 0%,#1b23338f 55%,#1b2333ad 100%);border-color:#ffffff2e;
+        box-shadow:inset 0 1px 0 #ffffff40,inset 0 -1px 0 #ffffff14,0 10px 30px #0008}
+      .housing-card:not(.has-photo)::after{background:radial-gradient(120% 55% at 15% 0%,#ffffff1a 0%,#ffffff00 45%)}
+    }
+    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card:not(.has-photo){background:#fffffff0}}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
