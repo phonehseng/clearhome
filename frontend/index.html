@@ -243,7 +243,12 @@
     @media(max-width:560px){.hero-map{height:240px}}
 
     /* Find form: optional details, instant options, then an optional assistant chat. */
-    .find-select{width:100%;min-height:45px;border:1px solid #d9e0d3;border-radius:7px;background:#fcfdf9;color:var(--ink);padding:10px 11px;font:inherit;font-size:13px}
+    .find-select{width:100%;min-height:45px;border:1px solid #7a8ba7;border-radius:7px;background:var(--white);color:var(--ink);padding:10px 11px;font:inherit;font-size:13px}
+    .find-select :is(option,optgroup){background:var(--white);color:var(--ink)}
+    @media(prefers-color-scheme:dark){
+      :root .find-select,:root .find-select :is(option,optgroup){background:var(--field);color:var(--ink)}
+      :root .find-select{border-color:var(--control-border)}
+    }
     .find-checks{border:0;padding:0;margin:0 0 19px;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
     .find-checks legend{font-size:12px;font-weight:600;margin-bottom:8px;padding:0}
     .find-checks label{display:flex;gap:9px;align-items:center;font-weight:400;font-size:13px;margin:0;cursor:pointer}
