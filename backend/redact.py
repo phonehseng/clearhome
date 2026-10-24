@@ -8,17 +8,17 @@ import sys
 # Digit patterns use (?<!\d) and (?!\d) instead of \b so they still match when OCR
 # glues words together, e.g. "accountnumber0012345678".
 
-# 123-45-6789 or 123 45 6789. Also catches ITINs (9xx-xx-xxxx), which are just as sensitive.
-SSN_RE = re.compile(r"(?<!\d)\d{3}([- ])\d{2}\1\d{4}(?!\d)")
-# Nine digits right after an SSN label, e.g. "SSN: 123456789".
+# 123-45-6789, 123 45 6789, 123.45.6789 or "123 - 45 - 6789". Also catches ITINs (9xx-xx-xxxx), which are just as sensitive.
+SSN_RE = re.compile(r"(?<!\d)\d{3}(\s*[-.]\s*|\s)\d{2}\1\d{4}(?!\d)")
+# Nine digits after an SSN label, e.g. "SSN: 123456789" or "my ssn is 123456789".
 SSN_LABELED_RE = re.compile(
-    r"(?i)(ssn|ss#|social security(?: number| no\.?| #)?)(\s*[:#]?\s*)(\d{9})(?!\d)"
+    r"(?i)(ssn|ss#|social security(?: number| no\.?| #)?)(\s*(?:[:#]|is|=)?\s*)(\d{9})(?!\d)"
 )
 # 13 to 19 digits, optionally grouped by spaces or dashes; only redacted if it passes the Luhn check.
 CARD_RE = re.compile(r"(?<!\d)\d(?:[ -]?\d){12,18}(?!\d)")
 # 4 to 17 digits (possibly masked with X or *) after an account or routing label.
 ACCOUNT_LABELED_RE = re.compile(
-    r"(?i)(account|acct|routing|aba|iban|member)(\s*(?:number|no\.?|#)?\s*[:#]?\s*)([\dX*](?:[ -]?[\dX*]){3,16})(?![\dX*])"
+    r"(?i)(account|acct|routing|aba|iban|member)(\s*(?:number|no\.?|#)?\s*(?:[:#]|is|=)?\s*)([\dX*](?:[ -]?[\dX*]){3,16})(?![\dX*])"
 )
 # Any unlabeled run of 12 to 17 digits looks like a bank account number.
 LONG_NUMBER_RE = re.compile(r"(?<!\d)\d{12,17}(?!\d)")

@@ -105,13 +105,6 @@ class BlacksburgApiTests(unittest.TestCase):
         with self.client.get('/rental-labels.js') as response:
             self.assertEqual(response.status_code, 200)
 
-    def test_lease_guide_preserves_per_person_price_dates_and_responsibility(self):
-        row = next(r for r in load_catalog() if r.get('rent_basis') == 'per_person_installment')
-        with patch('lease_journey.retrieve_public_document') as retrieve:
-            data = self.client.get('/api/listings/' + row['id'] + '/lease').get_json()
-        retrieve.assert_not_called()
-        for key in ['rental_space', 'price_unit', 'lease_type', 'lease_start', 'lease_end', 'rent_basis', 'lease_responsibility']:
-            self.assertEqual(data['listing'][key], row[key])
 
 
 if __name__ == '__main__':

@@ -3,19 +3,17 @@
 Run:  python backend/app.py      then open http://localhost:8000 (about page) or /app (tools)
 Set INCLUDE_UNVERIFIED=1 to also use placeholder entries while testing.
 """
+import json
 import os
 import math
 
-from flask import Flask, jsonify, request, send_from_directory, send_file
+from flask import Flask, Response, jsonify, request, send_from_directory, send_file, stream_with_context
 
-from advisor import AREAS, ask, options, programs, quick_nearby, warm_examples
+from advisor import AREAS, ask, options, programs, quick_nearby, stream_ask, warm_examples
 from live_search import search as live_search
 import nearby
 import walkable
-from extract_text import extract_text
-from lease_checker import answer_lease_question, explain_lease
-from lease_journey import journey_context
-from matcher import find_help
+from matcher import gemma_unavailable, find_help
 from catalog import filter_catalog, group_listings, load_catalog, STATUSES
 from listing_photos import cached_photo, photo_mimetype, PhotoUnavailable
 from redact import redact
@@ -26,7 +24,7 @@ FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
 # Cloud Run's disk resets on every restart, so the hosted copy never writes data files.
 READ_ONLY = os.environ.get("CLEARHOUSE_READ_ONLY") == "1"
 app = Flask(__name__, static_folder=None)
-app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB uploads
+app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024  # requests are small JSON; no uploads
 
 
 @app.get("/favicon.svg")
@@ -51,38 +49,6 @@ def index():
 @app.get('/rental-labels.js')
 def rental_labels():
     return send_from_directory(FRONTEND, 'rental-labels.js')
-
-
-@app.get('/lease')
-def lease_guide():
-    return send_from_directory(FRONTEND, 'lease.html')
-
-
-@app.get('/api/listings/<resource_id>/lease')
-def listing_lease(resource_id):
-    context = journey_context(resource_id)
-    if context is None:
-        return jsonify(error='This housing listing could not be found. Choose a listing from the catalog.'), 404
-    response = jsonify(context)
-    response.headers['Cache-Control'] = 'no-store'
-    return response
-
-
-@app.get('/api/listings/<resource_id>/lease/document')
-def listing_public_lease(resource_id):
-    context = journey_context(resource_id, check_provider=True)
-    if context is None:
-        return jsonify(error='This housing listing could not be found.'), 404
-    response = jsonify(context['provider_document'])
-    response.headers['Cache-Control'] = 'no-store'
-    return response
-
-
-@app.after_request
-def private_document_responses(response):
-    if request.path.startswith('/api/lease') or request.path in {'/api/extract'}:
-        response.headers['Cache-Control'] = 'no-store'
-    return response
 
 
 @app.get("/media/listings/<resource_id>")
@@ -167,19 +133,38 @@ def places():
     return jsonify(places=AREAS)
 
 
+def _body():
+    """The JSON request body as a dict; anything else (a list, a number, bad JSON) counts as empty."""
+    body = request.get_json(silent=True)
+    return body if isinstance(body, dict) else {}
+
+
+def _text(body, key, limit=None):
+    value = body.get(key)
+    return value.strip()[:limit] if isinstance(value, str) else ""
+
+
+def _gemma_error(error, fallback="Something went wrong. Please try again, or call 211 for help."):
+    reason = gemma_unavailable(error)
+    return jsonify(error=f"{reason}. Please try again in a few minutes, or call 211 for help." if reason else fallback), (503 if reason else 500)
+
+
 @app.post("/api/options")
 def find_options():
     """Instant matches for the find form (no AI): listings, programs, and shelters when it's urgent."""
-    body = request.get_json(silent=True) or {}
+    body = _body()
     def number(key, kind=float, low=0, high=10_000_000):
+        raw = body.get(key)
+        if isinstance(raw, bool):  # true/false aren't numbers here
+            return None
         try:
-            value = kind(body.get(key))
-            return value if low <= value <= high else None
-        except (TypeError, ValueError):
+            value = kind(raw)
+            return value if math.isfinite(value) and low <= value <= high else None
+        except (TypeError, ValueError, OverflowError):
             return None
     profile = {"location": str(body.get("location") or "")[:100], "budget": number("budget"), "bedrooms": number("bedrooms", int, 0, 6),
                "accessible": body.get("accessible") is True, "senior": body.get("senior") is True, "tonight": body.get("tonight") is True,
-               "voucher": body.get("voucher") is True, "income": number("income"), "household": number("household", int, 1, 12),
+               "voucher": body.get("voucher") is True, "income": number("income"), "household": number("household", int, 1, 20),
                "situation": redact(str(body.get("situation") or "")[:1700])[0]}
     if body.get('rental_space') in {'room', 'entire_home'}:
         profile['rental_space'] = body['rental_space']
@@ -196,7 +181,7 @@ def maps_config():
 @app.post("/api/housing/search")
 def housing_walk_search():
     """Reviewed affordable homes near a supermarket, pharmacy or transit stop, with real walking times."""
-    body = request.get_json(silent=True) or {}
+    body = _body()
     prompt = redact(str(body.get("prompt") or "")[:500])[0]
     raw = body.get("filters") if isinstance(body.get("filters"), dict) else {}
     overrides = {}
@@ -225,7 +210,7 @@ def housing_walk_search():
 @app.post("/api/housing/route")
 def housing_walk_route():
     """Walking route line from a reviewed home to a place an earlier search returned."""
-    body = request.get_json(silent=True) or {}
+    body = _body()
     home = next((r for r in load_catalog() if r.get("id") == body.get("housing_id")), None)
     if not home or home.get("lat") is None or not isinstance(body.get("place_id"), str):
         return jsonify(error="Route unavailable."), 404
@@ -258,7 +243,7 @@ def boundaries():
 @app.post("/api/live-search")
 def web_search():
     """Gemma searches the web for affordable listings in a typed location. Results are labeled unreviewed."""
-    location = str((request.get_json(silent=True) or {}).get("location", "")).strip()[:100]
+    location = str((_body()).get("location", "")).strip()[:100]
     if len(location) < 3:
         return jsonify(error="Type Blacksburg or a Northern Virginia city or county."), 400
     location, _ = redact(location)
@@ -275,48 +260,73 @@ def list_programs():
     return jsonify(programs=programs())
 
 
-@app.post("/api/ask")
-def ask_advisor():
-    body = request.get_json(silent=True) or {}
-    question = str(body.get("question", "")).strip()
+def _chat_request():
+    """Shared checks for both chat routes: (question, history, instant answer or None), or an error response."""
+    body = _body()
+    question = _text(body, "question")
     if not question:
-        return jsonify(error="Please type a question."), 400
+        return None, None, (jsonify(error="Please type a question."), 400)
     if len(question) > 1500:
-        return jsonify(error="Please keep your question under 1,500 characters."), 400
+        return None, None, (jsonify(error="Please keep your question under 1,500 characters."), 400)
     question, _ = redact(question)
     history = []
-    for turn in (body.get("history") or [])[-4:]:
+    for turn in (body.get("history") if isinstance(body.get("history"), list) else [])[-4:]:
         if isinstance(turn, dict) and turn.get("role") in ("user", "assistant") and isinstance(turn.get("text"), str):
             history.append({"role": turn["role"], "text": redact(turn["text"][:2000])[0]})
     # Choices from the find form, so the assistant can tailor its answer (no names or IDs are collected).
     profile = body.get("profile") if isinstance(body.get("profile"), dict) else {}
     about = []
-    if profile.get("location"): about.append(f"looking in {str(profile['location'])[:100]}")
+    real = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)  # true/false and Infinity aren't numbers here
+    if isinstance(profile.get("location"), str) and profile["location"].strip(): about.append(f"looking in {redact(profile['location'][:100])[0]}")
     for key, label in (("budget", "monthly budget ${:,.0f}"), ("income", "household income ${:,.0f} a year")):
-        if isinstance(profile.get(key), (int, float)) and profile[key] > 0: about.append(label.format(profile[key]))
-    if isinstance(profile.get("household"), int): about.append(f"{profile['household']} people in the home")
-    if isinstance(profile.get("bedrooms"), int): about.append("studio" if profile["bedrooms"] == 0 else f"{profile['bedrooms']} bedrooms")
+        if real(profile.get(key)) and 0 < profile[key] < 10_000_000: about.append(label.format(profile[key]))
+    if real(profile.get("household")) and 1 <= profile["household"] <= 20: about.append(f"{int(profile['household'])} people in the home")
+    if real(profile.get("bedrooms")) and 0 <= profile["bedrooms"] <= 6 and float(profile["bedrooms"]).is_integer(): profile["bedrooms"] = int(profile["bedrooms"]); about.append("studio" if profile["bedrooms"] == 0 else f"{profile['bedrooms']} bedrooms")
     if profile.get("timing") in ("now", "soon", "planning"): about.append({"now": "needs to move as soon as possible", "soon": "moving in the next 3 months", "planning": "planning ahead"}[profile["timing"]])
     for key, label in (("tonight", "needs a safe place tonight"), ("accessible", "needs an accessible home"), ("senior", "someone is 62 or older"), ("voucher", "already has a housing voucher")):
         if profile.get(key) is True: about.append(label)
     # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
-    near = nearby.answer(question, profile)
-    if near:
-        return jsonify(answer=near)
+    # Both shortcuts read the person's own words, not the profile note added below.
+    instant = nearby.answer(question, profile) or quick_nearby(question, profile)  # "near George Mason" etc.: catalog, no AI
     if about:
         question = f"{question}\n\n(About me: {'; '.join(about)}.)"
-    quick = quick_nearby(question, profile)  # "near George Mason" etc.: answered from the catalog, no AI
-    if quick:
-        return jsonify(answer=quick)
+    return question, history, instant
+
+
+@app.post("/api/ask")
+def ask_advisor():
+    question, history, instant = _chat_request()
+    if question is None:
+        return instant
+    if instant:
+        return jsonify(answer=instant)
     try:
         return jsonify(answer=ask(question, history))
-    except Exception:
-        return jsonify(error="Something went wrong. Please try again, or call 211 for help."), 500
+    except Exception as error:
+        return _gemma_error(error)
+
+
+@app.post("/api/ask/stream")
+def ask_advisor_stream():
+    """The chat with live updates (server-sent events): what was found, then Gemma's answer as it's written."""
+    question, history, instant = _chat_request()
+    if question is None:
+        return instant
+
+    def events():
+        updates = [("answer", instant)] if instant else stream_ask(question, history)
+        try:
+            for kind, text in updates:
+                yield f"data: {json.dumps({'kind': kind, 'text': text})}\n\n"
+        except Exception:
+            yield f"data: {json.dumps({'kind': 'fallback', 'text': 'Something went wrong. Please try again, or call 211 for help.'})}\n\n"
+    return Response(stream_with_context(events()), mimetype="text/event-stream",
+                    headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
 @app.post("/api/match")
 def match():
-    message = (request.get_json(silent=True) or {}).get("message", "").strip()
+    message = _text(_body(), "message")
     if not message:
         return jsonify(error="Please describe your situation."), 400
     if len(message) > 2000:
@@ -330,65 +340,6 @@ def match():
     except Exception:
         return jsonify(error="Something went wrong. Please try again, or call 211 for help."), 500
     return jsonify(filters=filters, answer=answer)
-
-
-def _text_endpoint(fn):
-    text = (request.get_json(silent=True) or {}).get("text", "").strip()
-    if not text:
-        return jsonify(error="Please paste some text first."), 400
-    if len(text) > 15000:
-        return jsonify(error="That's too long. Please paste up to about 15,000 characters."), 400
-    text, _ = redact(text)  # never send SSNs or account numbers to the model
-    try:
-        return jsonify(answer=fn(text))
-    except Exception:
-        return jsonify(error="Something went wrong. Please try again."), 500
-
-
-@app.post("/api/extract")
-def extract():
-    """Read an uploaded document and return its text with SSNs and account numbers removed."""
-    upload = request.files.get("file")
-    if not upload or not upload.filename:
-        return jsonify(error="Please choose a file."), 400
-    try:
-        text, used_ocr = extract_text(upload.filename, upload.read())
-    except ValueError as e:
-        return jsonify(error=str(e)), 400
-    except Exception:
-        return jsonify(error="We couldn't read that file. Try a different copy, or paste the text."), 400
-    if not text:
-        return jsonify(error="No text found. Try a clearer photo, or paste the text instead."), 400
-    text, counts = redact(text, ocr=used_ocr)
-    return jsonify(text=text, redactions=counts, ocr=used_ocr)
-
-
-@app.errorhandler(413)
-def too_large(_):
-    return jsonify(error="That file is too big. Please upload one under 10 MB."), 413
-
-
-@app.post("/api/lease")
-def lease():
-    return _text_endpoint(explain_lease)
-
-
-@app.post('/api/lease/question')
-def lease_question():
-    body = request.get_json(silent=True)
-    if not isinstance(body, dict):
-        return jsonify(error='Please include the lease section and a question.'), 400
-    text, question = body.get('text'), body.get('question')
-    if not isinstance(text, str) or not text.strip() or len(text) > 15000:
-        return jsonify(error='Include a lease section of up to 15,000 characters.'), 400
-    if not isinstance(question, str) or not question.strip() or len(question) > 1500:
-        return jsonify(error='Ask a question of up to 1,500 characters.'), 400
-    try:
-        response = jsonify(answer=answer_lease_question(redact(text)[0], redact(question)[0]))
-        response.headers['Cache-Control'] = 'no-store'
-        return response
-    except Exception:
-        return jsonify(error='We couldn’t answer that question. Try again or ask a tenant advocate.'), 500
 
 
 # Under gunicorn (the hosted server) this module is imported once per worker, so warm up here.

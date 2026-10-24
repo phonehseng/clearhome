@@ -12838,9 +12838,9 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "lat": 38.183882,
-    "lon": -77.270138,
-    "geocode_source": "US Census Geocoder",
+    "lat": 39.023812,
+    "lon": -77.398719,
+    "geocode_source": "Google Places (corrected 2026-10-24; Census matched a different Sterling)",
     "photo": {
       "url": "https://capi.myleasestar.com/v2/dimg/158129585/1920x1080/158129585.jpg",
       "source_url": "https://www.loudounviewsenior.com/",

@@ -38,7 +38,7 @@ def _get_client():
     if _client is None:
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key or api_key.startswith("AIza...") or api_key == "your-key-here":
-            raise SystemExit("Set GEMINI_API_KEY in the .env file at the project root.")
+            raise RuntimeError("GEMINI_API_KEY is not set: add it to the .env file at the project root.")
         # Hard 75-second limit per call and no hidden library retries (ask_gemma retries itself), so a
         # rate-limited request fails fast instead of making the page wait for minutes.
         from google.genai import types
@@ -56,6 +56,28 @@ def ask_gemma(prompt, attempts=2):
             if attempt == attempts - 1 or "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
                 raise
             time.sleep(2)
+
+
+def stream_gemma(prompt):
+    """Yield Gemma's answer text as it's written (thinking is skipped), so the chat can show it word by word."""
+    for chunk in _get_client().models.generate_content_stream(model=MODEL, contents=prompt):
+        for part in (chunk.candidates[0].content.parts or []) if chunk.candidates and chunk.candidates[0].content else []:
+            if part.text and not getattr(part, "thought", False):
+                yield part.text
+
+
+def gemma_unavailable(error):
+    """A short, plain reason when Gemma can't answer at all (billing, quota, key), or None for other errors."""
+    text = str(error)
+    if "402" in text or "prepayment" in text.lower() or "billing" in text.lower():
+        return "The AI service's billing needs attention"
+    if "429" in text or "RESOURCE_EXHAUSTED" in text:
+        return "The AI service is at its limit for the moment"
+    if "API key" in text or "GEMINI_API_KEY" in text or "PERMISSION_DENIED" in text or "403" in text:
+        return "The AI service isn't set up right now"
+    if "timed out" in text.lower() or "deadline" in text.lower() or "timeout" in text.lower():
+        return "The AI service took too long"
+    return None
 
 
 def load_resources(include_unverified=False):
