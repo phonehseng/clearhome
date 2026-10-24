@@ -850,7 +850,8 @@
       const response = await fetch('/api/listings?' + params.toString(), {signal:controller.signal}); const data = await response.json();
       if (!response.ok || !Array.isArray(data.listings)) throw new Error(data.error || 'We couldn’t load housing opportunities.');
       if (browseRequest !== controller) return;
-      housingRows=data.listings; visibleHousingCount=6; renderHousing();
+      // Floor plans arrive holding only what differs from their community card.
+      housingRows=data.listings.map(row => row.floor_plans ? {...row, floor_plans: row.floor_plans.map(plan => ({...row, ...plan, floor_plans: undefined}))} : row); visibleHousingCount=6; renderHousing();
       // After someone changes the filters, the map follows the homes that match.
       if (filtersChanged) window.clearHouseMapFocus?.(housingRows, `Map shows the ${housingRows.length} matching communit${housingRows.length === 1 ? 'y' : 'ies'}.`);
     } catch(error) {

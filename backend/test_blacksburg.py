@@ -9,6 +9,11 @@ from advisor import area_for, options, _pick, program_need
 from prompt_tools import keyword_filters
 
 
+def plans(card):
+    """A grouped card's floor plans as the pages see them: each plan lists only what differs from its card."""
+    return [{**card, **plan} for plan in card['floor_plans']]
+
+
 class BlacksburgTests(unittest.TestCase):
     def setUp(self):
         self.rows = load_catalog()
@@ -99,7 +104,7 @@ class BlacksburgApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         cards = response.get_json()['listings']
         self.assertGreater(len(cards), 3)
-        self.assertTrue(all(p['rental_space'] == 'room' and p['monthly_rent'] <= 1000 for c in cards for p in c['floor_plans']))
+        self.assertTrue(all(p['rental_space'] == 'room' and p['monthly_rent'] <= 1000 for c in cards for p in plans(c)))
         for query in ['age_group=bogus', 'rental_space=bogus']:
             self.assertEqual(self.client.get('/api/listings?' + query).status_code, 400)
         with self.client.get('/rental-labels.js') as response:
