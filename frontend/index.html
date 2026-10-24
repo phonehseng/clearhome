@@ -285,16 +285,17 @@
       const availability = row.availability || {};
       const card = housingElement('article','housing-card');
       const photo = row.photo;
+      const photoUrl = '/media/listings/' + encodeURIComponent(row.id);
       const safePhoto = photo && sourceLink(photo.url, 'Photo') && sourceLink(photo.source_url, 'Photo source');
       if (safePhoto) {
         const button = housingElement('button','property-photo'); button.type='button'; button.setAttribute('aria-label',`Enlarge photo of ${row.community || row.name}`); button.setAttribute('aria-haspopup','dialog');
-        const image=document.createElement('img'); image.src=photo.url;image.alt=photo.alt || `Community photo of ${row.community}`;image.loading='lazy';image.referrerPolicy='no-referrer';
+        const image=document.createElement('img'); image.src=photoUrl;image.alt=photo.alt || `Community photo of ${row.community}`;image.loading='lazy';image.referrerPolicy='no-referrer';
         button.append(image,housingElement('span','photo-expand-mark','⤢'));
         const preview=housingElement('span','photo-hover');preview.setAttribute('aria-hidden','true');const large=image.cloneNode();large.alt='';large.loading='lazy';preview.append(large,housingElement('small','',photo.caption || 'Community photo; actual unit may differ.'));button.append(preview);
-        image.addEventListener('error',()=>{button.replaceWith(housingElement('span','photo-unavailable','Photo unavailable'));});
+        image.addEventListener('error',()=>{const fallback=housingElement('span','photo-unavailable','Photo unavailable');const source=sourceLink(photo.source_url,'See provider photos ↗');if(source)fallback.append(document.createElement('br'),source);button.replaceWith(fallback);});
         button.addEventListener('click',()=>{
           document.getElementById('property-photo-title').textContent=row.community || row.name;
-          const large=document.getElementById('property-photo-large');large.src=photo.url;large.alt=photo.alt || row.community;large.referrerPolicy='no-referrer';
+          const large=document.getElementById('property-photo-large');large.src=photoUrl;large.alt=photo.alt || row.community;large.referrerPolicy='no-referrer';
           document.getElementById('property-photo-caption').textContent=photo.caption || 'Community photo; actual unit may differ.';
           const source=document.getElementById('property-photo-source');source.replaceChildren();const link=sourceLink(photo.source_url,'Photo from the provider’s listing ↗');if(link)source.append(link);
           photoDialog.showModal();document.body.style.overflow='hidden';

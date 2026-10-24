@@ -79,3 +79,13 @@ Keep the team's Northern Virginia scope when adding support resources: start wit
 ## Listing photos
 
 Optional `photo` metadata contains an HTTPS image `url`, the supporting `source_url`, descriptive `alt`, `credit`, `reviewed_on`, and a caption explaining that community/model photos may differ from the offered unit. Photos are hosted by providers or their listing platform; they are not proof of vacancy or condition. The UI shows a labeled fallback if a photo is missing or fails to load. Photo research never resets the listing's availability review date.
+
+The app now serves photos at `/media/listings/<id>`. It downloads only the record's real provider image (from approved source hosts), validates the image, and caches the original bytes in ignored `.cache/listing-photos/`. It never generates replacement photography. Failed downloads show a source link instead. Thumbnail, hover, and enlarged views reuse the same cached image. Internet access is needed once per unique photo; subsequent requests use disk.
+
+To prefetch photos on a machine with provider-host access:
+
+```sh
+python backend/listing_photos.py
+```
+
+A source review date is not a guarantee of future CDN access. This cloud workspace denies the photo hosts; run the importer locally or allow those hosts using the environment network settings. No source images were successfully downloaded in that restricted workspace.

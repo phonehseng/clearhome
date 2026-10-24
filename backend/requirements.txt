@@ -6,3 +6,5 @@ python-docx
 rapidocr_onnxruntime
 Pillow
 numpy
+
+requests

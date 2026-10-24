@@ -6,12 +6,13 @@ Set INCLUDE_UNVERIFIED=1 to also use placeholder entries while testing.
 import os
 import math
 
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, send_file
 
 from extract_text import extract_text
 from lease_checker import check_listing, explain_lease
 from matcher import find_help
 from catalog import filter_catalog, load_catalog, STATUSES
+from listing_photos import cached_photo, photo_mimetype, PhotoUnavailable
 from redact import redact
 
 FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
@@ -27,6 +28,24 @@ def about():
 @app.get("/app")
 def index():
     return send_from_directory(FRONTEND, "index.html")
+
+
+@app.get("/media/listings/<resource_id>")
+def listing_photo(resource_id):
+    # IDs resolve to trusted catalog metadata; arbitrary URLs are never accepted.
+    row = next((row for row in load_catalog() if row.get('id') == resource_id), None)
+    if not row or not row.get('photo'):
+        return jsonify(error="No provider photo is available for this listing."), 404
+    try:
+        path = cached_photo(row['photo'])
+        response = send_file(path, mimetype=photo_mimetype(path), max_age=86400, conditional=True)
+        response.headers['X-Content-Type-Options'] = 'nosniff'
+        return response
+    except (PhotoUnavailable, OSError):
+        response = jsonify(error="Provider photo unavailable. Use the listing's photo-source link.")
+        response.status_code = 503
+        response.headers['Cache-Control'] = 'no-store'
+        return response
 
 
 @app.get("/api/listings")
