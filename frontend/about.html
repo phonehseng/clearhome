@@ -188,7 +188,43 @@
     .google-grid .card p{font-size:14px;line-height:1.6}
     .google-grid code{font-size:12.5px;background:#e7edf8;padding:1px 6px;border-radius:6px;color:#23408f}
     .g-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#e7edf8;color:#2f55b5}
+
+    .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    /* Listings map (shared with the tools page via /listing-map.js) */
+    .hero-map-wrap{min-width:0}
+    .map-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+    .map-tab{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:13px;font-weight:600;color:var(--ink);transition:background .15s,border-color .15s,color .15s}
+    .map-tab:hover{border-color:#6f8fd6}
+    .map-tab[aria-pressed=true]{background:#23408f;border-color:#23408f;color:#fff}
+    .map-tab.near-me{margin-left:auto}
+    .map-hood{min-height:38px;padding:7px 30px 7px 12px;border-radius:999px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);font:inherit;font-size:13px;font-weight:600;color:var(--ink);max-width:180px}
+    .map-hood:focus-visible{outline:3px solid #e0a100;outline-offset:2px}
+    .map-tab.near-me[aria-busy=true]{opacity:.7;cursor:wait}
+    .hero-map{height:300px;border-radius:18px;border:1px solid var(--line);overflow:hidden;background:var(--sage)}
+    .map-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
+    .map-legend span{display:flex;align-items:center;gap:6px}
+    .map-dot{display:inline-block;width:13px;height:13px;clip-path:polygon(50% 0,100% 42%,100% 100%,0 100%,0 42%)}
+    .map-dot.reviewed{background:#2f55b5}.map-dot.web{background:#d9822b}
+    .map-status{font-size:13px;color:var(--muted);margin-top:6px;min-height:1.4em}
+    .map-status[data-state=loading]::before{content:'';display:inline-block;width:10px;height:10px;border:2px solid var(--line);border-top-color:#2f55b5;border-radius:50%;margin-right:7px;vertical-align:-1px;animation:spin .8s linear infinite}
+    .web-results{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:8px;max-height:220px;overflow:auto}
+    .web-results li{border:1px solid var(--line);border-left:4px solid #d9822b;border-radius:8px;padding:9px 12px;font-size:13px;background:var(--white)}
+    .web-results strong{display:block;font-size:14px}
+    .web-results a{font-weight:600}
+    .leaflet-popup-content{margin:12px 14px}
+    .map-popup{font:13px/1.5 Inter,system-ui,sans-serif;color:#1d2433}
+    .map-popup strong{display:block;font-size:14px;margin-bottom:2px}
+    .map-popup a{font-weight:600}
+    .map-legend,.map-status:not(:empty),.walk-status:not(:empty){padding:7px 12px;border-radius:12px;width:fit-content;max-width:100%}
+    .map-status:empty{display:none}
+    .house-pin{background:none;border:0;filter:drop-shadow(0 1px 2px #0006)}
+    .house-pin:focus-visible{outline:3px solid #e0a100;border-radius:4px}
+    .map-section .hero-map{height:420px}
+    .map-section .map-legend,.map-section .map-status:not(:empty){background:#ffffffcc;border:1px solid var(--line)}
+    @media (min-width: 900px){.hero-art{align-self:end;margin-top:72px;translate:40px 28px}}
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
@@ -209,6 +245,7 @@
       <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>clear house<span class="brand-dot">.</span></a>
       <nav class="header-links" aria-label="Page navigation">
         <a href="#how">How it works</a>
+        <a href="#map">Map</a>
         <a href="#google">Built with Google</a>
         <a href="/app">Open the tools</a>
         <a href="/resources">Resources</a>
@@ -232,6 +269,17 @@
         <div class="hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><path d="M0 229c108-31 277-35 470-10v41H0Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><g class="tree t1"><path d="M76 230v-55" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/></g><g class="tree t2"><path d="M415 226v-83" stroke="#72855c" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/></g><g class="grass" transform="translate(40 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(450 233)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 226v-19m-9 9h26m-17 10v-19m9 19v-19" stroke="#f8f5e4" stroke-width="4"/><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g transform="scale(.8)"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg><div class="art-note"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#shield"/></svg>A little closer to your next chapter.</div></div>
       </div>
     </section>
+
+    <section class="map-section" id="map" aria-labelledby="map-title">
+      <div class="section-heading">
+        <p class="eyebrow reveal">Every reviewed home, on a map</p>
+        <h2 id="map-title" class="reveal">Switch between Northern Virginia and Blacksburg, or look near you.</h2>
+        <p class="lead reveal">Blue houses are homes our team checked. Pick a neighborhood, tap a pin for rent and the provider's page, or open the tools to ask Gemma.</p>
+      </div>
+      <div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div>
+      <p style="margin-top:14px"><a class="link" href="/app">Open the full tools and ask Gemma →</a></p>
+    </section>
+
 
     <section aria-labelledby="problem-title">
       <div class="section-heading">
@@ -444,5 +492,7 @@
     update();
   })();
 </script>
+<script src="/rental-labels.js"></script>
+<script src="/listing-map.js"></script>
 </body>
 </html>
