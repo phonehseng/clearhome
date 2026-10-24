@@ -20,6 +20,7 @@ from catalog import load_catalog
 CACHE_DIR = Path(__file__).resolve().parent.parent / '.cache' / 'listing-photos'
 # Exact image hosts reviewed in data/photo_sources.json and existing catalog sources.
 ALLOWED_HOSTS = {
+    'www.goparkproperties.com',  # Park Properties, manager of Fieldstone and The Highlands (Blacksburg)
     'alateoldtown.com',
     'cms.oakvilleva.com',
     'cms.skymarkreston.com',
