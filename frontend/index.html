@@ -156,6 +156,20 @@
 
     /* Listings map in the hero. */
     .hero-map-wrap{min-width:0}
+    .tonight-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 4px}
+    .tonight-links span{flex-basis:100%;font-size:12px;font-weight:650;color:#6b4b12}
+    .tonight-links button{min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid #e3c98f;background:#fff8ea;font-size:13px;font-weight:650;color:#5a3f0c}
+    .tonight-links button:hover{background:#fdefd2}
+    /* Shelter cards: call first, how to get in, where to go. */
+    .opt-card.shelter{gap:6px}
+    .opt-card .opt-badge.confirm{background:#fbf1dc;color:#6b4b12}
+    .shelter-call{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:2px}
+    .shelter-call a{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border-radius:10px;background:#23408f;color:#fff;font-weight:700;text-decoration:none}
+    .shelter-call small{color:var(--muted);font-size:11.5px}
+    .opt-card details{font-size:12.5px;line-height:1.55}
+    .opt-card details summary{cursor:pointer;font-weight:650;min-height:32px;display:flex;align-items:center}
+    .opt-card details p{margin:4px 0}
+    .shelter-where{font-size:12.5px;color:var(--muted)}
     .map-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
     .map-tab{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:13px;font-weight:600;color:var(--ink);transition:background .15s,border-color .15s,color .15s}
     .map-tab:hover{border-color:#6f8fd6}
@@ -221,6 +235,7 @@
     .msg.bot{background:var(--sage);border-bottom-left-radius:4px}
     .msg.bot[data-state=loading]{color:var(--muted)}
     .msg.bot[data-state=error]{background:#fff3ef;color:#8c3e30}
+    .msg-engine{font-size:11.5px;color:var(--muted);margin:-4px 0 2px 4px}
     .msg.bot[data-state=notice]{background:#fbf1dc;color:#5a3f0c}
     .msg.bot[data-state=update]{background:transparent;border:1px dashed var(--line);color:var(--muted);font-size:13px}
     .msg.bot[data-state=loading]::before{content:'';display:inline-block;width:9px;height:9px;border:2px solid var(--line);border-top-color:#2f55b5;border-radius:50%;margin-right:8px;vertical-align:-1px;animation:spin .8s linear infinite}
@@ -380,10 +395,12 @@
     /* Background neighborhood, built from HTML and CSS: sun, clouds, hills, a back row of homes, two main
        houses with twinkling windows and chimney smoke, swaying trees and grass, and birds. Layers shift a
        little as you scroll (--sy, set by a small script) for depth. Sizes are in cqw so it scales like a picture. */
-    .scene{position:fixed;inset:auto 0 0 0;height:70vh;z-index:-1;pointer-events:none;overflow:hidden}
+    /* The box is the whole window so that, in short wide windows, the picture is only ever cropped at the top
+       of the screen, never in a straight line across the middle (which glass panels make look like a cut). */
+    .scene{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
     .sc-stage{position:absolute;left:50%;bottom:0;width:max(100%,126vh);aspect-ratio:470/260;transform:translateX(-50%);container-type:inline-size}
     .sc-stage>*{position:absolute;inset:0}
-    .sc-layer{transform:translateY(calc(var(--sy,0) * var(--depth) * -1cqw));will-change:transform}
+    .sc-layer{transform:translateY(calc(var(--sy,0) * var(--depth) * -1cqw))}
     .sc-fade{opacity:.6}
     .sc-stage i,.sc-stage b,.sc-stage span,.sc-stage div{position:absolute;display:block}
     .sc-town,.sc-grass{inset:0}
@@ -444,6 +461,8 @@
     body{-webkit-user-select:none;user-select:none}
     img,svg{-webkit-user-drag:none}
     :is(input,textarea,[contenteditable]){-webkit-user-select:text;user-select:text}
+    /* Except what people need to copy: chat answers, phone numbers and addresses. */
+    :is(.msg,.chat-card-address,.shelter-where,a[href^="tel:"],.housing-location,.opt-card .meta){-webkit-user-select:text;user-select:text}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -532,12 +551,12 @@
     </div>
     <div class="find-results" id="find-results" role="region" aria-live="polite" aria-label="Your options" hidden></div>
     <div class="assistant" id="assistant">
-      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#home"/></svg></span><div><strong>Ask Gemma</strong><span>Answers stream in live, using only our checked resources.</span></div></div>
+      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#home"/></svg></span><div><strong>Ask Gemma 4</strong><span>Google’s Gemma 4 26B (gemma-4-26b-a4b-it). Answers stream in live, using only our checked resources.</span></div></div>
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
       <div class="assistant-chips" id="assistant-chips"><button type="button">How do I qualify for Section 8?</button><button type="button">Who helps with back rent in Alexandria?</button><button type="button">A room near Virginia Tech under $700</button><button type="button">Near my office at 1800 Tysons Blvd</button></div>
       <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" placeholder="Ask anything about housing, or “near my office at …”"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
     </div></section>
-  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>You don’t need all the answers.</h3><p>A few details are enough to begin.</p><ol class="steps"><li><span class="step-number">1</span><div><strong>Share what matters</strong><p>Your area, budget, and what you need.</p></div></li><li><span class="step-number">2</span><div><strong>Explore your options</strong><p>Get guidance in clear, everyday language.</p></div></li><li><span class="step-number">3</span><div><strong>Confirm the details</strong><p>Contact providers about eligibility and availability.</p></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a safe place tonight?</h3><p>For shelter and local support, call 211. If you’re in immediate danger, call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><small>Don’t wait for an AI response in an emergency.</small></section></aside></div></section>
+  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>You don’t need all the answers.</h3><p>A few details are enough to begin.</p><ol class="steps"><li><span class="step-number">1</span><div><strong>Share what matters</strong><p>Your area, budget, and what you need.</p></div></li><li><span class="step-number">2</span><div><strong>Explore your options</strong><p>Get guidance in clear, everyday language.</p></div></li><li><span class="step-number">3</span><div><strong>Confirm the details</strong><p>Contact providers about eligibility and availability.</p></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a safe place tonight?</h3><p>For shelter and local support, call 211. If you’re in immediate danger, call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Find somewhere to sleep tonight:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div><small>Don’t wait for an AI response in an emergency.</small></section></aside></div></section>
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
     <div class="section-heading"><div><h2 id="listings-title">Explore rentals & housing waitlists</h2><p>Compare income-restricted housing and regular rentals, each with published source evidence.</p></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
@@ -1097,7 +1116,57 @@
     // "I need a place tonight" example also ticks the tonight box.
     document.querySelectorAll('[data-example]').forEach(b => b.addEventListener('click', () => { document.getElementById('more-options').open = true; if (/tonight/i.test(b.textContent)) document.getElementById('tonight').checked = true; }));
 
+    // Links say where they go: a program page, an official county listing, or the provider's website.
+    function resourceLinks(r) {
+      if (Array.isArray(r.links) && r.links.length) return r.links.filter(l => safeUrl(l.url)).map(l => ({ url: l.url, label: l.label, note: l.note }));
+      const out = [], seen = new Set(), add = (url, label) => { if (safeUrl(url) && !seen.has(url)) { seen.add(url); out.push({ url, label }); } };
+      const sourceLabel = r.source_kind === 'official_directory' || /fairfaxcounty\.gov\/homeless\/emergency-shelters|directory|guide/i.test(r.source_url || '') ? 'Official county listing' : 'Program details';
+      add(r.source_url, sourceLabel); add(r.website, 'Provider website');
+      return out;
+    }
+    function shelterCard(r) {
+      const c = el('article', null, { class: 'opt-card shelter' });
+      // Never a promise of a bed: what the source supports, or "call to confirm".
+      const badge = r.intake_status === 'closed' ? 'Intake closed right now' : r.referral_required ? 'Referral required' : 'Call to confirm a bed tonight';
+      c.append(el('span', badge, { class: 'opt-badge confirm' }));
+      c.append(el('strong', r.name));
+      const meta = [r.city || r.jurisdiction, r.distance_from_blacksburg].filter(Boolean).join(' · ');
+      if (meta) c.append(el('span', meta, { class: 'meta' }));
+      if (r.who_it_serves) c.append(el('span', r.who_it_serves.slice(0, 200), { class: 'meta' }));
+      if (r.phone) {
+        const call = el('div', null, { class: 'shelter-call' });
+        call.append(el('a', `Call ${r.phone}`, { href: tel(r.phone) }));
+        const role = { 'direct shelter line': 'Shelter’s own line', 'coordinated entry / referral line': 'Intake and referral line: they screen and refer you to a shelter' }[r.phone_role];
+        if (role) call.append(el('small', role));
+        c.append(call);
+      }
+      const steps = r.intake_steps || r.how_to_apply;
+      if (steps || r.intake_hours || r.after_hours || r.requirements) {
+        const d = el('details'); d.append(el('summary', 'How to get in'));
+        if (steps) d.append(el('p', steps));
+        if (r.intake_hours) d.append(el('p', 'Intake hours: ' + r.intake_hours));
+        if (r.requirements) d.append(el('p', 'Who it’s for: ' + r.requirements));
+        if (r.after_hours) d.append(el('p', 'If intake is closed or full: ' + r.after_hours));
+        c.append(d);
+      }
+      // Where to go: only a public intake entrance gets directions; offices and confidential sites don't.
+      const addr = r.public_intake_address || (r.address_kind === 'public intake entrance' ? r.address : null);
+      if (r.confidential_location) c.append(el('span', 'The location is kept private for safety. Call to arrange intake.', { class: 'shelter-where' }));
+      else if (addr) {
+        const where = el('span', 'Go to: ' + addr + ' ', { class: 'shelter-where' });
+        where.append(el('a', 'Get directions ↗', { href: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addr), target: '_blank', rel: 'noopener' }));
+        c.append(where);
+      } else if (r.address && r.address_kind === 'office, not a walk-in shelter') c.append(el('span', 'Office address (not a walk-in shelter): ' + r.address, { class: 'shelter-where' }));
+      if (r.transit) c.append(el('span', 'Getting there: ' + r.transit, { class: 'shelter-where' }));
+      const links = el('div', null, { class: 'opt-links' });
+      resourceLinks(r).forEach(l => { const a = el('a', l.label + ' ↗', { href: l.url, target: '_blank', rel: 'noopener' }); if (l.note) a.title = l.note; links.append(a); });
+      if (links.childNodes.length) c.append(links);
+      const notes = resourceLinks(r).filter(l => l.note).map(l => l.note);
+      if (notes.length) c.append(el('span', notes.join(' '), { class: 'shelter-where' }));
+      return c;
+    }
     function card(r, kind) {
+      if (kind === 'shelter') return shelterCard(r);
       const c = el('article', null, { class: 'opt-card' });
       if (kind === 'listing' && STATUS[r.availability_status]) c.append(el('span', STATUS[r.availability_status], { class: 'opt-badge' }));
       if (kind === 'program' && r.waitlist_status === 'closed') c.append(el('span', 'Waitlist closed', { class: 'opt-badge closed' }));
@@ -1110,8 +1179,7 @@
       if (kind !== 'listing' && r.who_it_serves) c.append(el('span', r.who_it_serves.slice(0, 160), { class: 'meta' }));
       const links = el('div', null, { class: 'opt-links' });
       if (r.phone) links.append(el('a', r.phone, { href: tel(r.phone) }));
-      const site = safeUrl(r.website) || safeUrl(r.source_url);
-      if (site) links.append(el('a', 'Website', { href: site, target: '_blank', rel: 'noopener' }));
+      resourceLinks(r).slice(0, 2).forEach(l => links.append(el('a', l.label, { href: l.url, target: '_blank', rel: 'noopener' })));
       c.append(links);
       return c;
     }
@@ -1156,7 +1224,7 @@
       const status = botSay('Reading your question…', 'loading');
       let note = 'Reading your question…';
       const timer = setInterval(() => { status.textContent = `${note} (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
-      let answer = '', bubble = null;
+      let answer = '', bubble = null, engine = '';
       const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); pinTurn(); };
       const finish = () => { clearInterval(timer); status.remove(); };
       try {
@@ -1172,7 +1240,8 @@
           while ((cut = buffer.indexOf('\n\n')) >= 0) {
             const line = buffer.slice(0, cut).replace(/^data: /, ''); buffer = buffer.slice(cut + 2);
             let event; try { event = JSON.parse(line); } catch { continue; }
-            if (event.kind === 'status') { note = event.text; status.textContent = note; }
+            if (event.kind === 'engine') { engine = event.text; }
+            else if (event.kind === 'status') { note = event.text; status.textContent = note; }
             else if (event.kind === 'thinking') { note = `Gemma is thinking: ${event.text}`; status.textContent = note; }
             else if (event.kind === 'chunk') { if (!answer) finish(); answer += event.text; show(answer); }
             else if (event.kind === 'cards') { if (bubble && Array.isArray(event.text) && event.text.length) showCards(bubble, answer, event.text); }
@@ -1181,6 +1250,7 @@
         }
         clearTimeout(stop); finish();
         if (!answer) throw new Error('No answer came back.');
+        if (engine) { const by = el('div', 'Answered by ' + engine, { class: 'msg-engine' }); (bubble.nextElementSibling?.classList.contains('chat-cards') ? bubble.nextElementSibling : bubble).after(by); pinTurn(); }
         history.push({ role: 'user', text: question }, { role: 'assistant', text: answer });
       } catch (err) {
         finish();
@@ -1309,6 +1379,13 @@
     const chips = document.getElementById('assistant-chips');
     chips.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { chips.hidden = true; ask(b.textContent); } });
     botSay("Hi, I'm Gemma, the Clear House assistant. Ask me about vouchers, rent help, shelters, or homes near a place, like your office or campus. I only use our checked resources.");
+
+    document.querySelectorAll('[data-tonight]').forEach(b => b.addEventListener('click', () => {
+      document.getElementById('location').value = b.dataset.tonight;
+      document.getElementById('tonight').checked = true;
+      form.requestSubmit();
+      results.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    }));
 
     chatForm.addEventListener('submit', e => { e.preventDefault(); chips.hidden = true; const q = chatInput.value.trim(); if (!q) return; chatInput.value = ''; ask(q); });
     chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit(); } });

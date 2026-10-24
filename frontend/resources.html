@@ -298,8 +298,12 @@
       }
       const actions = el('div', { class: 'actions' });
       if (p.phone) actions.append(el('a', { href: 'tel:' + p.phone.replace(/[^0-9+]/g, '') }, p.phone));
-      const site = safeUrl(p.website) || safeUrl(p.source_url);
-      if (site) actions.append(el('a', { href: site, target: '_blank', rel: 'noopener' }, 'Website'));
+      // Say where each link goes: a program page, an official county listing, or the provider's website.
+      const links = Array.isArray(p.links) && p.links.length ? p.links : [
+        { url: p.source_url, label: p.source_kind === 'official_directory' || /directory|guide|emergency-shelters/i.test(p.source_url || '') ? 'Official county listing' : 'Program details' },
+        { url: p.website, label: 'Provider website' }];
+      const seen = new Set();
+      links.forEach(l => { if (safeUrl(l.url) && !seen.has(l.url)) { seen.add(l.url); actions.append(el('a', { href: l.url, target: '_blank', rel: 'noopener', title: l.note || '' }, l.label + ' ↗')); } });
       card.append(actions);
       return card;
     }
