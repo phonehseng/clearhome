@@ -188,6 +188,7 @@
       }
       const area = areaFor(name); if (area) { selectArea(area); setStatus(`Showing ${area}.`); }
     };
+    window.clearHouseOfferWebSearch = place => offerWebSearch(place);
     // Which county or city a point falls in, from the same boundary outlines the map draws.
     function areaAt(lat, lon) {
       const inside = (ring) => { let hit = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) hit = !hit; } return hit; };
@@ -265,10 +266,19 @@
     // Follow the area people pick in "Browse" and the place they type in "Where are you looking?".
     document.getElementById('browse-location')?.addEventListener('change', e => { selectArea(e.target.value); setStatus(e.target.value==='Blacksburg'?'Map centered on Blacksburg. Homes without confirmed coordinates remain in the list.':e.target.value ? `Showing ${e.target.value}.` : 'Pick or type an area to zoom in.'); });
     const typed = document.getElementById('location');
+    // Searching the web uses Gemma with Google Search (only the Gemini API can do that, so it takes about a
+    // minute). It's a button people choose, not something that runs every time the place changes.
+    const webBtn = document.createElement('button');
+    webBtn.type = 'button'; webBtn.className = 'web-search-btn'; webBtn.hidden = true;
+    statusEl.after(webBtn);
+    const offerWebSearch = place => { webBtn.textContent = `Search the web for more in ${place} (takes about a minute)`; webBtn.dataset.place = place; webBtn.hidden = false; };
+    webBtn.addEventListener('click', () => { webBtn.hidden = true; liveSearch(webBtn.dataset.place); });
     typed?.addEventListener('change', () => {
-      const text = typed.value.trim(); const area = areaFor(text);
-      if (!text || /^northern virginia$/i.test(text)) { selectArea(null); setStatus('Pick or type an area to zoom in.'); return; }
-      if (!area) { setStatus('Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, or Woodbridge.'); return; }
-      selectArea(area); liveSearch(text);
+      const text = typed.value.trim();
+      if (!text || /^northern virginia$/i.test(text)) { selectArea(null); webBtn.hidden = true; setStatus('Pick or type an area to zoom in.'); return; }
+      const area = areaFor(text) || (/blacksburg|virginia tech|christiansburg/i.test(text) ? 'Blacksburg' : null);
+      const known = area || HOODS.nova.some(([n]) => n.toLowerCase().includes(text.toLowerCase())) || HOODS.blacksburg.some(([n]) => n.toLowerCase().includes(text.toLowerCase()));
+      if (!known) { webBtn.hidden = true; setStatus('Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, Reston, or Woodbridge.'); return; }
+      window.clearHouseMapGoTo(text); offerWebSearch(text);
     });
   })();
