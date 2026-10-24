@@ -24,6 +24,8 @@
     #result, .result { white-space:pre-wrap; margin-top:1rem; padding:1rem; background:#f1f6fb; border-radius:6px; }
     #result:empty, .result:empty { display:none; }
     .soon { color:var(--muted); }
+    input[type=file] { font:inherit; margin-bottom:.25rem; }
+    .hint { color:var(--muted); margin:.25rem 0 1rem; min-height:1.5em; }
     footer { color:var(--muted); font-size:.9rem; }
   </style>
 </head>
@@ -52,8 +54,11 @@
     </section>
 
     <section role="tabpanel" id="panel-lease" aria-labelledby="tab-lease" hidden>
+      <label for="lease-file">Upload your lease (PDF, Word or .txt)</label>
+      <input type="file" id="lease-file" accept=".pdf,.docx,.txt">
+      <p id="lease-file-status" class="hint" role="status" aria-live="polite"></p>
       <form class="text-form" data-endpoint="/api/lease">
-        <label for="lease-text">Paste your lease (remove names, SSNs and account numbers first)</label>
+        <label for="lease-text">Or paste the text. Check it before you submit: we remove things that look like SSNs and account numbers, but not names or addresses.</label>
         <textarea id="lease-text" required maxlength="15000" placeholder="Paste the text of the lease here."></textarea>
         <button class="primary" type="submit">Explain this lease</button>
       </form>
@@ -104,6 +109,29 @@
         result.textContent = 'Could not reach the server. Is it running?';
       }
       btn.disabled = false;
+    });
+
+    const leaseFile = document.getElementById('lease-file');
+    const leaseStatus = document.getElementById('lease-file-status');
+    leaseFile.addEventListener('change', async () => {
+      const file = leaseFile.files[0];
+      if (!file) return;
+      leaseStatus.textContent = 'Reading ' + file.name + '...';
+      const body = new FormData();
+      body.append('file', file);
+      try {
+        const res = await fetch('/api/extract', { method: 'POST', body });
+        const data = await res.json();
+        if (data.error) { leaseStatus.textContent = data.error; return; }
+        document.getElementById('lease-text').value = data.text;
+        const r = data.redactions;
+        const removed = r.ssn + r.card + r.account;
+        leaseStatus.textContent = removed
+          ? `Removed ${r.ssn} SSN(s), ${r.account} account number(s) and ${r.card} card number(s). Please check the text below, then press Explain.`
+          : 'Text loaded. Nothing that looks like an SSN or account number was found. Please check the text below, then press Explain.';
+      } catch {
+        leaseStatus.textContent = 'Could not reach the server. Is it running?';
+      }
     });
 
     document.querySelectorAll('.text-form').forEach(f => f.addEventListener('submit', async e => {
