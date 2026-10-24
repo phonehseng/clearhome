@@ -18352,7 +18352,15 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "source_checked_on": "2026-10-24"
+    "source_checked_on": "2026-10-24",
+    "photo": {
+      "url": "https://thefitzapts.com/wp-content/uploads/2024/03/Clubhouse.png",
+      "source_url": "https://thefitzapts.com/",
+      "alt": "Clubhouse",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-prince-william-county-joyfield-flats-at-woodbridge",
@@ -18416,6 +18424,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_4000%2Ch_3000%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_576%2Car_1.44%2Cg_auto/s3/2/55533/standardcommunities-joyfieldapts-1%281%29.jpg",
+      "source_url": "https://www.joyfieldflatswoodbridge.com/",
+      "alt": "A large apartment complex with a parking lot in front.",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -19012,7 +19028,15 @@
     },
     "lat": 38.888575,
     "lon": -77.184103,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1500%2Ch_1073%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.05%2Cg_auto/s3/3/690609/img1_fld_flch_ext1_4c_300.jpg",
+      "source_url": "https://www.thefieldsfallschurch.com/",
+      "alt": "Elegant Exterior View Of Property",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-broadfalls-efficiency",
@@ -19075,7 +19099,15 @@
     },
     "lat": 38.88813,
     "lon": -77.180349,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1600%2Ch_1066%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_576%2Car_1.92%2Cg_auto/s3/2/59578/11_809westbroadstreet_broadfalls_571_frontview_hiressmaller.jpg",
+      "source_url": "https://www.broadfallsapts.com/",
+      "alt": "a large brick building with a black awning and a circular garden in front of it",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-broadfalls-one-bedroom",
@@ -19138,7 +19170,15 @@
     },
     "lat": 38.88813,
     "lon": -77.180349,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1600%2Ch_1066%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_576%2Car_1.92%2Cg_auto/s3/2/59578/11_809westbroadstreet_broadfalls_571_frontview_hiressmaller.jpg",
+      "source_url": "https://www.broadfallsapts.com/",
+      "alt": "a large brick building with a black awning and a circular garden in front of it",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-broadfalls-two-bedroom",
@@ -19201,7 +19241,15 @@
     },
     "lat": 38.88813,
     "lon": -77.180349,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1600%2Ch_1066%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_576%2Car_1.92%2Cg_auto/s3/2/59578/11_809westbroadstreet_broadfalls_571_frontview_hiressmaller.jpg",
+      "source_url": "https://www.broadfallsapts.com/",
+      "alt": "a large brick building with a black awning and a circular garden in front of it",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "arlington-view-terrace-two-bedroom",
@@ -21246,7 +21294,15 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "cost": "Rent not confirmed. Ask the provider for current rent, fees, deposits, utilities, and term."
+    "cost": "Rent not confirmed. Ask the provider for current rent, fees, deposits, utilities, and term.",
+    "photo": {
+      "url": "https://images.squarespace-cdn.com/content/v1/64b57d78e189f7418cd1ce6a/c254682b-6309-4a88-892b-10e8f947c927/Collegiate%2BSuites%2B%26%2BHunters%2BRidge%2Bof%2BBlacksburg%2B%7C%2BStudent%2BApartments%2Bnear%2BVirginia%2BTech%2B%7C%2BClubhouse",
+      "source_url": "https://collegiatesuitesblacksburg.com/",
+      "alt": "Collegiate Suites & Hunters Ridge of Blacksburg | Student Apartments near Virginia Tech | Clubhouse",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-maple-ridge-townhomes-bedroom-in-shared-townhome-confirm-layout",
@@ -21653,7 +21709,15 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "cost": "Provider advertises $1,036.79 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total."
+    "cost": "Provider advertises $1,036.79 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/15027/MLv3/9/36/2024/10/08/105549/67056415af3eb8.62351006442.jpg",
+      "source_url": "https://www.unionblacksburg.com/",
+      "alt": "Outdoor lounge at Union Blacksburg apartments for rent near Virginia Tech, featuring beach chairs and umbrellas.",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-union-blacksburg-d6-existing-furnished-bedroom",
@@ -21728,7 +21792,15 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "cost": "Provider advertises $1,116.79 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total."
+    "cost": "Provider advertises $1,116.79 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/15027/MLv3/9/36/2024/10/08/105549/67056415af3eb8.62351006442.jpg",
+      "source_url": "https://www.unionblacksburg.com/",
+      "alt": "Outdoor lounge at Union Blacksburg apartments for rent near Virginia Tech, featuring beach chairs and umbrellas.",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-union-blacksburg-d2-furnished-pool-view-bedroom",
@@ -21803,7 +21875,15 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "cost": "Provider advertises $1,210.79 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total."
+    "cost": "Provider advertises $1,210.79 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/15027/MLv3/9/36/2024/10/08/105549/67056415af3eb8.62351006442.jpg",
+      "source_url": "https://www.unionblacksburg.com/",
+      "alt": "Outdoor lounge at Union Blacksburg apartments for rent near Virginia Tech, featuring beach chairs and umbrellas.",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-the-mill-at-blacksburg-1-bedroom-whole-apartment",
@@ -22103,7 +22183,15 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "cost": "Provider describes two-bedroom rents up to approximately $1,375 and three-bedroom rents up to approximately $1,800, depending on income, apartment type and availability. These are not current unit offers; confirm actual rent, fees and eligibility."
+    "cost": "Provider describes two-bedroom rents up to approximately $1,375 and three-bedroom rents up to approximately $1,800, depending on income, apartment type and availability. These are not current unit offers; confirm actual rent, fees and eligibility.",
+    "photo": {
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2026/06/LegacyOnMain-July2026.jpg",
+      "source_url": "https://www.communityhousingpartners.org/properties/legacy-on-main/",
+      "alt": "Legacy on Main exterior",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-cedar-crest-apartments-1-3-bedroom-townhomes-confirm-rent",
@@ -22178,7 +22266,15 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "cost": "Rent not confirmed. Ask the provider for current rent, fees, deposits, utilities, and term."
+    "cost": "Rent not confirmed. Ask the provider for current rent, fees, deposits, utilities, and term.",
+    "photo": {
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2019/08/CedarCrest.exterior.20-3-scaled.jpg",
+      "source_url": "https://www.communityhousingpartners.org/properties/cedar-crest-apartments/",
+      "alt": "Cedar Crest exterior",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-ellett-road-community-1-2-bedroom-community-confirm-eligibility",
@@ -22253,7 +22349,15 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "cost": "Rent not confirmed. Ask the provider for current rent, fees, deposits, utilities, and term."
+    "cost": "Rent not confirmed. Ask the provider for current rent, fees, deposits, utilities, and term.",
+    "photo": {
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2022/06/ElletRd.Exterior-5.22-4.jpg",
+      "source_url": "https://www.communityhousingpartners.org/properties/ellett-road-community/",
+      "alt": "Ellet Road exterior sign",
+      "credit": "Official property owner / management website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-nrca-intake",

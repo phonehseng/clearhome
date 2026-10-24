@@ -132,6 +132,26 @@ Keep the team's Northern Virginia scope when adding support resources: start wit
 
 ## Listing photos
 
+Photo completion is still in progress. `photo_review.json` records the **218
+communities** that still need a property-specific official photo source after
+the latest pass. Nine communities received new owner/provider photo links:
+The Fitzgerald, Fields of Falls Church, Legacy on Main, Cedar Crest, Ellett
+Road, Union Blacksburg, Collegiate Suites, Broadfalls, and Joyfield Flats.
+Existing reviewed community photos are shared across plans at the same address.
+No rent, vacancy, eligibility or availability-review date was changed.
+
+This workspace blocks direct provider/CDN downloads. Official page links were
+reviewed through web tools, but downloaded pixel dimensions and successful
+image delivery have not been established here. Some provider-published images
+are thumbnails, not high-resolution originals. A 319-pixel Fields of Manassas
+thumbnail was rejected; a Broadfalls gallery image labeled for another property
+was also rejected. Do not claim that every listing now has a high-quality image.
+
+On a machine with provider access, audit the recorded images with
+`python backend/photo_audit.py --download`. It reports native dimensions,
+missing sources, failed downloads and images below 1200×675; it never enlarges
+images, invents replacements or automatically certifies a photo's identity.
+
 Optional `photo` metadata contains an HTTPS image `url`, the supporting `source_url`, descriptive `alt`, `credit`, `reviewed_on`, and a caption explaining that community/model photos may differ from the offered unit. Photos are hosted by providers or their listing platform; they are not proof of vacancy or condition. The UI shows a labeled fallback if a photo is missing or fails to load. Photo research never resets the listing's availability review date.
 
 The app now serves photos at `/media/listings/<id>`. It downloads only the record's real provider image (from approved source hosts), validates the image, and caches the original bytes in ignored `.cache/listing-photos/`. It never generates replacement photography. Failed downloads show a source link instead. Thumbnail, hover, and enlarged views reuse the same cached image. Internet access is needed once per unique photo; subsequent requests use disk.
