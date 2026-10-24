@@ -235,6 +235,11 @@
     .map-popup a{font-weight:600}
     .map-legend,.map-status:not(:empty),.walk-status:not(:empty){padding:7px 12px;border-radius:12px;width:fit-content;max-width:100%}
     .map-status:empty{display:none}
+    /* Map legend and status sit side by side; the status drops to the next line when there isn't room. */
+    .map-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
+    .map-meta>:is(.map-legend,.map-status){margin:0}
+    .map-meta .map-legend{gap:12px}
+    .map-meta .map-status{flex:1 1 110px;max-width:max-content;font-size:12px;line-height:1.45}
     .house-pin{background:none;border:0;filter:drop-shadow(0 1px 2px #0006)}
     .house-pin:focus-visible{outline:3px solid #e0a100;border-radius:4px}
     .map-section .hero-map{height:420px}
@@ -415,7 +420,7 @@
     <section class="cl-section" id="map" aria-labelledby="map-title">
       <h2 id="map-title" class="cl-title reveal">Every checked home, <span>on one map</span></h2>
       <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p>
-      <div class="cl-frame reveal"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div></div>
+      <div class="cl-frame reveal"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></div>
     </section>
 
     <section class="cl-section" id="how" aria-labelledby="how-title">
