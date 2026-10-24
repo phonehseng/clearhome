@@ -2,6 +2,8 @@
 
 Implement, test, commit, and push this user-requested refinement to the **Anything that applies? (optional)** fieldset in the housing-search form (`frontend/index.html`). Inspect current code before changing it.
 
+**User follow-up:** Please complete the implementation and commit and push the actual UI changes to the shared repository. Updating this handoff alone does not fulfill the request. If the implementation is already complete, verify it and report its existing commit hash rather than creating an empty commit.
+
 ## Layout
 
 The screenshot shows three options spread across an uneven two-column layout: accessible home and housing voucher on the left, age 62+ far to the right. Reformat them into a balanced, compact group with consistent alignment and spacing. Prefer three appropriately sized columns when there is room, and a clean stacked layout on mobile. Avoid large empty gaps or overly stretched rows. Retain all three independent checkboxes, their labels, optional status, and existing search behavior.
