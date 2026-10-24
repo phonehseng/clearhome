@@ -8,7 +8,7 @@ import math
 
 from flask import Flask, jsonify, request, send_from_directory, send_file
 
-from advisor import AREAS, ask, options, programs, warm_examples
+from advisor import AREAS, ask, options, programs, quick_nearby, warm_examples
 from live_search import search as live_search
 import walkable
 from extract_text import extract_text
@@ -300,6 +300,9 @@ def ask_advisor():
         if profile.get(key) is True: about.append(label)
     if about:
         question = f"{question}\n\n(About me: {'; '.join(about)}.)"
+    quick = quick_nearby(question, profile)  # "near George Mason" etc.: answered from the catalog, no AI
+    if quick:
+        return jsonify(answer=quick)
     try:
         return jsonify(answer=ask(question, history))
     except Exception:
