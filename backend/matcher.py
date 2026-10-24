@@ -25,6 +25,7 @@ TYPES = [
     "rental_assistance",
     "legal_aid",
     "affordable_listing",
+    "affordable_property",
     "food_support",
     "housing_authority",
     "other",
@@ -104,6 +105,13 @@ Message: {message}"""
 
 def filter_resources(resources, filters):
     """Pick matching entries. Shelters come first when the situation is urgent."""
+    types = filters.get("types") or []
+    if "affordable_listing" in types and "affordable_property" not in types:
+        # Someone looking for an apartment also wants income-restricted buildings with no advertised vacancy yet.
+        filters = {**filters, "types": types + ["affordable_property"]}
+    if filters.get("urgency") == "emergency" and "emergency_shelter" in (filters.get("types") or []) and "other" not in filters["types"]:
+        # Intake lines and hotlines are filed as "other" but are the way into most shelters.
+        filters = {**filters, "types": filters["types"] + ["other"]}
     return filter_catalog(resources, filters)
 
 
@@ -117,6 +125,7 @@ Rules:
 - When a resource has how_to_apply, include those steps in short plain language. For shelters, say to call the intake line first, since most beds are assigned through it.
 - When a program has waitlist_status, state it plainly. Never say a waitlist is open unless waitlist_status is "open".
 - Availability is a website-advertised snapshot, not a provider-confirmed reservation. Never promise a unit or a place to stay tonight.
+- affordable_property entries are income-restricted buildings from a public database with no confirmed vacancy: tell the person to call and ask about openings or the waitlist.
 - State availability.status plainly: waitlist_open is a waitlist, upcoming is a future date, leasing is general lease-up, contact_for_availability has no confirmed vacancy. Never turn these into an available-now claim.
 - Starting rents are potential options only, not a guaranteed total cost. Utilities, fees, income qualification and final rent need confirmation. Do not invent unknown prices.
 - Read notes and cost for conflicting prices or temporary specials. Do not present a promotion as the ongoing rent.

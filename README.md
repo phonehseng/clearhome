@@ -31,6 +31,9 @@ To avoid made-up information, the assistant only recommends places from our hand
 | `backend/extract_text.py` | Reads PDF, Word, text and image uploads into plain text, on our own server. |
 | `backend/redact.py` | Removes SSNs, ITINs, card numbers and account numbers by their format before any text reaches the AI. |
 | `backend/app.py` | Flask server for the web page and the `/api/match`, `/api/lease`, `/api/listing`, `/api/extract`, and read-only `/api/listings` endpoints. |
+| `backend/sources.py` | Pulls records from public open-data APIs (HUD tax-credit, subsidized and housing-authority data, Alexandria's affordable rentals, the NoVA shelter map) into a review queue. Runs in the background on searches, at most once a day. |
+| `backend/review.py` | Lets the team approve or reject queued records. Nothing from an API reaches users until it's approved. |
+| `backend/freshness.py` | Gemma rereads listing pages and takes down ones no longer offered. It can only hide listings, never add or revive them. |
 | `frontend/index.html` | The web page. |
 | `data/resources.json` | The hand-verified resource list. See [data/README.md](data/README.md). |
 

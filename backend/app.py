@@ -14,6 +14,8 @@ from matcher import find_help
 from catalog import filter_catalog, load_catalog, STATUSES
 from listing_photos import cached_photo, photo_mimetype, PhotoUnavailable
 from redact import redact
+from sources import refresh_in_background
+from freshness import check_in_background
 
 FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
 app = Flask(__name__, static_folder=None)
@@ -73,7 +75,8 @@ def listings():
     status = request.args.get("status")
     if status is not None and status not in STATUSES - {"closed"}:
         return jsonify(error="Unsupported active availability status."), 400
-    rows = filter_catalog(load_catalog(), filters)
+    # Browsing shows homes and waitlists with availability evidence, not shelters or programs.
+    rows = [r for r in filter_catalog(load_catalog(), filters) if isinstance(r.get("availability"), dict)]
     if status:
         rows = [r for r in rows if r.get("availability", {}).get("status") == status]
     return jsonify(listings=rows, count=len(rows), notice="Official-source web review, not a live vacancy feed. Confirm rent, eligibility and availability directly. Closed or overdue records are excluded.")
@@ -87,6 +90,8 @@ def match():
     if len(message) > 2000:
         return jsonify(error="Please keep it under 2000 characters."), 400
     message, _ = redact(message)
+    refresh_in_background()  # queue new open-data records for team review; no-op if refreshed today
+    check_in_background()  # take down listings whose provider page no longer offers them
     try:
         filters, answer = find_help(message, include_unverified=bool(os.getenv("INCLUDE_UNVERIFIED")))
     except Exception:

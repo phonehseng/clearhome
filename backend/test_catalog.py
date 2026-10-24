@@ -22,8 +22,10 @@ class CatalogTests(unittest.TestCase):
         raw = json.loads(catalog.RESOURCES_PATH.read_text())
         self.assertEqual(validate_resources(raw), [])
         self.assertEqual(len({r['id'] for r in raw}), len(raw))
-        self.assertEqual({r['jurisdiction'] for r in raw}, {'Arlington County','Fairfax County','Loudoun County','Prince William County','Alexandria City','Fairfax City','Falls Church City','Manassas City','Manassas Park City'})
-        self.assertTrue(all(r['sources'] and r['availability']['evidence'] for r in raw))
+        core = {'Arlington County','Fairfax County','Loudoun County','Prince William County','Alexandria City','Fairfax City','Falls Church City','Manassas City','Manassas Park City'}
+        self.assertEqual({r['jurisdiction'] for r in raw}, core | {'Northern Virginia'})
+        self.assertTrue(all(r['sources'] for r in raw))
+        self.assertTrue(all(r['availability']['evidence'] for r in raw if r['type'] == 'affordable_listing'))
 
     def test_unverified_and_invalid_records_are_not_loaded(self):
         invalid = copy.deepcopy(self.row)
@@ -73,12 +75,13 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(all(r['bedrooms']==0 for r in studios))
 
     def test_city_and_county_are_distinguished(self):
-        city = filter_catalog(self.rows, {'locations':['Fairfax City']}, today=REVIEW_DAY)
-        county = filter_catalog(self.rows, {'locations':['Fairfax County']}, today=REVIEW_DAY)
+        listings = [r for r in self.rows if r['type'] == 'affordable_listing']
+        city = filter_catalog(listings, {'locations':['Fairfax City']}, today=REVIEW_DAY)
+        county = filter_catalog(listings, {'locations':['Fairfax County']}, today=REVIEW_DAY)
         self.assertTrue(city and county)
         self.assertTrue(all(r['jurisdiction']=='Fairfax City' for r in city))
         self.assertTrue(all(r['jurisdiction']=='Fairfax County' for r in county))
-        park = filter_catalog(self.rows, {'locations':['Manassas Park']}, today=REVIEW_DAY)
+        park = filter_catalog(listings, {'locations':['Manassas Park']}, today=REVIEW_DAY)
         self.assertTrue(all(r['city']=='Manassas Park' for r in park))
 
     def test_malformed_model_filters_fall_back_to_explicit_form_values(self):

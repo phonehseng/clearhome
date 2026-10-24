@@ -89,3 +89,22 @@ python backend/listing_photos.py
 ```
 
 A source review date is not a guarantee of future CDN access. This cloud workspace denies the photo hosts; run the importer locally or allow those hosts using the environment network settings. No source images were successfully downloaded in that restricted workspace.
+
+## Open-data review queue
+
+`candidates.json` holds records pulled from public APIs by `backend/sources.py`. They are not shown to users until approved.
+
+```bash
+python backend/sources.py                          # refresh the queue (also runs on searches, once a day)
+python backend/review.py list                      # what's waiting, by source
+python backend/review.py show <id>                 # one record in full
+python backend/review.py approve <id> [<id> ...]   # publish records you've spot-checked
+python backend/review.py approve --source hud_pha  # publish a whole source
+python backend/review.py reject <id>               # drop a record for good
+```
+
+Spot-check before approving: HUD tax-credit records sometimes list an owner's office instead of the property address, and the regional shelter map was last updated in 2023.
+
+## Automatic take-downs
+
+`backend/freshness.py` has Gemma reread each listing's provider page (at most every 12 hours, triggered by searches) and marks it `closed` if the page clearly no longer offers it, or `needs_recheck` if the page is gone. It saves the evidence and never deletes or revives a record. Many apartment sites block automated visitors; those still drop out automatically when their 7-day `review_due` passes.

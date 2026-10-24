@@ -13,7 +13,8 @@ from urllib.parse import urlsplit
 
 RESOURCES_PATH = Path(__file__).resolve().parent.parent / 'data' / 'resources.json'
 STATUSES = {'available_now', 'advertised_vacancy', 'upcoming', 'leasing', 'waitlist_open', 'contact_for_availability', 'closed'}
-TYPES = {'affordable_listing', 'emergency_shelter', 'rental_assistance', 'housing_authority', 'legal_aid', 'food_support', 'other'}
+# affordable_property: an income-restricted building from a public database, without unit-level availability.
+TYPES = {'affordable_listing', 'affordable_property', 'emergency_shelter', 'rental_assistance', 'housing_authority', 'legal_aid', 'food_support', 'other'}
 STATUS_ORDER = {key: i for i, key in enumerate(['available_now', 'advertised_vacancy', 'upcoming', 'leasing', 'waitlist_open', 'contact_for_availability', 'needs_recheck', 'closed'])}
 
 def _date(value):
@@ -133,7 +134,8 @@ def filter_catalog(resources, filters=None, today=None):
         locations = filters.get('locations') or []
         if locations:
             searchable = ' '.join(str(row.get(k) or '') for k in ('city', 'jurisdiction', 'area', 'address', 'region')).casefold()
-            if not any(str(location).casefold() in searchable or str(location).casefold() in {'nova', 'northern va'} for location in locations):
+            regional = row.get('jurisdiction') == 'Northern Virginia'  # e.g. legal aid and 211 serve the whole region
+            if not regional and not any(str(location).casefold() in searchable or str(location).casefold() in {'nova', 'northern va'} for location in locations):
                 continue
         results.append(row)
     return sorted(results, key=lambda r: (0 if r.get('type') == 'emergency_shelter' else 1, STATUS_ORDER.get(r.get('availability', {}).get('status'), 5)))
