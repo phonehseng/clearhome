@@ -33,6 +33,7 @@ B5. Senior and accessible housing in Blacksburg and Christiansburg
 | 2026-10-24 | 1. Recheck expiring listings | 0 | Nothing due; all review dates are 2026-10-31 |
 | 2026-10-24 | 2. Fairfax County and Fairfax City listings | 14 (11 communities) | Mostly FCRHA senior housing (55+/62+) from county pages; provider sites returned 403. Phone conflicts noted for Coan Pond and Saintsbury Plaza; Redbud Glen "leasing" vs county "Opening Soon". No Fairfax City properties publish affordable rents. |
 | 2026-10-24 | 3. Arlington County listings | 11 (11 communities) | 2 available now (AHC RentCafe pages), 9 from the county's Oct 5 available-CAFs list. Dropped 6 that repeat a teammate's new batch. Needs a human check: Arbor Heights rent ($1,299 provider vs $1,627 county list); several phone/address conflicts noted in records. |
+| 2026-10-24 | 4. Alexandria City listings | 5 (3 communities) | Margot (upcoming, lottery Nov 2; 7 vs 10 phase-1 units on city pages), Ramsey Homes (ARHA, 52 units, ARHA main line), Community Lodgings Elbert Ave. Dropped Sansé (waitlist closed; rents may predate 2026 increase). Needs a human check: Arbelo phone 703.596.8159 (city guide) vs 703-890-5348 (Oct list, Housing Alexandria). |
 
 ### October 24, 2026 — budget listings and duplicate audit
 

@@ -421,6 +421,44 @@
       "status": "needs_verified_property_photo",
       "photo_reviewed_on": "2026-10-24",
       "review_note": "Rejected a neighboring Terraces at Arlington View East image: its 1420 address differs from this record at 1429 S. Rolfe Street."
+    },
+    {
+      "community": "Margot",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "margot-junior-one-to-two-bedroom"
+      ],
+      "official_source": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
+      "provider_website": "https://www.margotoldtown.com",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Ramsey Homes",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "ramsey-homes-one-bedroom",
+        "ramsey-homes-two-bedroom",
+        "ramsey-homes-three-bedroom"
+      ],
+      "official_source": "https://www.arha.us/ramsey-homes",
+      "provider_website": "https://www.arha.us/ramsey-homes",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Community Lodgings Elbert Avenue Apartments",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "community-lodgings-elbert-avenue-one-to-three-bedroom"
+      ],
+      "official_source": "https://communitylodgings.org/programs/affordable-housing/",
+      "provider_website": "https://communitylodgings.org/programs/affordable-housing/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
     }
   ]
 }
