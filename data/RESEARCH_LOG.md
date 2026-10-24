@@ -17,6 +17,14 @@ runs `python backend/catalog.py --check` and `python backend/test_catalog.py`, a
 9. Veterans housing (HUD-VASH, SSVF) and youth / young adult housing
 10. Food support and day services near shelters
 
+Blacksburg track (runs alternate: after a Northern Virginia topic, do the next Blacksburg topic, then back):
+
+B1. Student rooms and shared apartments near Virginia Tech, especially under $1,000 per person
+B2. Whole apartments and income-restricted / LIHTC communities in Blacksburg and Christiansburg
+B3. Housing authority, vouchers and rental assistance in Montgomery County and the New River Valley
+B4. Shelters, emergency help and food support in the New River Valley
+B5. Senior and accessible housing in Blacksburg and Christiansburg
+
 ## Log
 
 | Date | Topic | Records added | Notes |
