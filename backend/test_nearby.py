@@ -27,6 +27,13 @@ class NearbyTests(unittest.TestCase):
         self.assertEqual(nearby.extract_place("near my job"), (None, "job"))
         self.assertEqual(nearby.extract_place("I need a 2 bedroom apartment"), (None, None))
 
+    def test_ordinary_sentences_are_not_places(self):
+        for q in ["I was kicked out by my landlord and have nowhere to sleep tonight", "around $1200", "near term",
+                  "something by next month", "close to being evicted", "pay by check", "around Christmas I'll be homeless",
+                  "by the way, do you have studios", "near the end of the month", "close to 3 people"]:
+            with self.subTest(q):
+                self.assertEqual(nearby.extract_place(q), (None, None))
+
     def test_asks_for_the_address_when_only_my_office_is_given(self):
         self.assertIn("address", nearby.answer("Find me something near my office"))
 

@@ -62,6 +62,12 @@
     #show-more-listings:hover{filter:brightness(1.15)}
     #show-all-listings{padding:8px 14px;background:transparent;border-color:transparent;color:var(--muted);font-size:13px;text-decoration:underline;text-underline-offset:4px}
     #show-all-listings:hover{color:var(--ink);background:var(--sage)}
+    .more-listings{transition:transform .15s ease,box-shadow .15s ease,background .15s ease,border-color .15s ease}
+    .more-listings:hover{transform:translateY(-1px);box-shadow:0 6px 16px #23408f1f;border-color:#6f8fd6;background:#f3f6fd}
+    .more-listings:active{transform:translateY(0);box-shadow:none}
+    .card-reveal{animation:card-in .4s ease-out both}
+    @keyframes card-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    @media(prefers-reduced-motion:reduce){.card-reveal{animation:none}.more-listings:hover{transform:none}}
     @media(max-width:1050px){.listings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browse-filters{grid-template-columns:1fr 1fr}.browse-filters .primary{min-height:45px}.header-links{gap:16px}}
     @media(max-width:560px){.listings-grid{grid-template-columns:1fr}.housing-card{padding:22px}.browse-filters{grid-template-columns:1fr}.listings-section{margin-top:30px}.catalog-label{display:none}.header-links .browse-nav,.header-links>a[href="/"]{display:none}.header-links>a[href="#our-promise"]{display:none}.housing-card h3{font-size:18px}.catalog-notice{font-size:12px}.housing-location,.housing-features{font-size:12px}}
     /* Birds in the hero picture fly across and flap. Turned off by the reduced-motion rule above. */
@@ -162,9 +168,6 @@
     .budget-shortcut{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:15px 0 0;font-size:12px;color:var(--muted)}
     .budget-shortcut button{border:1px solid #8797b8;border-radius:20px;background:var(--white);color:var(--ink);padding:8px 14px;font-size:12px;min-height:44px}
     .budget-shortcut button[aria-pressed=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
-    .lease-guide-button{border:1px solid var(--line);background:var(--sage);color:var(--ink);padding:9px 12px;border-radius:7px;font-size:12px;min-height:44px;text-align:left}
-    .housing-actions .lease-guide-link{font-weight:650;flex-basis:100%;min-height:32px;display:inline-flex;align-items:center}
-    .floor-plan-option>.lease-guide-link{display:inline-flex;align-items:center;font-size:12px;font-weight:650;margin-top:14px;min-height:36px}
     .lease-guidance-link{display:inline-block;font-size:13px;font-weight:600;margin-bottom:18px;color:var(--blue)}
     /* Follow the device theme. Neutral surfaces keep text and controls distinct. */
     
@@ -172,7 +175,7 @@
     /* Very faint animated houses-and-birds drawing behind the page. */
     .page-backdrop{position:fixed;inset:auto 0 0 0;height:70vh;z-index:-1;pointer-events:none}
     /* Houses and trees stay barely visible; the birds are clear enough to notice. */
-    .page-backdrop svg>*{opacity:.8}
+    .page-backdrop svg>*{opacity:.6}
     .page-backdrop svg>g:has(.bird){opacity:1}
     .page-birds .wing{stroke-width:2.4}
     .page-backdrop>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(1.8)}
@@ -231,6 +234,15 @@
     .msg.bot{background:var(--sage);border-bottom-left-radius:4px}
     .msg.bot[data-state=loading]{color:var(--muted)}
     .msg.bot[data-state=error]{background:#fff3ef;color:#8c3e30}
+    .msg.bot[data-state=notice]{background:#fbf1dc;color:#5a3f0c}
+    .msg.bot[data-state=update]{background:transparent;border:1px dashed var(--line);color:var(--muted);font-size:13px}
+    .msg.bot[data-state=loading]::before{content:'';display:inline-block;width:9px;height:9px;border:2px solid var(--line);border-top-color:#2f55b5;border-radius:50%;margin-right:8px;vertical-align:-1px;animation:spin .8s linear infinite}
+    .msg{animation:msg-in .25s ease-out}
+    @keyframes msg-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .assistant-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
+    .assistant-chips button{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:7px 12px;font-size:12.5px;min-height:36px;transition:background .15s,border-color .15s}
+    .assistant-chips button:hover{background:#e2eafbcc;border-color:#6f8fd6}
+    @media(prefers-reduced-motion:reduce){.msg{animation:none}}
     .assistant-form{display:grid;grid-template-columns:1fr auto;gap:9px;padding:12px 16px;border-top:1px solid var(--line)}
     .assistant-form textarea{min-height:45px;resize:vertical}
     @media(max-width:560px){.find-checks,.find-results .opt-grid{grid-template-columns:1fr}.assistant-form{grid-template-columns:1fr}}
@@ -403,10 +415,11 @@
     </div>
     </div>
     <div class="find-results" id="find-results" role="region" aria-live="polite" aria-label="Your options" hidden></div>
-    <div class="assistant" id="assistant" hidden>
-      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#home"/></svg></span><div><strong>Clear House assistant</strong><span>Answers come only from our checked resources.</span></div></div>
+    <div class="assistant" id="assistant">
+      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#home"/></svg></span><div><strong>Ask Gemma</strong><span>Answers stream in live, using only our checked resources.</span></div></div>
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
-      <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" placeholder="Ask a follow-up question…"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
+      <div class="assistant-chips" id="assistant-chips"><button type="button">How do I qualify for Section 8?</button><button type="button">Who helps with back rent in Alexandria?</button><button type="button">A room near Virginia Tech under $700</button><button type="button">Near my office at 1800 Tysons Blvd</button></div>
+      <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" placeholder="Ask anything about housing, or “near my office at …”"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
     </div></section>
   </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>You don’t need all the answers.</h3><p>A few details are enough to begin.</p><ol class="steps"><li><span class="step-number">1</span><div><strong>Share what matters</strong><p>Your area, budget, and what you need.</p></div></li><li><span class="step-number">2</span><div><strong>Explore your options</strong><p>Get guidance in clear, everyday language.</p></div></li><li><span class="step-number">3</span><div><strong>Confirm the details</strong><p>Contact providers about eligibility and availability.</p></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a safe place tonight?</h3><p>For shelter and local support, call 211. If you’re in immediate danger, call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><small>Don’t wait for an AI response in an emergency.</small></section></aside></div></section>
 
@@ -579,16 +592,11 @@
           if(ClearHouseRental.term(plan))option.append(housingElement('p','housing-plan',ClearHouseRental.term(plan)));
           if(ClearHouseRental.lease(plan))option.append(housingElement('p','housing-features',ClearHouseRental.lease(plan)));
           option.append(eligibilityDetails(plan));
-          const guide=housingElement('a','lease-guide-link','Get lease guidance →');guide.href='/lease?listing='+encodeURIComponent(plan.id);option.append(guide);
           options.append(option);
         });
         details.append(options);card.append(details);
       } else card.append(eligibilityDetails(row));
       const actions = housingElement('div','housing-actions');
-      if(row.type!=='housing_authority'){
-        if(plans.length>1){const choose=housingElement('button','lease-guide-button','Choose a plan for lease help →');choose.type='button';choose.addEventListener('click',()=>{const details=card.querySelector('.floor-plans-details');details.open=true;const first=details.querySelector('.lease-guide-link');first.focus();});actions.append(choose);}
-        else{const guide=housingElement('a','lease-guide-link','Guide me through this lease →');guide.href='/lease?listing='+encodeURIComponent(row.id);actions.append(guide);}
-      }
       const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-price source ↗':'View source ↗')); if (source) actions.append(source);
       const map = mapLink(row); if (map) actions.append(map);
       if (row.phone && /^\+?[0-9 ()-]+$/.test(row.phone)) { const phone = housingElement('a','','Call leasing office'); phone.href='tel:'+row.phone.replace(/[^0-9+]/g,''); actions.append(phone); }
@@ -604,7 +612,7 @@
     });
     listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
     moreListings.hidden = visibleHousingCount >= housingRows.length;
-    allListings.hidden = moreListings.hidden || housingRows.length-visibleHousingCount <= 20;
+    allListings.hidden = moreListings.hidden || housingRows.length-visibleHousingCount <= 18; // with 18 or fewer left, Show more already reveals them all
     moreListings.textContent = `Show more communities (${Math.max(0,housingRows.length-visibleHousingCount)} remaining)`;
     allListings.textContent = 'Show all communities';
     browseMessage.dataset.state = 'success';
@@ -637,10 +645,12 @@
     const firstNewIndex=visibleHousingCount;
     visibleHousingCount=Math.min(housingRows.length,visibleHousingCount+count);
     renderHousing();
+    // New cards fade in a few at a time, and the page glides to the first one.
+    [...listingsGrid.children].slice(firstNewIndex).forEach((c,i)=>{c.classList.add('card-reveal');c.style.animationDelay=`${Math.min(i,11)*35}ms`;});
     const firstNewCard=listingsGrid.children[firstNewIndex];
-    if(firstNewCard){firstNewCard.tabIndex=-1;firstNewCard.focus({preventScroll:true});}
+    if(firstNewCard){firstNewCard.tabIndex=-1;firstNewCard.focus({preventScroll:true});firstNewCard.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}
   }
-  moreListings.addEventListener('click',()=>revealCommunities(20));
+  moreListings.addEventListener('click',()=>revealCommunities(18));
   allListings.addEventListener('click',()=>revealCommunities(housingRows.length));
   const initialFilters=new URLSearchParams(location.search);for(const key of ['location','max_rent','rental_space','age_group']){const field=browseForm.elements.namedItem(key);if(field&&initialFilters.has(key))field.value=initialFilters.get(key);}
   document.getElementById('blacksburg-student-rooms').addEventListener('click',()=>{document.getElementById('browse-location').value='Blacksburg';document.getElementById('browse-space').value='room';document.getElementById('browse-age-group').value='general';document.getElementById('browse-category').value='all';document.getElementById('browse-status').value='';document.getElementById('browse-sort').value='rent_asc';rentFilter.value='1000';document.getElementById('location').value='Blacksburg';document.getElementById('browse-location').dispatchEvent(new Event('change'));browseForm.requestSubmit();});
@@ -829,6 +839,7 @@
         const results = data.results || [];
         if (!results.length) { setStatus(`No new web listings with a confirmed source in ${data.area}. The blue pins are our reviewed listings.`); return; }
         setStatus(`Gemma found ${results.length} more on the web in ${data.area}. ${data.notice}`);
+        window.clearHouseAssistantNote?.(`Update: I found ${results.length} more listing${results.length === 1 ? '' : 's'} on the web in ${data.area}. They're the orange pins on the map, not checked by our team yet.`);
         results.forEach(r => {
           const lines = [r.name, r.address, r.rent_text, r.income_text, 'Found on the web, not checked by our team'];
           if (typeof r.lat === 'number') addWebPin({ lat: r.lat, lon: r.lon, color: '#d9822b', title: r.name, popup: popup(lines, r.source_url, 'Source page') });
@@ -900,35 +911,58 @@
       box.append(grid);
       return box;
     }
+    // Plain text with **bold** names; built from text nodes, so nothing from the server runs as HTML.
+    function setText(m, text) {
+      m.replaceChildren();
+      text.split(/(\*\*[^*]+\*\*)/).forEach(part => m.append(part.startsWith('**') && part.endsWith('**') ? el('strong', part.slice(2, -2)) : document.createTextNode(part)));
+    }
     function botSay(text, state) {
       const m = el('div', null, { class: 'msg bot' });
       if (state) m.dataset.state = state;
-      text.split(/(\*\*[^*]+\*\*)/).forEach(part => m.append(part.startsWith('**') && part.endsWith('**') ? el('strong', part.slice(2, -2)) : document.createTextNode(part)));
+      setText(m, text);
       log.append(m); log.scrollTop = log.scrollHeight; return m;
     }
     function userSay(text) { log.append(el('div', text, { class: 'msg user' })); log.scrollTop = log.scrollHeight; }
 
+    // Streams the answer: a progress note right away, then Gemma's words as they're written.
     async function ask(question) {
       userSay(question);
       const button = chatForm.querySelector('button'); button.disabled = true;
       const started = Date.now();
-      const pending = botSay('Thinking it through. This usually takes 20 to 40 seconds…', 'loading');
-      const timer = setInterval(() => { pending.textContent = `Thinking it through. This usually takes 20 to 40 seconds… (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
+      const status = botSay('Reading your question…', 'loading');
+      let note = 'Reading your question…';
+      const timer = setInterval(() => { status.textContent = `${note} (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
+      let answer = '', bubble = null;
+      const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); log.scrollTop = log.scrollHeight; };
+      const finish = () => { clearInterval(timer); status.remove(); };
       try {
-        const controller = new AbortController(); const stop = setTimeout(() => controller.abort(), 100000);
-        const res = await fetch('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile }), signal: controller.signal });
-        clearTimeout(stop);
-        const data = await res.json();
-        clearInterval(timer); pending.remove();
-        if (!res.ok || data.error) throw new Error(data.error || 'Something went wrong.');
-        botSay(data.answer);
-        history.push({ role: 'user', text: question }, { role: 'assistant', text: data.answer });
+        const controller = new AbortController(); const stop = setTimeout(() => controller.abort(), 120000);
+        const res = await fetch('/api/ask/stream', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile }), signal: controller.signal });
+        if (!res.ok || !res.body) { const data = await res.json().catch(() => ({})); throw new Error(data.error || 'Something went wrong.'); }
+        const reader = res.body.getReader(), decoder = new TextDecoder(); let buffer = '';
+        for (;;) {
+          const { value, done } = await reader.read(); if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          let cut;
+          while ((cut = buffer.indexOf('\n\n')) >= 0) {
+            const line = buffer.slice(0, cut).replace(/^data: /, ''); buffer = buffer.slice(cut + 2);
+            let event; try { event = JSON.parse(line); } catch { continue; }
+            if (event.kind === 'status') { note = event.text; status.textContent = note; }
+            else if (event.kind === 'chunk') { if (!answer) finish(); answer += event.text; show(answer); }
+            else if (event.kind === 'answer' || event.kind === 'fallback') { finish(); answer = event.text; show(answer); if (event.kind === 'fallback') bubble.dataset.state = 'notice'; }
+          }
+        }
+        clearTimeout(stop); finish();
+        if (!answer) throw new Error('No answer came back.');
+        history.push({ role: 'user', text: question }, { role: 'assistant', text: answer });
       } catch (err) {
-        clearInterval(timer); pending.remove();
+        finish();
         botSay((err.name === 'AbortError' ? 'This is taking too long, the AI service is busy. Please try again in a minute.' : (err.message || 'We could not reach the assistant.')) + ' For urgent help, call 211.', 'error');
       }
       button.disabled = false;
     }
+    // Other parts of the page (like the live web search) post short updates here.
+    window.clearHouseAssistantNote = text => { if (!log.querySelector('.msg')) return; botSay(text, 'update'); };
 
     form.addEventListener('submit', async e => {
       e.preventDefault();
@@ -971,7 +1005,7 @@
           results.append(more);
         }
         // The assistant introduces itself once options are on screen; chatting is optional.
-        assistant.hidden = false; log.replaceChildren(); history = [];
+        log.replaceChildren(); history = []; document.getElementById('assistant-chips').hidden = true;
         const counts = [`${homeCount} home${homeCount === 1 ? '' : 's'}`];
         if (data.programs_relevant) counts.push(`${data.programs.length} program${data.programs.length === 1 ? '' : 's'}`);
         if (profile.tonight) counts.unshift(`${data.shelters.length} shelter option${data.shelters.length === 1 ? '' : 's'}`);
@@ -984,7 +1018,11 @@
       button.disabled = false;
     });
 
-    chatForm.addEventListener('submit', e => { e.preventDefault(); const q = chatInput.value.trim(); if (!q) return; chatInput.value = ''; ask(q); });
+    const chips = document.getElementById('assistant-chips');
+    chips.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { chips.hidden = true; ask(b.textContent); } });
+    botSay("Hi, I'm Gemma, the Clear House assistant. Ask me about vouchers, rent help, shelters, or homes near a place, like your office or campus. I only use our checked resources.");
+
+    chatForm.addEventListener('submit', e => { e.preventDefault(); chips.hidden = true; const q = chatInput.value.trim(); if (!q) return; chatInput.value = ''; ask(q); });
     chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit(); } });
   })();
 </script>

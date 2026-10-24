@@ -15,7 +15,7 @@ import threading
 import time
 import urllib.request
 
-from advisor import LANDMARKS, OUTSIDE, area_for
+from advisor import LANDMARKS, OUTSIDE, URGENT, area_for
 from catalog import filter_catalog, load_catalog
 from geocode import lookup as census_lookup
 
@@ -26,10 +26,14 @@ REGIONS = [("Northern Virginia", 38.83, -77.30, 35), ("Blacksburg", 37.23, -80.4
 MAX_HOMES = 5
 MAX_MILES = 15
 
-NEAR = re.compile(r"\b(?:near|close to|closest to|by|around|next to|walking distance (?:to|of|from)|walk to|commute to|"
+# "by" and "around" are left out on purpose: "kicked out by my landlord", "around $1200".
+NEAR = re.compile(r"\b(?:near|close to|closest to|next to|walking distance (?:to|of|from)|walk to|commute to|"
                   r"within \d+ (?:mi|miles?|minutes?|mins?) (?:of|from)|minutes? from|not far from)\s+(.+?)(?:[?!]|\.(?:\s|$)|$)", re.I)
 WORKPLACE = re.compile(r"^(?:my|our|the)\s+(?:office|work|job|workplace|school|campus|hospital|kids'? school|daycare)\b"
                        r"(?:\s+(?:at|in|on|which is at|is at|located at)\s+)?", re.I)
+STREET = re.compile(r"^\d+\s+[\w.' -]*\b(?:st|street|rd|road|ave|avenue|blvd|boulevard|dr|drive|ln|lane|ct|court|pike|hwy|highway|way|pl|place|pkwy|parkway|cir|circle|ter|terrace|sq|square|plaza)\b", re.I)
+NOT_A_PLACE = re.compile(r"^(?:\$|\d+\s*(?:%|dollars|people|months?|weeks?|days?|years?|a month|per)|being|getting|losing|done|finished|term|the end|the (?:deadline|limit|max)|"
+                         r"(?:next|this|last) (?:week|month|year)|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b|christmas|thanksgiving|today|tomorrow|tonight|the weekend|midnight|noon)", re.I)
 FILLER_END = re.compile(r"\s+(?:please|thanks|thank you|under \$?\d[\d,]*.*|for (?:me|my family|\d+ people).*|with .*)$", re.I)
 _cache, _lock = {}, threading.Lock()
 
@@ -41,9 +45,11 @@ def _key():
 def extract_place(question):
     """('1800 Tysons Blvd', None) for a findable place; (None, 'office') when they only said 'my office'; (None, None) otherwise."""
     m = NEAR.search(question or "")
-    if not m:
+    if not m or URGENT.search(question):
         return None, None
     place = FILLER_END.sub("", m.group(1).strip().rstrip(",;"))
+    if NOT_A_PLACE.match(place):
+        return None, None
     work = WORKPLACE.match(place)
     if work:
         rest = place[work.end():].strip()
@@ -51,7 +57,11 @@ def extract_place(question):
             kind = re.search(r"office|work|job|workplace|school|campus|hospital|daycare", place, re.I)
             return None, kind.group(0).lower() if kind else "place"
         place = rest
-    return (place, None) if len(place) >= 3 else (None, None)
+    # A real place is a street address, a landmark we know, or a name (a capitalized word like "Inova").
+    known = any(re.search(rf"\b{re.escape(k)}\b", place.lower()) for k in LANDMARKS) or area_for(place) not in (None, "Northern Virginia")
+    if len(place) < 3 or not (STREET.match(place) or known or re.search(r"\b[A-Z][A-Za-z]", place)):
+        return None, None
+    return place, None
 
 
 def _miles(lat1, lon1, lat2, lon2):
@@ -79,7 +89,7 @@ def locate(place):
     landmark = next((v for k, v in LANDMARKS.items() if re.search(rf"\b{re.escape(k)}\b", key)), None)
     if landmark:
         found = (place.title(), landmark[1], landmark[2])
-    elif re.match(r"\s*\d+\s+\w", place):  # looks like a street address
+    elif STREET.match(place):
         region = "Blacksburg, VA" if area_for(place) == "Blacksburg" else "VA"
         try:
             point = census_lookup(place if re.search(r",\s*\w", place) else f"{place}, {region}")
@@ -102,6 +112,8 @@ def locate(place):
     if found and not any(_miles(found[1], found[2], lat, lon) <= r for _, lat, lon, r in REGIONS):
         found = ("outside", found[1], found[2])
     with _lock:
+        if len(_cache) > 500:  # keyed on user text, so keep it bounded
+            _cache.clear()
         _cache[key] = found
     return found
 
@@ -162,10 +174,11 @@ def answer(question, profile=None):
     lines = [f"Closest reviewed homes to {name}:"]
     for i, r in enumerate(homes):
         rent = f"from ${r['monthly_rent']:,.0f}/month" if isinstance(r.get("monthly_rent"), (int, float)) else "rent: ask the provider"
-        trip = [f"{_miles(lat, lon, r['lat'], r['lon']):.1f} mi away"]
-        if commute.get(i, {}).get("DRIVE") is not None:
+        miles = _miles(lat, lon, r["lat"], r["lon"])
+        trip = ["at or next to this address" if miles < 0.1 else f"{miles:.1f} mi away"]
+        if commute.get(i, {}).get("DRIVE"):
             trip.append(f"about {commute[i]['DRIVE']} min by car")
-        if commute.get(i, {}).get("TRANSIT") is not None:
+        if commute.get(i, {}).get("TRANSIT") and miles >= 0.1:
             trip.append(f"{commute[i]['TRANSIT']} min by transit")
         kind = " (regular rental, not income-restricted)" if r.get("type") == "rental_listing" else ""
         phone = f" Call {r['phone']}." if r.get("phone") else ""

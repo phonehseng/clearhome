@@ -31,3 +31,8 @@ Inspect `frontend/lease.html`, which currently contains the guide's markup, styl
 - Run the project's relevant checks and add focused regression coverage for navigation/completion behavior where appropriate. Summarize the implementation and validation, including any remaining limitations.
 
 Keep this change focused on lease guide usability and completion; preserve existing document review and provider-link behavior except where the fix requires an adjustment.
+
+
+---
+
+**Status (2026-10-24): not implemented.** The project owner asked to remove the lease guide entirely, so `frontend/lease.html`, its routes (`/lease`, `/api/lease`, `/api/lease/question`, `/api/listings/<id>/lease`, `/api/extract`) and `lease_checker.py` / `lease_journey.py` / `extract_text.py` were removed.
