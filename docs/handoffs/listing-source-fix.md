@@ -1,6 +1,6 @@
 # Housing listing source accuracy: requested fix
 
-the assistant: Please investigate and implement this user-requested fix. This file is a handoff, not a record of completed implementation.
+Please investigate and implement this user-requested fix. This file is a handoff, not a record of completed implementation.
 
 ## Reported problem
 
