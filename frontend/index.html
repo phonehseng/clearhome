@@ -599,7 +599,7 @@
     moreListings.hidden = visibleHousingCount >= housingRows.length;
     allListings.hidden = moreListings.hidden;
     const remaining=Math.max(0,housingRows.length-visibleHousingCount);
-    moreListings.textContent = `Show ${Math.min(21,remaining)} more communities (${remaining} remaining)`;
+    moreListings.textContent = `Show ${Math.min(20,remaining)} more communities (${remaining} remaining)`;
     allListings.textContent = `Show all communities (${remaining} more)`;
     browseMessage.dataset.state = 'success';
     browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs. Floor plans are grouped together.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
@@ -634,7 +634,7 @@
     const firstNewCard=listingsGrid.children[firstNewIndex];
     if(firstNewCard){firstNewCard.tabIndex=-1;firstNewCard.focus({preventScroll:true});}
   }
-  moreListings.addEventListener('click',()=>revealCommunities(21));
+  moreListings.addEventListener('click',()=>revealCommunities(20));
   allListings.addEventListener('click',()=>revealCommunities(housingRows.length));
   const initialFilters=new URLSearchParams(location.search);for(const key of ['location','max_rent','rental_space','age_group']){const field=browseForm.elements.namedItem(key);if(field&&initialFilters.has(key))field.value=initialFilters.get(key);}
   document.getElementById('blacksburg-student-rooms').addEventListener('click',()=>{document.getElementById('browse-location').value='Blacksburg';document.getElementById('browse-space').value='room';document.getElementById('browse-age-group').value='general';document.getElementById('browse-category').value='all';document.getElementById('browse-status').value='';document.getElementById('browse-sort').value='rent_asc';rentFilter.value='1000';document.getElementById('location').value='Blacksburg';document.getElementById('browse-location').dispatchEvent(new Event('change'));browseForm.requestSubmit();});
