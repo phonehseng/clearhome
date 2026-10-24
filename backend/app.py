@@ -46,6 +46,11 @@ def index():
     return send_from_directory(FRONTEND, "index.html")
 
 
+@app.get('/listing-map.js')
+def listing_map_js():
+    return send_from_directory(FRONTEND, 'listing-map.js')
+
+
 @app.get('/rental-labels.js')
 def rental_labels():
     return send_from_directory(FRONTEND, 'rental-labels.js')
