@@ -216,3 +216,7 @@ for exact prices, sources, unknowns, and the mixed-income classification caveat.
 ```sh
 python -m unittest discover -s backend -p 'test_listing_groups.py' -v
 ```
+
+## Hand review
+
+`listing_review.json` holds the team's decisions from the `/review` page: `verified` (checked by a person, with a note on how), `flagged` (needs a human check; the 2026-10-24 listing sweep's open items start here) and `hidden` (kept out of every list, map and chat answer without deleting the record). Save decisions on a local copy (`python backend/app.py`, then http://localhost:8000/review), commit the file, and redeploy.
