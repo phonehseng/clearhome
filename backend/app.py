@@ -1,6 +1,6 @@
 """Small web server: serves the page in frontend/ and the /api endpoints.
 
-Run:  python backend/app.py      then open http://localhost:8000
+Run:  python backend/app.py      then open http://localhost:8000 (about page) or /app (tools)
 Set INCLUDE_UNVERIFIED=1 to also use placeholder entries while testing.
 """
 import os
@@ -20,6 +20,11 @@ app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB uploads
 
 
 @app.get("/")
+def about():
+    return send_from_directory(FRONTEND, "about.html")
+
+
+@app.get("/app")
 def index():
     return send_from_directory(FRONTEND, "index.html")
 

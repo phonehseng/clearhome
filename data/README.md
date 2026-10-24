@@ -57,7 +57,7 @@ Location filtering is text-based, not geocoding. Use `Fairfax City` or `Fairfax 
 
 ## Browse and validate
 
-Start the existing Flask server. For a readable list with filters, open **http://localhost:8000/#listings**. The following API URLs return raw JSON for developers:
+Start the existing Flask server. For a readable list with filters, open **http://localhost:8000/app#listings**. The following API URLs return raw JSON for developers:
 
 - `http://localhost:8000/api/listings`
 - `http://localhost:8000/api/listings?location=Arlington&max_rent=1500&bedrooms=1`

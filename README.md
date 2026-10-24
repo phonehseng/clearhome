@@ -51,7 +51,7 @@ python backend/app.py
 Open http://localhost:8000.
 
 - `python backend/test_gemma.py` checks that your key works.
-- Browse readable housing cards without an AI key at `http://localhost:8000/#listings`. The raw JSON data endpoint is `http://localhost:8000/api/listings`.
+- Browse readable housing cards without an AI key at `http://localhost:8000/app#listings`. The raw JSON data endpoint is `http://localhost:8000/api/listings`.
 - `python backend/catalog.py --check` validates the source catalog.
 - `python -m unittest discover -s backend -p 'test_catalog.py' -v` runs offline catalog/matching/API checks.
 - The starter catalog includes openings and waitlists across Northern Virginia. See [source verification notes](data/VERIFICATION.md) for dated evidence and [catalog maintenance](data/README.md) for weekly review rules. Verification is AI-assisted review of official web sources, not phone confirmation or a live vacancy feed. Closed and overdue records are excluded from matching.
