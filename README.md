@@ -18,22 +18,49 @@ To avoid made-up information, the assistant only recommends places from our hand
 
 ## Tech used
 
-_Models (e.g. Gemma 4), Google Cloud services, frameworks. (TODO)_
+- **Gemma 4** (`gemma-4-26b-a4b-it`) through the Gemini API, for understanding requests, writing grounded answers, explaining leases and spotting scam signs.
+- **Python + Flask** backend, plain **HTML/CSS/JavaScript** frontend.
+- **pypdf** and **python-docx** to read uploaded leases, and **RapidOCR** to read photos and scanned PDFs. All three run locally, with no AI service involved.
+
+## How it works
+
+| File | What it does |
+|---|---|
+| `backend/matcher.py` | Gemma turns the person's message into filters (types, budget, accessibility, urgency). Code picks matching entries from `data/resources.json`, then Gemma writes a plain-language answer using only those entries. |
+| `backend/lease_checker.py` | Explains a lease (summary, key dates and costs, clauses to watch, questions to ask) or checks a listing for scam red flags. |
+| `backend/extract_text.py` | Reads PDF, Word, text and image uploads into plain text, on our own server. |
+| `backend/redact.py` | Removes SSNs, ITINs, card numbers and account numbers by their format before any text reaches the AI. |
+| `backend/app.py` | Flask server for the web page and the `/api/match`, `/api/lease`, `/api/listing` and `/api/extract` endpoints. |
+| `frontend/index.html` | The web page. |
+| `data/resources.json` | The hand-verified resource list. See [data/README.md](data/README.md). |
 
 ## Getting started
+
+You need Python 3.9 or newer and a free Gemini API key from [Google AI Studio](https://aistudio.google.com).
 
 ```bash
 git clone https://github.com/phonehseng/mlhhackathonbacteriagang
 cd mlhhackathonbacteriagang
+cp .env.example .env          # then put your key in .env
+python3 -m venv .venv
+source .venv/bin/activate     # Windows: .venv\Scripts\activate
+pip install -r backend/requirements.txt
+python backend/app.py
 ```
 
-_Setup and run instructions, API dependencies, environment variables (copy `.env.example` to `.env`). (TODO)_
+Open http://localhost:8000.
+
+- `python backend/test_gemma.py` checks that your key works.
+- `INCLUDE_UNVERIFIED=1 python backend/app.py` also uses the placeholder entries, for testing before real data is added.
 
 ## Responsible AI, privacy and accessibility
 
-- **Safety and grounding:** _guardrails against hallucinations and harmful output (TODO)_
-- **Privacy:** _what data we collect and why (TODO)_
-- **Accessibility:** _keyboard navigation, contrast, screen-reader support (TODO)_
+- **Grounding:** the assistant only recommends entries from our hand-verified list, and only entries marked `verified`. It's told never to invent places, phone numbers or prices, and to point people to 211 when nothing fits.
+- **Safety:** every page shows 911 and 211 up front. Urgent situations list shelters first. Lease and listing results say they are information, not legal advice, and scam results are framed as an estimate, not a verdict.
+- **Prompt injection:** pasted leases and listings are marked as data in the prompt, and the model is told not to follow instructions inside them.
+- **Privacy:** uploaded documents are read on our own server (including OCR), and SSNs and account numbers are removed by pattern before anything is sent to Gemma. Users can review the cleaned text before submitting. We don't store requests. On the free Gemini API tier Google may use submitted text to improve its products, so a real deployment should use a paid key or Vertex AI. Names and addresses are not removed automatically, so the page asks people to check.
+- **Accessibility:** labelled form fields, keyboard-navigable tabs, visible focus outlines, high-contrast text, and results announced to screen readers.
+- **Limits:** OCR on poor photos can misread text, and the AI can still make mistakes, so answers point to real people (211, tenant legal aid) for decisions.
 
 ## Team workflow (see [CONTRIBUTING.md](CONTRIBUTING.md) for the full git guide)
 

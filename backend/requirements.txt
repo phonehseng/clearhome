@@ -3,3 +3,6 @@ python-dotenv
 flask
 pypdf
 python-docx
+rapidocr_onnxruntime
+Pillow
+numpy

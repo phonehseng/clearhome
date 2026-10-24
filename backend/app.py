@@ -57,15 +57,15 @@ def extract():
     if not upload or not upload.filename:
         return jsonify(error="Please choose a file."), 400
     try:
-        text = extract_text(upload.filename, upload.read())
+        text, used_ocr = extract_text(upload.filename, upload.read())
     except ValueError as e:
         return jsonify(error=str(e)), 400
     except Exception:
         return jsonify(error="We couldn't read that file. Try a different copy, or paste the text."), 400
     if not text:
-        return jsonify(error="No text found. If it's a scan or photo, please paste the text instead."), 400
-    text, counts = redact(text)
-    return jsonify(text=text, redactions=counts)
+        return jsonify(error="No text found. Try a clearer photo, or paste the text instead."), 400
+    text, counts = redact(text, ocr=used_ocr)
+    return jsonify(text=text, redactions=counts, ocr=used_ocr)
 
 
 @app.errorhandler(413)
