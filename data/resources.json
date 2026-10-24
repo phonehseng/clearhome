@@ -284,7 +284,7 @@
       "source_updated_on": null,
       "auto_checked_at": "2026-10-24T17:10:10.964336+00:00"
     },
-    "notes": "Provider site and owner directory publish different phone numbers. This record uses the property-site location phone. Confirm rent, fees, and an accessible vacancy with the leasing office.",
+    "notes": "Provider site and owner directory publish different phone numbers. This record uses the property-site location phone. Confirm rent, fees, and an accessible vacancy with the leasing office. Needs a human check: Arlington County's Oct 5, 2026 available-CAFs list shows a 1-bedroom at $1,627 and phone 571.551.5280, which differs from the provider page used here.",
     "area": "Arlington County",
     "photo": {
       "url": "https://cdngeneral.rentcafe.com/dmslivecafe/2/85707/3_233251_1663741.jpg?quality=90&width=750",
@@ -362,7 +362,7 @@
       "source_updated_on": null,
       "auto_checked_at": "2026-10-24T17:10:10.964336+00:00"
     },
-    "notes": "Provider site and owner directory publish different phone numbers. This record uses the property-site location phone. Confirm rent, fees, and an accessible vacancy with the leasing office.",
+    "notes": "Provider site and owner directory publish different phone numbers. This record uses the property-site location phone. Confirm rent, fees, and an accessible vacancy with the leasing office. Needs a human check: Arlington County's Oct 5, 2026 available-CAFs list shows a 1-bedroom at $1,627 and phone 571.551.5280, which differs from the provider page used here.",
     "area": "Arlington County",
     "photo": {
       "url": "https://cdngeneral.rentcafe.com/dmslivecafe/2/85707/3_233251_1663741.jpg?quality=90&width=750",
@@ -6398,7 +6398,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.846184,
+    "lon": -77.112076,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-courts-at-huntington-station",
@@ -6458,7 +6461,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.789582,
+    "lon": -77.075141,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-ridgeleigh-at-van-dorn-metro",
@@ -6518,7 +6524,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.792307,
+    "lon": -77.139264,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-shelby",
@@ -6578,7 +6587,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.782452,
+    "lon": -77.07874,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-preserve-at-westfields",
@@ -6758,7 +6770,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.842202,
+    "lon": -77.435884,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-avalon-mosaic",
@@ -6818,7 +6833,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.869661,
+    "lon": -77.231864,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-bell-vienna-metro",
@@ -6878,7 +6896,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.873989,
+    "lon": -77.266434,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-camden-monument-place",
@@ -6938,7 +6959,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.862147,
+    "lon": -77.366702,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-fairchase-apartments",
@@ -6998,7 +7022,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.852917,
+    "lon": -77.364238,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-gables-centerpointe",
@@ -7058,7 +7085,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.86485,
+    "lon": -77.366271,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-halstead-square",
@@ -7118,7 +7148,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.878537,
+    "lon": -77.230811,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-jefferson-at-fair-oaks",
@@ -7238,7 +7271,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.87036,
+    "lon": -77.230732,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-overture-fair-ridge",
@@ -7298,7 +7334,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.872772,
+    "lon": -77.369622,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-prosperity-flats",
@@ -7358,7 +7397,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.880332,
+    "lon": -77.233394,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-radiant-fairfax-ridge",
@@ -7418,7 +7460,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.861998,
+    "lon": -77.337569,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-apartments-at-regents-park",
@@ -7478,7 +7523,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.873074,
+    "lon": -77.268856,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-ridgewood-by-windsor",
@@ -7538,7 +7586,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.85319,
+    "lon": -77.341218,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-loren",
@@ -7598,7 +7649,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.872392,
+    "lon": -77.160262,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-vantage-mosaic",
@@ -7658,7 +7712,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.87238,
+    "lon": -77.228302,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-belvoir-square-apartments",
@@ -7718,7 +7775,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.708663,
+    "lon": -77.159321,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-discovery-square",
@@ -7778,7 +7838,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.917747,
+    "lon": -77.420829,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-dulles-center-apartments",
@@ -7838,7 +7901,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.956208,
+    "lon": -77.420972,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-passport-apartments",
@@ -7898,7 +7964,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.958252,
+    "lon": -77.412262,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-ian",
@@ -8018,7 +8087,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.95012,
+    "lon": -77.395395,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-point-at-ridgeline",
@@ -8078,7 +8150,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.952924,
+    "lon": -77.405142,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-van-metre-at-woodland-park",
@@ -8138,7 +8213,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.948884,
+    "lon": -77.397557,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-vista-laurel-highlands",
@@ -8198,7 +8276,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.709819,
+    "lon": -77.224391,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-ovation-at-park-crest",
@@ -8258,7 +8339,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.929572,
+    "lon": -77.2281,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-vinson-hall",
@@ -8318,7 +8402,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.9199,
+    "lon": -77.150954,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-point-at-dunn-loring",
@@ -8438,7 +8525,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.949928,
+    "lon": -77.340436,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-avalon-dunn-loring",
@@ -8498,7 +8588,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.878911,
+    "lon": -77.227759,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-reserve-at-tysons-corner",
@@ -8558,7 +8651,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.905577,
+    "lon": -77.21881,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-aventon-to-aspire-huntington-station",
@@ -8678,7 +8774,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.779519,
+    "lon": -77.079382,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-parker",
@@ -8738,7 +8837,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.797038,
+    "lon": -77.076582,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-vista-at-fairfax-corner",
@@ -8798,7 +8900,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.857893,
+    "lon": -77.358687,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-alta-nova",
@@ -8858,7 +8963,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.848634,
+    "lon": -77.133236,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-three-collective",
@@ -8918,7 +9026,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.846186,
+    "lon": -77.118959,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-makers-rise",
@@ -8978,7 +9089,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.958828,
+    "lon": -77.415899,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-station-on-silver",
@@ -9098,7 +9212,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.936267,
+    "lon": -77.17843,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-arbor-at-halley-rise",
@@ -9278,7 +9395,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.948974,
+    "lon": -77.338009,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-exo",
@@ -9338,7 +9458,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.953439,
+    "lon": -77.353533,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-faraday-park",
@@ -9518,7 +9641,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.959448,
+    "lon": -77.356061,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-skymark",
@@ -9638,7 +9764,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.949126,
+    "lon": -77.350382,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-avant-at-reston-town-center",
@@ -9818,7 +9947,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.946805,
+    "lon": -77.3566,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-hanover-springfield",
@@ -9938,7 +10070,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.927842,
+    "lon": -77.238035,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-adaire",
@@ -10118,7 +10253,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.92607,
+    "lon": -77.204846,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-highgate-at-the-mile",
@@ -10178,7 +10316,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.927537,
+    "lon": -77.216739,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-lumen",
@@ -10238,7 +10379,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.923446,
+    "lon": -77.221935,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-nouvelle",
@@ -10298,7 +10442,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.925128,
+    "lon": -77.218945,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-heming",
@@ -10358,7 +10505,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.926606,
+    "lon": -77.202052,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-jones-at-tysons",
@@ -10418,7 +10568,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.931357,
+    "lon": -77.220711,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-point-at-mclean",
@@ -10478,7 +10631,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.925127,
+    "lon": -77.20389,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-rylan",
@@ -10538,7 +10694,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.918558,
+    "lon": -77.212573,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-vita",
@@ -10598,7 +10757,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.919427,
+    "lon": -77.220942,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-the-carlin",
@@ -10658,7 +10820,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.877542,
+    "lon": -77.111989,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-claridge-house",
@@ -10718,7 +10883,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.859628,
+    "lon": -77.056176,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-culpepper-gardens",
@@ -10778,7 +10946,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.870202,
+    "lon": -77.110395,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-hunter-s-park-at-cherrydale",
@@ -10838,7 +11009,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.895263,
+    "lon": -77.105187,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-the-jordan",
@@ -10898,7 +11072,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.879607,
+    "lon": -77.115869,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-placemakr",
@@ -10958,7 +11135,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.882231,
+    "lon": -77.116097,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-the-waycroft",
@@ -11018,7 +11198,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.879547,
+    "lon": -77.113335,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-ballston-park-at-historic-buckingham-village",
@@ -11078,7 +11261,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.874692,
+    "lon": -77.106136,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-buckingham-gardens",
@@ -11138,7 +11324,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.87191,
+    "lon": -77.108391,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-the-cadence",
@@ -11198,7 +11387,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.869835,
+    "lon": -77.105109,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-knightsbridge-apts",
@@ -11258,7 +11450,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.871811,
+    "lon": -77.105758,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-the-madison-at-ballston-station",
@@ -11318,7 +11513,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.872186,
+    "lon": -77.109715,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-whitefield-commons",
@@ -11378,7 +11576,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.871779,
+    "lon": -77.105716,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-the-spectrum",
@@ -11498,7 +11699,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.886759,
+    "lon": -77.096348,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-ten-at-clarendon",
@@ -11558,7 +11762,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.88434,
+    "lon": -77.094881,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-vpoint",
@@ -11618,7 +11825,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.888089,
+    "lon": -77.095165,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-wholey-legacy-homes",
@@ -11678,7 +11888,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.888827,
+    "lon": -77.076584,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-oakwood-meadow-senior-residences",
@@ -11738,7 +11951,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.791503,
+    "lon": -77.136865,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-ilda-s-overlook-senior-residences",
@@ -11798,7 +12014,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.826436,
+    "lon": -77.293247,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-loudoun-view-senior-residences",
@@ -11858,7 +12077,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.183882,
+    "lon": -77.270138,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-arlington-mill",
@@ -11918,7 +12140,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.856661,
+    "lon": -77.11266,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-gilliam-place",
@@ -11978,7 +12203,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.862064,
+    "lon": -77.093372,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-courthouse-crossings",
@@ -12038,7 +12266,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.887911,
+    "lon": -77.078961,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-columbia-hills-apartments",
@@ -12098,7 +12329,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.853905,
+    "lon": -77.115041,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-columbia-grove",
@@ -12158,7 +12392,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.853311,
+    "lon": -77.11514,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-the-springs",
@@ -12218,7 +12455,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.876385,
+    "lon": -77.112168,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-queens-court",
@@ -12278,7 +12518,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.895405,
+    "lon": -77.077939,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-parc-rosslyn",
@@ -12338,7 +12581,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.891617,
+    "lon": -77.076271,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-marbella",
@@ -12398,7 +12644,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.889065,
+    "lon": -77.077206,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-cameron-commons",
@@ -12458,7 +12707,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.894375,
+    "lon": -77.12663,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-calvert-manor",
@@ -12518,7 +12770,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.895215,
+    "lon": -77.092144,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-leckey-gardens",
@@ -12578,7 +12833,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.897246,
+    "lon": -77.11946,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-buchanan-gardens",
@@ -12638,7 +12896,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.85806,
+    "lon": -77.109308,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-the-barkalow",
@@ -12698,7 +12959,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.880633,
+    "lon": -77.090651,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-unity-homes-at-ballston",
@@ -12758,7 +13022,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.882429,
+    "lon": -77.110589,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-fisher-house",
@@ -12818,7 +13085,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.882331,
+    "lon": -77.134896,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-arlington-county-arna-valley-view",
@@ -12878,7 +13148,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.847511,
+    "lon": -77.076546,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-acclaim-at-ashburn",
@@ -12938,7 +13211,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.028009,
+    "lon": -77.486081,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-ashburn-chase",
@@ -12998,7 +13274,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.068379,
+    "lon": -77.480395,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-ashburn-meadows",
@@ -13058,7 +13337,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.034004,
+    "lon": -77.464996,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-atley-on-the-greenway",
@@ -13118,7 +13400,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.012879,
+    "lon": -77.492846,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-blvd-commons",
@@ -13178,7 +13463,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.006882,
+    "lon": -77.486884,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-blvd-gramercy-east-blvd-flats",
@@ -13298,7 +13586,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.009937,
+    "lon": -77.488326,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-vyne-one-loudoun",
@@ -13358,7 +13649,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.053854,
+    "lon": -77.452254,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-waxpool-apartments",
@@ -13538,7 +13832,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.917473,
+    "lon": -77.515421,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-bell-ashburn-farms",
@@ -13598,7 +13895,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.991372,
+    "lon": -77.484347,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-braddock-terrace",
@@ -13658,7 +13958,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.913238,
+    "lon": -77.55172,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-tgm-moorefield",
@@ -13718,7 +14021,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.993991,
+    "lon": -77.504287,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-shreveport-ridge",
@@ -13838,7 +14144,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.962495,
+    "lon": -77.53327,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-the-woods-at-westpark",
@@ -13958,7 +14267,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.01279,
+    "lon": -77.375818,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-cascades-crossing",
@@ -14018,7 +14330,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.028334,
+    "lon": -77.404428,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-the-commons-at-potomac-square",
@@ -14078,7 +14393,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.028973,
+    "lon": -77.396679,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-the-elms-at-arcola",
@@ -14138,7 +14456,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.9364,
+    "lon": -77.532332,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-heronview-apartments",
@@ -14198,7 +14519,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.042473,
+    "lon": -77.434189,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-lerner-windmill-parc",
@@ -14258,7 +14582,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.027717,
+    "lon": -77.416112,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-stone-springs-apartments",
@@ -14438,7 +14765,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.967937,
+    "lon": -77.748234,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-maple-avenue-apartments",
@@ -14498,7 +14828,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.140296,
+    "lon": -77.705946,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-purcellville-east",
@@ -14558,7 +14891,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.137556,
+    "lon": -77.709536,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-purcellville-pointe",
@@ -14618,7 +14954,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.137556,
+    "lon": -77.709389,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-levis-hill-house",
@@ -14678,7 +15017,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.967136,
+    "lon": -77.747422,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-madison-house",
@@ -14738,7 +15080,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.110284,
+    "lon": -77.56418,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-annie-b-rose-house",
@@ -14798,7 +15143,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.810364,
+    "lon": -77.042326,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-claridge-house-alexandria",
@@ -14858,7 +15206,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.816381,
+    "lon": -77.126594,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-foxchase",
@@ -14918,7 +15269,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.818109,
+    "lon": -77.106736,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-new-brookside-apartments",
@@ -14978,7 +15332,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.842875,
+    "lon": -77.066156,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-olde-towne-west-iii",
@@ -15038,7 +15395,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.800722,
+    "lon": -77.050121,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-acclaim-at-alexandria",
@@ -15098,7 +15458,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.80983,
+    "lon": -77.135899,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-beasley-square",
@@ -15158,7 +15521,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.804434,
+    "lon": -77.054887,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-beverly-park",
@@ -15218,7 +15584,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.841195,
+    "lon": -77.067371,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-bloom-at-braddock",
@@ -15278,7 +15647,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.815325,
+    "lon": -77.049369,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-brent-place",
@@ -15338,7 +15710,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.808948,
+    "lon": -77.129787,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-ellsworth",
@@ -15398,7 +15773,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.807885,
+    "lon": -77.078169,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-waypoint-at-fairlington",
@@ -15458,7 +15836,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.831029,
+    "lon": -77.096204,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-fields-of-alexandria",
@@ -15578,7 +15959,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.825952,
+    "lon": -77.088486,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-jackson-crossing",
@@ -15638,7 +16022,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.836997,
+    "lon": -77.053773,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-lacy-court",
@@ -15698,7 +16085,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.819124,
+    "lon": -77.063001,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-lineage",
@@ -15758,7 +16148,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.811461,
+    "lon": -77.048932,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-longview-terrace",
@@ -15818,7 +16211,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.807938,
+    "lon": -77.079047,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-lynhaven",
@@ -15878,7 +16274,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.835745,
+    "lon": -77.057545,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-nexus-west-alex",
@@ -15998,7 +16397,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.841038,
+    "lon": -77.067383,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-parcview",
@@ -16058,7 +16460,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.816944,
+    "lon": -77.124743,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-parkstone-alexandria",
@@ -16118,7 +16523,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.835412,
+    "lon": -77.103495,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-square-at-511",
@@ -16178,7 +16586,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.842752,
+    "lon": -77.064575,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-potomac-west",
@@ -16238,7 +16649,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.838565,
+    "lon": -77.061135,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-saint-james-plaza",
@@ -16298,7 +16712,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.838476,
+    "lon": -77.116176,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-station-at-potomac-yard",
@@ -16358,7 +16775,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.830824,
+    "lon": -77.050311,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-alate-old-town",
@@ -16418,7 +16838,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.815807,
+    "lon": -77.049374,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-alexan-florence",
@@ -16478,7 +16901,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.811407,
+    "lon": -77.042253,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-blake",
@@ -16538,7 +16964,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.833924,
+    "lon": -77.119714,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-bradley",
@@ -16598,7 +17027,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.814872,
+    "lon": -77.050906,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-carlyle-place",
@@ -16658,7 +17090,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.800965,
+    "lon": -77.068002,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-del-ray-central-fuse",
@@ -16718,7 +17153,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.832851,
+    "lon": -77.059795,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-point-at-eisenhower-square",
@@ -16838,7 +17276,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.802743,
+    "lon": -77.072321,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-gables-old-town-north",
@@ -16898,7 +17339,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.813959,
+    "lon": -77.043084,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-grayson",
@@ -17018,7 +17462,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.837796,
+    "lon": -77.103919,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-ives-at-oakville",
@@ -17078,7 +17525,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.829256,
+    "lon": -77.052215,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-meridian-at-eisenhower-station",
@@ -17138,7 +17588,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.801091,
+    "lon": -77.069947,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-meridian-2250",
@@ -17198,7 +17651,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.799717,
+    "lon": -77.068486,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-notch-8",
@@ -17318,7 +17774,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.800441,
+    "lon": -77.068778,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-park-ford",
@@ -17378,7 +17837,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.836414,
+    "lon": -77.104329,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-platform",
@@ -17438,7 +17900,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.8167,
+    "lon": -77.050166,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-residences-at-carlyle-square",
@@ -17498,7 +17963,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.802312,
+    "lon": -77.060008,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-raeburn",
@@ -17558,7 +18026,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.829146,
+    "lon": -77.05216,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-station-650",
@@ -17618,7 +18089,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.82272,
+    "lon": -77.049336,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-bell-old-town",
@@ -17738,7 +18212,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.811382,
+    "lon": -77.139417,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-prince-william-county-the-fitzgerald",
@@ -17994,7 +18471,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.62401,
+    "lon": -77.291839,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-prince-william-county-park-landing",
@@ -18058,7 +18538,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.648872,
+    "lon": -77.308953,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-prince-william-county-the-harbor-at-quantico-creek",
@@ -18122,7 +18605,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.563393,
+    "lon": -77.334294,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-falls-church-city-455-tinner-hill",
@@ -18186,7 +18672,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.880054,
+    "lon": -77.177692,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-falls-church-city-the-alder-at-west-falls",
@@ -18314,7 +18803,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.880115,
+    "lon": -77.167676,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-falls-church-city-the-read-building",
@@ -18374,7 +18866,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.885327,
+    "lon": -77.175766,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-falls-church-city-the-fields-of-falls-church",
@@ -18438,7 +18933,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.888575,
+    "lon": -77.184103,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-broadfalls-efficiency",
@@ -18498,7 +18996,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.88813,
+    "lon": -77.180349,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-broadfalls-one-bedroom",
@@ -18558,7 +19059,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.88813,
+    "lon": -77.180349,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-broadfalls-two-bedroom",
@@ -18618,6 +19122,739 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.88813,
+    "lon": -77.180349,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "arlington-view-terrace-two-bedroom",
+    "name": "Arlington View Terrace — 2 bedroom",
+    "community": "Arlington View Terrace",
+    "record_kind": "floor_plan",
+    "floor_plan": "2 bedroom",
+    "type": "affordable_listing",
+    "address": "1429 S. Rolfe St., Arlington, VA 22204",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-521-4010",
+    "website": "https://www.avtapts.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households (owner tags the property 'Up to 50% AMI' and 'LIHTC'); eligibility must be confirmed by the provider.",
+    "cost": "Advertised base rent for 2 bedroom: $1,720–$1,938; the available unit 1429-04 is listed at $1,720. Utilities and fees must be confirmed.",
+    "monthly_rent": 1720,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "square_feet": 775,
+    "accessible": null,
+    "accessibility_notes": "Accessibility of the advertised unit is unconfirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying. Listing says no pets except service and assistance animals.",
+    "minimum_age": null,
+    "source_url": "https://www.rentcafe.com/housing/va/arlington/arlington-view-terrace/default.aspx",
+    "sources": [
+      {
+        "url": "https://www.rentcafe.com/housing/va/arlington/arlington-view-terrace/default.aspx",
+        "role": "provider"
+      },
+      {
+        "url": "https://ahcommunities.org/property/the-terraces-at-arlington-view-west/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "AHC-managed RentCafe listing shows unit 1429-04, 2 bedrooms, $1,720, 'Available now'; page says 'Only 1 unit left.'",
+      "source_url": "https://www.rentcafe.com/housing/va/arlington/arlington-view-terrace/default.aspx",
+      "source_updated_on": null,
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "The property's own site (avtapts.com) returned HTTP 403, so rent/availability come from the AHC-managed RentCafe listing. Phone conflict: RentCafe shows (833) 512-0098; AHC's page and Arlington County list 703-521-4010. AHC tags this building 'In Development' / 'Redevelopment' (the newer 77-unit Terraces at Arlington View East is at 1420 S Rolfe St), and the county directory lists 77 units at 1429 S. Rolfe — confirm which building the unit is in. Phone shown is the owner/county number; the RentCafe listing shows (833) 512-0098, which may be a tracking line.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "LIHTC; income-restricted affordable housing",
+      "evidence": "AHC's property page for The Terraces at Arlington View West (1429 S Rolfe St) is tagged 'Up to 50% AMI' and 'LIHTC'; the RentCafe listing is marked 'Income restricted'.",
+      "source_url": "https://ahcommunities.org/property/the-terraces-at-arlington-view-west/",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.860703,
+    "lon": -77.074191,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "taylor-square-one-bedroom",
+    "name": "Taylor Square Apartments — 1 bedroom",
+    "community": "Taylor Square Apartments",
+    "record_kind": "floor_plan",
+    "floor_plan": "1 bedroom",
+    "type": "affordable_listing",
+    "address": "4235 S. 16th Street, Arlington, VA 22204",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "(703) 673-7040",
+    "website": "https://www.taylorsquareapts.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households ('Income guidelines apply'); eligibility must be confirmed by the provider.",
+    "cost": "Advertised base rent: $1,718. Utilities and fees must be confirmed.",
+    "monthly_rent": 1718,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": 890,
+    "accessible": null,
+    "accessibility_notes": "Accessibility of the advertised units is unconfirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.rentcafe.com/housing/va/arlington/lp21-taylor-square/default.aspx",
+    "sources": [
+      {
+        "url": "https://www.rentcafe.com/housing/va/arlington/lp21-taylor-square/default.aspx",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "AHC-managed RentCafe listing shows units 4235-13 and 4241-20, 1 bedroom, $1,718, availability 'Now'; page says 'Only 2 units left.'",
+      "source_url": "https://www.rentcafe.com/housing/va/arlington/lp21-taylor-square/default.aspx",
+      "source_updated_on": null,
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Address conflict: RentCafe listing says 4235 S. 16th Street; Arlington County's Affordable Units page says 4245 S. 16th Street. The 2 bedroom plan shows 'Ask for pricing' with no listed units. Property site taylorsquareapts.com was not read; rent comes from the AHC-managed RentCafe listing.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Income-restricted affordable housing (Arlington County affordable units list)",
+      "evidence": "RentCafe listing managed by AHC Inc. is marked 'Income restricted' with '*Income guidelines apply'; Arlington County's Affordable Units page lists Taylor Square Apartments (44 units).",
+      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.853116,
+    "lon": -77.101047,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "the-shelton-two-bedroom",
+    "name": "The Shelton — 2 bedroom",
+    "community": "The Shelton",
+    "record_kind": "floor_plan",
+    "floor_plan": "2 bedroom",
+    "type": "affordable_listing",
+    "address": "3215 S. 24th Street, Arlington, VA 22206",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703.673.7030",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Income-qualified households of 2-4 people; county-listed maximum income $79,740 - $99,660. Eligibility must be confirmed by the provider.",
+    "cost": "County-listed monthly rent: $2,003. Utilities: Residents pay electricity and water/sewer. Fees and deposits must be confirmed.",
+    "monthly_rent": 2003,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "County list Type A accessible column: NO. Other accessibility features unconfirmed.",
+    "requirements": "Minimum income (county list): $60,090; maximum income: $79,740 - $99,660 (varies by household size). Per the county list, minimum incomes do not apply to households with rent assistance; landlords accept Housing Choice Vouchers and Housing Grants. Contact management to confirm income qualification, documents, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+    "sources": [
+      {
+        "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+        "role": "government"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Arlington County list 'Available CAFs October 2026 - List posted October 5, 2026': The Shelton — 11 available, 2 bedroom, $2,003, Type A accessible: NO. Disclaimer: 'This information is provided by property owners.'",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "source_updated_on": "2026-10-05",
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Rent and vacancy come only from the county's October 5, 2026 list of available CAF units (owner-reported); the units may have been leased since. County list also notes: 'Application fee and holding fee waived- 2 Bedroom Secial [sic], check with Management Office for more details.' The waived fees are a promotion, not part of rent. Also listed: 2 one-bedroom at $1,703 and 1 three-bedroom at $2,281.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Arlington County Committed Affordable Unit (CAF)",
+      "evidence": "The Shelton (Owner: AHC) appears on Arlington County Housing Division's 'List of Available Committed Affordable Apartments', October 2026.",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.848596,
+    "lon": -77.084239,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "the-macedonian-two-bedroom",
+    "name": "The Macedonian — 2 bedroom",
+    "community": "The Macedonian",
+    "record_kind": "floor_plan",
+    "floor_plan": "2 bedroom",
+    "type": "affordable_listing",
+    "address": "2229 S. Shirlington Road, Arlington, VA 22206",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703.673.7030",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Income-qualified households of 2-4 people; county-listed maximum income $79,740 - $99,660. Eligibility must be confirmed by the provider.",
+    "cost": "County-listed monthly rent: $2,016. Utilities: Residents pay electricity and water/sewer. Fees and deposits must be confirmed.",
+    "monthly_rent": 2016,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "County list Type A accessible column: NO. Other accessibility features unconfirmed.",
+    "requirements": "Minimum income (county list): $60,480; maximum income: $79,740 - $99,660 (varies by household size). Per the county list, minimum incomes do not apply to households with rent assistance; landlords accept Housing Choice Vouchers and Housing Grants. Contact management to confirm income qualification, documents, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+    "sources": [
+      {
+        "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+        "role": "government"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Arlington County list 'Available CAFs October 2026 - List posted October 5, 2026': The Macedonian — 2 available, 2 bedroom, $2,016, Type A accessible: NO. Disclaimer: 'This information is provided by property owners.'",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "source_updated_on": "2026-10-05",
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Rent and vacancy come only from the county's October 5, 2026 list of available CAF units (owner-reported); the units may have been leased since. County list notes 'Application fee and holding fee waived' (promotion, not rent).",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Arlington County Committed Affordable Unit (CAF)",
+      "evidence": "The Macedonian (Owner: AHC) appears on Arlington County Housing Division's 'List of Available Committed Affordable Apartments', October 2026.",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.849441,
+    "lon": -77.084341,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "fort-henry-gardens-two-bedroom",
+    "name": "Fort Henry Gardens — 2 bedroom",
+    "community": "Fort Henry Gardens",
+    "record_kind": "floor_plan",
+    "floor_plan": "2 bedroom",
+    "type": "affordable_listing",
+    "address": "2470 South Lowell St, Arlington, VA 22206",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703.673.7030",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Income-qualified households of 2-4 people; county-listed maximum income $79,740 - $99,660. Eligibility must be confirmed by the provider.",
+    "cost": "County-listed monthly rent: $2,088. Utilities: Residents pay gas and electric. Fees and deposits must be confirmed.",
+    "monthly_rent": 2088,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "County list Type A accessible column: NO. Other accessibility features unconfirmed.",
+    "requirements": "Minimum income (county list): $62,640; maximum income: $79,740 - $99,660 (varies by household size). Per the county list, minimum incomes do not apply to households with rent assistance; landlords accept Housing Choice Vouchers and Housing Grants. Contact management to confirm income qualification, documents, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+    "sources": [
+      {
+        "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+        "role": "government"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Arlington County list 'Available CAFs October 2026 - List posted October 5, 2026': Fort Henry Gardens — 9 available, 2 bedroom, $2,088, Type A accessible: NO. Disclaimer: 'This information is provided by property owners.'",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "source_updated_on": "2026-10-05",
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Rent and vacancy come only from the county's October 5, 2026 list of available CAF units (owner-reported); the units may have been leased since. County list notes 'Application fee and holding fee waived- 2 Bedroom Special' (promotion, not rent). The county directory page lists phone 571-473-5330 for Fort Henry Gardens; this record uses the phone on the October 2026 availability list.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Arlington County Committed Affordable Unit (CAF)",
+      "evidence": "Fort Henry Gardens (Owner: AHC) appears on Arlington County Housing Division's 'List of Available Committed Affordable Apartments', October 2026.",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.84665,
+    "lon": -77.086435,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "key-gardens-one-bedroom",
+    "name": "Key Gardens — 1 bedroom",
+    "community": "Key Gardens",
+    "record_kind": "floor_plan",
+    "floor_plan": "1 bedroom",
+    "type": "affordable_listing",
+    "address": "5121 Columbia Pike, Arlington, VA 22204",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703.671.3200",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Income-qualified households of 1-2 people; county-listed maximum income $69,780 - $79,740. Eligibility must be confirmed by the provider.",
+    "cost": "County-listed monthly rent: $1,650. Utilities: Tenants pay water and electric. Fees and deposits must be confirmed.",
+    "monthly_rent": 1650,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "County list Type A accessible column: No. Other accessibility features unconfirmed.",
+    "requirements": "Minimum income (county list): $52,200; maximum income: $69,780 - $79,740 (varies by household size). Per the county list, minimum incomes do not apply to households with rent assistance; landlords accept Housing Choice Vouchers and Housing Grants. Contact management to confirm income qualification, documents, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+    "sources": [
+      {
+        "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+        "role": "government"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Arlington County list 'Available CAFs October 2026 - List posted October 5, 2026': Key Gardens — 2 available, 1 bedroom, $1,650, Type A accessible: No. Disclaimer: 'This information is provided by property owners.'",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "source_updated_on": "2026-10-05",
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Rent and vacancy come only from the county's October 5, 2026 list of available CAF units (owner-reported); the units may have been leased since. County list fees: application fee $25 per adult over 18 years old, holding fee $100. A third 1 bedroom (Type A accessible: Yes) is listed at $1,695.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Arlington County Committed Affordable Unit (CAF)",
+      "evidence": "Key Gardens (Owner: AHC) appears on Arlington County Housing Division's 'List of Available Committed Affordable Apartments', October 2026.",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.855688,
+    "lon": -77.112869,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "serrano-apartments-one-bedroom",
+    "name": "Serrano Apartments — 1 bedroom",
+    "community": "Serrano Apartments",
+    "record_kind": "floor_plan",
+    "floor_plan": "1 bedroom",
+    "type": "affordable_listing",
+    "address": "5535 Columbia Pike, Arlington, VA 22204",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703.671.3200",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Income-qualified households of 3 people; county-listed maximum income $93,040 - $119,600. Eligibility must be confirmed by the provider.",
+    "cost": "County-listed monthly rent: $1,875. Utilities: Tenants pay water and gas. Fees and deposits must be confirmed.",
+    "monthly_rent": 1875,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "County list Type A accessible column: Check with Management Office. Other accessibility features unconfirmed.",
+    "requirements": "Minimum income (county list): $56,250; maximum income: $93,040 - $119,600 (varies by household size). Per the county list, minimum incomes do not apply to households with rent assistance; landlords accept Housing Choice Vouchers and Housing Grants. Contact management to confirm income qualification, documents, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+    "sources": [
+      {
+        "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+        "role": "government"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Arlington County list 'Available CAFs October 2026 - List posted October 5, 2026': Serrano Apartments — 13 available, 1 bedroom, $1,875, Type A accessible: Check with Management Office. Disclaimer: 'This information is provided by property owners.'",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "source_updated_on": "2026-10-05",
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Rent and vacancy come only from the county's October 5, 2026 list of available CAF units (owner-reported); the units may have been leased since. County list fees: application fee $25 per adult over 18 years old, holding fee $100. The list gives a household size of '3' and maximum income $93,040 - $119,600 for 1 bedrooms, which is unusual — confirm income limits with management. Also listed: 1 efficiency at $1,640.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Arlington County Committed Affordable Unit (CAF)",
+      "evidence": "Serrano Apartments (Owner: AHC) appears on Arlington County Housing Division's 'List of Available Committed Affordable Apartments', October 2026.",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.853721,
+    "lon": -77.119354,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "westover-apartments-one-bedroom",
+    "name": "Westover Apartments — 1 bedroom",
+    "community": "Westover Apartments",
+    "record_kind": "floor_plan",
+    "floor_plan": "1 bedroom",
+    "type": "affordable_listing",
+    "address": "5819 Washington Blvd., Arlington, VA 22205",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703.636.9960",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Income-qualified households of 1-2 people; county-listed maximum income $69,780 - $79,740. Eligibility must be confirmed by the provider.",
+    "cost": "County-listed monthly rent: $1,750. Utilities: Resident pays for electricity and water. Fees and deposits must be confirmed.",
+    "monthly_rent": 1750,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "County list Type A accessible column: NO. Other accessibility features unconfirmed.",
+    "requirements": "Minimum income (county list): $43,830; maximum income: $69,780 - $79,740 (varies by household size). Per the county list, minimum incomes do not apply to households with rent assistance; landlords accept Housing Choice Vouchers and Housing Grants. Contact management to confirm income qualification, documents, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+    "sources": [
+      {
+        "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+        "role": "government"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Arlington County list 'Available CAFs October 2026 - List posted October 5, 2026': Westover Apartments — 2 available, 1 bedroom, $1,750, Type A accessible: NO. Disclaimer: 'This information is provided by property owners.'",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "source_updated_on": "2026-10-05",
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Rent and vacancy come only from the county's October 5, 2026 list of available CAF units (owner-reported); the units may have been leased since. The county directory page gives Westover Apartments' address as 1649 N. Longfellow Street; the availability list gives the 5819 Washington Blvd. office address. Also listed: 1 two-bedroom at $2,032.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Arlington County Committed Affordable Unit (CAF)",
+      "evidence": "Westover Apartments (Owner: AHC) appears on Arlington County Housing Division's 'List of Available Committed Affordable Apartments', October 2026.",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.884139,
+    "lon": -77.138923,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "the-ashtons-one-bedroom",
+    "name": "The Ashtons — 1 bedroom",
+    "community": "The Ashtons",
+    "record_kind": "floor_plan",
+    "floor_plan": "1 bedroom",
+    "type": "affordable_listing",
+    "address": "5819 Washington Blvd. #A, Arlington, VA 22205",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703.636.9960",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Income-qualified households of 1-2 people; county-listed maximum income $58,150 - $66,450. Eligibility must be confirmed by the provider.",
+    "cost": "County-listed monthly rent: $1,472. Utilities: Resident pays for electricity, and gas. Fees and deposits must be confirmed.",
+    "monthly_rent": 1472,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "County list Type A accessible column: NO. Other accessibility features unconfirmed.",
+    "requirements": "Minimum income (county list): $42,720; maximum income: $58,150 - $66,450 (varies by household size). Per the county list, minimum incomes do not apply to households with rent assistance; landlords accept Housing Choice Vouchers and Housing Grants. Contact management to confirm income qualification, documents, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+    "sources": [
+      {
+        "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+        "role": "government"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Arlington County list 'Available CAFs October 2026 - List posted October 5, 2026': The Ashtons — 2 available, 1 bedroom, $1,472, Type A accessible: NO. Disclaimer: 'This information is provided by property owners.'",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "source_updated_on": "2026-10-05",
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Rent and vacancy come only from the county's October 5, 2026 list of available CAF units (owner-reported); the units may have been leased since. The county directory page lists 'Ashton House I, II, & III' at 5701 N. 10th Rd.; the availability list gives 5819 Washington Blvd. #A (shared with Westover, likely the leasing office). Confirm the unit's actual address. Also listed: 1 three-bedroom at $2,250.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Arlington County Committed Affordable Unit (CAF)",
+      "evidence": "The Ashtons (Owner: AHC) appears on Arlington County Housing Division's 'List of Available Committed Affordable Apartments', October 2026.",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.884139,
+    "lon": -77.138923,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "the-fields-of-arlington-one-bedroom",
+    "name": "The Fields of Arlington — 1 bedroom",
+    "community": "The Fields of Arlington",
+    "record_kind": "floor_plan",
+    "floor_plan": "1 bedroom",
+    "type": "affordable_listing",
+    "address": "5100 8th Rd. South, Arlington, VA 22204",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703.671.3300",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Income-qualified households of 1-2 people; county-listed maximum income $58,150 - $66,450. Eligibility must be confirmed by the provider.",
+    "cost": "County-listed monthly rent: $1,557. Utilities: All included in rent. Fees and deposits must be confirmed.",
+    "monthly_rent": 1557,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "County list Type A accessible column: NO. Other accessibility features unconfirmed.",
+    "requirements": "Minimum income (county list): $46,710; maximum income: $58,150 - $66,450 (varies by household size). Per the county list, minimum incomes do not apply to households with rent assistance; landlords accept Housing Choice Vouchers and Housing Grants. Contact management to confirm income qualification, documents, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+    "sources": [
+      {
+        "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+        "role": "government"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Arlington County list 'Available CAFs October 2026 - List posted October 5, 2026': The Fields of Arlington — 1 available, 1 bedroom, $1,557, Type A accessible: NO. Disclaimer: 'This information is provided by property owners.'",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "source_updated_on": "2026-10-05",
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Rent and vacancy come only from the county's October 5, 2026 list of available CAF units (owner-reported); the units may have been leased since. County list fees: application fee $24 per adult, holding fee $100; free parking lot. Also listed: 3 efficiency at $1,675 and 2 two-bedroom at $2,242. Not the same as The Fields of Manassas.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Arlington County Committed Affordable Unit (CAF)",
+      "evidence": "The Fields of Arlington (Owner: Kettler) appears on Arlington County Housing Division's 'List of Available Committed Affordable Apartments', October 2026.",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.857755,
+    "lon": -77.115715,
+    "geocode_source": "US Census Geocoder"
+  },
+  {
+    "id": "lenox-club-studio",
+    "name": "Lenox Club — Studio",
+    "community": "Lenox Club",
+    "record_kind": "floor_plan",
+    "floor_plan": "Studio",
+    "type": "affordable_listing",
+    "address": "401 12th Street South, Arlington, VA 22202",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703.418.1400",
+    "website": null,
+    "hours": null,
+    "who_it_serves": "Income-qualified households of 1-2 people; county-listed maximum income $58,150-$66,450. Eligibility must be confirmed by the provider.",
+    "cost": "County-listed monthly rent: $1,430. Utilities: Resident pays for electricity. Fees and deposits must be confirmed.",
+    "monthly_rent": 1430,
+    "rent_basis": "listed",
+    "currency": "USD",
+    "bedrooms": 0,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "County list Type A accessible column: NO. Other accessibility features unconfirmed.",
+    "requirements": "Minimum income (county list): $42,900; maximum income: $58,150-$66,450 (varies by household size). Per the county list, minimum incomes do not apply to households with rent assistance; landlords accept Housing Choice Vouchers and Housing Grants. Contact management to confirm income qualification, documents, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+    "sources": [
+      {
+        "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+        "role": "government"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Arlington County list 'Available CAFs October 2026 - List posted October 5, 2026': Lenox Club — 5 available, Studio, $1,430, Type A accessible: NO. Disclaimer: 'This information is provided by property owners.'",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "source_updated_on": "2026-10-05",
+      "auto_checked_at": "2026-10-24T19:35:08+00:00"
+    },
+    "notes": "Rent and vacancy come only from the county's October 5, 2026 list of available CAF units (owner-reported); the units may have been leased since. Owner listed as Bernstein (private owner). County directory shows 77 committed affordable units here; these rents apply to those units only.",
+    "area": "Arlington County",
+    "affordability": {
+      "status": "documented",
+      "program": "Arlington County Committed Affordable Unit (CAF)",
+      "evidence": "Lenox Club (Owner: Bernstein) appears on Arlington County Housing Division's 'List of Available Committed Affordable Apartments', October 2026.",
+      "source_url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
+      "checked_on": "2026-10-24",
+      "method": "Official-source web review; no direct provider confirmation.",
+      "individual_eligibility_confirmed": false
+    },
+    "lat": 38.863017,
+    "lon": -77.052838,
+    "geocode_source": "US Census Geocoder"
   }
 ]

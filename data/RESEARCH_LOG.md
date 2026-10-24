@@ -24,6 +24,7 @@ runs `python backend/catalog.py --check` and `python backend/test_catalog.py`, a
 | 2026-10-24 | Initial research (shelters, programs, open-data APIs) | 90 + 413 queued | First batch |
 | 2026-10-24 | 1. Recheck expiring listings | 0 | Nothing due; all review dates are 2026-10-31 |
 | 2026-10-24 | 2. Fairfax County and Fairfax City listings | 14 (11 communities) | Mostly FCRHA senior housing (55+/62+) from county pages; provider sites returned 403. Phone conflicts noted for Coan Pond and Saintsbury Plaza; Redbud Glen "leasing" vs county "Opening Soon". No Fairfax City properties publish affordable rents. |
+| 2026-10-24 | 3. Arlington County listings | 11 (11 communities) | 2 available now (AHC RentCafe pages), 9 from the county's Oct 5 available-CAFs list. Dropped 6 that repeat a teammate's new batch. Needs a human check: Arbor Heights rent ($1,299 provider vs $1,627 county list); several phone/address conflicts noted in records. |
 
 ### October 24, 2026 — budget listings and duplicate audit
 
