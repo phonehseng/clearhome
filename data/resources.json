@@ -3141,9 +3141,13 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/housingchoicevoucher",
         "role": "government"
+      },
+      {
+        "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
+        "role": "corroboration"
       }
     ],
-    "notes": "Waitlist page states: \"Waitlist applications are closed.\" and that the Housing Choice Voucher and Fairfax County Rental Program waitlists are \"currently closed.\" No date given. TTY 711. Email rha@fairfaxcounty.gov.",
+    "notes": "Waitlist page states: \"Waitlist applications are closed.\" and that the Housing Choice Voucher and Fairfax County Rental Program waitlists are \"currently closed.\" No date given. TTY 711. Email rha@fairfaxcounty.gov. HUD's Public Housing Authorities data (as of 2026-10-23) lists 5329 vouchers and the same office; HUD lists phone 703-653-7130, but the county's own housing pages publish 703-246-5000, which is shown here.",
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
@@ -3510,9 +3514,13 @@
       {
         "url": "https://www.arlingtonva.us/About-Arlington/Newsroom/Articles/2023/Arlington-County-to-Hold-Housing-Choice-Voucher-Program-Waitlist-Lottery-in-2023",
         "role": "corroboration"
+      },
+      {
+        "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
+        "role": "corroboration"
       }
     ],
-    "notes": "Program page does not state whether the waitlist is currently open or closed. Last known lottery window (County newsroom, 2023): Sept. 13-23, 2023. Income table is labeled \"effective July 2027\" on the page (likely typo). Email HCV@arlingtonva.us; TTY 711. Resident portal: https://myhousingbenefits.arlingtonva.us/",
+    "notes": "Program page does not state whether the waitlist is currently open or closed. Last known lottery window (County newsroom, 2023): Sept. 13-23, 2023. Income table is labeled \"effective July 2027\" on the page (likely typo). Email HCV@arlingtonva.us; TTY 711. Resident portal: https://myhousingbenefits.arlingtonva.us/ HUD's Public Housing Authorities data (as of 2026-10-23) lists 1827 vouchers and the same office and phone.",
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
@@ -3654,9 +3662,13 @@
       {
         "url": "https://www.alexandriava.gov/housing-services/renter-resources",
         "role": "government"
+      },
+      {
+        "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
+        "role": "corroboration"
       }
     ],
-    "notes": "Page states: \"Currently the HCVP is NOT accepting applications.\" and \"When the HCVP waiting list is scheduled to open again, this information will be posted online.\" No date given. City Renter Resources lists ARHA HCV contact Latonya Washington, 703.549.7115, lwashington@arha.us. Resident portal: https://residentportal.arha.us/",
+    "notes": "Page states: \"Currently the HCVP is NOT accepting applications.\" and \"When the HCVP waiting list is scheduled to open again, this information will be posted online.\" No date given. City Renter Resources lists ARHA HCV contact Latonya Washington, 703.549.7115, lwashington@arha.us. Resident portal: https://residentportal.arha.us/ HUD's Public Housing Authorities data (as of 2026-10-23) lists 2484 vouchers and the same office and phone.",
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
@@ -3821,9 +3833,13 @@
       {
         "url": "https://www.loudoun.gov/hcv",
         "role": "government"
+      },
+      {
+        "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
+        "role": "corroboration"
       }
     ],
-    "notes": "Page states: \"The waitlist is currently closed.\" No date given. Participant portal: https://portal.neighborlysoftware.com/hcv-loudouncountyva/Participant",
+    "notes": "Page states: \"The waitlist is currently closed.\" No date given. Participant portal: https://portal.neighborlysoftware.com/hcv-loudouncountyva/Participant HUD's Public Housing Authorities data (as of 2026-10-23) lists 821 vouchers and the same office and phone.",
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
@@ -3957,9 +3973,13 @@
       {
         "url": "https://www.pwcva.gov/department/housing-community-development",
         "role": "government"
+      },
+      {
+        "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
+        "role": "corroboration"
       }
     ],
-    "notes": "Page states: \"The Housing Choice Voucher Program waiting list is closed, and not accepting applications.\" No date given. OHCD's COVID-era Emergency Housing Assistance Program II stopped accepting applications \"AS OF FRIDAY, SEPTEMBER 20, 2024 AT 5:01 PM.\"",
+    "notes": "Page states: \"The Housing Choice Voucher Program waiting list is closed, and not accepting applications.\" No date given. OHCD's COVID-era Emergency Housing Assistance Program II stopped accepting applications \"AS OF FRIDAY, SEPTEMBER 20, 2024 AT 5:01 PM.\" HUD's Public Housing Authorities data (as of 2026-10-23) lists 2223 vouchers and the same office and phone.",
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",

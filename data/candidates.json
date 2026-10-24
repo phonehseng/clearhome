@@ -6,7 +6,13 @@
     "alexandria_affordable": "2026-10-24T17:05:32.018803+00:00",
     "nvrc_shelters": "2026-10-24T17:05:32.018803+00:00"
   },
-  "rejected": [],
+  "rejected": [
+    "hud-pha-va004",
+    "hud-pha-va019",
+    "hud-pha-va028",
+    "hud-pha-va035",
+    "hud-pha-va046"
+  ],
   "candidates": [
     {
       "name": "Momentum At Shady Grove Metro",
@@ -8707,156 +8713,6 @@
       "requirements": "Income limits apply; some properties serve only seniors or people with disabilities.",
       "how_to_apply": "1. Call the property's management office. 2. Ask to join the waitlist for an assisted unit. 3. Have proof of income and ID ready.",
       "notes": "Managed by S.L. Nusbaum Realty Co.."
-    },
-    {
-      "name": "Fairfax County Redevelopment & Hsg Authority",
-      "region": "Northern Virginia",
-      "state": "VA",
-      "accessible": null,
-      "source_url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0/query?where=STATE2KX%3D%2751%27+AND+CNTY2KX+IN+%28%27059%27%2C%2759%27%2C%27600%27%2C%27610%27%2C%27013%27%2C%2713%27%2C%27510%27%2C%27107%27%2C%27153%27%2C%27683%27%2C%27685%27%29&outFields=%2A&returnGeometry=false&f=json",
-      "sources": [
-        {
-          "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
-          "role": "government"
-        }
-      ],
-      "origin": "hud_pha",
-      "data_as_of": "2026-10-23",
-      "verified": false,
-      "verification_method": "Imported from the HUD Public Housing Authorities open-data API (data as of 2026-10-23); not yet reviewed by the team.",
-      "last_verified": null,
-      "id": "hud-pha-va019",
-      "type": "housing_authority",
-      "address": "3700 Pender Dr Ste 300, Fairfax, VA 22030",
-      "city": "Fairfax",
-      "jurisdiction": "Fairfax County",
-      "phone": "703-653-7130",
-      "website": null,
-      "who_it_serves": "Runs Housing Choice Vouchers (Section 8) (5329 vouchers) and other assistance for low-income households.",
-      "cost": null,
-      "requirements": "Income limits apply. Voucher waitlists open and close; check the authority's website for current status.",
-      "how_to_apply": "1. Check the housing authority's website or call to ask whether the voucher waitlist is open. 2. Apply online or in person when it is. 3. Keep your contact details updated so you don't lose your place.",
-      "notes": null
-    },
-    {
-      "name": "Loudoun County DHCD",
-      "region": "Northern Virginia",
-      "state": "VA",
-      "accessible": null,
-      "source_url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0/query?where=STATE2KX%3D%2751%27+AND+CNTY2KX+IN+%28%27059%27%2C%2759%27%2C%27600%27%2C%27610%27%2C%27013%27%2C%2713%27%2C%27510%27%2C%27107%27%2C%27153%27%2C%27683%27%2C%27685%27%29&outFields=%2A&returnGeometry=false&f=json",
-      "sources": [
-        {
-          "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
-          "role": "government"
-        }
-      ],
-      "origin": "hud_pha",
-      "data_as_of": "2026-10-23",
-      "verified": false,
-      "verification_method": "Imported from the HUD Public Housing Authorities open-data API (data as of 2026-10-23); not yet reviewed by the team.",
-      "last_verified": null,
-      "id": "hud-pha-va035",
-      "type": "housing_authority",
-      "address": "106 Catoctin Cir SE, Leesburg, VA 20175",
-      "city": "Leesburg",
-      "jurisdiction": "Loudoun County",
-      "phone": "703-737-8323",
-      "website": null,
-      "who_it_serves": "Runs Housing Choice Vouchers (Section 8) (821 vouchers) and other assistance for low-income households.",
-      "cost": null,
-      "requirements": "Income limits apply. Voucher waitlists open and close; check the authority's website for current status.",
-      "how_to_apply": "1. Check the housing authority's website or call to ask whether the voucher waitlist is open. 2. Apply online or in person when it is. 3. Keep your contact details updated so you don't lose your place.",
-      "notes": null
-    },
-    {
-      "name": "Prince William County Office of HCD",
-      "region": "Northern Virginia",
-      "state": "VA",
-      "accessible": null,
-      "source_url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0/query?where=STATE2KX%3D%2751%27+AND+CNTY2KX+IN+%28%27059%27%2C%2759%27%2C%27600%27%2C%27610%27%2C%27013%27%2C%2713%27%2C%27510%27%2C%27107%27%2C%27153%27%2C%27683%27%2C%27685%27%29&outFields=%2A&returnGeometry=false&f=json",
-      "sources": [
-        {
-          "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
-          "role": "government"
-        }
-      ],
-      "origin": "hud_pha",
-      "data_as_of": "2026-10-23",
-      "verified": false,
-      "verification_method": "Imported from the HUD Public Housing Authorities open-data API (data as of 2026-10-23); not yet reviewed by the team.",
-      "last_verified": null,
-      "id": "hud-pha-va046",
-      "type": "housing_authority",
-      "address": "15941 Donald Curtis Dr Ste 112, Woodbridge, VA 22191",
-      "city": "Woodbridge",
-      "jurisdiction": "Prince William County",
-      "phone": "703-792-7530",
-      "website": null,
-      "who_it_serves": "Runs Housing Choice Vouchers (Section 8) (2223 vouchers) and other assistance for low-income households.",
-      "cost": null,
-      "requirements": "Income limits apply. Voucher waitlists open and close; check the authority's website for current status.",
-      "how_to_apply": "1. Check the housing authority's website or call to ask whether the voucher waitlist is open. 2. Apply online or in person when it is. 3. Keep your contact details updated so you don't lose your place.",
-      "notes": null
-    },
-    {
-      "name": "Arlington County Dept of Human Services",
-      "region": "Northern Virginia",
-      "state": "VA",
-      "accessible": null,
-      "source_url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0/query?where=STATE2KX%3D%2751%27+AND+CNTY2KX+IN+%28%27059%27%2C%2759%27%2C%27600%27%2C%27610%27%2C%27013%27%2C%2713%27%2C%27510%27%2C%27107%27%2C%27153%27%2C%27683%27%2C%27685%27%29&outFields=%2A&returnGeometry=false&f=json",
-      "sources": [
-        {
-          "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
-          "role": "government"
-        }
-      ],
-      "origin": "hud_pha",
-      "data_as_of": "2026-10-23",
-      "verified": false,
-      "verification_method": "Imported from the HUD Public Housing Authorities open-data API (data as of 2026-10-23); not yet reviewed by the team.",
-      "last_verified": null,
-      "id": "hud-pha-va028",
-      "type": "housing_authority",
-      "address": "2100 Washington Blvd Fl 3, Arlington, VA 22204",
-      "city": "Arlington",
-      "jurisdiction": "Arlington County",
-      "phone": "703-228-1450",
-      "website": null,
-      "who_it_serves": "Runs Housing Choice Vouchers (Section 8) (1827 vouchers) and other assistance for low-income households.",
-      "cost": null,
-      "requirements": "Income limits apply. Voucher waitlists open and close; check the authority's website for current status.",
-      "how_to_apply": "1. Check the housing authority's website or call to ask whether the voucher waitlist is open. 2. Apply online or in person when it is. 3. Keep your contact details updated so you don't lose your place.",
-      "notes": null
-    },
-    {
-      "name": "Alexandria Redevelopment & Housing Authority",
-      "region": "Northern Virginia",
-      "state": "VA",
-      "accessible": null,
-      "source_url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0/query?where=STATE2KX%3D%2751%27+AND+CNTY2KX+IN+%28%27059%27%2C%2759%27%2C%27600%27%2C%27610%27%2C%27013%27%2C%2713%27%2C%27510%27%2C%27107%27%2C%27153%27%2C%27683%27%2C%27685%27%29&outFields=%2A&returnGeometry=false&f=json",
-      "sources": [
-        {
-          "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Public_Housing_Authorities/FeatureServer/0",
-          "role": "government"
-        }
-      ],
-      "origin": "hud_pha",
-      "data_as_of": "2026-10-23",
-      "verified": false,
-      "verification_method": "Imported from the HUD Public Housing Authorities open-data API (data as of 2026-10-23); not yet reviewed by the team.",
-      "last_verified": null,
-      "id": "hud-pha-va004",
-      "type": "housing_authority",
-      "address": "401 Wythe St, Alexandria, VA 22314",
-      "city": "Alexandria",
-      "jurisdiction": "Alexandria City",
-      "phone": "703-549-7115",
-      "website": null,
-      "who_it_serves": "Runs Housing Choice Vouchers (Section 8) (2484 vouchers) and other assistance for low-income households.",
-      "cost": null,
-      "requirements": "Income limits apply. Voucher waitlists open and close; check the authority's website for current status.",
-      "how_to_apply": "1. Check the housing authority's website or call to ask whether the voucher waitlist is open. 2. Apply online or in person when it is. 3. Keep your contact details updated so you don't lose your place.",
-      "notes": null
     },
     {
       "name": "Annie B. Rose House",
