@@ -9,6 +9,6 @@ ENV OLLAMA_HOST=0.0.0.0:8080 \
     OLLAMA_DEBUG=false
 ENV MODEL=gemma4:26b
 
-RUN ollama serve & sleep 5 && ollama pull $MODEL && kill %1
+RUN ollama serve & sleep 5 && ollama pull $MODEL
 
 ENTRYPOINT ["ollama", "serve"]
