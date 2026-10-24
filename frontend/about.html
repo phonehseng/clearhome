@@ -19,6 +19,8 @@
       --card: #15224d;
       --line: #3a4f8f;
       --green: #254f40;
+      --font-body: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-head: var(--font-body);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -26,7 +28,7 @@
       margin: 0;
       background: var(--night);
       color: var(--ink);
-      font: 17px/1.7 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font: 17px/1.7 var(--font-body);
     }
     #sky {
       position: fixed;
@@ -51,6 +53,11 @@
       margin: 0 auto;
       padding: 20px 16px;
     }
+    h1, h2, h3, .brand, .button, .header-cta, .eyebrow { font-family: var(--font-head); }
+    .font-switcher { position: fixed; left: 16px; bottom: 16px; z-index: 20; display: flex; gap: 6px; align-items: center; font: 600 13px/1.4 Inter, system-ui, sans-serif; }
+    .font-switcher[hidden] { display: none; }
+    .font-switcher button { font: inherit; padding: 9px 12px; background: #ffd66b; color: #0b1433; border: 0; cursor: pointer; box-shadow: 4px 4px 0 #000; }
+    .font-switcher output { padding: 9px 12px; background: #0b1433; border: 2px solid #ffd66b; color: #ffd66b; }
     .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 750; font-size: 24px; letter-spacing: -1px; }
     .brand-mark { width: 39px; height: 41px; display: grid; place-items: center; background: var(--green); border-radius: 12px; color: #fff; box-shadow: 4px 4px 0 #000a; }
     .brand-dot { color: #8d99ad; margin-left: -9px; }
@@ -267,9 +274,54 @@
     </section>
   </main>
 
+  <div class="font-switcher" hidden>
+    <button type="button" id="font-prev" aria-label="Previous font">◀</button>
+    <button type="button" id="font-next">Next font ▶</button>
+    <output id="font-name" aria-live="polite"></output>
+  </div>
+
   <footer>Made by Pierce, Umair, Phone and Ryan for GDG Build with AI x Hacktoberfest 2026.</footer>
 
   <script>
+    // Debug only (add ?debug to the URL): cycle through font pairings to compare them.
+    if (new URLSearchParams(location.search).has('debug')) {
+      const FONTS = [
+        ['Inter', 'Inter', 'Inter'],
+        ['Space Grotesk + Inter', 'Space Grotesk', 'Inter'],
+        ['Poppins', 'Poppins', 'Poppins'],
+        ['DM Sans', 'DM Sans', 'DM Sans'],
+        ['Outfit', 'Outfit', 'Outfit'],
+        ['Nunito', 'Nunito', 'Nunito'],
+        ['Plus Jakarta Sans', 'Plus Jakarta Sans', 'Plus Jakarta Sans'],
+        ['Fraunces + Inter', 'Fraunces', 'Inter'],
+        ['Lora + Inter', 'Lora', 'Inter'],
+        ['Pixelify Sans + Inter', 'Pixelify Sans', 'Inter'],
+        ['Silkscreen + Inter', 'Silkscreen', 'Inter'],
+        ['VT323 + Inter', 'VT323', 'Inter'],
+      ];
+      const families = [...new Set(FONTS.flatMap(f => [f[1], f[2]]))]
+        .map(f => 'family=' + f.replace(/ /g, '+') + (['Silkscreen', 'VT323'].includes(f) ? '' : ':wght@400;600;700;800'))
+        .join('&');
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?' + families + '&display=swap';
+      document.head.append(link);
+
+      const switcher = document.querySelector('.font-switcher');
+      const label = document.getElementById('font-name');
+      let current = 0;
+      const apply = () => {
+        const [name, head, body] = FONTS[current];
+        document.documentElement.style.setProperty('--font-head', `"${head}", sans-serif`);
+        document.documentElement.style.setProperty('--font-body', `"${body}", sans-serif`);
+        label.textContent = `${current + 1}/${FONTS.length}: ${name}`;
+      };
+      document.getElementById('font-next').addEventListener('click', () => { current = (current + 1) % FONTS.length; apply(); });
+      document.getElementById('font-prev').addEventListener('click', () => { current = (current - 1 + FONTS.length) % FONTS.length; apply(); });
+      switcher.hidden = false;
+      apply();
+    }
+
     const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Scroll animations: reveal elements as they enter the screen.
@@ -332,7 +384,19 @@
     const ctx = sky.getContext('2d');
     const PIXEL = 4;
     const BANDS = ['#050a1f', '#08102b', '#0b1637', '#0f1d45', '#142554', '#1a2e63'];
-    let W, H, stars, flakes, skyline;
+    let W, H, stars, flakes, skyline, moon;
+
+    function placeMoon() {
+      const panel = document.querySelector('main').getBoundingClientRect();
+      const gutter = (innerWidth - panel.right) / PIXEL;  // free sky right of the panel
+      const r = Math.max(6, Math.round(W / 40));
+      if (gutter >= r * 2 + 6) {
+        moon = { mx: Math.round(W - gutter / 2), my: Math.round(H * 0.22), r };
+      } else {
+        // No room at the side: a smaller moon in the strip above the panel, right of center.
+        moon = { mx: Math.round(W * 0.62), my: Math.round(42 / PIXEL), r: 5 };
+      }
+    }
 
     function setup() {
       W = Math.ceil(innerWidth / PIXEL);
@@ -352,6 +416,7 @@
         speed: 0.08 + Math.random() * 0.12,
         drift: Math.random() * Math.PI * 2,
       }));
+      placeMoon();
       // Rooftops along the bottom, with a few lit windows.
       skyline = [];
       let x = 0;
@@ -379,8 +444,8 @@
         ctx.fillRect(s.x, s.y, 1, 1);
       });
 
-      // Pixel crescent moon.
-      const mx = Math.round(W * 0.8), my = Math.round(H * 0.16), r = Math.max(6, Math.round(W / 40));
+      // Pixel crescent moon, placed where the content panel doesn't cover it.
+      const { mx, my, r } = moon;
       for (let y = -r; y <= r; y++) {
         for (let x = -r; x <= r; x++) {
           if (x * x + y * y <= r * r && (x + r * 0.45) ** 2 + (y - r * 0.2) ** 2 > (r * 0.85) ** 2) {

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#191e26" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0d1738" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#070e26" media="(prefers-color-scheme: dark)">
   <meta name="description" content="Clear House helps you find verified housing resources in Northern Virginia, understand a lease, and spot listing warning signs.">
   <title>Clear House — Your next step starts here</title>
   <style>
@@ -98,6 +98,60 @@
     }
     @media(max-width:1050px){.listings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browse-filters{grid-template-columns:1fr 1fr}.browse-filters .primary{min-height:45px}.header-links{gap:16px}}
     @media(max-width:560px){.listings-grid{grid-template-columns:1fr}.housing-card{padding:22px}.browse-filters{grid-template-columns:1fr}.listings-section{margin-top:30px}.catalog-label{display:none}.header-links .browse-nav,.header-links>a[href="/"]{display:none}.header-links>a[href="#our-promise"]{display:none}.housing-card h3{font-size:18px}.catalog-notice{font-size:12px}.housing-location,.housing-features{font-size:12px}}
+    /* Blue theme, matching the about page. The logo badge keeps its green. */
+    :root{--bg:#eef3fc;--ink:#14203f;--muted:#4b5a7a;--line:#d2dcf0;--sage:#e2eafb;--blue:#23408f}
+    :focus-visible{outline-color:#e0a100}
+    :root .site-header{background:#0d1738;border-color:#0d1738}
+    :root .brand,:root .header-links a:not(.emergency-link){color:#eef3ff}
+    :root .brand-dot{color:#8d99ad}
+    :root .region-label{color:#b7c3e6}
+    :root .brand-mark{background:#254f40;color:#fff}
+    :root .primary{background:var(--blue);color:#fff}
+    :root .primary:hover{background:#1a3170}
+    :root .tab:hover{background:#f3f6fd;border-color:#9db2e3}
+    :root .tab[aria-selected=true]{background:#e2eafb;border-color:#6f8fd6;box-shadow:inset 0 0 0 1px #6f8fd6}
+    :root .tab[aria-selected=true] .tab-icon{background:#cfdcf7;color:var(--blue)}
+    :root :is(.eyebrow,h1 span){color:#2f55b5}
+    :root .eyebrow-dot{background:#6f8fd6}
+    :root .hero-art{background:#dfe8fa;border-color:#cddaf3}
+    :root .hero-art>svg{filter:hue-rotate(105deg) saturate(.9)}
+    :root .guidance-card{background:#e7eefc;border-color:#d2dcf0}
+    :root :is(.guidance-icon,.step-number){background:#d5e1f8;color:var(--blue)}
+    :root .result{background:#eef3fd;border-color:#cddaf3}
+    :root .upload-box{background:#f3f6fd;border-color:#9db2e3}
+    :root .catalog-notice{background:#e7eefc}
+    :root .housing-status{background:#e2eafb;color:var(--blue)}
+    :root .browse-link{border-color:#6f8fd6}
+    @media(prefers-color-scheme:dark){
+    :root{--bg:#0b1433;--ink:#eef3ff;--muted:#b7c3e6;--line:#3a4f8f;--sage:#1f3170;--white:#15224d}
+    :root .site-header{background:#070e26;border-color:#070e26}
+    :root :is(.tool-panel,.tab,.trust-banner){background:#15224d}
+    :root .tab:hover{background:#1b2b5e;border-color:#6f8fd6}
+    :root .tab[aria-selected=true]{background:#1f3170;border-color:#8fa9ec;box-shadow:inset 0 0 0 1px #8fa9ec}
+    :root :is(.tab-icon,.guidance-icon,.step-number){background:#22346b;color:#d5e0fb}
+    :root .tab[aria-selected=true] .tab-icon{background:#2c4290;color:#fff}
+    :root .primary{background:#ffd66b;color:#0b1433}
+    :root .primary:hover{background:#ffe08f}
+    :root .brand-mark{background:#254f40;color:#fff}
+    :root :is(.eyebrow,h1 span){color:#ffd66b}
+    :root :is(.input-wrapper,textarea){background:#0e1a40;border-color:#4a62a6}
+    :root .examples button{background:#1b2b5e;border-color:#4a62a6}
+    :root .examples button:hover{background:#26397a}
+    :root .guidance-card{background:#13204a;border-color:#3a4f8f}
+    :root .result{background:#1b2b5e;border-color:#4a62a6;color:#eef3ff}
+    :root .result[data-state=loading]{background:#16244f}
+    :root .upload-box{background:#13204a;border-color:#6f8fd6}
+    :root .upload-box input::file-selector-button{background:#22346b;border-color:#6f8fd6}
+    :root .hero-art{background:#13204a;border-color:#3a4f8f}
+    :root .hero-art>svg{filter:hue-rotate(105deg) brightness(.7) saturate(.8)}
+    :root .art-note{background:#1b2b5e}
+    :root .form-bottom{border-color:#3a4f8f}
+    :root .catalog-notice{background:#13204a}
+    :root :is(.housing-card,.more-listings){background:#15224d}
+    :root .browse-filters :is(input,select){background:#0e1a40;border-color:#4a62a6}
+    :root .housing-status{background:#1f3170;color:#d5e0fb}
+    :root .browse-link{border-color:#ffd66b}
+    }
   </style>
 </head>
 <body>
