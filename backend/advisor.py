@@ -18,7 +18,7 @@ FIELDS = ("name", "type", "jurisdiction", "city", "address", "phone", "website",
           "lease_type", "lease_responsibility", "lease_start", "lease_end", "payment_schedule", "shared_home_bedrooms",
           # Emergency services: how to get in and where to go (only present on shelter and intake records).
           "intake_steps", "intake_hours", "public_intake_address", "after_hours", "phone_role", "address_kind",
-          "confidential_location", "referral_required", "intake_status", "intake_status_note", "distance_from_blacksburg", "transit", "links", "source_kind")
+          "confidential_location", "referral_required", "intake_status", "intake_status_note", "distance_from_blacksburg", "transit", "links", "source_kind", "operator")
 
 
 # Gemma's free tier allows about 16,000 input tokens a minute, so each question only sends
