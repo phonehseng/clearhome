@@ -156,6 +156,12 @@
 
     /* Listings map in the hero. */
     .hero-map-wrap{min-width:0}
+    .map-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+    .map-tab{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:13px;font-weight:600;color:var(--ink);transition:background .15s,border-color .15s,color .15s}
+    .map-tab:hover{border-color:#6f8fd6}
+    .map-tab[aria-pressed=true]{background:#23408f;border-color:#23408f;color:#fff}
+    .map-tab.near-me{margin-left:auto}
+    .map-tab.near-me[aria-busy=true]{opacity:.7;cursor:wait}
     .hero-map{height:300px;border-radius:18px;border:1px solid var(--line);overflow:hidden;background:var(--sage)}
     .map-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
     .map-legend span{display:flex;align-items:center;gap:6px}
@@ -492,7 +498,7 @@
 <a class="skip-link" href="#tools">Skip to housing tools</a>
 <header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>NoVA & Blacksburg</div><nav class="header-links" aria-label="Page navigation"><a href="/">About</a><a href="/resources">Resources</a><a href="#listings" class="browse-nav">Browse housing</a><a href="#our-promise">Our promise</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
 <main class="container">
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Find housing support and take your next step with a little more confidence.</p><a class="browse-link" href="#listings">Browse housing & waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official-source housing resources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div></section>
+  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Find housing support and take your next step with a little more confidence.</p><a class="browse-link" href="#listings">Browse housing & waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official-source housing resources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div></section>
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What can we help you with?</h2><p>Start wherever you are. We’ll take it step by step.</p></div><div class="tools"><div class="tool-workspace">
     <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find housing help</strong><small>A place to start</small></span></button></div>
     <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Let’s find your next step.</h3><span class="step-label">HOUSING SUPPORT</span></div><p class="panel-description">Tell us what you need. We’ll look for support in our source-reviewed resource list.</p><form id="find-form" novalidate>
@@ -832,6 +838,7 @@
     const state = { boundaries: null, pins: [], webPins: [], selected: null, focused: null };
     // Start on the busiest part of Northern Virginia (Arlington to Fairfax) at a zoom where pins don't overlap.
     const START = { center: { lat: 38.86, lng: -77.19 }, zoom: 11 };
+    const REGIONS = { nova: [START.center, START.zoom], blacksburg: [{ lat: 37.2296, lng: -80.4139 }, 13] };
     let view = null;
 
     function googleView() {
@@ -859,6 +866,12 @@
         },
         pin: p => pin(p), webPin: p => pin(p, web),
         clearWeb() { web.splice(0).forEach(m => m.setMap(null)); },
+        center(c, zoom) { map.setCenter(c); map.setZoom(zoom); },
+        me(lat, lon) {
+          if (this._me) this._me.setMap(null);
+          this._me = new google.maps.Marker({ map, position: { lat, lng: lon }, title: 'You are here', zIndex: 999,
+            icon: { path: google.maps.SymbolPath.CIRCLE, scale: 8, fillColor: '#e0a100', fillOpacity: 1, strokeColor: '#fff', strokeWeight: 3 } });
+        },
         focus(points) {
           if (points.length === 1) { map.setCenter({ lat: points[0][0], lng: points[0][1] }); map.setZoom(15); return; }
           const b = new google.maps.LatLngBounds(); points.forEach(([lat, lon]) => b.extend({ lat, lng: lon }));
@@ -892,6 +905,11 @@
         },
         pin: p => pin(p, map), webPin: p => pin(p, web),
         clearWeb() { web.clearLayers(); },
+        center(c, zoom) { map.setView([c.lat, c.lng], zoom); },
+        me(lat, lon) {
+          if (this._me) this._me.remove();
+          this._me = L.circleMarker([lat, lon], { radius: 8, color: '#fff', weight: 3, fillColor: '#e0a100', fillOpacity: 1 }).bindTooltip('You are here').addTo(map);
+        },
         focus(points) {
           if (points.length === 1) { map.setView(points[0], 15); return; }
           map.fitBounds(points, { padding: [30, 30], maxZoom: 15 });
@@ -910,7 +928,8 @@
       view = v;
       if (state.boundaries) v.outlines(state.boundaries);
       state.pins.forEach(v.pin); state.webPins.forEach(v.webPin);
-      if (state.focused) v.focus(state.focused); else if (state.selected) v.select(state.selected);
+      if (state.me) v.me(...state.me);
+      if (state.focused) v.focus(state.focused); else if (state.region) v.center(...REGIONS[state.region]); else if (state.selected) v.select(state.selected);
     }
     function useLeaflet() { if (window.L && !(view && view.leaflet)) { draw(Object.assign(leafletView(), { leaflet: true })); } }
     // A rejected key only shows up after the script loads; Google calls this global, so switch to Leaflet then.
@@ -943,7 +962,31 @@
     // Same place names the server understands; longest first so "manassas park" wins over "manassas".
     const PLACES = [['blacksburg','Blacksburg'],['virginia tech','Blacksburg'],['manassas park','Manassas Park City'],['manassas','Manassas City'],['falls church','Falls Church City'],['fairfax city','Fairfax City'],['city of fairfax','Fairfax City'],['fairfax','Fairfax County'],['arlington','Arlington County'],['alexandria','Alexandria City'],['loudoun','Loudoun County'],['leesburg','Loudoun County'],['sterling','Loudoun County'],['ashburn','Loudoun County'],['prince william','Prince William County'],['woodbridge','Prince William County'],['dumfries','Prince William County']];
     const areaFor = text => { const t = (text || '').toLowerCase(); return (PLACES.find(([w]) => t.includes(w)) || [])[1] || null; };
-    function selectArea(name) { state.selected = name || null; state.focused = null; view?.select(state.selected); }
+    function selectArea(name) { state.selected = name || null; state.focused = null; state.region = null; view?.select(state.selected); markTab(name === 'Blacksburg' ? 'blacksburg' : name ? 'nova' : null); }
+    // Tabs above the map: jump between the two service regions, or find homes near where you are.
+    const tabs = [...document.querySelectorAll('.map-tab[data-region]')];
+    const markTab = region => { if (region) tabs.forEach(t => t.setAttribute('aria-pressed', String(t.dataset.region === region))); };
+    tabs.forEach(t => t.addEventListener('click', () => {
+      state.region = t.dataset.region; state.focused = null; state.selected = null; markTab(state.region);
+      view?.center(...REGIONS[state.region]);
+      setStatus(state.region === 'blacksburg' ? 'Showing Blacksburg and Virginia Tech.' : 'Showing Northern Virginia. Pick or type an area to zoom in.');
+    }));
+    const nearBtn = document.getElementById('near-me');
+    nearBtn?.addEventListener('click', () => {
+      if (!navigator.geolocation) { setStatus('Your browser can’t share your location. Type a place in the chat instead, like “near my office at …”.'); return; }
+      nearBtn.setAttribute('aria-busy', 'true'); setStatus('Finding your location…', 'loading');
+      navigator.geolocation.getCurrentPosition(pos => {
+        nearBtn.removeAttribute('aria-busy');
+        // Rounded to about 100 m before it leaves the browser; it isn't stored.
+        const lat = Math.round(pos.coords.latitude * 1000) / 1000, lon = Math.round(pos.coords.longitude * 1000) / 1000;
+        state.me = [lat, lon]; view?.me(lat, lon);
+        state.focused = [[lat, lon]]; view?.center({ lat, lng: lon }, 13); setStatus('Showing homes near you.');
+        window.clearHouseAsk?.('Homes near my current location', { coords: { lat, lon } });
+      }, err => {
+        nearBtn.removeAttribute('aria-busy');
+        setStatus(err.code === 1 ? 'Location is off for this site. Allow it in your browser, or type a place in the chat.' : 'We couldn’t find your location. Try again, or type a place in the chat.');
+      }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+    });
     // Other parts of the page point the map at what they're showing: the places in Gemma's answer, or filter results.
     window.clearHouseMapFocus = (rows, note) => {
       const points = (rows || []).filter(r => typeof r.lat === 'number' && typeof r.lon === 'number').map(r => [r.lat, r.lon]).slice(0, 60);
@@ -1074,7 +1117,8 @@
       const finish = () => { clearInterval(timer); status.remove(); };
       try {
         const controller = new AbortController(); const stop = setTimeout(() => controller.abort(), 120000);
-        const res = await fetch('/api/ask/stream', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile }), signal: controller.signal });
+        const res = await fetch('/api/ask/stream', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile: { ...profile, ...oneShot } }), signal: controller.signal });
+        oneShot = {};
         if (!res.ok || !res.body) { const data = await res.json().catch(() => ({})); throw new Error(data.error || 'Something went wrong.'); }
         const reader = res.body.getReader(), decoder = new TextDecoder(); let buffer = '';
         for (;;) {
@@ -1137,7 +1181,7 @@
         box.append(more);
       }
       bubble.after(box); pinTurn();
-      window.clearHouseMapFocus?.(cards, `Map shows the ${cards.length} place${cards.length === 1 ? '' : 's'} from Gemma's answer.`);
+      window.clearHouseMapFocus?.(cards, `Map shows the ${cards.length} place${cards.length === 1 ? '' : 's'} in this answer.`);
       // Turn each **name** in the answer into a link that brings its card into view.
       bubble.replaceChildren();
       text.split(/(\*\*[^*]+\*\*)/).forEach(part => {
@@ -1150,6 +1194,13 @@
         bubble.append(a);
       });
     }
+    // The map's "Near me" button asks here, sending the (rounded) location with this one question only.
+    let oneShot = {};
+    window.clearHouseAsk = (question, extra) => {
+      oneShot = extra || {}; document.getElementById('assistant-chips').hidden = true;
+      document.getElementById('assistant').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+      ask(question);
+    };
     // Other parts of the page (like the live web search) post short updates here.
     window.clearHouseAssistantNote = text => { if (!log.querySelector('.msg')) return; botSay(text, 'update'); };
 

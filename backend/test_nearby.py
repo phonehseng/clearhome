@@ -34,6 +34,14 @@ class NearbyTests(unittest.TestCase):
             with self.subTest(q):
                 self.assertEqual(nearby.extract_place(q), (None, None))
 
+    @patch.object(nearby, "_key", return_value="")
+    def test_near_me_uses_the_shared_location(self, _):
+        text = nearby.answer("Homes near my current location", {"coords": {"lat": 38.8816, "lon": -77.0910}})
+        self.assertIn("Closest reviewed homes", text)
+        self.assertIn("your location", text)
+        self.assertIn("outside the areas", nearby.answer("near me", {"coords": {"lat": 40.71, "lon": -74.0}}))
+        self.assertIn("Near me", nearby.answer("anything near me?", {}))  # no location shared: explain how
+
     def test_asks_for_the_address_when_only_my_office_is_given(self):
         self.assertIn("address", nearby.answer("Find me something near my office"))
 
