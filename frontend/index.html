@@ -161,6 +161,8 @@
     .map-tab:hover{border-color:#6f8fd6}
     .map-tab[aria-pressed=true]{background:#23408f;border-color:#23408f;color:#fff}
     .map-tab.near-me{margin-left:auto}
+    .map-hood{min-height:38px;padding:7px 30px 7px 12px;border-radius:999px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);font:inherit;font-size:13px;font-weight:600;color:var(--ink);max-width:180px}
+    .map-hood:focus-visible{outline:3px solid #e0a100;outline-offset:2px}
     .map-tab.near-me[aria-busy=true]{opacity:.7;cursor:wait}
     .hero-map{height:300px;border-radius:18px;border:1px solid var(--line);overflow:hidden;background:var(--sage)}
     .map-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
@@ -498,7 +500,7 @@
 <a class="skip-link" href="#tools">Skip to housing tools</a>
 <header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>NoVA & Blacksburg</div><nav class="header-links" aria-label="Page navigation"><a href="/">About</a><a href="/resources">Resources</a><a href="#listings" class="browse-nav">Browse housing</a><a href="#our-promise">Our promise</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
 <main class="container">
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Find housing support and take your next step with a little more confidence.</p><a class="browse-link" href="#listings">Browse housing & waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official-source housing resources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div></section>
+  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Find housing support and take your next step with a little more confidence.</p><a class="browse-link" href="#listings">Browse housing & waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official-source housing resources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div></section>
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What can we help you with?</h2><p>Start wherever you are. We’ll take it step by step.</p></div><div class="tools"><div class="tool-workspace">
     <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find housing help</strong><small>A place to start</small></span></button></div>
     <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Let’s find your next step.</h3><span class="step-label">HOUSING SUPPORT</span></div><p class="panel-description">Tell us what you need. We’ll look for support in our source-reviewed resource list.</p><form id="find-form" novalidate>
@@ -965,10 +967,46 @@
     function selectArea(name) { state.selected = name || null; state.focused = null; state.region = null; view?.select(state.selected); markTab(name === 'Blacksburg' ? 'blacksburg' : name ? 'nova' : null); }
     // Tabs above the map: jump between the two service regions, or find homes near where you are.
     const tabs = [...document.querySelectorAll('.map-tab[data-region]')];
+    const whereBox = document.getElementById('location');
+    const fillWhere = text => { if (whereBox) whereBox.value = text; };  // no change event, so no web search is started
+    // Neighborhood centers (approximate) for the dropdown; the server reads the same names.
+    const HOODS = {
+      nova: [['Fairfax', 38.8462, -77.3064], ['Reston', 38.9586, -77.3570], ['Herndon', 38.9696, -77.3861], ['Chantilly', 38.8943, -77.4311],
+             ['Centreville', 38.8404, -77.4289], ['Tysons', 38.9187, -77.2311], ['McLean', 38.9339, -77.1773], ['Vienna', 38.9012, -77.2653],
+             ['Falls Church', 38.8823, -77.1711], ['Annandale', 38.8304, -77.1964], ['Springfield', 38.7893, -77.1872], ['Burke', 38.7934, -77.2717],
+             ['Arlington (Ballston)', 38.8821, -77.1112], ['Arlington (Crystal City)', 38.8576, -77.0514], ['Arlington (Columbia Pike)', 38.8625, -77.0906],
+             ['Alexandria (Old Town)', 38.8048, -77.0469], ['Alexandria (West End)', 38.8130, -77.1260], ['Leesburg', 39.1157, -77.5636], ['Ashburn', 39.0438, -77.4874],
+             ['Sterling', 39.0062, -77.4286], ['Manassas', 38.7509, -77.4753], ['Woodbridge', 38.6582, -77.2497], ['Dumfries', 38.5676, -77.3280], ['Gainesville', 38.7957, -77.6139]],
+      blacksburg: [['Virginia Tech campus', 37.2284, -80.4234], ['Downtown Blacksburg', 37.2296, -80.4139], ['North Main Street', 37.2480, -80.4180], ['Christiansburg', 37.1299, -80.4089]],
+    };
+    const hood = document.getElementById('map-hood');
+    function fillHoods(region) {
+      hood.replaceChildren(new Option(region === 'blacksburg' ? 'Area…' : 'Neighborhood…', ''));
+      HOODS[region].forEach(([name]) => hood.append(new Option(name, name)));
+    }
+    fillHoods('nova');
+    hood.addEventListener('change', () => {
+      const region = tabs.find(t => t.getAttribute('aria-pressed') === 'true')?.dataset.region || 'nova';
+      const pick = HOODS[region].find(([name]) => name === hood.value); if (!pick) return;
+      state.region = null; state.selected = null; state.focused = [[pick[1], pick[2]]];
+      view?.center({ lat: pick[1], lng: pick[2] }, 13);
+      const where = region === 'blacksburg' && !/christiansburg/i.test(pick[0]) ? `${pick[0]}, Blacksburg` : pick[0];
+      fillWhere(where); setStatus(`Showing ${pick[0]}.`);
+    });
+    // Which county or city a point falls in, from the same boundary outlines the map draws.
+    function areaAt(lat, lon) {
+      const inside = (ring) => { let hit = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) hit = !hit; } return hit; };
+      for (const f of state.boundaries?.features || []) {
+        const g = f.geometry; const polys = g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : [];
+        if (polys.some(p => inside(p[0]))) return f.properties.jurisdiction;
+      }
+      return Math.hypot(lat - 37.23, lon + 80.42) < 0.25 ? 'Blacksburg' : null;
+    }
     const markTab = region => { if (region) tabs.forEach(t => t.setAttribute('aria-pressed', String(t.dataset.region === region))); };
     tabs.forEach(t => t.addEventListener('click', () => {
       state.region = t.dataset.region; state.focused = null; state.selected = null; markTab(state.region);
-      view?.center(...REGIONS[state.region]);
+      view?.center(...REGIONS[state.region]); fillHoods(state.region);
+      fillWhere(state.region === 'blacksburg' ? 'Blacksburg' : 'Northern Virginia');
       setStatus(state.region === 'blacksburg' ? 'Showing Blacksburg and Virginia Tech.' : 'Showing Northern Virginia. Pick or type an area to zoom in.');
     }));
     const nearBtn = document.getElementById('near-me');
@@ -980,6 +1018,8 @@
         // Rounded to about 100 m before it leaves the browser; it isn't stored.
         const lat = Math.round(pos.coords.latitude * 1000) / 1000, lon = Math.round(pos.coords.longitude * 1000) / 1000;
         state.me = [lat, lon]; view?.me(lat, lon);
+        const here = areaAt(lat, lon);  // fill "Where are you looking?" with the county or city you're in
+        if (here) { fillWhere(here); markTab(here === 'Blacksburg' ? 'blacksburg' : 'nova'); fillHoods(here === 'Blacksburg' ? 'blacksburg' : 'nova'); }
         state.focused = [[lat, lon]]; view?.center({ lat, lng: lon }, 13); setStatus('Showing homes near you.');
         window.clearHouseAsk?.('Homes near my current location', { coords: { lat, lon } });
       }, err => {

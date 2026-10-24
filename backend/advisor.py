@@ -23,7 +23,7 @@ FIELDS = ("name", "type", "jurisdiction", "city", "address", "phone", "website",
 MAX_RECORDS = 12
 MAX_FIELD = 240
 AREAS = [  # longest names first, so "manassas park" wins over "manassas"
-    ("blacksburg", "Blacksburg"), ("virginia tech", "Blacksburg"),
+    ("blacksburg", "Blacksburg"), ("virginia tech", "Blacksburg"), ("christiansburg", "Blacksburg"),
     ("manassas park", "Manassas Park City"), ("manassas", "Manassas City"), ("falls church", "Falls Church City"),
     ("fairfax city", "Fairfax City"), ("city of fairfax", "Fairfax City"), ("fairfax station", "Fairfax County"),
     ("fairfax county", "Fairfax County"), ("fairfax", "Fairfax County"),

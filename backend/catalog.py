@@ -249,11 +249,18 @@ def filter_catalog(resources, filters=None, today=None):
         if resource.get('type') == 'rental_listing' and not documented_rental(resource):
             continue
         row = copy.deepcopy(resource)
+        housing = row.get('type') in HOUSING_TYPES
         if row.get('availability') is not None:
             row['availability'] = effective_availability(row, today)
+            if not housing and row['availability'].get('status') == 'needs_recheck':
+                # An emergency service whose review lapsed is still worth calling; it just goes back to
+                # "call to confirm" instead of disappearing (capacity is never assumed either way).
+                row['availability']['status'] = 'contact_for_availability'
             if row['availability'].get('status') in {'closed', 'needs_recheck'}:
                 continue
-        if filters.get('urgency') == 'emergency' and row.get('availability', {}).get('status') in {'waitlist_open', 'upcoming', 'leasing', 'contact_for_availability'}:
+        # In an emergency, homes that are only waitlisted or "call us" aren't a place to stay tonight; shelters and
+        # intake lines are, even though their beds are always "call to confirm".
+        if housing and filters.get('urgency') == 'emergency' and row.get('availability', {}).get('status') in {'waitlist_open', 'upcoming', 'leasing', 'contact_for_availability'}:
             continue
         if filters.get('types') and row.get('type') not in filters['types']:
             continue
