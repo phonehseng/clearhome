@@ -58,6 +58,46 @@
     .emergency-card p{font-size:12px}
     .steps strong{font-size:12px}
     :root .trust-banner>svg{color:var(--muted)}
+
+    .browse-link{display:inline-flex;gap:14px;align-items:center;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--muted);margin-top:20px;padding-bottom:3px}
+    .listings-section{margin-top:42px;scroll-margin-top:24px}
+    .listings-section .section-heading p{margin-top:7px}
+    .catalog-label{font-size:10px;letter-spacing:1px;color:var(--muted);white-space:nowrap}
+    .catalog-notice{padding:14px 17px;background:#edf1f5;border:1px solid var(--line);border-radius:8px;font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:20px}
+    .browse-filters{display:grid;grid-template-columns:1.2fr 1.2fr 1fr auto;gap:13px;align-items:end}
+    .browse-filters>div{min-width:0}
+    .browse-filters :is(input,select){width:100%;min-width:0;min-height:45px;border:1px solid #b8c2ce;border-radius:7px;background:#fff;color:var(--ink);padding:10px;font-size:12px}
+    .browse-hint{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.8}
+    .browse-message{margin:20px 0 15px;font-size:13px;color:var(--muted)}
+    .browse-message[data-state=error]{padding:17px;background:#fff3ef;color:#8c3e30;border:1px solid #eed1c9;border-radius:8px}
+    .listings-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .housing-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:23px;display:flex;flex-direction:column;min-width:0}
+    .housing-status{display:inline-flex;align-self:start;padding:4px 8px;background:#edf1f5;border-radius:5px;font-size:10px;font-weight:600;color:#465b73;margin-bottom:14px}
+    .housing-status[data-status=waitlist_open]{background:#f8efdf;color:#7a592b}
+    .housing-card h3{font-size:17px;line-height:1.45;letter-spacing:-.3px;margin-bottom:5px}
+    .housing-plan{font-size:12px;color:var(--muted);margin-bottom:9px}
+    .housing-location{font-size:11px;color:var(--muted);line-height:1.8}
+    .housing-rent{font-size:19px;font-weight:650;letter-spacing:-.4px;margin:16px 0 5px}
+    .housing-rent small{font-size:11px;font-weight:400;letter-spacing:0}
+    .housing-features{font-size:11px;line-height:1.8;color:var(--muted);margin:0 0 15px}
+    .housing-age{font-size:11px;font-weight:600;margin-bottom:7px}
+    .housing-card details{border-top:1px solid var(--line);padding-top:12px;margin-top:auto}
+    .housing-card summary{font-size:12px;font-weight:550;cursor:pointer}
+    .housing-card details p{font-size:12px;line-height:1.85;color:var(--muted);margin:11px 0;overflow-wrap:anywhere}
+    .housing-actions{display:flex;gap:15px;align-items:center;flex-wrap:wrap;margin-top:17px}
+    .housing-actions a{font-size:12px;font-weight:550}
+    .housing-reviewed{font-size:10px;color:var(--muted);margin-top:14px}
+    .more-listings{display:block;margin:22px auto 0;border:1px solid var(--line);padding:11px 22px;border-radius:7px;background:#fff;font-size:12px;font-weight:550;min-height:44px}
+    @media(prefers-color-scheme:dark){
+      .catalog-notice{background:#222a35}
+      .housing-card,.more-listings{background:#1d222a}
+      .browse-filters :is(input,select){background:#141920;border-color:#66758a}
+      .housing-status{background:#2b3747;color:#d5dfec}
+      .housing-status[data-status=waitlist_open]{background:#403525;color:#f0d1a9}
+      .browse-message[data-state=error]{background:#3c2823;border-color:#895e4f;color:#f2b4a5}
+    }
+    @media(max-width:1050px){.listings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browse-filters{grid-template-columns:1fr 1fr}.browse-filters .primary{min-height:45px}.header-links{gap:16px}}
+    @media(max-width:560px){.listings-grid{grid-template-columns:1fr}.housing-card{padding:22px}.browse-filters{grid-template-columns:1fr}.listings-section{margin-top:30px}.catalog-label{display:none}.header-links .browse-nav{display:none}.header-links>a[href="#our-promise"]{display:none}.housing-card h3{font-size:18px}.catalog-notice{font-size:12px}.housing-location,.housing-features{font-size:12px}}
   </style>
 </head>
 <body>
@@ -73,9 +113,9 @@
   <symbol id="phone" viewBox="0 0 24 24"><path d="m7 3 4 5-3 3a14 14 0 0 0 5 5l3-3 5 4-2 4C11 22 2 13 3 5Z"/></symbol>
 </defs></svg>
 <a class="skip-link" href="#tools">Skip to housing tools</a>
-<header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>Northern Virginia</div><nav class="header-links" aria-label="Page navigation"><a href="#our-promise">Our promise</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>Northern Virginia</div><nav class="header-links" aria-label="Page navigation"><a href="#listings" class="browse-nav">Browse housing</a><a href="#our-promise">Our promise</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
 <main class="container">
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span>Housing support for Northern Virginia</div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Find housing support, make sense of a lease, and take your next step with a little more confidence.</p><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Hand-verified resources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><path d="M0 229c108-31 277-35 470-10v41H0Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><path d="M76 230v-55m339 51v-83" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 226v-19m-9 9h26m-17 10v-19m9 19v-19" stroke="#f8f5e4" stroke-width="4"/><path d="M271 66q7-8 14 0m5-9q7-8 14 0" stroke="#8da176" stroke-width="2" stroke-linecap="round"/><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg><div class="art-note"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#shield"/></svg>A little closer to your next chapter.</div></div></section>
+  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span>Housing support for Northern Virginia</div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Find housing support, make sense of a lease, and take your next step with a little more confidence.</p><a class="browse-link" href="#listings">Browse housing & waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Hand-verified resources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><path d="M0 229c108-31 277-35 470-10v41H0Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><path d="M76 230v-55m339 51v-83" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 226v-19m-9 9h26m-17 10v-19m9 19v-19" stroke="#f8f5e4" stroke-width="4"/><path d="M271 66q7-8 14 0m5-9q7-8 14 0" stroke="#8da176" stroke-width="2" stroke-linecap="round"/><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg><div class="art-note"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#shield"/></svg>A little closer to your next chapter.</div></div></section>
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What can we help you with?</h2><p>Start wherever you are. We’ll take it step by step.</p></div><div class="tools"><div class="tool-workspace">
     <div class="tabs" role="tablist" aria-label="Housing tools"><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>Find housing help</strong><small>A place to start</small></span></button><button class="tab" role="tab" id="tab-lease" aria-selected="false" aria-controls="panel-lease" tabindex="-1"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#document"/></svg></span><span><strong>Understand a lease</strong><small>Make the terms clearer</small></span></button><button class="tab" role="tab" id="tab-scam" aria-selected="false" aria-controls="panel-scam" tabindex="-1"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#search"/></svg></span><span><strong>Check a listing</strong><small>Spot warning signs</small></span></button></div>
     <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Let’s find your next step.</h3><span class="step-label">HOUSING SUPPORT</span></div><p class="panel-description">Tell us what you need. We’ll look for support in our hand-verified resource list.</p><form id="find-form" data-endpoint="/api/match" data-loading="Looking through verified resources…" data-submit="Find housing support">
@@ -85,9 +125,96 @@
     <section class="tool-panel" role="tabpanel" id="panel-lease" aria-labelledby="tab-lease" tabindex="0" hidden><div class="panel-heading"><h3>Know what you’re signing.</h3><span class="step-label">LEASE EXPLANATION</span></div><p class="panel-description">Get a plain-language explanation and see terms worth a closer look.</p><p class="panel-safety">Remove names, addresses, signatures, SSNs, and account details before pasting. Text is sent to our AI service for analysis. This is informational, not legal advice.</p><div class="upload-box"><label for="lease-file">Upload a lease, or paste text below</label><input type="file" id="lease-file" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp" aria-describedby="upload-hint lease-file-status"><p class="upload-hint" id="upload-hint">PDF, Word (.docx), text, or a photo of each page · Under 10 MB. Text is extracted on our server before any AI sees it. SSN, card, and account number patterns are redacted; names and addresses are not. Review the text before submitting.</p><p id="lease-file-status" class="upload-status" role="status" aria-live="polite"></p></div><form class="text-form" data-endpoint="/api/lease" data-loading="Reading your lease and explaining the terms…" data-submit="Explain this lease"><label for="lease-text">Lease text or a clause you want to understand</label><textarea id="lease-text" required maxlength="15000" aria-describedby="lease-count" placeholder="Paste a section of your lease here…" rows="8"></textarea><div class="textarea-hint"><span>You can start with just one section.</span><span id="lease-count" class="character-count">0 / 15,000</span></div><div class="form-bottom"><span class="privacy-note">For advice, speak with a local tenant advocate.</span><button class="primary" type="submit"><span>Explain this lease</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div></form><div class="result" role="status" aria-live="polite" aria-atomic="true"></div></section>
     <section class="tool-panel" role="tabpanel" id="panel-scam" aria-labelledby="tab-scam" tabindex="0" hidden><div class="panel-heading"><h3>A second look before you commit.</h3><span class="step-label">LISTING CHECK</span></div><p class="panel-description">Look for warning signs in a rental listing or messages from a landlord.</p><p class="panel-safety">Remove personal and contact details before pasting. Text is sent to our AI service for analysis. A check cannot guarantee that a listing is safe or identify every scam.</p><form class="text-form" data-endpoint="/api/listing" data-loading="Checking the text for potential warning signs…" data-submit="Check for warning signs"><label for="listing-text">Listing text or landlord messages</label><textarea id="listing-text" required maxlength="15000" aria-describedby="listing-count" placeholder="Paste the listing description or messages here…" rows="8"></textarea><div class="textarea-hint"><span>Include payment requests and rental terms.</span><span id="listing-count" class="character-count">0 / 15,000</span></div><div class="form-bottom"><span class="privacy-note">Verify the property before sending money.</span><button class="primary" type="submit"><span>Check for warning signs</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div></form><div class="result" role="status" aria-live="polite" aria-atomic="true"></div></section>
   </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>You don’t need all the answers.</h3><p>A few details are enough to begin.</p><ol class="steps"><li><span class="step-number">1</span><div><strong>Share what matters</strong><p>Your area, budget, and what you need.</p></div></li><li><span class="step-number">2</span><div><strong>Explore your options</strong><p>Get guidance in clear, everyday language.</p></div></li><li><span class="step-number">3</span><div><strong>Confirm the details</strong><p>Contact providers about eligibility and availability.</p></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a safe place tonight?</h3><p>For shelter and local support, call 211. If you’re in immediate danger, call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><small>Don’t wait for an AI response in an emergency.</small></section></aside></div></section>
+
+  <section class="listings-section" id="listings" aria-labelledby="listings-title">
+    <div class="section-heading"><div><h2 id="listings-title">Explore housing & waitlists</h2><p>Real places to consider, with the details that help you take the next step.</p></div><span class="catalog-label">NORTHERN VIRGINIA</span></div>
+    <p class="catalog-notice">These are dated provider advertisements, not guaranteed vacancies. Confirm rent, fees, eligibility, and move-in dates directly. Waitlists do not offer immediate placement.</p>
+    <form id="browse-form" class="browse-filters">
+      <div><label for="browse-location">City or county</label><select id="browse-location" name="location"><option value="">All Northern Virginia</option><option>Alexandria City</option><option>Arlington County</option><option>Fairfax City</option><option>Fairfax County</option><option>Falls Church City</option><option>Loudoun County</option><option>Manassas City</option><option>Manassas Park City</option><option>Prince William County</option></select></div>
+      <div><label for="browse-status">Availability</label><select id="browse-status" name="status"><option value="">Openings & waitlists</option><option value="available_now">Advertised available now</option><option value="advertised_vacancy">Advertised vacancies</option><option value="upcoming">Upcoming availability</option><option value="leasing">Now leasing</option><option value="waitlist_open">Open waitlists</option><option value="contact_for_availability">Contact for availability</option></select></div>
+      <div><label for="browse-rent">Maximum monthly rent</label><input id="browse-rent" name="max_rent" type="number" min="0" placeholder="Any budget" inputmode="decimal"></div>
+      <button class="primary" type="submit">Update results</button>
+    </form>
+    <p class="browse-hint">Rent filters use advertised starting prices and exclude unknown rents for apartment listings. Housing-program waitlists may have no quoted rent.</p>
+    <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p>
+    <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
+    <button id="show-more-listings" class="more-listings" type="button" hidden>Show more opportunities</button>
+    <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
+  </section>
   <section class="trust-banner" id="our-promise" aria-labelledby="promise-title"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#shield"/></svg><div><h2 id="promise-title">Real resources. A little more peace of mind.</h2><p>Housing recommendations come from our manually verified list. Availability and eligibility can change, so always confirm with the provider.</p></div><span class="trust-badge">People first. Always.</span></section>
 </main><footer class="container site-footer"><p>AI can make mistakes. Guidance and lease checks are informational, not legal advice. Don’t share your full name, SSN, bank details, or other sensitive information.</p><p>A clearer next step, together.</p></footer>
 <script>
+  const browseForm = document.getElementById('browse-form');
+  const browseMessage = document.getElementById('browse-message');
+  const listingsGrid = document.getElementById('listings-grid');
+  const moreListings = document.getElementById('show-more-listings');
+  let housingRows = [], visibleHousingCount = 6, browseRequest = null;
+  const statusLabels = {available_now:'Advertised available now',advertised_vacancy:'Vacancy advertised · confirm date',upcoming:'Upcoming availability',leasing:'Now leasing · confirm a unit',waitlist_open:'Open waitlist · no immediate placement',contact_for_availability:'Contact for availability'};
+  function housingElement(tag, className, content) {
+    const node = document.createElement(tag); if (className) node.className = className; if (content !== undefined) node.textContent = content; return node;
+  }
+  function sourceLink(url, label) {
+    try { const parsed = new URL(url); if (parsed.protocol !== 'https:') return null; } catch { return null; }
+    const link = housingElement('a', '', label); link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
+  }
+  function reviewedDate(value) {
+    if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return 'not recorded';
+    const date = new Date(value + 'T12:00:00'); return Number.isNaN(date.valueOf()) ? 'not recorded' : date.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+  }
+  function renderHousing() {
+    listingsGrid.replaceChildren();
+    housingRows.slice(0,visibleHousingCount).forEach(row => {
+      const availability = row.availability || {};
+      const card = housingElement('article','housing-card');
+      const status = housingElement('span','housing-status',statusLabels[availability.status] || 'Contact for availability'); status.dataset.status = availability.status || ''; card.append(status);
+      card.append(housingElement('h3','',row.community || row.name));
+      if (row.floor_plan) card.append(housingElement('p','housing-plan',row.floor_plan));
+      card.append(housingElement('p','housing-location',row.address || [row.city,row.jurisdiction].filter(Boolean).join(' · ')));
+      if (row.minimum_age) card.append(housingElement('p','housing-age',`For adults ${row.minimum_age}+`));
+      const rent = housingElement('p','housing-rent');
+      if (typeof row.monthly_rent === 'number' && Number.isFinite(row.monthly_rent)) {
+        rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US')}`; rent.append(housingElement('small','',' / month'));
+      } else rent.textContent = 'Rent: confirm with provider';
+      card.append(rent);
+      const features = [];
+      if (row.bedrooms !== null && row.bedrooms !== undefined) features.push(row.bedrooms === 0 ? 'Studio' : `${row.bedrooms} bed`);
+      if (row.bathrooms) features.push(`${row.bathrooms} bath`);
+      if (availability.available_from) features.push('From ' + reviewedDate(availability.available_from));
+      features.push(row.accessible === true ? 'Accessible unit documented' : 'Unit accessibility not confirmed');
+      card.append(housingElement('p','housing-features',features.join(' · ')));
+      const details = housingElement('details'); details.append(housingElement('summary','','Eligibility & important details'));
+      [row.who_it_serves,row.requirements,row.cost,availability.evidence,row.accessibility_notes,row.notes].filter(Boolean).forEach(text => details.append(housingElement('p','',text)));
+      card.append(details);
+      const actions = housingElement('div','housing-actions');
+      const source = sourceLink(row.source_url,'View provider source ↗'); if (source) actions.append(source);
+      if (row.phone && /^\+?[0-9 ()-]+$/.test(row.phone)) { const phone = housingElement('a','','Call leasing office'); phone.href='tel:'+row.phone.replace(/[^0-9+]/g,''); actions.append(phone); }
+      card.append(actions,housingElement('p','housing-reviewed',`Source reviewed ${reviewedDate(availability.checked_on || row.last_verified)}`)); listingsGrid.append(card);
+    });
+    moreListings.hidden = visibleHousingCount >= housingRows.length;
+    moreListings.textContent = `Show more opportunities (${Math.max(0,housingRows.length-visibleHousingCount)} remaining)`;
+    browseMessage.dataset.state = 'success';
+    browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} housing opportunities and programs. Multiple floor plans may belong to one community.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
+  }
+  async function loadHousing() {
+    if (browseRequest) browseRequest.abort();
+    const controller = new AbortController(); browseRequest = controller;
+    const timeout = setTimeout(()=>controller.abort(),30000);
+    const button = browseForm.querySelector('button'); button.disabled = true; listingsGrid.setAttribute('aria-busy','true');
+    listingsGrid.replaceChildren(); moreListings.hidden = true; browseMessage.dataset.state='loading'; browseMessage.textContent='Looking through reviewed housing opportunities…';
+    const params = new URLSearchParams(); for (const [key,value] of new FormData(browseForm)) if (value.trim()) params.set(key,value.trim());
+    try {
+      const response = await fetch('/api/listings?' + params.toString(), {signal:controller.signal}); const data = await response.json();
+      if (!response.ok || !Array.isArray(data.listings)) throw new Error(data.error || 'We couldn’t load housing opportunities.');
+      if (browseRequest !== controller) return;
+      housingRows=data.listings; visibleHousingCount=6; renderHousing();
+    } catch(error) {
+      if (browseRequest !== controller) return;
+      browseMessage.dataset.state='error'; browseMessage.textContent=error.name==='AbortError' ? 'Loading took too long. Select Update results to try again.' : 'We couldn’t load the housing catalog. Select Update results to retry. If you just updated the app, restart your local server.';
+    } finally {clearTimeout(timeout); if (browseRequest===controller) {button.disabled=false;listingsGrid.setAttribute('aria-busy','false');}}
+  }
+  browseForm.addEventListener('submit',event=>{event.preventDefault();loadHousing();});
+  moreListings.addEventListener('click',()=>{visibleHousingCount+=6;renderHousing();});
+  loadHousing();
   const tabs = [...document.querySelectorAll('[role=tab]')];
   function selectTab(tab, moveFocus = false) {
     tabs.forEach(t => { const selected = t === tab; t.setAttribute('aria-selected', String(selected)); t.tabIndex = selected ? 0 : -1; document.getElementById(t.getAttribute('aria-controls')).hidden = !selected; });
