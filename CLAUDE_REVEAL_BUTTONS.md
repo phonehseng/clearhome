@@ -6,7 +6,8 @@ The user reports that revealing only nine additional listings feels too slow. Th
 
 - Use **18 additional communities per click** for the default **Show more communities** button (or all remaining communities if fewer than 18 remain).
 - Keep a separate **Show all** button that reveals every remaining community matching the current filters.
-- Make Show more the larger primary button and Show all a smaller secondary control. Keep the labels simple; do not put batch sizes in the button labels.
+- Make Show more the larger primary button and Show all a smaller secondary control. Do not put batch sizes in the button labels.
+- **Latest label requirement:** Remove the parenthetical count such as **(191 more)** from **Show all communities**. Its entire label should be **Show all communities**. Keep the dynamic remaining count on the other button, for example **Show more communities (191 remaining)**. Never hardcode 191; derive it from the remaining filtered results. This supersedes the earlier request for no numbers on either button. Commit `d20360e` already implements these labels locally/in the repository; preserve them and check that the deployed version uses them when doing the rest of this work.
 - Hide the controls when every matching community is visible. Keep result counts accurate and preserve filters, sorting, and expanded floor-plan details when revealing more.
 - Keep keyboard focus useful when a clicked control disappears. Verify desktop and mobile layouts.
 
