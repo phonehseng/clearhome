@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1738">
+  <meta name="description" content="Low-income housing in Northern Virginia: how to qualify, how to apply, current programs and listings, and an AI helper.">
+  <title>Clear House — Low-income housing resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Same palette as the tools page in light mode. */
+    :root {
+      --bg: #eef3fc;
+      --ink: #14203f;
+      --muted: #4b5a7a;
+      --line: #d2dcf0;
+      --card: #fff;
+      --soft: #e7eefc;
+      --blue: #23408f;
+      --blue-2: #2f55b5;
+      --navy: #0d1738;
+      --green: #254f40;
+      --font-body: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-head: var(--font-body);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.7 var(--font-body); }
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3, .brand, .button, .eyebrow { font-family: var(--font-head); }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid #e0a100; outline-offset: 4px; }
+    .skip-link { position: absolute; left: 16px; top: -100px; padding: 10px 16px; background: var(--blue); color: #fff; z-index: 10; }
+    .skip-link:focus { top: 12px; }
+    .container { width: min(1120px, calc(100% - 64px)); margin-inline: auto; }
+
+    .site-header { background: var(--navy); color: #eef3ff; }
+    .header-inner { height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 750; font-size: 24px; letter-spacing: -1px; }
+    .brand-mark { width: 39px; height: 41px; display: grid; place-items: center; background: var(--green); border-radius: 12px; color: #fff; }
+    .brand-dot { color: #8d99ad; margin-left: -9px; }
+    .header-links { display: flex; gap: 24px; align-items: center; font-size: 14px; }
+    .header-links a { text-decoration: none; color: #eef3ff; }
+    .header-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .header-links .emergency-link { display: flex; align-items: center; gap: 8px; background: #fbf5ec; border: 1px solid #eadfce; border-radius: 7px; padding: 8px 12px; color: #765539; }
+
+
+    .page-head { padding: 48px 0 24px; max-width: 760px; }
+    .eyebrow { display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; color: var(--blue-2); margin-bottom: 12px; }
+    .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #6f8fd6; }
+    h1 { font-size: clamp(34px, 4.4vw, 52px); line-height: 1.1; letter-spacing: -1.6px; font-weight: 800; margin-bottom: 14px; }
+    h2 { font-size: clamp(24px, 2.8vw, 32px); line-height: 1.2; letter-spacing: -.8px; font-weight: 800; margin-bottom: 8px; }
+    .lead { font-size: 17px; color: var(--muted); }
+    section { padding: 28px 0; }
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; box-shadow: 0 2px 8px #14203f08; }
+    .button { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; border: 0; cursor: pointer; text-decoration: none; font: 650 15px/1 var(--font-body); padding: 13px 18px; border-radius: 8px; transition: background .2s ease; }
+    .button:hover { background: #1a3170; }
+    .button:disabled { opacity: .6; cursor: wait; }
+    .muted { color: var(--muted); }
+    .notice { display: flex; gap: 10px; align-items: flex-start; background: #fbf5ec; border: 1px solid #eadfce; color: #765539; border-radius: 10px; padding: 14px 16px; font-size: 15px; margin-top: 18px; }
+    .notice a { color: #5c3f22; font-weight: 700; }
+    .notice svg { flex-shrink: 0; margin-top: 2px; }
+
+    /* Ask the AI */
+    .chat { display: grid; gap: 12px; margin: 18px 0; max-height: 520px; overflow-y: auto; }
+    .chat:empty { display: none; }
+    .msg { padding: 14px 16px; border-radius: 12px; max-width: 88%; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .msg.user { background: var(--blue); color: #fff; justify-self: end; border-bottom-right-radius: 4px; }
+    .msg.assistant { background: var(--soft); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+    .msg.assistant[data-state=loading] { color: var(--muted); }
+    .msg.assistant[data-state=error] { background: #fff3ef; border-color: #eed1c9; color: #8c3e30; }
+    .ask-form { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+    .ask-form textarea { font: inherit; min-height: 52px; max-height: 160px; resize: vertical; padding: 13px 15px; border: 1px solid #b8c2ce; border-radius: 10px; background: #fff; color: var(--ink); }
+    .ask-form .button { align-self: end; height: 52px; }
+    .examples { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .examples button { font: inherit; font-size: 13px; border: 1px solid var(--line); background: #f3f6fd; color: var(--blue); border-radius: 20px; padding: 6px 12px; cursor: pointer; }
+    .examples button:hover { background: #e2eafb; }
+
+    /* How qualifying works */
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
+    .step { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+    .step h3 { font-size: 17px; margin: 12px 0 6px; }
+    .step p, .step li { color: var(--muted); font-size: 15px; }
+    .step ul { padding-left: 18px; margin: 8px 0 0; }
+    .icon-badge { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 11px; background: #d5e1f8; color: var(--blue); }
+    .program-types { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
+    .program-types .step h3 { margin-top: 0; }
+
+    /* Programs and listings */
+    .toolbar { display: flex; gap: 12px; align-items: end; flex-wrap: wrap; margin: 16px 0; }
+    .toolbar label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .toolbar select { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid #b8c2ce; border-radius: 8px; background: #fff; color: var(--ink); }
+    .group-title { font-size: 14px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); margin: 22px 0 10px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .item { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .item h3 { font-size: 17px; line-height: 1.35; }
+    .item .meta { font-size: 13px; color: var(--muted); }
+    .item p { font-size: 14px; color: var(--muted); }
+    .badge { align-self: flex-start; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 20px; background: #e2eafb; color: var(--blue); }
+    .badge.closed { background: #fbe9e4; color: #8c3e30; }
+    .badge.open { background: #e3f3e6; color: #245b31; }
+    .item details summary { cursor: pointer; font-weight: 600; font-size: 14px; color: var(--blue); }
+    .item details p { margin-top: 8px; white-space: pre-line; }
+    .item .actions { display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; font-weight: 600; margin-top: auto; padding-top: 6px; }
+    .item .actions a { color: var(--blue); }
+    .rent { font-size: 20px; font-weight: 750; color: var(--ink); }
+    .empty { color: var(--muted); padding: 12px 0; }
+
+    @media (max-width: 860px) {
+      .steps-grid, .program-types, .grid { grid-template-columns: 1fr; }
+      .header-links > a:not(.emergency-link) { display: none; }
+    }
+    @media (max-width: 560px) {
+      .container { width: calc(100% - 32px); }
+      .header-inner { height: 70px; }
+      .brand { font-size: 21px; gap: 8px; }
+      .brand-mark { width: 33px; height: 36px; border-radius: 10px; }
+      .panel { padding: 20px; }
+      .ask-form { grid-template-columns: 1fr; }
+      .msg { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/></symbol>
+  <symbol id="shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6z"/><path d="m8 12 3 3 5-6"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="document" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8zm0 0v5h5M8 12h8M8 16h6"/></symbol>
+  <symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m6 6 3 3m6 6 3 3M6 18l3-3m6-6 3-3"/></symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="phone" viewBox="0 0 24 24"><path d="m7 3 4 5-3 3a14 14 0 0 0 5 5l3-3 5 4-2 4C11 22 2 13 3 5Z"/></symbol>
+</defs></svg>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>clear house<span class="brand-dot">.</span></a>
+      <nav class="header-links" aria-label="Page navigation">
+        <a href="/">About</a>
+        <a href="/app">Tools</a>
+        <a href="/resources" aria-current="page">Resources</a>
+        <a class="emergency-link" href="#help-now"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#help"/></svg>Need help now?</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <div class="page-head">
+      <p class="eyebrow">Low-income housing in Northern Virginia</p>
+      <h1>How to qualify, where to apply, and what's open now.</h1>
+      <p class="lead">Every program and listing below comes from our team's checked list of official sources. Ask the assistant anything, or browse by area.</p>
+      <p class="notice" id="help-now"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#help"/></svg><span><strong>Need a safe place tonight?</strong> Call <a href="tel:211">211</a> for shelter and local help. In immediate danger, call <a href="tel:911">911</a>.</span></p>
+    </div>
+
+    <section aria-labelledby="ask-title">
+      <div class="panel">
+        <h2 id="ask-title">Ask about low-income housing</h2>
+        <p class="muted">Ask in your own words. Answers use only our verified Northern Virginia resources. Please don't share your SSN or bank details.</p>
+        <div class="chat" id="chat" role="log" aria-live="polite"></div>
+        <form class="ask-form" id="ask-form">
+          <label for="question" class="visually-hidden" style="position:absolute;left:-9999px">Your question</label>
+          <textarea id="question" required maxlength="1500" placeholder="For example: I make $38,000 with two kids in Fairfax. Do I qualify for Section 8?"></textarea>
+          <button class="button" type="submit">Ask <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></button>
+        </form>
+        <div class="examples" aria-label="Example questions">
+          <button type="button">How do I qualify for Section 8?</button>
+          <button type="button">Which voucher waitlists are open right now?</button>
+          <button type="button">I'm behind on rent in Alexandria. Who can help?</button>
+          <button type="button">What documents do I need to apply?</button>
+          <button type="button">Affordable 1-bedroom apartments in Arlington?</button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="qualify-title">
+      <h2 id="qualify-title">How qualifying works</h2>
+      <p class="lead">Most programs look at your household's income compared to the area median income (AMI) for the Washington, D.C. region. Each program sets its own exact limits, so always check with them.</p>
+      <div class="steps-grid">
+        <div class="step"><span class="icon-badge"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#search"/></svg></span><h3>1. Know your income</h3><p>Add up everyone's yearly income in your home before taxes. Programs compare it to a percentage of AMI for your household size, such as 30%, 50%, 60% or 80%.</p></div>
+        <div class="step"><span class="icon-badge"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#document"/></svg></span><h3>2. Gather documents</h3><p>Programs usually ask for:</p><ul><li>Photo ID for adults</li><li>Social Security or immigration documents for household members</li><li>Proof of income (pay stubs, benefit letters)</li><li>Your current lease or any eviction notice</li></ul></div>
+        <div class="step"><span class="icon-badge"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#pin"/></svg></span><h3>3. Apply where you live</h3><p>Vouchers and most rent help are run by your county or city. Apply in each place you'd consider living, and keep your contact details current so you don't lose your spot on a waitlist.</p></div>
+      </div>
+      <div class="program-types">
+        <div class="step"><h3>Housing Choice Vouchers (Section 8)</h3><p>A voucher helps pay rent in a private apartment. You usually pay about 30% of your income and the voucher covers the rest. Income generally must be at or below 50% of AMI. Waitlists open rarely, so check often.</p></div>
+        <div class="step"><h3>Income-restricted apartments</h3><p>Some buildings set aside apartments at lower rents for households under an income limit, often 50% or 60% of AMI. You apply directly with the building's leasing office.</p></div>
+        <div class="step"><h3>Public housing</h3><p>Apartments owned or managed by a housing authority, with rent based on income. In Northern Virginia, Alexandria's housing authority runs public housing.</p></div>
+        <div class="step"><h3>Emergency rent help</h3><p>If you're behind on rent or facing eviction, your county's human services office and local nonprofits may help with back rent. Legal aid can help you understand your rights.</p></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="programs-title">
+      <h2 id="programs-title">Programs and where to apply</h2>
+      <p class="lead">Vouchers, rent help and free legal help, with each program's steps to apply.</p>
+      <div class="toolbar">
+        <div><label for="area">Area</label><select id="area"><option value="">All of Northern Virginia</option></select></div>
+      </div>
+      <div id="programs"><p class="empty">Loading programs…</p></div>
+    </section>
+
+    <section aria-labelledby="listings-title">
+      <h2 id="listings-title">Affordable listings</h2>
+      <p class="lead">Recently checked apartments from provider websites. Availability is a snapshot, not a guarantee, so call to confirm rent, eligibility and openings.</p>
+      <div class="grid" id="listings"><p class="empty">Loading listings…</p></div>
+      <p style="margin-top:16px"><a class="button" href="/app">Search all listings with filters <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a></p>
+    </section>
+  </main>
+
+  <footer class="container">Guidance, not legal advice. Information comes from official websites and was checked by our team; call providers to confirm. Made by Pierce, Umair, Phone and Ryan for GDG Build with AI x Hacktoberfest 2026.</footer>
+
+  <script>
+    const el = (tag, attrs = {}, text) => {
+      const node = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+      if (text != null) node.textContent = text;
+      return node;
+    };
+    const safeUrl = url => typeof url === 'string' && url.startsWith('https://') ? url : null;
+
+    // Ask the AI. Answers are rendered as text, with **bold** turned into <strong> safely.
+    const chat = document.getElementById('chat');
+    const form = document.getElementById('ask-form');
+    const input = document.getElementById('question');
+    const history = [];
+    function addMessage(role, text, state) {
+      const msg = el('div', { class: `msg ${role}` });
+      if (state) msg.dataset.state = state;
+      text.split(/(\*\*[^*]+\*\*)/).forEach(part => {
+        msg.append(part.startsWith('**') && part.endsWith('**') ? el('strong', {}, part.slice(2, -2)) : document.createTextNode(part));
+      });
+      chat.append(msg);
+      chat.scrollTop = chat.scrollHeight;
+      return msg;
+    }
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const question = input.value.trim();
+      if (!question) return;
+      const button = form.querySelector('button');
+      addMessage('user', question);
+      input.value = '';
+      button.disabled = true;
+      const pending = addMessage('assistant', 'Thinking it through. This usually takes 20 to 40 seconds…', 'loading');
+      const started = Date.now();
+      const timer = setInterval(() => { pending.textContent = `Thinking it through. This usually takes 20 to 40 seconds… (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
+      try {
+        const res = await fetch('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history }) });
+        const data = await res.json();
+        clearInterval(timer);
+        pending.remove();
+        if (!res.ok || data.error) throw new Error(data.error || 'Something went wrong.');
+        addMessage('assistant', data.answer);
+        history.push({ role: 'user', text: question }, { role: 'assistant', text: data.answer });
+      } catch (err) {
+        clearInterval(timer);
+        pending.remove();
+        addMessage('assistant', (err.message || 'We could not reach the assistant.') + ' For urgent help, call 211.', 'error');
+      }
+      button.disabled = false;
+      input.focus();
+    });
+    input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
+    document.querySelectorAll('.examples button').forEach(b => b.addEventListener('click', () => { input.value = b.textContent; form.requestSubmit(); }));
+
+    // Programs, grouped by type and filterable by area.
+    const GROUPS = [['housing_authority', 'Vouchers and public housing'], ['rental_assistance', 'Help paying rent'], ['legal_aid', 'Free legal help'], ['other', 'Other help and information']];
+    const WAITLIST = { open: ['Waitlist open', 'open'], closed: ['Waitlist closed', 'closed'], unknown: ['Waitlist status unknown', ''] };
+    let allPrograms = [];
+    function programCard(p) {
+      const card = el('article', { class: 'item' });
+      if (p.waitlist_status && WAITLIST[p.waitlist_status]) {
+        const [label, cls] = WAITLIST[p.waitlist_status];
+        card.append(el('span', { class: `badge ${cls}` }, label));
+      }
+      card.append(el('h3', {}, p.name));
+      card.append(el('span', { class: 'meta' }, p.jurisdiction));
+      if (p.who_it_serves) card.append(el('p', {}, p.who_it_serves));
+      if (p.how_to_apply || p.requirements) {
+        const details = el('details');
+        details.append(el('summary', {}, 'How to apply'));
+        if (p.requirements) details.append(el('p', {}, 'Who qualifies: ' + p.requirements));
+        if (p.how_to_apply) details.append(el('p', {}, p.how_to_apply));
+        card.append(details);
+      }
+      const actions = el('div', { class: 'actions' });
+      if (p.phone) actions.append(el('a', { href: 'tel:' + p.phone.replace(/[^0-9+]/g, '') }, p.phone));
+      const site = safeUrl(p.website) || safeUrl(p.source_url);
+      if (site) actions.append(el('a', { href: site, target: '_blank', rel: 'noopener' }, 'Website'));
+      card.append(actions);
+      return card;
+    }
+    function renderPrograms() {
+      const area = document.getElementById('area').value;
+      const box = document.getElementById('programs');
+      box.replaceChildren();
+      const shown = allPrograms.filter(p => !area || p.jurisdiction === area || p.jurisdiction === 'Northern Virginia');
+      for (const [type, title] of GROUPS) {
+        const items = shown.filter(p => p.type === type);
+        if (!items.length) continue;
+        box.append(el('h3', { class: 'group-title' }, title));
+        const grid = el('div', { class: 'grid' });
+        items.forEach(p => grid.append(programCard(p)));
+        box.append(grid);
+      }
+      if (!box.children.length) box.append(el('p', { class: 'empty' }, 'No programs for this area yet. Call 211 for local help.'));
+    }
+    fetch('/api/programs').then(r => r.json()).then(data => {
+      allPrograms = data.programs || [];
+      const select = document.getElementById('area');
+      [...new Set(allPrograms.map(p => p.jurisdiction))].filter(j => j !== 'Northern Virginia').sort()
+        .forEach(j => select.append(el('option', { value: j }, j)));
+      select.addEventListener('change', renderPrograms);
+      renderPrograms();
+    }).catch(() => { document.getElementById('programs').replaceChildren(el('p', { class: 'empty' }, 'Could not load programs. Call 211 for local help.')); });
+
+    // A few current listings.
+    const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
+    fetch('/api/listings').then(r => r.json()).then(data => {
+      const box = document.getElementById('listings');
+      box.replaceChildren();
+      (data.listings || []).slice(0, 8).forEach(l => {
+        const card = el('article', { class: 'item' });
+        card.append(el('span', { class: 'badge' }, STATUS[l.availability?.status] || 'Check availability'));
+        card.append(el('h3', {}, l.name));
+        card.append(el('span', { class: 'meta' }, [l.city, l.jurisdiction].filter(Boolean).join(' · ')));
+        if (typeof l.monthly_rent === 'number') card.append(el('span', { class: 'rent' }, `From $${l.monthly_rent.toLocaleString()}/month`));
+        if (l.who_it_serves) card.append(el('p', {}, l.who_it_serves));
+        const actions = el('div', { class: 'actions' });
+        if (l.phone) actions.append(el('a', { href: 'tel:' + l.phone.replace(/[^0-9+]/g, '') }, l.phone));
+        const site = safeUrl(l.source_url);
+        if (site) actions.append(el('a', { href: site, target: '_blank', rel: 'noopener' }, 'Provider page'));
+        card.append(actions);
+        box.append(card);
+      });
+      if (!box.children.length) box.append(el('p', { class: 'empty' }, 'No current listings. Check back soon or call 211.'));
+    }).catch(() => { document.getElementById('listings').replaceChildren(el('p', { class: 'empty' }, 'Could not load listings.')); });
+  </script>
+</body>
+</html>

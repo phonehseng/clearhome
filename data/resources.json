@@ -4242,7 +4242,7 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William County"
+    "area": "Prince William Area (Prince William County, Manassas City, Manassas Park City)"
   },
   {
     "id": "manassas-city-housing-choice-voucher",
@@ -4277,7 +4277,7 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Manassas City"
+    "area": "Manassas City and Manassas Park City"
   },
   {
     "id": "manassas-park-housing-resources",

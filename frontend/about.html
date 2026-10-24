@@ -114,8 +114,11 @@
     .cta p { color: #b7c3e6; max-width: 560px; margin: 0 auto 26px; }
     .cta .button { background: #fff; color: var(--navy); box-shadow: none; }
     .cta .button:hover { background: #e7eefc; }
-    .emergency { max-width: 620px; margin: 28px auto 0; display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; background: #fbf5ec; border: 1px solid #eadfce; color: #765539; border-radius: 10px; padding: 14px 18px; font-size: 15px; }
-    .emergency a { color: #5c3f22; font-weight: 700; }
+    /* Emergency note inside the dark call-to-action band. */
+    .cta .emergency { max-width: 640px; margin: 36px auto 0; display: flex; gap: 12px; align-items: flex-start; text-align: left; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); color: #eef3ff; border-radius: 12px; padding: 16px 20px; font-size: 15px; line-height: 1.6; }
+    .cta .emergency svg { flex-shrink: 0; margin-top: 2px; color: #ffd66b; }
+    .cta .emergency strong { color: #fff; }
+    .cta .emergency a { color: #ffd66b; font-weight: 700; text-underline-offset: 3px; }
 
     footer { border-top: 1px solid var(--line); padding: 22px 0 34px; color: var(--muted); font-size: 13px; }
 
@@ -172,6 +175,7 @@
       <nav class="header-links" aria-label="Page navigation">
         <a href="#how">How it works</a>
         <a href="/app">Open the tools</a>
+        <a href="/resources">Resources</a>
         <a class="emergency-link" href="#emergency"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#help"/></svg>Need help now?</a>
       </nav>
     </div>
@@ -185,7 +189,7 @@
         <p class="reveal">Clear House helps people in Northern Virginia find verified housing help, understand their lease, and avoid rental scams, in plain language and for free.</p>
         <div class="hero-actions reveal">
           <a class="button" href="/app">Get started <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a>
-          <a class="link" href="#how">See how it works</a>
+          <a class="link" href="/resources">Low-income housing resources</a>
         </div>
       </div>
       <div class="reveal from-right">

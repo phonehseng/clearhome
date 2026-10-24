@@ -8,6 +8,7 @@ import math
 
 from flask import Flask, jsonify, request, send_from_directory, send_file
 
+from advisor import ask, programs, warm_examples
 from extract_text import extract_text
 from lease_checker import check_listing, explain_lease
 from matcher import find_help
@@ -86,6 +87,36 @@ def listings():
     return jsonify(listings=rows, count=len(rows), notice="Official-source web review, not a live vacancy feed. Confirm rent, eligibility and availability directly. Closed or overdue records are excluded.")
 
 
+@app.get("/resources")
+def resources_page():
+    return send_from_directory(FRONTEND, "resources.html")
+
+
+@app.get("/api/programs")
+def list_programs():
+    """Verified vouchers, rent help, legal aid and other services, without an AI call."""
+    return jsonify(programs=programs())
+
+
+@app.post("/api/ask")
+def ask_advisor():
+    body = request.get_json(silent=True) or {}
+    question = str(body.get("question", "")).strip()
+    if not question:
+        return jsonify(error="Please type a question."), 400
+    if len(question) > 1500:
+        return jsonify(error="Please keep your question under 1,500 characters."), 400
+    question, _ = redact(question)
+    history = []
+    for turn in (body.get("history") or [])[-4:]:
+        if isinstance(turn, dict) and turn.get("role") in ("user", "assistant") and isinstance(turn.get("text"), str):
+            history.append({"role": turn["role"], "text": redact(turn["text"][:2000])[0]})
+    try:
+        return jsonify(answer=ask(question, history))
+    except Exception:
+        return jsonify(error="Something went wrong. Please try again, or call 211 for help."), 500
+
+
 @app.post("/api/match")
 def match():
     message = (request.get_json(silent=True) or {}).get("message", "").strip()
@@ -150,4 +181,6 @@ def listing():
 
 
 if __name__ == "__main__":
+    if os.environ.get("WERKZEUG_RUN_MAIN") == "true":  # only in the reloader's serving process, not twice
+        warm_examples()
     app.run(port=8000, debug=True)
