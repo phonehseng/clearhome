@@ -1,5 +1,7 @@
 # Resource list
 
+Coverage area: **Northern Virginia** (Fairfax County, Arlington, Alexandria, Loudoun and Prince William).
+
 `resources.json` is the list of real housing help the assistant is allowed to recommend. The AI only picks from this file, so it can't invent places or phone numbers.
 
 ## Rules
@@ -9,6 +11,16 @@
 - When you've confirmed an entry, set `verified` to `true` and `last_verified` to today's date (YYYY-MM-DD).
 - Delete the `PLACEHOLDER` entries once you've added real ones. Aim for 15 to 20 total.
 - Only list public organizations, never individuals' contact details.
+
+## Where to look
+
+Start with official sources, and copy details only from each organization's own website:
+
+- 211 Virginia (211virginia.org), the statewide directory of housing and social services
+- County and city housing offices: Fairfax County, Arlington County, City of Alexandria, Loudoun County and Prince William County
+- Each county's homeless services or emergency shelter intake line
+- Legal Services of Northern Virginia, for tenant legal aid
+- Local food banks and community action agencies
 
 ## Types
 
@@ -22,6 +34,7 @@
 | `name` | Organization or program name |
 | `type` | One of the types above |
 | `address`, `phone`, `website`, `hours` | Contact details |
+| `area` | County or city it serves, e.g. `Fairfax County` |
 | `who_it_serves` | Who qualifies (families, adults, income limits) |
 | `cost` | Free, or the price |
 | `accessible` | `true`, `false`, or `null` if unknown |
