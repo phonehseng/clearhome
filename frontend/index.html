@@ -493,11 +493,15 @@
 
     /* Hero "ping": a perfect circle that glows orange like a notification, sitting just left of the first line. */
     @keyframes ch-ping{0%{box-shadow:0 0 0 0 #ff8a1fb3}70%{box-shadow:0 0 0 9px #ff8a1f00}100%{box-shadow:0 0 0 0 #ff8a1f00}}
-    .hero .eyebrow-dot{flex:none;width:9px;height:9px;aspect-ratio:1;border-radius:50%;align-self:center;margin:0 .35em 0 -16px;translate:-12px 0;background:#ff8a1f!important;box-shadow:0 0 6px 1px #ff8a1f99;animation:ch-ping 1.8s ease-out infinite}
-    @media (max-width: 560px){.hero .eyebrow-dot{margin-left:0}}
+    .hero .eyebrow-dot{flex:none;width:9px;height:9px;aspect-ratio:1;border-radius:50%;align-self:center;margin:0 .35em 0 0;background:#ff8a1f!important;box-shadow:0 0 6px 1px #ff8a1f99;animation:ch-ping 1.8s ease-out infinite}
   
     /* Google Sans everywhere (code and the repo file list stay monospace). */
     html body, body :not(code):not(pre):not(kbd):not(.repo-tree):not(.repo-tree *):not(svg):not(svg *){font-family:'Google Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif!important}
+
+    /* New logo (drawn by backend/make_logo.py): the image carries its own rounded square. */
+    .brand-mark{width:40px!important;height:40px!important;background:none!important;border-radius:12px;box-shadow:0 4px 14px #23408f40;overflow:visible}
+    .brand-mark img{width:100%;height:100%;display:block}
+    @media(max-width:560px){.brand-mark{width:34px!important;height:34px!important}}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -557,7 +561,7 @@
   <symbol id="phone" viewBox="0 0 24 24"><path d="m7 3 4 5-3 3a14 14 0 0 0 5 5l3-3 5 4-2 4C11 22 2 13 3 5Z"/></symbol>
 </defs></svg>
 <a class="skip-link" href="#tools">Skip to housing tools</a>
-<header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>NoVA & Blacksburg</div><nav class="header-links" aria-label="Page navigation"><a href="/">About</a><a href="/resources">Resources</a><a href="#listings" class="browse-nav">Browse housing</a><a href="#our-promise">Our promise</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>NoVA & Blacksburg</div><nav class="header-links" aria-label="Page navigation"><a href="/">About</a><a href="/resources">Resources</a><a href="#listings" class="browse-nav">Browse housing</a><a href="#our-promise">Our promise</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
 <main class="container">
   <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Find housing support and take your next step with a little more confidence.</p><a class="browse-link" href="#listings">Browse housing & waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official-source housing resources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div></section>
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What can we help you with?</h2><p>Start wherever you are. We’ll take it step by step.</p></div><div class="tools"><div class="tool-workspace">
@@ -979,8 +983,20 @@
       return box;
     }
     // Plain text with **bold** names; built from text nodes, so nothing from the server runs as HTML.
+    // Gemma sometimes answers in markdown; turn tables, headings and list marks into clean lines of text.
+    function tidy(text) {
+      return text.split('\n').map(line => {
+        const t = line.trim();
+        if (/^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?$/.test(t) || /^-{3,}$|^\*{3,}$/.test(t)) return null;  // table rules, dividers
+        if (/^\|.*\|$/.test(t)) return '• ' + t.slice(1, -1).split('|').map(c => c.trim()).filter(Boolean).join(' · ');  // table row
+        if (/^#{1,6}\s+/.test(t)) return t.replace(/^#{1,6}\s+/, '');  // heading
+        if (/^[*-]\s+/.test(t)) return '• ' + t.replace(/^[*-]\s+/, '');  // bullet
+        return line;
+      }).filter(l => l !== null).join('\n').replace(/^(based on the (data|information|resources) provided,?\s*)/i, '').replace(/\n{3,}/g, '\n\n').replace(/^\s*[a-z]/, c => c.toUpperCase());
+    }
     function setText(m, text) {
       m.replaceChildren();
+      text = tidy(text);
       text.split(/(\*\*[^*]+\*\*)/).forEach(part => m.append(part.startsWith('**') && part.endsWith('**') ? el('strong', part.slice(2, -2)) : document.createTextNode(part)));
     }
     function botSay(text, state) {
@@ -1085,7 +1101,7 @@
       window.clearHouseMapFocus?.(cards, `Map shows the ${cards.length} place${cards.length === 1 ? '' : 's'} in this answer.`);
       // Turn each **name** in the answer into a link that brings its card into view.
       bubble.replaceChildren();
-      text.split(/(\*\*[^*]+\*\*)/).forEach(part => {
+      tidy(text).split(/(\*\*[^*]+\*\*)/).forEach(part => {
         if (!(part.startsWith('**') && part.endsWith('**'))) { bubble.append(document.createTextNode(part)); return; }
         const name = part.slice(2, -2), key = name.toLowerCase();
         const target = ids[key] || Object.entries(ids).find(([n]) => n.includes(key) || key.includes(n) || n.includes(`(${key})`))?.[1];

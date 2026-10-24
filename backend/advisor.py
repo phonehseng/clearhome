@@ -183,6 +183,8 @@ QUESTION START
 {question}
 QUESTION END
 
+Answer the question directly in your first sentence (don't start with "Based on the data"). Plain text only: no tables, no # headings, at most 5 short bullet points.
+
 Resources (source-reviewed, for the requested area):
 {json.dumps(resources, ensure_ascii=False, separators=(",", ":"))}"""
     return prompt
