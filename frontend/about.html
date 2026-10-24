@@ -15,7 +15,8 @@
       --ink: #eef3ff;
       --muted: #b7c3e6;
       --accent: #ffd66b;
-      --card: rgba(13, 24, 60, 0.82);
+      --panel: #0d1738;
+      --card: #15224d;
       --line: #3a4f8f;
       --green: #254f40;
     }
@@ -64,10 +65,19 @@
     }
     .header-cta:hover { background: var(--accent); color: var(--night); }
 
-    main { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+    /* Solid content panel: the sky and snow only show around it. */
+    main {
+      width: min(1040px, calc(100% - 64px));
+      margin: 24px auto 96px;
+      padding: 0 56px;
+      background: var(--panel);
+      border: 2px solid var(--line);
+      box-shadow: 8px 8px 0 #000a;
+    }
 
     .hero {
-      min-height: calc(100vh - 80px);
+      min-height: calc(100vh - 220px);
+      padding-top: 56px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -132,7 +142,7 @@
     .promises li { display: flex; gap: 16px; align-items: flex-start; }
     .promises li::before { content: ""; flex: 0 0 14px; height: 14px; margin-top: 7px; background: var(--accent); box-shadow: 3px 3px 0 #000; }
 
-    .cta { text-align: center; padding: 96px 0 120px; }
+    .cta { text-align: center; padding: 88px 0 96px; }
     .cta p { color: var(--muted); max-width: 560px; margin: 0 auto 32px; }
     .emergency {
       max-width: 620px;
@@ -144,7 +154,7 @@
     }
     .emergency a { color: var(--accent); font-weight: 600; }
 
-    footer { text-align: center; padding: 24px 16px 40px; color: var(--muted); font-size: 14px; }
+    footer { text-align: center; padding: 0 16px 40px; color: var(--ink); font-size: 14px; text-shadow: 2px 2px 0 #000; }
 
     /* Scroll animations: elements start hidden and rise into place. */
     .reveal { opacity: 0; transform: translateY(32px); transition: opacity .5s ease, transform .5s steps(6); }
@@ -156,6 +166,7 @@
     .stagger > .reveal:nth-child(4) { transition-delay: .36s; }
 
     @media (max-width: 560px) {
+      main { width: calc(100% - 32px); padding: 0 20px; margin-bottom: 72px; }
       .feature { grid-template-columns: 64px 1fr; gap: 16px; }
       .icon { width: 64px; height: 64px; }
       .panel { padding: 20px; }
@@ -275,6 +286,19 @@
         });
       }, { threshold: 0.15 });
       reveals.forEach(el => observer.observe(el));
+      // A fast scroll can jump past an element without it ever being on screen,
+      // so also reveal anything at or above the viewport.
+      let pending = false;
+      addEventListener('scroll', () => {
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(() => {
+          pending = false;
+          document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+            if (el.getBoundingClientRect().top < innerHeight) el.classList.add('visible');
+          });
+        });
+      }, { passive: true });
     }
 
     // Pixel icons, drawn from tiny 16x16 maps and scaled up with crisp pixels.
