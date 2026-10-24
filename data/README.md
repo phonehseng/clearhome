@@ -2,6 +2,19 @@
 
 `resources.json` is the canonical, versioned database used by the assistant and the read-only `/api/listings` endpoint. No separate SQL database or new service is needed for this initial catalog. Updates go through the project's Git review workflow.
 
+Blacksburg is a second supported area, focused on **student rooms under $1,000
+per person**. The first batch adds 23 room options, six whole-apartment or
+affordable-community options, and five assistance resources (34 records across
+15 housing communities). Use the **Blacksburg student rooms** shortcut or select
+Blacksburg and **Rooms for rent**. Individual and joint agreements are labeled;
+whole-apartment prices are never divided and presented as independently rentable
+bedrooms. See the [source audit](VERIFICATION.md#blacksburg-student-rooms--october-24-2026).
+
+The **Eligibility** filter defaults to excluding recorded senior-only housing.
+Choose **Senior housing** or **All eligibility groups** to include it. This does
+not establish individual eligibility; senior/disability programs may also serve
+younger disabled applicants, and unknown rules require provider confirmation.
+
 The initial batch was researched on **October 24, 2026**: **21 records**, consisting of **20 housing opportunities across 13 communities** (some communities have multiple floor plans) and **one city housing-program waitlist**. One housing entry is closed and retained for audit; it is not recommended. Coverage includes Arlington, Fairfax, Loudoun, and Prince William counties, plus Alexandria, Fairfax, Falls Church, Manassas, and Manassas Park cities. This is a starter catalog, not an exhaustive inventory of Northern Virginia.
 
 Both advertised openings and open waitlists are included. See [VERIFICATION.md](VERIFICATION.md) for sources and caveats.
@@ -79,6 +92,32 @@ Start the existing Flask server. For a readable list with filters, open **http:/
 - `http://localhost:8000/api/listings?status=waitlist_open`
 
 Optional filters: `location`, `max_rent`, `bedrooms`, `age`, `accessible=true`, and an active `status`. The endpoint includes housing opportunities and housing-program resources. Program resources do not have a unit rent; budget/bedroom filters apply to apartment opportunities. No AI key is needed to browse.
+
+Also supported: `rental_space=all|room|entire_home` and
+`age_group=all|general|senior`. API defaults remain `all`; the browser chooses
+`general`. Example:
+`/api/listings?location=Blacksburg&rental_space=room&max_rent=1000&age_group=general&group_by=community`.
+
+Room records use `bedrooms: 1` for the offered bedroom, with
+`shared_home_bedrooms`/`shared_home_bathrooms` for the surrounding apartment.
+`price_unit`, `rent_basis`, `payment_schedule`, `lease_type`,
+`lease_responsibility`, `lease_start`, and `lease_end` distinguish room payments,
+fixed-term installments and full-apartment rent. Numeric budget matches compare
+the quoted payment, not a guaranteed total including every fee and utility.
+Unknown prices remain excluded.
+
+`service_areas` lets a Radford or Christiansburg office explicitly serve
+Blacksburg without calling that office a Blacksburg apartment. Regional matching
+keeps NoVA-only services out of Blacksburg matches and Blacksburg homes out of
+NoVA results. The existing open-data candidate queue remains scoped to its NoVA
+sources; the Blacksburg batch was reviewed separately, not bulk-approved.
+
+The map can center on Blacksburg. This workspace could not confirm new property
+coordinates through the Census Geocoder, so no map pins or walking times were
+invented. These homes remain browseable without a verified walking badge.
+Browsing, filters, sources and lease-guide context need no AI key. Live AI
+answers, web discovery and Google walking routes depend on the existing service
+configuration. No credentials or model settings were changed.
 
 ```sh
 python backend/catalog.py --check

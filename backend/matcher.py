@@ -19,6 +19,7 @@ load_dotenv(os.path.join(ROOT, ".env"))
 MODEL = "gemma-4-26b-a4b-it"
 RESOURCES_PATH = os.path.join(ROOT, "data", "resources.json")
 TYPES = [
+    "rental_listing",
     "emergency_shelter",
     "rental_assistance",
     "legal_aid",
@@ -106,7 +107,8 @@ def write_answer(message, filters, matches):
     prompt = f"""You are a housing assistant helping a low-income person. Answer using ONLY the resources listed below.
 
 Rules:
-- This service covers Northern Virginia (Fairfax County, Arlington, Alexandria, Loudoun and Prince William). If the person is clearly looking elsewhere, say so and suggest calling 211.
+- This service covers Northern Virginia and Blacksburg, Virginia (including student rooms near Virginia Tech). Match the requested region; local Northern Virginia services do not serve Blacksburg unless explicitly recorded.
+- Room prices are per person, not whole-apartment prices. State the payment schedule, lease dates, and individual or joint responsibility as recorded. Never turn an estimated roommate split into an advertised room price.
 - Recommend only resources from the list. Never invent places, phone numbers, prices or addresses.
 - For each recommendation give the name, phone, address, cost, requirements, source_url and availability.checked_on (or last_verified). Say when accessibility is unknown.
 - When a resource has how_to_apply, include those steps in short plain language. For shelters, say to call the intake line first, since most beds are assigned through it.
@@ -130,7 +132,9 @@ def find_help(message, include_unverified=False):
     from prompt_tools import keyword_filters  # imported here: prompt_tools -> advisor -> matcher
     filters, confident = keyword_filters(message)
     if not confident:
-        filters = extract_filters(message)
+        filters = {**extract_filters(message), 'locations': filters['locations']}
+    from catalog import filter_catalog
+    resources = filter_catalog(resources, filters)
     matches = filter_resources(resources, filters)
     if not matches:
         return filters, "I don't have a verified match for that yet. Please call 211 (or visit 211virginia.org) for local housing help."

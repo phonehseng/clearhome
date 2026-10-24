@@ -47,6 +47,11 @@ def index():
     return send_from_directory(FRONTEND, "index.html")
 
 
+@app.get('/rental-labels.js')
+def rental_labels():
+    return send_from_directory(FRONTEND, 'rental-labels.js')
+
+
 @app.get('/lease')
 def lease_guide():
     return send_from_directory(FRONTEND, 'lease.html')
@@ -111,6 +116,12 @@ def listings():
     if housing_type not in category_types:
         return jsonify(error="housing_type must be all, affordable, or regular."), 400
     filters = {"types": category_types[housing_type]}
+    for query, choices in (('rental_space', {'all', 'room', 'entire_home'}),
+                           ('age_group', {'all', 'general', 'senior'})):
+        value = request.args.get(query, 'all')
+        if value not in choices:
+            return jsonify(error=f"Unsupported {query} filter."), 400
+        filters[query] = value
     location = request.args.get("location", "").strip()
     if location:
         filters["locations"] = [location]
@@ -167,6 +178,8 @@ def find_options():
             return None
     profile = {"location": str(body.get("location") or "")[:100], "budget": number("budget"), "bedrooms": number("bedrooms", int, 0, 6),
                "accessible": body.get("accessible") is True, "senior": body.get("senior") is True, "tonight": body.get("tonight") is True}
+    if body.get('rental_space') in {'room', 'entire_home'}:
+        profile['rental_space'] = body['rental_space']
     result = options(profile)
     return jsonify(result), (400 if "error" in result else 200)
 
@@ -244,7 +257,7 @@ def web_search():
     """Gemma searches the web for affordable listings in a typed location. Results are labeled unreviewed."""
     location = str((request.get_json(silent=True) or {}).get("location", "")).strip()[:100]
     if len(location) < 3:
-        return jsonify(error="Type a city or county in Northern Virginia."), 400
+        return jsonify(error="Type Blacksburg or a Northern Virginia city or county."), 400
     location, _ = redact(location)
     try:
         result = live_search(location, queue_results=not READ_ONLY)

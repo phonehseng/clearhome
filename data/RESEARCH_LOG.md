@@ -53,3 +53,19 @@ runs `python backend/catalog.py --check` and `python backend/test_catalog.py`, a
   verification is separate from confirming an open waitlist or vacant home.
 - No phone or in-person confirmation was performed. Source dates are review dates;
   records expire for recommendations after October 31 without a new review.
+
+## Blacksburg student rooms — October 24, 2026
+
+- Added 34 records: 23 room options, six whole-apartment/affordable-community
+  options and five assistance resources, across 15 housing communities.
+- Prioritized under $1,000 per student. Preserved per-person versus whole-home
+  prices, fixed-term installment schedules, future dates, and individual versus
+  joint liability. Unknown contract rules remain unknown.
+- Marked conflicting “Spring 2026”/November 2026 provider dates as unconfirmed;
+  did not promise immediate occupancy or infer open waitlists. Housing Connections
+  explicitly states its voucher waitlist is closed.
+- Sources, price changes, exclusions and qualifications:
+  [Blacksburg audit](VERIFICATION.md#blacksburg-student-rooms--october-24-2026).
+- Added cross-region matching checks and a general/senior/all eligibility filter.
+  NoVA-only programs are not recommended for Blacksburg; existing records remain
+  intact. No live route or map coordinate was invented.

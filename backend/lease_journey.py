@@ -202,7 +202,9 @@ def journey_context(resource_id, check_provider=False):
     options = [r for r in rows if r['type'] in HOUSING_TYPES and community_key(r) == community_key(row)
                and (r['id'] == resource_id or effective_availability(r).get('status') not in {'closed', 'needs_recheck'})]
     fields = ('id', 'name', 'community', 'floor_plan', 'address', 'phone', 'source_url', 'source_kind', 'website', 'monthly_rent',
-              'cost', 'requirements', 'who_it_serves', 'minimum_age', 'last_verified')
+              'cost', 'requirements', 'who_it_serves', 'minimum_age', 'last_verified', 'rental_space', 'price_unit',
+              'rent_basis', 'lease_type', 'lease_responsibility', 'lease_start', 'lease_end', 'lease_term_notes',
+              'payment_schedule', 'shared_home_bedrooms', 'shared_home_bathrooms', 'utilities_notes')
     selected = {field: row.get(field) for field in fields}
     selected['availability'] = availability
     return dict(listing=selected, options=[{field: option.get(field) for field in ('id', 'name', 'floor_plan', 'monthly_rent')} for option in options],

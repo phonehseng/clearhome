@@ -50,7 +50,7 @@ def _key():
 def parse_request(prompt, overrides=None):
     """Pull the filters out of a sentence with keyword rules. Form fields in `overrides` win."""
     text = (prompt or "").lower().replace(",", "")
-    filters = {"location": "Northern Virginia", "area": area_for(prompt), "max_rent": None,
+    filters = {"location": "Blacksburg" if area_for(prompt) == "Blacksburg" else "Northern Virginia", "area": area_for(prompt), "max_rent": None,
                "amenity": "supermarket", "max_walk_minutes": 15, "strict": True, "bedrooms": None, "senior": False}
     money = re.search(r"(?:under|below|less than|at most|max(?:imum)?|up to|no more than|<)\s*\$?\s*(\d+(?:\.\d+)?)\s*(k)?", text) \
         or re.search(r"\$\s*(\d+(?:\.\d+)?)\s*(k)?", text)
@@ -164,7 +164,8 @@ def _evaluate(listing, filters):
 
 def _display_rent(listing):
     if isinstance(listing.get("monthly_rent"), (int, float)):
-        return f"From ${listing['monthly_rent']:,.0f}/month"
+        period = '/person/installment' if listing.get('rent_basis') == 'per_person_installment' else '/person/month' if listing.get('rental_space') == 'room' else '/month'
+        return f"From ${listing['monthly_rent']:,.2f}{period}"
     return "Contact provider for current rent"
 
 
@@ -172,13 +173,13 @@ def search(prompt, overrides=None):
     """Run a walking-distance housing search. Returns results plus warnings; never raises for API problems."""
     filters = parse_request(prompt, overrides)
     if filters["area"] is None:
-        return {"error": "Clear House covers Northern Virginia. Try a city or county there, like Arlington or Reston."}
+        return {"error": "Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, or Reston."}
     if not _key():
         return {"configured": False, "filters": filters, "results": [],
                 "warnings": ["Walking-distance search needs a Google Maps server key (GOOGLE_MAPS_SERVER_API_KEY). See WALKABILITY.md for setup."]}
 
-    catalog_filters = {"types": ["affordable_listing"], "locations": [] if filters["area"] == "Northern Virginia" else [filters["area"]],
-                       "age": 62 if filters["senior"] else 30}
+    catalog_filters = {"types": ["affordable_listing", "rental_listing"], "locations": [filters["area"]],
+                       "age": 62 if filters["senior"] else 30, "age_group": 'all' if filters['senior'] else 'general'}
     if filters["max_rent"]:
         catalog_filters["max_budget_per_month"] = filters["max_rent"]
     if filters["bedrooms"] is not None:

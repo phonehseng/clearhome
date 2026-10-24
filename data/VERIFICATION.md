@@ -121,3 +121,55 @@ Agency directories are labeled as sources, not provider signing websites. When
 no provider URL is established, the lease guide offers the published phone
 contact, agency source, and document upload; it asks the renter to obtain the
 provider's official lease and signing invitation.
+
+## Blacksburg student rooms — October 24, 2026
+
+Preferences: prioritize under $1,000 per student; any move-in period with dates
+labeled; both individual and joint agreements with liability explained. Added
+34 records: 23 room options, six whole-apartment/affordable-community options,
+and five assistance resources, across 15 housing communities. Reviews are
+AI-assisted official-source reviews, without calls, staff sign-off, inspections,
+or reservations. Housing review deadlines are October 31, 2026. NoVA records
+and their original review dates are preserved.
+
+| Community / official source | Recorded evidence and limits |
+| --- | --- |
+| [University Terrace 1213K](https://granitesl.appfolio.com/listings/detail/2c9ee737-5b8b-4d57-a2e8-51e44327343b) | Explicit individual bedroom agreement, room in 4BR/2BA, $495/month; trash included, $49 application fee. |
+| [Stonegate S22](https://granitesl.appfolio.com/listings/detail/cf255e6e-a55c-4e91-a0c0-b80aaceb66e9) | Room in 3BR/1BA, $555/month; no utilities included, $49 application fee. Contract responsibility unconfirmed. |
+| [1711 unit 04](https://granitesl.appfolio.com/listings/detail/33dd546d-1b74-4f42-9f16-039be6c641e7) | Explicit per-bedroom $565/month, shared 4BR/2BA; water/sewer/trash listed. |
+| [Carlton Scott C27](https://granitesl.appfolio.com/listings/detail/c7faebea-2fa0-4146-ac4b-86f0dc9bf624) | Room in 2BR/1BA, $730/month; $49 application fee; utilities and individual/joint terms need confirmation. |
+| [300 McDonald C24](https://granitesl.appfolio.com/listings/detail/0b75fde4-93b8-4a77-811e-317626fda8c7) | Room $675/month; water/sewer/trash/internet listed. Bathroom count conflicts (header 1, description 2), so none is asserted. Provider says bedroom 1 has no AC and apartments are unfurnished. |
+| [Alight rates](https://alight-blacksburg.com/rates-floorplans/), [FAQ](https://alight-blacksburg.com/faqs/) | East/West 4BR rooms $835/$855, Standard/Fireplace 2BR rooms $955/$999 per person per installment. August 18, 2027–July 24, 2028, 12 installments; annual total with mandatory fees $10,175–$10,415 for 4BR and $11,615–$12,143 for 2BR. Optional add-ons extra; the $999 base payment may exceed $1,000 after charges. FAQ states own-bedroom responsibility and guarantor or two-installment prepayment requirement. Limited alternate/immediate starts require a new quote and confirmed dates. |
+| [Terrace View disclosure](https://terraceviewblacksburg.com/pricing), [provider portal](https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/) | Six reviewed private-room layouts $865–$990 per person/month, August 21, 2027–July 31, 2028. Portal states monthly frequency, $200 deposit. Private/keyed bedrooms do not prove individual contractual liability. Confirm fees, utilities and roommate terms. |
+| [Collegiate Suites / Hunters Ridge](https://collegiatesuitesblacksburg.com/pricing), [Maple Ridge](https://mapleridgeblacksburg.com/pricing) | Per-bed pricing, furnished shared homes and keyed bedrooms established. Embedded numeric rates and dates unreadable, so remain unknown. Hunters Ridge redirects to Collegiate Suites and is not counted again. |
+| [The Edge](https://cmgleasing.com/office/the-edge/) | Individual leases and per-person rates explicit: B1 from $1,375, C1 $1,317, D1 from $1,255. Furnished, bathroom in each bedroom. Electricity allowance is not unlimited usage. Exact dates unknown; these exceed the target. |
+| [Union portal](https://www.unionblacksburg.com/blacksburg/union-blacksburg/student/) | D5 unfurnished $1,036.79, D6 furnished $1,116.79, D2 pool-view $1,210.79 total monthly leasing prices per room; August 16, 2027–July 17, 2028. Lower base installments are not substituted for the quoted total. Confirm payment count, utilities, charges and liability. |
+| [The Mill](https://www.blacksburgmill.com/floor-plans/) | Whole apartment $1,100 (1BR), $1,300 (2BR), $1,680 (3BR); 2027–28 applications, exact dates unconfirmed. Joint and several responsibility is explicit. Provider's $650/$560 roommate examples are not separately offered rooms; numeric prices stay the full apartment rent. |
+| [Legacy](https://www.communityhousingpartners.org/properties/legacy-on-main/), [Cedar Crest](https://www.communityhousingpartners.org/properties/cedar-crest-apartments/), [Ellett Road](https://www.communityhousingpartners.org/properties/ellett-road-community/) | General affordable communities, not additional senior-only housing. Program evidence preserved. Legacy describes approximate program rents, not a specific current unit offer. Numeric rent, offered unit size and waitlist status remain unknown; students must confirm any program-specific student rules. |
+
+The five AppFolio unit pages use “Spring 2026 Semester” alongside a November 15,
+2026 field and instructions to confirm the date. Their status remains
+`contact_for_availability`; `lease_start` and `available_from` are null, and the
+conflict is displayed. No November move-in promise or open waitlist is inferred.
+Older $545 takeover and $625 generic 1711 snippets were not used as fresh offers;
+the generic detailed page later showed a higher price. Older Alight snippets
+($829/$849/$949) were superseded by the full page's higher figures. A provider
+page can still be stale, internally inconsistent, or change after review.
+
+Services: [NRCA intake / emergency assistance](https://newrivercommunityaction.org/programs/emergency-assistance-programs/)
+publishes central intake 540-639-3159, weekend/holiday on-call 540-320-7028,
+and Montgomery assistance contacts. [WRC shelter](https://www.wrcnrv.org/housing/)
+publishes the 24/7 hotline 540-639-1123; its public office is not a shelter-arrival
+address. [Housing Connections](https://newrivercommunityaction.org/programs/homeless-and-housing-programs/housing-connections/residents/)
+states the voucher waitlist is closed and some college students are ineligible.
+[SVLAS contact](https://svlas.org/contact/), [eligibility](https://svlas.org/am-i-eligible/)
+and [housing services](https://svlas.org/housing/) establish Montgomery coverage
+and centralized intake 888-201-2772. The [2026 NRV Regional Commission guide](https://nrvrc.org/images/pdf/New%20River%20Valley%20Housing%20Resource%20Guide%202026.pdf)
+corroborates services and property identities; its older prices and proximity
+figures are not treated as current unit offers or measured walking times.
+
+Provider-linked images recorded for University Terrace, Stonegate, Terrace View,
+The Edge and Maple Ridge may show similar units, shared areas or amenities.
+No offered bedroom appearance, accessible vacancy, exact walking time or
+geocoordinate was invented. The Census lookup failed in this workspace; homes
+without confirmed coordinates remain in the list without false map pins.

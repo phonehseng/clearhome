@@ -97,7 +97,7 @@ def _queue_for_review(area, results):
                 continue
             queue["candidates"].append({
                 "id": rid, "name": r["name"], "type": "affordable_property", "origin": "gemma_web_search",
-                "address": r.get("address"), "city": r.get("city"), "jurisdiction": area, "region": "Northern Virginia", "state": "VA",
+                "address": r.get("address"), "city": r.get("city"), "jurisdiction": area, "region": "New River Valley" if area == "Blacksburg" else "Northern Virginia", "state": "VA",
                 "phone": None, "website": None, "cost": r.get("rent_text"), "who_it_serves": r.get("income_text"),
                 "requirements": "Income limits apply; confirm with the property.", "accessible": None,
                 "how_to_apply": "1. Open the source page and contact the property. 2. Ask about openings or the waitlist for affordable units.",
@@ -113,7 +113,7 @@ def search(location, queue_results=True):
     """Returns {"area": ..., "results": [...]} or {"error": ...}."""
     area = area_for(location)
     if not area:
-        return {"error": "Clear House covers Northern Virginia only. Try a city or county there, like Arlington or Woodbridge."}
+        return {"error": "Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, or Woodbridge."}
     key = " ".join(location.lower().split())
     with _cache_lock:
         hit = _cache.get(key)

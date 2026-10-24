@@ -22,7 +22,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(validate_resources(raw), [])
         self.assertEqual(len({r['id'] for r in raw}), len(raw))
         core = {'Arlington County','Fairfax County','Loudoun County','Prince William County','Alexandria City','Fairfax City','Falls Church City','Manassas City','Manassas Park City'}
-        self.assertEqual({r['jurisdiction'] for r in raw}, core | {'Northern Virginia'})
+        self.assertEqual({r['jurisdiction'] for r in raw}, core | {'Northern Virginia', 'Montgomery County', 'Radford City'})
         self.assertTrue(all(r['sources'] for r in raw))
         self.assertTrue(all(r['availability']['evidence'] for r in raw if r['type'] == 'affordable_listing'))
 

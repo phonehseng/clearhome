@@ -19,6 +19,37 @@ STATUSES = {'available_now', 'advertised_vacancy', 'upcoming', 'leasing', 'waitl
 TYPES = {'rental_listing', 'affordable_listing', 'affordable_property', 'emergency_shelter', 'rental_assistance', 'housing_authority', 'legal_aid', 'food_support', 'other'}
 STATUS_ORDER = {key: i for i, key in enumerate(['available_now', 'advertised_vacancy', 'upcoming', 'leasing', 'waitlist_open', 'contact_for_availability', 'needs_recheck', 'closed'])}
 HOUSING_TYPES = {'affordable_listing', 'affordable_property', 'rental_listing'}
+NOVA_JURISDICTIONS = {'Arlington County', 'Fairfax County', 'Loudoun County', 'Prince William County',
+                      'Alexandria City', 'Fairfax City', 'Falls Church City', 'Manassas City', 'Manassas Park City'}
+
+
+def senior_only(row):
+    """Use recorded age rules, not an applicant's age or the property's name."""
+    age = row.get('minimum_age')
+    if type(age) is int and age >= 55:
+        return True
+    if row.get('eligibility_group') == 'senior':
+        return True
+    # Reviewed community records sometimes publish an age restriction without
+    # its exact threshold. Senior/disability programs are kept separate.
+    return ('age-restricted community' in str(row.get('floor_plan', '')).casefold()
+            and 'older adults' in str(row.get('who_it_serves', '')).casefold())
+
+
+def serves_location(row, location):
+    """Match a place or explicit service area without crossing regional boundaries."""
+    query = str(location).strip().casefold()
+    if query in {'nova', 'northern va', 'northern virginia'}:
+        return row.get('region') == 'Northern Virginia' or row.get('jurisdiction') in NOVA_JURISDICTIONS | {'Northern Virginia'}
+    areas = row.get('service_areas') or []
+    if not isinstance(areas, list):
+        areas = []
+    if any(query == str(area).casefold() for area in areas):
+        return True
+    if row.get('jurisdiction') == 'Northern Virginia':
+        return any(query in area.casefold() for area in NOVA_JURISDICTIONS)
+    searchable = ' '.join(str(row.get(k) or '') for k in ('city', 'jurisdiction', 'area', 'address', 'region')).casefold()
+    return bool(query) and query in searchable
 
 
 def _normalized(value):
@@ -47,7 +78,7 @@ def listing_key(row):
     unit = str(row.get('unit_number') or row.get('id')) if row.get('record_kind') == 'unit' else None
     return (community_key(row), row.get('type'), _normalized(row.get('floor_plan')),
             str(row.get('bedrooms')), str(row.get('bathrooms')), str(row.get('record_kind')),
-            _normalized(category.get('program')),
+            _normalized(category.get('program')), row.get('rental_space', 'entire_home'),
             unit)
 
 
@@ -157,6 +188,13 @@ def validate_resources(records):
             errors.append(f'{label}: accessible must be true, false, or null.')
         if row.get('monthly_rent') is not None and not _number(row['monthly_rent']):
             errors.append(f'{label}: monthly_rent must be a nonnegative number or null.')
+        if row.get('rental_space') not in (None, 'room', 'entire_home'):
+            errors.append(f'{label}: rental_space must be room or entire_home.')
+        if row.get('rental_space') == 'room':
+            if row.get('bedrooms') != 1 or row.get('price_unit') != 'per_person':
+                errors.append(f'{label}: room offers must describe one offered bedroom and per-person pricing.')
+            if row.get('lease_type') not in {'individual', 'joint', 'confirm'} or not row.get('lease_responsibility'):
+                errors.append(f'{label}: room offers need a lease type and responsibility explanation.')
         for field in ('bedrooms', 'minimum_age'):
             if row.get(field) is not None and (type(row[field]) is not int or row[field] < 0):
                 errors.append(f'{label}: {field} must be a nonnegative integer or null.')
@@ -222,6 +260,12 @@ def filter_catalog(resources, filters=None, today=None):
         if filters.get('needs_accessible') and row.get('accessible') is not True:
             continue
         if row.get('type') in {'affordable_listing', 'affordable_property', 'rental_listing'}:
+            space = filters.get('rental_space')
+            if space in {'room', 'entire_home'} and row.get('rental_space', 'entire_home') != space:
+                continue
+            group = filters.get('age_group')
+            if (group == 'general' and senior_only(row)) or (group == 'senior' and not senior_only(row)):
+                continue
             budget = filters.get('max_budget_per_month')
             rent = row.get('monthly_rent')
             if _number(budget) and (not _number(rent) or rent > budget):
@@ -235,9 +279,7 @@ def filter_catalog(resources, filters=None, today=None):
                 continue  # A waitlist or future lease-up cannot solve tonight's housing need.
         locations = filters.get('locations') or []
         if locations:
-            searchable = ' '.join(str(row.get(k) or '') for k in ('city', 'jurisdiction', 'area', 'address', 'region')).casefold()
-            regional = row.get('jurisdiction') == 'Northern Virginia'  # e.g. legal aid and 211 serve the whole region
-            if not regional and not any(str(location).casefold() in searchable or str(location).casefold() in {'nova', 'northern va'} for location in locations):
+            if not any(serves_location(row, location) for location in locations):
                 continue
         results.append(row)
     return sorted(results, key=lambda r: (0 if r.get('type') == 'emergency_shelter' else 1, STATUS_ORDER.get(r.get('availability', {}).get('status'), 5)))

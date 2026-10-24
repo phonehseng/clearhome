@@ -12,10 +12,12 @@ from advisor import area_for
 
 # Fields that matter for an answer; everything else (photos, review notes, source lists) only costs tokens.
 ANSWER_FIELDS = ("name", "type", "jurisdiction", "address", "phone", "hours", "who_it_serves", "cost", "monthly_rent",
-                 "bedrooms", "minimum_age", "accessible", "requirements", "how_to_apply", "waitlist_status", "source_url")
+                 "bedrooms", "minimum_age", "accessible", "requirements", "how_to_apply", "waitlist_status", "source_url",
+                 "rental_space", "price_unit", "rent_basis", "lease_responsibility", "lease_start", "lease_end", "payment_schedule")
 MAX_FIELD = 280
 
 TYPE_WORDS = [
+    ("rental_listing", r"\b(room|rooms|roommate|roommates|student housing|shared apartment)\b"),
     ("emergency_shelter", r"\b(shelter|tonight|homeless|on the street|nowhere to (go|sleep|stay)|sleep(ing)? in (my|a) car|evicted today|kicked out)\b"),
     ("rental_assistance", r"\b(behind on rent|back rent|can'?t pay|cant pay|rent help|rental assistance|eviction notice|late notice|pay or quit|utility|deposit help)\b"),
     ("legal_aid", r"\b(lawyer|legal|court|evict(ion|ed)?|landlord (won'?t|refuses|is)|my rights|tenant rights|repairs?)\b"),
@@ -42,7 +44,8 @@ def keyword_filters(message):
         "max_budget_per_month": float(budget.group(1)) if budget else None,
         "needs_accessible": bool(re.search(r"\b(wheelchair|accessible|disab|mobility|ada)\b", text)),
         "urgency": "emergency" if emergency else ("soon" if re.search(r"\b(soon|this month|next month|asap)\b", text) else "planning"),
-        "locations": [] if area in (None, "Northern Virginia") else [area],
+        "locations": [area] if area else ['__outside_service_area__'],
+        "rental_space": 'room' if re.search(r'\b(room|rooms|roommate|roommates)\b', text) else 'all',
         "bedrooms": 0 if "studio" in text else (int(beds.group(1)) if beds else None),
         "age": int(next(g for g in age.groups() if g)) if age else (62 if re.search(r"\b(senior|elderly|retired)\b", text) else None),
     }
