@@ -34,3 +34,36 @@ The reviewed directory listed Little River Glen with 120 one-bedroom apartments,
 - Relevant checks pass. Report the root cause, changes made, and validation performed.
 
 This handoff does not verify the current implementation or the currently configured outbound URL; inspect those in the repository before making changes.
+
+---
+
+## Implementation report (2026-10-24)
+
+**Root cause.** The card's main link used each record's `source_url`, and for Little River Glen that was the county's
+*senior-housing directory* (`fairfaxcounty.gov/housing/rentalhousing/senior-housing`), which covers 10 senior communities and
+two assisted-living facilities, including nursing and medication-management text. The property-specific FCRHA page was on
+file only as a secondary source, and the card labeled every link "source" regardless of where it went. The same pattern
+affected most listings: 219 of 248 used a page shared by several communities (Fairfax's privately-owned list, Alexandria's
+guide, Loudoun's apartment guide, county PDFs, owner community lists).
+
+**Changes.**
+- `backend/source_audit.py`: treats any link shared by more than one community (or a known guide/list) as a directory, and
+  only accepts a page as the property's own if it loads and its title/heading names the community in whole words (so a
+  general page that merely mentions a property, or "Terraces at Arlington View West" for "Arlington View Terrace", is
+  refused; bot-blocked pages are not verified). It sets `source_url` to the best verified property page and records
+  `source_kind`. 11 listings (16 communities incl. Little River Glen, Olley Glen, Morris Glen, Saintsbury Plaza, Crest of
+  Alexandria, Atrium at Metro West) now point to their own page; the rest are labeled honestly as directories.
+- Cards label the link by destination ("View official property page", "View owner's property page", "View property website",
+  "View official county listing"), add **Show on map**, and the details panel now shows Units, Utilities, Amenities, Leasing
+  contact, How to apply, and a labeled Sources list, with "Not published by the source" for unknowns.
+- Little River Glen: source is https://www.fcrha.org/properties/little-river-glen/1 (rechecked 2026-10-24: 120 one-bedroom,
+  62+, $890–$2,315 varying by unit and program financing, subsidized units available, utilities included, 571-544-7100,
+  $68,880 / $78,720 income limits, amenities as listed). Notes state assisted living and Little River Glen IV are separate.
+  The property's own site blocks automated checks, so it isn't used as a verified link. Its photo comes from the FCRHA page.
+- `backend/test_listing_sources.py`: Little River Glen → its own page; LRG and LRG IV distinct; shared links labeled as
+  directories; general pages, similarly named buildings and blocked pages are refused.
+
+**Validation.** `python backend/catalog.py --check` and all `backend/test_*.py` pass; checked in the browser that the Little
+River Glen card shows "View official property page" → the FCRHA page, the map link, and the new details.
+
+**Still open.** ~209 listings only have a directory source; adding verified property pages for them is ongoing research work.
