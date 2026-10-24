@@ -15,7 +15,10 @@ from matcher import ask_gemma, gemma_unavailable, stream_gemma
 FIELDS = ("name", "type", "jurisdiction", "city", "address", "phone", "website", "hours", "who_it_serves",
           "cost", "monthly_rent", "bedrooms", "minimum_age", "requirements", "how_to_apply", "waitlist_status",
           "source_url", "region", "rental_space", "price_unit", "rent_basis",
-          "lease_type", "lease_responsibility", "lease_start", "lease_end", "payment_schedule", "shared_home_bedrooms")
+          "lease_type", "lease_responsibility", "lease_start", "lease_end", "payment_schedule", "shared_home_bedrooms",
+          # Emergency services: how to get in and where to go (only present on shelter and intake records).
+          "intake_steps", "intake_hours", "public_intake_address", "after_hours", "phone_role", "address_kind",
+          "confidential_location", "referral_required", "intake_status", "intake_status_note", "distance_from_blacksburg", "transit", "links", "source_kind")
 
 
 # Gemma's free tier allows about 16,000 input tokens a minute, so each question only sends
@@ -261,6 +264,7 @@ def stream_ask(question, history=None):
         with _cache_lock:
             hit = _cache.get(key)
         if hit and time.time() - hit[0] < CACHE_SECONDS:
+            yield "engine", "Gemma 4 26B (saved answer to a question asked before)"
             yield "answer", hit[1]
             yield "cards", cards_for(hit[1])
             return
@@ -271,6 +275,9 @@ def stream_ask(question, history=None):
     parts, thinking, last_note = [], "", 0.0
     try:
         for is_thought, text in stream_gemma(_prompt(question, history, rows), thoughts=True):
+            if is_thought == "engine":
+                yield "engine", text
+                continue
             if not is_thought:
                 parts.append(text)
                 yield "chunk", text
@@ -287,11 +294,13 @@ def stream_ask(question, history=None):
             yield "cards", cards_for("".join(parts))
         else:
             text = fallback_answer(rows, gemma_unavailable(error) or "The AI service didn't answer")
+            yield "engine", "Our checked list (Gemma couldn't answer this time)"
             yield "fallback", text
             yield "cards", cards_for(text)
         return
     if not parts:  # Gemma used its whole reply on thinking
         text = fallback_answer(rows, "Gemma didn't finish an answer this time")
+        yield "engine", "Our checked list (Gemma didn't finish this time)"
         yield "fallback", text
         yield "cards", cards_for(text)
         return
@@ -400,6 +409,7 @@ def options(profile):
                 if not isinstance(r.get("availability"), dict)][:12]
     shelters = [keep(r) for r in filter_catalog(rows, {**base, "needs_accessible": False, "types": ["emergency_shelter", "other"], "urgency": "emergency"})
                 if r["type"] == "emergency_shelter" or "intake" in str(r.get("name", "")).lower() or "coordinated" in str(r.get("name", "")).lower()][:10] if profile.get("tonight") else []
+    shelters.sort(key=lambda r: r.get("intake_status") == "closed")  # what can help tonight first; closed or seasonal last
     need, income_note = program_need(profile)
     return {"area": area, "listings": listings, "programs": programs, "shelters": shelters,
             "programs_relevant": need, "income_note": income_note}

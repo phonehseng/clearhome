@@ -46,6 +46,11 @@ def index():
     return send_from_directory(FRONTEND, "index.html")
 
 
+@app.get('/listing-map.js')
+def listing_map_js():
+    return send_from_directory(FRONTEND, 'listing-map.js')
+
+
 @app.get('/rental-labels.js')
 def rental_labels():
     return send_from_directory(FRONTEND, 'rental-labels.js')
@@ -322,7 +327,8 @@ def ask_advisor_stream():
         return instant
 
     def events():
-        updates = [("answer", instant), ("cards", cards_for(instant))] if instant else stream_ask(question, history)
+        engine = "Instant answer from our checked list with Google Maps Platform (Places + Routes); no AI needed"
+        updates = [("engine", engine), ("answer", instant), ("cards", cards_for(instant))] if instant else stream_ask(question, history)
         try:
             for kind, text in updates:
                 yield f"data: {json.dumps({'kind': kind, 'text': text})}\n\n"
