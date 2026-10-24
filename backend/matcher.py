@@ -66,18 +66,23 @@ def ask_gemma(prompt, attempts=2):
 
 def stream_gemma(prompt, thoughts=False):
     """Yield Gemma's answer text as it's written, so the chat can show it word by word.
-    With thoughts=True, yields (is_thought, text) pairs so the chat can also show what Gemma is working on."""
+    With thoughts=True, yields (is_thought, text) pairs so the chat can also show what Gemma is working on,
+    starting with ("engine", <which model and where>) so the page can say exactly what answered."""
     import gemma_gpu  # our own Gemma 4 GPU first: no hidden reasoning, so words start in seconds
     if gemma_gpu.available():
         started = False
         try:
             for text in gemma_gpu.stream(prompt):
+                if not started and thoughts:
+                    yield "engine", f"Gemma 4 26B ({gemma_gpu.MODEL}) on our own Cloud Run L4 GPU"
                 started = True
                 yield (False, text) if thoughts else text
             return
         except Exception:
             if started:
                 raise  # part of an answer was already shown; don't start over with another model
+    if thoughts:
+        yield "engine", f"Gemma 4 26B ({MODEL}) via the Gemini API"
     for chunk in _get_client().models.generate_content_stream(model=MODEL, contents=prompt):
         for part in (chunk.candidates[0].content.parts or []) if chunk.candidates and chunk.candidates[0].content else []:
             if not part.text:

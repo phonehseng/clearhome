@@ -182,6 +182,12 @@
     body{-webkit-user-select:none;user-select:none}
     img,svg{-webkit-user-drag:none}
     :is(input,textarea,[contenteditable]){-webkit-user-select:text;user-select:text}
+    /* Built with Google */
+    .google-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:28px}
+    .google-grid .card h3{margin:8px 0 6px}
+    .google-grid .card p{font-size:14px;line-height:1.6}
+    .google-grid code{font-size:12.5px;background:#e7edf8;padding:1px 6px;border-radius:6px;color:#23408f}
+    .g-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#e7edf8;color:#2f55b5}
   </style>
 </head>
 <body>
@@ -203,6 +209,7 @@
       <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>clear house<span class="brand-dot">.</span></a>
       <nav class="header-links" aria-label="Page navigation">
         <a href="#how">How it works</a>
+        <a href="#google">Built with Google</a>
         <a href="/app">Open the tools</a>
         <a href="/resources">Resources</a>
         <a class="emergency-link" href="#emergency"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#help"/></svg>Need help now?</a>
@@ -262,6 +269,26 @@
         </div>
       </div>
     </section>
+
+    <section id="google" aria-labelledby="google-title">
+      <div class="section-heading">
+        <p class="eyebrow reveal">Built with Google</p>
+        <h2 id="google-title" class="reveal">Gemma 4, Google Maps and Google Cloud, working together.</h2>
+        <p class="lead reveal">Every answer is grounded in our hand-checked list. Here is what each Google technology does in Clear House.</p>
+      </div>
+      <div class="google-grid stagger">
+        <div class="card reveal"><span class="g-tag">AI model</span><h3>Gemma 4 26B</h3><p><code>gemma-4-26b-a4b-it</code>, Google’s open model, writes the chat answers. It only uses the checked records we hand it, streams its answer word by word, and every reply says which model answered.</p></div>
+        <div class="card reveal"><span class="g-tag">AI model, self-hosted</span><h3>Gemma 4 on a Cloud Run GPU</h3><p>The same Gemma 4 26B (<code>gemma4:26b</code>) runs on our own NVIDIA L4 GPU on Cloud Run with reasoning turned off, so answers start in seconds. If it’s asleep, the app falls back to the Gemini API.</p></div>
+        <div class="card reveal"><span class="g-tag">Gemini API</span><h3>Gemini API + Google Search grounding</h3><p>Calls Gemma 4 from the server, and powers the live web search on the map: Gemma searches Google for new affordable listings, shown in orange until our team checks them.</p></div>
+        <div class="card reveal"><span class="g-tag">Maps</span><h3>Maps JavaScript API</h3><p>The listings map: a house pin for every reviewed home, county outlines, Northern Virginia and Blacksburg tabs, Street View to see a building, and a map that follows the chat and your filters.</p></div>
+        <div class="card reveal"><span class="g-tag">Maps</span><h3>Places API (New)</h3><p>Finds the place you mean when you ask for homes “near my office” or “near Inova Fairfax Hospital”, and the grocery stores, pharmacies and bus stops near each home.</p></div>
+        <div class="card reveal"><span class="g-tag">Maps</span><h3>Routes API</h3><p>Real drive, transit and walking times from each home to your office, school or a nearby grocery store, plus the walking route drawn on the map.</p></div>
+        <div class="card reveal"><span class="g-tag">Cloud</span><h3>Cloud Run</h3><p>Hosts the website and the Gemma GPU service. Both scale to zero when nobody’s using them, so the project only costs money while people use it.</p></div>
+        <div class="card reveal"><span class="g-tag">Cloud</span><h3>Cloud Build + Artifact Registry</h3><p>Builds every release of the site and the 17 GB Gemma image from our GitHub code, and stores them for Cloud Run.</p></div>
+        <div class="card reveal"><span class="g-tag">Cloud</span><h3>Secret Manager</h3><p>Keeps the Gemini and Maps keys out of the code; Cloud Run reads them at start-up. The browser Maps key only works on our own site.</p></div>
+      </div>
+    </section>
+
 
     <section aria-labelledby="promise-title">
       <div class="promise reveal">
