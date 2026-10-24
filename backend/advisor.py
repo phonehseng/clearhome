@@ -152,9 +152,21 @@ def programs():
 OUTSIDE = r"\b(richmond|baltimore|maryland|silver spring|bethesda|rockville|washington,? dc|d\.?c\.?|norfolk|virginia beach|chesapeake|charlottesville|roanoke|fredericksburg|stafford|winchester|harrisonburg|lynchburg|frederick)\b"
 
 
+# Well-known places people ask to live near: (area, approximate latitude, longitude).
+LANDMARKS = {
+    "george mason": ("Fairfax County", 38.8297, -77.3074), "gmu": ("Fairfax County", 38.8297, -77.3074),
+    "virginia tech": ("Blacksburg", 37.2284, -80.4234), "vt campus": ("Blacksburg", 37.2284, -80.4234),
+    "nova community college": ("Fairfax County", 38.8325, -77.2365), "nvcc": ("Fairfax County", 38.8325, -77.2365),
+    "marymount": ("Arlington County", 38.8968, -77.1270), "pentagon": ("Arlington County", 38.8719, -77.0563),
+}
+
+
 def area_for(text):
     """Resolve Northern Virginia places or Blacksburg; general requests default to NoVA."""
     t = (text or "").lower()
+    landmark = next((v[0] for k, v in LANDMARKS.items() if re.search(rf"\b{re.escape(k)}\b", t)), None)
+    if landmark:
+        return landmark
     area = next((area for word, area in AREAS if word in t), None)
     if area:
         return area
@@ -232,6 +244,59 @@ def options(profile):
     need, income_note = program_need(profile)
     return {"area": area, "listings": listings, "programs": programs, "shelters": shelters,
             "programs_relevant": need, "income_note": income_note}
+
+
+NEAR = re.compile(r"\b(near|close to|by|around|next to|walking distance|walk to|within \d+ (?:mi|miles?))\b")
+
+
+def quick_nearby(question, profile=None):
+    """Answer "one near George Mason"-style questions straight from the catalog, with no AI call.
+    Returns None when the question isn't a simple "near a place" request."""
+    import math
+    q = (question or "").lower()
+    if not NEAR.search(q):
+        return None
+    landmark = next(((k, v) for k, v in LANDMARKS.items() if re.search(rf"\b{re.escape(k)}\b", q)), None)
+    area = landmark[1][0] if landmark else area_for(question)
+    if not area or area == "Northern Virginia":
+        return None
+    profile = profile or {}
+    # Regular rentals (e.g. Blacksburg student rooms) are included but labeled, so they're never mistaken for subsidized housing.
+    filters = {"types": ["affordable_listing", "rental_listing"], "locations": [area], "age": 62 if profile.get("senior") else 30}
+    if isinstance(profile.get("budget"), (int, float)) and profile["budget"] > 0:
+        filters["max_budget_per_month"] = profile["budget"]
+    rows = filter_catalog(load_catalog(), filters)
+    seen, homes = set(), []
+    for r in rows:
+        key = (r.get("community") or r["name"]).casefold()
+        if key not in seen:
+            seen.add(key)
+            homes.append(r)
+    if landmark:
+        _, (_, lat, lon) = landmark
+        def miles(r):
+            if r.get("lat") is None:
+                return None
+            dlat, dlon = math.radians(r["lat"] - lat), math.radians(r["lon"] - lon)
+            h = math.sin(dlat / 2) ** 2 + math.cos(math.radians(lat)) * math.cos(math.radians(r["lat"])) * math.sin(dlon / 2) ** 2
+            return 3958.8 * 2 * math.asin(math.sqrt(h))
+        homes.sort(key=lambda r: (miles(r) is None, miles(r) or 0))
+    place = landmark[0].title().replace("Gmu", "George Mason University") if landmark else area
+    if not homes:
+        return (f"I don't have a reviewed home in {area} that fits your choices yet. Try a higher budget or a nearby area, "
+                "or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
+    lines = [f"Here are reviewed homes closest to {place}:" if landmark else f"Here are reviewed homes in {area}:"]
+    for r in homes[:5]:
+        rent = f"from ${r['monthly_rent']:,.0f}/month" if isinstance(r.get("monthly_rent"), (int, float)) else "rent: ask the provider"
+        dist = ""
+        if landmark and r.get("lat") is not None:
+            dist = f", about {miles(r):.1f} mi away (straight line)"
+        phone = f" Call {r['phone']}." if r.get("phone") else ""
+        kind = " (regular rental, not income-restricted)" if r.get("type") == "rental_listing" else ""
+        lines.append(f"- **{r.get('community') or r['name']}**{kind}: {rent}{dist}.{phone}")
+    lines.append("Advertised rents and openings aren't guaranteed, so confirm with the property. "
+                 "For real walking times, use \"Live near a…\" under More options.\n\nThis is guidance, not legal advice.")
+    return "\n".join(lines)
 
 
 if __name__ == "__main__":
