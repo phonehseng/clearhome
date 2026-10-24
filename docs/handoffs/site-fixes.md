@@ -18,8 +18,8 @@ pip install -r backend/requirements.txt
 python backend/app.py                                 # serves http://localhost:8000
 ```
 
-- Pages: `/` = about page (`frontend/about.html`), `/app` = tools page (`frontend/index.html`), `/resources` = programs page (`frontend/resources.html`).
-- Tests: `python -m unittest discover -s backend -p 'test_*.py'` (78 tests; 77 pass without keys, see issue 6). Catalog check: `python backend/catalog.py --check` (expect "Catalog valid: 405 records").
+- Pages: `/` = about page (`frontend/about.html`, which now also shows the listings map from `frontend/listing-map.js`), `/app` = tools page (`frontend/index.html`), `/resources` = programs page (`frontend/resources.html`).
+- Tests: `python -m unittest discover -s backend -p 'test_*.py'` (everything passes without keys except `test_gemma`, see issue 6). Catalog check: `python backend/catalog.py --check` (expect "Catalog valid: 405 records").
 - There is **no `.env`** on the owner's machine, so the Gemini and Google Maps features can't be tested end to end. Without keys they show "not set up" messages, which is correct. Don't create keys or put them in files yourself.
 - **macOS quirk:** the Claude desktop browser pane's launcher can't read `~/Documents` (macOS privacy), so `preview_start` with a launch config fails with `Operation not permitted`. Start the server from the shell in the background, then open `http://localhost:8000/app` with `preview_start` and a `url`.
 - **zsh quirk when testing with curl:** pass headers inline, e.g. `-H 'Content-Type: application/json'`. A header kept in an unquoted shell variable is not split in zsh, so the server silently gets no JSON body.
@@ -28,7 +28,7 @@ python backend/app.py                                 # serves http://localhost:
 
 ## Issue 1: 19 listing photos fail to load, plus 1 wrong photo (biggest issue)
 
-**What happens:** `/media/listings/<id>` returns **503** for 19 of the 279 listings that have a photo. When a photo fails, the card quietly drops to the no-photo style (`frontend/index.html`, the `image.addEventListener('error', …)` handler near line 655), so visitors see no broken image, just fewer photos.
+**What happens:** `/media/listings/<id>` returns **503** for 19 of the 279 listings that have a photo. When a photo fails, the card quietly drops to the no-photo style (`frontend/index.html`, the `image.addEventListener('error', …)` handler near line 674), so visitors see no broken image, just fewer photos.
 
 **How the photo proxy works** (`backend/listing_photos.py`, `cached_photo`): it downloads only from hosts in `ALLOWED_HOSTS`, uses `requests` with its default User-Agent, sets **`allow_redirects=False`**, requires an `image/*` Content-Type, caps size at **`MAX_BYTES = 8 MB`**, checks the file with Pillow, and caches it in `.cache/listing-photos/`. A failure is remembered for 60 seconds (`_FAILURES`). The source code says on purpose: *"Do not bypass denied provider access."* **Don't** add a fake browser User-Agent or other ways around that without the owner's OK.
 
@@ -122,7 +122,7 @@ Then run `python backend/catalog.py --check` and `python -m unittest discover -s
 
 ## Issue 2: about page scrolls sideways on phones
 
-**What happens:** at 375 px wide, `/` has `scrollWidth` 387 against a 371 px viewport, so the page can be dragged left and right. The cause is in `frontend/about.html`, around lines 129–132: `.reveal.from-right { transform: translateX(32px); }` pushes the right-sliding feature cards (`<div class="feature reveal from-right">`, around line 253, and the hero `reveal from-right`, around line 224) past the right edge until they animate in. `/app` and `/resources` don't have this problem.
+**What happens:** at 375 px wide, `/` has `scrollWidth` 387 against a 371 px viewport, so the page can be dragged left and right. The cause is in `frontend/about.html`, around lines 129–132: `.reveal.from-right { transform: translateX(32px); }` pushes the right-sliding feature cards (`<div class="feature reveal from-right">`, around line 308, and the hero `reveal from-right`, around line 268) past the right edge until they animate in. `/app` and `/resources` don't have this problem.
 
 **Fix:** stop horizontal overflow on the about page without disabling the animation, for example add `html, body { overflow-x: clip; }` to its `<style>`. `clip` is better than `hidden` here because it doesn't create a scroll container. Don't remove the animation.
 
@@ -138,7 +138,7 @@ Then run `python backend/catalog.py --check` and `python -m unittest discover -s
 addMessage('assistant', (err.message || 'We could not reach the assistant.') + ' For urgent help, call 211.', 'error');
 ```
 
-**Fix:** add the 211 sentence only when the message doesn't already mention 211, e.g. `const msg = err.message || 'We could not reach the assistant.'; addMessage('assistant', /211/.test(msg) ? msg : msg + ' For urgent help, call 211.', 'error');`. Also check the home page chat in `frontend/index.html` (around line 1187, `botSay(... + ' For urgent help, call 211.')`) for the same doubling, and fix it there if it happens.
+**Fix:** add the 211 sentence only when the message doesn't already mention 211, e.g. `const msg = err.message || 'We could not reach the assistant.'; addMessage('assistant', /211/.test(msg) ? msg : msg + ' For urgent help, call 211.', 'error');`. Also check the home page chat in `frontend/index.html` (around line 999, `botSay(... + ' For urgent help, call 211.')`) for the same doubling, and fix it there if it happens.
 
 **Check:** without a Gemini key, click the "How do I qualify for Section 8?" example on `/resources`. "211" should appear only once.
 
@@ -170,7 +170,7 @@ Also consider improving the web-search message when the key is missing. Right no
 
 ## Issue 6: the test suite reports an error without a key
 
-`backend/test_gemma.py` runs `raise SystemExit("Set GEMINI_API_KEY …")` when it's imported, so `python -m unittest discover -s backend -p 'test_*.py'` reports `ERROR: test_gemma` on any machine without a key (77/78). Make it skip instead of crashing discovery. For example, wrap the checks in a `unittest.TestCase` with `@unittest.skipUnless(os.getenv("GEMINI_API_KEY"), "needs GEMINI_API_KEY")`, while keeping `python backend/test_gemma.py` working as the README's quick key check (README line ~59). Afterwards a keyless run should show `OK (skipped=…)`.
+`backend/test_gemma.py` runs `raise SystemExit("Set GEMINI_API_KEY …")` when it's imported, so `python -m unittest discover -s backend -p 'test_*.py'` reports `ERROR: test_gemma` on any machine without a key. Make it skip instead of crashing discovery. For example, wrap the checks in a `unittest.TestCase` with `@unittest.skipUnless(os.getenv("GEMINI_API_KEY"), "needs GEMINI_API_KEY")`, while keeping `python backend/test_gemma.py` working as the README's quick key check (README line ~59). Afterwards a keyless run should show `OK (skipped=…)`.
 
 ---
 
