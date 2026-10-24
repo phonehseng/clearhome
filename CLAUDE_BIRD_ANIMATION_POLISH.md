@@ -1,5 +1,11 @@
 # Claude handoff: recognizable birds and natural flight
 
+## User follow-up: current birds still look wrong
+
+The user reviewed the latest appearance and still sees two half-circles colliding rather than birds. Treat the current silhouette and wing motion as needing a redesign, not a small timing adjustment. Replace the paired semicircle construction with an intentional, connected silhouette featuring a visible body, small head/beak, tapered wings, and a subtle tail where readable. Keep the wings attached at the shoulders throughout the cycle. Prefer a restrained side/three-quarter gliding bird with subtle flaps if that reads better than the current front-facing shapes. Do not retain overlapping crescents or opposing curves that rotate through each other.
+
+Inspect both a still frame and the full motion at the actual on-page size. If anatomical details become noisy, simplify the connected silhouette while retaining a recognizable bird shape. Check desktop and mobile and capture a representative preview if available. The user explicitly requests that you **implement, commit, and push the actual redesign**, then report its commit hash; another handoff-only change does not satisfy the request.
+
 Implement, visually verify, commit, and push this user-requested improvement to the animated background birds. The user says the current birds look like half-moons scissoring against each other rather than actual flying birds.
 
 - Inspect the current bird shapes, transforms, and animation layers. Replace the crescent-like silhouettes and intersecting/scissoring wing movement with clean, recognizable bird silhouettes: a small coherent body with two attached wings, readable at the actual display size.
