@@ -28,6 +28,15 @@ app = Flask(__name__, static_folder=None)
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB uploads
 
 
+@app.get("/favicon.svg")
+@app.get("/favicon.ico")
+@app.get("/apple-touch-icon.png")
+def site_icon():
+    """The Clear House logo as the browser-tab and home-screen icon."""
+    name = request.path.lstrip("/")
+    return send_from_directory(FRONTEND, name, max_age=86400)
+
+
 @app.get("/")
 def about():
     return send_from_directory(FRONTEND, "about.html")
