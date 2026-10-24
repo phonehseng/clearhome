@@ -75,3 +75,7 @@ Before adding or updating a record: read the provider's current listing, corrobo
 ## Sources for future expansion
 
 Keep the team's Northern Virginia scope when adding support resources: start with official city/county housing offices, homeless-services intake lines, 211 Virginia, Legal Services of Northern Virginia, and local food banks or community action agencies. Record each service's area separately from its office address. For the current property catalog, `area` preserves the shared team field and equals the property's jurisdiction.
+
+## Listing photos
+
+Optional `photo` metadata contains an HTTPS image `url`, the supporting `source_url`, descriptive `alt`, `credit`, `reviewed_on`, and a caption explaining that community/model photos may differ from the offered unit. Photos are hosted by providers or their listing platform; they are not proof of vacancy or condition. The UI shows a labeled fallback if a photo is missing or fails to load. Photo research never resets the listing's availability review date.

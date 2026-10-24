@@ -166,6 +166,40 @@
     :root .housing-status{background:#1f3170;color:#d5e0fb}
     :root .browse-link{border-color:#ffd66b}
     }
+
+    .housing-card{position:relative;isolation:isolate}
+    .housing-card:has(.property-photo:hover),.housing-card:has(.property-photo:focus-visible){z-index:3}
+    .housing-card:has(.property-photo) :is(.housing-status,h3,.housing-plan){margin-right:98px}
+    .housing-card .housing-status{font-size:10px;line-height:1.6}
+    .property-photo{position:absolute;right:19px;top:20px;width:84px;height:80px;padding:5px;border-radius:17px;background:linear-gradient(135deg,#ffffffb3,#ffffff26);border:1px solid #ffffffb3;box-shadow:0 8px 24px #182c5426,inset 0 1px 0 #fff9;backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);z-index:2}
+    .property-photo>img{width:100%;height:100%;display:block;object-fit:cover;border-radius:12px}
+    .photo-expand-mark{position:absolute;bottom:7px;right:7px;display:grid;place-items:center;width:21px;height:21px;border-radius:7px;background:#12203db3;color:white;font-size:15px;backdrop-filter:blur(8px)}
+    .photo-hover{position:absolute;right:-5px;top:-5px;width:285px;max-width:calc(100vw - 70px);padding:8px;border:1px solid #ffffffa6;border-radius:19px;background:#f5f8ffed;box-shadow:0 18px 55px #0b143359;backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);opacity:0;visibility:hidden;transform:scale(.94);transform-origin:top right;transition:opacity .18s,transform .18s,visibility .18s;pointer-events:none;color:#14203f}
+    .photo-hover img{display:block;width:100%;height:185px;object-fit:cover;border-radius:12px}
+    .photo-hover small{display:block;text-align:left;padding:8px 5px 3px;font-size:11px;line-height:1.6}
+    @media(hover:hover) and (pointer:fine){.property-photo:hover .photo-hover,.property-photo:focus-visible .photo-hover{visibility:visible;opacity:1;transform:scale(1)}}
+    .photo-unavailable{position:absolute;right:19px;top:20px;width:84px;min-height:68px;padding:13px 8px;border:1px solid var(--line);border-radius:14px;background:var(--sage);color:var(--muted);font-size:10px;text-align:center}
+    .housing-card:has(.photo-unavailable) :is(.housing-status,h3,.housing-plan){margin-right:98px}
+    .housing-card .eligibility-details{padding-top:15px}
+    .eligibility-details summary{display:flex;align-items:center;justify-content:space-between;gap:8px;list-style:none;font-size:12px;min-height:30px}
+    .eligibility-details summary::-webkit-details-marker{display:none}
+    .eligibility-details summary::after{content:'+';font-size:20px;font-weight:400;color:var(--muted)}
+    .eligibility-details[open] summary::after{content:'−'}
+    .eligibility-grid{display:grid;gap:0;margin-top:12px}
+    .eligibility-item{padding:13px 0;border-top:1px solid var(--line)}
+    .eligibility-item h4{font-size:11px;letter-spacing:.6px;text-transform:uppercase;margin:0;color:var(--ink)}
+    .housing-card .eligibility-item p{margin:6px 0 0;font-size:12px;line-height:1.8}
+    .eligibility-footer{font-size:11px;color:var(--muted);padding:12px;border-radius:7px;background:var(--sage);margin-top:6px}
+    .photo-dialog{width:min(850px,calc(100% - 32px));max-height:90dvh;overflow:auto;padding:20px;border:1px solid #ffffff73;border-radius:20px;background:#f5f8fff5;color:#14203f;box-shadow:0 30px 90px #0007;backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px)}
+    .photo-dialog::backdrop{background:#071024c9;backdrop-filter:blur(8px)}
+    .photo-dialog header{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:15px}
+    .photo-dialog h2{font-size:21px;line-height:1.5}
+    .photo-dialog button{background:#e2eafb;border:1px solid #cdd8ef;border-radius:50%;width:44px;height:44px;flex-shrink:0;font-size:23px;color:#14203f}
+    .photo-dialog img{display:block;max-height:62dvh;width:100%;object-fit:contain;border-radius:12px;background:#dfe6f2}
+    .photo-dialog p{font-size:12px;line-height:1.8;margin:12px 0}
+    .photo-dialog a{font-size:12px}
+    @media(prefers-color-scheme:dark){.property-photo{background:linear-gradient(135deg,#ffffff38,#ffffff0d);border-color:#a4bce073}.photo-hover,.photo-dialog{background:#15224df5;color:#eef3ff;border-color:#7d97ce80}.photo-dialog button{background:#263e72;border-color:#6a85b9;color:#eef3ff}.photo-dialog img{background:#0e1a40}}
+    @media(max-width:560px){.photo-dialog{padding:16px}.photo-dialog h2{font-size:18px}.property-photo,.photo-unavailable{right:17px}.housing-card .eligibility-item p{font-size:13px}}
   </style>
 </head>
 <body>
@@ -211,7 +245,12 @@
   </section>
   <section class="trust-banner" id="our-promise" aria-labelledby="promise-title"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#shield"/></svg><div><h2 id="promise-title">Real resources. A little more peace of mind.</h2><p>Housing recommendations come from our manually verified list. Availability and eligibility can change, so always confirm with the provider.</p></div><span class="trust-badge">People first. Always.</span></section>
 </main><footer class="container site-footer"><p>AI can make mistakes. Guidance and lease checks are informational, not legal advice. Don’t share your full name, SSN, bank details, or other sensitive information.</p><p>A clearer next step, together.</p></footer>
+<dialog id="property-photo-dialog" class="photo-dialog" aria-labelledby="property-photo-title"><header><h2 id="property-photo-title">Community photo</h2><button type="button" id="close-property-photo" aria-label="Close photo preview">×</button></header><img id="property-photo-large" alt=""><p id="property-photo-caption"></p><div id="property-photo-source"></div></dialog>
 <script>
+  const photoDialog = document.getElementById('property-photo-dialog');
+  document.getElementById('close-property-photo').addEventListener('click',()=>photoDialog.close());
+  photoDialog.addEventListener('click',event=>{if(event.target===photoDialog){const rect=photoDialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)photoDialog.close();}});
+  photoDialog.addEventListener('close',()=>{document.body.style.overflow='';});
   const browseForm = document.getElementById('browse-form');
   const browseMessage = document.getElementById('browse-message');
   const listingsGrid = document.getElementById('listings-grid');
@@ -234,6 +273,22 @@
     housingRows.slice(0,visibleHousingCount).forEach(row => {
       const availability = row.availability || {};
       const card = housingElement('article','housing-card');
+      const photo = row.photo;
+      const safePhoto = photo && sourceLink(photo.url, 'Photo') && sourceLink(photo.source_url, 'Photo source');
+      if (safePhoto) {
+        const button = housingElement('button','property-photo'); button.type='button'; button.setAttribute('aria-label',`Enlarge photo of ${row.community || row.name}`); button.setAttribute('aria-haspopup','dialog');
+        const image=document.createElement('img'); image.src=photo.url;image.alt=photo.alt || `Community photo of ${row.community}`;image.loading='lazy';image.referrerPolicy='no-referrer';
+        button.append(image,housingElement('span','photo-expand-mark','⤢'));
+        const preview=housingElement('span','photo-hover');preview.setAttribute('aria-hidden','true');const large=image.cloneNode();large.alt='';large.loading='lazy';preview.append(large,housingElement('small','',photo.caption || 'Community photo; actual unit may differ.'));button.append(preview);
+        image.addEventListener('error',()=>{button.replaceWith(housingElement('span','photo-unavailable','Photo unavailable'));});
+        button.addEventListener('click',()=>{
+          document.getElementById('property-photo-title').textContent=row.community || row.name;
+          const large=document.getElementById('property-photo-large');large.src=photo.url;large.alt=photo.alt || row.community;large.referrerPolicy='no-referrer';
+          document.getElementById('property-photo-caption').textContent=photo.caption || 'Community photo; actual unit may differ.';
+          const source=document.getElementById('property-photo-source');source.replaceChildren();const link=sourceLink(photo.source_url,'Photo from the provider’s listing ↗');if(link)source.append(link);
+          photoDialog.showModal();document.body.style.overflow='hidden';
+        });card.append(button);
+      } else card.append(housingElement('span','photo-unavailable',row.type==='housing_authority'?'Housing program':'Photo not provided'));
       const status = housingElement('span','housing-status',statusLabels[availability.status] || 'Contact for availability'); status.dataset.status = availability.status || ''; card.append(status);
       card.append(housingElement('h3','',row.community || row.name));
       if (row.floor_plan) card.append(housingElement('p','housing-plan',row.floor_plan));
@@ -250,8 +305,18 @@
       if (availability.available_from) features.push('From ' + reviewedDate(availability.available_from));
       features.push(row.accessible === true ? 'Accessible unit documented' : 'Unit accessibility not confirmed');
       card.append(housingElement('p','housing-features',features.join(' · ')));
-      const details = housingElement('details'); details.append(housingElement('summary','','Eligibility & important details'));
-      [row.who_it_serves,row.requirements,row.cost,availability.evidence,row.accessibility_notes,row.notes].filter(Boolean).forEach(text => details.append(housingElement('p','',text)));
+      const details = housingElement('details','eligibility-details'); details.append(housingElement('summary','','Eligibility & important details'));
+      const information=housingElement('div','eligibility-grid');
+      const groups=[
+        ['Who can apply',[row.minimum_age ? `Age requirement: ${row.minimum_age} and older.` : null,row.who_it_serves].filter(Boolean).join(' ')],
+        ['Before you apply',row.requirements],
+        ['Rent & additional costs',row.cost],
+        ['Availability & timing',[statusLabels[availability.status],availability.available_from ? 'Advertised move-in: '+reviewedDate(availability.available_from)+'.' : null,availability.evidence].filter(Boolean).join(' ')],
+        ['Accessibility',row.accessibility_notes || 'Ask the provider about accessible units and features.'],
+        ['Confirm with leasing',row.notes]
+      ];
+      groups.forEach(([title,text])=>{if(!text)return;const group=housingElement('section','eligibility-item');group.append(housingElement('h4','',title),housingElement('p','',text));information.append(group);});
+      details.append(information,housingElement('div','eligibility-footer','The provider makes the final eligibility decision. Confirm costs and availability before applying or paying.'));
       card.append(details);
       const actions = housingElement('div','housing-actions');
       const source = sourceLink(row.source_url,'View provider source ↗'); if (source) actions.append(source);
