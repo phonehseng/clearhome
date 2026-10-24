@@ -18,7 +18,7 @@ FIELDS = ("name", "type", "jurisdiction", "city", "address", "phone", "website",
           "lease_type", "lease_responsibility", "lease_start", "lease_end", "payment_schedule", "shared_home_bedrooms",
           # Emergency services: how to get in and where to go (only present on shelter and intake records).
           "intake_steps", "intake_hours", "public_intake_address", "after_hours", "phone_role", "address_kind",
-          "confidential_location", "referral_required", "intake_status", "distance_from_blacksburg", "transit", "links", "source_kind")
+          "confidential_location", "referral_required", "intake_status", "intake_status_note", "distance_from_blacksburg", "transit", "links", "source_kind")
 
 
 # Gemma's free tier allows about 16,000 input tokens a minute, so each question only sends
@@ -409,6 +409,7 @@ def options(profile):
                 if not isinstance(r.get("availability"), dict)][:12]
     shelters = [keep(r) for r in filter_catalog(rows, {**base, "needs_accessible": False, "types": ["emergency_shelter", "other"], "urgency": "emergency"})
                 if r["type"] == "emergency_shelter" or "intake" in str(r.get("name", "")).lower() or "coordinated" in str(r.get("name", "")).lower()][:10] if profile.get("tonight") else []
+    shelters.sort(key=lambda r: r.get("intake_status") == "closed")  # what can help tonight first; closed or seasonal last
     need, income_note = program_need(profile)
     return {"area": area, "listings": listings, "programs": programs, "shelters": shelters,
             "programs_relevant": need, "income_note": income_note}

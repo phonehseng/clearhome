@@ -1127,7 +1127,7 @@
     function shelterCard(r) {
       const c = el('article', null, { class: 'opt-card shelter' });
       // Never a promise of a bed: what the source supports, or "call to confirm".
-      const badge = r.intake_status === 'closed' ? 'Intake closed right now' : r.referral_required ? 'Referral required' : 'Call to confirm a bed tonight';
+      const badge = r.intake_status === 'closed' ? (r.intake_status_note || 'Closed right now') : r.referral_required ? 'Referral or screening required' : 'Call to confirm a bed tonight';
       c.append(el('span', badge, { class: 'opt-badge confirm' }));
       c.append(el('strong', r.name));
       const meta = [r.city || r.jurisdiction, r.distance_from_blacksburg].filter(Boolean).join(' · ');
