@@ -11,7 +11,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://liveatlanticblvd.com/",
-      "reason": "Only construction or rendering evidence was established; a real community photograph is still needed."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Coan Pond Residences",
@@ -151,11 +151,11 @@
       "record_ids": [
         "nova-fairfax-county-bell-vienna-metro"
       ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://www.akelius-properties.us/dwell-vienna-metro0/photogallery",
-      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92601/va_fairfax_dwellviennametro_p1430755_20_20_1_photogallery.jpg",
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
-      "dimensions_checked": false
+      "dimensions_checked": false,
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Camden Monument Place",
@@ -463,11 +463,11 @@
       "record_ids": [
         "nova-fairfax-county-aperture"
       ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://www.liveaperture.com/gallery/",
-      "image_url": "https://www.liveaperture.com/wp-content/uploads/2020/12/Untitled10W.jpg",
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
-      "dimensions_checked": false
+      "dimensions_checked": false,
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Avalon Dunn Loring",
@@ -645,7 +645,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Faraday Park",
@@ -701,11 +701,11 @@
       "record_ids": [
         "nova-fairfax-county-the-point-at-reston"
       ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://www.thepointatreston.com/reston/the-point-at-reston/photos/",
-      "image_url": "https://medialibrarycfo.entrata.com/17202/MLv3/3/27/2022/2/24/33246/618176f551f354.03086776958.jpg",
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
-      "dimensions_checked": false
+      "dimensions_checked": false,
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "The Avant at Reston Town Center",
@@ -919,7 +919,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Culpepper Gardens",
@@ -1001,7 +1001,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "The Cadence",
@@ -1023,7 +1023,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "The Madison at Ballston Station",
@@ -1357,7 +1357,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Ashburn Chase",
@@ -1377,11 +1377,11 @@
       "record_ids": [
         "nova-loudoun-county-ashburn-meadows"
       ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://www.ashburnmeadows.com/gallery",
-      "image_url": "https://images.squarespace-cdn.com/content/v1/5edfbbbee6fdcf0c12b1b6e9/1595000565557-PYU4Q046Y759WCCD40LN/Exterior-Community-DSC0697%2B-%2BEdited%2B-%2BV1%2B-%2BRCA.jpg",
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
-      "dimensions_checked": false
+      "dimensions_checked": false,
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Atley on the Greenway",
@@ -1475,7 +1475,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Bell Ashburn Farms",
@@ -1677,7 +1677,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Purcellville Pointe",
@@ -1711,7 +1711,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Annie B. Rose House",
@@ -1733,7 +1733,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Foxchase",
@@ -1767,7 +1767,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Acclaim at Alexandria",
@@ -1789,7 +1789,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Beverly Park",
@@ -2003,7 +2003,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Saint James Plaza",
@@ -2059,11 +2059,11 @@
       "record_ids": [
         "nova-alexandria-city-the-blake"
       ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://www.theblakealexandria.com/virtual-tours/",
-      "image_url": "https://www.theblakealexandria.com/wp-content/uploads/JPE_6717_1-1.jpg",
+      "status": "needs_verified_property_photo",
+      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
-      "dimensions_checked": false
+      "dimensions_checked": false,
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "The Bradley",
@@ -2107,11 +2107,11 @@
       "record_ids": [
         "nova-alexandria-city-the-point-at-eisenhower-square"
       ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://www.thepointateisenhowersq.com/alexandria/the-point-at-eisenhower-square/photos/",
-      "image_url": "https://medialibrarycf.entrata.com/17202/MLv3/3/27/2022/05/17/102921/6283cd60db0195.74380859801.jpg",
+      "status": "needs_verified_property_photo",
+      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
-      "dimensions_checked": false
+      "dimensions_checked": false,
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "The Foundry",
@@ -2306,18 +2306,6 @@
       "dimensions_checked": false
     },
     {
-      "community": "The Landing at Mason’s Bridge",
-      "jurisdiction": "Prince William County",
-      "record_ids": [
-        "nova-prince-william-county-the-landing-at-mason-s-bridge"
-      ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://lawsoncompanies.com/apartments/the-landing-at-masons-bridge-apartments-woodbridge-va/",
-      "reason": "Official gallery exposes 150-pixel thumbnails; a usable larger original was not established.",
-      "image_url": "https://lawsoncompanies.com/wp-content/uploads/2021/03/LAMB-1.jpg",
-      "reviewed_on": "2026-10-24"
-    },
-    {
       "community": "The Flats at Neabsco",
       "jurisdiction": "Prince William County",
       "record_ids": [
@@ -2348,8 +2336,8 @@
         "nova-prince-william-county-the-harbor-at-quantico-creek"
       ],
       "status": "needs_verified_property_photo",
-      "source_url": "https://www.harboratquanticocreek.com/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "source_url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "455 Tinner Hill",
@@ -2381,11 +2369,11 @@
       "record_ids": [
         "nova-falls-church-city-west-broad"
       ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://www.westbroad.com/gallery/",
-      "image_url": "https://www.westbroad.com/wp-content/uploads/2025/03/WestBroad_Int_Model_2bedKitchen_Feb2016.jpg?x90118=",
+      "status": "needs_verified_property_photo",
+      "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
       "method": "official_page_image_link",
-      "dimensions_checked": false
+      "dimensions_checked": false,
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "The Read Building",
@@ -2395,7 +2383,7 @@
       ],
       "status": "needs_verified_property_photo",
       "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Arlington View Terrace",
@@ -2535,11 +2523,11 @@
       "record_ids": [
         "blacksburg-carlton-scott-apartments-c27-room-in-2-bedroom-apartment"
       ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://granitestudentliving.com/listings/carlton-scott-apartments-remodeled-3-bed-1-5-bath/",
-      "image_url": "https://images.cdn.appfolio.com/granitesl/images/ca5d40be-0e5d-40f4-a53b-d8d699b32bc8/large.jpg",
+      "status": "needs_verified_property_photo",
+      "source_url": "https://granitesl.appfolio.com/listings/detail/c7faebea-2fa0-4146-ac4b-86f0dc9bf624",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
-      "dimensions_checked": false
+      "dimensions_checked": false,
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "300 McDonald Street",
@@ -2547,11 +2535,11 @@
       "record_ids": [
         "blacksburg-300-mcdonald-street-c24-room-in-shared-apartment"
       ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://granitestudentliving.com/listings/300-mcdonald-street-apartments-individual-lease-option-7-7-2024-2/",
-      "image_url": "https://images.cdn.appfolio.com/granitesl/images/260ea87e-98f6-4743-a97b-4c9efd5c716b/large.jpg",
+      "status": "needs_verified_property_photo",
+      "source_url": "https://granitesl.appfolio.com/listings/detail/0b75fde4-93b8-4a77-811e-317626fda8c7",
       "method": "official_page_image_link",
-      "dimensions_checked": false
+      "dimensions_checked": false,
+      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "1711 Apartments",
@@ -2562,21 +2550,6 @@
       "status": "official_photo_source_reviewed",
       "source_url": "https://granitestudentliving.com/listings/1711-whipple-drive-4bed-2bath/",
       "image_url": "https://images.cdn.appfolio.com/granitesl/images/4b384edc-f743-40a9-a6ba-1c72d8e8be26/large.jpg",
-      "method": "official_page_image_link",
-      "dimensions_checked": false
-    },
-    {
-      "community": "Alight Blacksburg",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-alight-blacksburg-east-bedroom-in-4-2",
-        "blacksburg-alight-blacksburg-west-bedroom-in-4-2",
-        "blacksburg-alight-blacksburg-standard-bedroom-in-2-1",
-        "blacksburg-alight-blacksburg-fireplace-bedroom-in-2-1"
-      ],
-      "status": "official_photo_source_reviewed",
-      "source_url": "https://alight-blacksburg.com/",
-      "image_url": "https://alight-blacksburg.com/wp-content/uploads/sites/19/2023/02/Alight-Blacksburg-POI-11.jpg",
       "method": "official_page_image_link",
       "dimensions_checked": false
     },

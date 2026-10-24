@@ -56,14 +56,6 @@
     },
     "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office.",
     "area": "Fairfax County",
-    "photo": {
-      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/46/2026/01/07/123348/695eb51c4305b9.15609539627.jpg",
-      "source_url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station-i/map-and-directions/",
-      "alt": "Indigo at McLean Station courtyard and building exterior",
-      "credit": "Property provider / management listing",
-      "reviewed_on": "2026-10-24",
-      "caption": "Community or model-home photo; the offered apartment may differ."
-    },
     "affordability": {
       "status": "documented",
       "program": "Income-restricted housing program",
@@ -135,14 +127,6 @@
     },
     "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office.",
     "area": "Fairfax County",
-    "photo": {
-      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/46/2026/01/07/123348/695eb51c4305b9.15609539627.jpg",
-      "source_url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station-i/map-and-directions/",
-      "alt": "Indigo at McLean Station courtyard and building exterior",
-      "credit": "Property provider / management listing",
-      "reviewed_on": "2026-10-24",
-      "caption": "Community or model-home photo; the offered apartment may differ."
-    },
     "affordability": {
       "status": "documented",
       "program": "Income-restricted housing program",
@@ -210,14 +194,6 @@
     },
     "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office.",
     "area": "Fairfax County",
-    "photo": {
-      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/46/2026/01/07/123348/695eb51c4305b9.15609539627.jpg",
-      "source_url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station-i/map-and-directions/",
-      "alt": "Indigo at McLean Station courtyard and building exterior",
-      "credit": "Property provider / management listing",
-      "reviewed_on": "2026-10-24",
-      "caption": "Community or model-home photo; the offered apartment may differ."
-    },
     "affordability": {
       "status": "documented",
       "program": "Income-restricted housing program",
@@ -3372,9 +3348,15 @@
     ],
     "notes": "Operated by Loudoun Citizens for Social Justice (LCSJ). Office: 105 East Market Street, Leesburg, VA 20176; office phone 703-771-3398 (office hours not published).",
     "last_verified": "2026-10-24",
-    "verified": true,
+    "verified": false,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Loudoun County"
+    "area": "Loudoun County",
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
+    }
   },
   {
     "id": "laws-emergency-shelter",
@@ -3406,7 +3388,7 @@
     ],
     "notes": "Confidential-location shelter for up to 12 people; address intentionally omitted. The county Homeless Services page lists LAWS at 105 E Market Street, Leesburg (the LAWS office, not the shelter).",
     "last_verified": "2026-10-24",
-    "verified": true,
+    "verified": false,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
     "area": "Loudoun County",
     "links": [
@@ -3432,7 +3414,13 @@
     "confidential_location": true,
     "operator": "LAWS (Loudoun Citizens for Social Justice)",
     "source_conflicts": "County page lists LAWS at 105 E Market Street, Leesburg 20176 (office, not the shelter). LAWS page also shows a past event (Oct 17, 2025) but shelter content is current.",
-    "links_checked_on": "2026-10-24"
+    "links_checked_on": "2026-10-24",
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
+    }
   },
   {
     "id": "mobile-hope-loudoun-youth",
@@ -3611,7 +3599,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "(703) 792-3366 (TTY: 711)",
-    "website": "https://actspwc.org/",
+    "website": null,
     "hours": null,
     "who_it_serves": "Single women and families",
     "cost": null,
@@ -3623,10 +3611,6 @@
       {
         "url": "https://www.pwcva.gov/department/social-services/homeless-and-winter-shelters",
         "role": "government"
-      },
-      {
-        "url": "https://actspwc.org/contact-us/",
-        "role": "provider"
       },
       {
         "url": "https://www.manassasva.gov/social_services/index.php",
@@ -3699,7 +3683,7 @@
     ],
     "notes": "90 beds (county page: families and single adults). Phone conflicts: county shelter page lists NVFS SERVE at (571) 748-2603; City of Manassas page lists SERVE shelter at 10056 Dean Drive, 703-368-2979; NVFS lists campus main line 571.748.2500 at 10056 Dean Drive (office) and the shelter at 10054 Dean Drive. All agree access is via CES. NVFS also posts an undated Dean Drive road-closure notice (access via Dean Drive from Nokesville/Route 28).",
     "last_verified": "2026-10-24",
-    "verified": true,
+    "verified": false,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
     "area": "Manassas City",
     "lat": 38.746463,
@@ -3726,7 +3710,13 @@
     "after_hours": "Not published",
     "operator": "Northern Virginia Family Service (NVFS)",
     "source_conflicts": "Phones: county lists NVFS at (571) 748-2603; City of Manassas lists SERVE at 10056 Dean Drive, 703-368-2979; NVFS lists campus main line 571.748.2500, campus office 10056 Dean Drive and NVFS Family Shelter at 10054 Dean Drive. NVFS posts a 'beginning Monday, June 15' Dean Drive/Foster Drive closure (about two months) - likely expired by Oct 2026.",
-    "links_checked_on": "2026-10-24"
+    "links_checked_on": "2026-10-24",
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
+    }
   },
   {
     "id": "streetlight-supportive-shelter",
@@ -3959,9 +3949,15 @@
     ],
     "notes": "18-bed confidential safe house; address intentionally omitted. County DV page lists 'ACTS Domestic Violence Services (24-hour): 703-221-4951' (matches). ACTS general line 703-441-8606.",
     "last_verified": "2026-10-24",
-    "verified": true,
+    "verified": false,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William Area (Prince William County, Manassas City, Manassas Park City)"
+    "area": "Prince William Area (Prince William County, Manassas City, Manassas Park City)",
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
+    }
   },
   {
     "id": "acts-sexual-assault-hotline",
@@ -3993,9 +3989,15 @@
     ],
     "notes": "Conflict: the county DV page also lists 703-497-1192 as an 'ACTS/Help Line (24-hour)', but ACTS announced its general Crisis Helpline closed June 30, 2023; the number is now ACTS's Sexual Assault hotline.",
     "last_verified": "2026-10-24",
-    "verified": true,
+    "verified": false,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William Area (Prince William County, Manassas City, Manassas Park City)"
+    "area": "Prince William Area (Prince William County, Manassas City, Manassas Park City)",
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
+    }
   },
   {
     "id": "manassas-city-department-of-social-services",
@@ -5157,7 +5159,7 @@
         "role": "provider"
       },
       {
-        "url": "https://lsnv.org/explore-legal-issues/tenants-and-eviction-prevention/",
+        "url": "https://lsnv.org/explore-legal-issues/eviction-prevention/",
         "role": "provider"
       },
       {
@@ -5460,9 +5462,15 @@
     ],
     "notes": "Intake routing (CES / CSP) is from NVFS pages (not confirmed on a page we read); RHAP 'qualifying health condition' is not defined on the page.",
     "last_verified": "2026-10-24",
-    "verified": true,
+    "verified": false,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Northern Virginia"
+    "area": "Northern Virginia",
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
+    }
   },
   {
     "id": "reserve-eisenhower-allison",
@@ -7659,15 +7667,7 @@
     },
     "lat": 38.873989,
     "lon": -77.266434,
-    "geocode_source": "US Census Geocoder",
-    "photo": {
-      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92601/va_fairfax_dwellviennametro_p1430755_20_20_1_photogallery.jpg",
-      "source_url": "https://www.akelius-properties.us/dwell-vienna-metro0/photogallery",
-      "alt": "Bell Vienna Metro — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-camden-monument-place",
@@ -9496,15 +9496,7 @@
     },
     "lat": 38.949928,
     "lon": -77.340436,
-    "geocode_source": "US Census Geocoder",
-    "photo": {
-      "url": "https://www.liveaperture.com/wp-content/uploads/2020/12/Untitled10W.jpg",
-      "source_url": "https://www.liveaperture.com/gallery/",
-      "alt": "Aperture — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-avalon-dunn-loring",
@@ -10887,15 +10879,7 @@
     },
     "lat": 38.949126,
     "lon": -77.350382,
-    "geocode_source": "US Census Geocoder",
-    "photo": {
-      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/3/27/2022/2/24/33246/618176f551f354.03086776958.jpg",
-      "source_url": "https://www.thepointatreston.com/reston/the-point-at-reston/photos/",
-      "alt": "The Point at Reston — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-the-avant-at-reston-town-center",
@@ -14884,15 +14868,7 @@
     },
     "lat": 39.034004,
     "lon": -77.464996,
-    "geocode_source": "US Census Geocoder",
-    "photo": {
-      "url": "https://images.squarespace-cdn.com/content/v1/5edfbbbee6fdcf0c12b1b6e9/1595000565557-PYU4Q046Y759WCCD40LN/Exterior-Community-DSC0697%2B-%2BEdited%2B-%2BV1%2B-%2BRCA.jpg",
-      "source_url": "https://www.ashburnmeadows.com/gallery",
-      "alt": "Ashburn Meadows — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-loudoun-county-atley-on-the-greenway",
@@ -18919,15 +18895,7 @@
     },
     "lat": 38.833924,
     "lon": -77.119714,
-    "geocode_source": "US Census Geocoder",
-    "photo": {
-      "url": "https://www.theblakealexandria.com/wp-content/uploads/JPE_6717_1-1.jpg",
-      "source_url": "https://www.theblakealexandria.com/virtual-tours/",
-      "alt": "The Blake — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-alexandria-city-the-bradley",
@@ -19200,14 +19168,6 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    },
-    "photo": {
-      "url": "https://medialibrarycf.entrata.com/17202/MLv3/3/27/2022/05/17/102921/6283cd60db0195.74380859801.jpg",
-      "source_url": "https://www.thepointateisenhowersq.com/alexandria/the-point-at-eisenhower-square/photos/",
-      "alt": "The Point at Eisenhower Square — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -20523,7 +20483,7 @@
       }
     ],
     "last_verified": "2026-10-24",
-    "verified": true,
+    "verified": false,
     "verification_method": "AI-assisted review of official housing-agency or owner web sources; property and program facts reviewed, without phone confirmation of current rents, vacancies, or an open waitlist.",
     "availability": {
       "status": "contact_for_availability",
@@ -20553,6 +20513,12 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the provider; the offered apartment may differ."
+    },
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
     }
   },
   {
@@ -20935,7 +20901,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-279-0849",
-    "website": "https://www.westbroad.com/",
+    "website": null,
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -20955,10 +20921,6 @@
       {
         "url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
         "role": "directory"
-      },
-      {
-        "url": "https://www.westbroad.com/",
-        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -20986,15 +20948,7 @@
     },
     "lat": 38.880115,
     "lon": -77.167676,
-    "geocode_source": "US Census Geocoder",
-    "photo": {
-      "url": "https://www.westbroad.com/wp-content/uploads/2025/03/WestBroad_Int_Model_2bedKitchen_Feb2016.jpg?x90118=",
-      "source_url": "https://www.westbroad.com/gallery/",
-      "alt": "West Broad — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-falls-church-city-the-read-building",
@@ -22338,15 +22292,7 @@
     "cost": "Provider advertises $730.00 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.241875,
     "lon": -80.427638,
-    "geocode_source": "US Census Geocoder",
-    "photo": {
-      "url": "https://images.cdn.appfolio.com/granitesl/images/ca5d40be-0e5d-40f4-a53b-d8d699b32bc8/large.jpg",
-      "source_url": "https://granitestudentliving.com/listings/carlton-scott-apartments-remodeled-3-bed-1-5-bath/",
-      "alt": "Carlton Scott Apartments — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "blacksburg-300-mcdonald-street-c24-room-in-shared-apartment",
@@ -22424,15 +22370,7 @@
     "cost": "Provider advertises $675.00 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.238003,
     "lon": -80.419319,
-    "geocode_source": "US Census Geocoder",
-    "photo": {
-      "url": "https://images.cdn.appfolio.com/granitesl/images/260ea87e-98f6-4743-a97b-4c9efd5c716b/large.jpg",
-      "source_url": "https://granitestudentliving.com/listings/300-mcdonald-street-apartments-individual-lease-option-7-7-2024-2/",
-      "alt": "300 McDonald Street — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Provider photo of a similar unit; the apartments are not furnished. The offered unit may differ."
-    }
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "blacksburg-university-terrace-1213k-1213k-individual-bedroom-agreement",
@@ -22660,7 +22598,7 @@
         "role": "provider"
       }
     ],
-    "verified": true,
+    "verified": false,
     "last_verified": "2026-10-24",
     "verification_method": "AI-assisted review of official provider and housing-agency pages; no calls, inspection, staff sign-off, or live reservation.",
     "catalog_batch": "blacksburg-students-2026-10-24",
@@ -22694,6 +22632,12 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    },
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
     }
   },
   {
@@ -22750,7 +22694,7 @@
         "role": "provider"
       }
     ],
-    "verified": true,
+    "verified": false,
     "last_verified": "2026-10-24",
     "verification_method": "AI-assisted review of official provider and housing-agency pages; no calls, inspection, staff sign-off, or live reservation.",
     "catalog_batch": "blacksburg-students-2026-10-24",
@@ -22784,6 +22728,12 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    },
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
     }
   },
   {
@@ -22840,7 +22790,7 @@
         "role": "provider"
       }
     ],
-    "verified": true,
+    "verified": false,
     "last_verified": "2026-10-24",
     "verification_method": "AI-assisted review of official provider and housing-agency pages; no calls, inspection, staff sign-off, or live reservation.",
     "catalog_batch": "blacksburg-students-2026-10-24",
@@ -22874,6 +22824,12 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    },
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
     }
   },
   {
@@ -22930,7 +22886,7 @@
         "role": "provider"
       }
     ],
-    "verified": true,
+    "verified": false,
     "last_verified": "2026-10-24",
     "verification_method": "AI-assisted review of official provider and housing-agency pages; no calls, inspection, staff sign-off, or live reservation.",
     "catalog_batch": "blacksburg-students-2026-10-24",
@@ -22964,6 +22920,12 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    },
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
     }
   },
   {
@@ -24717,7 +24679,7 @@
       "Blacksburg"
     ],
     "state": "VA",
-    "verified": true,
+    "verified": false,
     "last_verified": "2026-10-24",
     "sources": [
       {
@@ -24740,7 +24702,13 @@
     "phone_role": "coordinated entry / referral line",
     "intake_hours": "Monday to Friday, 8:30 am to 5 pm",
     "after_hours": "After 5 pm, weekends and holidays call 540-320-7028 and leave a detailed message; they call back.",
-    "intake_steps": "Call the Central Intake (Housing Services) line and leave a message if no one answers. During busy times they call back within 72 hours."
+    "intake_steps": "Call the Central Intake (Housing Services) line and leave a message if no one answers. During busy times they call back within 72 hours.",
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
+    }
   },
   {
     "id": "blacksburg-nrca-rent-help",
@@ -24758,7 +24726,7 @@
       "Blacksburg"
     ],
     "state": "VA",
-    "verified": true,
+    "verified": false,
     "last_verified": "2026-10-24",
     "sources": [
       {
@@ -24777,7 +24745,13 @@
     "catalog_batch": "blacksburg-students-2026-10-24",
     "lat": 37.126147,
     "lon": -80.413075,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
+    }
   },
   {
     "id": "blacksburg-wrc-emergency",
@@ -24833,7 +24807,7 @@
       "Blacksburg"
     ],
     "state": "VA",
-    "verified": true,
+    "verified": false,
     "last_verified": "2026-10-24",
     "sources": [
       {
@@ -24853,7 +24827,13 @@
     "waitlist_status": "closed",
     "lat": 37.130153,
     "lon": -80.408538,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_link_audit": {
+      "checked_at": "2026-10-24T22:36:01.995959+00:00",
+      "status": "pending_manual_review",
+      "http_status": 403,
+      "reason": "Primary source denied automated access; withheld from public results until reviewed. This does not establish that the property or service is invalid."
+    }
   },
   {
     "id": "blacksburg-svlas-housing",
@@ -24910,7 +24890,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": null,
-    "website": "https://www.margotoldtown.com",
+    "website": null,
     "hours": null,
     "who_it_serves": "Households at or below 60% of area median income; city 2026 limits show $69,780 for a 1-person household at 60% AMI.",
     "cost": "Rents for the set-aside units are not published in the city notice. Contact the property to confirm rent, utilities, and fees.",

@@ -13,6 +13,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* Keep selection available only for links and editable text. */
+    * { -webkit-user-select: none; user-select: none; }
+    a[href], a[href] *,
+    input:not([type]),
+    input:is([type="text"], [type="search"], [type="email"], [type="url"], [type="tel"], [type="password"], [type="number"]),
+    textarea,
+    [contenteditable="true"], [contenteditable="true"] *,
+    [contenteditable=""], [contenteditable=""] *,
+    [contenteditable="plaintext-only"], [contenteditable="plaintext-only"] * {
+      -webkit-user-select: text;
+      user-select: text;
+    }
+
     /* Same palette as the tools page in light mode. */
     :root {
       --bg: #eef3fc;
