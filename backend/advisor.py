@@ -8,7 +8,7 @@ import sys
 import threading
 import time
 
-from catalog import filter_catalog, load_catalog, serves_location
+from catalog import filter_catalog, load_catalog, senior_only, serves_location
 from matcher import ask_gemma, gemma_unavailable, stream_gemma
 
 # Fields Gemma needs to answer; the rest (photos, internal review data) only adds tokens.
@@ -78,8 +78,13 @@ def _pick(resources, question):
     def affordable(r):  # "under $800": leave out homes whose published rent is higher
         return not budget or not isinstance(r.get("monthly_rent"), (int, float)) or r["monthly_rent"] <= float(budget.group(1))
 
+    # Senior-only homes (55+, 62+) only when the question is about older adults; a family of four can't rent them.
+    older = re.search(r"\b(seniors?|elder\w*|older|retire\w*)\b|\b(?:55|62|65)\s*(?:\+|and (?:over|older|up)|years?)", q)
+    def eligible(r):
+        return older or r.get("type") not in ("affordable_listing", "rental_listing") or not senior_only(r)
+
     picked, per_community = [], {}
-    for r in sorted((r for r in resources if r.get("type") in types and serves(r) and affordable(r)), key=score, reverse=True):
+    for r in sorted((r for r in resources if r.get("type") in types and serves(r) and affordable(r) and eligible(r)), key=score, reverse=True):
         key = (r.get("community") or r["name"]).casefold()
         if per_community.get(key, 0) >= 2:  # two floor plans per community is enough to answer
             continue
@@ -280,9 +285,27 @@ def cards_for(text, limit=6):
                or (len(key) >= 12 and key in low))
         if hit:
             found[key] = r
+    # Short forms like "Arlington DHS" or "PathForward": every word of the bold name is in the record's full name
+    # (brackets included, spaces ignored). Only counts when it points at one or two records, so "Fairfax County" doesn't.
+    words = lambda t: re.findall(r"[a-z0-9]+", t)
+    extra = {}
+    for b in bold:
+        bw = words(b)
+        if len("".join(bw)) < 8 or any(b in k or norm(b) in norm(k) for k in found):
+            continue
+        hits = {}
+        for r in filter_catalog(load_catalog()):
+            key = (r.get("community") or r["name"]).casefold()
+            rw = words(key)
+            if set(bw) <= set(rw) or "".join(bw) in "".join(rw):
+                hits[key] = r
+        if 1 <= len(hits) <= 2:
+            for key, r in hits.items():
+                found.setdefault(key, r)
+                extra.setdefault(key, set()).add(b)
     def position(key):
         n = norm(key)
-        spots = [low.find(key)] + [low.find(b) for b in bold if norm(b) and (norm(b) in n or n in norm(b) or norm(b) in acronyms(key))]
+        spots = [low.find(key)] + [low.find(b) for b in extra.get(key, ())] + [low.find(b) for b in bold if norm(b) and (norm(b) in n or n in norm(b) or norm(b) in acronyms(key))]
         spots = [p for p in spots if p >= 0]
         return min(spots) if spots else len(low)
     cards = []
@@ -296,7 +319,7 @@ def cards_for(text, limit=6):
             "address": r.get("address"), "waitlist_status": r.get("waitlist_status"), "availability_status": avail.get("status"),
             "has_photo": bool(r.get("photo")), "lat": r.get("lat"), "lon": r.get("lon"),
             "rent_estimate": rent_estimate(r),
-            "names": sorted({key} | {b for b in bold if norm(b) and (norm(b) in norm(key) or norm(key) in norm(b) or norm(b) in acronyms(key))}),
+            "names": sorted({key} | extra.get(key, set()) | {b for b in bold if norm(b) and (norm(b) in norm(key) or norm(key) in norm(b) or norm(b) in acronyms(key))}),
         }.items() if v not in (None, "")})
     return cards
 
