@@ -203,31 +203,99 @@ def fallback_answer(rows, reason):
     return "\n".join(lines)
 
 
+def cards_for(text, limit=6):
+    """The checked records an answer talks about, in the order it mentions them, as small cards.
+
+    A script, not AI: **bold** names (and long names written out in full) are matched to the catalog,
+    so the chat can turn them into links with the matching cards underneath."""
+    if not text:
+        return []
+    low = text.casefold()
+    bold = [b.strip().casefold() for b in re.findall(r"\*\*([^*]{3,140})\*\*", text)]
+    # Compare names without brackets and punctuation: "Program (AHCVP)" matches "Program (AHCVP, formerly Section 8)".
+    norm = lambda t: " ".join(re.sub(r"\([^)]*\)|[^a-z0-9]+", " ", t).split())
+    acronyms = lambda t: set(re.findall(r"\(([a-z]{2,8})[,)]", t))
+    found = {}
+    for r in filter_catalog(load_catalog()):
+        name = r.get("community") or r["name"]
+        key = name.casefold()
+        if key in found:
+            continue
+        n = norm(key)
+        hit = (any(b == key or (len(norm(b)) >= 8 and (norm(b) in n or n in norm(b))) or norm(b) in acronyms(key) for b in bold)
+               or (len(key) >= 12 and key in low))
+        if hit:
+            found[key] = r
+    def position(key):
+        n = norm(key)
+        spots = [low.find(key)] + [low.find(b) for b in bold if norm(b) and (norm(b) in n or n in norm(b) or norm(b) in acronyms(key))]
+        spots = [p for p in spots if p >= 0]
+        return min(spots) if spots else len(low)
+    cards = []
+    for key in sorted(found, key=position)[:limit]:
+        r = found[key]
+        avail = r.get("availability") if isinstance(r.get("availability"), dict) else {}
+        cards.append({k: v for k, v in {
+            "id": r["id"], "name": r.get("community") or r["name"], "type": r.get("type"), "jurisdiction": r.get("jurisdiction"),
+            "monthly_rent": r.get("monthly_rent"), "price_unit": r.get("price_unit"), "rent_basis": r.get("rent_basis"),
+            "rental_space": r.get("rental_space"), "phone": r.get("phone"), "source_url": r.get("source_url"),
+            "address": r.get("address"), "waitlist_status": r.get("waitlist_status"), "availability_status": avail.get("status"),
+            "has_photo": bool(r.get("photo")), "lat": r.get("lat"), "lon": r.get("lon"),
+            "names": sorted({key} | {b for b in bold if norm(b) and (norm(b) in norm(key) or norm(key) in norm(b) or norm(b) in acronyms(key))}),
+        }.items() if v not in (None, "")})
+    return cards
+
+
+def _thinking_note(text):
+    """The latest complete line of Gemma's reasoning, cleaned of list marks, or None."""
+    lines = [re.sub(r"^[\s*#>\-\d.)]+|[*_`]", "", l).strip() for l in text.split("\n")[:-1]]
+    lines = [l for l in lines if 12 <= len(l) and not re.match(r"(draft|sentence|check|yes|no|persona|role|rules?|constraints?|instructions?|format|tone|goal|output|task|user|question)\b", l, re.I)]
+    return (lines[-1][:110] + ("…" if len(lines[-1]) > 110 else "")) if lines else None
+
+
 def stream_ask(question, history=None):
     """The chat as a stream of (kind, text) updates: what was found, then Gemma's words as they arrive.
-    kinds: status (progress note), chunk (answer text), answer (complete answer at once), fallback, done."""
+    kinds: status (progress note), thinking (a line of Gemma's reasoning), chunk (answer text), answer (complete answer at once), fallback, done."""
     key = " ".join(question.lower().split())
     if not history:
         with _cache_lock:
             hit = _cache.get(key)
         if hit and time.time() - hit[0] < CACHE_SECONDS:
             yield "answer", hit[1]
+            yield "cards", cards_for(hit[1])
             return
     rows = _records(question, history)
     names = list(dict.fromkeys(r.get("community") or r["name"] for r in rows))[:3]
     found = f"{len(rows)} reviewed resource{'' if len(rows) == 1 else 's'}" if rows else "our reviewed resources"
     yield "status", (f"Checking {found}" + (f", like {', '.join(names)}" if names else "") + ". Gemma is thinking…")
-    parts = []
+    parts, thinking, last_note = [], "", 0.0
     try:
-        for text in stream_gemma(_prompt(question, history, rows)):
-            parts.append(text)
-            yield "chunk", text
+        for is_thought, text in stream_gemma(_prompt(question, history, rows), thoughts=True):
+            if not is_thought:
+                parts.append(text)
+                yield "chunk", text
+                continue
+            # Every couple of seconds, share the line Gemma is reasoning about, so a long think shows progress.
+            thinking = (thinking + text)[-600:]
+            note = _thinking_note(thinking)
+            if note and time.time() - last_note > 2:
+                last_note = time.time()
+                yield "thinking", note
     except Exception as error:
         if parts:
             yield "chunk", "\n\n(The answer was cut off. Please ask again.)"
+            yield "cards", cards_for("".join(parts))
         else:
-            yield "fallback", fallback_answer(rows, gemma_unavailable(error) or "The AI service didn't answer")
+            text = fallback_answer(rows, gemma_unavailable(error) or "The AI service didn't answer")
+            yield "fallback", text
+            yield "cards", cards_for(text)
         return
+    if not parts:  # Gemma used its whole reply on thinking
+        text = fallback_answer(rows, "Gemma didn't finish an answer this time")
+        yield "fallback", text
+        yield "cards", cards_for(text)
+        return
+    yield "cards", cards_for("".join(parts))
     if parts and not history:
         _remember(key, "".join(parts))
     yield "done", ""
