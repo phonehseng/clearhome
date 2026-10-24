@@ -7,6 +7,7 @@ import os
 
 from flask import Flask, jsonify, request, send_from_directory
 
+from lease_checker import check_listing, explain_lease
 from matcher import find_help
 
 FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
@@ -30,6 +31,28 @@ def match():
     except Exception:
         return jsonify(error="Something went wrong. Please try again, or call 211 for help."), 500
     return jsonify(filters=filters, answer=answer)
+
+
+def _text_endpoint(fn):
+    text = (request.get_json(silent=True) or {}).get("text", "").strip()
+    if not text:
+        return jsonify(error="Please paste some text first."), 400
+    if len(text) > 15000:
+        return jsonify(error="That's too long. Please paste up to about 15,000 characters."), 400
+    try:
+        return jsonify(answer=fn(text))
+    except Exception:
+        return jsonify(error="Something went wrong. Please try again."), 500
+
+
+@app.post("/api/lease")
+def lease():
+    return _text_endpoint(explain_lease)
+
+
+@app.post("/api/listing")
+def listing():
+    return _text_endpoint(check_listing)
 
 
 if __name__ == "__main__":

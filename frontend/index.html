@@ -21,8 +21,8 @@
     button.primary { font:inherit; margin-top:.75rem; padding:.7rem 1.4rem; border:0; border-radius:6px; background:var(--accent); color:#fff; cursor:pointer; }
     button.primary:disabled { opacity:.6; cursor:wait; }
     :focus-visible { outline:3px solid #ff9f1c; outline-offset:2px; }
-    #result { white-space:pre-wrap; margin-top:1rem; padding:1rem; background:#f1f6fb; border-radius:6px; }
-    #result:empty { display:none; }
+    #result, .result { white-space:pre-wrap; margin-top:1rem; padding:1rem; background:#f1f6fb; border-radius:6px; }
+    #result:empty, .result:empty { display:none; }
     .soon { color:var(--muted); }
     footer { color:var(--muted); font-size:.9rem; }
   </style>
@@ -52,11 +52,21 @@
     </section>
 
     <section role="tabpanel" id="panel-lease" aria-labelledby="tab-lease" hidden>
-      <p class="soon">Coming soon: paste a lease and get a plain-language explanation of it, with risky clauses flagged.</p>
+      <form class="text-form" data-endpoint="/api/lease">
+        <label for="lease-text">Paste your lease (remove names, SSNs and account numbers first)</label>
+        <textarea id="lease-text" required maxlength="15000" placeholder="Paste the text of the lease here."></textarea>
+        <button class="primary" type="submit">Explain this lease</button>
+      </form>
+      <div class="result" role="status" aria-live="polite"></div>
     </section>
 
     <section role="tabpanel" id="panel-scam" aria-labelledby="tab-scam" hidden>
-      <p class="soon">Coming soon: paste a rental listing and see red flags that could mean a scam.</p>
+      <form class="text-form" data-endpoint="/api/listing">
+        <label for="listing-text">Paste the rental listing or the messages from the landlord</label>
+        <textarea id="listing-text" required maxlength="15000" placeholder="Paste the listing text here."></textarea>
+        <button class="primary" type="submit">Check for red flags</button>
+      </form>
+      <div class="result" role="status" aria-live="polite"></div>
     </section>
   </main>
 
@@ -95,6 +105,26 @@
       }
       btn.disabled = false;
     });
+
+    document.querySelectorAll('.text-form').forEach(f => f.addEventListener('submit', async e => {
+      e.preventDefault();
+      const button = f.querySelector('button');
+      const out = f.nextElementSibling;
+      button.disabled = true;
+      out.textContent = 'Reading...';
+      try {
+        const res = await fetch(f.dataset.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: f.querySelector('textarea').value })
+        });
+        const data = await res.json();
+        out.textContent = data.answer || data.error || 'No answer. Please try again.';
+      } catch {
+        out.textContent = 'Could not reach the server. Is it running?';
+      }
+      button.disabled = false;
+    }));
   </script>
 </body>
 </html>
