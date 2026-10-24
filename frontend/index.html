@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Housing Helper</title>
+  <style>
+    :root { --bg:#f7f7f5; --card:#fff; --text:#1d1d1b; --muted:#55554f; --accent:#0b5cad; --border:#d4d4cc; --warn:#fff4d6; }
+    * { box-sizing: border-box; }
+    body { margin:0; font:18px/1.5 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+    header, main, footer { max-width:760px; margin:0 auto; padding:1rem; }
+    h1 { margin:.5rem 0 0; font-size:1.8rem; }
+    .sub { margin:.25rem 0 1rem; color:var(--muted); }
+    .emergency { background:var(--warn); border:1px solid #e0c46c; border-radius:8px; padding:.75rem 1rem; }
+    [role=tablist] { display:flex; gap:.5rem; flex-wrap:wrap; margin:1rem 0 0; }
+    [role=tab] { font:inherit; padding:.6rem 1rem; border:1px solid var(--border); border-bottom:none; border-radius:8px 8px 0 0; background:#ececE6; cursor:pointer; }
+    [role=tab][aria-selected=true] { background:var(--card); font-weight:600; }
+    [role=tabpanel] { background:var(--card); border:1px solid var(--border); border-radius:0 8px 8px 8px; padding:1rem; }
+    label { display:block; font-weight:600; margin-bottom:.4rem; }
+    textarea { width:100%; min-height:8rem; font:inherit; padding:.6rem; border:1px solid #888; border-radius:6px; }
+    button.primary { font:inherit; margin-top:.75rem; padding:.7rem 1.4rem; border:0; border-radius:6px; background:var(--accent); color:#fff; cursor:pointer; }
+    button.primary:disabled { opacity:.6; cursor:wait; }
+    :focus-visible { outline:3px solid #ff9f1c; outline-offset:2px; }
+    #result { white-space:pre-wrap; margin-top:1rem; padding:1rem; background:#f1f6fb; border-radius:6px; }
+    #result:empty { display:none; }
+    .soon { color:var(--muted); }
+    footer { color:var(--muted); font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Housing Helper</h1>
+    <p class="sub">Find affordable housing and emergency help, and check a lease.</p>
+    <p class="emergency"><strong>In danger or need a place tonight?</strong> Call <strong>911</strong> for emergencies or <strong>211</strong> for shelter and local help.</p>
+  </header>
+
+  <main>
+    <div role="tablist" aria-label="Tools">
+      <button role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find">Find housing help</button>
+      <button role="tab" id="tab-lease" aria-selected="false" aria-controls="panel-lease" tabindex="-1">Check a lease</button>
+      <button role="tab" id="tab-scam" aria-selected="false" aria-controls="panel-scam" tabindex="-1">Check a listing</button>
+    </div>
+
+    <section role="tabpanel" id="panel-find" aria-labelledby="tab-find">
+      <form id="find-form">
+        <label for="situation">Tell us about your situation</label>
+        <textarea id="situation" required maxlength="2000"
+          placeholder="Example: I have two kids, can pay about $900 a month, and need a wheelchair-accessible place."></textarea>
+        <button class="primary" type="submit" id="find-btn">Find help</button>
+      </form>
+      <div id="result" role="status" aria-live="polite"></div>
+    </section>
+
+    <section role="tabpanel" id="panel-lease" aria-labelledby="tab-lease" hidden>
+      <p class="soon">Coming soon: paste a lease and get a plain-language explanation of it, with risky clauses flagged.</p>
+    </section>
+
+    <section role="tabpanel" id="panel-scam" aria-labelledby="tab-scam" hidden>
+      <p class="soon">Coming soon: paste a rental listing and see red flags that could mean a scam.</p>
+    </section>
+  </main>
+
+  <footer>
+    Suggestions only, not legal advice. Results come only from our manually verified list. Please don't enter your full name, SSN or bank details.
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('[role=tab]');
+    tabs.forEach(tab => tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', on);
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+    }));
+
+    const form = document.getElementById('find-form');
+    const btn = document.getElementById('find-btn');
+    const result = document.getElementById('result');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      btn.disabled = true;
+      result.textContent = 'Looking for options...';
+      try {
+        const res = await fetch('/api/match', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: document.getElementById('situation').value })
+        });
+        const data = await res.json();
+        result.textContent = data.answer || data.error || 'No answer. Please try again.';
+      } catch {
+        result.textContent = 'Could not reach the server. Is it running?';
+      }
+      btn.disabled = false;
+    });
+  </script>
+</body>
+</html>
