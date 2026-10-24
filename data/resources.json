@@ -24136,7 +24136,11 @@
     "catalog_batch": "blacksburg-students-2026-10-24",
     "lat": 37.13959,
     "lon": -80.558206,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "Monday to Friday, 8:30 am to 5 pm",
+    "after_hours": "After 5 pm, weekends and holidays call 540-320-7028 and leave a detailed message; they call back.",
+    "intake_steps": "Call the Central Intake (Housing Services) line and leave a message if no one answers. During busy times they call back within 72 hours."
   },
   {
     "id": "blacksburg-nrca-rent-help",
@@ -24169,7 +24173,7 @@
     "cost": "Contact the program about eligibility, availability, and any charges.",
     "hours": null,
     "accessible": null,
-    "notes": "Service area includes Blacksburg; the public office address is not a guaranteed shelter bed or rental unit.",
+    "notes": "Service area includes Blacksburg; the public office address is not a guaranteed shelter bed or rental unit. 540-381-1561 wasn't found on NRCA's current Emergency Assistance page, which lists the administrative line (540) 633-5133; confirm the number before relying on it.",
     "catalog_batch": "blacksburg-students-2026-10-24",
     "lat": 37.126147,
     "lon": -80.413075,
@@ -24182,7 +24186,7 @@
     "source_url": "https://www.wrcnrv.org/housing/",
     "website": "https://www.wrcnrv.org/housing/",
     "phone": "540-639-1123",
-    "address": "Public office: 1217 Grove Avenue, Radford, VA 24141; call for shelter access",
+    "address": "Confidential shelter location (public office at 1217 Grove Avenue, Radford is not the shelter)",
     "city": "Radford",
     "jurisdiction": "Radford City",
     "region": "New River Valley",
@@ -24206,8 +24210,12 @@
     "cost": "Contact the program about eligibility, availability, and any charges.",
     "hours": "Crisis hotline 24 hours a day, 7 days a week.",
     "accessible": null,
-    "notes": "Service area includes Blacksburg; the public office address is not a guaranteed shelter bed or rental unit.",
-    "catalog_batch": "blacksburg-students-2026-10-24"
+    "notes": "Service area includes Blacksburg; the public office address is not a guaranteed shelter bed or rental unit. Shelter has room for 26 women and children and also serves men and LGBTQ+ people (per WRC). Office line 540-639-9592; transitional housing 540-639-5700.",
+    "catalog_batch": "blacksburg-students-2026-10-24",
+    "confidential_location": true,
+    "phone_role": "direct shelter line",
+    "intake_steps": "Call the 24-hour hotline, 540-639-1123. They talk with you about safety and arrange shelter; the shelter address is shared only with residents.",
+    "intake_hours": "24 hours a day"
   },
   {
     "id": "blacksburg-housing-connections",
@@ -26094,5 +26102,263 @@
     "geocode_source": null,
     "source_kind": "owner_property_page",
     "source_checked_on": "2026-10-24"
+  },
+  {
+    "id": "nrv-to-our-house-winter-shelter",
+    "name": "To Our House Winter Overnight Shelter (New River Community Action)",
+    "type": "emergency_shelter",
+    "address": null,
+    "city": "Radford",
+    "jurisdiction": "Radford City",
+    "region": "New River Valley",
+    "state": "VA",
+    "phone": "540-639-3159",
+    "website": "https://newrivercommunityaction.org/programs/homeless-and-housing-programs/to-our-house/",
+    "hours": "Seasonal: operates during the winter months, November through March. 17th housing season begins November 7, 2026.",
+    "who_it_serves": "Homeless individual adults and all-adult households in the New River Valley. Low-barrier: screens for behavior only. 14 beds.",
+    "cost": null,
+    "accessible": null,
+    "requirements": "Adults only (individual adults and all-adult households). Low-barrier shelter that screens for behavior only. Call to reserve a bed.",
+    "how_to_apply": "1) Call (540) 639-3159 to reserve a bed (Monday-Friday 8:30am-5pm). 2) After 5pm, Saturday, Sunday and holidays, call the after-hours line (540) 320-7028 for bed availability. 3) Sign in and receive house rules at the host site.",
+    "intake_steps": [
+      "Call first: (540) 639-3159 to reserve a bed (Mon-Fri 8:30am-5pm). Leave a detailed message if no one answers; calls are returned, within 72 hours during high call volume.",
+      "After 5pm, weekends and holidays: call the after-hours line (540) 320-7028 for bed availability.",
+      "Sign in and get the house rules at the host site.",
+      "A hot evening meal is served; breakfast and a bag lunch are given in the morning.",
+      "Staff offer case management toward housing."
+    ],
+    "intake_hours": "Monday - Friday 8:30am-5pm at (540) 639-3159; after 5pm, Saturday, Sunday and holidays at (540) 320-7028.",
+    "public_intake_address": null,
+    "after_hours": "Shelter Assistance After Hours Line: (540) 320-7028 (after 5pm, Saturday, Sunday, and holidays)",
+    "distance_from_blacksburg": "Host sites rotate among partner faith-based and community organizations in the NRV; locations not published. NRCA administration is in Radford, about 15 miles from Blacksburg.",
+    "transit": null,
+    "serves_blacksburg": {
+      "value": true,
+      "reason": "Serves homeless adults in the New River Valley; NRCA serves Montgomery County (which includes Blacksburg), Floyd, Giles, Pulaski and Radford City."
+    },
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "note": "Program verified as operating seasonally, but NOT OPEN TONIGHT: the provider says the 2026-27 season begins November 7, 2026 (runs November-March). Beds not confirmed. From Nov 7, call to reserve a bed; only 14 beds."
+    },
+    "source_url": "https://newrivercommunityaction.org/programs/homeless-and-housing-programs/to-our-house/",
+    "sources": [
+      {
+        "url": "https://newrivercommunityaction.org/programs/homeless-and-housing-programs/to-our-house/",
+        "role": "program page"
+      },
+      {
+        "url": "https://newrivercommunityaction.org/wp-content/uploads/2026/01/TOH-2052-26-Brochure.pdf",
+        "role": "program page"
+      },
+      {
+        "url": "https://newrivercommunityaction.org/wp-content/uploads/2026/01/2025-26-TOH-Poster.pdf",
+        "role": "program page"
+      },
+      {
+        "url": "https://newrivercommunityaction.org/",
+        "role": "provider homepage"
+      }
+    ],
+    "notes": "Program of New River Community Action (administration 206 3rd Ave, Radford, VA 24141, (540) 633-5133). Email toourhousenrv@gmail.com. The 2025-26 brochure/poster (dates Nov 1, 2025 - Mar 21, 2026) are the latest PDFs linked; the program page states the 2026-27 start date. The program page lists 540-382-6188 as a 'donations line'; that same number is the New River Family Shelter's published phone (see conflict note there). Host site addresses are not published, so no physical address or transit info is given.",
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "area": "New River Valley",
+    "intake_status": "closed",
+    "intake_status_note": "Winter shelter: opens November 7, 2026 (runs November to March)",
+    "phone_role": "coordinated entry / referral line",
+    "service_areas": [
+      "Blacksburg"
+    ]
+  },
+  {
+    "id": "nrv-nrca-shelter-after-hours-line",
+    "name": "NRCA shelter assistance: after-hours intake line",
+    "type": "other",
+    "address": null,
+    "city": "Radford",
+    "jurisdiction": "Radford City",
+    "region": "New River Valley",
+    "state": "VA",
+    "phone": "540-320-7028",
+    "website": "https://newrivercommunityaction.org/programs/homeless-and-housing-programs/to-our-house/",
+    "hours": "After 5pm, Saturday, Sunday, and Holidays",
+    "who_it_serves": "People who are homeless with no money, sleeping outside on the street or in a car, or about to be evicted with no place to stay, in the New River Valley.",
+    "cost": null,
+    "accessible": null,
+    "requirements": null,
+    "how_to_apply": "Call (540) 320-7028 after 5pm, on Saturday and Sunday, and on holidays. Please leave a detailed message and your call will be returned. During weekday business hours use the Central Intake Line (540) 639-3159.",
+    "intake_steps": [
+      "Call (540) 320-7028 after 5pm, on weekends or holidays.",
+      "If no one answers, leave a detailed message; the provider says your call will be returned.",
+      "On weekdays 8:30am-5pm, call Central Intake (540) 639-3159 instead."
+    ],
+    "intake_hours": "After 5pm, Saturday, Sunday, and Holidays",
+    "public_intake_address": null,
+    "after_hours": "540-320-7028",
+    "distance_from_blacksburg": "Phone line; serves the New River Valley including Blacksburg",
+    "transit": null,
+    "serves_blacksburg": {
+      "value": true,
+      "reason": "NRCA's homeless services line for the New River Valley; NRCA serves Montgomery County, which includes Blacksburg."
+    },
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "note": "Line verified as published; it is the provider's stated contact for immediate shelter assistance tonight (Saturday). Beds not confirmed, and the line may route to voicemail. Call to confirm a bed tonight."
+    },
+    "source_url": "https://newrivercommunityaction.org/programs/homeless-and-housing-programs/to-our-house/",
+    "sources": [
+      {
+        "url": "https://newrivercommunityaction.org/programs/homeless-and-housing-programs/to-our-house/",
+        "role": "program page"
+      },
+      {
+        "url": "https://newrivercommunityaction.org/",
+        "role": "provider homepage"
+      }
+    ],
+    "notes": "Listed on the NRCA To Our House page as 'Shelter Assistance After Hours Line' and 'Call for bed availability after hours'. NRCA's homepage office-closure notices say: if you need immediate shelter assistance, contact the after-hours line at 540-320-7028. Companion to the existing catalog record for the NRCA Central Intake / Housing Services Line 540-639-3159.",
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "area": "New River Valley",
+    "phone_role": "coordinated entry / referral line",
+    "service_areas": [
+      "Blacksburg"
+    ]
+  },
+  {
+    "id": "nrv-new-river-family-shelter",
+    "name": "New River Family Shelter",
+    "type": "emergency_shelter",
+    "address": null,
+    "city": "Blacksburg",
+    "jurisdiction": "Montgomery County",
+    "region": "New River Valley",
+    "state": "VA",
+    "phone": "540-382-6188",
+    "website": "https://nrfamilyshelter.org/",
+    "hours": null,
+    "who_it_serves": "Families with under-age children in need of emergency housing in the New River Valley. Scattered-site model so an entire family can stay together in a private space.",
+    "cost": null,
+    "accessible": null,
+    "requirements": "Family with under-age children. Screening questions: living on the street or in a place not meant for sleeping; living in a temporary shelter (congregate/scattered site, emergency shelter, transitional housing, or hotel/motel paid by a charity or government program); exiting an institution after 90 days or less having been in a place not meant for human habitation before entering; or going to lose primary nighttime residence within 14 days.",
+    "how_to_apply": "Answer the screening questions on the For Assistance page; if you answer yes to any, call (540) 382-6188 or email nrfamilyshelter@gmail.com.",
+    "intake_steps": [
+      "Check the screening questions on the shelter's For Assistance page.",
+      "If any apply, call (540) 382-6188 or email nrfamilyshelter@gmail.com.",
+      "Shelter staff decide eligibility and placement (screening required; not walk-in)."
+    ],
+    "intake_hours": null,
+    "public_intake_address": null,
+    "after_hours": "540-320-7028 (NRCA Shelter Assistance After Hours Line, after 5pm, weekends and holidays; NRCA line, not operated by this shelter)",
+    "distance_from_blacksburg": "Mailing address in Blacksburg (PO Box 207); shelter units are scattered sites whose locations are not published.",
+    "transit": null,
+    "serves_blacksburg": {
+      "value": true,
+      "reason": "Describes itself as the only scattered shelter program in the New River Valley providing emergency housing to families and children; mailing address is in Blacksburg."
+    },
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "note": "Program verified as operating; beds not confirmed. Screening required before placement (families with under-age children only). Intake hours are not published on the official site, so same-night placement on a Saturday cannot be confirmed. Call to confirm."
+    },
+    "source_url": "https://nrfamilyshelter.org/for-assistance/",
+    "sources": [
+      {
+        "url": "https://nrfamilyshelter.org/for-assistance/",
+        "role": "program page"
+      },
+      {
+        "url": "https://nrfamilyshelter.org/about/",
+        "role": "program page"
+      },
+      {
+        "url": "https://nrfamilyshelter.org/",
+        "role": "provider homepage"
+      }
+    ],
+    "notes": "Mailing address: PO Box 207, Blacksburg, VA 24063. Since 1989. No single adults (site describes families with children). Conflict: NRCA's To Our House page lists 540-382-6188 as a To Our House 'donations line'; the shelter's own site lists the same number as its phone. Directories list 110 Roanoke Street, Christiansburg and weekday intake hours, but these are not on the official site and were not used. Units are scattered and their addresses aren't published. 540-382-6188 is listed as the shelter's phone on its own site; NRCA's page calls it a donations line.",
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "area": "New River Valley",
+    "referral_required": true,
+    "phone_role": "direct shelter line",
+    "confidential_location": true,
+    "service_areas": [
+      "Blacksburg"
+    ]
+  },
+  {
+    "id": "nrv-nrvcs-new-horizons-crisis-stabilization",
+    "name": "New Horizons Residential Crisis Stabilization Unit (New River Valley Community Services)",
+    "type": "other",
+    "address": "401 W. Main St., Radford, VA",
+    "city": "Radford",
+    "jurisdiction": "Radford City",
+    "region": "New River Valley",
+    "state": "VA",
+    "phone": "540-961-8400",
+    "website": "https://www.nrvcs.org/services/mental-health/mental-health-services-adults/",
+    "hours": "Access Emergency Services: 24 hours per day, 7 days per week",
+    "who_it_serves": "Individuals 18 or older who are at risk of hospitalization due to a mental health crisis; voluntary, and those under a TDO (Temporary Detention Order) and commitment orders. Not a general homeless shelter.",
+    "cost": null,
+    "accessible": null,
+    "requirements": "Referral required: admissions are made by calling NRVCS Access Emergency Services at 540-961-8400.",
+    "how_to_apply": "Call Access Emergency Services at 540-961-8400 (or 9-8-8 for a psychiatric emergency). Referral and admission go through Access.",
+    "intake_steps": [
+      "Call Access Emergency Services at 540-961-8400 (24/7), or 9-8-8 in a psychiatric emergency.",
+      "Access provides emergency evaluation; referrals/admissions to New Horizons are made through Access (referral required, not walk-in).",
+      "Stays may last up to 15 days with mental health services aimed at recovery from the crisis."
+    ],
+    "intake_hours": "24 hours per day, 7 days per week (Access Emergency Services)",
+    "public_intake_address": null,
+    "after_hours": "540-961-8400 (NRVCS Access Emergency Services, 24/7); 9-8-8",
+    "distance_from_blacksburg": "Radford, about 15 miles",
+    "transit": null,
+    "serves_blacksburg": {
+      "value": true,
+      "reason": "NRVCS Emergency Services serves the New River Valley 24/7; Raft service area named as Montgomery, Floyd, Giles, Pulaski and Radford (including Virginia Tech)."
+    },
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "note": "Program verified as operating; beds not confirmed. Referral required through Access Emergency Services screening; for people in a mental health crisis only, not general overnight shelter. Call to confirm."
+    },
+    "source_url": "https://www.nrvcs.org/services/mental-health/mental-health-services-adults/",
+    "sources": [
+      {
+        "url": "https://www.nrvcs.org/services/mental-health/mental-health-services-adults/",
+        "role": "program page"
+      },
+      {
+        "url": "https://www.nrvcs.org/services/access-services/",
+        "role": "program page"
+      },
+      {
+        "url": "https://www.nrvcs.org/",
+        "role": "provider homepage"
+      }
+    ],
+    "notes": "Crisis accommodation for mental health crises; included because it is an overnight option reached through a 24/7 line, but it is not a homeless shelter. NRVCS non-crisis line: 540-961-8300. Raft Crisis Hotline (volunteer phone counseling) is also listed by NRVCS. Directories give other addresses (Warden Court, Radford; University City Blvd, Blacksburg); the official page's 401 W. Main St., Radford was used. Address is for reference only: do not go without referral.",
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "area": "New River Valley",
+    "referral_required": true,
+    "phone_role": "coordinated entry / referral line",
+    "lat": 37.133529,
+    "lon": -80.576342,
+    "geocode_source": "US Census Geocoder",
+    "service_areas": [
+      "Blacksburg"
+    ]
   }
 ]

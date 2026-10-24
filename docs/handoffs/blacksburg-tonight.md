@@ -38,4 +38,21 @@ Implement a useful **Need somewhere tonight?** experience for people in Blacksbu
 - Exercise Blacksburg tonight searches through the API, website, and Gemma where applicable. Check mobile layout and empty/no-confirmed-bed states. Add focused regression coverage for emergency availability semantics and relevant filters.
 - Report the real programs added, their official sources, how intake and transportation work, what can and cannot be confirmed about tonight, and the checks run. State clearly if a live deployment still needs to happen.
 
-This handoff contains no researched shelter records and makes no claim that a bed is currently available. the assistant must perform the current-source research before publishing listings.
+This handoff contains no researched shelter records and makes no claim that a bed is currently available. the developer must perform the current-source research before publishing listings.
+
+
+---
+
+**Implemented (2026-10-24).** Research used only official provider pages (New River Community Action, New River Family Shelter, Women's Resource Center of the NRV, NRV Community Services), checked Saturday 2026-10-24.
+
+- **Entry point:** "Find somewhere to sleep tonight: Blacksburg / Northern Virginia" buttons in the "Need a safe place tonight?" card fill the find form, tick "tonight", and show shelters first.
+- **Programs for Blacksburg tonight** (all "Call to confirm a bed tonight"; no bed is ever shown as available):
+  - NRCA shelter assistance after-hours intake line, 540-320-7028 (after 5 pm, weekends, holidays; leave a message and they call back). New record.
+  - NRCA Central Intake, 540-639-3159, Mon–Fri 8:30–5 (record updated with hours, after-hours line, and that it's a referral line).
+  - Women's Resource Center of the NRV, 24-hour hotline 540-639-1123 (domestic/sexual violence; serves women, children, men, LGBTQ+). Now marked confidential: the Radford office address is labeled as not the shelter and no directions are offered.
+  - New River Family Shelter, 540-382-6188 (families with children; screening required; scattered units, no address). New record; phone conflict noted (NRCA calls it a donations line).
+  - To Our House winter shelter (NRCA, 14 beds, adults): **closed tonight**, opens November 7, 2026; shown last with that badge. New record.
+  - New Horizons crisis stabilization (NRVCS, Radford; referral via 540-961-8400 or 988; mental-health crisis care, not a homeless shelter). New record, listed with other help, not as a shelter bed.
+- **Can't be confirmed:** live capacity anywhere; same-night family placement on weekends; To Our House host sites (not published); any verified transit route to an intake site (all transit fields left empty rather than guessed).
+- **Semantics/tests:** emergency services with an expired review revert to call-to-confirm instead of disappearing; budget filters never drop free/unknown-cost emergency help; waitlist-style homes are excluded from "tonight". See `backend/test_emergency_services.py`. Gemma receives the intake fields for these records.
+- **Shelter cards:** badge → name → city → who it serves → big Call button with whether it's the shelter's own line or an intake/referral line → "How to get in" (steps, intake hours, after-hours) → directions only to a published public intake entrance.
