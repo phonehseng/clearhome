@@ -10,9 +10,10 @@ from flask import Flask, jsonify, request, send_from_directory, send_file
 
 from advisor import AREAS, ask, options, programs, quick_nearby, warm_examples
 from live_search import search as live_search
+import nearby
 import walkable
 from extract_text import extract_text
-from lease_checker import answer_lease_question, check_listing, explain_lease, review
+from lease_checker import answer_lease_question, explain_lease
 from lease_journey import journey_context
 from matcher import find_help
 from catalog import filter_catalog, group_listings, load_catalog, STATUSES
@@ -79,7 +80,7 @@ def listing_public_lease(resource_id):
 
 @app.after_request
 def private_document_responses(response):
-    if request.path.startswith('/api/lease') or request.path in {'/api/extract', '/api/review'}:
+    if request.path.startswith('/api/lease') or request.path in {'/api/extract'}:
         response.headers['Cache-Control'] = 'no-store'
     return response
 
@@ -298,6 +299,10 @@ def ask_advisor():
     if profile.get("timing") in ("now", "soon", "planning"): about.append({"now": "needs to move as soon as possible", "soon": "moving in the next 3 months", "planning": "planning ahead"}[profile["timing"]])
     for key, label in (("tonight", "needs a safe place tonight"), ("accessible", "needs an accessible home"), ("senior", "someone is 62 or older"), ("voucher", "already has a housing voucher")):
         if profile.get(key) is True: about.append(label)
+    # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
+    near = nearby.answer(question, profile)
+    if near:
+        return jsonify(answer=near)
     if about:
         question = f"{question}\n\n(About me: {'; '.join(about)}.)"
     quick = quick_nearby(question, profile)  # "near George Mason" etc.: answered from the catalog, no AI
@@ -384,17 +389,6 @@ def lease_question():
         return response
     except Exception:
         return jsonify(error='We couldn’t answer that question. Try again or ask a tenant advocate.'), 500
-
-
-@app.post("/api/review")
-def review_document():
-    """One tool for both: explains a lease, or checks a listing or landlord messages for scam signs."""
-    return _text_endpoint(review)
-
-
-@app.post("/api/listing")
-def listing():
-    return _text_endpoint(check_listing)
 
 
 # Under gunicorn (the hosted server) this module is imported once per worker, so warm up here.

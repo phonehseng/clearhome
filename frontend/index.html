@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0d1738" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#14161b" media="(prefers-color-scheme: dark)">
-  <meta name="description" content="Clear House helps you find verified housing resources in Northern Virginia and Blacksburg, understand a lease, and spot listing warning signs.">
+  <meta name="theme-color" content="#0d1738">
+  <meta name="description" content="Clear House helps you find verified housing resources in Northern Virginia and Blacksburg, shelters and programs.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -163,60 +162,7 @@
     .floor-plan-option>.lease-guide-link{display:inline-flex;align-items:center;font-size:12px;font-weight:650;margin-top:14px;min-height:36px}
     .lease-guidance-link{display:inline-block;font-size:13px;font-weight:600;margin-bottom:18px;color:var(--blue)}
     /* Follow the device theme. Neutral surfaces keep text and controls distinct. */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        color-scheme: dark;
-        --bg: #14161b; --ink: #f1f3f5; --muted: #bec5d0;
-        --line: #454b56; --sage: #292e38; --white: #20242c;
-        --green: #acc6ff; --blue: #acc6ff; --red: #ffb4a8;
-        --field: #191c23; --control-border: #7c8798; --accent-ink: #152341;
-      }
-      :root body { background: var(--bg); }
-      :root .site-header { background: var(--bg); border-color: var(--line); }
-      :root :is(.brand,.header-links a:not(.emergency-link)) { color: var(--ink); }
-      :root :is(.region-label,.brand-dot,.hero-tags,.eyebrow,.step-label,.textarea-hint,.trust-badge,.reset-link,.site-footer p:last-child,.upload-status:not(:empty)) { color: var(--muted); }
-      :root .hero h1 span { color: var(--ink); }
-      :root :is(.tool-panel,.tab,.trust-banner,.housing-card,.more-listings) { background: var(--white); border-color: var(--line); box-shadow: none; }
-      :root :is(.tab:hover,.more-listings:hover) { background: var(--sage); border-color: var(--control-border); }
-      :root .tab[aria-selected=true] { background: var(--sage); border-color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); }
-      :root :is(.tab-icon,.guidance-icon,.step-number) { background: var(--sage); color: var(--muted); }
-      :root .tab[aria-selected=true] .tab-icon { background: var(--blue); color: var(--accent-ink); }
-      :root :is(.brand-mark,.primary,.skip-link) { background: var(--blue); color: var(--accent-ink); }
-      :root .primary { font-weight: 650; }
-      :root .primary:hover { background: #c4d6ff; box-shadow: none; }
-      :root .eyebrow-dot { background: var(--muted); }
-      :root :is(.input-wrapper,textarea,.browse-filters input,.browse-filters select) { background: var(--field); border-color: var(--control-border); color: var(--ink); }
-      :root :is(textarea,input)::placeholder { color: #adb7c6; opacity: 1; }
-      :root :focus-visible, :root .input-wrapper:focus-within { outline: 3px solid var(--blue); outline-offset: 4px; }
-      :root .input-wrapper input:focus-visible { outline: none; }
-      :root .examples button { background: var(--sage); border-color: var(--control-border); color: var(--ink); }
-      :root .examples button:hover { background: #363e4c; border-color: var(--blue); }
-      :root :is(.guidance-card,.catalog-notice,.upload-box,.result) { background: var(--white); border-color: var(--line); color: var(--ink); }
-      :root .catalog-notice, :root .result[data-state=loading] { color: var(--muted); }
-      :root .upload-box { border-color: var(--control-border); }
-      :root .upload-box input::file-selector-button { background: var(--sage); border-color: var(--control-border); color: var(--ink); }
-      :root .form-bottom { border-color: var(--line); }
-      :root :is(.result[data-state=error],.browse-message[data-state=error]) { background: #352624; border-color: #ad766d; color: var(--red); }
-      :root .upload-status[data-state=error] { color: var(--red); }
-      :root :is(.emergency-card,.header-links .emergency-link,.panel-safety) { background: #2e2922; border-color: #75634b; color: #f0cf9e; }
-      :root :is(.emergency-card h3,.emergency-card p,.emergency-card small) { color: #f0cf9e; }
-      :root .call-links a { background: #393126; border-color: #9c815c; color: #ffe0b0; }
-      :root .call-links a:hover { background: #4a3d2c; }
-      :root .hero-art { background: var(--white); border-color: var(--line); box-shadow: none; }
-      :root .hero-art>svg { filter: saturate(.25) brightness(.75); }
-      :root .art-note { background: var(--sage); color: var(--ink); }
-      :root .housing-card:hover { border-color: var(--control-border); }
-      :root .housing-status { background: var(--sage); color: var(--ink); }
-      :root .housing-status[data-status=waitlist_open] { background: #393126; color: #ffe0b0; }
-      :root :is(.browse-link,.housing-actions a) { color: var(--blue); border-color: var(--blue); }
-      :root .property-photo { background: linear-gradient(135deg,#ffffff38,#ffffff0d); border-color: #9ba8bc80; }
-      :root :is(.photo-hover,.photo-dialog) { background: #20242cf5; color: var(--ink); border-color: var(--control-border); }
-      :root .photo-dialog button { background: var(--sage); border-color: var(--control-border); color: var(--ink); }
-      :root .photo-dialog img { background: var(--field); }
-      :root .photo-dialog::backdrop { background: #090b10cc; }
-      :root .budget-shortcut button { border-color: var(--control-border); }
-      :root .budget-shortcut button[aria-pressed=true] { background: var(--blue); color: var(--accent-ink); border-color: var(--blue); }
-    }
+    
 
     /* Very faint animated houses-and-birds drawing behind the page. */
     .page-backdrop{position:fixed;inset:auto 0 0 0;height:70vh;z-index:-1;pointer-events:none}
@@ -225,7 +171,7 @@
     .page-backdrop svg>g:has(.bird){opacity:1}
     .page-birds .wing{stroke-width:2.4}
     .page-backdrop>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(1.8)}
-    @media(prefers-color-scheme:dark){.page-backdrop svg>*{opacity:.7}.page-backdrop svg>g:has(.bird){opacity:.9}}
+    
     .map-tiles-dark{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
 
     /* Listings map in the hero. */
@@ -248,10 +194,7 @@
     /* Find form: optional details, instant options, then an optional assistant chat. */
     .find-select{width:100%;min-height:45px;border:1px solid #7a8ba7;border-radius:7px;background:var(--white);color:var(--ink);padding:10px 11px;font:inherit;font-size:13px}
     .find-select :is(option,optgroup){background:var(--white);color:var(--ink)}
-    @media(prefers-color-scheme:dark){
-      :root .find-select,:root .find-select :is(option,optgroup){background:var(--field);color:var(--ink)}
-      :root .find-select{border-color:var(--control-border)}
-    }
+    
     .find-checks{border:0;padding:0;margin:0 0 19px;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
     .find-checks legend{font-size:12px;font-weight:600;margin-bottom:8px;padding:0}
     .find-checks label{display:flex;gap:9px;align-items:center;font-weight:400;font-size:13px;margin:0;cursor:pointer}
@@ -330,12 +273,7 @@
     .housing-card.has-photo .property-photo{width:auto;height:auto;top:12px;right:12px;padding:7px 11px;border-radius:999px;font-size:12px}
     .housing-card.has-photo .property-photo>img{display:none}
     .housing-card.has-photo .photo-expand-mark{position:static;display:inline;background:none;box-shadow:none;color:#14203f;font-size:14px}
-    @media(prefers-color-scheme:dark){
-      .housing-card.has-photo .card-glass{background:linear-gradient(140deg,#1b2333c4 0%,#1b2333a8 55%,#1b2333bd 100%);border-color:#ffffff2e;
-        box-shadow:inset 0 1px 0 #ffffff40,inset 0 -1px 0 #ffffff14,0 8px 26px #0008}
-      .housing-card.has-photo .card-glass::after{background:radial-gradient(120% 60% at 15% 0%,#ffffff1f 0%,#ffffff00 45%)}
-      .housing-card.has-photo .photo-expand-mark{color:#e9eef8}
-    }
+    
     @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card.has-photo .card-glass{background:#fffffff0}}
 
     /* Every card is liquid glass and cards in a row line up (same height, links at the bottom). */
@@ -347,24 +285,19 @@
     .housing-card:not(.has-photo)::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
       background:radial-gradient(120% 55% at 15% 0%,#ffffff99 0%,#ffffff00 45%)}
     .housing-card.has-photo{border-radius:18px}
-    @media(prefers-color-scheme:dark){
-      .housing-card:not(.has-photo){background:linear-gradient(140deg,#1b2333b8 0%,#1b23338f 55%,#1b2333ad 100%);border-color:#ffffff2e;
-        box-shadow:inset 0 1px 0 #ffffff40,inset 0 -1px 0 #ffffff14,0 10px 30px #0008}
-      .housing-card:not(.has-photo)::after{background:radial-gradient(120% 55% at 15% 0%,#ffffff1a 0%,#ffffff00 45%)}
-    }
+    
     @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card:not(.has-photo){background:#fffffff0}}
 
     /* Liquid glass everywhere on the tools page, so text stays readable over the background drawing. */
     :root{--glass-bg:linear-gradient(140deg,#ffffffc4 0%,#ffffff9c 55%,#ffffffb8 100%);--glass-border:#ffffffd9;
       --glass-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff59,inset 0 0 20px #ffffff33,0 10px 30px #0b14331c;--glass-blur:blur(22px) saturate(1.8)}
-    @media(prefers-color-scheme:dark){:root{--glass-bg:linear-gradient(140deg,#1b2333cc 0%,#1b2333a8 55%,#1b2333c2 100%);--glass-border:#ffffff2b;
-      --glass-shadow:inset 0 1px 0 #ffffff3d,inset 0 -1px 0 #ffffff12,0 10px 30px #0008}}
+    
     :is(.tool-panel,.tab,.guidance-card,.trust-banner,.catalog-notice,.opt-card,.assistant,.walk-card,.web-results li,.result,.upload-box,
         .hero-copy,.section-heading,.map-legend,.map-status,.browse-hint,.browse-message:not(:empty),.site-footer,.walk-status:not(:empty),.find-checks){
       background:var(--glass-bg)!important;backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--glass-border)!important;box-shadow:var(--glass-shadow)}
     .tab[aria-selected=true]{background:linear-gradient(140deg,#e2eafbe6,#d5e1f8c7)!important;border-color:#6f8fd6!important;box-shadow:inset 0 0 0 1px #6f8fd6,var(--glass-shadow)}
-    @media(prefers-color-scheme:dark){.tab[aria-selected=true]{background:linear-gradient(140deg,#2a3a5ee6,#22304fcc)!important;border-color:#8fa9ec!important}}
+    
     .browse-filters{background:var(--glass-bg)!important;backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border)!important;box-shadow:var(--glass-shadow);padding:18px;border-radius:16px}
     /* Loose text gets a soft glass backing with breathing room. */
     .hero-copy{padding:26px 28px;border-radius:22px}
@@ -377,7 +310,7 @@
     /* The emergency card stays warm, as warm glass. */
     .emergency-card,.header-links .emergency-link{background:linear-gradient(140deg,#fbf5ece6,#fbf5ecbf)!important;backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid #eadfcee6!important;box-shadow:inset 0 1px 0 #fff,0 10px 30px #7655391a}
-    @media(prefers-color-scheme:dark){.emergency-card,.header-links .emergency-link{background:linear-gradient(140deg,#2a2218e0,#2a2218bf)!important;border-color:#5a4730!important;box-shadow:inset 0 1px 0 #ffffff1f,0 10px 30px #0008}}
+    
     @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--glass-bg:#fffffff2}}
 
     /* Tab 1: only the essentials up front; everything optional lives in a dropdown. */
@@ -405,42 +338,14 @@
     /* Panels inside the section: a light outline instead of their own glass. */
     #tools :is(.tool-panel,.tab,.guidance-card){background:#ffffff8c!important;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;border:1px solid var(--line)!important}
     #tools .tab[aria-selected=true]{background:#e2eafbcc!important;border-color:#6f8fd6!important;box-shadow:inset 0 0 0 1px #6f8fd6}
-    @media(prefers-color-scheme:dark){#tools :is(.tool-panel,.tab,.guidance-card){background:#ffffff0d!important}
-      #tools .tab[aria-selected=true]{background:#2a3a5ecc!important;border-color:#8fa9ec!important}}
+    
     @media(max-width:560px){#tools,.listings-section{padding:16px;border-radius:18px}}
 
     /* Birds fly on their own layer in front of the glass panels, so blur can't swallow them. */
     .page-birds{position:fixed;inset:auto 0 0 0;height:70vh;z-index:40;pointer-events:none}
     .page-birds>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(1.8)}
-    @media(prefers-color-scheme:dark){.page-birds{opacity:.9}}
+    
 
-    /* Simple lease/listing check: one drop zone, one button, results in clear sections. */
-    .drop-zone{display:grid;justify-items:center;gap:6px;text-align:center;padding:30px 18px;border:2px dashed #9db2e3;border-radius:16px;cursor:pointer;
-      background:#f3f6fdb3;transition:background .2s ease,border-color .2s ease,transform .2s ease;margin:4px 0 10px}
-    .drop-zone:hover,.drop-zone.dragging{background:#e2eafbcc;border-color:#2f55b5}
-    .drop-zone.dragging{transform:scale(1.01)}
-    .drop-zone:focus-within{outline:3px solid #e0a100;outline-offset:3px}
-    .drop-zone strong{font-size:15px}.drop-zone small{color:var(--muted);font-size:12px}
-    .drop-icon{width:58px;height:58px;display:grid;place-items:center;border-radius:16px;background:#d5e1f8;color:#23408f}
-    .drop-zone.has-file .drop-icon{background:#e3f3e6;color:#245b31}
-    .paste-box{margin:6px 0 14px}
-    .paste-box>summary{cursor:pointer;font-weight:600;font-size:13px;color:#2f55b5;padding:4px 0}
-    .paste-box textarea{margin-top:8px}
-    .check-button{width:100%;justify-content:center;min-height:50px;font-size:15px}
-    .review-result:empty{display:none}
-    .review-result{margin-top:18px;display:grid;gap:10px}
-    .review-loading{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:14px;padding:12px 0}
-    .review-loading::before{content:'';width:14px;height:14px;border:2px solid var(--line);border-top-color:#2f55b5;border-radius:50%;animation:spin .8s linear infinite}
-    .review-kind{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
-    .risk-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px;width:fit-content}
-    .risk-badge.low{background:#e3f3e6;color:#245b31}.risk-badge.medium{background:#fbf1dc;color:#7a5410}.risk-badge.high{background:#fbe4e0;color:#8c2f22}
-    .review-section{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--white)}
-    .review-section h4{margin:0 0 6px;font-size:14px}
-    .review-section p,.review-section li{font-size:14px;line-height:1.6;margin:0}
-    .review-section ul{margin:0;padding-left:18px;display:grid;gap:4px}
-    .review-section.watch{border-left:4px solid #d9822b}.review-section.flags{border-left:4px solid #c0392b}
-    .review-error{background:#fff3ef;border:1px solid #eed1c9;color:#8c3e30;border-radius:12px;padding:12px 14px;font-size:14px}
-    .review-footnote{font-size:12px;color:var(--muted);margin-top:14px}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -462,9 +367,9 @@
 <a class="skip-link" href="#tools">Skip to housing tools</a>
 <header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>NoVA & Blacksburg</div><nav class="header-links" aria-label="Page navigation"><a href="/">About</a><a href="/resources">Resources</a><a href="#listings" class="browse-nav">Browse housing</a><a href="#our-promise">Our promise</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
 <main class="container">
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span>Housing support for Northern Virginia & Blacksburg</div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Find housing support, make sense of a lease, and take your next step with a little more confidence.</p><a class="browse-link" href="#listings">Browse housing & waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official-source housing resources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div></section>
+  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span>Housing support for Northern Virginia & Blacksburg</div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Find housing support and take your next step with a little more confidence.</p><a class="browse-link" href="#listings">Browse housing & waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official-source housing resources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p><ul class="web-results" id="web-results" hidden></ul></div></section>
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What can we help you with?</h2><p>Start wherever you are. We’ll take it step by step.</p></div><div class="tools"><div class="tool-workspace">
-    <div class="tabs" role="tablist" aria-label="Housing tools"><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find housing help</strong><small>A place to start</small></span></button><button class="tab" role="tab" id="tab-lease" aria-selected="false" aria-controls="panel-lease" tabindex="-1"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#document"/></svg></span><span><strong>2) Check a lease or listing</strong><small>Explain terms, spot scams</small></span></button></div>
+    <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find housing help</strong><small>A place to start</small></span></button></div>
     <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Let’s find your next step.</h3><span class="step-label">HOUSING SUPPORT</span></div><p class="panel-description">Tell us what you need. We’ll look for support in our source-reviewed resource list.</p><form id="find-form" novalidate>
       <div class="input-row"><div><label for="location">Where are you looking?</label><div class="input-wrapper"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg><input id="location" name="location" value="Northern Virginia" maxlength="100" autocomplete="address-level2" placeholder="City, town or county"></div></div><div><label for="budget">Monthly budget <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="budget" name="budget" type="number" min="0" max="100000" placeholder="Your maximum" inputmode="decimal"><span>/ month</span></div></div></div>
       <label class="urgent-check"><input type="checkbox" id="tonight" name="tonight"> I need a safe place to stay tonight</label>
@@ -494,27 +399,6 @@
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
       <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" placeholder="Ask a follow-up question…"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
     </div></section>
-    <section class="tool-panel" role="tabpanel" id="panel-lease" aria-labelledby="tab-lease" tabindex="0" hidden>
-      <div class="panel-heading"><h3>Check a lease or listing</h3></div>
-      <p class="panel-description">Add a lease, a rental listing, or messages from a landlord. We’ll explain it in plain words and point out anything risky.</p>
-      <label class="drop-zone" id="lease-drop" for="lease-file">
-        <input type="file" id="lease-file" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp" class="visually-hidden">
-        <span class="drop-icon"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#document"/></svg></span>
-        <strong id="drop-title">Drop a file or photo here, or tap to choose</strong>
-        <small>PDF, Word, text, or photos of each page</small>
-      </label>
-      <p id="lease-file-status" class="upload-status" role="status" aria-live="polite"></p>
-      <form id="review-form" novalidate>
-        <details class="paste-box" id="paste-box"><summary>Or paste text instead</summary>
-          <label for="lease-text" class="visually-hidden">Lease, listing, or landlord messages</label>
-          <textarea id="lease-text" maxlength="15000" aria-describedby="lease-count" placeholder="Paste a lease section, a rental listing, or messages from a landlord…" rows="6"></textarea>
-          <div class="textarea-hint"><span>Personal numbers like SSNs are removed before anything is checked.</span><span id="lease-count" class="character-count">0 / 15,000</span></div>
-        </details>
-        <button class="primary check-button" type="submit" id="review-button"><span>Check it</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button>
-      </form>
-      <div class="review-result" id="review-result" role="region" aria-live="polite" aria-label="Results"></div>
-      <p class="review-footnote">Plain-language information, not legal advice. Need help with a specific listing’s lease? <a href="/lease">Use the step-by-step lease guide</a>.</p>
-    </section>
   </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>You don’t need all the answers.</h3><p>A few details are enough to begin.</p><ol class="steps"><li><span class="step-number">1</span><div><strong>Share what matters</strong><p>Your area, budget, and what you need.</p></div></li><li><span class="step-number">2</span><div><strong>Explore your options</strong><p>Get guidance in clear, everyday language.</p></div></li><li><span class="step-number">3</span><div><strong>Confirm the details</strong><p>Contact providers about eligibility and availability.</p></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a safe place tonight?</h3><p>For shelter and local support, call 211. If you’re in immediate danger, call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><small>Don’t wait for an AI response in an emergency.</small></section></aside></div></section>
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
@@ -537,7 +421,7 @@
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
   </section>
   <section class="trust-banner" id="our-promise" aria-labelledby="promise-title"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#shield"/></svg><div><h2 id="promise-title">Real resources. A little more peace of mind.</h2><p>Housing recommendations come from our source-reviewed list. Availability and eligibility can change, so always confirm with the provider.</p></div><span class="trust-badge">People first. Always.</span></section>
-</main><footer class="container site-footer"><p>AI can make mistakes. Guidance and lease checks are informational, not legal advice. Don’t share your full name, SSN, bank details, or other sensitive information.</p><p>A clearer next step, together.</p></footer>
+</main><footer class="container site-footer"><p>AI can make mistakes. Guidance is informational, not legal advice. Don’t share your full name, SSN, bank details, or other sensitive information.</p><p>A clearer next step, together.</p></footer>
 <dialog id="property-photo-dialog" class="photo-dialog" aria-labelledby="property-photo-title"><header><h2 id="property-photo-title">Community photo</h2><button type="button" id="close-property-photo" aria-label="Close photo preview">×</button></header><img id="property-photo-large" alt=""><p id="property-photo-caption"></p><div id="property-photo-source"></div></dialog>
 <script src="/rental-labels.js"></script>
 <script>
@@ -757,29 +641,8 @@
       selectTab(tabs[next], true);
     });
   });
-  const leaseFile = document.getElementById('lease-file');
-  const leaseStatus = document.getElementById('lease-file-status');
-  leaseFile.addEventListener('change', async () => {
-    const file = leaseFile.files[0]; if (!file) return;
-    leaseStatus.dataset.state = 'loading';
-    if (file.size >= 10 * 1024 * 1024) { leaseStatus.dataset.state = 'error'; leaseStatus.textContent = 'Please choose a file under 10 MB.'; return; }
-    leaseFile.disabled = true; leaseStatus.textContent = 'Extracting text from ' + file.name + '…';
-    const controller = new AbortController(); const timeout = setTimeout(() => controller.abort(), 60000);
-    try {
-      const body = new FormData(); body.append('file', file);
-      const response = await fetch('/api/extract', {method:'POST',body,signal:controller.signal});
-      const data = await response.json();
-      if (!response.ok || data.error) throw new Error(data.error || 'We couldn’t read that document. Try pasting the text instead.');
-      if (typeof data.text !== 'string' || !data.text.trim()) throw new Error('No text found. Please paste the text instead.');
-      if (data.text.length > 15000) throw new Error('This document exceeds 15,000 characters. Please paste one section at a time below.');
-      const input = document.getElementById('lease-text'); input.value = data.text; input.dispatchEvent(new Event('input'));
-      const r = data.redactions || {}; const removed = (r.ssn || 0) + (r.card || 0) + (r.account || 0); const ocrNote = data.ocr ? ' We read this from an image, so some words may be wrong.' : '';
-      leaseStatus.dataset.state = 'success'; leaseStatus.textContent = (removed ? `Got it. We removed ${removed} private number${removed === 1 ? '' : 's'} (like SSNs or account numbers).` : 'Got it.') + ocrNote + ' Tap “Check it” when you’re ready.';
-    } catch (error) { leaseStatus.dataset.state = 'error'; leaseStatus.textContent = error.name === 'AbortError' ? 'The upload took too long. Try again or paste your text.' : error instanceof TypeError || error instanceof SyntaxError ? 'We couldn’t reach the upload service. Try again or paste your text.' : error.message; }
-    finally { clearTimeout(timeout); leaseFile.disabled = false; leaseFile.value = ''; }
-  });
-  const counts = {situation:'situation-count','lease-text':'lease-count','listing-text':'listing-count'};
-  document.querySelectorAll('textarea').forEach(input => input.addEventListener('input', () => { document.getElementById(counts[input.id]).textContent = `${input.value.length.toLocaleString()} / ${input.maxLength.toLocaleString()}`; }));
+  const counts = {situation:'situation-count'};
+  document.querySelectorAll('textarea').forEach(input => counts[input.id] && input.addEventListener('input', () => { document.getElementById(counts[input.id]).textContent = `${input.value.length.toLocaleString()} / ${input.maxLength.toLocaleString()}`; }));
   document.querySelectorAll('[data-example]').forEach(button => button.addEventListener('click', () => { const input = document.getElementById('situation'); input.value = button.dataset.example; input.dispatchEvent(new Event('input')); input.focus(); }));
   document.querySelectorAll('form[data-endpoint]').forEach(form => form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -818,10 +681,9 @@
     const statusEl = document.getElementById('map-status');
     const webList = document.getElementById('web-results');
     const setStatus = (text, state) => { statusEl.textContent = text; statusEl.dataset.state = state || ''; };
-    const dark = matchMedia('(prefers-color-scheme: dark)').matches;
     const map = L.map('listing-map', { scrollWheelZoom: false, zoomControl: true }).setView([38.83, -77.35], 9);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18, className: dark ? 'map-tiles-dark' : '',
+      maxZoom: 18,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
@@ -1154,66 +1016,5 @@
   })();
 </script>
 
-<script>
-  // Lease/listing check: drop or paste, one button, answers shown as sections.
-  (() => {
-    const drop = document.getElementById('lease-drop'), file = document.getElementById('lease-file');
-    const form = document.getElementById('review-form'), text = document.getElementById('lease-text');
-    const out = document.getElementById('review-result'), button = document.getElementById('review-button');
-    const paste = document.getElementById('paste-box'), title = document.getElementById('drop-title');
-    if (!drop || !form) return;
-    ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('dragging'); }));
-    ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('dragging'); }));
-    drop.addEventListener('drop', e => {
-      const f = e.dataTransfer?.files?.[0]; if (!f) return;
-      const dt = new DataTransfer(); dt.items.add(f); file.files = dt.files; file.dispatchEvent(new Event('change'));
-    });
-    file.addEventListener('change', () => { const f = file.files?.[0]; if (f) { title.textContent = f.name; drop.classList.add('has-file'); } });
-    // The existing upload code fills the text box; show it under "See the text we read" so people can check it.
-    text.addEventListener('input', () => { if (drop.classList.contains('has-file')) paste.querySelector('summary').textContent = 'See the text we read'; });
-
-    const el = (tag, txt, cls) => { const n = document.createElement(tag); if (txt != null) n.textContent = txt; if (cls) n.className = cls; return n; };
-    const nice = t => { const x = t.toLowerCase(); return x.charAt(0).toUpperCase() + x.slice(1); };  // sentence case
-    function render(answer) {
-      out.replaceChildren();
-      const lines = answer.replace(/\*\*/g, '').split('\n').map(l => l.trim()).filter(Boolean);
-      let current = null; const sections = [];
-      for (const line of lines) {
-        const m = line.match(/^([A-Z][A-Z &/]{3,40}):\s*(.*)$/) || (line === line.toUpperCase() && /^[A-Z][A-Z &/]{3,40}$/.test(line) ? [line, line, ''] : null);
-        if (m) { current = { title: m[1].trim(), items: m[2] ? [m[2]] : [] }; sections.push(current); }
-        else if (current) current.items.push(line.replace(/^[-•*]\s*/, ''));
-        else sections.push(current = { title: '', items: [line] });
-      }
-      for (const sec of sections) {
-        const t = sec.title;
-        if (t === 'TYPE') { out.append(el('div', sec.items.join(' '), 'review-kind')); continue; }
-        if (t === 'RISK LEVEL') {
-          const level = (sec.items[0] || '').match(/low|medium|high/i)?.[0]?.toLowerCase() || 'medium';
-          out.append(el('div', `${nice(level)} scam risk`, `risk-badge ${level}`));
-          if (sec.items.length) out.append(el('p', sec.items.join(' ').replace(/^(low|medium|high)[.,:]?\s*/i, ''), 'review-kind-note'));
-          continue;
-        }
-        const box = el('section', null, 'review-section' + (/WATCH/.test(t) ? ' watch' : /RED FLAGS/.test(t) ? ' flags' : ''));
-        if (t) box.append(el('h4', nice(t)));
-        if (sec.items.length > 1) { const ul = el('ul'); sec.items.forEach(i => ul.append(el('li', i))); box.append(ul); }
-        else box.append(el('p', sec.items[0] || ''));
-        out.append(box);
-      }
-    }
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      const value = text.value.trim();
-      if (!value) { out.replaceChildren(el('div', 'Add a file or paste some text first.', 'review-error')); return; }
-      button.disabled = true; out.replaceChildren(el('div', 'Reading it now. This usually takes 20 to 40 seconds…', 'review-loading'));
-      try {
-        const res = await fetch('/api/review', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: value }) });
-        const data = await res.json();
-        if (!res.ok || data.error) throw new Error(data.error || 'Something went wrong.');
-        render(data.answer); out.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } catch (err) { out.replaceChildren(el('div', (err.message || 'Something went wrong.') + ' Please try again.', 'review-error')); }
-      button.disabled = false;
-    });
-  })();
-</script>
 </body>
 </html>
