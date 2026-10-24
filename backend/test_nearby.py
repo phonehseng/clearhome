@@ -21,6 +21,14 @@ class NearbyTests(unittest.TestCase):
     def setUp(self):
         nearby._cache.clear()
 
+    def test_cheapest_orders_by_rent_not_distance(self):
+        import re
+        for answer in (nearby.answer("cheapest room near Virginia Tech"), nearby.answer("cheapest apartment near GMU")):
+            rents = [int(r.replace(",", "")) for r in re.findall(r"from \$([\d,]+)", answer)]
+            self.assertTrue(answer.startswith("Lowest-rent") and len(rents) >= 3)
+            self.assertEqual(rents, sorted(rents))
+        self.assertIn("/person/month", nearby.answer("cheapest room near Virginia Tech"))
+
     def test_reads_the_place_out_of_the_question(self):
         self.assertEqual(nearby.extract_place("I need a place near my office at 1800 Tysons Blvd")[0], "1800 Tysons Blvd")
         self.assertEqual(nearby.extract_place("something close to Inova Fairfax Hospital?")[0], "Inova Fairfax Hospital")

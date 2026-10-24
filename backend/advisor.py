@@ -415,6 +415,7 @@ LANDMARKS = {
     "virginia tech": ("Blacksburg", 37.2284, -80.4234), "vt campus": ("Blacksburg", 37.2284, -80.4234),
     "nova community college": ("Fairfax County", 38.8325, -77.2365), "nvcc": ("Fairfax County", 38.8325, -77.2365),
     "marymount": ("Arlington County", 38.8968, -77.1270), "pentagon": ("Arlington County", 38.8719, -77.0563),
+    "inova fairfax": ("Fairfax County", 38.8572, -77.2276),
 }
 
 
@@ -510,6 +511,10 @@ NEAR = re.compile(r"\b(near|close to|next to|walking distance|walk to|within \d+
 URGENT = re.compile(r"\b(tonight|shelter|homeless|nowhere to (?:go|sleep|stay)|kicked out|evict\w*|on the street|sleep(?:ing)? in (?:my|a) car|unsafe|in danger|abuse|behind on rent|back rent|can'?t pay)\b", re.I)
 
 
+# "Cheapest room near X": order by rent instead of distance.
+CHEAP = re.compile(r"\b(?:cheap(?:est|er)?|lowest (?:rent|price|cost)|least expensive|most affordable|inexpensive|low[- ]cost)\b", re.I)
+
+
 def quick_nearby(question, profile=None):
     """Answer "one near George Mason"-style questions straight from the catalog, with no AI call.
     Returns None when the question isn't a simple "near a place" request."""
@@ -523,7 +528,8 @@ def quick_nearby(question, profile=None):
         return None
     profile = profile or {}
     # Regular rentals (e.g. Blacksburg student rooms) are included but labeled, so they're never mistaken for subsidized housing.
-    filters = {"types": ["affordable_listing", "rental_listing"], "locations": [area], "age": 62 if profile.get("senior") else 30}
+    filters = {"types": ["affordable_listing", "rental_listing"], "locations": [area], "age": 62 if profile.get("senior") else 30,
+               "age_group": "senior" if profile.get("senior") else "general"}
     if isinstance(profile.get("budget"), (int, float)) and profile["budget"] > 0:
         filters["max_budget_per_month"] = profile["budget"]
     rows = filter_catalog(load_catalog(), filters)
@@ -542,13 +548,18 @@ def quick_nearby(question, profile=None):
             h = math.sin(dlat / 2) ** 2 + math.cos(math.radians(lat)) * math.cos(math.radians(r["lat"])) * math.sin(dlon / 2) ** 2
             return 3958.8 * 2 * math.asin(math.sqrt(h))
         homes.sort(key=lambda r: (miles(r) is None, miles(r) or 0))
+    cheap = bool(CHEAP.search(q))
+    if cheap:  # stable sort: listed rents first, lowest first; the nearest still wins a tie
+        homes.sort(key=lambda r: (not isinstance(r.get("monthly_rent"), (int, float)), r.get("monthly_rent") or 0))
     place = landmark[0].title().replace("Gmu", "George Mason University") if landmark else area
     if not homes:
         return (f"I don't have a reviewed home in {area} that fits your choices yet. Try a higher budget or a nearby area, "
                 "or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
-    lines = [f"Here are reviewed homes closest to {place}:" if landmark else f"Here are reviewed homes in {area}:"]
+    lines = [f"Here are the lowest-rent reviewed homes {'near ' + place if landmark else 'in ' + area}:" if cheap
+             else f"Here are reviewed homes closest to {place}:" if landmark else f"Here are reviewed homes in {area}:"]
     for r in homes[:5]:
-        rent = f"from ${r['monthly_rent']:,.0f}/month" if isinstance(r.get("monthly_rent"), (int, float)) else "rent: ask the provider"
+        per = "/person/month" if r.get("rental_space") == "room" else "/month"
+        rent = f"from ${r['monthly_rent']:,.0f}{per}" if isinstance(r.get("monthly_rent"), (int, float)) else "rent: ask the provider"
         dist = ""
         if landmark and r.get("lat") is not None:
             dist = f", about {miles(r):.1f} mi away (straight line)"
