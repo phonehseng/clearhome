@@ -543,6 +543,90 @@
       "status": "needs_verified_property_photo",
       "photo_reviewed_on": "2026-10-24",
       "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
+    },
+    {
+      "community": "Cascades Village",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "cascades-village"
+      ],
+      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
+      "provider_website": "https://cascadesvillage.com/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Evans Ridge Apartments",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "evans-ridge"
+      ],
+      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
+      "provider_website": "https://www.evansridgeapartments.com/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Leesburg Apartments",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "leesburg-apartments"
+      ],
+      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
+      "provider_website": "https://www.liveleesburgapartments.com/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Potomac Station Apartments",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "potomac-station"
+      ],
+      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
+      "provider_website": "https://www.potomacstation.com/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "View at Broadlands",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "view-at-broadlands"
+      ],
+      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
+      "provider_website": "https://www.viewatbroadlands.com/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "William Watters House",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "william-watters-house"
+      ],
+      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Woods at Birchwood",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "woods-at-birchwood"
+      ],
+      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
+      "provider_website": "https://www.thewoodsatbirchwood.com/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
     }
   ]
 }
