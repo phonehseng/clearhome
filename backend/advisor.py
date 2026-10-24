@@ -91,6 +91,10 @@ def _pick(resources, question):
 
 def _compact(row):
     out = {k: (row[k][:MAX_FIELD] if isinstance(row[k], str) else row[k]) for k in FIELDS if row.get(k) not in (None, "")}
+    if row.get("type") in ("affordable_listing", "rental_listing") and not isinstance(row.get("monthly_rent"), (int, float)):
+        est = rent_estimate(row)
+        if est:
+            out["rent_estimate_not_published"] = rent_estimate_text(est)
     if isinstance(row.get("availability"), dict):
         out["availability_status"] = row["availability"].get("status")
         out["availability_checked_on"] = row["availability"].get("checked_on")
@@ -161,6 +165,7 @@ Rules:
 - You may explain widely known federal basics (for example: Housing Choice Vouchers usually require income at or below 50% of area median income, and tenants usually pay about 30% of income toward rent; tax-credit apartments usually cap income at 50-60% of area median income). Say these are general rules and the program sets the final limits.
 - State waitlist_status exactly. Never say a waitlist is open unless waitlist_status is "open". If the waitlists the person needs are closed, say so kindly and point to programs that can still help (rent assistance, legal aid, 211).
 - availability_status for listings is a website snapshot, not a guaranteed vacancy.
+- If a listing has no monthly_rent but has rent_estimate_not_published, you may give that range, saying clearly it's an estimate and the provider sets the real rent.
 - A room price is per person, not the price of the entire shared home. State the payment schedule, lease dates, and individual versus joint responsibility exactly as recorded. Do not divide a whole-apartment price and present it as an advertised room.
 - When you recommend a resource, give its name, phone and how to apply, and mention its source_url.
 - Typical documents to prepare: photo ID, Social Security numbers or immigration documents for household members, proof of income (pay stubs, benefit letters), and your current lease or eviction notice. Say the program decides the final list.
@@ -206,6 +211,50 @@ def fallback_answer(rows, reason):
     return "\n".join(lines)
 
 
+def _miles(a, b):
+    import math
+    (la1, lo1), (la2, lo2) = a, b
+    h = math.sin(math.radians(la2 - la1) / 2) ** 2 + math.cos(math.radians(la1)) * math.cos(math.radians(la2)) * math.sin(math.radians(lo2 - lo1) / 2) ** 2
+    return 3958.8 * 2 * math.asin(math.sqrt(h))
+
+
+def rent_estimate(r, rows=None):
+    """A rent range for a home that doesn't publish one, so people aren't left with "ask the provider" only.
+
+    First the provider's own dollar figures (in its cost note); otherwise the middle half of published rents at
+    similar reviewed homes nearby (same kind of home, same room-or-whole-home, within 5 miles, else the county).
+    Returns {"low", "high", "basis"} or None. Always presented as an estimate, never as the home's rent."""
+    if isinstance(r.get("monthly_rent"), (int, float)):
+        return None
+    figures = [float(x.replace(",", "")) for x in re.findall(r"\$\s?(\d[\d,]{2,5})", r.get("cost") or "")]
+    figures = [f for f in figures if 300 <= f <= 10000]
+    if figures:
+        return {"low": min(figures), "high": max(figures), "basis": "the provider's published figures"}
+    rows = rows if rows is not None else filter_catalog(load_catalog())
+    space = r.get("rental_space", "entire_home")
+    same = [x for x in rows if x.get("type") == r.get("type") and x.get("rental_space", "entire_home") == space
+            and isinstance(x.get("monthly_rent"), (int, float)) and x["id"] != r["id"]]
+    def pick(pool):
+        rents = sorted(x["monthly_rent"] for x in pool)
+        if len(rents) < 3:
+            return None
+        lo, hi = rents[len(rents) // 4], rents[(3 * len(rents)) // 4]
+        return round(lo, -1), round(hi, -1), len(rents)
+    if isinstance(r.get("lat"), (int, float)):
+        near = [x for x in same if isinstance(x.get("lat"), (int, float)) and _miles((r["lat"], r["lon"]), (x["lat"], x["lon"])) <= 5]
+        got = pick(near)
+        if got:
+            return {"low": got[0], "high": got[1], "basis": f"{got[2]} similar reviewed homes within 5 miles"}
+    got = pick([x for x in same if x.get("jurisdiction") == r.get("jurisdiction")])
+    if got:
+        return {"low": got[0], "high": got[1], "basis": f"{got[2]} similar reviewed homes in {r.get('jurisdiction')}"}
+    return None
+
+
+def rent_estimate_text(est):
+    return f"about ${est['low']:,.0f}–${est['high']:,.0f}/month (estimate from {est['basis']}; ask the provider)"
+
+
 def cards_for(text, limit=6):
     """The checked records an answer talks about, in the order it mentions them, as small cards.
 
@@ -244,6 +293,7 @@ def cards_for(text, limit=6):
             "rental_space": r.get("rental_space"), "phone": r.get("phone"), "source_url": r.get("source_url"),
             "address": r.get("address"), "waitlist_status": r.get("waitlist_status"), "availability_status": avail.get("status"),
             "has_photo": bool(r.get("photo")), "lat": r.get("lat"), "lon": r.get("lon"),
+            "rent_estimate": rent_estimate(r),
             "names": sorted({key} | {b for b in bold if norm(b) and (norm(b) in norm(key) or norm(key) in norm(b) or norm(b) in acronyms(key))}),
         }.items() if v not in (None, "")})
     return cards

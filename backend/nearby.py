@@ -15,7 +15,7 @@ import threading
 import time
 import urllib.request
 
-from advisor import LANDMARKS, OUTSIDE, URGENT, area_for
+from advisor import LANDMARKS, OUTSIDE, URGENT, area_for, rent_estimate
 from catalog import filter_catalog, load_catalog
 from geocode import lookup as census_lookup
 
@@ -189,6 +189,7 @@ def _homes_near(name, lat, lon, question, profile):
     if re.search(r"\b(rooms?|roommates?|shared)\b", question or "", re.I):
         filters["rental_space"] = "room"
     seen, homes = set(), []
+    pool = filter_catalog(load_catalog(), {"types": ["affordable_listing", "rental_listing"]})  # for rent estimates
     for r in filter_catalog(load_catalog(), filters):
         if r.get("lat") is None:
             continue
@@ -208,8 +209,13 @@ def _homes_near(name, lat, lon, question, profile):
     what = "rooms" if filters.get("rental_space") == "room" else "homes"
     limit = f" under ${filters['max_budget_per_month']:,.0f}/month" if filters.get("max_budget_per_month") else ""
     lines = [f"Closest reviewed {what}{limit} to {name}:"]
+    bases = {}
     for i, r in enumerate(homes):
-        rent = f"from ${r['monthly_rent']:,.0f}/month" if isinstance(r.get("monthly_rent"), (int, float)) else "rent: ask the provider"
+        est = None if isinstance(r.get("monthly_rent"), (int, float)) else rent_estimate(r, pool)
+        if est:
+            bases.setdefault(est["basis"], None)
+        rent = (f"from ${r['monthly_rent']:,.0f}/month" if isinstance(r.get("monthly_rent"), (int, float))
+                else f"est. ${est['low']:,.0f}–${est['high']:,.0f}/month*" if est else "rent: ask the provider")
         miles = _miles(lat, lon, r["lat"], r["lon"])
         trip = ["at or next to this address" if miles < 0.1 else f"{miles:.1f} mi away"]
         if commute.get(i, {}).get("DRIVE"):
@@ -219,6 +225,8 @@ def _homes_near(name, lat, lon, question, profile):
         kind = " (regular rental, not income-restricted)" if r.get("type") == "rental_listing" else ""
         phone = f" Call {r['phone']}." if r.get("phone") else ""
         lines.append(f"- **{r.get('community') or r['name']}**{kind}: {rent}; {', '.join(trip)}.{phone}")
+    if bases:
+        lines.append(f"* Estimated from {' and '.join(bases)}: these homes don't publish rents, so ask the provider for the real price.")
     lines.append(("Commute times are from Google and change with traffic and schedules. " if commute else "Distances are straight-line. ")
                  + "Advertised rents and openings aren't guaranteed, so confirm with the property.\n\nThis is guidance, not legal advice.")
     return "\n".join(lines)

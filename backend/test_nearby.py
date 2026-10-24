@@ -42,6 +42,17 @@ class NearbyTests(unittest.TestCase):
         self.assertIn("outside the areas", nearby.answer("near me", {"coords": {"lat": 40.71, "lon": -74.0}}))
         self.assertIn("Near me", nearby.answer("anything near me?", {}))  # no location shared: explain how
 
+    def test_unpublished_rent_gets_a_labeled_estimate_not_a_fake_price(self):
+        from advisor import rent_estimate
+        from catalog import filter_catalog, load_catalog
+        rows = filter_catalog(load_catalog())
+        home = next(r for r in rows if r["type"] == "affordable_listing" and r.get("monthly_rent") is None and r.get("lat"))
+        est = rent_estimate(home, rows)
+        self.assertTrue(est and est["low"] <= est["high"] and "similar reviewed homes" in est["basis"])
+        self.assertIsNone(home.get("monthly_rent"))  # the record itself is never changed
+        priced = next(r for r in rows if isinstance(r.get("monthly_rent"), (int, float)))
+        self.assertIsNone(rent_estimate(priced, rows))  # a published rent is never replaced by an estimate
+
     def test_asks_for_the_address_when_only_my_office_is_given(self):
         self.assertIn("address", nearby.answer("Find me something near my office"))
 

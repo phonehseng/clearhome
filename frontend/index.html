@@ -1029,6 +1029,7 @@
         const meta = el('span', null, { class: 'chat-card-meta' });
         if (c.jurisdiction) meta.append(document.createTextNode(c.jurisdiction));
         if (typeof c.monthly_rent === 'number') { if (c.jurisdiction) meta.append(document.createTextNode(' · ')); meta.append(el('b', ClearHouseRental.price(c))); }
+        else if (c.rent_estimate) { if (c.jurisdiction) meta.append(document.createTextNode(' · ')); const est = el('b', `est. $${Math.round(c.rent_estimate.low).toLocaleString()}–$${Math.round(c.rent_estimate.high).toLocaleString()}/mo`); est.title = 'Estimate from ' + c.rent_estimate.basis + '. The provider sets the real rent.'; meta.append(est); }
         if (meta.childNodes.length) body.append(meta);
         if (c.address) body.append(el('span', c.address, { class: 'chat-card-address' }));
         const links = el('div', null, { class: 'chat-card-actions' });
