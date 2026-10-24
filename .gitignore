@@ -19,6 +19,3 @@ venv/
 node_modules/
 dist/
 build/
-
-# Local frontend scratch
-work/
