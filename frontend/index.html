@@ -172,7 +172,6 @@
     .page-birds .wing{stroke-width:2.4}
     .page-backdrop>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(1.8)}
     
-    .map-tiles-dark{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
 
     /* Listings map in the hero. */
     .hero-map-wrap{min-width:0}
@@ -187,8 +186,10 @@
     .web-results li{border:1px solid var(--line);border-left:4px solid #d9822b;border-radius:8px;padding:9px 12px;font-size:13px;background:var(--white)}
     .web-results strong{display:block;font-size:14px}
     .web-results a{font-weight:600}
-    .leaflet-popup-content{font:13px/1.5 Inter,system-ui,sans-serif;margin:12px 14px}
-    .leaflet-popup-content strong{display:block;font-size:14px;margin-bottom:2px}
+    .leaflet-popup-content{margin:12px 14px}
+    .map-popup{font:13px/1.5 Inter,system-ui,sans-serif;color:#1d2433}
+    .map-popup strong{display:block;font-size:14px;margin-bottom:2px}
+    .map-popup a{font-weight:600}
     @media(max-width:560px){.hero-map{height:240px}}
 
     /* Find form: optional details, instant options, then an optional assistant chat. */
@@ -675,65 +676,133 @@
 </script>
 
 <script>
+  // One Google Maps loader for the listings map and the walking map (the browser key is restricted to our sites).
+  window.clearHouseLoadMaps = (() => { let ready = null; return () => ready || (ready = fetch('/api/maps-config').then(r => r.json()).then(cfg => new Promise((resolve, reject) => {
+    if (!cfg.browser_key) return reject(new Error('no key'));
+    window.__clearHouseMaps = () => resolve();
+    const sc = document.createElement('script');
+    sc.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(cfg.browser_key)}&libraries=geometry&loading=async&callback=__clearHouseMaps`;
+    sc.async = true; sc.onerror = () => reject(new Error('load failed')); document.head.append(sc);
+    setTimeout(() => reject(new Error('timeout')), 10000);
+  }))); })();
   // Listings map: reviewed listings in blue, live web finds in orange, the chosen area outlined.
+  // Google Maps when the browser key works; Leaflet + OpenStreetMap as a fallback so the map never goes blank.
   (() => {
-    if (!window.L) return;
+    const mapEl = document.getElementById('listing-map');
     const statusEl = document.getElementById('map-status');
     const webList = document.getElementById('web-results');
     const setStatus = (text, state) => { statusEl.textContent = text; statusEl.dataset.state = state || ''; };
-    const map = L.map('listing-map', { scrollWheelZoom: false, zoomControl: true }).setView([38.83, -77.35], 9);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
     const el = (tag, text, attrs = {}) => { const n = document.createElement(tag); if (text != null) n.textContent = text; for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
     const safeUrl = u => typeof u === 'string' && u.startsWith('https://') ? u : null;
-    const areas = {}; let allBounds = null; let selected = null;
-    const outline = { color: '#6f8fd6', weight: 1, fillOpacity: 0.03 };
-    const highlight = { color: '#2f55b5', weight: 3, fillOpacity: 0.12 };
+    const OUTLINE = { color: '#6f8fd6', weight: 1, fill: 0.03 }, HIGHLIGHT = { color: '#2f55b5', weight: 3, fill: 0.12 };
+    const HOUSE = 'M3 11 12 3l9 8v10h-6v-6H9v6H3z';
+    // What the map shows, kept apart from the map library so a fallback can redraw it.
+    const state = { boundaries: null, pins: [], webPins: [], selected: null };
+    let view = null;
+
+    function googleView() {
+      const map = new google.maps.Map(mapEl, { center: { lat: 38.83, lng: -77.35 }, zoom: 9, mapTypeControl: false, fullscreenControl: false,
+        streetViewControl: true, clickableIcons: false, gestureHandling: 'cooperative' });
+      const info = new google.maps.InfoWindow(), areas = {}, web = [];
+      let all = null;
+      const style = f => { const s = f.getProperty('jurisdiction') === state.selected ? HIGHLIGHT : OUTLINE;
+        return { strokeColor: s.color, strokeWeight: s.weight, fillColor: s.color, fillOpacity: s.fill, clickable: false }; };
+      const pin = (p, list) => {
+        const m = new google.maps.Marker({ map, position: { lat: p.lat, lng: p.lon }, title: p.title,
+          icon: { path: HOUSE, scale: 1.1, fillColor: p.color, fillOpacity: 1, strokeColor: '#fff', strokeWeight: 1.6, anchor: new google.maps.Point(12, 21) } });
+        m.addListener('click', () => { info.setContent(p.popup); info.open({ map, anchor: m }); });
+        if (list) list.push(m);
+      };
+      return {
+        outlines(gj) {
+          all = new google.maps.LatLngBounds();
+          map.data.addGeoJson(gj).forEach(f => {
+            const b = new google.maps.LatLngBounds(); f.getGeometry().forEachLatLng(ll => { b.extend(ll); all.extend(ll); });
+            areas[f.getProperty('jurisdiction')] = b;
+          });
+          map.data.setStyle(style); map.fitBounds(all, 0);
+        },
+        pin: p => pin(p), webPin: p => pin(p, web),
+        clearWeb() { web.splice(0).forEach(m => m.setMap(null)); },
+        select(name) {
+          map.data.setStyle(style);
+          if (areas[name]) map.fitBounds(areas[name], 12);
+          else if (name === 'Blacksburg') { map.setCenter({ lat: 37.2296, lng: -80.4139 }); map.setZoom(13); }
+          else if (all) map.fitBounds(all, 10);
+        },
+      };
+    }
+
+    function leafletView() {
+      mapEl.replaceChildren();
+      const map = L.map(mapEl, { scrollWheelZoom: false, zoomControl: true }).setView([38.83, -77.35], 9);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+      const areas = {}, web = L.layerGroup().addTo(map); let all = null;
+      const style = s => ({ color: s.color, weight: s.weight, fillOpacity: s.fill });
+      const icon = color => L.divIcon({ className: 'house-pin', iconSize: [24, 24], iconAnchor: [12, 22], popupAnchor: [0, -20],
+        html: `<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="${HOUSE}" fill="${color}" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/></svg>` });
+      const pin = (p, layer) => L.marker([p.lat, p.lon], { icon: icon(p.color), title: p.title, keyboard: true }).bindPopup(p.popup).addTo(layer);
+      return {
+        outlines(gj) {
+          const layer = L.geoJSON(gj, { style: style(OUTLINE), interactive: false }).addTo(map);
+          layer.eachLayer(l => { areas[l.feature.properties.jurisdiction] = l; });
+          all = layer.getBounds(); map.fitBounds(all, { padding: [0, 0] }); map.setZoom(map.getZoom() + 1);
+        },
+        pin: p => pin(p, map), webPin: p => pin(p, web),
+        clearWeb() { web.clearLayers(); },
+        select(name) {
+          Object.values(areas).forEach(a => a.setStyle(style(OUTLINE)));
+          const a = areas[name];
+          if (a) { a.setStyle(style(HIGHLIGHT)); a.bringToFront(); map.fitBounds(a.getBounds(), { padding: [12, 12] }); }
+          else if (name === 'Blacksburg') map.setView([37.2296, -80.4139], 13);
+          else if (all) map.fitBounds(all, { padding: [10, 10] });
+        },
+      };
+    }
+
+    function draw(v) {
+      view = v;
+      if (state.boundaries) v.outlines(state.boundaries);
+      state.pins.forEach(v.pin); state.webPins.forEach(v.webPin);
+      if (state.selected) v.select(state.selected);
+    }
+    function useLeaflet() { if (window.L && !(view && view.leaflet)) { draw(Object.assign(leafletView(), { leaflet: true })); } }
+    // A rejected key only shows up after the script loads; Google calls this global, so switch to Leaflet then.
+    window.gm_authFailure = useLeaflet;
+    window.clearHouseLoadMaps().then(() => draw(googleView())).catch(useLeaflet);
+
+    const addPin = p => { state.pins.push(p); view?.pin(p); };
+    const addWebPin = p => { state.webPins.push(p); view?.webPin(p); };
+    const clearWeb = () => { state.webPins = []; view?.clearWeb(); };
 
     fetch('/api/boundaries').then(r => r.json()).then(gj => {
-      const layer = L.geoJSON(gj, { style: outline, interactive: false }).addTo(map);
-      layer.eachLayer(l => { areas[l.feature.properties.jurisdiction] = l; });
-      allBounds = layer.getBounds(); map.fitBounds(allBounds, { padding: [0, 0] }); map.setZoom(map.getZoom() + 1);if(document.getElementById('browse-location')?.value==='Blacksburg')selectArea('Blacksburg');
+      state.boundaries = gj; view?.outlines(gj);
+      if (document.getElementById('browse-location')?.value === 'Blacksburg') selectArea('Blacksburg');
     }).catch(() => {});
 
     function popup(lines, url, linkText) {
-      const box = el('div');
+      const box = el('div', null, { class: 'map-popup' });
       lines.filter(Boolean).forEach((t, i) => box.append(el(i === 0 ? 'strong' : 'div', t)));
       const link = safeUrl(url);
       if (link) box.append(el('a', linkText, { href: link, target: '_blank', rel: 'noopener' }));
       return box;
     }
     const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
-    // House-shaped pins: blue for reviewed listings, orange for live web finds.
-    const houseIcon = color => L.divIcon({ className: 'house-pin', iconSize: [24, 24], iconAnchor: [12, 22], popupAnchor: [0, -20],
-      html: `<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M3 11 12 3l9 8v10h-6v-6H9v6H3z" fill="${color}" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/></svg>` });
     fetch('/api/listings').then(r => r.json()).then(data => {
-      (data.listings || []).filter(l => typeof l.lat === 'number').forEach(l => {
-        L.marker([l.lat, l.lon], { icon: houseIcon('#2f55b5'), title: l.community || l.name, keyboard: true })
-          .bindPopup(popup([l.community || l.name, l.floor_plan, typeof l.monthly_rent === 'number' ? ClearHouseRental.price(l) : null,
-                            STATUS[l.availability?.status], 'Reviewed by our team'], l.source_url, 'Provider page'))
-          .addTo(map);
-      });
+      (data.listings || []).filter(l => typeof l.lat === 'number').forEach(l => addPin({ lat: l.lat, lon: l.lon, color: '#2f55b5', title: l.community || l.name,
+        popup: popup([l.community || l.name, l.floor_plan, typeof l.monthly_rent === 'number' ? ClearHouseRental.price(l) : null,
+                      STATUS[l.availability?.status], 'Reviewed by our team'], l.source_url, 'Provider page') }));
     }).catch(() => {});
 
     // Same place names the server understands; longest first so "manassas park" wins over "manassas".
     const PLACES = [['blacksburg','Blacksburg'],['virginia tech','Blacksburg'],['manassas park','Manassas Park City'],['manassas','Manassas City'],['falls church','Falls Church City'],['fairfax city','Fairfax City'],['city of fairfax','Fairfax City'],['fairfax','Fairfax County'],['arlington','Arlington County'],['alexandria','Alexandria City'],['loudoun','Loudoun County'],['leesburg','Loudoun County'],['sterling','Loudoun County'],['ashburn','Loudoun County'],['prince william','Prince William County'],['woodbridge','Prince William County'],['dumfries','Prince William County']];
     const areaFor = text => { const t = (text || '').toLowerCase(); return (PLACES.find(([w]) => t.includes(w)) || [])[1] || null; };
+    function selectArea(name) { state.selected = name || null; view?.select(state.selected); }
 
-    function selectArea(name) {
-      if (selected) selected.setStyle(outline);
-      selected = areas[name] || null;
-      if (selected) { selected.setStyle(highlight); selected.bringToFront(); map.fitBounds(selected.getBounds(), { padding: [12, 12] }); }
-      else if(name==='Blacksburg'){map.setView([37.2296,-80.4139],13);}
-      else if (allBounds) map.fitBounds(allBounds, { padding: [10, 10] });
-    }
-
-    let webLayer = L.layerGroup().addTo(map); let searchId = 0;
+    let searchId = 0;
     async function liveSearch(location) {
-      const id = ++searchId; webLayer.clearLayers(); webList.hidden = true; webList.replaceChildren();
+      const id = ++searchId; clearWeb(); webList.hidden = true; webList.replaceChildren();
       setStatus(`Gemma is searching the web for affordable listings in ${location}. This can take a minute…`, 'loading');
       try {
         const controller = new AbortController(); setTimeout(() => controller.abort(), 180000);
@@ -746,7 +815,7 @@
         setStatus(`Gemma found ${results.length} more on the web in ${data.area}. ${data.notice}`);
         results.forEach(r => {
           const lines = [r.name, r.address, r.rent_text, r.income_text, 'Found on the web, not checked by our team'];
-          if (typeof r.lat === 'number') L.marker([r.lat, r.lon], { icon: houseIcon('#d9822b'), title: r.name, keyboard: true }).bindPopup(popup(lines, r.source_url, 'Source page')).addTo(webLayer);
+          if (typeof r.lat === 'number') addWebPin({ lat: r.lat, lon: r.lon, color: '#d9822b', title: r.name, popup: popup(lines, r.source_url, 'Source page') });
           const li = el('li'); li.append(el('strong', r.name));
           [r.address, r.rent_text, r.income_text].filter(Boolean).forEach(t => li.append(el('div', t)));
           const link = safeUrl(r.source_url); if (link) li.append(el('a', 'Source page', { href: link, target: '_blank', rel: 'noopener' }));
@@ -918,18 +987,8 @@
     const setStatus = (t, state) => { statusEl.textContent = t; statusEl.dataset.state = state || ''; };
 
     // Google Maps loads only if a restricted browser key is configured; otherwise the list still works.
-    let mapsReady = null, gmap = null, overlays = [];
-    function loadMaps() {
-      if (mapsReady) return mapsReady;
-      mapsReady = fetch('/api/maps-config').then(r => r.json()).then(cfg => new Promise((resolve, reject) => {
-        if (!cfg.browser_key) return reject(new Error('no key'));
-        window.__clearHouseMaps = () => resolve();
-        const sc = document.createElement('script');
-        sc.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(cfg.browser_key)}&libraries=geometry&loading=async&callback=__clearHouseMaps`;
-        sc.async = true; sc.onerror = () => reject(new Error('load failed')); document.head.append(sc);
-      }));
-      return mapsReady;
-    }
+    let gmap = null, overlays = [];
+    const loadMaps = () => window.clearHouseLoadMaps();
     function directionsUrl(h, a) {
       if (!a || h.lat == null) return null;
       return `https://www.google.com/maps/dir/?api=1&origin=${h.lat},${h.lon}&destination=${a.location.latitude},${a.location.longitude}&travelmode=walking`;
