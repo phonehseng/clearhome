@@ -222,6 +222,14 @@
     .map-section .hero-map{height:420px}
     .map-section .map-legend,.map-section .map-status:not(:empty){background:#ffffffcc;border:1px solid var(--line)}
     @media (min-width: 900px){.hero-art{align-self:end;margin-top:72px;translate:40px 28px}}
+
+    /* Hero "ping": a perfect circle that glows orange like a notification, sitting just left of the first line. */
+    @keyframes ch-ping{0%{box-shadow:0 0 0 0 #ff8a1fb3}70%{box-shadow:0 0 0 9px #ff8a1f00}100%{box-shadow:0 0 0 0 #ff8a1f00}}
+    .hero .eyebrow{gap:14px;margin-left:-22px}
+    .hero .eyebrow::before{flex:none;width:9px;height:9px;aspect-ratio:1;border-radius:50%;align-self:flex-start;margin-top:.42em;background:#ff8a1f;box-shadow:0 0 6px 1px #ff8a1f99;animation:ch-ping 1.8s ease-out infinite}
+    .hero .eyebrow.visible::before{animation:ch-ping 1.8s ease-out infinite}
+    @media (max-width: 900px){.hero .eyebrow{margin-left:0}}
+    @media (prefers-reduced-motion: reduce){.hero .eyebrow::before{animation:none}}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
