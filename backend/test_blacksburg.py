@@ -5,7 +5,7 @@ from datetime import date
 from unittest.mock import patch
 
 from catalog import filter_catalog, load_catalog, senior_only, validate_resources
-from advisor import area_for, options, _pick
+from advisor import area_for, options, _pick, program_need
 from prompt_tools import keyword_filters
 
 
@@ -73,6 +73,7 @@ class BlacksburgTests(unittest.TestCase):
         self.assertIn('nova-arlington-county-the-carlin', {r['id'] for r in general})
 
     def test_aliases_find_form_and_advisor_choose_the_requested_region(self):
+        self.assertEqual(program_need({'location': 'Blacksburg', 'income': 100000, 'household': 1}), (True, None))
         for name in ['Blacksburg, VA', 'Virginia Tech']:
             self.assertEqual(area_for(name), 'Blacksburg')
         filters, confident = keyword_filters('student room under $1000 near Virginia Tech')

@@ -177,7 +177,9 @@ def find_options():
         except (TypeError, ValueError):
             return None
     profile = {"location": str(body.get("location") or "")[:100], "budget": number("budget"), "bedrooms": number("bedrooms", int, 0, 6),
-               "accessible": body.get("accessible") is True, "senior": body.get("senior") is True, "tonight": body.get("tonight") is True}
+               "accessible": body.get("accessible") is True, "senior": body.get("senior") is True, "tonight": body.get("tonight") is True,
+               "voucher": body.get("voucher") is True, "income": number("income"), "household": number("household", int, 1, 12),
+               "situation": redact(str(body.get("situation") or "")[:1700])[0]}
     if body.get('rental_space') in {'room', 'entire_home'}:
         profile['rental_space'] = body['rental_space']
     result = options(profile)

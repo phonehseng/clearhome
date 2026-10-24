@@ -140,7 +140,11 @@ def retrieve_public_document(row):
     """Inspect up to two known provider pages, without inferring final-lease terms."""
     # A public-agency directory establishes a program, not a landlord website.
     # Never mistake a lease linked for a different property for this home's lease.
-    sources = (row.get('website'),) if row.get('source_kind') == 'public_authority' else (row.get('website'), row.get('source_url'))
+    directory = row.get('source_kind') in {'public_authority', 'official_directory'}
+    website = row.get('website')
+    if directory and website == row.get('source_url'):
+        website = None
+    sources = (website,) if directory else (website, row.get('source_url'))
     pages = list(dict.fromkeys(u for u in sources if isinstance(u, str) and u.startswith('https://')))
     if not pages:
         return dict(status='not_checked', document=None, checked_urls=[],

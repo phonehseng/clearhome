@@ -221,11 +221,11 @@
     /* Very faint animated houses-and-birds drawing behind the page. */
     .page-backdrop{position:fixed;inset:auto 0 0 0;height:70vh;z-index:-1;pointer-events:none}
     /* Houses and trees stay barely visible; the birds are clear enough to notice. */
-    .page-backdrop svg>*{opacity:.9}
+    .page-backdrop svg>*{opacity:.8}
     .page-backdrop svg>g:has(.bird){opacity:1}
     .page-backdrop .wing{stroke-width:2.4}
     .page-backdrop>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(1.8)}
-    @media(prefers-color-scheme:dark){.page-backdrop svg>*{opacity:.8}.page-backdrop svg>g:has(.bird){opacity:.9}}
+    @media(prefers-color-scheme:dark){.page-backdrop svg>*{opacity:.7}.page-backdrop svg>g:has(.bird){opacity:.9}}
     .map-tiles-dark{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
 
     /* Listings map in the hero. */
@@ -233,7 +233,7 @@
     .hero-map{height:300px;border-radius:18px;border:1px solid var(--line);overflow:hidden;background:var(--sage)}
     .map-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
     .map-legend span{display:flex;align-items:center;gap:6px}
-    .map-dot{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #0003}
+    .map-dot{display:inline-block;width:13px;height:13px;clip-path:polygon(50% 0,100% 42%,100% 100%,0 100%,0 42%)}
     .map-dot.reviewed{background:#2f55b5}.map-dot.web{background:#d9822b}
     .map-status{font-size:13px;color:var(--muted);margin-top:6px;min-height:1.4em}
     .map-status[data-state=loading]::before{content:'';display:inline-block;width:10px;height:10px;border:2px solid var(--line);border-top-color:#2f55b5;border-radius:50%;margin-right:7px;vertical-align:-1px;animation:spin .8s linear infinite}
@@ -353,6 +353,61 @@
       .housing-card:not(.has-photo)::after{background:radial-gradient(120% 55% at 15% 0%,#ffffff1a 0%,#ffffff00 45%)}
     }
     @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card:not(.has-photo){background:#fffffff0}}
+
+    /* Liquid glass everywhere on the tools page, so text stays readable over the background drawing. */
+    :root{--glass-bg:linear-gradient(140deg,#ffffffc4 0%,#ffffff9c 55%,#ffffffb8 100%);--glass-border:#ffffffd9;
+      --glass-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff59,inset 0 0 20px #ffffff33,0 10px 30px #0b14331c;--glass-blur:blur(22px) saturate(1.8)}
+    @media(prefers-color-scheme:dark){:root{--glass-bg:linear-gradient(140deg,#1b2333cc 0%,#1b2333a8 55%,#1b2333c2 100%);--glass-border:#ffffff2b;
+      --glass-shadow:inset 0 1px 0 #ffffff3d,inset 0 -1px 0 #ffffff12,0 10px 30px #0008}}
+    :is(.tool-panel,.tab,.guidance-card,.trust-banner,.catalog-notice,.opt-card,.assistant,.walk-card,.web-results li,.result,.upload-box,
+        .hero-copy,.section-heading,.map-legend,.map-status,.browse-hint,.browse-message:not(:empty),.site-footer,.walk-status:not(:empty),.find-checks){
+      background:var(--glass-bg)!important;backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      border:1px solid var(--glass-border)!important;box-shadow:var(--glass-shadow)}
+    .tab[aria-selected=true]{background:linear-gradient(140deg,#e2eafbe6,#d5e1f8c7)!important;border-color:#6f8fd6!important;box-shadow:inset 0 0 0 1px #6f8fd6,var(--glass-shadow)}
+    @media(prefers-color-scheme:dark){.tab[aria-selected=true]{background:linear-gradient(140deg,#2a3a5ee6,#22304fcc)!important;border-color:#8fa9ec!important}}
+    .browse-filters{background:var(--glass-bg)!important;backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border)!important;box-shadow:var(--glass-shadow);padding:18px;border-radius:16px}
+    /* Loose text gets a soft glass backing with breathing room. */
+    .hero-copy{padding:26px 28px;border-radius:22px}
+    .section-heading{padding:14px 18px;border-radius:16px}
+    .map-legend,.map-status:not(:empty),.walk-status:not(:empty){padding:7px 12px;border-radius:12px;width:fit-content;max-width:100%}
+    .map-status:empty{display:none}
+    .browse-hint,.browse-message:not(:empty){padding:10px 14px;border-radius:12px}
+    .site-footer{padding:18px 22px;border-radius:16px;margin-bottom:24px}
+    .find-checks{padding:12px 14px;border-radius:12px}
+    /* The emergency card stays warm, as warm glass. */
+    .emergency-card,.header-links .emergency-link{background:linear-gradient(140deg,#fbf5ece6,#fbf5ecbf)!important;backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      border:1px solid #eadfcee6!important;box-shadow:inset 0 1px 0 #fff,0 10px 30px #7655391a}
+    @media(prefers-color-scheme:dark){.emergency-card,.header-links .emergency-link{background:linear-gradient(140deg,#2a2218e0,#2a2218bf)!important;border-color:#5a4730!important;box-shadow:inset 0 1px 0 #ffffff1f,0 10px 30px #0008}}
+    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--glass-bg:#fffffff2}}
+
+    /* Tab 1: only the essentials up front; everything optional lives in a dropdown. */
+    .urgent-check{display:flex;gap:9px;align-items:center;font-weight:600;font-size:13px;margin:4px 0 14px;cursor:pointer;color:#765539}
+    .urgent-check input{width:17px;height:17px;accent-color:#b5651d}
+    .more-options{border:1px solid var(--line);border-radius:12px;margin-bottom:16px;background:var(--white)}
+    .more-options>summary{cursor:pointer;list-style:none;padding:12px 16px;font-weight:600;font-size:14px;display:flex;align-items:center;gap:8px}
+    .more-options>summary::-webkit-details-marker{display:none}
+    .more-options>summary::after{content:'+';margin-left:auto;font-size:18px;transition:transform .2s ease}
+    .more-options[open]>summary::after{transform:rotate(45deg)}
+    .more-options>summary span{font-weight:400;color:var(--muted)}
+    .more-options-body{padding:4px 16px 16px}
+    .show-programs{font:inherit;font-size:13px;font-weight:600;align-self:start;padding:9px 14px;border-radius:20px;border:1px solid var(--line);background:var(--white);color:inherit;cursor:pointer}
+    .house-pin{background:none;border:0;filter:drop-shadow(0 1px 2px #0006)}
+    .house-pin:focus-visible{outline:3px solid #e0a100;border-radius:4px}
+
+    /* Fewer boxes: each big section is ONE glass panel, and the pieces inside it sit flat on that glass. */
+    #tools,.listings-section{background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+      border:1px solid var(--glass-border);box-shadow:var(--glass-shadow);border-radius:24px;padding:26px}
+    :is(#tools,.listings-section) :is(.section-heading,.catalog-notice,.browse-filters,.browse-hint,.browse-message,.find-checks){
+      background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none;-webkit-backdrop-filter:none;padding-left:0;padding-right:0}
+    :is(#tools,.listings-section) .section-heading{padding-top:0}
+    .listings-section .catalog-notice{border-top:1px solid var(--line)!important;border-radius:0;padding:14px 0}
+    .listings-section .browse-filters{padding:6px 0 4px}
+    /* Panels inside the section: a light outline instead of their own glass. */
+    #tools :is(.tool-panel,.tab,.guidance-card){background:#ffffff8c!important;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;border:1px solid var(--line)!important}
+    #tools .tab[aria-selected=true]{background:#e2eafbcc!important;border-color:#6f8fd6!important;box-shadow:inset 0 0 0 1px #6f8fd6}
+    @media(prefers-color-scheme:dark){#tools :is(.tool-panel,.tab,.guidance-card){background:#ffffff0d!important}
+      #tools .tab[aria-selected=true]{background:#2a3a5ecc!important;border-color:#8fa9ec!important}}
+    @media(max-width:560px){#tools,.listings-section{padding:16px;border-radius:18px}}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -378,17 +433,18 @@
     <div class="tabs" role="tablist" aria-label="Housing tools"><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find housing help</strong><small>A place to start</small></span></button><button class="tab" role="tab" id="tab-lease" aria-selected="false" aria-controls="panel-lease" tabindex="-1"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#document"/></svg></span><span><strong>2) Check a lease or listing</strong><small>Explain terms, spot scams</small></span></button></div>
     <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Let’s find your next step.</h3><span class="step-label">HOUSING SUPPORT</span></div><p class="panel-description">Tell us what you need. We’ll look for support in our source-reviewed resource list.</p><form id="find-form" novalidate>
       <div class="input-row"><div><label for="location">Where are you looking?</label><div class="input-wrapper"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg><input id="location" name="location" value="Northern Virginia" maxlength="100" autocomplete="address-level2" placeholder="City, town or county"></div></div><div><label for="budget">Monthly budget <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="budget" name="budget" type="number" min="0" max="100000" placeholder="Your maximum" inputmode="decimal"><span>/ month</span></div></div></div>
+      <label class="urgent-check"><input type="checkbox" id="tonight" name="tonight"> I need a safe place to stay tonight</label>
+      <details class="more-options" id="more-options"><summary>More options <span>(optional)</span></summary><div class="more-options-body">
       <div class="input-row"><div><label for="income">Household income <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="income" name="income" type="number" min="0" max="10000000" placeholder="Before taxes" inputmode="decimal"><span>/ year</span></div></div><div><label for="household">People in your home <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="household" name="household" class="find-select"><option value="">Not sure</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6">6 or more</option></select></div></div>
       <div class="input-row"><div><label for="bedrooms">Bedrooms <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="bedrooms" name="bedrooms" class="find-select"><option value="">Any</option><option value="0">Studio</option><option value="1">1 bedroom</option><option value="2">2 bedrooms</option><option value="3">3 bedrooms</option><option value="4">4 or more</option></select></div><div><label for="timing">When do you need to move? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="timing" name="timing" class="find-select"><option value="">Not sure</option><option value="now">As soon as possible</option><option value="soon">In the next 3 months</option><option value="planning">Just planning ahead</option></select></div></div>
       <div class="input-row"><div><label for="find-amenity">Live near a… <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="find-amenity" class="find-select"><option value="">No preference</option><option value="supermarket">Supermarket</option><option value="pharmacy">Pharmacy</option><option value="transit">Bus or train stop</option></select></div><div><label for="find-walk">Within a walk of</label><select id="find-walk" class="find-select"><option value="5">5 minutes</option><option value="10" selected>10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option></select></div></div>
       <fieldset class="find-checks"><legend>Anything that applies? <span style="font-weight:400;color:var(--muted)">(optional)</span></legend>
-        <label><input type="checkbox" id="tonight" name="tonight"> I need a safe place to stay tonight</label>
         <label><input type="checkbox" id="accessible" name="accessible"> I need an accessible home</label>
         <label><input type="checkbox" id="senior" name="senior"> Someone in my home is 62 or older</label>
         <label><input type="checkbox" id="voucher" name="voucher"> I have a housing voucher</label>
         <label><input type="checkbox" id="find-walk-pref"> The walk is nice to have, not a must</label>
       </fieldset>
-      <label for="situation">Anything else we should know? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="situation" name="situation" maxlength="1700" aria-describedby="situation-hint situation-count" placeholder="For example: I’m a student and need to move next month."></textarea><div class="textarea-hint"><span id="situation-hint">If you write something here, our assistant will answer it after your options. Keep personal details out.</span><span class="character-count" id="situation-count">0 / 1,700</span></div><div class="examples"><span>Need a starting point?</span><button type="button" data-example="I’m a student looking for an affordable room near campus. My move-in date is flexible.">I’m a student</button><button type="button" data-example="I’m looking for affordable housing for my family. What programs or assistance might help us?">Housing for my family</button><button type="button" data-example="I need a safe place to stay tonight. Please help me find emergency shelter resources.">I need a place tonight</button></div><div class="form-bottom"><span class="privacy-note"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Recommendations from verified resources only</span><button class="primary" type="submit"><span>Show my options</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div>
+      <label for="situation">Anything else we should know? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="situation" name="situation" maxlength="1700" aria-describedby="situation-hint situation-count" placeholder="For example: I’m a student and need to move next month."></textarea><div class="textarea-hint"><span id="situation-hint">If you write something here, our assistant will answer it after your options. Keep personal details out.</span><span class="character-count" id="situation-count">0 / 1,700</span></div><div class="examples"><span>Need a starting point?</span><button type="button" data-example="I’m a student looking for an affordable room near campus. My move-in date is flexible.">I’m a student</button><button type="button" data-example="I’m looking for affordable housing for my family. What programs or assistance might help us?">Housing for my family</button><button type="button" data-example="I need a safe place to stay tonight. Please help me find emergency shelter resources.">I need a place tonight</button></div></div></details><div class="form-bottom"><span class="privacy-note"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Recommendations from verified resources only</span><button class="primary" type="submit"><span>Show my options</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div>
     </form>
     <div class="walk-results">
     <p class="walk-status" id="walk-status" role="status" aria-live="polite"></p>
@@ -448,6 +504,17 @@
     try { const parsed = new URL(url); if (parsed.protocol !== 'https:') return null; } catch { return null; }
     const link = housingElement('a', '', label); link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
   }
+  // Label a listing's main link by where it actually goes (see backend/source_audit.py).
+  const SOURCE_LABELS = { official_property_page: 'View official property page ↗', owner_property_page: 'View owner’s property page ↗',
+                          property_website: 'View property website ↗', official_directory: 'View official county listing ↗' };
+  const sourceLabel = (row, fallback) => SOURCE_LABELS[row.source_kind] || fallback;
+  const ROLE_LABELS = { provider: 'Property website', government: 'Official government page', directory: 'Official directory or list', corroboration: 'Supporting page' };
+  function mapLink(row) {
+    if (!row.address) return null;
+    const link = housingElement('a', '', 'Show on map ↗');
+    link.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(row.address);
+    link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
+  }
   function reviewedDate(value) {
     if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return 'not recorded';
     const date = new Date(value + 'T12:00:00'); return Number.isNaN(date.valueOf()) ? 'not recorded' : date.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
@@ -465,18 +532,25 @@
         ['Room or apartment',ClearHouseRental.space(row)],
         ['Lease & responsibility',[ClearHouseRental.lease(row),row.lease_responsibility].filter(Boolean).join('. ')],
         ['Lease dates & payments',[ClearHouseRental.term(row),row.payment_schedule].filter(Boolean).join('. ')],
-        ['Utilities',row.utilities_notes],
-        ['Who can apply',[row.minimum_age ? `Age requirement: ${row.minimum_age} and older.` : null,row.who_it_serves].filter(Boolean).join(' ')],
+                ['Who can apply',[row.minimum_age ? `Age requirement: ${row.minimum_age} and older.` : null,row.who_it_serves].filter(Boolean).join(' ')],
         ['Before you apply',row.requirements],
         ['Rent & additional costs',row.cost],
         ['Availability & timing',[statusLabels[availability.status],availability.available_from ? 'Advertised move-in: '+reviewedDate(availability.available_from)+'.' : null,availability.evidence].filter(Boolean).join(' ')],
         ['Accessibility',row.accessibility_notes || 'Ask the provider about accessible units and features.'],
-        ['Confirm with leasing',row.notes]
+        ['Confirm with leasing',row.notes],
+        ['Units', row.unit_count ? `${row.unit_count} apartments.` : null],
+        ['Utilities', row.utilities_notes || row.utilities || 'Not published by the source. Ask the leasing office which utilities are included.'],
+        ['Amenities', Array.isArray(row.amenities) && row.amenities.length ? row.amenities.join(' · ') : 'Not published by the source.'],
+        ['Leasing contact', row.phone || 'Not published by the source.'],
+        ['How to apply or join the waitlist', row.application_info || row.how_to_apply || 'Ask the leasing office how to apply.']
       ];
       groups.forEach(([title,text])=>{if(!text)return;const group=housingElement('section','eligibility-item');group.append(housingElement('h4','',title),housingElement('p','',text));information.append(group);});
       details.append(information,housingElement('div','eligibility-footer','The provider makes the final eligibility decision. Confirm costs and availability before applying or paying.'));
       if(row.affordability){const proof=housingElement('div','eligibility-item');proof.append(housingElement('h4','',row.type==='rental_listing'?'Rental source':'Affordability source'),housingElement('p','',row.affordability.evidence));const link=sourceLink(row.affordability.source_url,'Read source evidence ↗');if(link)proof.append(link);information.append(proof);}
-      const planSource=sourceLink(row.source_url,'View this option’s source ↗'); if(planSource) information.append(planSource);
+      const sourceList=housingElement('section','eligibility-item');sourceList.append(housingElement('h4','','Sources'));
+      const seen=new Set();[{url:row.source_url,role:row.source_kind==='official_directory'?'directory':'main'},...(row.sources||[])].forEach(src=>{if(!src.url||seen.has(src.url))return;seen.add(src.url);
+        const link=sourceLink(src.url,(src.role==='main'?sourceLabel(row,'Main source ↗'):(ROLE_LABELS[src.role]||'Source')+' ↗'));if(link){const line=housingElement('p','');line.append(link);sourceList.append(line);}});
+      information.append(sourceList);
       return details;
   }
   function renderHousing() {
@@ -564,7 +638,8 @@
         if(plans.length>1){const choose=housingElement('button','lease-guide-button','Choose a plan for lease help →');choose.type='button';choose.addEventListener('click',()=>{const details=card.querySelector('.floor-plans-details');details.open=true;const first=details.querySelector('.lease-guide-link');first.focus();});actions.append(choose);}
         else{const guide=housingElement('a','lease-guide-link','Guide me through this lease →');guide.href='/lease?listing='+encodeURIComponent(row.id);actions.append(guide);}
       }
-      const source = sourceLink(row.source_url,plans.length>1?'Starting-price source ↗':'View source ↗'); if (source) actions.append(source);
+      const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-price source ↗':'View source ↗')); if (source) actions.append(source);
+      const map = mapLink(row); if (map) actions.append(map);
       if (row.phone && /^\+?[0-9 ()-]+$/.test(row.phone)) { const phone = housingElement('a','','Call leasing office'); phone.href='tel:'+row.phone.replace(/[^0-9+]/g,''); actions.append(phone); }
       const reviewDates=plans.map(p=>p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
       const reviewed=reviewDates[0]===reviewDates[reviewDates.length-1] ? reviewedDate(reviewDates[0]) : `${reviewedDate(reviewDates[0])} – ${reviewedDate(reviewDates[reviewDates.length-1])}`;
@@ -710,9 +785,12 @@
       return box;
     }
     const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
+    // House-shaped pins: blue for reviewed listings, orange for live web finds.
+    const houseIcon = color => L.divIcon({ className: 'house-pin', iconSize: [24, 24], iconAnchor: [12, 22], popupAnchor: [0, -20],
+      html: `<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M3 11 12 3l9 8v10h-6v-6H9v6H3z" fill="${color}" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/></svg>` });
     fetch('/api/listings').then(r => r.json()).then(data => {
       (data.listings || []).filter(l => typeof l.lat === 'number').forEach(l => {
-        L.circleMarker([l.lat, l.lon], { radius: 7, color: '#fff', weight: 2, fillColor: '#2f55b5', fillOpacity: 1 })
+        L.marker([l.lat, l.lon], { icon: houseIcon('#2f55b5'), title: l.community || l.name, keyboard: true })
           .bindPopup(popup([l.community || l.name, l.floor_plan, typeof l.monthly_rent === 'number' ? ClearHouseRental.price(l) : null,
                             STATUS[l.availability?.status], 'Reviewed by our team'], l.source_url, 'Provider page'))
           .addTo(map);
@@ -746,7 +824,7 @@
         setStatus(`Gemma found ${results.length} more on the web in ${data.area}. ${data.notice}`);
         results.forEach(r => {
           const lines = [r.name, r.address, r.rent_text, r.income_text, 'Found on the web, not checked by our team'];
-          if (typeof r.lat === 'number') L.circleMarker([r.lat, r.lon], { radius: 7, color: '#fff', weight: 2, fillColor: '#d9822b', fillOpacity: 1 }).bindPopup(popup(lines, r.source_url, 'Source page')).addTo(webLayer);
+          if (typeof r.lat === 'number') L.marker([r.lat, r.lon], { icon: houseIcon('#d9822b'), title: r.name, keyboard: true }).bindPopup(popup(lines, r.source_url, 'Source page')).addTo(webLayer);
           const li = el('li'); li.append(el('strong', r.name));
           [r.address, r.rent_text, r.income_text].filter(Boolean).forEach(t => li.append(el('div', t)));
           const link = safeUrl(r.source_url); if (link) li.append(el('a', 'Source page', { href: link, target: '_blank', rel: 'noopener' }));
@@ -786,7 +864,7 @@
     let profile = {}, history = [];
 
     // "I need a place tonight" example also ticks the tonight box.
-    document.querySelectorAll('[data-example]').forEach(b => b.addEventListener('click', () => { if (/tonight/i.test(b.textContent)) document.getElementById('tonight').checked = true; }));
+    document.querySelectorAll('[data-example]').forEach(b => b.addEventListener('click', () => { document.getElementById('more-options').open = true; if (/tonight/i.test(b.textContent)) document.getElementById('tonight').checked = true; }));
 
     function card(r, kind) {
       const c = el('article', null, { class: 'opt-card' });
@@ -849,7 +927,7 @@
       const checked = id => document.getElementById(id).checked;
       profile = { location: v('location'), budget: v('budget') ? Number(v('budget')) : null, income: v('income') ? Number(v('income')) : null,
                   household: v('household') ? Number(v('household')) : null, bedrooms: v('bedrooms') === '' ? null : Number(v('bedrooms')),
-                  timing: v('timing') || null, tonight: checked('tonight'), accessible: checked('accessible'), senior: checked('senior'), voucher: checked('voucher') };
+                  timing: v('timing') || null, tonight: checked('tonight'), accessible: checked('accessible'), senior: checked('senior'), voucher: checked('voucher'), situation: v('situation') };
       const button = form.querySelector('button[type=submit]'); button.disabled = true;
       results.hidden = false; results.replaceChildren(el('p', 'Finding your options…', { class: 'opt-empty' }));
       document.getElementById('location').dispatchEvent(new Event('change'));  // the map zooms in and Gemma searches the web
@@ -873,10 +951,20 @@
           results.append(group('Homes you could apply for', data.listings, 'listing',
             `No reviewed listings match these choices in ${data.area}. Try a higher budget, any bedroom count, or a nearby area. Gemma is also searching the web; see the map above.`));
         }
-        results.append(group('Programs that can help', data.programs, 'program', 'Call 211 for local programs.'));
+        // Programs only when there's a sign the person needs them (income, voucher, tonight, or what they wrote).
+        if (data.programs_relevant) {
+          results.append(group('Programs that can help', data.programs, 'program', 'Call 211 for local programs.'));
+        } else if (data.income_note) {
+          results.append(el('p', data.income_note, { class: 'opt-empty' }));
+        } else if (data.programs.length) {
+          const more = el('button', 'Need help paying rent? Show assistance programs', { type: 'button', class: 'show-programs' });
+          more.addEventListener('click', () => { more.replaceWith(group('Programs that can help', data.programs, 'program', 'Call 211 for local programs.')); });
+          results.append(more);
+        }
         // The assistant introduces itself once options are on screen; chatting is optional.
         assistant.hidden = false; log.replaceChildren(); history = [];
-        const counts = [`${homeCount} home${homeCount === 1 ? '' : 's'}`, `${data.programs.length} program${data.programs.length === 1 ? '' : 's'}`];
+        const counts = [`${homeCount} home${homeCount === 1 ? '' : 's'}`];
+        if (data.programs_relevant) counts.push(`${data.programs.length} program${data.programs.length === 1 ? '' : 's'}`);
         if (profile.tonight) counts.unshift(`${data.shelters.length} shelter option${data.shelters.length === 1 ? '' : 's'}`);
         botSay(`Hi, I'm the Clear House assistant. I found ${counts.join(', ')} for ${data.area}. If you'd like, ask me anything about them, like which ones fit your income or how to apply.`);
         const extra = v('situation');
@@ -931,8 +1019,8 @@
       overlays.forEach(o => o.setMap(null)); overlays = [];
       if (h.lat == null) return;
       const home = { lat: h.lat, lng: h.lon }, bounds = new google.maps.LatLngBounds(home);
-      overlays.push(new google.maps.Marker({ map: gmap, position: home, title: `Home: ${h.name}`, label: { text: '⌂', color: '#fff', fontSize: '15px' },
-        icon: { path: google.maps.SymbolPath.CIRCLE, scale: 13, fillColor: '#2f55b5', fillOpacity: 1, strokeColor: '#fff', strokeWeight: 2 } }));
+      overlays.push(new google.maps.Marker({ map: gmap, position: home, title: `Home: ${h.name}`,
+        icon: { path: 'M3 11 12 3l9 8v10h-6v-6H9v6H3z', scale: 1.5, fillColor: '#2f55b5', fillOpacity: 1, strokeColor: '#fff', strokeWeight: 1.6, anchor: new google.maps.Point(12, 21) } }));
       if (a) {
         const store = { lat: a.location.latitude, lng: a.location.longitude }; bounds.extend(store);
         overlays.push(new google.maps.Marker({ map: gmap, position: store, title: a.name, label: { text: '🛒', fontSize: '13px' },
