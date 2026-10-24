@@ -170,6 +170,8 @@
     .opt-card details summary{cursor:pointer;font-weight:650;min-height:32px;display:flex;align-items:center}
     .opt-card details p{margin:4px 0}
     .shelter-where{font-size:12.5px;color:var(--muted)}
+    .web-search-btn{margin-top:8px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px dashed #d9822b;background:#fff8ef;color:#8a4b0f;font-size:12.5px;font-weight:650}
+    .web-search-btn:hover{background:#fdeedd}
     .map-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
     .map-tab{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-size:13px;font-weight:600;color:var(--ink);transition:background .15s,border-color .15s,color .15s}
     .map-tab:hover{border-color:#6f8fd6}
@@ -466,7 +468,7 @@
 
     /* Hero "ping": a perfect circle that glows orange like a notification, sitting just left of the first line. */
     @keyframes ch-ping{0%{box-shadow:0 0 0 0 #ff8a1fb3}70%{box-shadow:0 0 0 9px #ff8a1f00}100%{box-shadow:0 0 0 0 #ff8a1f00}}
-    .hero .eyebrow-dot{flex:none;width:9px;height:9px;aspect-ratio:1;border-radius:50%;align-self:center;margin:0 .35em 0 -16px;background:#ff8a1f!important;box-shadow:0 0 6px 1px #ff8a1f99;animation:ch-ping 1.8s ease-out infinite}
+    .hero .eyebrow-dot{flex:none;width:9px;height:9px;aspect-ratio:1;border-radius:50%;align-self:center;margin:0 .35em 0 -16px;translate:-12px 0;background:#ff8a1f!important;box-shadow:0 0 6px 1px #ff8a1f99;animation:ch-ping 1.8s ease-out infinite}
     @media (max-width: 560px){.hero .eyebrow-dot{margin-left:0}}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -1074,7 +1076,7 @@
                   timing: v('timing') || null, tonight: checked('tonight'), accessible: checked('accessible'), senior: checked('senior'), voucher: checked('voucher'), situation: v('situation') };
       const button = form.querySelector('button[type=submit]'); button.disabled = true;
       results.hidden = false; results.replaceChildren(el('p', 'Finding your options…', { class: 'opt-empty' }));
-      document.getElementById('location').dispatchEvent(new Event('change'));  // the map zooms in and Gemma searches the web
+      document.getElementById('location').dispatchEvent(new Event('change'));  // the map zooms in; a web search is offered as a button
       try {
         const res = await fetch('/api/options', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(profile) });
         const data = await res.json();
@@ -1131,7 +1133,7 @@
     document.getElementById('location-pick').addEventListener('change', e => {
       if (!e.target.value) return;
       const box = document.getElementById('location'); box.value = e.target.value; e.target.value = '';
-      window.clearHouseMapGoTo?.(box.value);
+      window.clearHouseMapGoTo?.(box.value); window.clearHouseOfferWebSearch?.(box.value);
     });
     document.querySelectorAll('[data-tonight]').forEach(b => b.addEventListener('click', () => {
       document.getElementById('location').value = b.dataset.tonight;
