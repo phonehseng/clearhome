@@ -228,7 +228,7 @@
     .assistant-head{display:flex;gap:11px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--line)}
     .assistant-head strong{display:block;font-size:14px}.assistant-head span{font-size:12px;color:var(--muted)}
     .assistant-avatar{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#254f40;color:#fff;flex-shrink:0}
-    .assistant-log{display:grid;gap:10px;padding:16px;max-height:420px;overflow-y:auto}
+    .assistant-log{display:grid;gap:10px;padding:16px;max-height:560px;overflow-y:auto}
     .msg{padding:11px 14px;border-radius:12px;max-width:88%;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.6}
     .msg.user{justify-self:end;background:#23408f;color:#fff;border-bottom-right-radius:4px}
     .msg.bot{background:var(--sage);border-bottom-left-radius:4px}
@@ -239,6 +239,16 @@
     .msg.bot[data-state=loading]::before{content:'';display:inline-block;width:9px;height:9px;border:2px solid var(--line);border-top-color:#2f55b5;border-radius:50%;margin-right:8px;vertical-align:-1px;animation:spin .8s linear infinite}
     .msg{animation:msg-in .25s ease-out}
     @keyframes msg-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    /* Cards for the places Gemma names, under its answer. */
+    .chat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;max-width:100%;animation:msg-in .3s ease-out}
+    .chat-card{position:relative;display:grid;gap:4px;align-content:start;padding:12px 14px;border-radius:14px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);box-shadow:var(--glass-shadow,0 8px 24px #23408f14);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);font-size:12.5px;overflow:hidden;transition:transform .15s,box-shadow .15s}
+    .chat-card.has-photo{padding-top:96px;background-size:cover;background-position:center}
+    .chat-card.has-photo .chat-card-body{display:grid;gap:4px;margin:0 -14px -12px;padding:10px 14px 12px;background:#ffffffd9;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .chat-card strong{font-size:13.5px;line-height:1.35}
+    .chat-card .meta{color:var(--muted)}
+    .chat-card .opt-links{display:flex;gap:10px;flex-wrap:wrap;font-weight:600;margin-top:4px}
+    .chat-card.flash{box-shadow:0 0 0 3px #2f55b5;transform:translateY(-2px)}
+    .msg a.chat-ref{color:inherit;text-decoration:underline;text-decoration-color:#2f55b5;text-underline-offset:3px;cursor:pointer}
     .assistant-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
     .assistant-chips button{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:7px 12px;font-size:12.5px;min-height:36px;transition:background .15s,border-color .15s}
     .assistant-chips button:hover{background:#e2eafbcc;border-color:#6f8fd6}
@@ -948,7 +958,9 @@
             const line = buffer.slice(0, cut).replace(/^data: /, ''); buffer = buffer.slice(cut + 2);
             let event; try { event = JSON.parse(line); } catch { continue; }
             if (event.kind === 'status') { note = event.text; status.textContent = note; }
+            else if (event.kind === 'thinking') { note = `Gemma is thinking: ${event.text}`; status.textContent = note; }
             else if (event.kind === 'chunk') { if (!answer) finish(); answer += event.text; show(answer); }
+            else if (event.kind === 'cards') { if (bubble && Array.isArray(event.text) && event.text.length) showCards(bubble, answer, event.text); }
             else if (event.kind === 'answer' || event.kind === 'fallback') { finish(); answer = event.text; show(answer); if (event.kind === 'fallback') bubble.dataset.state = 'notice'; }
           }
         }
@@ -960,6 +972,43 @@
         botSay((err.name === 'AbortError' ? 'This is taking too long, the AI service is busy. Please try again in a minute.' : (err.message || 'We could not reach the assistant.')) + ' For urgent help, call 211.', 'error');
       }
       button.disabled = false;
+    }
+    // Cards for the places Gemma named, under its answer, with the names in the answer linked to them.
+    const CARD_STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
+    let cardSeq = 0;
+    function showCards(bubble, text, cards) {
+      const box = el('div', null, { class: 'chat-cards', role: 'list', 'aria-label': 'Places mentioned in this answer' });
+      const ids = {};
+      cards.forEach(c => {
+        const id = `chat-card-${++cardSeq}`; (c.names || [c.name.toLowerCase()]).forEach(n => { ids[n] = id; });
+        const card = el('article', null, { class: 'chat-card', id, role: 'listitem', tabindex: '-1' });
+        const body = el('div', null, { class: 'chat-card-body' });
+        if (c.has_photo) { card.classList.add('has-photo'); card.style.backgroundImage = `url(/media/listings/${encodeURIComponent(c.id)})`; }
+        const badge = CARD_STATUS[c.availability_status] || (c.waitlist_status === 'open' ? 'Waitlist open' : c.waitlist_status === 'closed' ? 'Waitlist closed' : null);
+        if (badge) body.append(el('span', badge, { class: 'opt-badge' + (c.waitlist_status === 'closed' ? ' closed' : '') }));
+        body.append(el('strong', c.name));
+        const meta = [c.jurisdiction, typeof c.monthly_rent === 'number' ? ClearHouseRental.price(c) : null].filter(Boolean).join(' · ');
+        if (meta) body.append(el('span', meta, { class: 'meta' }));
+        if (c.address) body.append(el('span', c.address, { class: 'meta' }));
+        const links = el('div', null, { class: 'opt-links' });
+        if (c.phone) links.append(el('a', c.phone, { href: tel(c.phone) }));
+        const site = safeUrl(c.source_url); if (site) links.append(el('a', 'Source ↗', { href: site, target: '_blank', rel: 'noopener' }));
+        if (typeof c.lat === 'number') links.append(el('a', 'Map ↗', { href: `https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lon}`, target: '_blank', rel: 'noopener' }));
+        body.append(links); card.append(body); box.append(card);
+      });
+      bubble.after(box);
+      // Turn each **name** in the answer into a link that brings its card into view.
+      bubble.replaceChildren();
+      text.split(/(\*\*[^*]+\*\*)/).forEach(part => {
+        if (!(part.startsWith('**') && part.endsWith('**'))) { bubble.append(document.createTextNode(part)); return; }
+        const name = part.slice(2, -2), key = name.toLowerCase();
+        const target = ids[key] || Object.entries(ids).find(([n]) => n.includes(key) || key.includes(n) || n.includes(`(${key})`))?.[1];
+        if (!target) { bubble.append(el('strong', name)); return; }
+        const a = el('a', null, { href: `#${target}`, class: 'chat-ref' }); a.append(el('strong', name));
+        a.addEventListener('click', e => { e.preventDefault(); const card = document.getElementById(target); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); card.focus({ preventScroll: true }); card.classList.add('flash'); setTimeout(() => card.classList.remove('flash'), 1200); });
+        bubble.append(a);
+      });
+      log.scrollTop = log.scrollHeight;
     }
     // Other parts of the page (like the live web search) post short updates here.
     window.clearHouseAssistantNote = text => { if (!log.querySelector('.msg')) return; botSay(text, 'update'); };

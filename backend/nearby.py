@@ -34,7 +34,9 @@ WORKPLACE = re.compile(r"^(?:my|our|the)\s+(?:office|work|job|workplace|school|c
 STREET = re.compile(r"^\d+\s+[\w.' -]*\b(?:st|street|rd|road|ave|avenue|blvd|boulevard|dr|drive|ln|lane|ct|court|pike|hwy|highway|way|pl|place|pkwy|parkway|cir|circle|ter|terrace|sq|square|plaza)\b", re.I)
 NOT_A_PLACE = re.compile(r"^(?:\$|\d+\s*(?:%|dollars|people|months?|weeks?|days?|years?|a month|per)|being|getting|losing|done|finished|term|the end|the (?:deadline|limit|max)|"
                          r"(?:next|this|last) (?:week|month|year)|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b|christmas|thanksgiving|today|tomorrow|tonight|the weekend|midnight|noon)", re.I)
-FILLER_END = re.compile(r"\s+(?:please|thanks|thank you|under \$?\d[\d,]*.*|for (?:me|my family|\d+ people).*|with .*)$", re.I)
+FILLER_END = re.compile(r"\s+(?:please|thanks|thank you|(?:(?:for|around|about|under|below|less than|up to|max|at most)\s+)+\$?\s*\d[\d,]*.*|"
+                        r"\$\s*\d[\d,]*.*|for (?:me|my family|\d+ people).*|with .*)$", re.I)
+BUDGET = re.compile(r"(?:under|below|around|about|less than|up to|max(?:imum)?|budget(?: is| of)?|afford|\$)\s*\$?\s*(\d{3,5})(?!\d)", re.I)
 _cache, _lock = {}, threading.Lock()
 
 
@@ -152,9 +154,15 @@ def answer(question, profile=None):
         return ("That place looks outside the areas Clear House covers (Northern Virginia and Blacksburg). "
                 "For other areas, call 211 for local housing help.")
     profile = profile or {}
-    filters = {"types": ["affordable_listing", "rental_listing"], "age": 62 if profile.get("senior") else 30}
-    if isinstance(profile.get("budget"), (int, float)) and profile["budget"] > 0:
+    filters = {"types": ["affordable_listing", "rental_listing"], "age": 62 if profile.get("senior") else 30,
+               "age_group": "senior" if profile.get("senior") else "general"}
+    budget = BUDGET.search((question or "").replace(",", ""))  # "a room near GMU around 1000"
+    if budget:
+        filters["max_budget_per_month"] = float(budget.group(1))
+    elif isinstance(profile.get("budget"), (int, float)) and not isinstance(profile["budget"], bool) and profile["budget"] > 0:
         filters["max_budget_per_month"] = profile["budget"]
+    if re.search(r"\b(rooms?|roommates?|shared)\b", question or "", re.I):
+        filters["rental_space"] = "room"
     seen, homes = set(), []
     for r in filter_catalog(load_catalog(), filters):
         if r.get("lat") is None:
@@ -168,10 +176,13 @@ def answer(question, profile=None):
             homes.append((d, r))
     homes = [r for _, r in sorted(homes, key=lambda x: x[0])[:MAX_HOMES]]
     if not homes:
-        return (f"I don't have a reviewed home within {MAX_MILES} miles of {name} that fits your choices. "
+        return (f"I don't have a reviewed {'room' if filters.get('rental_space') == 'room' else 'home'} within {MAX_MILES} miles of {name}"
+                + (f" under ${filters['max_budget_per_month']:,.0f} a month" if filters.get("max_budget_per_month") else "") + " that fits your choices. "
                 "Try a higher budget, or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
     commute = _commutes(homes, lat, lon)
-    lines = [f"Closest reviewed homes to {name}:"]
+    what = "rooms" if filters.get("rental_space") == "room" else "homes"
+    limit = f" under ${filters['max_budget_per_month']:,.0f}/month" if filters.get("max_budget_per_month") else ""
+    lines = [f"Closest reviewed {what}{limit} to {name}:"]
     for i, r in enumerate(homes):
         rent = f"from ${r['monthly_rent']:,.0f}/month" if isinstance(r.get("monthly_rent"), (int, float)) else "rent: ask the provider"
         miles = _miles(lat, lon, r["lat"], r["lon"])

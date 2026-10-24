@@ -9,7 +9,7 @@ import math
 
 from flask import Flask, Response, jsonify, request, send_from_directory, send_file, stream_with_context
 
-from advisor import AREAS, ask, options, programs, quick_nearby, stream_ask, warm_examples
+from advisor import AREAS, ask, cards_for, options, programs, quick_nearby, stream_ask, warm_examples
 from live_search import search as live_search
 import nearby
 import walkable
@@ -314,7 +314,7 @@ def ask_advisor_stream():
         return instant
 
     def events():
-        updates = [("answer", instant)] if instant else stream_ask(question, history)
+        updates = [("answer", instant), ("cards", cards_for(instant))] if instant else stream_ask(question, history)
         try:
             for kind, text in updates:
                 yield f"data: {json.dumps({'kind': kind, 'text': text})}\n\n"

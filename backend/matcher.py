@@ -39,10 +39,10 @@ def _get_client():
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key or api_key.startswith("AIza...") or api_key == "your-key-here":
             raise RuntimeError("GEMINI_API_KEY is not set: add it to the .env file at the project root.")
-        # Hard 75-second limit per call and no hidden library retries (ask_gemma retries itself), so a
+        # Hard 2-minute limit per call (Gemma 4 can think for over a minute) and no hidden library retries (ask_gemma retries itself), so a
         # rate-limited request fails fast instead of making the page wait for minutes.
         from google.genai import types
-        _client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=75_000, retry_options=types.HttpRetryOptions(attempts=1)))
+        _client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=120_000, retry_options=types.HttpRetryOptions(attempts=1)))
     return _client
 
 
@@ -58,11 +58,17 @@ def ask_gemma(prompt, attempts=2):
             time.sleep(2)
 
 
-def stream_gemma(prompt):
-    """Yield Gemma's answer text as it's written (thinking is skipped), so the chat can show it word by word."""
+def stream_gemma(prompt, thoughts=False):
+    """Yield Gemma's answer text as it's written, so the chat can show it word by word.
+    With thoughts=True, yields (is_thought, text) pairs so the chat can also show what Gemma is working on."""
     for chunk in _get_client().models.generate_content_stream(model=MODEL, contents=prompt):
         for part in (chunk.candidates[0].content.parts or []) if chunk.candidates and chunk.candidates[0].content else []:
-            if part.text and not getattr(part, "thought", False):
+            if not part.text:
+                continue
+            thought = bool(getattr(part, "thought", False))
+            if thoughts:
+                yield thought, part.text
+            elif not thought:
                 yield part.text
 
 

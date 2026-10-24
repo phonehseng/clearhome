@@ -20,14 +20,26 @@ class ChatStreamTests(unittest.TestCase):
         advisor._cache.clear()
 
     def test_progress_then_streamed_words(self):
-        with patch("advisor.stream_gemma", return_value=iter(["Call ", "**ARHA**."])):
+        with patch("advisor.stream_gemma", return_value=iter([(True, "Looking at voucher programs in Alexandria\n"), (False, "Call "), (False, "**ARHA**.")])):
             got = events(self.client.post("/api/ask/stream", json={"question": "How do vouchers work in Alexandria?"}))
         self.assertEqual(got[0]["kind"], "status")
         self.assertEqual("".join(e["text"] for e in got if e["kind"] == "chunk"), "Call **ARHA**.")
         self.assertEqual(got[-1]["kind"], "done")
 
+    def test_named_places_become_cards(self):
+        cards = advisor.cards_for("Call **Arlington Housing Choice Voucher Program (AHCVP)** or try **West Wood Oaks**.")
+        self.assertEqual([c["name"] for c in cards][:1], ["Arlington Housing Choice Voucher Program (AHCVP, formerly Section 8)"])
+        self.assertIn("West Wood Oaks", [c["name"] for c in cards])
+        self.assertEqual(advisor.cards_for("No names here."), [])
+
+    def test_catalog_answer_when_gemma_only_thinks(self):
+        with patch("advisor.stream_gemma", return_value=iter([(True, "thinking...\n")])):
+            got = events(self.client.post("/api/ask/stream", json={"question": "Who helps with back rent in Alexandria?"}))
+        self.assertEqual([e["kind"] for e in got][-2:], ["fallback", "cards"])
+        self.assertTrue(got[-1]["text"])  # the catalog answer's programs come back as cards
+
     def test_catalog_answer_when_gemma_billing_fails(self):
-        def broken(prompt):
+        def broken(prompt, thoughts=False):
             raise RuntimeError("402 RESOURCE_EXHAUSTED: Your prepayment credits are depleted")
             yield
         with patch("advisor.stream_gemma", side_effect=broken):
@@ -37,11 +49,11 @@ class ChatStreamTests(unittest.TestCase):
         self.assertIn("Alexandria", fallback)  # real local rent-help programs, not apartments
 
     def test_shelter_question_is_never_answered_with_apartments(self):
-        with patch("advisor.stream_gemma", return_value=iter(["Call 211 tonight."])):
+        with patch("advisor.stream_gemma", return_value=iter([(False, "Call 211 tonight.")])):
             got = events(self.client.post("/api/ask/stream", json={"question": "I was kicked out by my landlord, where can I sleep tonight?",
                                                                     "profile": {"location": "Arlington", "tonight": True}}))
         self.assertNotIn("answer", [e["kind"] for e in got])  # no instant "homes near" list
-        self.assertIn("211", "".join(e["text"] for e in got))
+        self.assertIn("211", "".join(e["text"] for e in got if isinstance(e["text"], str)))
 
     def test_bad_input_is_refused_not_crashed(self):
         for body in ({"question": 123}, {"question": ""}, {"question": "x" * 2000}, [1, 2]):
