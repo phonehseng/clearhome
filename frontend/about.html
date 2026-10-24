@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0d1738">
+  <meta name="theme-color" content="#0d1738" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14161b" media="(prefers-color-scheme: dark)">
   <meta name="description" content="Clear House helps people in Northern Virginia find verified housing help, understand a lease, and spot rental scams.">
   <title>Clear House — About</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -152,6 +153,39 @@
       .feature .icon-badge { width: 44px; height: 44px; }
       .feature .link { grid-column: 2; }
       .cta { padding: 38px 22px; }
+    }
+    :root { color-scheme: light; }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #14161b; --ink: #f1f3f5; --muted: #bec5d0;
+        --line: #454b56; --card: #20242c; --soft: #292e38;
+        --blue: #acc6ff; --blue-2: #acc6ff; --navy: #191c23;
+        --control-border: #7c8798; --accent-ink: #152341;
+      }
+      .site-header { background: var(--bg); border-bottom: 1px solid var(--line); }
+      .site-header, .header-links a { color: var(--ink); }
+      .brand-mark { background: var(--blue); color: var(--accent-ink); }
+      .brand-dot { color: var(--muted); }
+      :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+      .button, .skip-link { background: var(--blue); color: var(--accent-ink); box-shadow: none; }
+      .button:hover { background: #c4d6ff; }
+      .icon-badge { background: var(--soft); color: var(--blue); }
+      .header-links .emergency-link { background: #2e2922; border-color: #75634b; color: #f0cf9e; }
+      h1 span { color: var(--ink); }
+      .hero-art { background: var(--card); border-color: var(--line); }
+      .hero-art>svg { filter: saturate(.25) brightness(.75); }
+      .art-note { background: var(--soft); color: var(--ink); }
+      .card, .card:hover { box-shadow: none; }
+      .cta { background: var(--card); border: 1px solid var(--line); color: var(--ink); }
+      .cta h2 { color: var(--ink); }
+      .cta p { color: var(--muted); }
+      .cta .button { background: var(--blue); color: var(--accent-ink); }
+      .cta .button:hover { background: #c4d6ff; }
+      .cta .emergency { background: #2e2922; border-color: #75634b; color: #f0cf9e; }
+      .cta .emergency :is(strong,a,svg) { color: #ffe0b0; }
+      .font-switcher button { color: var(--accent-ink); }
+      .font-switcher output { background: var(--card); }
     }
   </style>
 </head>

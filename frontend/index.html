@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d1738" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#070b15" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#14161b" media="(prefers-color-scheme: dark)">
   <meta name="description" content="Clear House helps you find verified housing resources in Northern Virginia, understand a lease, and spot listing warning signs.">
   <title>Clear House — Your next step starts here</title>
   <style>
@@ -17,39 +17,6 @@
     .upload-box{padding:16px;border:1px dashed #9cabbc;border-radius:8px;background:#f5f7fa;margin-bottom:20px}.upload-box label{margin:0 0 8px}.upload-box input{width:100%;font-size:12px;color:var(--muted)}.upload-box input::file-selector-button{background:#e6ebf2;border:1px solid #b7c4d3;border-radius:5px;padding:8px 12px;margin-right:10px;color:var(--green);cursor:pointer;font:inherit}.upload-hint{font-size:10px;line-height:1.8;color:var(--muted);margin-top:9px}.upload-status:not(:empty){font-size:11px;line-height:1.8;margin-top:10px;color:#405c51}.upload-status[data-state=error]{color:var(--red)}
 
     :root{color-scheme:light}
-    @media(prefers-color-scheme:dark){
-    :root{color-scheme:dark;--bg:#11151b;--ink:#f2f4f7;--muted:#bec5cf;--green:#b2cdc3;--line:#414b59;--sage:#2b3747;--white:#1d222a;--peach:#332c20;--red:#f2b4a5}
-    :root .site-header{background:#191e26}
-    :root :is(.tool-panel,.tab,.trust-banner){background:#1d222a}
-    :root .tab:hover{background:#27303c;border-color:#869ab4}
-    :root .tab[aria-selected=true]{background:#2b3747;border-color:#9bacc3;box-shadow:inset 0 0 0 1px #9bacc3}
-    :root :is(.tab-icon,.guidance-icon,.step-number){background:#303c4c;color:#d5dfec}
-    :root .tab[aria-selected=true] .tab-icon{background:#3c5068;color:#f0f4fa}
-    :root :is(.brand-mark,.primary,.skip-link){background:#b2cdc3;color:#10251d}
-    :root .primary:hover{background:#c7dfd5}
-    :root :is(.eyebrow,.hero-tags,.step-label,.textarea-hint,.trust-badge,.reset-link,.upload-status:not(:empty)){color:#c5cfdd}
-    :root h1 span{color:#d1d8e3}
-    :root :is(.brand-dot,.site-footer p:last-child){color:#b9c4d3}
-    :root :is(.input-wrapper,textarea){background:#141920;border-color:#66758a;color:#d1d9e4}
-    :root :is(textarea,input)::placeholder{color:#b1bdcd}
-    :root .examples button{background:#27313e;border-color:#66758a;color:#dae3ef}
-    :root .examples button:hover{background:#39495d}
-    :root .form-bottom{border-color:#414b59}
-    :root .guidance-card{background:#222a35}
-    :root :is(.emergency-card,.header-links .emergency-link,.panel-safety){background:#332c20;border-color:#655239;color:#e4c59e}
-    :root :is(.emergency-card h3,.emergency-card p,.emergency-card small){color:#e4c59e}
-    :root .call-links a{background:#403525;border-color:#7c6549;color:#f0d1a9}
-    :root .call-links a:hover{background:#53432f}
-    :root .upload-box{background:#222a35;border-color:#798ba4}
-    :root .upload-box input::file-selector-button{background:#303c4c;border-color:#8b9db4;color:#edf2fa}
-    :root .upload-status[data-state=error]{color:var(--red)}
-    :root .result{background:#253342;border-color:#607b99;color:#eef3fa}
-    :root .result[data-state=loading]{background:#252f3c;color:#d3dfed}
-    :root .result[data-state=error]{background:#3c2823;border-color:#895e4f;color:#f2b4a5}
-    :root .hero-art{background:#242d38;border-color:#4a586c}
-    :root .hero-art>svg{filter:brightness(.75) saturate(.15)}
-    :root .art-note{background:#222d3b;color:#e4ebf4}
-    }
     @media(max-width:380px){.header-links .emergency-label{display:none}.header-links .emergency-link{padding:10px}.header-links .emergency-link svg{width:18px;height:18px}}
     /* Keep supporting information readable at every screen size. */
     .panel-description,.steps p,.guidance-card>p{font-size:13px}
@@ -88,14 +55,6 @@
     .housing-actions a{font-size:12px;font-weight:550}
     .housing-reviewed{font-size:10px;color:var(--muted);margin-top:14px}
     .more-listings{display:block;margin:22px auto 0;border:1px solid var(--line);padding:11px 22px;border-radius:7px;background:#fff;font-size:12px;font-weight:550;min-height:44px}
-    @media(prefers-color-scheme:dark){
-      .catalog-notice{background:#222a35}
-      .housing-card,.more-listings{background:#1d222a}
-      .browse-filters :is(input,select){background:#141920;border-color:#66758a}
-      .housing-status{background:#2b3747;color:#d5dfec}
-      .housing-status[data-status=waitlist_open]{background:#403525;color:#f0d1a9}
-      .browse-message[data-state=error]{background:#3c2823;border-color:#895e4f;color:#f2b4a5}
-    }
     @media(max-width:1050px){.listings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browse-filters{grid-template-columns:1fr 1fr}.browse-filters .primary{min-height:45px}.header-links{gap:16px}}
     @media(max-width:560px){.listings-grid{grid-template-columns:1fr}.housing-card{padding:22px}.browse-filters{grid-template-columns:1fr}.listings-section{margin-top:30px}.catalog-label{display:none}.header-links .browse-nav,.header-links>a[href="/"]{display:none}.header-links>a[href="#our-promise"]{display:none}.housing-card h3{font-size:18px}.catalog-notice{font-size:12px}.housing-location,.housing-features{font-size:12px}}
     /* Birds in the hero picture fly across and flap. Turned off by the reduced-motion rule above. */
@@ -147,48 +106,6 @@
     :root .catalog-notice{background:#e7eefc}
     :root .housing-status{background:#e2eafb;color:var(--blue)}
     :root .browse-link{border-color:#6f8fd6}
-    @media(prefers-color-scheme:dark){
-    /* Dark mode: deep slate-navy in layers (page < cards < hover), with the same blue brand as light mode. */
-    :root{--bg:#0a0f1c;--ink:#e9eef8;--muted:#a3b0c9;--line:#243251;--sage:#17223b;--white:#111a2e;--blue:#3d66d6}
-    :root body{background:radial-gradient(1200px 600px at 75% -10%,#16214080,transparent 70%),var(--bg)}
-    :root .site-header{background:#070b15;border-color:#1a2440}
-    :root :is(.tool-panel,.tab,.trust-banner){background:#111a2e;border-color:#243251}
-    :root .tool-panel{box-shadow:0 1px 0 #ffffff08 inset,0 12px 32px #0006}
-    :root .tab:hover{background:#17223b;border-color:#34497a}
-    :root .tab[aria-selected=true]{background:#17223b;border-color:#5b7fe0;box-shadow:inset 0 0 0 1px #5b7fe0}
-    :root :is(.tab-icon,.guidance-icon,.step-number){background:#1b2847;color:#b9cbf3}
-    :root .tab[aria-selected=true] .tab-icon{background:#2a3f78;color:#fff}
-    :root .primary{background:var(--blue);color:#fff}
-    :root .primary:hover{background:#4b74e4;box-shadow:0 6px 18px #3d66d640}
-    :root .brand-mark{background:#254f40;color:#fff}
-    :root :is(.eyebrow,h1 span){color:#8fb0ff}
-    :root .eyebrow-dot{background:#8fb0ff}
-    :root :is(.input-wrapper,textarea){background:#0c1323;border-color:#2b3a5c;color:#e9eef8}
-    :root :is(.input-wrapper:focus-within,textarea:focus){border-color:#5b7fe0}
-    :root :is(textarea,input)::placeholder{color:#7d8aa6}
-    :root .examples button{background:#17223b;border-color:#2b3a5c;color:#c9d6f5}
-    :root .examples button:hover{background:#1e2c4c;border-color:#5b7fe0}
-    :root .guidance-card{background:#0f1729;border-color:#243251}
-    :root .result{background:#142039;border-color:#2b3a5c;color:#e9eef8}
-    :root .result[data-state=loading]{background:#111a2e;color:#a3b0c9}
-    :root .upload-box{background:#0f1729;border-color:#34497a}
-    :root .upload-box input::file-selector-button{background:#1b2847;border-color:#34497a;color:#e9eef8}
-    :root .hero-art{background:#111a2e;border-color:#243251;box-shadow:0 20px 50px #0007}
-    :root .hero-art>svg{filter:hue-rotate(105deg) saturate(.85) brightness(.92)}
-    :root .art-note{background:#17223b;color:#c9d6f5}
-    :root .form-bottom{border-color:#243251}
-    :root :is(.emergency-card,.header-links .emergency-link,.panel-safety){background:#1f1a14;border-color:#4a3b26;color:#e9c99b}
-    :root :is(.emergency-card h3,.emergency-card p,.emergency-card small){color:#e9c99b}
-    :root .call-links a{background:#2a2218;border-color:#5a4730;color:#f2d4a8}
-    :root .call-links a:hover{background:#352a1d}
-    :root .catalog-notice{background:#0f1729;border-color:#243251}
-    :root :is(.housing-card,.more-listings){background:#111a2e;border-color:#243251}
-    :root .housing-card:hover{border-color:#34497a}
-    :root .browse-filters :is(input,select){background:#0c1323;border-color:#2b3a5c;color:#e9eef8}
-    :root .housing-status{background:#1b2847;color:#c9d6f5}
-    :root .housing-status[data-status=waitlist_open]{background:#2a2218;color:#f2d4a8}
-    :root .browse-link{border-color:#8fb0ff}
-    }
 
     .housing-card{position:relative;isolation:isolate}
     .housing-card:has(.property-photo:hover),.housing-card:has(.property-photo:focus-visible){z-index:3}
@@ -221,8 +138,60 @@
     .photo-dialog img{display:block;max-height:62dvh;width:100%;object-fit:contain;border-radius:12px;background:#dfe6f2}
     .photo-dialog p{font-size:12px;line-height:1.8;margin:12px 0}
     .photo-dialog a{font-size:12px}
-    @media(prefers-color-scheme:dark){.property-photo{background:linear-gradient(135deg,#ffffff38,#ffffff0d);border-color:#a4bce073}.photo-hover,.photo-dialog{background:#111a2ef5;color:#e9eef8;border-color:#34497a}.photo-dialog button{background:#1b2847;border-color:#34497a;color:#e9eef8}.photo-dialog img{background:#0c1323}}
     @media(max-width:560px){.photo-dialog{padding:16px}.photo-dialog h2{font-size:18px}.property-photo,.photo-unavailable{right:17px}.housing-card .eligibility-item p{font-size:13px}}
+    /* Follow the device theme. Neutral surfaces keep text and controls distinct. */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #14161b; --ink: #f1f3f5; --muted: #bec5d0;
+        --line: #454b56; --sage: #292e38; --white: #20242c;
+        --green: #acc6ff; --blue: #acc6ff; --red: #ffb4a8;
+        --field: #191c23; --control-border: #7c8798; --accent-ink: #152341;
+      }
+      :root body { background: var(--bg); }
+      :root .site-header { background: var(--bg); border-color: var(--line); }
+      :root :is(.brand,.header-links a:not(.emergency-link)) { color: var(--ink); }
+      :root :is(.region-label,.brand-dot,.hero-tags,.eyebrow,.step-label,.textarea-hint,.trust-badge,.reset-link,.site-footer p:last-child,.upload-status:not(:empty)) { color: var(--muted); }
+      :root .hero h1 span { color: var(--ink); }
+      :root :is(.tool-panel,.tab,.trust-banner,.housing-card,.more-listings) { background: var(--white); border-color: var(--line); box-shadow: none; }
+      :root :is(.tab:hover,.more-listings:hover) { background: var(--sage); border-color: var(--control-border); }
+      :root .tab[aria-selected=true] { background: var(--sage); border-color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); }
+      :root :is(.tab-icon,.guidance-icon,.step-number) { background: var(--sage); color: var(--muted); }
+      :root .tab[aria-selected=true] .tab-icon { background: var(--blue); color: var(--accent-ink); }
+      :root :is(.brand-mark,.primary,.skip-link) { background: var(--blue); color: var(--accent-ink); }
+      :root .primary { font-weight: 650; }
+      :root .primary:hover { background: #c4d6ff; box-shadow: none; }
+      :root .eyebrow-dot { background: var(--muted); }
+      :root :is(.input-wrapper,textarea,.browse-filters input,.browse-filters select) { background: var(--field); border-color: var(--control-border); color: var(--ink); }
+      :root :is(textarea,input)::placeholder { color: #adb7c6; opacity: 1; }
+      :root :focus-visible, :root .input-wrapper:focus-within { outline: 3px solid var(--blue); outline-offset: 4px; }
+      :root .input-wrapper input:focus-visible { outline: none; }
+      :root .examples button { background: var(--sage); border-color: var(--control-border); color: var(--ink); }
+      :root .examples button:hover { background: #363e4c; border-color: var(--blue); }
+      :root :is(.guidance-card,.catalog-notice,.upload-box,.result) { background: var(--white); border-color: var(--line); color: var(--ink); }
+      :root .catalog-notice, :root .result[data-state=loading] { color: var(--muted); }
+      :root .upload-box { border-color: var(--control-border); }
+      :root .upload-box input::file-selector-button { background: var(--sage); border-color: var(--control-border); color: var(--ink); }
+      :root .form-bottom { border-color: var(--line); }
+      :root :is(.result[data-state=error],.browse-message[data-state=error]) { background: #352624; border-color: #ad766d; color: var(--red); }
+      :root .upload-status[data-state=error] { color: var(--red); }
+      :root :is(.emergency-card,.header-links .emergency-link,.panel-safety) { background: #2e2922; border-color: #75634b; color: #f0cf9e; }
+      :root :is(.emergency-card h3,.emergency-card p,.emergency-card small) { color: #f0cf9e; }
+      :root .call-links a { background: #393126; border-color: #9c815c; color: #ffe0b0; }
+      :root .call-links a:hover { background: #4a3d2c; }
+      :root .hero-art { background: var(--white); border-color: var(--line); box-shadow: none; }
+      :root .hero-art>svg { filter: saturate(.25) brightness(.75); }
+      :root .art-note { background: var(--sage); color: var(--ink); }
+      :root .housing-card:hover { border-color: var(--control-border); }
+      :root .housing-status { background: var(--sage); color: var(--ink); }
+      :root .housing-status[data-status=waitlist_open] { background: #393126; color: #ffe0b0; }
+      :root :is(.browse-link,.housing-actions a) { color: var(--blue); border-color: var(--blue); }
+      :root .property-photo { background: linear-gradient(135deg,#ffffff38,#ffffff0d); border-color: #9ba8bc80; }
+      :root :is(.photo-hover,.photo-dialog) { background: #20242cf5; color: var(--ink); border-color: var(--control-border); }
+      :root .photo-dialog button { background: var(--sage); border-color: var(--control-border); color: var(--ink); }
+      :root .photo-dialog img { background: var(--field); }
+      :root .photo-dialog::backdrop { background: #090b10cc; }
+    }
   </style>
 </head>
 <body>
