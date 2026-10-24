@@ -527,9 +527,10 @@
 
     /* Default size: the site reads best a bit larger, like 125% browser zoom, on desktop screens. Smaller
        laptops get a gentler step and phones/tablets stay at 100% so layouts never get cramped. */
-    @media (min-width: 1100px){html{zoom:1.1} #listing-map,#walk-map{zoom:calc(1/1.1);width:110%} #listing-map{height:330px}}
-    @media (min-width: 1400px){html{zoom:1.25} #listing-map,#walk-map{zoom:.8;width:125%} #listing-map{height:375px}}
-    /* Google Maps can't draw inside a zoomed page, so the map boxes undo the zoom and grow to the same footprint. */
+    @media (min-width: 1100px){html{zoom:1.1} #listing-map,#walk-map{zoom:calc(1/1.1);width:auto} #listing-map{height:330px}}
+    @media (min-width: 1400px){html{zoom:1.25} #listing-map,#walk-map{zoom:.8;width:auto} #listing-map{height:375px}}
+    /* Google Maps can't draw inside a zoomed page, so the map boxes undo the zoom. width:auto keeps them exactly as wide as their column
+       (a percentage width doesn't shrink with zoom in current Chrome, so 110%/125% hung off the right edge and the page swiped sideways). */
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
