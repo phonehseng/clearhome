@@ -6,6 +6,15 @@ The initial batch was researched on **October 24, 2026**: **21 records**, consis
 
 Both advertised openings and open waitlists are included. See [VERIFICATION.md](VERIFICATION.md) for sources and caveats.
 
+The October 24 Northern Virginia expansion adds **202 distinct communities / 204
+records**: 201 affordable-program communities and three residential floor plans at
+one regular-rental community. Most additions are documented program contacts,
+not advertised vacant apartments. Directory average rents and program rent caps
+are not used as offered prices. Broadfalls advertises a studio starting at $1,447;
+fees and the exact unit must be confirmed with leasing. Unknown rents remain
+excluded when a numeric budget is applied. See the expansion source audit in
+[VERIFICATION.md](VERIFICATION.md).
+
 ## What verification means
 
 The initial records were reviewed by the assistant against official property-manager/owner websites and, where available, public-agency publications. This is **AI-assisted source review**, not a human staff sign-off, property inspection, phone confirmation, or live inventory feed. A property may be legitimate without having a vacant unit. Indexed pages can lag provider updates.
@@ -45,6 +54,12 @@ Additional fields:
 - `minimum_age`, `accessibility_notes`, `notes`: eligibility and uncertainty that must remain visible in answers.
 - `sources`: supporting provider/authority URLs and their roles.
 - `verification_method`: how the facts were reviewed.
+- `source_kind`: distinguishes a public-authority directory from a provider page.
+  For directory records, `website` remains null unless an official provider link
+  was established. The lease guide never treats an agency directory as a landlord
+  website or scans that directory for a community-specific lease.
+- `catalog_batch`: provenance tag for a reviewed expansion; it does not confer
+  verification or override any matching, eligibility, or freshness check.
 - `availability`: status, evidence paraphrase, source URL, checked date, next review date, optional move-in date, optional source update date.
 
 Resource types remain `emergency_shelter`, `rental_assistance`, `legal_aid`, `affordable_listing`, `food_support`, `housing_authority`, and `other`. This batch focuses on listings and a waitlist program; it does not yet populate emergency shelters or legal aid.

@@ -38,3 +38,17 @@ runs `python backend/catalog.py --check` and `python backend/test_catalog.py`, a
   [VERIFICATION.md](VERIFICATION.md#community-browsing-and-budget-expansion--october-24-2026).
 - Did not use older regional rent ranges, search-only prices, or stock gallery images as
   evidence of a specific unit’s current price, vacancy, or appearance.
+# Northern Virginia expansion — October 24, 2026
+
+- Added 202 distinct communities / 204 records from reviewed county/city and owner
+  sources. See [VERIFICATION.md](VERIFICATION.md#northern-virginia-directory-expansion--october-24-2026)
+  for the jurisdiction counts, primary links, exclusions, publication-age caveats,
+  and provider-advertised Broadfalls studio starting at $1,447.
+- Did not approve the unreviewed HUD/other-source candidate queue in bulk. Existing
+  resources remain intact. Combined repeated program and phase entries and kept
+  unconfirmed unit rents, availability, and accessibility unknown.
+- County averages, statutory program maxima, and the October 5 Alexandria vacancy
+  sheet were not treated as current individual unit offers. Source identity/program
+  verification is separate from confirming an open waitlist or vacant home.
+- No phone or in-person confirmation was performed. Source dates are review dates;
+  records expire for recommendations after October 31 without a new review.

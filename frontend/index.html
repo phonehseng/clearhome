@@ -379,7 +379,7 @@
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
     <div class="section-heading"><div><h2 id="listings-title">Explore rentals & housing waitlists</h2><p>Compare income-restricted housing and regular rentals, each with published source evidence.</p></div><span class="catalog-label">NORTHERN VIRGINIA</span></div>
-    <p class="catalog-notice">Affordable homes have documented program evidence; regular rentals are labeled separately. These are dated provider advertisements, not guaranteed vacancies. Confirm rent, fees, eligibility, and move-in dates directly. Waitlists do not offer immediate placement.</p>
+    <p class="catalog-notice">Affordable homes have documented program evidence; regular rentals are labeled separately. Sources include provider advertisements and official housing directories; a directory entry does not confirm a vacancy or open waitlist. Confirm rent, fees, eligibility, and move-in dates directly. Waitlists do not offer immediate placement.</p>
     <form id="browse-form" class="browse-filters"><div><label for="browse-category">Housing type</label><select id="browse-category" name="housing_type"><option value="all">Affordable & regular rentals</option><option value="affordable">Affordable housing & waitlists</option><option value="regular">Regular rentals</option></select></div>
       <div><label for="browse-location">City or county</label><select id="browse-location" name="location"><option value="">All Northern Virginia</option><option>Alexandria City</option><option>Arlington County</option><option>Fairfax City</option><option>Fairfax County</option><option>Falls Church City</option><option>Loudoun County</option><option>Manassas City</option><option>Manassas Park City</option><option>Prince William County</option></select></div>
       <div><label for="browse-status">Availability</label><select id="browse-status" name="status"><option value="">Openings & waitlists</option><option value="available_now">Advertised available now</option><option value="advertised_vacancy">Advertised vacancies</option><option value="upcoming">Upcoming availability</option><option value="leasing">Now leasing</option><option value="waitlist_open">Open waitlists</option><option value="contact_for_availability">Contact for availability</option></select></div>
@@ -439,7 +439,7 @@
       groups.forEach(([title,text])=>{if(!text)return;const group=housingElement('section','eligibility-item');group.append(housingElement('h4','',title),housingElement('p','',text));information.append(group);});
       details.append(information,housingElement('div','eligibility-footer','The provider makes the final eligibility decision. Confirm costs and availability before applying or paying.'));
       if(row.affordability){const proof=housingElement('div','eligibility-item');proof.append(housingElement('h4','',row.type==='rental_listing'?'Rental source':'Affordability source'),housingElement('p','',row.affordability.evidence));const link=sourceLink(row.affordability.source_url,'Read source evidence ↗');if(link)proof.append(link);information.append(proof);}
-      const planSource=sourceLink(row.source_url,'View this option’s provider source ↗'); if(planSource) information.append(planSource);
+      const planSource=sourceLink(row.source_url,'View this option’s source ↗'); if(planSource) information.append(planSource);
       return details;
   }
   function renderHousing() {
@@ -517,7 +517,7 @@
         if(plans.length>1){const choose=housingElement('button','lease-guide-button','Choose a plan for lease help →');choose.type='button';choose.addEventListener('click',()=>{const details=card.querySelector('.floor-plans-details');details.open=true;const first=details.querySelector('.lease-guide-link');first.focus();});actions.append(choose);}
         else{const guide=housingElement('a','lease-guide-link','Guide me through this lease →');guide.href='/lease?listing='+encodeURIComponent(row.id);actions.append(guide);}
       }
-      const source = sourceLink(row.source_url,plans.length>1?'Starting-price source ↗':'View provider source ↗'); if (source) actions.append(source);
+      const source = sourceLink(row.source_url,plans.length>1?'Starting-price source ↗':'View source ↗'); if (source) actions.append(source);
       if (row.phone && /^\+?[0-9 ()-]+$/.test(row.phone)) { const phone = housingElement('a','','Call leasing office'); phone.href='tel:'+row.phone.replace(/[^0-9+]/g,''); actions.append(phone); }
       const reviewDates=plans.map(p=>p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
       const reviewed=reviewDates[0]===reviewDates[reviewDates.length-1] ? reviewedDate(reviewDates[0]) : `${reviewedDate(reviewDates[0])} – ${reviewedDate(reviewDates[reviewDates.length-1])}`;

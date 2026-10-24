@@ -76,6 +76,19 @@ class RetrievalTests(unittest.TestCase):
         self.assertEqual(result['checked_urls'], [])
         self.assertIn('couldn’t complete', result['message'])
 
+    def test_agency_directory_is_not_scanned_as_a_provider(self):
+        row = dict(source_kind='public_authority', source_url='https://county.example/directory.pdf', website=None)
+        with patch('lease_journey._download') as download:
+            result = journey.retrieve_public_document(row)
+        download.assert_not_called()
+        self.assertIsNone(result['document'])
+        self.assertIn('agency directory', result['message'])
+        row['website'] = 'https://provider.example/'
+        with patch('lease_journey._download', return_value=(b'<p>Call leasing</p>', 'text/html')) as download:
+            journey.retrieve_public_document(row)
+        self.assertEqual(download.call_count, 1)
+        self.assertEqual(download.call_args.args[0], row['website'])
+
     def test_redirect_and_oversized_responses_are_rejected(self):
         with patch('lease_journey._public_host', return_value=True), patch('lease_journey.requests.get', return_value=Response(b'', status=302)):
             with self.assertRaises(journey.ProviderUnavailable):

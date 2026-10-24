@@ -71,3 +71,53 @@ The three AHC properties use actual building photos linked on their owner pages,
 stock lifestyle photos in some leasing galleries. The photo cache now permits the exact
 owner host `ahcommunities.org`. Download failures retain the existing labeled fallback.
 Terwilliger Place and The Fields of Manassas have no newly invented photo or price.
+
+## Northern Virginia directory expansion — October 24, 2026
+
+Added 204 records covering **202 distinct communities**, tagged
+`nova-expansion-2026-10-24`. These are 201 affordable-program community contacts
+and three residential floor plans at Broadfalls, one regular-rental community.
+All source reviews are AI-assisted web reviews, without calls, inspections,
+human staff sign-off, or reserved apartments. A source review today does not make
+an older directory's rents or vacancy claims current.
+
+| Jurisdiction | New communities | Official sources and scope |
+| --- | ---: | --- |
+| Fairfax County | 73 | [County ADU/WDU directory](https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned), plus two senior communities in the [True Ground owner directory](https://truegroundhousing.org/what-we-do/real-estate/communities/). Postal cities are retained separately from county jurisdiction. |
+| Arlington County | 35 | [County affordable-unit directory](https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units) and [True Ground owner directory](https://truegroundhousing.org/what-we-do/real-estate/communities/), including published management contacts. |
+| Loudoun County | 32 | Only TC, ADU, or UHNU-tagged properties from the [2026 Apartment Guide](https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English), plus True Ground's Loudoun View Senior. Guide average rents are not unit prices. |
+| Alexandria City | 50 | Sections B–D of the [city affordable rental guide](https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf): federal subsidies, government-supported affordable communities, and affordable set-asides. The guide is dated August 2025 and remains linked from the [city renter-resources page](https://www.alexandriava.gov/housing-services/renter-resources). Its older contacts require confirmation; the moderately priced market-rental section was not relabeled affordable. |
+| Prince William County | 6 | [County committed affordable-unit table](https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units). Owner corroboration: [Joyfield](https://www.joyfieldflatswoodbridge.com/), [Park Landing](https://www.park-landing.com/), and [Harbor at Quantico Creek](https://www.harboratquanticocreek.com/). Harbor explicitly accepts applications (leasing), which is not a specific vacancy guarantee. |
+| Falls Church City | 6 | Unambiguous ADU/TWU entries in the [September 2026 city directory](https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums); [Fields provider](https://www.thefieldsfallschurch.com/) independently confirms income restrictions; [Broadfalls floor plans](https://www.broadfallsapts.com/floorplans) supply regular residential prices. |
+
+Broadfalls provider-advertised residential plans: Efficiency studio, one bath,
+550 sq ft, starting $1,447; one bedroom/one bath, 770 sq ft, starting $1,595;
+two bedrooms/one bath, 1,008 sq ft, starting $2,412. The provider labels these
+Available Now. These are advertised starting base rents, with total charges,
+lease terms, and the offered unit requiring confirmation. The commercial plan
+and unpriced one-bedroom/1.5-bath plan are not counted as extra vacant homes.
+
+For all other additions, rent, bedroom count for an offered unit, unit-level
+accessibility, and a move-in date remain unknown. Except Harbor's general
+application activity, additions use `contact_for_availability`; none is labeled
+an open waitlist merely because an application link exists. The review deadline
+is October 31, 2026. No new photography, geocoordinates, or portal URLs were
+invented. Age restrictions are recorded only where explicitly established;
+senior/disability directory categories do not impose a universal minimum age
+on disabled applicants.
+
+Repeated ADU/WDU rows are combined, preserving program evidence. Modera Mosaic
+and its second phase share one published leasing address; Faraday Park East is
+included with Faraday Park. The two Neabsco phases share one community record.
+The Woods at Brambleton and its Town Center program share one published contact
+record rather than two claimed vacancies. Existing communities are not added
+again under directory aliases. Conflicting Ashton addresses, Boro shared-tower
+addresses, several Falls Church directory copy errors, the erroneous county
+address for Kincaid, under-construction True Ground properties, and most
+assisted-care entries were omitted pending clearer property-specific evidence.
+Woodland Hill was omitted because its manager states applications are closed.
+
+Agency directories are labeled as sources, not provider signing websites. When
+no provider URL is established, the lease guide offers the published phone
+contact, agency source, and document upload; it asks the renter to obtain the
+provider's official lease and signing invitation.

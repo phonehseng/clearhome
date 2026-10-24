@@ -138,7 +138,13 @@ def _pdf_text(data):
 
 def retrieve_public_document(row):
     """Inspect up to two known provider pages, without inferring final-lease terms."""
-    pages = list(dict.fromkeys(u for u in (row.get('website'), row.get('source_url')) if isinstance(u, str) and u.startswith('https://')))
+    # A public-agency directory establishes a program, not a landlord website.
+    # Never mistake a lease linked for a different property for this home's lease.
+    sources = (row.get('website'),) if row.get('source_kind') == 'public_authority' else (row.get('website'), row.get('source_url'))
+    pages = list(dict.fromkeys(u for u in sources if isinstance(u, str) and u.startswith('https://')))
+    if not pages:
+        return dict(status='not_checked', document=None, checked_urls=[],
+                    message='Only an agency directory is recorded for this community. Call leasing for the official provider website and your proposed lease, or upload a lease you already received.')
     hosts = {urlsplit(u).hostname for u in pages}
     key = tuple(pages)
     now = time.monotonic()
@@ -195,7 +201,7 @@ def journey_context(resource_id, check_provider=False):
     availability = effective_availability(row)
     options = [r for r in rows if r['type'] in HOUSING_TYPES and community_key(r) == community_key(row)
                and (r['id'] == resource_id or effective_availability(r).get('status') not in {'closed', 'needs_recheck'})]
-    fields = ('id', 'name', 'community', 'floor_plan', 'address', 'phone', 'source_url', 'website', 'monthly_rent',
+    fields = ('id', 'name', 'community', 'floor_plan', 'address', 'phone', 'source_url', 'source_kind', 'website', 'monthly_rent',
               'cost', 'requirements', 'who_it_serves', 'minimum_age', 'last_verified')
     selected = {field: row.get(field) for field in fields}
     selected['availability'] = availability
