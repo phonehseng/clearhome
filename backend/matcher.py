@@ -39,19 +39,23 @@ def _get_client():
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key or api_key.startswith("AIza...") or api_key == "your-key-here":
             raise SystemExit("Set GEMINI_API_KEY in the .env file at the project root.")
-        _client = genai.Client(api_key=api_key)
+        # Hard 75-second limit per call and no hidden library retries (ask_gemma retries itself), so a
+        # rate-limited request fails fast instead of making the page wait for minutes.
+        from google.genai import types
+        _client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=75_000, retry_options=types.HttpRetryOptions(attempts=1)))
     return _client
 
 
-def ask_gemma(prompt, attempts=3):
-    """Call Gemma, retrying on temporary server errors."""
+def ask_gemma(prompt, attempts=2):
+    """Call Gemma, retrying once on a temporary server error. Rate limits (429) aren't retried: waiting out
+    the free tier's per-minute limit would leave someone staring at a spinner."""
     for attempt in range(attempts):
         try:
             return _get_client().models.generate_content(model=MODEL, contents=prompt).text
-        except Exception:
-            if attempt == attempts - 1:
+        except Exception as e:
+            if attempt == attempts - 1 or "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
                 raise
-            time.sleep(2 * (attempt + 1))
+            time.sleep(2)
 
 
 def load_resources(include_unverified=False):
