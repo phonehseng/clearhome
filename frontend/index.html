@@ -440,6 +440,10 @@
     @keyframes sc-bob{from{transform:translateY(-.6cqw)}to{transform:translateY(.6cqw)}}
     @keyframes sc-flap{from{transform:rotate(-14deg)}to{transform:rotate(22deg)}}
     @keyframes sc-flap-r{from{transform:rotate(14deg)}to{transform:rotate(-22deg)}}
+    /* Nothing on the page can be highlighted (text, icons, images); only form fields can. */
+    body{-webkit-user-select:none;user-select:none}
+    img,svg{-webkit-user-drag:none}
+    :is(input,textarea,[contenteditable]){-webkit-user-select:text;user-select:text}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>

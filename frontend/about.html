@@ -178,6 +178,10 @@
     @keyframes ch-spin-in{from{transform:rotate(-120deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
     @keyframes ch-pulse{0%,100%{box-shadow:0 0 0 0 #6f8fd680}50%{box-shadow:0 0 0 6px #6f8fd600}}
     @media (prefers-reduced-motion: reduce){.scroll-progress{display:none}.split .word{opacity:1;transform:none}}
+    /* Nothing on the page can be highlighted (text, icons, images); only form fields can. */
+    body{-webkit-user-select:none;user-select:none}
+    img,svg{-webkit-user-drag:none}
+    :is(input,textarea,[contenteditable]){-webkit-user-select:text;user-select:text}
   </style>
 </head>
 <body>

@@ -126,6 +126,10 @@
     }
     :root { color-scheme: light; }
     
+    /* Nothing on the page can be highlighted (text, icons, images); only form fields can. */
+    body{-webkit-user-select:none;user-select:none}
+    img,svg{-webkit-user-drag:none}
+    :is(input,textarea,[contenteditable]){-webkit-user-select:text;user-select:text}
   </style>
 </head>
 <body>
