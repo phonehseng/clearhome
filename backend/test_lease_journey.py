@@ -156,6 +156,14 @@ class LeaseApiTests(unittest.TestCase):
         self.assertNotIn('123-45-6789', explain.call_args.args[0])
         self.assertEqual(response.headers['Cache-Control'], 'no-store')
 
+    def test_combined_document_check_remains_available_alongside_the_guide(self):
+        with patch('app.review', return_value='TYPE: LEASE\nSUMMARY: rent is stated.') as review:
+            response = self.client.post('/api/review', json={'text': 'Rent is $1400.'})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('TYPE: LEASE', response.get_json()['answer'])
+        review.assert_called_once_with('Rent is $1400.')
+        self.assertEqual(response.headers['Cache-Control'], 'no-store')
+
 
 if __name__ == '__main__':
     unittest.main()
