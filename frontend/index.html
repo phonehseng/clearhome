@@ -70,30 +70,8 @@
     @media(prefers-reduced-motion:reduce){.card-reveal{animation:none}.more-listings:hover{transform:none}}
     @media(max-width:1050px){.listings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browse-filters{grid-template-columns:1fr 1fr}.browse-filters .primary{min-height:45px}.header-links{gap:16px}}
     @media(max-width:560px){.listings-grid{grid-template-columns:1fr}.housing-card{padding:22px}.browse-filters{grid-template-columns:1fr}.listings-section{margin-top:30px}.catalog-label{display:none}.header-links .browse-nav,.header-links>a[href="/"]{display:none}.header-links>a[href="#our-promise"]{display:none}.housing-card h3{font-size:18px}.catalog-notice{font-size:12px}.housing-location,.housing-features{font-size:12px}}
-    /* Birds in the hero picture fly across and flap. Turned off by the reduced-motion rule above. */
-    .page-birds .bird{animation:bird-fly 5s linear infinite backwards}
-    .page-birds .b2{animation-duration:5.6s;animation-delay:.35s}
-    .page-birds .b3{animation-duration:6.2s;animation-delay:.7s}
-    .page-birds .bob{animation:bird-bob .7s ease-in-out infinite alternate}
-    .page-birds .b2 .bob{animation-duration:.85s;animation-delay:-.3s}
-    .page-birds .b3 .bob{animation-duration:.6s;animation-delay:-.5s}
-    .page-birds .wing{transform-box:fill-box;transform-origin:center bottom;animation:bird-flap .18s ease-in-out infinite alternate}
-    .page-birds .b2 .wing{animation-duration:.22s}
-    .page-birds .b3 .wing{animation-duration:.16s}
     /* Trees sway gently from the base of the trunk. */
-    .page-backdrop .tree{transform-box:fill-box;transform-origin:center bottom;animation:tree-sway 5s ease-in-out infinite alternate}
-    .page-backdrop .bush{transform-box:fill-box;transform-origin:center bottom;animation:bush-sway 3.2s ease-in-out infinite alternate}
-    .page-backdrop .k2{animation-duration:3.8s;animation-delay:-1.4s}
-    .page-backdrop .blades{transform-box:fill-box;transform-origin:center bottom;animation:grass-sway 1.8s ease-in-out infinite alternate}
-    .page-backdrop .grass:nth-of-type(even) .blades{animation-duration:2.3s;animation-delay:-.9s}
-    .page-backdrop .t2{animation-duration:6.5s;animation-delay:-2s}
     /* Fly in from the left, out past the right edge, then wait out of sight before the next pass. */
-    @keyframes bird-fly{0%{transform:translate(0,0)}25%{transform:translate(135px,-18px)}50%{transform:translate(265px,10px)}70%,100%{transform:translate(530px,-6px)}}
-    @keyframes bird-bob{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
-    @keyframes bird-flap{to{transform:scaleY(.45)}}
-    @keyframes bush-sway{from{transform:skewX(-5deg)}to{transform:skewX(5deg)}}
-    @keyframes grass-sway{from{transform:skewX(-14deg)}to{transform:skewX(14deg)}}
-    @keyframes tree-sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
 
     /* Blue theme, matching the about page. The logo badge keeps its green. */
     :root{--bg:#eef3fc;--ink:#14203f;--muted:#4b5a7a;--line:#d2dcf0;--sage:#e2eafb;--blue:#23408f}
@@ -173,12 +151,7 @@
     
 
     /* Very faint animated houses-and-birds drawing behind the page. */
-    .page-backdrop{position:fixed;inset:auto 0 0 0;height:70vh;z-index:-1;pointer-events:none}
     /* Houses and trees stay barely visible; the birds are clear enough to notice. */
-    .page-backdrop svg>*{opacity:.6}
-    .page-backdrop svg>g:has(.bird){opacity:1}
-    .page-birds .wing{stroke-width:2.4}
-    .page-backdrop>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(1.8)}
     
 
     /* Listings map in the hero. */
@@ -394,18 +367,117 @@
     
     @media(max-width:560px){#tools,.listings-section{padding:16px;border-radius:18px}}
 
-    /* Birds fly in the background with the houses; the glass panels blur them like everything else behind them. */
-    .page-birds{position:fixed;inset:auto 0 0 0;height:70vh;z-index:-1;pointer-events:none}
-    .page-birds>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(1.8)}
     
 
+    /* Background neighborhood, built from HTML and CSS: sun, clouds, hills, a back row of homes, two main
+       houses with twinkling windows and chimney smoke, swaying trees and grass, and birds. Layers shift a
+       little as you scroll (--sy, set by a small script) for depth. Sizes are in cqw so it scales like a picture. */
+    .scene{position:fixed;inset:auto 0 0 0;height:70vh;z-index:-1;pointer-events:none;overflow:hidden}
+    .sc-stage{position:absolute;left:50%;bottom:0;width:max(100%,126vh);aspect-ratio:470/260;transform:translateX(-50%);container-type:inline-size}
+    .sc-stage>*{position:absolute;inset:0}
+    .sc-layer{transform:translateY(calc(var(--sy,0) * var(--depth) * -1cqw));will-change:transform}
+    .sc-fade{opacity:.6}
+    .sc-stage i,.sc-stage b,.sc-stage span,.sc-stage div{position:absolute;display:block}
+    .sc-town,.sc-grass{inset:0}
+    /* Sky */
+    .sc-sun{left:55cqw;bottom:20cqw;width:28.5cqw;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#d7f0f4 58%,#d7f0f400 70%);animation:sc-glow 6s ease-in-out infinite alternate}
+    .sc-cloud{height:3.2cqw;border-radius:3cqw;background:#e9f6f8;animation:sc-drift var(--t,90s) linear infinite;animation-delay:var(--d,0s)}
+    .sc-cloud::before,.sc-cloud::after{content:'';position:absolute;bottom:40%;border-radius:50%;background:inherit}
+    .sc-cloud::before{left:18%;width:34%;aspect-ratio:1}
+    .sc-cloud::after{left:45%;width:42%;aspect-ratio:1}
+    /* Hills and the back row of homes */
+    .sc-hill{border-radius:50% 50% 0 0;background:#cfe9ed}
+    .sc-hill.h2{background:#c2e3e8}
+    .sc-town i{bottom:7cqw;width:var(--w);height:var(--h);left:var(--x);background:#b9dde3}
+    .sc-town i::before{content:'';position:absolute;left:-12%;right:-12%;bottom:100%;height:calc(var(--w) * .55);background:#a2d1d9;clip-path:polygon(50% 0,100% 100%,0 100%)}
+    .sc-town i::after{content:'';position:absolute;left:30%;top:30%;width:22%;height:24%;background:#ffefc2;opacity:var(--lit,0);box-shadow:0 0 .8cqw #ffe39a;transition:opacity 1.2s}
+    /* Ground and path */
+    .sc-ground{left:-5cqw;right:-5cqw;bottom:-14cqw;height:23cqw;border-radius:50% 50% 0 0/38% 38% 0 0;background:#c9e7e5}
+    .sc-path{left:57cqw;bottom:-6cqw;width:52cqw;height:13cqw;border-top:4.2cqw solid #eef8f7;border-radius:60% 0 0 0/100% 0 0 0}
+    /* Main houses */
+    .sc-house{left:var(--x);bottom:6cqw;width:var(--w);height:var(--h);background:var(--wall)}
+    .sc-roof{left:-7%;right:-7%;bottom:100%;height:var(--rh);background:var(--roof);clip-path:polygon(50% 0,100% 100%,92% 100%,50% 16%,8% 100%,0 100%)}
+    .sc-attic{left:4%;right:4%;bottom:100%;height:calc(var(--rh) * .78);background:var(--wall);clip-path:polygon(50% 0,100% 100%,0 100%)}
+    .sc-chimney{right:16%;bottom:calc(100% + var(--rh) * .3);width:7%;height:calc(var(--rh) * .55);background:var(--roof)}
+    .sc-smoke{left:10%;bottom:100%;width:120%;aspect-ratio:1;border-radius:50%;background:#e4f3f6;animation:sc-smoke 5.5s ease-out infinite;animation-delay:var(--d)}
+    .sc-win{width:21%;height:24%;top:18%;left:var(--x);background:var(--glass);transition:background 1.4s,box-shadow 1.4s}
+    .sc-win::before,.sc-win::after{content:'';position:absolute;background:var(--wall);opacity:.9}
+    .sc-win::before{left:47%;width:6%;top:0;bottom:0}
+    .sc-win::after{top:47%;height:6%;left:0;right:0}
+    .sc-win.lit{background:#ffefc2;box-shadow:0 0 1.4cqw #ffe39acc}
+    .sc-door{left:40%;bottom:0;width:20%;height:44%;border-radius:2cqw 2cqw 0 0;background:var(--door)}
+    .sc-door::after{content:'';position:absolute;right:18%;top:52%;width:.5cqw;aspect-ratio:1;border-radius:50%;background:#e9f6f8}
+    /* Trees, bushes, fences */
+    .sc-tree{left:var(--x);bottom:6.3cqw;width:var(--w);height:var(--h);transform-origin:50% 100%;animation:sc-sway var(--t,5s) ease-in-out infinite alternate;animation-delay:var(--d,0s)}
+    .sc-tree::before{content:'';position:absolute;left:47%;width:6%;bottom:0;height:42%;background:#5f98a8}
+    .sc-crown{left:0;right:0;top:0;height:72%;border-radius:50%;background:var(--leaf,#9ccfd9)}
+    .sc-crown.small{left:55%;right:-30%;top:38%;height:42%;background:#b4dce3}
+    .sc-bush{bottom:5.7cqw;left:var(--x);width:var(--w);height:calc(var(--w) * .45);border-radius:50% 50% 40% 40%;background:#8ec7d2;transform-origin:50% 100%;animation:sc-bush 3.4s ease-in-out infinite alternate;animation-delay:var(--d,0s)}
+    .sc-fence{left:var(--x);bottom:7cqw;width:5.6cqw;height:4.2cqw;background:repeating-linear-gradient(90deg,#f4fbfb 0 .85cqw,transparent .85cqw 1.9cqw)}
+    .sc-fence::after{content:'';position:absolute;left:-.3cqw;right:-.3cqw;top:35%;height:.8cqw;background:#f4fbfb}
+    .sc-blade{bottom:6.4cqw;left:var(--x);width:.36cqw;height:var(--h);border-radius:.4cqw .4cqw 0 0;background:#78bccb;transform-origin:50% 100%;transform:rotate(var(--r));animation:sc-blade var(--t) ease-in-out infinite alternate;animation-delay:var(--d)}
+    /* Birds: a small flock crossing the sky, flapping */
+    .sc-bird{left:-4cqw;bottom:var(--y);width:2.6cqw;height:1.2cqw;animation:sc-fly var(--t,16s) linear infinite;animation-delay:var(--d,0s)}
+    .sc-bird b{inset:0;animation:sc-bob 1.4s ease-in-out infinite alternate}
+    .sc-bird b::before,.sc-bird b::after{content:'';position:absolute;top:0;width:50%;height:100%;border-top:.36cqw solid #4f8fa3;border-radius:50% 50% 0 0;transform-origin:100% 100%;animation:sc-flap .32s ease-in-out infinite alternate}
+    .sc-bird b::before{left:0}
+    .sc-bird b::after{right:0;transform-origin:0 100%;animation-name:sc-flap-r}
+    @keyframes sc-glow{to{transform:scale(1.04);filter:brightness(1.04)}}
+    @keyframes sc-drift{from{transform:translateX(-30cqw)}to{transform:translateX(130cqw)}}
+    @keyframes sc-smoke{0%{transform:translate(0,0) scale(.4);opacity:0}15%{opacity:.85}100%{transform:translate(3cqw,-9cqw) scale(2.2);opacity:0}}
+    @keyframes sc-sway{from{transform:rotate(-2.5deg)}to{transform:rotate(2.5deg)}}
+    @keyframes sc-bush{from{transform:skewX(-4deg)}to{transform:skewX(4deg)}}
+    @keyframes sc-blade{from{transform:rotate(calc(var(--r) - 12deg))}to{transform:rotate(calc(var(--r) + 12deg))}}
+    @keyframes sc-fly{from{transform:translateX(0)}to{transform:translateX(112cqw)}}
+    @keyframes sc-bob{from{transform:translateY(-.6cqw)}to{transform:translateY(.6cqw)}}
+    @keyframes sc-flap{from{transform:rotate(-14deg)}to{transform:rotate(22deg)}}
+    @keyframes sc-flap-r{from{transform:rotate(14deg)}to{transform:rotate(-22deg)}}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
-<div class="page-backdrop" aria-hidden="true"><svg preserveAspectRatio="xMidYMax slice" viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><path d="M0 229c108-31 277-35 470-10v41H0Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><g class="tree t1"><path d="M76 230v-55" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/></g><g class="tree t2"><path d="M415 226v-83" stroke="#72855c" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/></g><g class="grass" transform="translate(40 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(450 233)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 226v-19m-9 9h26m-17 10v-19m9 19v-19" stroke="#f8f5e4" stroke-width="4"/><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg></div>
-<div class="page-birds" aria-hidden="true"><svg preserveAspectRatio="xMidYMax slice" viewBox="0 0 470 260" fill="none"><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g transform="scale(.8)"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g></svg></div>
+<div class="scene" aria-hidden="true"><div class="sc-stage">
+  <div class="sc-layer sc-fade" style="--depth:.4"><i class="sc-sun"></i>
+    <i class="sc-cloud" style="bottom:36cqw;width:13cqw;--t:110s;--d:-30s"></i><i class="sc-cloud" style="bottom:30cqw;width:9cqw;--t:85s;--d:-60s"></i><i class="sc-cloud" style="bottom:40cqw;width:7cqw;--t:130s;--d:-95s"></i></div>
+  <div class="sc-layer sc-fade" style="--depth:.8"><i class="sc-hill" style="left:-8cqw;bottom:4cqw;width:60cqw;height:16cqw"></i><i class="sc-hill h2" style="left:40cqw;bottom:4cqw;width:72cqw;height:13cqw"></i>
+    <div class="sc-town"><i style="--x:6cqw;--w:4.5cqw;--h:4cqw"></i><i style="--x:12cqw;--w:3.6cqw;--h:5.4cqw"></i><i style="--x:30cqw;--w:5cqw;--h:3.8cqw"></i><i style="--x:52cqw;--w:4cqw;--h:4.6cqw"></i><i style="--x:84cqw;--w:5cqw;--h:4.2cqw"></i><i style="--x:91cqw;--w:3.8cqw;--h:5.8cqw"></i></div></div>
+  <div class="sc-layer sc-fade" style="--depth:1.4"><i class="sc-ground"></i><i class="sc-path"></i>
+    <div class="sc-tree" style="--x:11cqw;--w:10.2cqw;--h:24cqw;--t:5s"><i class="sc-crown"></i></div>
+    <div class="sc-house" style="--x:25.3cqw;--w:27.4cqw;--h:22.3cqw;--rh:11cqw;--wall:#f2fafb;--roof:#3f8aa0;--glass:#a9d5de;--door:#4f8fa3"><i class="sc-attic"></i><i class="sc-roof"></i><i class="sc-chimney"><b class="sc-smoke" style="--d:0s"></b><b class="sc-smoke" style="--d:-1.8s"></b><b class="sc-smoke" style="--d:-3.6s"></b></i><span class="sc-win" style="--x:15%"></span><span class="sc-win" style="--x:64%"></span><i class="sc-door"></i></div>
+    <div class="sc-house" style="--x:55.3cqw;--w:25.5cqw;--h:17cqw;--rh:9.4cqw;--wall:#c6e5ea;--roof:#5a93a6;--glass:#eaf7f9;--door:#5d95a7"><i class="sc-attic"></i><i class="sc-roof"></i><span class="sc-win" style="--x:13%;top:20%"></span><span class="sc-win" style="--x:66%;top:20%"></span><i class="sc-door"></i></div>
+    <div class="sc-tree" style="--x:82cqw;--w:12.4cqw;--h:30cqw;--t:6.5s;--d:-2s;--leaf:#86c3cf"><i class="sc-crown"></i><i class="sc-crown small"></i></div>
+    <i class="sc-fence" style="--x:19.4cqw"></i><i class="sc-fence" style="--x:80.9cqw"></i>
+    <i class="sc-bush" style="--x:19.6cqw;--w:9.8cqw"></i><i class="sc-bush" style="--x:49.4cqw;--w:7.6cqw;--d:-1.4s"></i>
+    <div class="sc-grass"></div></div>
+  <div class="sc-layer" style="--depth:.6"><i class="sc-bird" style="--y:41cqw;--t:15s"><b></b></i><i class="sc-bird" style="--y:44cqw;--t:16.5s;--d:-.6s;scale:.85"><b></b></i><i class="sc-bird" style="--y:39cqw;--t:17.5s;--d:-1.1s;scale:.7"><b></b></i><i class="sc-bird" style="--y:33cqw;--t:24s;--d:-9s;scale:.9"><b></b></i></div>
+</div></div>
+<script>
+  // Background: grass blades, windows that light up one by one, and a little depth as the page scrolls.
+  (() => {
+    const scene = document.querySelector('.scene'); if (!scene) return;
+    const grass = scene.querySelector('.sc-grass');
+    for (let i = 0; i < 70; i++) {
+      const b = document.createElement('i'); b.className = 'sc-blade';
+      b.style.cssText = `--x:${(i * 1.47 + Math.random()).toFixed(2)}cqw;--h:${(1.4 + Math.random() * 1.8).toFixed(2)}cqw;--r:${(Math.random() * 16 - 8).toFixed(1)}deg;--t:${(1.6 + Math.random() * 1.2).toFixed(2)}s;--d:${(-Math.random() * 2).toFixed(2)}s`;
+      grass.append(b);
+    }
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const windows = [...scene.querySelectorAll('.sc-win')], town = [...scene.querySelectorAll('.sc-town i')];
+    windows.forEach((w, i) => w.classList.toggle('lit', i % 2 === 0));
+    town.forEach((t, i) => t.style.setProperty('--lit', i % 3 === 0 ? 1 : 0));
+    if (!still) setInterval(() => {
+      const w = windows[Math.floor(Math.random() * windows.length)]; w.classList.toggle('lit');
+      const t = town[Math.floor(Math.random() * town.length)]; t.style.setProperty('--lit', t.style.getPropertyValue('--lit') === '1' ? 0 : 1);
+    }, 2200);
+    if (still) return;
+    let ticking = false;
+    addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(() => {
+      const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+      scene.style.setProperty('--sy', (scrollY / max * 4).toFixed(3)); ticking = false; }); }, { passive: true });
+  })();
+</script>
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
   <symbol id="home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/></symbol>
   <symbol id="shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6z"/><path d="m8 12 3 3 5-6"/></symbol>
