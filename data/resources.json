@@ -7766,7 +7766,15 @@
     },
     "lat": 38.873074,
     "lon": -77.268856,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.regentsparkapartments.com/wp-content/uploads/2022/01/RegentsPark_Ext_Building_Facade_June2020.jpg?x67240",
+      "source_url": "https://www.regentsparkapartments.com/gallery/",
+      "alt": "The Apartments at Regents Park building exterior and parking lot",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-ridgewood-by-windsor",
@@ -10208,6 +10216,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://cms.skymarkreston.com/wp-content/uploads/2024/12/Skymark_EXT_Exterior_BirdseyeSunset4_DavidMadison_112024_compressed-1024x777.webp",
+      "source_url": "https://www.skymarkreston.com/",
+      "alt": "Skymark high-rise tower exterior at sunset, aerial view",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
     }
   },
   {
@@ -11463,7 +11479,15 @@
     },
     "lat": 38.877542,
     "lon": -77.111989,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://gravelcdn.nyc3.digitaloceanspaces.com/sites/66/2022/04/04132642/Carlin-260x200-9.jpeg",
+      "source_url": "https://rhf.org/the-carlin/",
+      "alt": "Living area in an apartment at The Carlin (small interior photo)",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-claridge-house",
@@ -12564,7 +12588,15 @@
     },
     "lat": 38.888089,
     "lon": -77.095165,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg-crop/45844360/572x350/45844360.jpg",
+      "source_url": "https://vpointapartments.com/",
+      "alt": "vPoint outdoor terrace with grills and lounge seating beside the brick building",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-wholey-legacy-homes",
@@ -13053,7 +13085,15 @@
     },
     "lat": 38.887911,
     "lon": -77.078961,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Courthouse-Crossing.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "alt": "Courthouse Crossings building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-columbia-hills-apartments",
@@ -13258,7 +13298,15 @@
     },
     "lat": 38.876385,
     "lon": -77.112168,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Springs.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "alt": "The Springs apartment building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-queens-court",
@@ -13463,7 +13511,15 @@
     },
     "lat": 38.889065,
     "lon": -77.077206,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Marbella.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "alt": "Marbella apartment building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-cameron-commons",
@@ -13526,7 +13582,15 @@
     },
     "lat": 38.894375,
     "lon": -77.12663,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Cameron-Commons.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "alt": "Cameron Commons building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-calvert-manor",
@@ -13589,7 +13653,15 @@
     },
     "lat": 38.895215,
     "lon": -77.092144,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Calvert-Manor.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "alt": "Calvert Manor entrance sign and brick building",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-leckey-gardens",
@@ -13652,7 +13724,15 @@
     },
     "lat": 38.897246,
     "lon": -77.11946,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Leckey-Gardens.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "alt": "Leckey Gardens building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-buchanan-gardens",
@@ -13786,7 +13866,15 @@
     },
     "lat": 38.880633,
     "lon": -77.090651,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Barkalow.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "alt": "The Barkalow building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-unity-homes-at-ballston",
@@ -13849,7 +13937,15 @@
     },
     "lat": 38.882429,
     "lon": -77.110589,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/JPE_9881_-RT-scaled-4.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "alt": "Unity Homes at Ballston buildings exterior at dusk",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-arlington-county-fisher-house",
@@ -13983,7 +14079,15 @@
     },
     "lat": 38.847511,
     "lon": -77.076546,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-ArnaValley.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "alt": "Arna Valley View entrance sign and apartment buildings",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-acclaim-at-ashburn",
@@ -14944,7 +15048,15 @@
     },
     "lat": 38.993991,
     "lon": -77.504287,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://tgmmoorefield.com/wp-content/uploads/sites/65/2024/09/tgm-moorefield-aerial-view-and-landscape-design.jpg",
+      "source_url": "https://tgmmoorefield.com/",
+      "alt": "TGM Moorefield aerial view of buildings and landscaped courtyard",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-shreveport-ridge",
@@ -16052,7 +16164,15 @@
     },
     "lat": 38.967136,
     "lon": -77.747422,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://windyhillfoundation.org/wp-content/uploads/2017/03/Levis-Hill-House.jpg",
+      "source_url": "https://windyhillfoundation.org/levis-hill-house/",
+      "alt": "Levis Hill House building exterior and parking lot",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-madison-house",
@@ -18057,7 +18177,15 @@
     },
     "lat": 38.815807,
     "lon": -77.049374,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://alateoldtown.com/wp-content/uploads/2025/08/gallery_alate_old_town_48_exterior_1.jpg",
+      "source_url": "https://alateoldtown.com/gallery/",
+      "alt": "Alate Old Town building exterior from the street at sunset",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-alexan-florence",
@@ -18824,7 +18952,15 @@
     },
     "lat": 38.829256,
     "lon": -77.052215,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://cms.oakvilleva.com/wp-content/uploads/2024/08/Oakville_IvesAmenity_INT_Clubroom1_KDawkins_July2024-scaled.webp",
+      "source_url": "https://www.oakvilleva.com/gallery/",
+      "alt": "The Ives at Oakville clubroom interior with billiards table",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-meridian-at-eisenhower-station",
@@ -19381,7 +19517,15 @@
     },
     "lat": 38.829146,
     "lon": -77.05216,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://cms.oakvilleva.com/wp-content/uploads/2025/02/1.Oakville_Raeburn_INT_Amenities_Lobby_KipDawkins_Feb2025-jpg.webp",
+      "source_url": "https://www.oakvilleva.com/gallery/",
+      "alt": "The Raeburn lobby interior with lounge seating",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-station-650",
@@ -19801,7 +19945,15 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "source_checked_on": "2026-10-24"
+    "source_checked_on": "2026-10-24",
+    "photo": {
+      "url": "https://lawsoncompanies.com/wp-content/uploads/2021/03/LAMB-1.jpg",
+      "source_url": "https://lawsoncompanies.com/apartments/the-landing-at-masons-bridge-apartments-woodbridge-va/",
+      "alt": "The Landing at Mason's Bridge apartment building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-prince-william-county-the-flats-at-neabsco",
@@ -20664,7 +20816,15 @@
     "lat": 38.860703,
     "lon": -77.074191,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "property_website"
+    "source_kind": "property_website",
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Terraces-at-Arlington-View-West-2@2x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/the-terraces-at-arlington-view-west/",
+      "alt": "Arlington View Terrace (Terraces at Arlington View West) brick apartment building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    }
   },
   {
     "id": "taylor-square-one-bedroom",
@@ -24186,7 +24346,14 @@
     },
     "notes": "New building; move-ins expected December 2026 or January 2027. The property website could not be retrieved during review. Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office.",
     "area": "Alexandria City",
-    "photo": null,
+    "photo": {
+      "url": "https://www.carrprop.com/wp-content/uploads/2026/01/01_hero_slider_margot_exterior.webp",
+      "source_url": "https://www.carrprop.com/properties/425-montgomery-street/",
+      "alt": "Architectural rendering of the Margot building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Architectural rendering of this building from the provider; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "City Affordable Rental Set-Aside Program",
@@ -24250,7 +24417,14 @@
     },
     "notes": "Phone is ARHA's main office line; no property-specific leasing number is published. Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office.",
     "area": "Alexandria City",
-    "photo": null,
+    "photo": {
+      "url": "https://www.arha.us/sites/default/files/2019-01/RAMSEY%20HOMES.png",
+      "source_url": "https://www.arha.us/ramsey-homes",
+      "alt": "Architectural rendering of the Ramsey Homes building exterior",
+      "credit": "Public agency property page",
+      "reviewed_on": "2026-10-24",
+      "caption": "Architectural rendering of this building from the housing authority; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "LIHTC affordable housing (ARHA)",
@@ -24314,7 +24488,14 @@
     },
     "notes": "Phone is ARHA's main office line; no property-specific leasing number is published. Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office.",
     "area": "Alexandria City",
-    "photo": null,
+    "photo": {
+      "url": "https://www.arha.us/sites/default/files/2019-01/RAMSEY%20HOMES.png",
+      "source_url": "https://www.arha.us/ramsey-homes",
+      "alt": "Architectural rendering of the Ramsey Homes building exterior",
+      "credit": "Public agency property page",
+      "reviewed_on": "2026-10-24",
+      "caption": "Architectural rendering of this building from the housing authority; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "LIHTC affordable housing (ARHA)",
@@ -24378,7 +24559,14 @@
     },
     "notes": "Phone is ARHA's main office line; no property-specific leasing number is published. Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office.",
     "area": "Alexandria City",
-    "photo": null,
+    "photo": {
+      "url": "https://www.arha.us/sites/default/files/2019-01/RAMSEY%20HOMES.png",
+      "source_url": "https://www.arha.us/ramsey-homes",
+      "alt": "Architectural rendering of the Ramsey Homes building exterior",
+      "credit": "Public agency property page",
+      "reviewed_on": "2026-10-24",
+      "caption": "Architectural rendering of this building from the housing authority; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "LIHTC affordable housing (ARHA)",
@@ -24769,7 +24957,14 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Provider advertises a starting rate of $1,069 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
-    "photo": null,
+    "photo": {
+      "url": "https://www.brexxblacksburg.com/wp-content/uploads/2026/09/brexx-blacksburg-hero-1-1349x758-c-default.webp",
+      "source_url": "https://www.brexxblacksburg.com/",
+      "alt": "Brexx at Blacksburg townhome building exterior",
+      "credit": "Property provider / management listing",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the provider; the offered apartment may differ."
+    },
     "lat": 37.225767,
     "lon": -80.447609,
     "geocode_source": "US Census Geocoder"

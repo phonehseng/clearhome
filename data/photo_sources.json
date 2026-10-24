@@ -271,9 +271,11 @@
       "record_ids": [
         "nova-fairfax-county-the-apartments-at-regents-park"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.regentsparkapartments.com/gallery/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://www.regentsparkapartments.com/wp-content/uploads/2022/01/RegentsPark_Ext_Building_Facade_June2020.jpg?x67240",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "The Ridgewood by Windsor",
@@ -687,9 +689,11 @@
       "record_ids": [
         "nova-fairfax-county-skymark"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.skymarkreston.com/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://cms.skymarkreston.com/wp-content/uploads/2024/12/Skymark_EXT_Exterior_BirdseyeSunset4_DavidMadison_112024_compressed-1024x777.webp",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "The Point at Reston",
@@ -901,9 +905,11 @@
       "record_ids": [
         "nova-arlington-county-the-carlin"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://rhf.org/the-carlin/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://gravelcdn.nyc3.digitaloceanspaces.com/sites/66/2022/04/04132642/Carlin-260x200-9.jpeg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Claridge House",
@@ -1085,9 +1091,11 @@
       "record_ids": [
         "nova-arlington-county-vpoint"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://vpointapartments.com/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://capi.myleasestar.com/v2/dimg-crop/45844360/572x350/45844360.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Wholey Legacy Homes",
@@ -1167,9 +1175,11 @@
       "record_ids": [
         "nova-arlington-county-courthouse-crossings"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Courthouse-Crossing.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Columbia Hills Apartments",
@@ -1201,9 +1211,11 @@
       "record_ids": [
         "nova-arlington-county-the-springs"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Springs.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Queens Court",
@@ -1235,9 +1247,11 @@
       "record_ids": [
         "nova-arlington-county-marbella"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Marbella.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Cameron Commons",
@@ -1245,9 +1259,11 @@
       "record_ids": [
         "nova-arlington-county-cameron-commons"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Cameron-Commons.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Calvert Manor",
@@ -1255,9 +1271,11 @@
       "record_ids": [
         "nova-arlington-county-calvert-manor"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Calvert-Manor.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Leckey Gardens",
@@ -1265,9 +1283,11 @@
       "record_ids": [
         "nova-arlington-county-leckey-gardens"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Leckey-Gardens.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Buchanan Gardens",
@@ -1287,9 +1307,11 @@
       "record_ids": [
         "nova-arlington-county-the-barkalow"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Barkalow.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Unity Homes at Ballston",
@@ -1297,9 +1319,11 @@
       "record_ids": [
         "nova-arlington-county-unity-homes-at-ballston"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://truegroundhousing.org/wp-content/uploads/JPE_9881_-RT-scaled-4.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Fisher House",
@@ -1319,9 +1343,11 @@
       "record_ids": [
         "nova-arlington-county-arna-valley-view"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-ArnaValley.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Acclaim at Ashburn",
@@ -1481,9 +1507,11 @@
       "record_ids": [
         "nova-loudoun-county-tgm-moorefield"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://tgmmoorefield.com/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://tgmmoorefield.com/wp-content/uploads/sites/65/2024/09/tgm-moorefield-aerial-view-and-landscape-design.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Shreveport Ridge",
@@ -1669,9 +1697,11 @@
       "record_ids": [
         "nova-loudoun-county-levis-hill-house"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Provider URL returned inconsistent content; no trustworthy property photograph was established."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://windyhillfoundation.org/levis-hill-house/",
+      "reason": "Provider URL returned inconsistent content; no trustworthy property photograph was established.",
+      "image_url": "https://windyhillfoundation.org/wp-content/uploads/2017/03/Levis-Hill-House.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Madison House",
@@ -2005,9 +2035,11 @@
       "record_ids": [
         "nova-alexandria-city-alate-old-town"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://alateoldtown.com/gallery/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established.",
+      "image_url": "https://alateoldtown.com/wp-content/uploads/2025/08/gallery_alate_old_town_48_exterior_1.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Alexan Florence",
@@ -2135,9 +2167,11 @@
       "record_ids": [
         "nova-alexandria-city-the-ives-at-oakville"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Only construction or rendering evidence was established; a real community photograph is still needed."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.oakvilleva.com/gallery/",
+      "reason": "Only construction or rendering evidence was established; a real community photograph is still needed.",
+      "image_url": "https://cms.oakvilleva.com/wp-content/uploads/2024/08/Oakville_IvesAmenity_INT_Clubroom1_KDawkins_July2024-scaled.webp",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Meridian at Eisenhower Station",
@@ -2229,9 +2263,11 @@
       "record_ids": [
         "nova-alexandria-city-the-raeburn"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Only construction or rendering evidence was established; a real community photograph is still needed."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.oakvilleva.com/gallery/",
+      "reason": "Only construction or rendering evidence was established; a real community photograph is still needed.",
+      "image_url": "https://cms.oakvilleva.com/wp-content/uploads/2025/02/1.Oakville_Raeburn_INT_Amenities_Lobby_KipDawkins_Feb2025-jpg.webp",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Station 650",
@@ -2275,9 +2311,11 @@
       "record_ids": [
         "nova-prince-william-county-the-landing-at-mason-s-bridge"
       ],
-      "status": "needs_verified_property_photo",
+      "status": "official_photo_source_reviewed",
       "source_url": "https://lawsoncompanies.com/apartments/the-landing-at-masons-bridge-apartments-woodbridge-va/",
-      "reason": "Official gallery exposes 150-pixel thumbnails; a usable larger original was not established."
+      "reason": "Official gallery exposes 150-pixel thumbnails; a usable larger original was not established.",
+      "image_url": "https://lawsoncompanies.com/wp-content/uploads/2021/03/LAMB-1.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "The Flats at Neabsco",
@@ -2365,9 +2403,11 @@
       "record_ids": [
         "arlington-view-terrace-two-bedroom"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.avtapts.com/",
-      "reason": "Rejected a neighboring Terraces at Arlington View East image: its 1420 address differs from this record at 1429 S. Rolfe Street."
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://ahcommunities.org/property/the-terraces-at-arlington-view-west/",
+      "reason": "Rejected a neighboring Terraces at Arlington View East image: its 1420 address differs from this record at 1429 S. Rolfe Street.",
+      "image_url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Terraces-at-Arlington-View-West-2@2x-1030x644.jpg",
+      "reviewed_on": "2026-10-24"
     },
     {
       "community": "Taylor Square Apartments",
