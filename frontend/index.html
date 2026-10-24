@@ -453,7 +453,7 @@
     @keyframes sc-sway{from{transform:rotate(-2.5deg)}to{transform:rotate(2.5deg)}}
     @keyframes sc-bush{from{transform:skewX(-4deg)}to{transform:skewX(4deg)}}
     @keyframes sc-blade{from{transform:rotate(calc(var(--r) - 12deg))}to{transform:rotate(calc(var(--r) + 12deg))}}
-    @keyframes sc-fly{from{transform:translateX(0)}to{transform:translateX(112cqw)}}
+    @keyframes sc-fly{0%{transform:translateX(0);opacity:0}8%{opacity:1}72%{opacity:1}88%{opacity:0}100%{transform:translateX(112cqw);opacity:0}}  /* fade in from the left, ease out before the right-hand panels */
     @keyframes sc-bob{from{transform:translateY(-.6cqw)}to{transform:translateY(.6cqw)}}
     @keyframes sc-flap{from{transform:rotate(-14deg)}to{transform:rotate(22deg)}}
     @keyframes sc-flap-r{from{transform:rotate(14deg)}to{transform:rotate(-22deg)}}
@@ -527,7 +527,7 @@
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What can we help you with?</h2><p>Start wherever you are. We’ll take it step by step.</p></div><div class="tools"><div class="tool-workspace">
     <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find housing help</strong><small>A place to start</small></span></button></div>
     <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Let’s find your next step.</h3><span class="step-label">HOUSING SUPPORT</span></div><p class="panel-description">Tell us what you need. We’ll look for support in our source-reviewed resource list.</p><form id="find-form" novalidate>
-      <div class="input-row"><div><label for="location">Where are you looking?</label><div class="input-wrapper"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg><input id="location" name="location" value="Northern Virginia" maxlength="100" autocomplete="address-level2" placeholder="City, town or county"></div></div><div><label for="budget">Monthly budget <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="budget" name="budget" type="number" min="0" max="100000" placeholder="Your maximum" inputmode="decimal"><span>/ month</span></div></div></div>
+      <div class="input-row"><div><label for="location">Where are you looking?</label><div class="input-wrapper"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg><input id="location" name="location" value="Northern Virginia" maxlength="100" autocomplete="off" list="location-places" placeholder="City, town, county or neighborhood"><label class="visually-hidden" for="location-pick">Pick an area</label><select id="location-pick" class="location-pick"><option value="">Pick an area</option><optgroup label="Regions"><option>Northern Virginia</option><option>Blacksburg</option></optgroup><optgroup label="Fairfax County"><option>Fairfax</option><option>Reston</option><option>Herndon</option><option>Chantilly</option><option>Centreville</option><option>Tysons</option><option>McLean</option><option>Vienna</option><option>Annandale</option><option>Springfield</option><option>Burke</option><option>Lorton</option></optgroup><optgroup label="Arlington County"><option>Ballston</option><option>Clarendon</option><option>Crystal City</option><option>Columbia Pike</option></optgroup><optgroup label="Alexandria"><option>Old Town Alexandria</option><option>Del Ray</option></optgroup><optgroup label="Cities"><option>Fairfax City</option><option>Falls Church</option><option>Manassas</option><option>Manassas Park</option></optgroup><optgroup label="Loudoun County"><option>Leesburg</option><option>Ashburn</option><option>Sterling</option><option>South Riding</option></optgroup><optgroup label="Prince William County"><option>Woodbridge</option><option>Dumfries</option><option>Gainesville</option></optgroup><optgroup label="Blacksburg area"><option>Virginia Tech</option><option>Christiansburg</option></optgroup></select><datalist id="location-places"><option value="Northern Virginia"></option><option value="Blacksburg"></option><option value="Fairfax County"></option><option value="Arlington County"></option><option value="Alexandria City"></option><option value="Loudoun County"></option><option value="Prince William County"></option><option value="Fairfax City"></option><option value="Falls Church City"></option><option value="Manassas City"></option><option value="Manassas Park City"></option><option value="Fairfax"></option><option value="Reston"></option><option value="Herndon"></option><option value="Chantilly"></option><option value="Centreville"></option><option value="Tysons"></option><option value="McLean"></option><option value="Vienna"></option><option value="Falls Church"></option><option value="Annandale"></option><option value="Springfield"></option><option value="Burke"></option><option value="Lorton"></option><option value="Ballston"></option><option value="Clarendon"></option><option value="Crystal City"></option><option value="Columbia Pike"></option><option value="Old Town Alexandria"></option><option value="Del Ray"></option><option value="Leesburg"></option><option value="Ashburn"></option><option value="Sterling"></option><option value="South Riding"></option><option value="Manassas"></option><option value="Woodbridge"></option><option value="Dumfries"></option><option value="Gainesville"></option><option value="Virginia Tech"></option><option value="Christiansburg"></option></datalist></div></div><div><label for="budget">Monthly budget <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="budget" name="budget" type="number" min="0" max="100000" placeholder="Your maximum" inputmode="decimal"><span>/ month</span></div></div></div>
       <label class="urgent-check"><input type="checkbox" id="tonight" name="tonight"> I need a safe place to stay tonight</label>
       <details class="more-options" id="more-options"><summary>More options <span>(optional)</span></summary><div class="more-options-body">
       <div class="input-row"><div><label for="income">Household income <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="income" name="income" type="number" min="0" max="10000000" placeholder="Before taxes" inputmode="decimal"><span>/ year</span></div></div><div><label for="household">People in your home <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="household" name="household" class="find-select"><option value="">Not sure</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6">6 or more</option></select></div></div>
@@ -1016,6 +1016,17 @@
       const where = region === 'blacksburg' && !/christiansburg/i.test(pick[0]) ? `${pick[0]}, Blacksburg` : pick[0];
       fillWhere(where); setStatus(`Showing ${pick[0]}.`);
     });
+    // The find form's "Pick an area" moves the map here: a region, a neighborhood, or a county outline.
+    window.clearHouseMapGoTo = name => {
+      if (/^northern virginia$/i.test(name)) return tabs.find(t => t.dataset.region === 'nova')?.click();
+      if (/^blacksburg$/i.test(name)) return tabs.find(t => t.dataset.region === 'blacksburg')?.click();
+      const key = name.toLowerCase().replace(/ alexandria$/, '');
+      for (const region of ['nova', 'blacksburg']) {
+        const pick = HOODS[region].find(([n]) => n.toLowerCase().includes(key) || key.includes(n.toLowerCase().split(' (')[0]));
+        if (pick) { markTab(region); state.region = null; state.selected = null; state.focused = [[pick[1], pick[2]]]; view?.center({ lat: pick[1], lng: pick[2] }, 13); setStatus(`Showing ${name}.`); return; }
+      }
+      const area = areaFor(name); if (area) { selectArea(area); setStatus(`Showing ${area}.`); }
+    };
     // Which county or city a point falls in, from the same boundary outlines the map draws.
     function areaAt(lat, lon) {
       const inside = (ring) => { let hit = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) hit = !hit; } return hit; };
@@ -1380,6 +1391,12 @@
     chips.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { chips.hidden = true; ask(b.textContent); } });
     botSay("Hi, I'm Gemma, the Clear House assistant. Ask me about vouchers, rent help, shelters, or homes near a place, like your office or campus. I only use our checked resources.");
 
+    // "Pick an area" fills the box and moves the map there, the same as typing a place.
+    document.getElementById('location-pick').addEventListener('change', e => {
+      if (!e.target.value) return;
+      const box = document.getElementById('location'); box.value = e.target.value; e.target.value = '';
+      window.clearHouseMapGoTo?.(box.value);
+    });
     document.querySelectorAll('[data-tonight]').forEach(b => b.addEventListener('click', () => {
       document.getElementById('location').value = b.dataset.tonight;
       document.getElementById('tonight').checked = true;
