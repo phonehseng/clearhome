@@ -234,7 +234,14 @@
     .input-wrapper.has-pick{padding-right:146px}
     @media(max-width:560px){.loc-field .location-pick{position:static;display:block;max-width:100%;margin-top:8px}.input-wrapper.has-pick{padding-right:11px}}
     
-    .find-checks{border:0;padding:0;margin:0 0 19px;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+    .find-checks{border:0;padding:0;margin:0 0 19px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 18px;align-items:start}
+    .find-check{position:relative;display:flex;align-items:center;gap:6px;min-width:0}
+    .find-check label{flex:0 1 auto;min-width:0;min-height:28px}
+    .find-help{flex:none;width:18px;height:18px;padding:0;border-radius:50%;border:1px solid var(--muted);background:transparent;color:var(--muted);font:600 11px/1 inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+    .find-help:hover,.find-help[aria-expanded=true]{color:#23408f;border-color:#23408f}
+    .find-help:focus-visible{outline:2px solid #23408f;outline-offset:2px}
+    .find-tip{position:absolute;left:0;top:100%;margin-top:6px;z-index:5;width:max-content;max-width:min(260px,calc(100vw - 32px));padding:8px 10px;border-radius:8px;background:#1f2a44;color:#fff;font-size:12px;line-height:1.4;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+    .find-tip[hidden]{display:none}
     .find-checks legend{font-size:12px;font-weight:600;margin-bottom:8px;padding:0}
     .find-checks label{display:flex;gap:9px;align-items:center;font-weight:400;font-size:13px;margin:0;cursor:pointer}
     .find-checks input{width:17px;height:17px;accent-color:#23408f}
@@ -583,9 +590,9 @@
         <label class="nearby-soft"><input type="checkbox" id="find-walk-pref" disabled> The walk is nice to have, not a must</label>
       </fieldset>
       <fieldset class="find-checks"><legend>Anything that applies? <span style="font-weight:400;color:var(--muted)">(optional)</span></legend>
-        <label><input type="checkbox" id="accessible" name="accessible"> I need an accessible home</label>
-        <label><input type="checkbox" id="senior" name="senior"> Someone in my home is 62 or older</label>
-        <label><input type="checkbox" id="voucher" name="voucher"> I have a housing voucher</label>
+        <div class="find-check"><label><input type="checkbox" id="accessible" name="accessible"> I need an accessible home</label></div>
+        <div class="find-check"><label><input type="checkbox" id="senior" name="senior"> Someone in my home is 62 or older</label><button type="button" class="find-help" aria-label="About the age option" aria-expanded="false" aria-controls="tip-senior">!</button><span class="find-tip" id="tip-senior" role="tooltip" hidden>Helps us find senior housing options. Age rules vary by property.</span></div>
+        <div class="find-check"><label><input type="checkbox" id="voucher" name="voucher"> I have a housing voucher</label><button type="button" class="find-help" aria-label="About the housing voucher option" aria-expanded="false" aria-controls="tip-voucher">!</button><span class="find-tip" id="tip-voucher" role="tooltip" hidden>A housing voucher helps pay rent. Ask the provider whether your voucher can be used.</span></div>
       </fieldset>
       <label for="situation">Anything else we should know? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="situation" name="situation" maxlength="1700" aria-describedby="situation-hint situation-count" placeholder="For example: I’m a student and need to move next month."></textarea><div class="textarea-hint"><span id="situation-hint">If you write something here, our assistant will answer it after your options. Keep personal details out.</span><span class="character-count" id="situation-count">0 / 1,700</span></div><div class="examples"><span>Need a starting point?</span><button type="button" data-example="I’m a student looking for an affordable room near campus. My move-in date is flexible.">I’m a student</button><button type="button" data-example="I’m looking for affordable housing for my family. What programs or assistance might help us?">Housing for my family</button><button type="button" data-example="I need a safe place to stay tonight. Please help me find emergency shelter resources.">I need a place tonight</button></div></div></details><div class="form-bottom"><span class="privacy-note"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Recommendations from verified resources only</span><button class="primary" type="submit"><span>Show my options</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div>
     </form>
@@ -1312,5 +1319,23 @@
   })();
 </script>
 
+
+  <script>
+  // Small help tips beside the optional checkboxes: hover/focus shows, tap toggles, Escape or an outside tap closes.
+  (() => {
+    const btns = [...document.querySelectorAll('.find-help')];
+    const set = (b, open) => { b.setAttribute('aria-expanded', open); document.getElementById(b.getAttribute('aria-controls')).hidden = !open; };
+    const closeAll = except => btns.forEach(b => { if (b !== except) set(b, false); });
+    btns.forEach(b => {
+      b.addEventListener('click', e => { e.preventDefault(); const open = b.getAttribute('aria-expanded') !== 'true'; closeAll(b); set(b, open); });
+      b.addEventListener('mouseenter', () => set(b, true));
+      b.addEventListener('mouseleave', () => { if (document.activeElement !== b) set(b, false); });
+      b.addEventListener('focus', () => set(b, true));
+      b.addEventListener('blur', () => set(b, false));
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+    document.addEventListener('pointerdown', e => { if (!e.target.closest('.find-help')) closeAll(); });
+  })();
+  </script>
 </body>
 </html>
