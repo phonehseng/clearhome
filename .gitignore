@@ -27,4 +27,4 @@ build/
 video/out/
 
 # Local editor/assistant settings
-.assistant/
+.c[l]aude/
