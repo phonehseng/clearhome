@@ -218,11 +218,11 @@
     /* Very faint animated houses-and-birds drawing behind the page. */
     .page-backdrop{position:fixed;inset:auto 0 0 0;height:70vh;z-index:-1;pointer-events:none}
     /* Houses and trees stay barely visible; the birds are clear enough to notice. */
-    .page-backdrop svg>*{opacity:.05}
+    .page-backdrop svg>*{opacity:.07}
     .page-backdrop svg>g:has(.bird){opacity:.55}
     .page-backdrop .wing{stroke-width:2.4}
-    .page-backdrop>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(.9)}
-    @media(prefers-color-scheme:dark){.page-backdrop svg>*{opacity:.04}.page-backdrop svg>g:has(.bird){opacity:.5}}
+    .page-backdrop>svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(1.8)}
+    @media(prefers-color-scheme:dark){.page-backdrop svg>*{opacity:.05}.page-backdrop svg>g:has(.bird){opacity:.5}}
     .map-tiles-dark{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
 
     /* Listings map in the hero. */
