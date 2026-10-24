@@ -14,3 +14,7 @@ The user reports that revealing only nine additional listings feels too slow. Th
 Inspect the current implementation in `frontend/index.html` before changing it. Previous work added both controls and used a batch of 20; the user's report may refer to a deployed version with different behavior. Check the actual click handlers and any responsive or deployed variant rather than assuming the current batch is nine. Report any deployment mismatch instead of claiming it was fixed by a code change alone.
 
 Validate that Show more adds 18, Show all reveals all remaining matches, and the final partial batch works correctly. Report the change and validation. This handoff itself does not implement the change or confirm a deployment.
+
+---
+
+**Implemented (2026-10-24, e83d1d9).** Show more reveals 18 per click with "Show more communities (N remaining)"; "Show all communities" has no count and hides when 18 or fewer remain (Show more already reveals them). Kept your primary/secondary styling and added a hover lift, a staggered fade-in for new cards, and a smooth scroll to the first new card (both off under reduced motion). Checked in the browser: 6 → 24 (231 → 213 remaining); Blacksburg 9 remaining → 15, both controls hidden, focus on the first new card. Deployed in the same Cloud Run release.
