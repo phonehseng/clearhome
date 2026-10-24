@@ -87,16 +87,20 @@ class PhotoTests(unittest.TestCase):
     def test_photo_route_returns_image_or_explicit_failure(self):
         from app import app
         client=app.test_client()
-        with tempfile.TemporaryDirectory() as directory:
-            path=Path(directory)/'photo.image';path.write_bytes(self.png)
-            with patch('app.cached_photo',return_value=path):
-                response=client.get('/media/listings/indigo-studio-std')
-                self.assertEqual(response.status_code,200)
-                self.assertEqual(response.mimetype,'image/png')
-                self.assertEqual(response.data,self.png)
-                response.close()
-        with patch('app.cached_photo',side_effect=PhotoUnavailable('blocked')):
-            self.assertEqual(client.get('/media/listings/indigo-studio-std').status_code,503)
-        self.assertEqual(client.get('/media/listings/missing').status_code,404)
+        # Route behavior must not depend on a live property's photo surviving source review.
+        rows=[{'id':'test-home','photo':self.photo}, {'id':'no-photo'}]
+        with patch('app.load_catalog',return_value=rows):
+            with tempfile.TemporaryDirectory() as directory:
+                path=Path(directory)/'photo.image';path.write_bytes(self.png)
+                with patch('app.cached_photo',return_value=path):
+                    response=client.get('/media/listings/test-home')
+                    self.assertEqual(response.status_code,200)
+                    self.assertEqual(response.mimetype,'image/png')
+                    self.assertEqual(response.data,self.png)
+                    response.close()
+            with patch('app.cached_photo',side_effect=PhotoUnavailable('blocked')):
+                self.assertEqual(client.get('/media/listings/test-home').status_code,503)
+            self.assertEqual(client.get('/media/listings/no-photo').status_code,404)
+            self.assertEqual(client.get('/media/listings/missing').status_code,404)
 
 if __name__=='__main__': unittest.main()
