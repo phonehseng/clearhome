@@ -1,13 +1,11 @@
-"""Explain a lease in plain language and check a rental listing for scam red flags.
+"""Explain a lease in plain language for the step-by-step lease guide.
 
 Usage:
-    python backend/lease_checker.py lease path/to/lease.txt
-    python backend/lease_checker.py listing path/to/listing.txt
+    python backend/lease_checker.py path/to/lease.txt
 """
 import sys
 
 from matcher import ask_gemma
-from prompt_tools import document_kind, lease_excerpt
 
 MAX_CHARS = 15000
 
@@ -54,56 +52,7 @@ RENTER QUESTION END"""
     return ask_gemma(prompt)
 
 
-def check_listing(text):
-    prompt = f"""You are helping someone check whether a rental listing might be a scam. {SHARED_RULES}
-
-Common red flags: asking for money or a deposit before a viewing, wire transfer, gift cards or crypto payment, the landlord is "out of the country", rent far below the area's market, pressure to act fast, refusing to show the unit, requests for personal or bank details up front, vague or mismatched address, poor or copied-sounding writing, contact only by text or email.
-
-Write these sections:
-RISK LEVEL: Low, Medium or High, with one sentence of reasoning. Say this is an estimate, not a verdict.
-RED FLAGS FOUND: each one quoted or described from the listing. If none, say so.
-WHAT LOOKS NORMAL: anything reassuring.
-HOW TO CHECK: 3 to 5 concrete steps, such as viewing in person, searching the address, reverse image searching the photos, checking county property records, and never paying before signing a lease.
-
-LISTING TEXT START
-{text[:MAX_CHARS]}
-LISTING TEXT END"""
-    return ask_gemma(prompt)
-
-
-LEASE_SECTIONS = """SUMMARY: 3 to 5 sentences covering rent, deposit, lease length and who pays what.
-KEY DATES AND COSTS: rent due date, late fees, deposit, renewal or notice deadlines.
-CLAUSES TO WATCH: clauses that could cost the renter money or limit their rights, each with one sentence on why it matters.
-QUESTIONS TO ASK THE LANDLORD: 3 to 5 questions."""
-LISTING_SECTIONS = """RISK LEVEL: Low, Medium or High, with one sentence of reasoning. Say this is an estimate, not a verdict.
-RED FLAGS FOUND: each one quoted or described (money before a viewing, wire/gift cards/crypto, landlord abroad, rent far below market, pressure, no viewing, bank details up front).
-HOW TO CHECK: 3 to 5 concrete steps (view in person, search the address, reverse image search photos, never pay before signing)."""
-
-
-def review(text):
-    """Explain a lease, or check a listing or landlord messages for scam signs.
-
-    A keyword script decides which kind it is and trims long leases to the clauses that matter,
-    so Gemma gets one short set of instructions instead of both.
-    """
-    kind = document_kind(text)
-    body = lease_excerpt(text) if kind != "listing" else text[:4000]
-    sections = {"lease": LEASE_SECTIONS, "listing": LISTING_SECTIONS, "both": LEASE_SECTIONS + "\n" + LISTING_SECTIONS}[kind]
-    label = {"lease": "a lease", "listing": "a rental listing or landlord messages", "both": "a lease and a listing or messages"}[kind]
-    prompt = f"""You help renters understand {label}. {SHARED_RULES}
-
-Write these sections:
-{sections}
-WHERE TO GET HELP: a tenant legal aid group or calling 211.
-
-TEXT START
-{body}
-TEXT END"""
-    return ask_gemma(prompt)
-
-
 if __name__ == "__main__":
-    if len(sys.argv) != 3 or sys.argv[1] not in ("lease", "listing"):
+    if len(sys.argv) != 2:
         raise SystemExit(__doc__)
-    content = open(sys.argv[2]).read()
-    print(explain_lease(content) if sys.argv[1] == "lease" else check_listing(content))
+    print(explain_lease(open(sys.argv[1]).read()))
