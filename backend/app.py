@@ -10,7 +10,8 @@ from flask import Flask, jsonify, request, send_from_directory, send_file
 
 from advisor import ask, programs, warm_examples
 from extract_text import extract_text
-from lease_checker import check_listing, explain_lease
+from lease_checker import answer_lease_question, check_listing, explain_lease
+from lease_journey import journey_context
 from matcher import find_help
 from catalog import filter_catalog, group_listings, load_catalog, STATUSES
 from listing_photos import cached_photo, photo_mimetype, PhotoUnavailable
@@ -31,6 +32,38 @@ def about():
 @app.get("/app")
 def index():
     return send_from_directory(FRONTEND, "index.html")
+
+
+@app.get('/lease')
+def lease_guide():
+    return send_from_directory(FRONTEND, 'lease.html')
+
+
+@app.get('/api/listings/<resource_id>/lease')
+def listing_lease(resource_id):
+    context = journey_context(resource_id)
+    if context is None:
+        return jsonify(error='This housing listing could not be found. Choose a listing from the catalog.'), 404
+    response = jsonify(context)
+    response.headers['Cache-Control'] = 'no-store'
+    return response
+
+
+@app.get('/api/listings/<resource_id>/lease/document')
+def listing_public_lease(resource_id):
+    context = journey_context(resource_id, check_provider=True)
+    if context is None:
+        return jsonify(error='This housing listing could not be found.'), 404
+    response = jsonify(context['provider_document'])
+    response.headers['Cache-Control'] = 'no-store'
+    return response
+
+
+@app.after_request
+def private_document_responses(response):
+    if request.path.startswith('/api/lease') or request.path == '/api/extract':
+        response.headers['Cache-Control'] = 'no-store'
+    return response
 
 
 @app.get("/media/listings/<resource_id>")
@@ -184,6 +217,24 @@ def too_large(_):
 @app.post("/api/lease")
 def lease():
     return _text_endpoint(explain_lease)
+
+
+@app.post('/api/lease/question')
+def lease_question():
+    body = request.get_json(silent=True)
+    if not isinstance(body, dict):
+        return jsonify(error='Please include the lease section and a question.'), 400
+    text, question = body.get('text'), body.get('question')
+    if not isinstance(text, str) or not text.strip() or len(text) > 15000:
+        return jsonify(error='Include a lease section of up to 15,000 characters.'), 400
+    if not isinstance(question, str) or not question.strip() or len(question) > 1500:
+        return jsonify(error='Ask a question of up to 1,500 characters.'), 400
+    try:
+        response = jsonify(answer=answer_lease_question(redact(text)[0], redact(question)[0]))
+        response.headers['Cache-Control'] = 'no-store'
+        return response
+    except Exception:
+        return jsonify(error='We couldn’t answer that question. Try again or ask a tenant advocate.'), 500
 
 
 @app.post("/api/listing")

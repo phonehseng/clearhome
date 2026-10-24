@@ -77,3 +77,52 @@ Open http://localhost:8000.
 ## License
 
 [MIT](LICENSE)
+
+## Guided lease review
+
+Choose **Guide me through this lease** on a listing card. Communities with several floor
+plans ask you to choose a plan first. `/lease?listing=<catalog-id>` keeps that exact plan
+attached to a five-step guide: prepare, get the document, understand it, sign/submit with
+the provider, and prepare for move-in.
+
+- Users can upload/paste a lease or load a public provider reference. Public-document
+  lookup starts automatically in the background and never blocks the upload option.
+- `backend/lease_journey.py` checks up to two catalog-linked provider pages for same-host
+  lease PDFs. It ignores application/brochure links, rejects redirects and private
+  network addresses, limits download size and page count, and checks PDF text. This
+  is a limited public-page lookup, not access to an applicant's account or verification
+  that a document is the final lease for their unit. Every imported public document is
+  labeled a reference, even if it looks like a complete lease.
+- If no public PDF is found, or a provider blocks access/requires sign-in, the user can
+  request the full proposed lease and addenda from leasing and upload their copy.
+  Cross-host document services and JavaScript-only document links are not imported.
+- Up to 120,000 characters can be reviewed in parts of at most 12,000 characters. The UI
+  tracks exactly which parts have an explanation; it does not silently truncate a long
+  lease or claim a partial review is complete. Oversized uploads must be separated.
+  Follow-up questions use only the selected part, via `/api/lease/question`.
+- Analysis uses the existing AI service and configuration. Users review extracted text
+  before sending it for analysis; number-pattern redaction does not remove all personal
+  data. Explanations, questions, and extraction responses use `Cache-Control: no-store`.
+  Only public provider lookup results are briefly cached in server memory.
+- Document text and checklists remain in the current tab, with no account history or
+  browser storage. Changing the plan clears the previous document/review; changing text
+  invalidates explanations and final-document confirmations. Downloadable review notes
+  are not a contract, signature, or submission receipt.
+- Signing, identity checks, payments, and document delivery take place through the
+  provider's official process. Clear House never submits a form, adds a signature, sends
+  a document, or infers acceptance from opening a link. Submission checkboxes are the
+  user's own record. Confirm the final contract and save the provider's confirmation.
+
+The new guide is `frontend/lease.html`. Metadata and public lookup use
+`GET /api/listings/<id>/lease` and `GET /api/listings/<id>/lease/document`.
+
+```bash
+python -m unittest discover -s backend -p 'test_lease_journey.py' -v
+```
+
+The retrieval tests use synthetic HTML/PDF fixtures and mocked network responses. They
+do not establish that a provider currently publishes a lease or that the AI has reviewed
+an actual renter's lease. The provider pages reviewed while building this flow included
+[Virginia Gardens](https://www.virginiagardensapts.com/) and
+[Indigo at McLean Station](https://www.indigomcleanstation.com/); no public final lease was
+established from those pages.
