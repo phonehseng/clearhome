@@ -11,6 +11,7 @@ import argparse
 import json
 import re
 import threading
+import time
 import urllib.error
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
@@ -21,6 +22,8 @@ from matcher import ask_gemma
 from sources import _lock
 
 MIN_INTERVAL = timedelta(hours=12)
+# Free tier: about 16,000 input tokens a minute. Pace page checks so people asking questions aren't starved.
+GEMMA_GAP_SECONDS = 20
 MAX_PAGE_CHARS = 12000
 
 
@@ -97,7 +100,10 @@ def check(force=False):
         availability["auto_checked_at"] = now.isoformat()
         changed = True
         try:
-            verdict, evidence = _judge(row, _page_text(url))
+            text = _page_text(url)
+            if results:
+                time.sleep(GEMMA_GAP_SECONDS)
+            verdict, evidence = _judge(row, text)
         except urllib.error.HTTPError as e:
             if e.code in (404, 410):
                 verdict, evidence = "page_gone", f"Provider page returned HTTP {e.code}."
