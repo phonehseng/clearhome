@@ -20,6 +20,16 @@ from catalog import load_catalog
 CACHE_DIR = Path(__file__).resolve().parent.parent / '.cache' / 'listing-photos'
 # Exact image hosts reviewed in data/photo_sources.json and existing catalog sources.
 ALLOWED_HOSTS = {
+    'alateoldtown.com',
+    'cms.oakvilleva.com',
+    'cms.skymarkreston.com',
+    'gravelcdn.nyc3.digitaloceanspaces.com',
+    'lawsoncompanies.com',
+    'tgmmoorefield.com',
+    'www.arha.us',
+    'www.brexxblacksburg.com',
+    'www.carrprop.com',
+    'www.regentsparkapartments.com',
     'fitchirick.com',
     'www.qpmgmt.com',
     'ahcommunities.org',

@@ -15,48 +15,12 @@
       "review_note": "Only construction or rendering evidence was established; a real community photograph is still needed."
     },
     {
-      "community": "The Apartments at Regents Park",
-      "jurisdiction": "Fairfax County",
-      "record_ids": [
-        "nova-fairfax-county-the-apartments-at-regents-park"
-      ],
-      "official_source": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
       "community": "Exo",
       "jurisdiction": "Fairfax County",
       "record_ids": [
         "nova-fairfax-county-exo"
       ],
       "official_source": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Skymark",
-      "jurisdiction": "Fairfax County",
-      "record_ids": [
-        "nova-fairfax-county-skymark"
-      ],
-      "official_source": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "The Carlin",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-the-carlin"
-      ],
-      "official_source": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
       "provider_website": null,
       "status": "needs_verified_property_photo",
       "photo_reviewed_on": "2026-10-24",
@@ -99,126 +63,6 @@
       "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
     },
     {
-      "community": "vPoint",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-vpoint"
-      ],
-      "official_source": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Courthouse Crossings",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-courthouse-crossings"
-      ],
-      "official_source": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "provider_website": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "The Springs",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-the-springs"
-      ],
-      "official_source": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "provider_website": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Marbella",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-marbella"
-      ],
-      "official_source": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "provider_website": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Cameron Commons",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-cameron-commons"
-      ],
-      "official_source": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "provider_website": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Calvert Manor",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-calvert-manor"
-      ],
-      "official_source": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "provider_website": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Leckey Gardens",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-leckey-gardens"
-      ],
-      "official_source": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "provider_website": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "The Barkalow",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-the-barkalow"
-      ],
-      "official_source": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "provider_website": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Unity Homes at Ballston",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-unity-homes-at-ballston"
-      ],
-      "official_source": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "provider_website": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Arna Valley View",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-arna-valley-view"
-      ],
-      "official_source": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "provider_website": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
       "community": "Acclaim at Ashburn",
       "jurisdiction": "Loudoun County",
       "record_ids": [
@@ -243,18 +87,6 @@
       "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
     },
     {
-      "community": "TGM Moorefield",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "nova-loudoun-county-tgm-moorefield"
-      ],
-      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
       "community": "Purcellville East",
       "jurisdiction": "Loudoun County",
       "record_ids": [
@@ -265,18 +97,6 @@
       "status": "needs_verified_property_photo",
       "photo_reviewed_on": "2026-10-24",
       "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Levis Hill House",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "nova-loudoun-county-levis-hill-house"
-      ],
-      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Provider URL returned inconsistent content; no trustworthy property photograph was established."
     },
     {
       "community": "Madison House",
@@ -339,54 +159,6 @@
       "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
     },
     {
-      "community": "Alate Old Town",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "nova-alexandria-city-alate-old-town"
-      ],
-      "official_source": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "The Ives at Oakville",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "nova-alexandria-city-the-ives-at-oakville"
-      ],
-      "official_source": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Only construction or rendering evidence was established; a real community photograph is still needed."
-    },
-    {
-      "community": "The Raeburn",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "nova-alexandria-city-the-raeburn"
-      ],
-      "official_source": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Only construction or rendering evidence was established; a real community photograph is still needed."
-    },
-    {
-      "community": "The Landing at Mason’s Bridge",
-      "jurisdiction": "Prince William County",
-      "record_ids": [
-        "nova-prince-william-county-the-landing-at-mason-s-bridge"
-      ],
-      "official_source": "https://lawsoncompanies.com/apartments/the-landing-at-masons-bridge-apartments-woodbridge-va/",
-      "provider_website": "https://lawsoncompanies.com/apartments/the-landing-at-masons-bridge-apartments-woodbridge-va/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Official gallery exposes 150-pixel thumbnails; a usable larger original was not established."
-    },
-    {
       "community": "The Harbor at Quantico Creek",
       "jurisdiction": "Prince William County",
       "record_ids": [
@@ -409,44 +181,6 @@
       "status": "needs_verified_property_photo",
       "photo_reviewed_on": "2026-10-24",
       "review_note": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
-    },
-    {
-      "community": "Arlington View Terrace",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "arlington-view-terrace-two-bedroom"
-      ],
-      "official_source": "https://www.rentcafe.com/housing/va/arlington/arlington-view-terrace/default.aspx",
-      "provider_website": "https://www.avtapts.com/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Rejected a neighboring Terraces at Arlington View East image: its 1420 address differs from this record at 1429 S. Rolfe Street."
-    },
-    {
-      "community": "Margot",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "margot-junior-one-to-two-bedroom"
-      ],
-      "official_source": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
-      "provider_website": "https://www.margotoldtown.com",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Ramsey Homes",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "ramsey-homes-one-bedroom",
-        "ramsey-homes-two-bedroom",
-        "ramsey-homes-three-bedroom"
-      ],
-      "official_source": "https://www.arha.us/ramsey-homes",
-      "provider_website": "https://www.arha.us/ramsey-homes",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
     },
     {
       "community": "Community Lodgings Elbert Avenue Apartments",
@@ -492,18 +226,6 @@
       ],
       "official_source": "https://granitesl.appfolio.com/listings/detail/702e28e5-42fe-4f94-8bb7-6c3ef1af8add",
       "provider_website": "https://granitesl.appfolio.com/listings/detail/702e28e5-42fe-4f94-8bb7-6c3ef1af8add",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
-    },
-    {
-      "community": "Brexx at Blacksburg",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-brexx-talmadge-5x5-5-room-in-5-bedroom-apartment"
-      ],
-      "official_source": "https://www.brexxblacksburg.com/floor-plans/",
-      "provider_website": "https://www.brexxblacksburg.com/",
       "status": "needs_verified_property_photo",
       "photo_reviewed_on": "2026-10-24",
       "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
