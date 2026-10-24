@@ -293,8 +293,8 @@
     .walk-cards{display:grid;gap:12px}
     .walk-card{border:1px solid var(--line);border-radius:12px;background:var(--white);padding:14px;display:grid;grid-template-columns:88px 1fr;gap:12px;cursor:pointer;text-align:left}
     .walk-card[aria-current=true]{border-color:#2f55b5;box-shadow:inset 0 0 0 1px #2f55b5}
-    .walk-card img,.walk-card .walk-ph{width:88px;height:88px;border-radius:9px;object-fit:cover;background:var(--sage)}
-    .walk-card .walk-ph{display:grid;place-items:center;font-size:10px;color:var(--muted);text-align:center;padding:6px}
+    .walk-card>img{width:88px;height:88px;border-radius:9px;object-fit:cover;background:var(--sage)}
+    .walk-card.no-photo{grid-template-columns:1fr}
     .walk-card h4{font-size:15px;margin:0 0 2px}
     .walk-card .meta{font-size:12px;color:var(--muted)}
     .walk-card .rent{font-size:16px;font-weight:700;margin:4px 0}
@@ -313,6 +313,27 @@
     .walk-toggle button[aria-pressed=true]{background:#23408f;color:#fff;border-color:#23408f}
     @media(max-width:860px){.walk-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.walk-layout{grid-template-columns:1fr}.walk-toggle:not([hidden]){display:flex}
       .walk-layout[data-view=list] .walk-map-col{display:none}.walk-layout[data-view=map] .walk-cards{display:none}.walk-map{height:340px;position:static}}
+
+    /* Photo cards: the community photo fills the card; details sit on an iOS-style liquid-glass panel. */
+    .housing-card.has-photo{background:var(--card-photo) center/cover no-repeat,var(--sage);padding:170px 12px 12px;border-color:transparent;overflow:hidden;box-shadow:0 14px 34px #0b143326}
+    .housing-card.has-photo::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(180deg,#0b143300 35%,#0b143352 100%)}
+    .housing-card.has-photo .card-glass{position:relative;flex:1;display:flex;flex-direction:column;padding:18px;border-radius:18px;
+      background:linear-gradient(140deg,#ffffffc7 0%,#ffffff9e 55%,#ffffffb8 100%);
+      backdrop-filter:blur(24px) saturate(1.9);-webkit-backdrop-filter:blur(24px) saturate(1.9);
+      border:1px solid #ffffffcc;box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff59,inset 0 0 22px #ffffff40,0 8px 26px #0b14332e}
+    .housing-card.has-photo .card-glass::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+      background:radial-gradient(120% 60% at 15% 0%,#ffffff8c 0%,#ffffff00 45%)}
+    .housing-card.has-photo :is(.housing-status,h3,.housing-plan){margin-right:0}
+    .housing-card.has-photo .property-photo{width:auto;height:auto;top:12px;right:12px;padding:7px 11px;border-radius:999px;font-size:12px}
+    .housing-card.has-photo .property-photo>img{display:none}
+    .housing-card.has-photo .photo-expand-mark{position:static;display:inline;background:none;box-shadow:none;color:#14203f;font-size:14px}
+    @media(prefers-color-scheme:dark){
+      .housing-card.has-photo .card-glass{background:linear-gradient(140deg,#1b2333c4 0%,#1b2333a8 55%,#1b2333bd 100%);border-color:#ffffff2e;
+        box-shadow:inset 0 1px 0 #ffffff40,inset 0 -1px 0 #ffffff14,0 8px 26px #0008}
+      .housing-card.has-photo .card-glass::after{background:radial-gradient(120% 60% at 15% 0%,#ffffff1f 0%,#ffffff00 45%)}
+      .housing-card.has-photo .photo-expand-mark{color:#e9eef8}
+    }
+    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card.has-photo .card-glass{background:#fffffff0}}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -435,7 +456,9 @@
   function renderHousing() {
     const expanded=new Set([...listingsGrid.querySelectorAll('details[open]')].map(el=>el.dataset.key));
     listingsGrid.replaceChildren();
-    housingRows.slice(0,visibleHousingCount).forEach(row => {
+    const hasPhoto = row => (row.floor_plans?.length ? row.floor_plans : [row]).some(p => p.photo);
+    const ordered = [...housingRows].sort((a, b) => hasPhoto(b) - hasPhoto(a));
+    ordered.slice(0,visibleHousingCount).forEach(row => {
       const plans = row.floor_plans?.length ? row.floor_plans : [row];
       const availability = row.availability || {};
       const statuses = new Set(plans.map(p=>p.availability?.status));
@@ -445,11 +468,12 @@
       const photoUrl = '/media/listings/' + encodeURIComponent(photoRow.id);
       const safePhoto = photo && sourceLink(photo.url, 'Photo') && sourceLink(photo.source_url, 'Photo source');
       if (safePhoto) {
+        card.classList.add('has-photo'); card.style.setProperty('--card-photo', `url("${photoUrl}")`);
         const button = housingElement('button','property-photo'); button.type='button'; button.setAttribute('aria-label',`Enlarge photo of ${row.community || row.name}`); button.setAttribute('aria-haspopup','dialog');
         const image=document.createElement('img'); image.src=photoUrl;image.alt=photo.alt || `Community photo of ${row.community}`;image.loading='lazy';image.referrerPolicy='no-referrer';
         button.append(image,housingElement('span','photo-expand-mark','⤢'));
         const preview=housingElement('span','photo-hover');preview.setAttribute('aria-hidden','true');const large=image.cloneNode();large.alt='';large.loading='lazy';preview.append(large,housingElement('small','',photo.caption || 'Community photo; actual unit may differ.'));button.append(preview);
-        image.addEventListener('error',()=>{const fallback=housingElement('span','photo-unavailable','Photo unavailable');const source=sourceLink(photo.source_url,'See provider photos ↗');if(source)fallback.append(document.createElement('br'),source);button.replaceWith(fallback);});
+        image.addEventListener('error',()=>{button.remove();card.classList.remove('has-photo');card.style.removeProperty('--card-photo');});  // a photo that fails to load just disappears
         button.addEventListener('click',()=>{
           document.getElementById('property-photo-title').textContent=row.community || row.name;
           const large=document.getElementById('property-photo-large');large.src=photoUrl;large.alt=photo.alt || row.community;large.referrerPolicy='no-referrer';
@@ -457,7 +481,7 @@
           const source=document.getElementById('property-photo-source');source.replaceChildren();const link=sourceLink(photo.source_url,'Photo from the provider’s listing ↗');if(link)source.append(link);
           photoDialog.showModal();document.body.style.overflow='hidden';
         });card.append(button);
-      } else card.append(housingElement('span','photo-unavailable',row.type==='housing_authority'?'Housing program':'Photo not provided'));
+      }  // no photo: show nothing rather than a placeholder
       const status = housingElement('span','housing-status',statuses.size>1 ? 'Availability varies by plan' : statusLabels[availability.status] || 'Contact for availability'); status.dataset.status = statuses.size>1 ? 'mixed' : availability.status || ''; card.append(status);
       card.append(housingElement('h3','',row.community || row.name));
       const categories=new Set(plans.map(p=>p.type));
@@ -511,7 +535,13 @@
       if (row.phone && /^\+?[0-9 ()-]+$/.test(row.phone)) { const phone = housingElement('a','','Call leasing office'); phone.href='tel:'+row.phone.replace(/[^0-9+]/g,''); actions.append(phone); }
       const reviewDates=plans.map(p=>p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
       const reviewed=reviewDates[0]===reviewDates[reviewDates.length-1] ? reviewedDate(reviewDates[0]) : `${reviewedDate(reviewDates[0])} – ${reviewedDate(reviewDates[reviewDates.length-1])}`;
-      card.append(actions,housingElement('p','housing-reviewed',`Source reviewed ${reviewed}`)); listingsGrid.append(card);
+      card.append(actions,housingElement('p','housing-reviewed',`Source reviewed ${reviewed}`));
+      if (card.classList.contains('has-photo')) {  // details sit on a liquid-glass panel over the photo
+        const glass = housingElement('div','card-glass');
+        [...card.children].filter(n => !n.classList.contains('property-photo')).forEach(n => glass.append(n));
+        card.append(glass);
+      }
+      listingsGrid.append(card);
     });
     listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
     moreListings.hidden = visibleHousingCount >= housingRows.length;
@@ -883,7 +913,7 @@
       const h = result.housing, a = result.nearby_amenity;
       const c = el('article', null, { class: 'walk-card', tabindex: '0', 'data-id': h.id, 'aria-current': 'false' });
       if (h.has_photo) c.append(el('img', null, { src: `/media/listings/${encodeURIComponent(h.id)}`, alt: `Provider photo of ${h.name}`, loading: 'lazy' }));
-      else c.append(el('div', 'Photo not provided', { class: 'walk-ph', role: 'img', 'aria-label': 'No photo provided' }));
+      else c.classList.add('no-photo');
       const body = el('div');
       body.append(el('h4', h.name));
       body.append(el('div', [h.address, h.jurisdiction].filter(Boolean).join(' · '), { class: 'meta' }));
