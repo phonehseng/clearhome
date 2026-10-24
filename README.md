@@ -4,11 +4,17 @@ Group hackathon effort by Pierce, Umair, Phone, and Ryan for **GDG Build with AI
 
 ## Problem
 
-_Who is affected, and what housing problem are we solving? (TODO)_
+Finding safe, affordable housing is hard for low-income people, especially students and families in crisis. Listings are scattered, fake and scam listings are common, leases are full of confusing legal language, and emergency help is hard to find when you need it fast.
 
 ## Solution
 
-_What the project does and how AI is used. (TODO)_
+An AI housing assistant, powered by Gemma 4, that helps people:
+
+- **Find affordable housing.** Matches a person's budget, location and accessibility needs to manually verified affordable and low-income housing listings.
+- **Find emergency help.** Points people to verified shelters and emergency housing resources, with urgent cases shown first.
+- **Check a lease or listing.** Explains a lease in plain language, flags risky clauses, and warns about signs of a scam or fake listing.
+
+To avoid made-up information, the assistant only recommends places from our hand-verified resource list (`data/resources.json`). The lease and scam checks are informational and are not legal advice.
 
 ## Tech used
 
