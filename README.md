@@ -29,7 +29,7 @@ _Setup and run instructions, API dependencies, environment variables (copy `.env
 - **Privacy:** _what data we collect and why (TODO)_
 - **Accessibility:** _keyboard navigation, contrast, screen-reader support (TODO)_
 
-## Team workflow
+## Team workflow (see [CONTRIBUTING.md](CONTRIBUTING.md) for the full git guide)
 
 - Pull before you start: `git pull`
 - Work on a branch: `git checkout -b your-feature`
