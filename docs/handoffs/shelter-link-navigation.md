@@ -1,4 +1,4 @@
-# Claude handoff: shelter-specific links and actionable navigation
+# Handoff: shelter-specific links and actionable navigation
 
 Investigate and implement the user's reported shelter-link problem. Cards for Katherine K. Hanley Family Shelter, Fair Ridge Shelter, FACETS Next Steps Family Program, and Bailey's Shelter and Supportive Housing show a generic **Website** action. Users land on an organization homepage or directory without knowing where to find their specific program or how to obtain help.
 
@@ -29,3 +29,16 @@ Investigate and implement the user's reported shelter-link problem. Cards for Ka
 - Run relevant project checks and focused coverage for link fallback/label behavior. Report corrected links per program, remaining general-only destinations, source conflicts, and validation.
 
 This is a researched handoff, not an implemented fix or verification of current bed availability. Review the latest repository before editing because another agent may be changing these components.
+
+
+---
+
+**Implemented (2026-10-24).** All 30 Northern Virginia shelter records were re-audited against official pages (every URL opened; no guessed paths or anchors — none of these sites has section anchors).
+
+- **Links are labeled by destination:** "Program details" / "How to get shelter" (program-specific page), "Official county listing" (with "On the county page, open the “…” section" when only a directory section exists), and "Provider website". Cards and the resources page no longer say a generic "Website".
+- **22 records** now have a program-specific page (e.g. Hanley, Fair Ridge, Eleanor Kennedy, Artemis House → shelterhouse.org/shelters; Next Steps → FACETS Homelessness & Shelter; Embry Rucker → cornerstonesva.org/ercs; Arlington → pfva.org "I need shelter"; Alexandria → Carpenter's Shelter pages; LAWS, NVFS, Beverly Warren, PWC hypothermia). **8 remain directory-only** (Bailey's, Rising Hope, Reston drop-in, Sullivan House (site blocks automated checks), Loudoun hypothermia, Hilda Barg, Ferlazzo, StreetLight).
+- **In-app access steps** on each card: who it's for, a call button labeled as the shelter's own line or an intake/referral line, "How to get in" (steps, intake hours, what to do after hours or if full), and directions only to a verified public intake entrance. Next Steps' address is labeled "Office address (not a walk-in shelter)".
+- **Operators updated:** Bailey's → FACETS (since Nov 15, 2025); Eleanor Kennedy → Shelter House (resolves the old phone conflict: 703-799-0200); Fairfax eastern hypothermia → FACETS; Loudoun center → Shelter House. Remaining source disagreements are stored per record in `source_conflicts`.
+- Gemma receives the same intake fields and operator, so chat answers match the cards. Capacity is never shown as available; cards say "Call to confirm a bed tonight".
+
+Checked in the browser: Hanley, Fair Ridge, Next Steps and Bailey's cards show the corrected labels, links, call roles and steps.

@@ -1683,7 +1683,30 @@
     "area": "Fairfax County",
     "lat": 38.841465,
     "lon": -77.394333,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://www.shelterhouse.org/shelters",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/emergency-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Katherine K. Hanley Family Shelter (Fairfax)” section."
+      },
+      {
+        "url": "https://www.shelterhouse.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Mon-Fri 8 a.m.-4:30 p.m., call Fairfax County Coordinated Services Planning at 703-222-0880 (TTY 711); a Human Services Specialist assesses eligibility and makes the referral. After business hours, the county says to go directly to the nearest family shelter.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "Mon-Fri 8 a.m.-4:30 p.m. (Coordinated Services Planning)",
+    "after_hours": "After hours, go directly to the nearest family shelter (county Emergency Shelters page); shelter phone 571-522-6800, TTY 703-988-0256.",
+    "address_kind": "public intake entrance",
+    "operator": "Shelter House, Inc.",
+    "source_conflicts": "Capacity: county page says up to 20 families; Shelter House /shelters says 62 beds, capacity for 24 families.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "fair-ridge-shelter",
@@ -1724,7 +1747,30 @@
     "area": "Fairfax County",
     "lat": 38.871381,
     "lon": -77.368508,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://www.shelterhouse.org/shelters",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/emergency-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Fair Ridge Shelter (Fairfax)” section."
+      },
+      {
+        "url": "https://www.shelterhouse.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Mon-Fri 8 a.m.-4:30 p.m., call Fairfax County Coordinated Services Planning at 703-222-0880 (TTY 711); a Human Services Specialist assesses eligibility and makes the referral. After business hours, go directly to the nearest family shelter.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "Mon-Fri 8 a.m.-4:30 p.m. (Coordinated Services Planning)",
+    "after_hours": "After hours, go directly to the nearest family shelter (county Emergency Shelters page); shelter phone 703-536-2155.",
+    "address_kind": "public intake entrance",
+    "operator": "Shelter House, Inc.",
+    "source_conflicts": "ZIP: county lists 3997 Fair Ridge Drive, Fairfax 22033; Shelter House Programs & Services lists 'VA 22030'. Capacity: county says up to 85 families; Shelter House says 300+ beds, opened April 1, 2025. Phone 703-536-2155 is also listed for 'Patrick Henry Family Shelter, 3080 Patrick Henry Drive, Falls Church' on the county Hypothermia page and on Shelter House's Contact page (which also wrongly gives Loudoun Homeless Services Center that same address/phone); Fair Ridge appears to have replaced Patrick Henry.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "facets-next-steps-family-program",
@@ -1761,7 +1807,30 @@
     "area": "Fairfax County",
     "lat": 38.72052,
     "lon": -77.125786,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://facetscares.org/our-services/emergency-response-and-basic-needs/homelessness-housing-shelter/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/emergency-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Next Steps Family Program (Alexandria)” section."
+      },
+      {
+        "url": "https://facetscares.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Call the Next Steps main office at 703-360-1727 (county page), or Fairfax County Coordinated Services Planning at 703-222-0880, Mon-Fri 8 a.m.-4:30 p.m. FACETS says people should first contact CSP, which refers them to FACETS. Shelter is in scattered apartment units; there is no walk-in site.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "Mon-Fri 8 a.m.-4:30 p.m. (Coordinated Services Planning)",
+    "after_hours": "After business hours, contact or visit any of the county family shelters (Hanley, Fair Ridge).",
+    "address_kind": "office, not a walk-in shelter",
+    "operator": "FACETS",
+    "source_conflicts": "Name: county says 'Next Steps Family Program'; FACETS page says 'Next Steps Family Shelter'. Size: county says 53-bed scattered-site shelter; FACETS says 17 apartment units. FACETS page has no per-program heading; Next Steps is described under the 'Families' subsection.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "baileys-shelter-and-supportive-housing",
@@ -1802,7 +1871,25 @@
     "area": "Fairfax County",
     "lat": 38.848533,
     "lon": -77.128238,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/emergency-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Bailey's Shelter and Supportive Housing (Falls Church)” section."
+      },
+      {
+        "url": "https://facetscares.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Adults without children call the shelter directly at 703-820-7621.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "24/7 (county Hypothermia page and Oct 2026 flyer: 'Access Available: 24/7')",
+    "after_hours": "During the Hypothermia Prevention Program (Dec 1, 2026-Mar 31, 2027), also call 703-820-7621 for rotating faith-community site locations; transportation available.",
+    "operator": "FACETS (since Nov 15, 2025; previously New Hope Housing)",
+    "source_conflicts": "Operator: county Emergency Shelters page, Oct 2026 Hypothermia flyer and Nov 18, 2025 county announcement say FACETS; the county Hypothermia web page still says 'Operated by: Fairfax County' (interim county operation Oct-Nov 2025); New Hope Housing's site still shows a Bailey's page (last modified 2024-11-14) - stale, rejected. FACETS' Homelessness & Shelter page does not name Bailey's (it mentions single-adult shelter in Region 4); FACETS homepage only mentions Bailey's in passing, so no current program page exists.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "eleanor-u-kennedy-shelter",
@@ -1840,7 +1927,29 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "links": [
+      {
+        "url": "https://www.shelterhouse.org/shelters",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/emergency-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Eleanor U. Kennedy Shelter (Richmond Highway – Fort Belvoir)” section."
+      },
+      {
+        "url": "https://www.shelterhouse.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Adults without children call the shelter directly at 703-799-0200.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "24 Hours (Shelter House Programs & Services); 'Access Available: 24/7' (county flyer)",
+    "after_hours": "Shelter is open 24/7; during Hypothermia Prevention Program it is the South Fairfax 24/7 site.",
+    "operator": "Shelter House, Inc. (since November 2025; previously New Hope Housing)",
+    "source_conflicts": "Operator: county Emergency Shelters page, Oct 2026 flyer, Shelter House and Nov 2025 county announcement say Shelter House; county Hypothermia web page still says 'Operated by: Fairfax County' and gives the city as 'Alexandria' (flyer and Emergency Shelters page say Fort Belvoir 22060); New Hope Housing still hosts a stale EUK page (modified 2025-04-12), rejected. Earlier record conflict resolved: Shelter House now lists (703) 799-0200 for EUK; (703) 768-3400 is Mondloch House. Population: 38 men and 12 women (both sources).",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "embry-rucker-community-shelter",
@@ -1877,7 +1986,29 @@
     "area": "Fairfax County",
     "lat": 38.962062,
     "lon": -77.359868,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://www.cornerstonesva.org/ercs",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/emergency-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Embry Rucker Community Shelter (Reston)” section."
+      },
+      {
+        "url": "https://www.cornerstonesva.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Adults without children call ERCS directly at 703-437-1975. As of April 1, 2025 ERCS serves adult-only households; families must call Coordinated Services Planning at 703-222-0880.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "Open 24 hours a day, 365 days a year",
+    "after_hours": "Shelter is open 24/7.",
+    "operator": "Cornerstones",
+    "source_conflicts": "Population: Cornerstones says adult-only households since April 1, 2025, but the county Hypothermia page still lists Embry Rucker under 'FOR ADULTS WITH CHILDREN'. Beds: county 76, Cornerstones 75 (incl. 6 medical respite).",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "fairfax-hpp-rotating-sites-central-western",
@@ -1911,7 +2042,29 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "links": [
+      {
+        "url": "https://facetscares.org/our-services/emergency-response-and-basic-needs/homelessness-housing-shelter/hypothermia/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/hypothermia-prevention-program",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Fairfax/Centreville (Central/Western Fairfax)” section."
+      },
+      {
+        "url": "https://facetscares.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Call 703-352-5090 ext. 1302 (ext. 1303 for Spanish) for an automated recording of the current hosting location(s).",
+    "phone_role": "direct shelter line",
+    "intake_hours": "5 p.m.-7 a.m. nightly during the season",
+    "after_hours": "FACETS Get Help page: individuals needing winter shelter call the Hypothermia Prevention Shelter line 703-352-5090 ext. 1302.",
+    "operator": "FACETS",
+    "source_conflicts": "Season: county page heading says '2025-26' but dates 'December 1, 2026, until March 31, 2027' (flyer, Oct 2026, says Dec 1, 2026-Mar 31, 2027); FACETS pages say the Sunday after Thanksgiving through April 1. The county's link www.facetscares.org/programs/hypothermia-prevention-and-response-program now redirects to a generic FACETS Emergency Response page.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "fairfax-hpp-rotating-sites-eastern",
@@ -1941,7 +2094,29 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "links": [
+      {
+        "url": "https://facetscares.org/our-services/emergency-response-and-basic-needs/homelessness-housing-shelter/hypothermia/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/hypothermia-prevention-program",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Falls Church/Annandale/Seven Corners (Central/Eastern Fairfax)” section."
+      },
+      {
+        "url": "https://facetscares.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Call Bailey's Shelter at 703-820-7621 for current locations; transportation options are available.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "5:30 p.m.-7 a.m. nightly during the season",
+    "after_hours": "Bailey's Shelter itself is open 24/7.",
+    "operator": "FACETS",
+    "source_conflicts": "Operator: Oct 2026 county flyer says 'Operated by: FACETS' and the Nov 2025 county announcement says FACETS runs Hypothermia Prevention in Region 2; county web page lists 'Program Contact: Fairfax County'. Region label differs: web page 'Falls Church/Annandale/Seven Corners', flyer 'Falls Church/Alexandria'. Season label/date mismatch on county page ('2025-26' vs Dec 1, 2026-Mar 31, 2027).",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "rising-hope-hypothermia-shelter",
@@ -1974,7 +2149,24 @@
     "area": "Fairfax County",
     "lat": 38.734129,
     "lon": -77.101328,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/hypothermia-prevention-program",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Richmond Highway/Alexandria (South Fairfax)” section."
+      },
+      {
+        "url": "https://www.risinghopeumc.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "County lists the site with hours only; no phone or intake steps are published. Eleanor U. Kennedy Shelter (703-799-0200, 24/7) is in the same county section.",
+    "intake_hours": "6:30 p.m.-7 a.m. during the season",
+    "after_hours": "Eleanor Kennedy Shelter, 9155 Richmond Highway, 703-799-0200, access 24/7 (same county section).",
+    "operator": "Rising Hope (Rising Hope United Methodist Mission Church)",
+    "source_conflicts": "Rising Hope's own '26-27 Hypothermia Season' page (https://www.risinghopeumc.org/vic-hop) is a volunteer sign-up page, not guest information, so it was not used; it says the season is December 1-April 1 and lists (703) 360-1976, vs county Dec 1, 2026-Mar 31, 2027. Flyer misspells contact emails (kwild@, risinghopumc.org).",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "reston-drop-in-hypothermia-entrance",
@@ -2007,7 +2199,26 @@
     "area": "Fairfax County",
     "lat": 38.963545,
     "lon": -77.359397,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://www.fairfaxcounty.gov/homeless/hypothermia-prevention-program",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Reston/Herndon (North Fairfax)” section."
+      },
+      {
+        "url": "https://www.cornerstonesva.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Go to the North County Human Services Center Reston Drop-In Entrance (flyer: Room #200) during hours, or call 703-326-6565; if on-site staff can't be reached, contact Embry Rucker Shelter at 703-437-1975.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "5 p.m.-7 a.m. during the season",
+    "after_hours": "Embry Rucker Community Shelter, 703-437-1975, open 24/7.",
+    "address_kind": "public intake entrance",
+    "operator": "Cornerstones",
+    "source_conflicts": "Cornerstones' ERCS page mentions the North County Hypothermia Prevention Program only in a paragraph (no section), and its 'Hypothermia Prevention Program' link returns 404. Flyer omits the 703-326-6565 phone and adds 'Room #200'.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "fairfax-dsvs-24-hour-hotline",
@@ -2079,7 +2290,31 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "links": [
+      {
+        "url": "https://www.shelterhouse.org/shelters",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.fallschurchva.gov/697/Domestic-Violence-Services",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Fairfax County Women's Shelter, Artemis House” section."
+      },
+      {
+        "url": "https://www.shelterhouse.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "If in immediate danger call 911. Call the Shelter House 24/7 Domestic Violence Hotline at (703) 435-4940 to request shelter. Locations are undisclosed.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "24/7 hotline",
+    "after_hours": "24/7 hotline (703) 435-4940; TTY 703-435-1235 (Falls Church City page). Fairfax County's 24-hour Domestic & Sexual Violence Hotline 703-360-7273 is also listed.",
+    "address_kind": "confidential",
+    "confidential_location": true,
+    "operator": "Shelter House, Inc.",
+    "source_conflicts": "Fairfax County's Emergency Shelters page directs DV survivors to the county hotline 703-360-7273 rather than Artemis House directly. Shelter House describes two undisclosed 24-hour locations (83 beds); only mailing address P.O. Box 139, Herndon, VA 20170 is published.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "second-story-teens-in-crisis",
@@ -2113,7 +2348,23 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "links": [
+      {
+        "url": "https://second-story.org/teens/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://second-story.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Call 1-800-SAY-TEEN (1-800-729-8336) or text to 855-11 and complete a phone screening for eligibility and availability. Ages 13-17; parents and service providers may also call. Parent/guardian approval needed to stay beyond 24 hours.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "Not published",
+    "operator": "Second Story",
+    "source_conflicts": "Text keyword: the 'Program Highlights' section says text 'NEEDHELP' to 855-11; the rest of the page says 'TeenHelp'/'TEENHELP'. Street address not published (only 'Located in Tysons'). www.second-story.org redirects to second-story.org.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "city-of-fairfax-homeless-services-entry",
@@ -2225,7 +2476,29 @@
     "area": "Falls Church City",
     "lat": 38.892274,
     "lon": -77.191052,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://fcshelter.org/shelter-services/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.fallschurchva.gov/686/Shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Hypothermia Shelter in the City” section."
+      },
+      {
+        "url": "https://fcshelter.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Referral only. Call 703-854-1400 (TTY 711) to request a referral or ask about availability. Guests may reserve a bed for the following night.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "Open daily 6 p.m.-8 a.m., November 15-March 31",
+    "after_hours": "Not published",
+    "operator": "Friends of Falls Church Homeless Shelter",
+    "source_conflicts": "Street name: city page '217 Gordons Rd'; provider '217 Gordon Rd./Road'. Provider homepage still shows the 2025-26 season (Nov 15, 2025-Mar 31, 2026). County Hypothermia page lists it as 'Friends of Falls Church Winter Shelter' with operator left blank. City page's regional shelter list links point to a December 2024 NVRC PDF.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "falls-church-housing-human-services",
@@ -2352,7 +2625,30 @@
     "area": "Arlington County",
     "lat": 38.889598,
     "lon": -77.082923,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://pfva.org/get-help/i-need-shelter/",
+        "label": "How to get shelter"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Departments/DHS/Public-Assistance/Homelessness/Shelters-and-Resources",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Shelters” section."
+      },
+      {
+        "url": "https://pfva.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "First contact Arlington DHS Community Assistance Bureau at 703-228-1300 (business hours); access to all shelters except the DV Safehouse is through the Centralized Access System. Nov 1-Mar 31 you can show up at the HSC without calling ahead and complete DHS intake the next business day.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "Business hours (CAB 703-228-1300); HSC day program Mon-Fri 8 a.m.-4 p.m.",
+    "after_hours": "After 5 p.m. and weekends call 703-228-1010 (24/7).",
+    "address_kind": "public intake entrance",
+    "operator": "PathForward (Path Forward)",
+    "source_conflicts": "HSC phone: PathForward lists both 703.228.7803 (Contact) and 703.228.7802 (24/7 line). Beds: county IWP and PathForward say 50 year-round + 5 medical respite (+25 hypothermia beds in winter).",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "arlington-hypothermia-shelter",
@@ -2389,7 +2685,30 @@
     "area": "Arlington County",
     "lat": 38.889598,
     "lon": -77.082923,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://pfva.org/programs/homeless-services-locations/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Departments/DHS/Public-Assistance/Homelessness/Shelters-and-Resources/Inclement-Weather-Plan",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Hypothermia Shelter” section."
+      },
+      {
+        "url": "https://pfva.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "During the season you do not have to call ahead: show up at the Homeless Services Center, 2020-A 14th St N (Courthouse), and coordinate intake with DHS the next business day.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "Season November 1-March 31",
+    "after_hours": "Call 703-228-1010 anytime 24/7.",
+    "address_kind": "public intake entrance",
+    "operator": "PathForward (Path Forward)",
+    "source_conflicts": "County IWP page names no operator ('Department of Human Services and community partners'); PathForward says it operates Arlington County's Hypothermia Prevention Program. County page gives no season year. ZIP 22201 from PathForward.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "arlington-residential-program-center",
@@ -2430,7 +2749,29 @@
     "area": "Arlington County",
     "lat": 38.866535,
     "lon": -77.071329,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://pfva.org/get-help/i-need-shelter/",
+        "label": "How to get shelter"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Departments/DHS/Public-Assistance/Homelessness/Shelters-and-Resources",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Shelters” section."
+      },
+      {
+        "url": "https://pfva.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Contact Arlington DHS Community Assistance Bureau at 703-228-1300 for referral through the Centralized Access System.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "Business hours (CAB 703-228-1300); RPC day program Mon-Fri 8 a.m.-4 p.m.",
+    "after_hours": "After 5 p.m. and weekends call 703-228-1010.",
+    "operator": "PathForward (Path Forward)",
+    "source_conflicts": "Capacity: PathForward says 42 housing-focused beds; county IWP page mentions 15 additional RPC beds for extremely severe weather overflow.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "sullivan-house-family-shelter",
@@ -2460,7 +2801,25 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Arlington County"
+    "area": "Arlington County",
+    "links": [
+      {
+        "url": "https://www.arlingtonva.us/Government/Departments/DHS/Public-Assistance/Homelessness/Shelters-and-Resources",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Shelters” section."
+      },
+      {
+        "url": "https://bridges2.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Contact Arlington DHS Community Assistance Bureau at 703-228-1300 for referral through the Centralized Access System.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "Business hours (CAB 703-228-1300)",
+    "after_hours": "After hours call 703-228-1010.",
+    "operator": "Bridges to Independence",
+    "source_conflicts": "Provider site bridges2.org returns HTTP 403 (bot block), so no program page could be verified. PathForward's shelter page lists Bridges to Independence at 703-525-7177. Address seen only in third-party listings (not used).",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "doorways-dv-hotline-safehouse",
@@ -2569,7 +2928,28 @@
     "area": "Alexandria City",
     "lat": 38.802932,
     "lon": -77.06862,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://carpentersshelter.org/residential-emergency-shelters/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.alexandriava.gov/homeless-services/homeless-services",
+        "label": "Official county listing",
+        "note": "On the county page, open the “SHELTERS & Resources” section."
+      },
+      {
+        "url": "https://carpentersshelter.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Screening through the Homeless Services Assessment Center: call 703.746.5700, text 703.346.5599, or walk in at 4850 Mark Center Drive; once screened you are wait-listed and referred when a bed opens. Carpenter's Shelter: residents must be referred by HSAC and complete an intake assessment.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "HSAC Mon-Fri 8 a.m.-5 p.m. (except holidays)",
+    "after_hours": "After hours, people needing an emergency overnight stay should contact the Alexandria Community Shelter (703.746.3660) or Carpenter's Shelter.",
+    "operator": "Carpenter's Shelter (under contract with the City of Alexandria since Dec 13, 2023)",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "carpenters-shelter",
@@ -2606,7 +2986,29 @@
     "area": "Alexandria City",
     "lat": 38.815469,
     "lon": -77.049336,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://carpentersshelter.org/residential-emergency-shelters/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.alexandriava.gov/homeless-services/homeless-services",
+        "label": "Official county listing",
+        "note": "On the county page, open the “SHELTERS & Resources” section."
+      },
+      {
+        "url": "https://carpentersshelter.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Referral from the Homeless Services Assessment Center (703.746.5700, text 703.346.5599, or walk in at 4850 Mark Center Drive) and an intake assessment.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "HSAC Mon-Fri 8 a.m.-5 p.m. (except holidays)",
+    "after_hours": "After hours, contact the Alexandria Community Shelter or Carpenter's Shelter (city page). The Hoffman Center is open 24/7.",
+    "operator": "Carpenter's Shelter",
+    "source_conflicts": "Population: Carpenter's says the Hoffman Center (930 N. Henry St.) became family-only in March 2023. Beds: city page says 60-bed facility; Carpenter's says 64 beds.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "alexandria-winter-shelter",
@@ -2647,7 +3049,30 @@
     "area": "Alexandria City",
     "lat": 38.802932,
     "lon": -77.06862,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://carpentersshelter.org/winter-shelter/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.alexandriava.gov/homeless-services/homeless-services",
+        "label": "Official county listing",
+        "note": "On the county page, open the “What You Can Do if You Encounter Someone Experiencing Homelessness” section."
+      },
+      {
+        "url": "https://carpentersshelter.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Go to the Winter Shelter at the Alexandria Community Shelter, 2355-B Mill Road (left side of front entrance, next to the fence), 7 p.m.-7 a.m.; open nightly regardless of weather Nov 1-Apr 15. To connect with services call HSAC 703.746.5700 or text 703.346.5599.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "7 p.m.-7 a.m. nightly, November 1-April 15",
+    "after_hours": "Shelter is overnight; HSAC weekdays for services.",
+    "address_kind": "public intake entrance",
+    "operator": "Carpenter's Shelter",
+    "source_conflicts": "Phone: Carpenter's Winter Shelter page lists (703)-746-6551; Carpenter's Residential Emergency Shelters page and the city's Nov 13, 2025 news post list 571.652.9984; the city Homeless Services page lists Carpenter's main line 703.548.7500. The city's 'City's Winter Shelter Program' link returns 404. The city news post is for the 2025-26 season; no 2026-27 announcement found.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "davids-place-day-center",
@@ -2781,7 +3206,29 @@
     "area": "Loudoun County",
     "lat": 39.076244,
     "lon": -77.549929,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://www.shelterhouse.org/shelters",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.loudoun.gov/1796/Homeless-Services",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Emergency Homeless Shelters” section."
+      },
+      {
+        "url": "https://www.shelterhouse.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Call Loudoun Coordinated Entry at 703-777-0420 to complete a referral (Mon-Fri 8:30 a.m.-5 p.m.). The center is at 571-258-3033.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "Coordinated Entry Mon-Fri 8:30 a.m.-5:00 p.m.",
+    "after_hours": "Not published (Shelter House describes LHSC as 24-hour emergency shelter).",
+    "operator": "Shelter House, Inc. (operating LHSC since February 2022)",
+    "source_conflicts": "Loudoun's page does not name the operator; Shelter House says it assumed operation in February 2022. Shelter House's Contact page wrongly lists LHSC at 3080 Patrick Henry Drive, Falls Church / (703) 536-2155; its Programs & Services page gives 19520 Meadowview Court / (571) 258-3033, matching the county.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "loudoun-homeless-services-center-drop-in",
@@ -2877,7 +3324,23 @@
     "area": "Loudoun County",
     "lat": 39.084571,
     "lon": -77.556737,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://www.loudoun.gov/1796/Homeless-Services",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Hypothermia Prevention Shelter” section."
+      },
+      {
+        "url": "https://www.shelterhouse.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Single adults (18+): address 101 Blue Seal Dr SE, Leesburg; phone 571-258-3033. County page does not say whether walk-ins are accepted. For year-round shelter call Coordinated Entry 703-777-0420.",
+    "intake_hours": "Open November 15 through March 31, daily 7:00 p.m.-7:00 a.m.",
+    "operator": "Loudoun County (per county page)",
+    "source_conflicts": "Operator: county says 'Loudoun County operates a hypothermia prevention shelter'; Shelter House says LHSC (which it operates) 'provides Hypothermia shelter for adults' in winter. The phone 571-258-3033 is the LHSC number. No provider program page found.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "laws-24-hour-hotline",
@@ -2945,7 +3408,31 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Loudoun County"
+    "area": "Loudoun County",
+    "links": [
+      {
+        "url": "https://lcsj.org/laws-emergency-shelter/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.loudoun.gov/1796/Homeless-Services",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Emergency Homeless Shelters” section."
+      },
+      {
+        "url": "https://lcsj.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Call the LAWS 24-Hour Crisis Hotline at 703-777-6552; this is the first step to accessing the shelter. The shelter is in a confidential location.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "24-hour hotline",
+    "after_hours": "24-hour hotline 703-777-6552.",
+    "address_kind": "confidential",
+    "confidential_location": true,
+    "operator": "LAWS (Loudoun Citizens for Social Justice)",
+    "source_conflicts": "County page lists LAWS at 105 E Market Street, Leesburg 20176 (office, not the shelter). LAWS page also shows a past event (Oct 17, 2025) but shelter content is current.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "mobile-hope-loudoun-youth",
@@ -3050,7 +3537,21 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William County"
+    "area": "Prince William County",
+    "links": [
+      {
+        "url": "https://www.pwcva.gov/department/social-services/homeless-and-winter-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “HILDA BARG Homeless Prevention Center” section."
+      }
+    ],
+    "intake_steps": "To be referred, contact the Prince William Coordinated Entry System (CES) Hotline at (703) 792-3366 (TTY 711). For more information call the center at (703) 792-8810.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "CES Mon-Fri 8:30 a.m.-5:30 p.m.; closed weekends and holidays",
+    "after_hours": "Not published by the county (ACTS says after-hours CES callers can leave a voicemail and are called back within 24 hours or the next business day).",
+    "operator": "Prince William County Department of Social Services",
+    "source_conflicts": "Operator history: 2015 news (third-party, InsideNova) said NVFS took over management; current county pages say operated by the Department of Social Services. County page describes it as a 30-bed 'year-round shelter for families'. No dedicated county program page found.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "pwc-ferlazzo-emergency-shelter",
@@ -3084,7 +3585,21 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William County"
+    "area": "Prince William County",
+    "links": [
+      {
+        "url": "https://www.pwcva.gov/department/social-services/homeless-and-winter-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “The Ferlazzo Emergency Shelter (FES)” section."
+      }
+    ],
+    "intake_steps": "All referrals go through CES: call (703) 792-3366 (TTY 711) to ask about a bed. On arrival residents complete an intake with program staff and are assigned a caseworker.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "CES Mon-Fri 8:30 a.m.-5:30 p.m.; closed weekends and holidays",
+    "after_hours": "Not published by the county",
+    "operator": "Prince William County Department of Social Services",
+    "source_conflicts": "Shelter address not published on the shelter page; the Ferlazzo Drop-In Center (15941 Donald Curtis Drive, 703-792-8734) is a separate program. The county 'Homeless Navigation Center - East' page describes a planned 50-adult shelter but does not name Ferlazzo, so it was not used.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "acts-beverly-warren-emergency-shelter",
@@ -3122,7 +3637,29 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William County"
+    "area": "Prince William County",
+    "links": [
+      {
+        "url": "https://actspwc.org/housing-assistance/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.pwcva.gov/department/social-services/homeless-and-winter-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Beverly Warren Emergency Shelter” section."
+      },
+      {
+        "url": "https://actspwc.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Call the CES Hotline at (703) 792-3366 (TTY 711) to be assessed and referred.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "CES Mon-Fri 8:30 a.m.-5:30 p.m.",
+    "after_hours": "ACTS: after-hours CES callers can leave a voicemail; a human service specialist calls back within 24 hours or the next business day.",
+    "operator": "ACTS (Action in Community Through Service)",
+    "source_conflicts": "ACTS phone: county lists (703) 221-3186; ACTS lists main line 703-441-8606. Address: ACTS Contact page lists 'Beverly Warren House, 17866 Main Street, Dumfries VA 22026', and its Housing Assistance page says Beverly Warren 'is exclusively an Emergency Shelter' (up to 18 beds, single females and adults with children). City of Manassas page does not list it.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "nvfs-family-shelter-serve-campus",
@@ -3167,7 +3704,29 @@
     "area": "Manassas City",
     "lat": 38.746463,
     "lon": -77.495654,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://nvfs.org/our-places/nvfs-family-shelter/",
+        "label": "Program details"
+      },
+      {
+        "url": "https://www.pwcva.gov/department/social-services/homeless-and-winter-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “SERVE Shelter in Manassas” section."
+      },
+      {
+        "url": "https://nvfs.org/",
+        "label": "Provider website"
+      }
+    ],
+    "intake_steps": "Call the Prince William CES hotline at 703.792.3366 (TTY 711); all intake is through CES - walk-ins and direct requests cannot be accommodated.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "CES Mon-Fri 8:30 a.m.-5:30 p.m.",
+    "after_hours": "Not published",
+    "operator": "Northern Virginia Family Service (NVFS)",
+    "source_conflicts": "Phones: county lists NVFS at (571) 748-2603; City of Manassas lists SERVE at 10056 Dean Drive, 703-368-2979; NVFS lists campus main line 571.748.2500, campus office 10056 Dean Drive and NVFS Family Shelter at 10054 Dean Drive. NVFS posts a 'beginning Monday, June 15' Dean Drive/Foster Drive closure (about two months) - likely expired by Oct 2026.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "streetlight-supportive-shelter",
@@ -3201,7 +3760,21 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William County"
+    "area": "Prince William County",
+    "links": [
+      {
+        "url": "https://www.pwcva.gov/department/social-services/homeless-and-winter-shelters",
+        "label": "Official county listing",
+        "note": "On the county page, open the “Supportive Shelter” section."
+      }
+    ],
+    "intake_steps": "To be referred, contact the CES Hotline at (703) 792-3366 (TTY 711).",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "CES Mon-Fri 8:30 a.m.-5:30 p.m.",
+    "after_hours": "Not published",
+    "operator": "StreetLight Community Outreach Ministries",
+    "source_conflicts": "No official StreetLight website found (streetlightministries.org does not resolve). County page gives only 'Woodbridge, VA', 8 beds for persons with medical challenges or other disabilities.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "pwc-hypothermia-streetlight-dumfries",
@@ -3231,7 +3804,20 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William County"
+    "area": "Prince William County",
+    "links": [
+      {
+        "url": "https://www.pwcva.gov/department/social-services/hypothermia-shelter-services",
+        "label": "How to get shelter"
+      }
+    ],
+    "intake_steps": "A reservation is required. Mon-Fri 8:30 a.m.-5:30 p.m. contact CES at (703) 792-3366 to reserve a bed; Saturdays, Sundays and holidays call StreetLight Ministries at 703-227-7140. Do not arrive without confirmation.",
+    "phone_role": "coordinated entry / referral line",
+    "intake_hours": "Season Nov 1, 2026-Mar 31, 2027; open nightly 6:00 p.m.-7:45 a.m. regardless of temperature",
+    "after_hours": "Weekends and holidays: StreetLight Ministries 703-227-7140.",
+    "operator": "StreetLight Ministries",
+    "source_conflicts": "Capacity: current county page says 30 beds; prior-season sources said 26.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "pwc-hypothermia-manassas-baptist-church",
@@ -3264,7 +3850,21 @@
     "area": "Manassas City",
     "lat": 38.767042,
     "lon": -77.484418,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "links": [
+      {
+        "url": "https://www.pwcva.gov/department/social-services/hypothermia-shelter-services",
+        "label": "How to get shelter"
+      }
+    ],
+    "intake_steps": "First come, first served on nights it is open (32°F or below incl. wind chill); line up 20 minutes before opening. CES announces open/closed status on Mondays and Thursdays; call 571-277-0728 or CES (703) 792-3366. No transportation; a bus stop is next to the church.",
+    "phone_role": "direct shelter line",
+    "intake_hours": "Mon-Sun 7:00 p.m.-6:30 a.m.; Wednesdays 8:30 p.m.-6:30 a.m.; Sundays open until 8:30 a.m.",
+    "after_hours": "Not published",
+    "address_kind": "public intake entrance",
+    "operator": "Manassas Baptist Church (Prince William Area hypothermia partner)",
+    "source_conflicts": "Located in the City of Manassas but listed by Prince William County. Capacity 21 beds and 8 chair spaces.",
+    "links_checked_on": "2026-10-24"
   },
   {
     "id": "pwc-ferlazzo-drop-in-center",
