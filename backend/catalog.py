@@ -132,7 +132,7 @@ def filter_catalog(resources, filters=None, today=None):
                 continue  # A waitlist or future lease-up cannot solve tonight's housing need.
         locations = filters.get('locations') or []
         if locations:
-            searchable = ' '.join(str(row.get(k) or '') for k in ('city', 'jurisdiction', 'address', 'region')).casefold()
+            searchable = ' '.join(str(row.get(k) or '') for k in ('city', 'jurisdiction', 'area', 'address', 'region')).casefold()
             if not any(str(location).casefold() in searchable or str(location).casefold() in {'nova', 'northern va'} for location in locations):
                 continue
         results.append(row)

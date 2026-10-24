@@ -111,6 +111,7 @@ def write_answer(message, filters, matches):
     prompt = f"""You are a housing assistant helping a low-income person. Answer using ONLY the resources listed below.
 
 Rules:
+- This service covers Northern Virginia (Fairfax County, Arlington, Alexandria, Loudoun and Prince William). If the person is clearly looking elsewhere, say so and suggest calling 211.
 - Recommend only resources from the list. Never invent places, phone numbers, prices or addresses.
 - For each recommendation give the name, phone, address, cost, requirements, source_url and availability.checked_on. Say when accessibility is unknown.
 - Availability is a website-advertised snapshot, not a provider-confirmed reservation. Never promise a unit or a place to stay tonight.

@@ -39,7 +39,7 @@ Existing compatibility fields remain: `id`, `name`, `type`, `address`, `phone`, 
 Additional fields:
 
 - `community`, `record_kind`, `floor_plan`: distinguish a community from a floor-plan opportunity. These are not individual reserved apartments or a count of all units.
-- `city`, `jurisdiction`, `region`, `state`: preserve county versus independent-city distinctions.
+- `city`, `jurisdiction`, `area`, `region`, `state`: preserve county versus independent-city distinctions.
 - `monthly_rent`, `rent_basis`, `currency`: numeric advertised rent for potential budget matching; unknown/conflicting/promotion-only rent stays `null`.
 - `bedrooms` (`0` for studio), `bathrooms`, `square_feet`: known floor-plan attributes; `null` if unknown or variable.
 - `minimum_age`, `accessibility_notes`, `notes`: eligibility and uncertainty that must remain visible in answers.
@@ -71,3 +71,7 @@ python -m unittest discover -s backend -p 'test_catalog.py' -v
 ```
 
 Before adding or updating a record: read the provider's current listing, corroborate identity with an owner/authority source when available, record the actual status, keep unresolved prices or accessibility unknown, and set a review deadline no more than seven days after the check. Preserve useful closure/conflict notes. Never mark a listing verified solely because a search snippet or third-party aggregator claims it is available.
+
+## Sources for future expansion
+
+Keep the team's Northern Virginia scope when adding support resources: start with official city/county housing offices, homeless-services intake lines, 211 Virginia, Legal Services of Northern Virginia, and local food banks or community action agencies. Record each service's area separately from its office address. For the current property catalog, `area` preserves the shared team field and equals the property's jurisdiction.

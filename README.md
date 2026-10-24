@@ -8,7 +8,7 @@ Finding safe, affordable housing is hard for low-income people, especially stude
 
 ## Solution
 
-An AI housing assistant, powered by Gemma 4, that helps people:
+**Clear House** is an AI housing assistant for **Northern Virginia**, powered by Gemma 4, that helps people:
 
 - **Find affordable housing.** Matches a person's budget, location and accessibility needs to manually verified affordable and low-income housing listings.
 - **Find emergency help.** Points people to verified shelters and emergency housing resources, with urgent cases shown first.
