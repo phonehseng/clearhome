@@ -56,7 +56,8 @@
     .housing-actions{display:flex;gap:15px;align-items:center;flex-wrap:wrap;margin-top:17px}
     .housing-actions a{font-size:12px;font-weight:550}
     .housing-reviewed{font-size:10px;color:var(--muted);margin-top:14px}
-    .more-listings{display:block;margin:22px auto 0;border:1px solid var(--line);padding:11px 22px;border-radius:7px;background:#fff;font-size:12px;font-weight:550;min-height:44px}
+    .more-listings-row{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .more-listings{display:block;margin:0;border:1px solid var(--line);padding:11px 22px;border-radius:7px;background:#fff;font-size:12px;font-weight:550;min-height:44px}
     @media(max-width:1050px){.listings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browse-filters{grid-template-columns:1fr 1fr}.browse-filters .primary{min-height:45px}.header-links{gap:16px}}
     @media(max-width:560px){.listings-grid{grid-template-columns:1fr}.housing-card{padding:22px}.browse-filters{grid-template-columns:1fr}.listings-section{margin-top:30px}.catalog-label{display:none}.header-links .browse-nav,.header-links>a[href="/"]{display:none}.header-links>a[href="#our-promise"]{display:none}.housing-card h3{font-size:18px}.catalog-notice{font-size:12px}.housing-location,.housing-features{font-size:12px}}
     /* Birds in the hero picture fly across and flap. Turned off by the reduced-motion rule above. */
@@ -421,8 +422,8 @@
     <p class="browse-hint">One card per community. Expand floor plans for each option’s price, eligibility, and availability. Room prices are per person; whole-apartment prices cover the full home. Installments, move-in dates, and lease responsibility are labeled. Fees and utilities may be extra; unknown prices are excluded by budget filters. Eligibility must be confirmed even when senior-only housing is excluded. Program waitlists may have no quoted rent.</p>
     <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p>
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
-    <button id="show-more-listings" class="more-listings" type="button" hidden>Show more communities</button>
-    <button id="show-all-listings" class="more-listings" type="button" hidden>Show all communities</button>
+    <div class="more-listings-row"><button id="show-more-listings" class="more-listings" type="button" hidden>Show more communities</button>
+    <button id="show-all-listings" class="more-listings" type="button" hidden>Show all communities</button></div>
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
   </section>
   <section class="trust-banner" id="our-promise" aria-labelledby="promise-title"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#shield"/></svg><div><h2 id="promise-title">Real resources. A little more peace of mind.</h2><p>Housing recommendations come from our source-reviewed list. Availability and eligibility can change, so always confirm with the provider.</p></div><span class="trust-badge">People first. Always.</span></section>
@@ -597,8 +598,8 @@
     });
     listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
     moreListings.hidden = visibleHousingCount >= housingRows.length;
-    allListings.hidden = moreListings.hidden;
     const remaining=Math.max(0,housingRows.length-visibleHousingCount);
+    allListings.hidden = moreListings.hidden || remaining <= 20; // with 20 or fewer left, "Show more" already shows them all
     moreListings.textContent = `Show ${Math.min(20,remaining)} more communities (${remaining} remaining)`;
     allListings.textContent = `Show all communities (${remaining} more)`;
     browseMessage.dataset.state = 'success';
