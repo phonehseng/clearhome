@@ -187,6 +187,10 @@ def housing_walk_search():
         overrides["strict"] = raw["strict"]
     if raw.get("sort") in ("best", "rent", "walk"):
         overrides["sort"] = raw["sort"]
+    if isinstance(raw.get("bedrooms"), int) and 0 <= raw["bedrooms"] <= 6:
+        overrides["bedrooms"] = raw["bedrooms"]
+    if raw.get("senior") is True:
+        overrides["senior"] = True
     if not prompt and not overrides:
         return jsonify(error="Describe what you're looking for, or pick some filters."), 400
     result = walkable.search(prompt, overrides)

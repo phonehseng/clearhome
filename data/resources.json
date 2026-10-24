@@ -1195,7 +1195,14 @@
     },
     "notes": "Retained for audit and to prevent recommending a closed application window. Provider and city use different street-address descriptions; owner address is recorded. Not an active recommendation.",
     "area": "Alexandria City",
-    "photo": null,
+    "photo": {
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2026/09/Witter-Place-Playground.jpg",
+      "source_url": "https://www.communityhousingpartners.org/properties/witter-place-apartments/",
+      "alt": "Witter Place Apartments building exterior",
+      "credit": "Community Housing Partners",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "LIHTC affordable housing",
@@ -5098,6 +5105,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_b192a20083aa466f9cc005a35862ad73~mv2.png/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/little-river-glen-iv/1",
+      "alt": "Redbud Glen (formerly Little River Glen IV) building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
     }
   },
   {
@@ -5167,7 +5182,15 @@
     },
     "lat": 38.839169,
     "lon": -77.266552,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_c324b88e3a8043ce8afa8f460441a9fd~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/little-river-glen/1",
+      "alt": "Little River Glen building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
+    }
   },
   {
     "id": "olley-glen-one-bedroom",
@@ -5236,7 +5259,15 @@
     },
     "lat": 38.837582,
     "lon": -77.266976,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_613b3f736ce74d859a6f00e695d27332~mv2.gif/v1/fill/w_800,h_498,al_c/6eeae7_613b3f736ce74d859a6f00e695d27332~mv2.gif",
+      "source_url": "https://www.fcrha.org/properties/olley-glen/1",
+      "alt": "Olley Glen building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
+    }
   },
   {
     "id": "gum-springs-glen-one-bedroom",
@@ -5301,7 +5332,15 @@
     },
     "lat": 38.744522,
     "lon": -77.083851,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_334f6684f2c34408968f2430e45d4583~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+      "alt": "Gum Springs Glen building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
+    }
   },
   {
     "id": "gum-springs-glen-two-bedroom",
@@ -5366,7 +5405,15 @@
     },
     "lat": 38.744522,
     "lon": -77.083851,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_334f6684f2c34408968f2430e45d4583~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/gum-springs-glen/1",
+      "alt": "Gum Springs Glen building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
+    }
   },
   {
     "id": "morris-glen-one-bedroom",
@@ -5431,7 +5478,15 @@
     },
     "lat": 38.764348,
     "lon": -77.151894,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_90f8c19ccf3e43bd97dc58b34fce34f6~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/morris-glen/1",
+      "alt": "Morris Glen building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
+    }
   },
   {
     "id": "herndon-harbor-house-senior-apartment",
@@ -5500,7 +5555,15 @@
     },
     "lat": 38.9737,
     "lon": -77.389077,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_5c3b98601d4b408abd68937758ed6fad~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/herndon-harbor-house/1",
+      "alt": "Herndon Harbor House I and II building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
+    }
   },
   {
     "id": "atrium-at-metro-west-two-bedroom-one-bath",
@@ -5562,6 +5625,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_abac36f507ff43609202e2c8bdb91168~mv2.png/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/atrium-at-metrowest/1",
+      "alt": "Atrium at Metro West building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
     }
   },
   {
@@ -5624,6 +5695,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_abac36f507ff43609202e2c8bdb91168~mv2.png/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/atrium-at-metrowest/1",
+      "alt": "Atrium at Metro West building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
     }
   },
   {
@@ -5689,7 +5768,15 @@
     },
     "lat": 38.875751,
     "lon": -77.276544,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_09462f45e1b2483db140ed30f01874aa~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/saintsbury-plaza/1",
+      "alt": "Saintsbury Plaza building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
+    }
   },
   {
     "id": "crest-of-alexandria-one-bedroom",
@@ -5751,6 +5838,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_5482ecef241b4b959dc5c0c97b85287f~mv2.png/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/crest-of-alexandria/1",
+      "alt": "Crest of Alexandria building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
     }
   },
   {
@@ -5813,6 +5908,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_5482ecef241b4b959dc5c0c97b85287f~mv2.png/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "source_url": "https://www.fcrha.org/properties/crest-of-alexandria/1",
+      "alt": "Crest of Alexandria building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
     }
   },
   {
@@ -6162,7 +6265,15 @@
     },
     "lat": 38.886101,
     "lon": -77.101741,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Building-1.jpg",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/arlington-county/terwilliger-place/",
+      "alt": "Terwilliger Place building exterior",
+      "credit": "True Ground Housing Partners",
+      "reviewed_on": "2026-10-24",
+      "caption": "Community photo from the official owner; the offered apartment may differ."
+    }
   },
   {
     "id": "fields-manassas-community",
