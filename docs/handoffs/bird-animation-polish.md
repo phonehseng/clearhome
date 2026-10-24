@@ -1,4 +1,4 @@
-# Claude handoff: recognizable birds and natural flight
+# Handoff: recognizable birds and natural flight
 
 ## User follow-up: current birds still look wrong
 
@@ -16,3 +16,5 @@ Implement, visually verify, commit, and push this user-requested improvement to 
 - Visually inspect the animation in a browser at desktop and mobile widths, including the flap transitions and gliding pose. Confirm the birds remain recognizable at their rendered size, the wings do not scissor through one another, and controls remain usable. A code/syntax check alone is insufficient for this visual request.
 
 Please commit and push the actual visual implementation, then report the commit and checks. This file is only the request, not the bird fix. If already implemented, verify and report the existing implementation commit rather than making an empty commit.
+
+**Implemented:** each bird now has a small body and head with two wings that pivot where they meet the body (a few flaps, then a short glide), fades in and out at the edges instead of popping, and uses the existing CSS/SVG approach with prefers-reduced-motion respected. The front-page scenery animation (trees, bushes, grass, birds) was also reconnected to the new hero.

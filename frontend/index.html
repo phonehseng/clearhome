@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d1738">
   <meta name="description" content="Clear House helps you find verified housing resources in Northern Virginia and Blacksburg, shelters and programs.">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico?v=2" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
   <title>Clear House — Your next step starts here</title>
   <style>
     /* Keep selection available only for links and editable text. */
@@ -531,6 +531,7 @@
     @media (min-width: 1400px){html{zoom:1.25} #listing-map,#walk-map{zoom:.8;width:auto} #listing-map{height:375px}}
     /* Google Maps can't draw inside a zoomed page, so the map boxes undo the zoom. width:auto keeps them exactly as wide as their column
        (a percentage width doesn't shrink with zoom in current Chrome, so 110%/125% hung off the right edge and the page swiped sideways). */
+    html,body{overflow-x:clip}  /* never swipe sideways */
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>

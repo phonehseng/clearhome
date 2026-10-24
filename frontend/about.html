@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d1738">
   <meta name="description" content="Clear House helps people in Northern Virginia and Blacksburg find verified affordable housing, shelters and rent help, with a live Gemma assistant and a map.">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <title>Clear House — About</title>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico?v=2" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+  <title>Clear House</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -76,25 +76,29 @@
     .hero-art { background: #dfe8fa; border: 1px solid #cddaf3; border-radius: 18px; height: 300px; position: relative; overflow: hidden; box-shadow: 0 20px 50px #23408f14; }
     .hero-art > svg { width: 100%; height: 100%; filter: hue-rotate(105deg) saturate(.9); }
     .art-note { position: absolute; bottom: 20px; left: 22px; display: flex; align-items: center; gap: 7px; background: #fff; padding: 8px 12px; border-radius: 7px; font-size: 12px; color: var(--muted); box-shadow: 0 4px 15px #14203f12; }
-    .hero-art .bird{animation:bird-fly 5s linear infinite backwards}
-    .hero-art .b2{animation-duration:5.6s;animation-delay:.35s}
-    .hero-art .b3{animation-duration:6.2s;animation-delay:.7s}
-    .hero-art .bob{animation:bird-bob .7s ease-in-out infinite alternate}
-    .hero-art .b2 .bob{animation-duration:.85s;animation-delay:-.3s}
-    .hero-art .b3 .bob{animation-duration:.6s;animation-delay:-.5s}
-    .hero-art .wing{transform-box:fill-box;transform-origin:center bottom;animation:bird-flap .18s ease-in-out infinite alternate}
-    .hero-art .b2 .wing{animation-duration:.22s}
-    .hero-art .b3 .wing{animation-duration:.16s}
-    .hero-art .tree{transform-box:fill-box;transform-origin:center bottom;animation:tree-sway 5s ease-in-out infinite alternate}
-    .hero-art .bush{transform-box:fill-box;transform-origin:center bottom;animation:bush-sway 3.2s ease-in-out infinite alternate}
-    .hero-art .k2{animation-duration:3.8s;animation-delay:-1.4s}
-    .hero-art .blades{transform-box:fill-box;transform-origin:center bottom;animation:grass-sway 1.8s ease-in-out infinite alternate}
-    .hero-art .grass:nth-of-type(even) .blades{animation-duration:2.3s;animation-delay:-.9s}
-    .hero-art .t2{animation-duration:6.5s;animation-delay:-2s}
-    @keyframes bird-fly{0%{transform:translate(0,0)}25%{transform:translate(135px,-18px)}50%{transform:translate(265px,10px)}70%,100%{transform:translate(530px,-6px)}}
+    :is(.hero-art,.cl-hero-art) .bird{animation:bird-fly 5s linear infinite backwards}
+    :is(.hero-art,.cl-hero-art) .b2{animation-duration:5.6s;animation-delay:.35s}
+    :is(.hero-art,.cl-hero-art) .b3{animation-duration:6.2s;animation-delay:.7s}
+    :is(.hero-art,.cl-hero-art) .bob{animation:bird-bob .7s ease-in-out infinite alternate}
+    :is(.hero-art,.cl-hero-art) .b2 .bob{animation-duration:.85s;animation-delay:-.3s}
+    :is(.hero-art,.cl-hero-art) .b3 .bob{animation-duration:.6s;animation-delay:-.5s}
+    /* Each wing pivots where it meets the body: a few flaps, then a short glide. */
+    :is(.hero-art,.cl-hero-art) :is(.wl,.wr){transform-box:fill-box;animation:wing-l 1.1s ease-in-out infinite}
+    :is(.hero-art,.cl-hero-art) .wl{transform-origin:right bottom}
+    :is(.hero-art,.cl-hero-art) .wr{transform-origin:left bottom;animation-name:wing-r}
+    :is(.hero-art,.cl-hero-art) .b2 :is(.wl,.wr){animation-duration:1.3s;animation-delay:-.4s}
+    :is(.hero-art,.cl-hero-art) .b3 :is(.wl,.wr){animation-duration:.95s;animation-delay:-.7s}
+    :is(.hero-art,.cl-hero-art) .tree{transform-box:fill-box;transform-origin:center bottom;animation:tree-sway 5s ease-in-out infinite alternate}
+    :is(.hero-art,.cl-hero-art) .bush{transform-box:fill-box;transform-origin:center bottom;animation:bush-sway 3.2s ease-in-out infinite alternate}
+    :is(.hero-art,.cl-hero-art) .k2{animation-duration:3.8s;animation-delay:-1.4s}
+    :is(.hero-art,.cl-hero-art) .blades{transform-box:fill-box;transform-origin:center bottom;animation:grass-sway 1.8s ease-in-out infinite alternate}
+    :is(.hero-art,.cl-hero-art) .grass:nth-of-type(even) .blades{animation-duration:2.3s;animation-delay:-.9s}
+    :is(.hero-art,.cl-hero-art) .t2{animation-duration:6.5s;animation-delay:-2s}
+    @keyframes bird-fly{0%{transform:translate(0,0);opacity:0}6%{opacity:1}25%{transform:translate(135px,-18px)}50%{transform:translate(265px,10px)}64%{opacity:1}70%,100%{transform:translate(530px,-6px);opacity:0}}
+    @keyframes wing-l{0%,60%,100%{transform:rotate(0)}15%,45%{transform:rotate(-55deg)}30%{transform:rotate(5deg)}75%,90%{transform:rotate(-18deg)}}
+    @keyframes wing-r{0%,60%,100%{transform:rotate(0)}15%,45%{transform:rotate(55deg)}30%{transform:rotate(-5deg)}75%,90%{transform:rotate(18deg)}}
     @keyframes bird-bob{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
-    @keyframes bird-flap{to{transform:scaleY(.45)}}
-    @keyframes bush-sway{from{transform:skewX(-5deg)}to{transform:skewX(5deg)}}
+        @keyframes bush-sway{from{transform:skewX(-5deg)}to{transform:skewX(5deg)}}
     @keyframes grass-sway{from{transform:skewX(-14deg)}to{transform:skewX(14deg)}}
     @keyframes tree-sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
@@ -313,19 +317,19 @@
        (a percentage width doesn't shrink with zoom in current Chrome, so 110%/125% hung off the right edge and the page swiped sideways). */
 
     /* ===== Clean redesign: big centered type, lots of space, few words ===== */
-    .cl-hero{position:relative;min-height:calc(100vh - 80px);display:grid;place-items:center;text-align:center;padding:96px 20px 0;overflow:hidden;
+    .cl-hero{position:relative;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;padding:72px 20px 0;overflow:hidden;
       background:linear-gradient(180deg,#5b8def 0%,#9fbff5 38%,#dbe8fc 70%,#f4f7fd 100%)}
     .cl-hero-text{position:relative;z-index:2;max-width:900px}
     .cl-chip{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;background:#ffffff33;border:1px solid #ffffff66;color:#fff;font-weight:600;font-size:15px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:0 0 22px}
     .cl-ping{width:9px;height:9px;border-radius:50%;background:#ff8a1f;box-shadow:0 0 0 0 #ff8a1fb3;animation:ch-ping 1.8s ease-out infinite}
-    .cl-hero h1{font-size:clamp(54px,8.5vw,112px);line-height:1.02;letter-spacing:-.035em;color:#fff;margin:0;font-weight:800;text-shadow:0 10px 40px #1d3f9a40}
+    .cl-hero h1{font-size:clamp(48px,7vw,96px);line-height:1.02;letter-spacing:-.035em;color:#fff;margin:0;font-weight:800;text-shadow:0 10px 40px #1d3f9a40}
     .cl-hero h1 span{color:#fff}
     .cl-sub{font-size:clamp(18px,2vw,22px);color:#f4f7ff;margin:22px auto 34px;max-width:560px}
     .cl-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
     .cl-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;background:#14203f;color:#fff;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 10px 30px #14203f33;transition:transform .15s,box-shadow .15s}
     .cl-btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px #14203f40}
     .cl-btn.ghost{background:#ffffffcc;color:#14203f;box-shadow:none;border:1px solid #ffffff}
-    .cl-hero-art{position:absolute;inset:auto 0 0 0;height:46%;z-index:1;opacity:.95}
+    .cl-hero-art{position:relative;width:min(1000px,100%);aspect-ratio:470/260;max-height:min(46vh,420px);z-index:1;opacity:.95}
     .cl-hero-art svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(.9)}
     .cl-section{max-width:1200px;margin:0 auto;padding:120px 24px 0;text-align:center}
     .cl-title{font-size:clamp(36px,5vw,60px);letter-spacing:-.03em;line-height:1.08;margin:0;font-weight:700;color:#14203f}
@@ -397,7 +401,7 @@
         <p class="cl-sub reveal">Checked homes, shelters and rent help. Ask in plain words.</p>
         <div class="cl-actions reveal"><a class="cl-btn" href="/app">Open Clear House <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency">Need a place tonight?</a></div>
       </div>
-      <div class="cl-hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><path d="M0 229c108-31 277-35 470-10v41H0Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><g class="tree t1"><path d="M76 230v-55" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/></g><g class="tree t2"><path d="M415 226v-83" stroke="#72855c" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/></g><g class="grass" transform="translate(40 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(450 233)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 226v-19m-9 9h26m-17 10v-19m9 19v-19" stroke="#f8f5e4" stroke-width="4"/><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g transform="scale(.8)"><path class="wing" d="M-7 0q3.5-4 7 0q3.5-4 7 0" stroke="#8da176" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g></g></g><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg></div>
+      <div class="cl-hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><path d="M0 229c108-31 277-35 470-10v41H0Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><g class="tree t1"><path d="M76 230v-55" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/></g><g class="tree t2"><path d="M415 226v-83" stroke="#72855c" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/></g><g class="grass" transform="translate(40 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(450 233)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 226v-19m-9 9h26m-17 10v-19m9 19v-19" stroke="#f8f5e4" stroke-width="4"/><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g transform="scale(.8)"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g></g><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg></div>
     </section>
 
     <section class="cl-section" id="map" aria-labelledby="map-title">
@@ -574,7 +578,7 @@
     document.querySelectorAll('.split').forEach(h => wordsObserver.observe(h));
 
     // Parallax layers: the hero picture drifts and zooms slightly; the hero text moves a little slower.
-    const art = document.querySelector('.hero-art'); const heroText = document.querySelector('.hero > div:first-child');
+    const art = document.querySelector('.cl-hero-art, .hero-art'); const heroText = document.querySelector('.hero > div:first-child');
     art?.classList.add('parallax'); heroText?.classList.add('parallax');
     const cta = document.querySelector('.cta');
     let ticking = false;
@@ -608,9 +612,13 @@
       const commits = people.reduce((n, p) => n + (p.contributions || 0), 0);
       const updated = new Date(info.pushed_at).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
       const stats = document.getElementById('repo-stats'); stats.replaceChildren();
-      [[commits + '+', 'commits'], [people.length, 'contributors'], ['Updated', updated], [info.stargazers_count, 'stars']].forEach(([b, t]) => { const li = el('li'); li.append(el('b', {}, String(b)), document.createTextNode(' ' + t)); stats.append(li); });
+      [[commits + '+', 'commits'], [Math.max(people.filter(p => p.type === 'User').length, 4), 'contributors'], ['Updated', updated], [info.stargazers_count, 'stars']].forEach(([b, t]) => { const li = el('li'); li.append(el('b', {}, String(b)), document.createTextNode(' ' + t)); stats.append(li); });
       const team = document.getElementById('repo-team');
-      people.filter(p => p.type === 'User').forEach(p => { const a = el('a', { href: p.html_url, target: '_blank', rel: 'noopener' }); a.append(el('img', { src: p.avatar_url + '&s=48', alt: '' }), document.createTextNode(p.login)); team.append(a); });
+      // The whole team always shows, even while GitHub's cached contributor list lags behind new pushes.
+      const TEAM = ['phonehseng', 'BUmair', 'pywhitaker-dev', 'r01984'];
+      const users = people.filter(p => p.type === 'User');
+      TEAM.forEach(login => { if (!users.some(p => p.login.toLowerCase() === login.toLowerCase())) users.push({ login, html_url: 'https://github.com/' + login, avatar_url: 'https://github.com/' + login + '.png?' }); });
+      users.forEach(p => { const a = el('a', { href: p.html_url, target: '_blank', rel: 'noopener' }); a.append(el('img', { src: p.avatar_url + '&s=48', alt: '' }), document.createTextNode(p.login)); team.append(a); });
       const total = Object.values(langs).reduce((a, b) => a + b, 0), colors = { Python: '#3572A5', HTML: '#e34c26', JavaScript: '#f1e05a', CSS: '#663399', Dockerfile: '#384d54' };
       const bar = document.getElementById('repo-langs'), key = document.getElementById('repo-langs-key');
       Object.entries(langs).forEach(([name, bytes]) => { const pct = bytes / total * 100; if (pct < 1) return; bar.append(el('span', { style: `width:${pct}%;background:${colors[name] || '#8b949e'}` })); key.append(el('span', {}, `${name} ${pct.toFixed(0)}%`)); });
