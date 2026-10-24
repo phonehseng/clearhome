@@ -1,9 +1,11 @@
 """Offline tests for photo caching and serving. Fixtures are not production photos."""
 import io
+import json
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from urllib.parse import urlsplit
 from PIL import Image
 import listing_photos
 from listing_photos import cached_photo, PhotoUnavailable
@@ -19,6 +21,41 @@ class Response:
     def iter_content(self,size): yield self.data
 
 class PhotoTests(unittest.TestCase):
+    def test_catalog_photo_sources_are_attributed_and_allowed(self):
+        from catalog import load_catalog
+        for row in load_catalog():
+            photo = row.get('photo')
+            if not photo:
+                continue
+            with self.subTest(resource=row['id']):
+                parsed = urlsplit(photo['url'])
+                self.assertEqual(parsed.scheme, 'https')
+                self.assertIn(parsed.hostname, listing_photos.ALLOWED_HOSTS)
+                self.assertFalse(parsed.username or parsed.password)
+                self.assertIn(parsed.port, (None, 443))
+                self.assertEqual(urlsplit(photo['source_url']).scheme, 'https')
+                for field in ('alt', 'credit', 'reviewed_on', 'caption'):
+                    self.assertTrue(photo.get(field))
+
+    def test_photo_review_queue_matches_missing_communities(self):
+        from catalog import load_catalog, community_key, HOUSING_TYPES
+        directory = Path(__file__).resolve().parent.parent / 'data'
+        rows = [r for r in load_catalog() if r['type'] in HOUSING_TYPES]
+        photographed = {community_key(r) for r in rows if r.get('photo')}
+        missing = {r['id'] for r in rows if community_key(r) not in photographed}
+        queue = json.loads((directory / 'photo_review.json').read_text())
+        self.assertEqual({rid for c in queue['communities'] for rid in c['record_ids']}, missing)
+        manifest = json.loads((directory / 'photo_sources.json').read_text())
+        by_id = {r['id']: r for r in rows}
+        for item in manifest['communities']:
+            for rid in item['record_ids']:
+                with self.subTest(resource=rid):
+                    if item['status'] == 'official_photo_source_reviewed':
+                        self.assertEqual(by_id[rid]['photo']['url'], item['image_url'])
+                        self.assertEqual(by_id[rid]['photo']['source_url'], item['source_url'])
+                    else:
+                        self.assertIn(rid, missing)
+
     def setUp(self):
         listing_photos._FAILURES.clear()
         buffer=io.BytesIO()

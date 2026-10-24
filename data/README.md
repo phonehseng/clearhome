@@ -132,20 +132,24 @@ Keep the team's Northern Virginia scope when adding support resources: start wit
 
 ## Listing photos
 
-Photo completion is still in progress. `photo_review.json` records the **218
-communities** that still need a property-specific official photo source after
-the latest pass. Nine communities received new owner/provider photo links:
-The Fitzgerald, Fields of Falls Church, Legacy on Main, Cedar Crest, Ellett
-Road, Union Blacksburg, Collegiate Suites, Broadfalls, and Joyfield Flats.
-Existing reviewed community photos are shared across plans at the same address.
-No rent, vacancy, eligibility or availability-review date was changed.
+The latest pass researched all **218 previously missing communities** and added
+official photo sources for **183 communities / 188 listing records**. The catalog
+now has photos on **250 housing records across 206 communities**. The remaining
+**35 communities** are listed in `photo_review.json`, with the reason each still
+needs review. `photo_sources.json` records the outcome for all 218 communities,
+including exact image and supporting page URLs for accepted matches. Existing
+photos are shared only across plans at the same physical community. No rent,
+vacancy, eligibility or availability-review date was changed.
 
 This workspace blocks direct provider/CDN downloads. Official page links were
 reviewed through web tools, but downloaded pixel dimensions and successful
 image delivery have not been established here. Some provider-published images
-are thumbnails, not high-resolution originals. A 319-pixel Fields of Manassas
-thumbnail was rejected; a Broadfalls gallery image labeled for another property
-was also rejected. Do not claim that every listing now has a high-quality image.
+are thumbnails, not high-resolution originals. Prefer a published larger image
+when available; do not manufacture a larger original by editing its URL. Wrong
+properties, generic decorations, logos, floor plans and identified renderings
+were rejected. The neighboring Arlington View East building was excluded from
+the Arlington View Terrace record after its different address was confirmed.
+Do not claim that every listing now has a high-quality image.
 
 On a machine with provider access, audit the recorded images with
 `python backend/photo_audit.py --download`. It reports native dimensions,

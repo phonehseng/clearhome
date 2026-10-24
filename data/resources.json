@@ -5066,7 +5066,15 @@
     "lat": 38.862905,
     "lon": -77.330764,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://www.fairfaxcounty.gov/housing/sites/housing/files/Assets/images/coanpond.jpg",
+      "source_url": "https://www.fairfaxcounty.gov/housing/news/2022/coan-pond-residences",
+      "alt": "Coan Pond Residences — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "redbud-glen-one-bedroom",
@@ -6048,7 +6056,15 @@
     "lon": -77.235397,
     "geocode_source": "US Census Geocoder",
     "source_kind": "owner_property_page",
-    "source_checked_on": "2026-10-24"
+    "source_checked_on": "2026-10-24",
+    "photo": {
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2019/08/2868.jpg",
+      "source_url": "https://www.communityhousingpartners.org/properties/lindsay-hill-senior-apartments/",
+      "alt": "Lindsay Hill Senior Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "virginia-gardens-one-bedroom",
@@ -6410,7 +6426,15 @@
     "lat": 38.794467,
     "lon": -77.527496,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "property_website"
+    "source_kind": "property_website",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cw_576%2Car_1.384%2Cg_auto/s3/2/101498/031_7431_willoughby_lane-_the_fields_of_manassas_287388_516339.jpg",
+      "source_url": "https://www.thefieldsmanassas.com/photogallery",
+      "alt": "The Fields of Manassas — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-bailey-s-crossing",
@@ -6473,7 +6497,15 @@
     },
     "lat": 38.846184,
     "lon": -77.112076,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/15077/MLv3/3/21/2022/2/9/1141/5db320e471bac6.48157916949.jpg",
+      "source_url": "https://mybaileyscrossingvir.prospectportal.com/alexandria/baileys-crossing/2-bedroom-apartments/",
+      "alt": "Bailey’s Crossing — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-courts-at-huntington-station",
@@ -6536,7 +6568,15 @@
     },
     "lat": 38.789582,
     "lon": -77.075141,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://embed-ssl.wistia.com/deliveries/bd8890d82dd3eb4b2b78d46497c9225d.webp?image_crop_resized=1280x720",
+      "source_url": "https://www.udr.com/washington-dc-apartments/alexandria/the-courts-at-huntington-station/",
+      "alt": "The Courts at Huntington Station — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-ridgeleigh-at-van-dorn-metro",
@@ -6599,7 +6639,15 @@
     },
     "lat": 38.792307,
     "lon": -77.139264,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://media.apts247.info/ae/aeaecec0b15b407eabc47ae37747a7e5/galleries/community/amenities/0O7A1359.jpg",
+      "source_url": "https://www.ridgeleighapts.com/gallery/",
+      "alt": "The Ridgeleigh at Van Dorn Metro — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-shelby",
@@ -6662,7 +6710,15 @@
     },
     "lat": 38.782452,
     "lon": -77.07874,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://lirp.cdn-website.com/6a4f9087/dms3rep/multi/opt/10-23%2BLP%2Bpool-1920w.jpg",
+      "source_url": "https://www.29sc.com/living-proof-colleen-s-story-at-the-shelby-in-alexandria-va",
+      "alt": "The Shelby — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-preserve-at-westfields",
@@ -6722,6 +6778,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://preserveatwestfields.com/assets/images/cache/UqpiFfeFNW7hKXSngcnyY2kgsXNFYPcnpAGEUtaX-c57f5e04dfda5bbf37e14ff41fd2c788.jpg",
+      "source_url": "https://preserveatwestfields.com/gallery/",
+      "alt": "Preserve at Westfields — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -6782,6 +6846,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cw_576%2Car_1.384%2Cg_auto/s3/2/101498/jcp-kettler-thesully-23%282%29.jpg",
+      "source_url": "https://www.thesullyapts.com/photogallery",
+      "alt": "Sully at Westfields — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -6845,7 +6917,15 @@
     },
     "lat": 38.842202,
     "lon": -77.435884,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://emersonlife.com/assets/images/cache/1-The-Emerson-Building-Exterior-16ad3049798f31240fe40a45160cc097.jpg",
+      "source_url": "https://emersonlife.com/",
+      "alt": "The Emerson — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-avalon-mosaic",
@@ -6908,7 +6988,15 @@
     },
     "lat": 38.869661,
     "lon": -77.231864,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/2KC6NFYEGVJORFQOLC2FRG5BFU.jpg?auth=07a153e088d8895be064515a6019cb6b6793a6983a7edc906ff187160da073e0&height=1090&quality=85&smart=true&width=2400",
+      "source_url": "https://www.avaloncommunities.com/virginia/merrifield-apartments/avalon-mosaic/",
+      "alt": "Avalon Mosaic — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-bell-vienna-metro",
@@ -6971,7 +7059,15 @@
     },
     "lat": 38.873989,
     "lon": -77.266434,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92601/va_fairfax_dwellviennametro_p1430755_20_20_1_photogallery.jpg",
+      "source_url": "https://www.akelius-properties.us/dwell-vienna-metro0/photogallery",
+      "alt": "Bell Vienna Metro — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-camden-monument-place",
@@ -7034,7 +7130,15 @@
     },
     "lat": 38.862147,
     "lon": -77.366702,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.ctfassets.net/pg6xj64qk0kh/3SBWSCDnr9IE8RkeENgDbr/56f8805e7d017068f6c8e842ec82583f/camden-monument-place-apartments-fairfax-virginia-parking-garage-2.jpg",
+      "source_url": "https://www.camdenliving.com/apartments/fairfax-va/camden-monument-place/media-gallery/community",
+      "alt": "Camden Monument Place — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-fairchase-apartments",
@@ -7097,7 +7201,15 @@
     },
     "lat": 38.852917,
     "lon": -77.364238,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://media.equityapartments.com/images/c_crop%2Cx_0%2Cy_0%2Cw_1920%2Ch_1080/c_fill%2Cw_1920%2Ch_1080/q_80/4111-26/fairchase-apartments-kitchen.jpg",
+      "source_url": "https://www.equityapartments.com/northern-virginia/fairfax-corner/fairchase-apartments",
+      "alt": "Fairchase Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-gables-centerpointe",
@@ -7160,7 +7272,15 @@
     },
     "lat": 38.86485,
     "lon": -77.366271,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.gables.com/_next/image?q=75&url=https%3A%2F%2Fcdngables.azureedge.net%2Fv3%2Fassets%2Fblte729c2e09de05641%2Fblt009582903d213ed6%2F65172c6ca452a295a58b40c1%2FCenterpointe_Courtyard_1.png&w=1080",
+      "source_url": "https://www.gables.com/community/528451",
+      "alt": "Gables Centerpointe — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-halstead-square",
@@ -7223,7 +7343,15 @@
     },
     "lat": 38.878537,
     "lon": -77.230811,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://d1kldynkubiuhd.cloudfront.net/eyJidWNrZXQiOiJ1YXQtc3RyYXBpLXVwbG9hZHMtYm96enV0by1yZXZhbXAiLCJrZXkiOiJjbXMtdXBsb2FkLWNtcy11cGxvYWQtcHJvcGVydHktcDA1NTgxMTItRXh0ZXJpb3ItMTc2MDYyNDIzMzg0MC0xNzYwNjI0MjMzODQ4LmpwZyJ9?aspectRatio=16%3A9&focalX=0.5&focalY=0.5&format=webp&q=75&width=1920",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/fairfax/halstead-square-lotus-lofts",
+      "alt": "Halstead Square — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-jefferson-at-fair-oaks",
@@ -7283,6 +7411,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/19705/MLv3/9/36/2025/03/04/083138/67c71cda8d80a7.16595305792.jpg",
+      "source_url": "https://jeffersonatfairoaks.prospectportal.com/",
+      "alt": "Jefferson at Fair Oaks — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -7346,7 +7482,15 @@
     },
     "lat": 38.87036,
     "lon": -77.230732,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycf.entrata.com/14034/MLv3/3/21/2022/2/10/15361/612945adcb5be4.08699611502.jpg",
+      "source_url": "https://www.moderamosaic.com/fairfax-va-apartments/modera-mosaic/map-and-directions/",
+      "alt": "Modera Mosaic — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-overture-fair-ridge",
@@ -7409,7 +7553,15 @@
     },
     "lat": 38.872772,
     "lon": -77.369622,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/15190/MLv3/3/21/2024/12/17/112434/19081_100065540_5c65a85a9708b2.66637305314.jpg",
+      "source_url": "https://overturefairridge.prospectportal.com/",
+      "alt": "Overture Fair Ridge — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-prosperity-flats",
@@ -7472,7 +7624,15 @@
     },
     "lat": 38.880332,
     "lon": -77.233394,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/84017/dsc_7862.jpg",
+      "source_url": "https://www.prosperityflats.com/photogallery",
+      "alt": "Prosperity Flats — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-radiant-fairfax-ridge",
@@ -7535,7 +7695,15 @@
     },
     "lat": 38.861998,
     "lon": -77.337569,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://media.equityapartments.com/images/c_crop%2Cx_0%2Cy_0%2Cw_1920%2Ch_1080/c_fill%2Cw_1920%2Ch_1080/q_auto%2Cf_auto/4262-4/radiant-fairfax-ridge-apartments-resident-lounge",
+      "source_url": "https://www.equityapartments.com/northern-virginia/fairfax-corner/radiant-fairfax-ridge-apartments",
+      "alt": "Radiant Fairfax Ridge — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-apartments-at-regents-park",
@@ -7661,7 +7829,15 @@
     },
     "lat": 38.85319,
     "lon": -77.341218,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://d1uty3jitgnf7i.cloudfront.net/wp-content/uploads/2022/01/OurCommunity_Exterior5_Ridgewood1.jpg",
+      "source_url": "https://www.windsorcommunities.com/properties/the-ridgewood-by-windsor/gallery/",
+      "alt": "The Ridgewood by Windsor — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-loren",
@@ -7724,7 +7900,15 @@
     },
     "lat": 38.872392,
     "lon": -77.160262,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://liveloren.com/assets/images/cache/bFKclQbYFdjEa4RAzR6po7kXB44bKxThyjXnCRPM-37dc4a72edd5adad46eb0a7031079803.jpg",
+      "source_url": "https://liveloren.com/gallery/",
+      "alt": "The Loren — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-vantage-mosaic",
@@ -7787,7 +7971,15 @@
     },
     "lat": 38.87238,
     "lon": -77.228302,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/8131/p0546534_vantagemosaic_ext_amenities_grillingarea_sept2016.jpg",
+      "source_url": "https://www.vantagemosaic.com/photogallery",
+      "alt": "Vantage Mosaic — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-belvoir-square-apartments",
@@ -7850,7 +8042,15 @@
     },
     "lat": 38.708663,
     "lon": -77.159321,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/1608/MLv3/9/36/2025/02/27/014019/67c0cdb3a3caa3.57609361370.jpg",
+      "source_url": "https://www.belvoirsquare.com/",
+      "alt": "Belvoir Square Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-discovery-square",
@@ -7913,7 +8113,15 @@
     },
     "lat": 38.917747,
     "lon": -77.420829,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cg_center%2Ch_667%2Cw_1000/v1742324933/g5/g5-c-5g5sw5287-grady-management/g5-cl-1ojpk0nf5h-grady-management-herndon-va/uploads/57-web-or-mls-_DSC4543_wpzk24.jpg",
+      "source_url": "https://www.discoverysquareherndon.com/apartments/va/herndon/gallery",
+      "alt": "Discovery Square — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-dulles-center-apartments",
@@ -7976,7 +8184,15 @@
     },
     "lat": 38.956208,
     "lon": -77.420972,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://res.cloudinary.com/g5-assets-cld/image/upload/x_0%2Cy_3%2Ch_1362%2Cw_2042%2Cc_crop/q_auto%2Cf_auto%2Cfl_lossy%2Cg_center%2Ch_800%2Cw_1200/g5/g5-c-5g5sw5287-grady-management/g5-cl-1pmufx41es-grady-management-inc-herndon-va/uploads/23-web-or-mls-_DSC6992_cov7oz.jpg",
+      "source_url": "https://www.rentwithdullescenter.com/",
+      "alt": "Dulles Center Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-passport-apartments",
@@ -8039,7 +8255,15 @@
     },
     "lat": 38.958252,
     "lon": -77.412262,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.simpsonpropertygroup.com/Uploads2/CommunitySliderImagesV2_resized/Passport_Exterior_06_HIGH_2022_plane.jpg",
+      "source_url": "https://www.simpsonpropertygroup.com/apartments/herndon-virginia/passport-apartments-herndon",
+      "alt": "Passport Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-ian",
@@ -8099,6 +8323,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://s7d9.scene7.com/is/image/greystarprod/20490BDG1",
+      "source_url": "https://www.greystar.com/the-ian-herndon-va/p_20490",
+      "alt": "The Ian — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -8162,7 +8394,15 @@
     },
     "lat": 38.95012,
     "lon": -77.395395,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/3/21/2022/2/4/7760/5fd7a74565ba90.83179564287.jpg",
+      "source_url": "https://www.thepointatmonroeplace.com/",
+      "alt": "The Point at Monroe Place — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-point-at-ridgeline",
@@ -8225,7 +8465,15 @@
     },
     "lat": 38.952924,
     "lon": -77.405142,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycf.entrata.com/17202/MLv3/3/27/2022/2/24/6778/5f4423ff7be1a5.43913630310.jpg",
+      "source_url": "https://www.thepointatridgeline.com/herndon/the-point-at-ridgeline/photos/",
+      "alt": "The Point at Ridgeline — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-van-metre-at-woodland-park",
@@ -8288,7 +8536,15 @@
     },
     "lat": 38.948884,
     "lon": -77.397557,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_2048%2Ch_1365%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.05%2Cg_auto/s3/2/43370/vanmetre-woodlandpark-13.jpg",
+      "source_url": "https://www.woodlandparkapt.com/",
+      "alt": "Van Metre at Woodland Park — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-vista-laurel-highlands",
@@ -8351,7 +8607,15 @@
     },
     "lat": 38.709819,
     "lon": -77.224391,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/8131/p1412955_vistalh_ext_courtyard_oct2021.jpg",
+      "source_url": "https://www.vistalaurelhighlands.com/photogallery",
+      "alt": "Vista Laurel Highlands — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-ovation-at-park-crest",
@@ -8414,7 +8678,15 @@
     },
     "lat": 38.929572,
     "lon": -77.2281,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cw_540%2Car_1.384%2Cg_auto/s3/2/8131/ovation_ext_frontentrance_homevisit_jan2024.jpg",
+      "source_url": "https://www.ovationapts.com/photogallery",
+      "alt": "Ovation at Park Crest — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-vinson-hall",
@@ -8477,7 +8749,15 @@
     },
     "lat": 38.9199,
     "lon": -77.150954,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://assets.website-files.com/60818030729d0614715a0e94/6083f2f3099cd2af742416a3_7e8689fb-8.0-about-us-content-1024x819.jpg",
+      "source_url": "https://vinsonhall.org/",
+      "alt": "Vinson Hall — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-point-at-dunn-loring",
@@ -8537,6 +8817,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/5/29/2022/3/8/7791/5fd7b8ee2fcf38.94024373576.jpg",
+      "source_url": "https://www.thepointatdunnloring.com/vienna/the-point-at-dunn-loring/amenities/",
+      "alt": "The Point at Dunn Loring — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -8600,7 +8888,15 @@
     },
     "lat": 38.949928,
     "lon": -77.340436,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.liveaperture.com/wp-content/uploads/2020/12/Untitled10W.jpg",
+      "source_url": "https://www.liveaperture.com/gallery/",
+      "alt": "Aperture — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-avalon-dunn-loring",
@@ -8663,7 +8959,15 @@
     },
     "lat": 38.878911,
     "lon": -77.227759,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/U67YF66KFRMVXE5EMQXLLTRAR4.jpg?auth=7b5d7973e551d53897e6c8af5f66018595b5889f5906005d551c2f0dbdb318c0&height=1090&quality=85&smart=true&width=2400",
+      "source_url": "https://www.avaloncommunities.com/virginia/merrifield-apartments/avalon-dunn-loring/",
+      "alt": "Avalon Dunn Loring — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-reserve-at-tysons-corner",
@@ -8726,7 +9030,15 @@
     },
     "lat": 38.905577,
     "lon": -77.21881,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1920%2Ch_1080%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/121499/tyson-slider4.jpg",
+      "source_url": "https://www.reserveattysonscorner.com/",
+      "alt": "The Reserve at Tysons Corner — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-aventon-to-aspire-huntington-station",
@@ -8786,6 +9098,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://aspirehuntingtonstation.com/assets/images/cache/07-Aventon-Huntington-Station-Apartment-Living-Area1-8b5443bcba5ba8eee1206a94f8e2fb96.jpg",
+      "source_url": "https://aspirehuntingtonstation.com/",
+      "alt": "Aventon to Aspire Huntington Station — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -8849,7 +9169,15 @@
     },
     "lat": 38.779519,
     "lon": -77.079382,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://cdn.fairfieldresidential.com/images/7X9SNlQLFGErzUV01BW1Tf9FhVN36gWZu22annAc.jpg",
+      "source_url": "https://www.fairfieldresidential.com/apartmentality/distinguished-living-at-the-belhaven-in-alexandria-va",
+      "alt": "The Belhaven — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-parker",
@@ -8912,7 +9240,15 @@
     },
     "lat": 38.797038,
     "lon": -77.076582,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://rent.brookfieldproperties.com/wp-content/uploads/2024/05/The-Parker_Ext_Building_LeasingOffice_Oct2015_Web.jpg",
+      "source_url": "https://rent.brookfieldproperties.com/property/the-parker-at-huntington-metro/",
+      "alt": "The Parker — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-vista-at-fairfax-corner",
@@ -8975,7 +9311,15 @@
     },
     "lat": 38.857893,
     "lon": -77.358687,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://vistafairfaxcorner.com/assets/images/cache/gallery_2_vista_fairfax_3040-04c74a3df936aa2f53a92049659b17b8.jpg",
+      "source_url": "https://vistafairfaxcorner.com/",
+      "alt": "Vista At Fairfax Corner — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-alta-nova",
@@ -9038,7 +9382,15 @@
     },
     "lat": 38.848634,
     "lon": -77.133236,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://altanovaapts.com/assets/images/cache/I8VP8SZjYEpj1PTTyrsTTSAYuTtsOGrxHQxywyOZ-20c1e630734ee83ab22e9471c0dae06d.jpg",
+      "source_url": "https://altanovaapts.com/gallery/",
+      "alt": "Alta Nova — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-three-collective",
@@ -9101,7 +9453,15 @@
     },
     "lat": 38.846186,
     "lon": -77.118959,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Car_1.384%2Cg_auto/s3/2/92213/_dsc5089_v2.jpg",
+      "source_url": "https://www.threecollective.com/photogallery",
+      "alt": "Three Collective — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-makers-rise",
@@ -9164,7 +9524,15 @@
     },
     "lat": 38.958828,
     "lon": -77.415899,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/43370/makers-rise_evening-exterior.png",
+      "source_url": "https://www.makersrise.com/photogallery",
+      "alt": "Makers Rise — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-station-on-silver",
@@ -9224,6 +9592,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://www.udr.com/globalassets/communities/station-on-silver/images/community_stationonsilver_2020_bdg3_ek-1.jpg",
+      "source_url": "https://www.udr.com/washington-dc-apartments/herndon/station-on-silver/",
+      "alt": "Station on Silver — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -9287,7 +9663,15 @@
     },
     "lat": 38.936267,
     "lon": -77.17843,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://cortland.com/assets/images/cache/1.1.22.1.4-Ashby-at-McLean-Courtyard-2024-LR-e8f785a6f1e3c77ef04842afa831ea06.jpg",
+      "source_url": "https://cortland.com/apartments/cortland-at-mclean/",
+      "alt": "Cortland At McLean — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-arbor-at-halley-rise",
@@ -9347,6 +9731,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://thearborathalleyrise.com/assets/images/Kettler_TheArboratHalleyRise_23.jpg",
+      "source_url": "https://thearborathalleyrise.com/p/green-living/",
+      "alt": "Arbor At Halley Rise — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -9407,6 +9799,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://blvdhaley.com/assets/images/cache/noWgJ8aXjAMyQSX3mjFTcF5k3ciOMWoLCMXObL2t-34e606f8b8d5631afb30294e1d669773.jpg",
+      "source_url": "https://blvdhaley.com/",
+      "alt": "BLVD Haley — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -9470,7 +9870,15 @@
     },
     "lat": 38.948974,
     "lon": -77.338009,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://blvdreston.com/assets/images/cache/gallery_8_blvd__2831-44bdf9508af12fb35f6f20bf8e540dc3.jpg",
+      "source_url": "https://blvdreston.com/gallery/",
+      "alt": "BLVD Reston Station — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-exo",
@@ -9593,6 +10001,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://uat-strapi-uploads-bozzuto-revamp.s3.us-west-2.amazonaws.com/cms-upload-cms-upload-property-p1356777-Lobby-1760623928575-1760623928578.jpg",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/reston/faraday-park/",
+      "alt": "Faraday Park — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -9653,6 +10069,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://russellapts.com/assets/images/cache/RussellatRestonStation_Exteriors_July2025_HighRes-2-c60035706e00b3e984577fbc3611bb55.jpg",
+      "source_url": "https://russellapts.com/",
+      "alt": "Russell at Reston Station — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -9716,7 +10140,15 @@
     },
     "lat": 38.959448,
     "lon": -77.356061,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.simpsonpropertygroup.com/Uploads2/CommunityNeighborhoodImages/Signature_BuildingExterior1.jpg",
+      "source_url": "https://www.simpsonpropertygroup.com/apartments/reston-virginia/signature-reston-town-center-apartments",
+      "alt": "Signature at Reston Town Center — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-skymark",
@@ -9839,7 +10271,15 @@
     },
     "lat": 38.949126,
     "lon": -77.350382,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/3/27/2022/2/24/33246/618176f551f354.03086776958.jpg",
+      "source_url": "https://www.thepointatreston.com/reston/the-point-at-reston/photos/",
+      "alt": "The Point at Reston — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-avant-at-reston-town-center",
@@ -9899,6 +10339,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://www.carmelpartners.com/wp-content/uploads/2023/10/The-Avant-48-2048x1364.jpg",
+      "source_url": "https://www.carmelpartners.com/project/avant-reston-town-center/",
+      "alt": "The Avant at Reston Town Center — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -9959,6 +10407,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://www.harborgroupmanagement.com/sites/g/files/iswmfx141/files/styles/gallery_full/public/2025-01/download_2.png?itok=TDx5tDh2",
+      "source_url": "https://www.harborgroupmanagement.com/apartments/va/reston/the-edmund/gallery",
+      "alt": "The Edmund — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -10022,7 +10478,15 @@
     },
     "lat": 38.946805,
     "lon": -77.3566,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/5/29/2025/12/10/081415/69398e47a62509.48241400821.jpg",
+      "source_url": "https://www.thepointatrise.com/reston/the-point-at-rise/amenities/",
+      "alt": "The Point at Rise — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-hanover-springfield",
@@ -10082,6 +10546,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/3156/MLv3/9/36/2025/12/31/090108/695548c4312210.19084083226.jpg",
+      "source_url": "https://hanoverspringfield.com/",
+      "alt": "Hanover Springfield — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -10145,7 +10617,15 @@
     },
     "lat": 38.927842,
     "lon": -77.238035,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://rent.brookfieldproperties.com/wp-content/uploads/2024/05/HDP_170731_19_FS_Web.jpg",
+      "source_url": "https://rent.brookfieldproperties.com/property/8421-broad-affordable-housing/",
+      "alt": "8421 Broad — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-adaire",
@@ -10205,6 +10685,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://cdn.carmel-apartments.com/system/uploads/fae/image/asset/36312/metro-2.jpg",
+      "source_url": "https://adairetysons.com/",
+      "alt": "Adaire — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -10265,6 +10753,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/johncolephoto-kettler-brentfordmile2-13.jpg",
+      "source_url": "https://www.livebrentford.com/photogallery",
+      "alt": "Brentford at the Mile — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -10328,7 +10824,15 @@
     },
     "lat": 38.92607,
     "lon": -77.204846,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://livehaden.com/assets/images/cache/0222B-dc7802a2065ba08fb7948ad027c66e38.jpg",
+      "source_url": "https://livehaden.com/",
+      "alt": "Haden — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-highgate-at-the-mile",
@@ -10391,7 +10895,15 @@
     },
     "lat": 38.927537,
     "lon": -77.216739,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/037_7915_jones_branch_drive__201215_255636.jpg",
+      "source_url": "https://www.livehighgate.com/photogallery",
+      "alt": "Highgate at the Mile — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-lumen",
@@ -10454,7 +10966,15 @@
     },
     "lat": 38.923446,
     "lon": -77.221935,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://lumentysons.com/assets/images/cache/20190907_9452-e872d0f620356ff6ac0362e54a779814.jpg",
+      "source_url": "https://lumentysons.com/contact/",
+      "alt": "Lumen — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-nouvelle",
@@ -10517,7 +11037,15 @@
     },
     "lat": 38.925128,
     "lon": -77.218945,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://livenouvelle.com/assets/images/cache/exterior-6130ecad9921e6ff21f6f0ab80eefee9.JPG",
+      "source_url": "https://livenouvelle.com/virtual-tours/",
+      "alt": "Nouvelle — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-heming",
@@ -10580,7 +11108,15 @@
     },
     "lat": 38.926606,
     "lon": -77.202052,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.liveheming.com/wp-content/uploads/2024/09/Heming_INT_Apartments_Nightstand_RayCaviccho062024.jpg.webp?x95611=",
+      "source_url": "https://www.liveheming.com/",
+      "alt": "The Heming — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-jones-at-tysons",
@@ -10643,7 +11179,15 @@
     },
     "lat": 38.931357,
     "lon": -77.220711,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://uat-strapi-uploads-bozzuto-revamp.s3.us-west-2.amazonaws.com/cms-upload-cms-upload-property-p1858181-2852217_HanoverTysons_INT_OlmoBorgheseSchemeKitchen_June22-1760629128415-1760629128420.jpg",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/tysons-corner/the-jones-at-tysons",
+      "alt": "The Jones at Tysons — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-point-at-mclean",
@@ -10706,7 +11250,15 @@
     },
     "lat": 38.925127,
     "lon": -77.20389,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/9/36/2026/01/26/095838/69779d3d9887c7.84923783851.jpg",
+      "source_url": "https://thepointatmclean.com/",
+      "alt": "The Point at Mclean — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-rylan",
@@ -10769,7 +11321,15 @@
     },
     "lat": 38.918558,
     "lon": -77.212573,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://rylantysons.com/assets/images/cache/Rylan-Front-Wide-Across-Street-Morning-241-eac94a40181fabb56ce7993c9d2f6fad.jpg",
+      "source_url": "https://rylantysons.com/gallery/",
+      "alt": "The Rylan — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-vita",
@@ -10832,7 +11392,15 @@
     },
     "lat": 38.919427,
     "lon": -77.220942,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://assets.macerichepicenter.com/FileManager/Property/Albums/TysonsCornerCenter/10661/VITA_Gallery1.jpg",
+      "source_url": "https://www.tysonscornercenter.com/LiveOffice",
+      "alt": "VITA — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-the-carlin",
@@ -11021,7 +11589,15 @@
     },
     "lat": 38.870202,
     "lon": -77.110395,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.squarespace-cdn.com/content/v1/5f4fde63fa39ac5601b24d24/1602632940318-0MROQARYAFWHP637QQWR/20180613_154532.jpg?format=1000w",
+      "source_url": "https://vibrantcommunities.us/news/culpepper-garden",
+      "alt": "Culpepper Gardens — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-hunter-s-park-at-cherrydale",
@@ -11084,7 +11660,15 @@
     },
     "lat": 38.895263,
     "lon": -77.105187,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.arlingtonva.us/files/sharedassets/public/housing/images/hunters-park-patio-ahc-inc.jpg?h=3456&w=5184",
+      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Affordable-Housing/Development/Hunters-Park",
+      "alt": "Hunter’s Park at Cherrydale — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-the-jordan",
@@ -11147,7 +11731,15 @@
     },
     "lat": 38.879607,
     "lon": -77.115869,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/5465/p1580515_jordan_09_photogallery.jpg",
+      "source_url": "https://www.thejordanapts.com/photogallery",
+      "alt": "The Jordan — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-placemakr",
@@ -11210,7 +11802,15 @@
     },
     "lat": 38.882231,
     "lon": -77.116097,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.placemakr.com/hs-fs/hubfs/0-pm-corp-website-brand-refresh/property-pages/Marymount%20Ballston/PMRIXEY-P2BDB%20%28Premium%20Two%20Bed%20with%20Balcony%2C%20Unit%201401%29/PMRIXEY-Prem2BedBalcony_26.jpg?length=1200&name=PMRIXEY-Prem2BedBalcony_26.jpg&width=1200",
+      "source_url": "https://www.placemakr.com/locations/arlington/marymount-ballston",
+      "alt": "Placemakr — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-the-waycroft",
@@ -11273,7 +11873,15 @@
     },
     "lat": 38.879547,
     "lon": -77.113335,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://thewaycroft.com/wp-content/uploads/2020/07/living-room-large-windows.jpg",
+      "source_url": "https://thewaycroft.com/gallery/",
+      "alt": "The Waycroft — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-ballston-park-at-historic-buckingham-village",
@@ -11336,7 +11944,15 @@
     },
     "lat": 38.874692,
     "lon": -77.106136,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/21/2022/2/10/93177/61534905c22950.18105306589.jpg",
+      "source_url": "https://www.ballstonpark.com/",
+      "alt": "Ballston Park at Historic Buckingham Village — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-buckingham-gardens",
@@ -11462,7 +12078,15 @@
     },
     "lat": 38.869835,
     "lon": -77.105109,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/176993434/1920x1080/176993434.jpg",
+      "source_url": "https://livethecadence.com/",
+      "alt": "The Cadence — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-knightsbridge-apts",
@@ -11588,7 +12212,15 @@
     },
     "lat": 38.872186,
     "lon": -77.109715,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/27/2024/12/18/094852/6762fcf44fd860.08686446102.jpg",
+      "source_url": "https://www.madisonatballstonstation.com/arlington-arlington/the-madison-at-ballston-station/photos/",
+      "alt": "The Madison at Ballston Station — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-whitefield-commons",
@@ -11651,7 +12283,15 @@
     },
     "lat": 38.871779,
     "lon": -77.105716,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg-crop/176895465/420x550/176895465.jpg",
+      "source_url": "https://www.whitefieldcommonsapts.com/",
+      "alt": "Whitefield Commons — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-the-spectrum",
@@ -11711,6 +12351,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/85707/spectrum-thumb.png",
+      "source_url": "https://www.thespectrumapts.com/amenities",
+      "alt": "The Spectrum — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -11774,7 +12422,15 @@
     },
     "lat": 38.886759,
     "lon": -77.096348,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://theearlapartments.com/assets/images/cache/XIR9qaTRhmlzbAORBTi66pmydJ96pXFacNNYWeoR-f4e3038de446b1c08c9c859313eec9ad.jpg",
+      "source_url": "https://theearlapartments.com/",
+      "alt": "The Earl — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-ten-at-clarendon",
@@ -11837,7 +12493,15 @@
     },
     "lat": 38.88434,
     "lon": -77.094881,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.squarespace-cdn.com/content/v1/667aea9953deb9770e328812/0eb3548a-f9e8-47e2-a6d1-2b2261191f57/HDP_171116_04V3_FS.jpg",
+      "source_url": "https://www.tenatclarendon.com/",
+      "alt": "Ten at Clarendon — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-vpoint",
@@ -11963,7 +12627,15 @@
     },
     "lat": 38.888827,
     "lon": -77.076584,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/174678003/1920x1080/174678003.jpg",
+      "source_url": "https://www.legacyhomesarlington.com/",
+      "alt": "Wholey Legacy Homes — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-oakwood-meadow-senior-residences",
@@ -12026,7 +12698,15 @@
     },
     "lat": 38.791503,
     "lon": -77.136865,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/151300645/1920x1080/151300645.jpg",
+      "source_url": "https://www.oakwoodmeadowsenior.com/Gallery.aspx",
+      "alt": "Oakwood Meadow Senior Residences — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-ilda-s-overlook-senior-residences",
@@ -12089,7 +12769,15 @@
     },
     "lat": 38.826436,
     "lon": -77.293247,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/164187206/1920x1080/164187206.jpg",
+      "source_url": "https://ildasoverlooksenior.com/Gallery.aspx",
+      "alt": "Ilda’s Overlook Senior Residences — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-loudoun-view-senior-residences",
@@ -12152,7 +12840,15 @@
     },
     "lat": 38.183882,
     "lon": -77.270138,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/158129585/1920x1080/158129585.jpg",
+      "source_url": "https://www.loudounviewsenior.com/",
+      "alt": "Loudoun View Senior Residences — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-arlington-mill",
@@ -12215,7 +12911,15 @@
     },
     "lat": 38.856661,
     "lon": -77.11266,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1920%2Ch_1280%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_419%2Car_0.9767441860465115%2Cg_auto/s3/2/92891/arlington%20mill_va_kitchen_new%20hero_icp_2761.jpg",
+      "source_url": "https://www.arlingtonmillapts.com/",
+      "alt": "Arlington Mill — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-gilliam-place",
@@ -12278,7 +12982,15 @@
     },
     "lat": 38.862064,
     "lon": -77.093372,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92891/gilliam%20place%20apartments_va_new%20gallery%20image%20%2812%29.jpg",
+      "source_url": "https://www.gilliamplace.com/photogallery",
+      "alt": "Gilliam Place — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-courthouse-crossings",
@@ -12404,7 +13116,15 @@
     },
     "lat": 38.853905,
     "lon": -77.115041,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/66208464/1920x1080/66208464.jpg",
+      "source_url": "https://www.columbiahillsarlington.com/",
+      "alt": "Columbia Hills Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-columbia-grove",
@@ -12467,7 +13187,15 @@
     },
     "lat": 38.853311,
     "lon": -77.11514,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/66459712/1920x1080/66459712.jpg",
+      "source_url": "https://www.columbiagroveapts.com/",
+      "alt": "Columbia Grove — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-the-springs",
@@ -12593,7 +13321,15 @@
     },
     "lat": 38.895405,
     "lon": -77.077939,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/69743124/1920x1080/69743124.jpg",
+      "source_url": "https://www.queenscourtapartments.com/Gallery.aspx",
+      "alt": "Queens Court — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-parc-rosslyn",
@@ -12656,7 +13392,15 @@
     },
     "lat": 38.891617,
     "lon": -77.076271,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cg_center%2Ch_667%2Cw_1000/v1649457723/g5/g5-c-5smeemg8y-paradigm-companies/g5-cl-1ly834bqj5-paradigm-companies-arlington-va/uploads/Port_ParcRosslyn_4_q4heug.jpg",
+      "source_url": "https://www.paradigmcos.com/parc-rosslyn",
+      "alt": "Parc Rosslyn — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-marbella",
@@ -12971,7 +13715,15 @@
     },
     "lat": 38.85806,
     "lon": -77.109308,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/161727998/1920x1080/161727998.jpg",
+      "source_url": "https://buchanangardensarlington.com/Gallery.aspx",
+      "alt": "Buchanan Gardens — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-the-barkalow",
@@ -13160,7 +13912,15 @@
     },
     "lat": 38.882331,
     "lon": -77.134896,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92891/fisher%20house_va_new%20gallery%20image%20%286%29.jpg",
+      "source_url": "https://www.fisherhouseapts.com/photogallery",
+      "alt": "Fisher House — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-arlington-county-arna-valley-view",
@@ -13349,7 +14109,15 @@
     },
     "lat": 39.068379,
     "lon": -77.480395,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/110733/tm_ashburn_chase_2803-1200x.jpg",
+      "source_url": "https://www.ashburnchaseapts.com/photogallery",
+      "alt": "Ashburn Chase — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-ashburn-meadows",
@@ -13412,7 +14180,15 @@
     },
     "lat": 39.034004,
     "lon": -77.464996,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.squarespace-cdn.com/content/v1/5edfbbbee6fdcf0c12b1b6e9/1595000565557-PYU4Q046Y759WCCD40LN/Exterior-Community-DSC0697%2B-%2BEdited%2B-%2BV1%2B-%2BRCA.jpg",
+      "source_url": "https://www.ashburnmeadows.com/gallery",
+      "alt": "Ashburn Meadows — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-atley-on-the-greenway",
@@ -13475,7 +14251,15 @@
     },
     "lat": 39.012879,
     "lon": -77.492846,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1800%2Ch_1200%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/3/686299/living%20room%20and%20dining%20area%20at%20atley%20on%20the%20greenway%20apartments%20in%20ashburn%20va.jpg",
+      "source_url": "https://www.atley-apts.com/va/ashburn/photogallery",
+      "alt": "Atley on the Greenway — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-blvd-commons",
@@ -13538,7 +14322,15 @@
     },
     "lat": 39.006882,
     "lon": -77.486884,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://blvdcommons.com/assets/images/cache/gallery_3_blvd__2830-20f7293f3f81d55948ec4e5ecb4a06a8.jpg",
+      "source_url": "https://blvdcommons.com/gallery/",
+      "alt": "BLVD Commons — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-blvd-gramercy-east-blvd-flats",
@@ -13598,6 +14390,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://blvdgramercyeast.com/assets/images/cache/rotator_3_blvd__2833-58ea83fb1f29c53fd971d13b881e28f4.jpg",
+      "source_url": "https://blvdgramercyeast.com/",
+      "alt": "BLVD Gramercy East & BLVD Flats — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -13661,7 +14461,15 @@
     },
     "lat": 39.009937,
     "lon": -77.488326,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.evergreenreg.com/wp-content/uploads/2025/05/Grove-at-Flynns-Crossing-1.webp",
+      "source_url": "https://www.evergreenreg.com/communities/grove-at-flynns-crossing/",
+      "alt": "The Grove at Flynn’s Crossing — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-vyne-one-loudoun",
@@ -13724,7 +14532,15 @@
     },
     "lat": 39.053854,
     "lon": -77.452254,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/img_6124.jpg",
+      "source_url": "https://www.livevyne.com/photogallery",
+      "alt": "Vyne One Loudoun — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-waxpool-apartments",
@@ -13784,6 +14600,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/110733/dji_20240306104324_0477_d.jpeg",
+      "source_url": "https://www.waxpoolapts.com/photogallery",
+      "alt": "Waxpool Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -13844,6 +14668,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/jcp-kettler-thewilliam-day1-37.jpg",
+      "source_url": "https://www.livethewilliam.com/photogallery",
+      "alt": "The William — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -13970,7 +14802,15 @@
     },
     "lat": 38.991372,
     "lon": -77.484347,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.bellashburnfarms.com/wp-content/uploads/sites/80/2022/04/BellAshburnFarms_Model_Living_1.jpg",
+      "source_url": "https://www.bellashburnfarms.com/gallery/",
+      "alt": "Bell Ashburn Farms — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-braddock-terrace",
@@ -14033,7 +14873,15 @@
     },
     "lat": 38.913238,
     "lon": -77.55172,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/109082/braddock%206.jpg",
+      "source_url": "https://www.braddockterrace.com/photogallery",
+      "alt": "Braddock Terrace — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-tgm-moorefield",
@@ -14156,6 +15004,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/3/650536/photogal1.jpg",
+      "source_url": "https://www.tmamgroup.com/shreveport-ridge/default",
+      "alt": "Shreveport Ridge — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -14219,7 +15075,15 @@
     },
     "lat": 38.962495,
     "lon": -77.53327,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1024%2Ch_768%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/3/650566/photo_gal5.jpg",
+      "source_url": "https://www.thewoodsatbrambleton.com/photogallery",
+      "alt": "The Woods at Brambleton — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-the-woods-at-westpark",
@@ -14279,6 +15143,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.4%2Cg_auto/s3/2/110733/51312910041_207496ab2a_o.jpg",
+      "source_url": "https://www.thewoodsatwestpark.com/",
+      "alt": "The Woods at Westpark — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -14342,7 +15214,15 @@
     },
     "lat": 39.01279,
     "lon": -77.375818,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/57804/avanath_006%20-sterling%20dji_0244_5_6_7_8.jpg",
+      "source_url": "https://www.acclaimatsterling.com/photogallery",
+      "alt": "Acclaim at Sterling — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-cascades-crossing",
@@ -14405,7 +15285,15 @@
     },
     "lat": 39.028334,
     "lon": -77.404428,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/84017/p1693021-5-1-photogallery.jpg",
+      "source_url": "https://www.cascadescrossing.com/photogallery",
+      "alt": "Cascades Crossing — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-the-commons-at-potomac-square",
@@ -14468,7 +15356,15 @@
     },
     "lat": 39.028973,
     "lon": -77.396679,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/x_-2%2Cy_371%2Ch_1226%2Cw_2502%2Cc_crop/q_auto%2Cf_auto%2Cfl_lossy%2Cg_center%2Ch_588%2Cw_1200/v1725892016/g5/g5-c-5vee2vhsk-fca-management-llc/g5-cl-1p4co92ykv-fca-management-llc-sterling-va/uploads/000_4613_1_nwimyu.jpg",
+      "source_url": "https://www.potomacsquareapts.com/apartments/va/sterling/photos",
+      "alt": "The Commons at Potomac Square — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-the-elms-at-arcola",
@@ -14531,7 +15427,15 @@
     },
     "lat": 38.9364,
     "lon": -77.532332,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto%2Cf_auto%2Cfl_lossy/v1666031493/g5/g5-c-5weyr3gl3-legend-management-group/g5-cl-1n20g75azp-legend-management-group-dulles-va/uploads/cywcoccswx3poilfvzyp.jpg",
+      "source_url": "https://www.arcolaelmsliving.com/",
+      "alt": "The Elms at Arcola — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-heronview-apartments",
@@ -14594,7 +15498,15 @@
     },
     "lat": 39.042473,
     "lon": -77.434189,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/109082/02-dji_0166.jpg",
+      "source_url": "https://www.heronviewapts.com/",
+      "alt": "Heronview Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-lerner-windmill-parc",
@@ -14657,7 +15569,15 @@
     },
     "lat": 39.027717,
     "lon": -77.416112,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/227691/windmill%20parc%20apartment%20community%20sign.jpg",
+      "source_url": "https://www.lernerwindmillparc.com/photogallery",
+      "alt": "Lerner Windmill Parc — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-stone-springs-apartments",
@@ -14717,6 +15637,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/109082/bldg%20ext%281%29.jpg",
+      "source_url": "https://www.stonespringsapartments.com/photogallery",
+      "alt": "Stone Springs Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -14777,6 +15705,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://s7d9.scene7.com/is/image/greystarprod/22188BDG2",
+      "source_url": "https://www.greystar.com/wyatt-sterling-va/p_22188",
+      "alt": "The Wyatt — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -14840,7 +15776,15 @@
     },
     "lat": 38.967937,
     "lon": -77.748234,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://windyhillfoundation.org/wp-content/uploads/2017/03/Llewelyn-Village-Apartments.jpg",
+      "source_url": "https://windyhillfoundation.org/our-properties/llewellyn-village/",
+      "alt": "Llewellyn Village — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-maple-avenue-apartments",
@@ -14903,7 +15847,15 @@
     },
     "lat": 39.140296,
     "lon": -77.705946,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.armigermanagement.com/admin/uploads/IMG_4280.jpg",
+      "source_url": "https://armigermanagement.com/apartments/purcellville/maple-avenue/9/",
+      "alt": "Maple Avenue Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-purcellville-east",
@@ -15029,7 +15981,15 @@
     },
     "lat": 39.137556,
     "lon": -77.709389,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/100025/MLv3/9/36/2025/05/06/094539/681a2ea32ade91.31554564730.jpg",
+      "source_url": "https://www.purcellvillepointe.com/",
+      "alt": "Purcellville Pointe — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-levis-hill-house",
@@ -15218,7 +16178,15 @@
     },
     "lat": 38.810364,
     "lon": -77.042326,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/120987/abrh-exterior05.jpg",
+      "source_url": "https://www.anniebrosehouse.com/photogallery",
+      "alt": "Annie B. Rose House — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-claridge-house-alexandria",
@@ -15344,7 +16312,15 @@
     },
     "lat": 38.818109,
     "lon": -77.106736,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://s7d9.scene7.com/is/image/aimcoprod/Foxchase-Gadsby-GeneralExterior1-1?%24large-desktop-1990px%24=&fmt=webp",
+      "source_url": "https://www.foxchaseofalexandriaapts.com/residences.html",
+      "alt": "Foxchase — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-new-brookside-apartments",
@@ -15407,7 +16383,15 @@
     },
     "lat": 38.842875,
     "lon": -77.066156,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/120987/_bnp0651.jpg",
+      "source_url": "https://www.newbrooksideapts.com/photogallery",
+      "alt": "New Brookside Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-olde-towne-west-iii",
@@ -15533,7 +16517,15 @@
     },
     "lat": 38.80983,
     "lon": -77.135899,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/57804/avanath_026%20alexandriastation%20dsc_2609_10_11_12_13.jpg",
+      "source_url": "https://www.acclaimatalexandria.com/photogallery",
+      "alt": "Acclaim at Alexandria — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-beasley-square",
@@ -15659,7 +16651,15 @@
     },
     "lat": 38.841195,
     "lon": -77.067371,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://wesleypropertymanagement.com/wp-content/uploads/Wesley-Property-Management-Communities-Gallery-Beverly-Park-4.jpg",
+      "source_url": "https://wesleypropertymanagement.com/property/beverly-park/",
+      "alt": "Beverly Park — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-bloom-at-braddock",
@@ -15722,7 +16722,15 @@
     },
     "lat": 38.815325,
     "lon": -77.049369,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/21/2025/01/31/123802/679d2699c54211.70813974373.jpg",
+      "source_url": "https://www.thebloomalexandria.com/",
+      "alt": "The Bloom at Braddock — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-brent-place",
@@ -15785,7 +16793,15 @@
     },
     "lat": 38.808948,
     "lon": -77.129787,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.squarespace-cdn.com/content/v1/6388ffb60b70956b8d39a40b/0014c1fc-7fef-4f05-9c59-87c6dda94457/2020-03-02.jpg",
+      "source_url": "https://www.thectgroupllc.com/brent-place",
+      "alt": "Brent Place — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-ellsworth",
@@ -15848,7 +16864,15 @@
     },
     "lat": 38.807885,
     "lon": -77.078169,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.housingalexandria.org/wp-content/uploads/2023/04/exterior-11-22-scaled.jpg",
+      "source_url": "https://www.housingalexandria.org/properties/ellsworth/",
+      "alt": "The Ellsworth — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-waypoint-at-fairlington",
@@ -15911,7 +16935,15 @@
     },
     "lat": 38.831029,
     "lon": -77.096204,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/177677061/1920x1080/177677061.jpg",
+      "source_url": "https://thewaypointalx.com/",
+      "alt": "The Waypoint at Fairlington — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-fields-of-alexandria",
@@ -15971,6 +17003,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/063_4309_duke_street_309523_576019.jpg",
+      "source_url": "https://www.thefieldsalexandria.com/photogallery",
+      "alt": "The Fields of Alexandria — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -16034,7 +17074,15 @@
     },
     "lat": 38.825952,
     "lon": -77.088486,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_6064%2Ch_4040%2Cc_crop/q_auto%2Cf_auto%2Cc_fill%2Cw_576%2Car_1%2Cg_auto/s3/2/101498/old%20town-poi-16.jpg",
+      "source_url": "https://www.thefieldsoldtown.com/",
+      "alt": "The Fields of Old Town — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-jackson-crossing",
@@ -16097,7 +17145,15 @@
     },
     "lat": 38.836997,
     "lon": -77.053773,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.alexandriava.gov/sites/default/files/styles/crop_card_image/public/2024-09/Jackson%20Crossing%20Full%20View%20%28landscape.jpg?h=e2915dde&itok=k-rbM62x",
+      "source_url": "https://www.alexandriava.gov/housing/housing-2040-education-month",
+      "alt": "Jackson Crossing — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-lacy-court",
@@ -16160,7 +17216,15 @@
     },
     "lat": 38.819124,
     "lon": -77.063001,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/21/2025/09/11/121430/68c31186b0eec5.06180989287.jpg",
+      "source_url": "https://www.lacycourt-apartments.com/",
+      "alt": "Lacy Court — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-lineage",
@@ -16223,7 +17287,15 @@
     },
     "lat": 38.811461,
     "lon": -77.048932,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/233585/pratumcompanies_6061-031_625_n_patrick_street_305645_610041.jpg",
+      "source_url": "https://www.lineageapts.com/",
+      "alt": "The Lineage — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-longview-terrace",
@@ -16286,7 +17358,15 @@
     },
     "lat": 38.807938,
     "lon": -77.079047,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.housingalexandria.org/wp-content/uploads/2023/04/longview_i1.webp",
+      "source_url": "https://www.housingalexandria.org/properties/longview/",
+      "alt": "Longview Terrace — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-lynhaven",
@@ -16349,7 +17429,15 @@
     },
     "lat": 38.835745,
     "lon": -77.057545,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://wesleypropertymanagement.com/wp-content/uploads/Wesley-Property-Management-Lynhaven-Apartments-Side-View.jpg",
+      "source_url": "https://wesleypropertymanagement.com/property/lynhaven-apartments/",
+      "alt": "Lynhaven — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-nexus-west-alex",
@@ -16409,6 +17497,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/21/2025/12/17/092215/6942d8b787a7b0.82652582647.jpg",
+      "source_url": "https://www.nexusalexandria.com/alexandria/the-nexus/conventional/",
+      "alt": "Nexus West Alex — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -16472,7 +17568,15 @@
     },
     "lat": 38.841038,
     "lon": -77.067383,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg-crop/177664083/420x550/177664083.jpg",
+      "source_url": "https://www.parcsquareapts.com/",
+      "alt": "Parc Square — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-parcview",
@@ -16535,7 +17639,15 @@
     },
     "lat": 38.816944,
     "lon": -77.124743,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/177408740/1920x1080/177408740.jpg",
+      "source_url": "https://www.parcviewapts.com/Gallery.aspx",
+      "alt": "Parcview — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-parkstone-alexandria",
@@ -16598,7 +17710,15 @@
     },
     "lat": 38.835412,
     "lon": -77.103495,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/157786160/1920x1080/157786160.jpg",
+      "source_url": "https://www.parkstonealexandria.com/",
+      "alt": "Parkstone Alexandria — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-square-at-511",
@@ -16661,7 +17781,15 @@
     },
     "lat": 38.842752,
     "lon": -77.064575,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/27/2025/12/01/011806/692df7fecac306.08314136247.png",
+      "source_url": "https://www.thesquareat511.com/alexandria/the-square-at-511/photos/",
+      "alt": "The Square at 511 — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-potomac-west",
@@ -16787,7 +17915,15 @@
     },
     "lat": 38.838476,
     "lon": -77.116176,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.huduser.gov/portal/sites/default/files/images/Edge-IP-1-102119.jpg",
+      "source_url": "https://www.huduser.gov/archives/portal/pdredge/pdr-edge-inpractice-102119.html",
+      "alt": "Saint James Plaza — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-station-at-potomac-yard",
@@ -16850,7 +17986,15 @@
     },
     "lat": 38.830824,
     "lon": -77.050311,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.housingalexandria.org/wp-content/uploads/2023/04/station_i9.webp",
+      "source_url": "https://www.housingalexandria.org/properties/the-station/",
+      "alt": "The Station at Potomac Yard — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-alate-old-town",
@@ -16976,7 +18120,15 @@
     },
     "lat": 38.811407,
     "lon": -77.042253,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://d1kldynkubiuhd.cloudfront.net/eyJidWNrZXQiOiJ1YXQtc3RyYXBpLXVwbG9hZHMtYm96enV0by1yZXZhbXAiLCJrZXkiOiJjbXMtdXBsb2FkLWNtcy11cGxvYWQtcHJvcGVydHktcDEzNzE3MzQtRml0bmVzc19DZW50ZXItMTc2MDYyMjg1NDkzMy0xNzYwNjIyODU0OTM4LmpwZyJ9?aspectRatio=16%3A9&focalX=0.5&focalY=0.5&format=webp&q=75&width=1920",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/alexandria/alexan-florence",
+      "alt": "Alexan Florence — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-blake",
@@ -17039,7 +18191,15 @@
     },
     "lat": 38.833924,
     "lon": -77.119714,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.theblakealexandria.com/wp-content/uploads/JPE_6717_1-1.jpg",
+      "source_url": "https://www.theblakealexandria.com/virtual-tours/",
+      "alt": "The Blake — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-bradley",
@@ -17102,7 +18262,15 @@
     },
     "lat": 38.814872,
     "lon": -77.050906,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://cdn.fairfieldresidential.com/2020/01/Concierge-Desk-at-The-Bradley-Alexandria-VA.jpg",
+      "source_url": "https://www.fairfieldresidential.com/apartmentality/well-connected-living-at-the-bradley-braddock-road-station",
+      "alt": "The Bradley — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-carlyle-place",
@@ -17165,7 +18333,15 @@
     },
     "lat": 38.800965,
     "lon": -77.068002,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/27/2024/03/12/114725/65f0952d12edb6.64722843187.jpg",
+      "source_url": "https://www.carlyleplaceapt.com/alexandria/carlyle-place/photos/",
+      "alt": "Carlyle Place — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-del-ray-central-fuse",
@@ -17228,7 +18404,15 @@
     },
     "lat": 38.832851,
     "lon": -77.059795,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://s7d9.scene7.com/is/image/greystarprod/12044BDG4",
+      "source_url": "https://www.greystar.com/del-ray-central-at-fuse-alexandria-va/p_12044",
+      "alt": "Del Ray Central (Fuse) — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-point-at-eisenhower-square",
@@ -17288,6 +18472,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://medialibrarycf.entrata.com/17202/MLv3/3/27/2022/05/17/102921/6283cd60db0195.74380859801.jpg",
+      "source_url": "https://www.thepointateisenhowersq.com/alexandria/the-point-at-eisenhower-square/photos/",
+      "alt": "The Point at Eisenhower Square — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -17351,7 +18543,15 @@
     },
     "lat": 38.802743,
     "lon": -77.072321,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/w_1504%2Ch_1299%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/3013/the%20foundry_exterior%20%289%29_highres_oct2020.jpg",
+      "source_url": "https://thefoundryalexandria.com/",
+      "alt": "The Foundry — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-gables-old-town-north",
@@ -17414,7 +18614,15 @@
     },
     "lat": 38.813959,
     "lon": -77.043084,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://cdn.rentcafe.com/dmslivecafe/3/891787/Pool%20Area.jpg",
+      "source_url": "https://www.gables.com/communities/virginia/alexandria/gables-old-town-north",
+      "alt": "Gables Old Town North — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-grayson",
@@ -17474,6 +18682,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/2834/graysonpatio.png",
+      "source_url": "https://www.graysonapts.com/photogallery",
+      "alt": "The Grayson — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -17537,7 +18753,15 @@
     },
     "lat": 38.837796,
     "lon": -77.103919,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://d1uty3jitgnf7i.cloudfront.net/wp-content/uploads/2022/01/1OurCommunity_P1_Halstead1.jpg",
+      "source_url": "https://www.windsorcommunities.com/properties/halstead-tower-by-windsor/gallery/",
+      "alt": "Halstead Tower by Windsor — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-ives-at-oakville",
@@ -17663,7 +18887,15 @@
     },
     "lat": 38.801091,
     "lon": -77.069947,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycf.entrata.com/17698/MLv3/3/27/2022/4/13/90411/613be78f02f685.64471901318.jpg",
+      "source_url": "https://www.meridianeisenhower.com/alexandria-va-apartments/meridian-at-eisenhower-meridianeisenhowerstation/photos/",
+      "alt": "Meridian at Eisenhower Station — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-meridian-2250",
@@ -17726,7 +18958,15 @@
     },
     "lat": 38.799717,
     "lon": -77.068486,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/27/2024/09/28/072912/66f804a876c116.81013162405.jpg",
+      "source_url": "https://www.meridian2250.com/alexandria/meridian-2250-at-eisenhower-station/photos/",
+      "alt": "Meridian 2250 — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-notch-8",
@@ -17786,6 +19026,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://liveatnotch8.com/assets/images/cache/ePXJ8orNUOoj75uYkDv7m0vb1YzOtM1QMNi7gVDq-2ac0ba979dd15c9e90f5325b23e96778.jpg",
+      "source_url": "https://liveatnotch8.com/",
+      "alt": "Notch 8 — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -17849,7 +19097,15 @@
     },
     "lat": 38.800441,
     "lon": -77.068778,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/x_0%2Cy_252%2Ch_1119%2Cw_1678%2Cc_crop/q_auto%2Cf_auto%2Cc_fill%2Cg_center%2Ch_667%2Cw_1000/v1706046500/g5/g5-c-5smeemg8y-paradigm-companies/g5-cl-1ly834bqj5-paradigm-companies-arlington-va/uploads/Vertical_Nighttime_Exterior_From_Across_Eisenhower_Ave_yfyr31.jpg",
+      "source_url": "https://www.paradigmcos.com/real-estate-development",
+      "alt": "Parc Meridian — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-park-ford",
@@ -17912,7 +19168,15 @@
     },
     "lat": 38.836414,
     "lon": -77.104329,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://lowe-re.com/app/uploads/2022/10/Side-by-Side-Spring-2048x1401.jpg",
+      "source_url": "https://lowe-re.com/park-ford-completed-transformation-of-1980s-era-office-complex-into-modern-apartments-in-alexandria-virginia/",
+      "alt": "Park + Ford — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-platform",
@@ -17975,7 +19239,15 @@
     },
     "lat": 38.8167,
     "lon": -77.050166,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://cdn.carmel-apartments.com/system/uploads/fae/image/asset/27465/27.jpg",
+      "source_url": "https://platformalexandria.com/amenities",
+      "alt": "Platform — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-residences-at-carlyle-square",
@@ -18038,7 +19310,15 @@
     },
     "lat": 38.802312,
     "lon": -77.060008,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.squarespace-cdn.com/content/v1/664f9a2e28814f09f62cdb26/1716492893546-Q2UUDPPN4ZI3GMOCPEV1/Post%2BCarlyle%2BSquare%2BExterior%2BImage-141581.jpg",
+      "source_url": "https://www.crccompanies.com/portfolio/post-carlyle-square",
+      "alt": "The Residences at Carlyle Square — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-raeburn",
@@ -18164,7 +19444,15 @@
     },
     "lat": 38.82272,
     "lon": -77.049336,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.squarespace-cdn.com/content/v1/664f9a2e28814f09f62cdb26/1716492893758-3WSMPRARWZMMTJTK24JX/exterior.jpg",
+      "source_url": "https://www.crccompanies.com/portfolio/station-650",
+      "alt": "Station 650 — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-bell-old-town",
@@ -18224,6 +19512,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://www.belloldtown.com/wp-content/uploads/sites/195/2025/05/BellOldTown_Game-Room-1_May2025_HighRes.jpg",
+      "source_url": "https://www.belloldtown.com/gallery/",
+      "alt": "Bell Old Town — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -18287,7 +19583,15 @@
     },
     "lat": 38.811382,
     "lon": -77.139417,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/89430/065_260_yoakum_pkwy_267288_447355.jpg",
+      "source_url": "https://www.thetuscanyapts.com/photogallery",
+      "alt": "Tuscany Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-prince-william-county-the-fitzgerald",
@@ -18564,7 +19868,15 @@
     },
     "lat": 38.62401,
     "lon": -77.291839,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://cdngeneral.rentcafe.com/dmslivecafe/3/888598/Pool.jpg?crop=%280%2C0%2C300%2C200%29&cropxunits=300&cropyunits=200&quality=85&scale=both",
+      "source_url": "https://www.theflatsatneabsco.com/",
+      "alt": "The Flats at Neabsco — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-prince-william-county-park-landing",
@@ -18632,7 +19944,15 @@
     "lat": 38.648872,
     "lon": -77.308953,
     "geocode_source": "US Census Geocoder",
-    "source_checked_on": "2026-10-24"
+    "source_checked_on": "2026-10-24",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/174723970/1920x1080/174723970.jpg",
+      "source_url": "https://www.park-landing.com/",
+      "alt": "Park Landing — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-prince-william-county-the-harbor-at-quantico-creek",
@@ -18767,7 +20087,15 @@
     "lat": 38.880054,
     "lon": -77.177692,
     "geocode_source": "US Census Geocoder",
-    "source_checked_on": "2026-10-24"
+    "source_checked_on": "2026-10-24",
+    "photo": {
+      "url": "https://capi.myleasestar.com/v2/dimg/175898830/1920x1080/175898830.jpg",
+      "source_url": "https://455tinnerhill.com/",
+      "alt": "455 Tinner Hill — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-falls-church-city-the-alder-at-west-falls",
@@ -18831,6 +20159,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://uat-strapi-uploads-bozzuto-revamp.s3.us-west-2.amazonaws.com/cms-upload-cms-upload-property-p1752918-2853373_6.TheAlder_INT_Apartments_Bedroom_462_KevinCarney_Feb2025-1760628748435-1760628748439.jpg",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/falls-church/the-alder",
+      "alt": "The Alder at West Falls — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     }
   },
   {
@@ -18898,7 +20234,15 @@
     },
     "lat": 38.880115,
     "lon": -77.167676,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.westbroad.com/wp-content/uploads/2025/03/WestBroad_Int_Model_2bedKitchen_Feb2016.jpg?x90118=",
+      "source_url": "https://www.westbroad.com/gallery/",
+      "alt": "West Broad — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "nova-falls-church-city-the-read-building",
@@ -19387,7 +20731,15 @@
     "lat": 38.853116,
     "lon": -77.101047,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "property_website"
+    "source_kind": "property_website",
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Taylor-Square-Featured%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/taylor-square/",
+      "alt": "Taylor Square Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "the-shelton-two-bedroom",
@@ -19454,7 +20806,15 @@
     "lat": 38.848596,
     "lon": -77.084239,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Shelton-Featured%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/the-shelton/",
+      "alt": "The Shelton — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "the-macedonian-two-bedroom",
@@ -19521,7 +20881,15 @@
     "lat": 38.849441,
     "lon": -77.084341,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Macedonian-Featured%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/the-macedonian/",
+      "alt": "The Macedonian — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "fort-henry-gardens-two-bedroom",
@@ -19588,7 +20956,15 @@
     "lat": 38.84665,
     "lon": -77.086435,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Fort-Henry-Gardens-2%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/fort-henry-gardens/",
+      "alt": "Fort Henry Gardens — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "key-gardens-one-bedroom",
@@ -19655,7 +21031,15 @@
     "lat": 38.855688,
     "lon": -77.112869,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Key-Gardens-Featured%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/key-gardens/",
+      "alt": "Key Gardens — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "serrano-apartments-one-bedroom",
@@ -19722,7 +21106,15 @@
     "lat": 38.853721,
     "lon": -77.119354,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/85707/barbara%20darter%205535%20columbia%20pike%20%2816%20of%2030%29.jpg",
+      "source_url": "https://www.theserranoapts.com/photogallery",
+      "alt": "Serrano Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "westover-apartments-one-bedroom",
@@ -19789,7 +21181,15 @@
     "lat": 38.884139,
     "lon": -77.138923,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Westover-Apartments-Featured%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/westover-apartments/",
+      "alt": "Westover Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "the-ashtons-one-bedroom",
@@ -19856,7 +21256,15 @@
     "lat": 38.884139,
     "lon": -77.138923,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Ashtons-Featured%402x-1030x644.jpg",
+      "source_url": "https://ahcommunities.org/property/the-ashtons/",
+      "alt": "The Ashtons — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "the-fields-of-arlington-one-bedroom",
@@ -19923,7 +21331,15 @@
     "lat": 38.857755,
     "lon": -77.115715,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/leasing%20office.jpg",
+      "source_url": "https://www.thefieldsarlington.com/photogallery",
+      "alt": "The Fields of Arlington — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "lenox-club-studio",
@@ -19990,7 +21406,15 @@
     "lat": 38.863017,
     "lon": -77.052838,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "official_directory"
+    "source_kind": "official_directory",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/85201/lenoxclub_9a_exterior3.jpg",
+      "source_url": "https://www.lenoxclubliving.com/",
+      "alt": "Lenox Club — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-stonegate-apartments-s22-room-in-3-bedroom-apartment",
@@ -20154,7 +21578,15 @@
     "cost": "Provider advertises $730.00 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.241875,
     "lon": -80.427638,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.cdn.appfolio.com/granitesl/images/ca5d40be-0e5d-40f4-a53b-d8d699b32bc8/large.jpg",
+      "source_url": "https://granitestudentliving.com/listings/carlton-scott-apartments-remodeled-3-bed-1-5-bath/",
+      "alt": "Carlton Scott Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-300-mcdonald-street-c24-room-in-shared-apartment",
@@ -20232,7 +21664,15 @@
     "cost": "Provider advertises $675.00 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.238003,
     "lon": -80.419319,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.cdn.appfolio.com/granitesl/images/260ea87e-98f6-4743-a97b-4c9efd5c716b/large.jpg",
+      "source_url": "https://granitestudentliving.com/listings/300-mcdonald-street-apartments-individual-lease-option-7-7-2024-2/",
+      "alt": "300 McDonald Street — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Provider photo of a similar unit; the apartments are not furnished. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-university-terrace-1213k-1213k-individual-bedroom-agreement",
@@ -20396,7 +21836,15 @@
     "cost": "Provider advertises $565.00 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.253752,
     "lon": -80.413191,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.cdn.appfolio.com/granitesl/images/4b384edc-f743-40a9-a6ba-1c72d8e8be26/large.jpg",
+      "source_url": "https://granitestudentliving.com/listings/1711-whipple-drive-4bed-2bath/",
+      "alt": "1711 Apartments — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-alight-blacksburg-east-bedroom-in-4-2",
@@ -20478,7 +21926,15 @@
     "cost": "Provider advertises $835.00 per person per installment. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.244864,
     "lon": -80.425568,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://alight-blacksburg.com/wp-content/uploads/sites/19/2023/02/Alight-Blacksburg-POI-11.jpg",
+      "source_url": "https://alight-blacksburg.com/",
+      "alt": "Alight Blacksburg — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-alight-blacksburg-west-bedroom-in-4-2",
@@ -20560,7 +22016,15 @@
     "cost": "Provider advertises $855.00 per person per installment. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.244864,
     "lon": -80.425568,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://alight-blacksburg.com/wp-content/uploads/sites/19/2023/02/Alight-Blacksburg-POI-11.jpg",
+      "source_url": "https://alight-blacksburg.com/",
+      "alt": "Alight Blacksburg — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-alight-blacksburg-standard-bedroom-in-2-1",
@@ -20642,7 +22106,15 @@
     "cost": "Provider advertises $955.00 per person per installment. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.244864,
     "lon": -80.425568,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://alight-blacksburg.com/wp-content/uploads/sites/19/2023/02/Alight-Blacksburg-POI-11.jpg",
+      "source_url": "https://alight-blacksburg.com/",
+      "alt": "Alight Blacksburg — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-alight-blacksburg-fireplace-bedroom-in-2-1",
@@ -20724,7 +22196,15 @@
     "cost": "Provider advertises $999.00 per person per installment. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.244864,
     "lon": -80.425568,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://alight-blacksburg.com/wp-content/uploads/sites/19/2023/02/Alight-Blacksburg-POI-11.jpg",
+      "source_url": "https://alight-blacksburg.com/",
+      "alt": "Alight Blacksburg — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-terrace-view-3ax1-5-t3-private-bedroom",
@@ -22021,7 +23501,15 @@
     "cost": "Provider advertises $1,100.00 per apartment per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.210707,
     "lon": -80.397477,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.blacksburgmill.com/wp-content/uploads/2019/09/The-Mill-Apartments-Blacksburg.jpg",
+      "source_url": "https://www.blacksburgmill.com/",
+      "alt": "The Mill at Blacksburg — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-the-mill-at-blacksburg-2-bedroom-whole-apartment",
@@ -22099,7 +23587,15 @@
     "cost": "Provider advertises $1,300.00 per apartment per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.210707,
     "lon": -80.397477,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.blacksburgmill.com/wp-content/uploads/2019/09/The-Mill-Apartments-Blacksburg.jpg",
+      "source_url": "https://www.blacksburgmill.com/",
+      "alt": "The Mill at Blacksburg — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-the-mill-at-blacksburg-3-bedroom-whole-apartment",
@@ -22177,7 +23673,15 @@
     "cost": "Provider advertises $1,680.00 per apartment per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.210707,
     "lon": -80.397477,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.blacksburgmill.com/wp-content/uploads/2019/09/The-Mill-Apartments-Blacksburg.jpg",
+      "source_url": "https://www.blacksburgmill.com/",
+      "alt": "The Mill at Blacksburg — official community photograph",
+      "credit": "Official property, owner or public-agency website",
+      "reviewed_on": "2026-10-24",
+      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-legacy-on-main-2-3-bedroom-community-confirm-rent",

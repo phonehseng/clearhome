@@ -173,3 +173,50 @@ The Edge and Maple Ridge may show similar units, shared areas or amenities.
 No offered bedroom appearance, accessible vacancy, exact walking time or
 geocoordinate was invented. The Census lookup failed in this workspace; homes
 without confirmed coordinates remain in the list without false map pins.
+
+## Directory photo completion pass — October 24, 2026
+
+All 218 communities from the previous missing-photo queue were searched. Official
+property, owner and government pages supported new photo metadata for 183
+communities (188 listing records). This brings the catalog to 250 housing
+records with photos, representing 206 physical communities. The remaining 35
+communities have explicit review notes in `photo_review.json`.
+
+The machine-readable audit is [photo_sources.json](photo_sources.json). Each
+accepted entry links the exact published image and its supporting official page;
+rejected/unresolved entries explain the remaining gap. Image search was used to
+locate publisher-hosted photographs, followed by review of the property identity
+and source pages where accessible. This is AI-assisted source review, not a
+manual staff sign-off or confirmation of the offered unit's appearance. No rent,
+unit availability, eligibility or availability review dates were changed.
+
+Examples of directly linked property photographs include [Lindsay Hill's CHP
+page](https://www.communityhousingpartners.org/properties/lindsay-hill-senior-apartments/),
+[The Ellsworth's owner page](https://www.housingalexandria.org/properties/ellsworth/),
+[The Shelton's AHC page](https://ahcommunities.org/property/the-shelton/),
+[Key Gardens' AHC page](https://ahcommunities.org/property/key-gardens/), and
+[The Mill's provider site](https://www.blacksburgmill.com/). Granite's
+[300 McDonald page](https://granitestudentliving.com/listings/300-mcdonald-street-apartments-individual-lease-option-7-7-2024-2/)
+explicitly says photos show a similar unit and apartments are unfurnished; that
+qualification appears in its catalog caption. The actual offered room is not
+certified by these photos.
+
+Wrong-property images were rejected, including a Seattle property named 1711,
+a Wisconsin Claridge House, Platform images suggested for Potomac West, and
+Brambleton images suggested for Woods at Westpark. Arlington View Terrace at
+1429 S. Rolfe Street did not receive the neighboring Arlington View East photo
+published for 1420. Identified renderings, logos, decorative templates and floor
+plans were excluded. Atlantic Boulevard and the Oakville entries still need
+real photographs rather than construction/rendering images. The Landing at
+Mason's Bridge exposed 150-pixel gallery thumbnails; a suitable larger original
+was not established. The Levis Hill provider URL returned inconsistent content,
+so no image from it was accepted.
+
+Direct provider/CDN downloads remain blocked in this workspace. Original pixel
+dimensions and end-to-end live image delivery are therefore **unconfirmed**;
+some accepted publisher images are thumbnails. This is a substantial coverage
+update, not a claim that every listing has a high-resolution photograph. On a
+machine with provider access, `python backend/photo_audit.py --download` reports
+failures and images below 1200×675 without enlarging or replacing them. The
+existing byte-validating cache continues to restrict downloads to exact reviewed
+HTTPS hosts and reject redirects, oversized files and non-images.

@@ -1,0 +1,2558 @@
+{
+  "reviewed_on": "2026-10-24",
+  "scope": "218 communities missing official photo metadata at start of this pass",
+  "review_method": "AI-assisted review of indexed images and official property, owner and public-agency pages; not a provider permission, inspection, vacancy confirmation or pixel-dimension audit.",
+  "communities": [
+    {
+      "community": "Atlantic Boulevard Apartments",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "atlantic-boulevard"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://liveatlanticblvd.com/",
+      "reason": "Only construction or rendering evidence was established; a real community photograph is still needed."
+    },
+    {
+      "community": "Coan Pond Residences",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "coan-pond-residences-efficiency"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.fairfaxcounty.gov/housing/news/2022/coan-pond-residences",
+      "image_url": "https://www.fairfaxcounty.gov/housing/sites/housing/files/Assets/images/coanpond.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Lindsay Hill Senior Apartments",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "lindsay-hill-senior-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.communityhousingpartners.org/properties/lindsay-hill-senior-apartments/",
+      "image_url": "https://www.communityhousingpartners.org/wp-content/uploads/2019/08/2868.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Fields of Manassas",
+      "jurisdiction": "Prince William County",
+      "record_ids": [
+        "fields-manassas-community"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thefieldsmanassas.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cw_576%2Car_1.384%2Cg_auto/s3/2/101498/031_7431_willoughby_lane-_the_fields_of_manassas_287388_516339.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Bailey’s Crossing",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-bailey-s-crossing"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://mybaileyscrossingvir.prospectportal.com/alexandria/baileys-crossing/2-bedroom-apartments/",
+      "image_url": "https://medialibrarycfo.entrata.com/15077/MLv3/3/21/2022/2/9/1141/5db320e471bac6.48157916949.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Courts at Huntington Station",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-courts-at-huntington-station"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.udr.com/washington-dc-apartments/alexandria/the-courts-at-huntington-station/",
+      "image_url": "https://embed-ssl.wistia.com/deliveries/bd8890d82dd3eb4b2b78d46497c9225d.webp?image_crop_resized=1280x720",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Ridgeleigh at Van Dorn Metro",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-ridgeleigh-at-van-dorn-metro"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.ridgeleighapts.com/gallery/",
+      "image_url": "https://media.apts247.info/ae/aeaecec0b15b407eabc47ae37747a7e5/galleries/community/amenities/0O7A1359.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Shelby",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-shelby"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.29sc.com/living-proof-colleen-s-story-at-the-shelby-in-alexandria-va",
+      "image_url": "https://lirp.cdn-website.com/6a4f9087/dms3rep/multi/opt/10-23%2BLP%2Bpool-1920w.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Preserve at Westfields",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-preserve-at-westfields"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://preserveatwestfields.com/gallery/",
+      "image_url": "https://preserveatwestfields.com/assets/images/cache/UqpiFfeFNW7hKXSngcnyY2kgsXNFYPcnpAGEUtaX-c57f5e04dfda5bbf37e14ff41fd2c788.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Sully at Westfields",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-sully-at-westfields"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thesullyapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cw_576%2Car_1.384%2Cg_auto/s3/2/101498/jcp-kettler-thesully-23%282%29.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Emerson",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-emerson"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://emersonlife.com/",
+      "image_url": "https://emersonlife.com/assets/images/cache/1-The-Emerson-Building-Exterior-16ad3049798f31240fe40a45160cc097.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Avalon Mosaic",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-avalon-mosaic"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.avaloncommunities.com/virginia/merrifield-apartments/avalon-mosaic/",
+      "image_url": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/2KC6NFYEGVJORFQOLC2FRG5BFU.jpg?auth=07a153e088d8895be064515a6019cb6b6793a6983a7edc906ff187160da073e0&height=1090&quality=85&smart=true&width=2400",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Bell Vienna Metro",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-bell-vienna-metro"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.akelius-properties.us/dwell-vienna-metro0/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92601/va_fairfax_dwellviennametro_p1430755_20_20_1_photogallery.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Camden Monument Place",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-camden-monument-place"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.camdenliving.com/apartments/fairfax-va/camden-monument-place/media-gallery/community",
+      "image_url": "https://images.ctfassets.net/pg6xj64qk0kh/3SBWSCDnr9IE8RkeENgDbr/56f8805e7d017068f6c8e842ec82583f/camden-monument-place-apartments-fairfax-virginia-parking-garage-2.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Fairchase Apartments",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-fairchase-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.equityapartments.com/northern-virginia/fairfax-corner/fairchase-apartments",
+      "image_url": "https://media.equityapartments.com/images/c_crop%2Cx_0%2Cy_0%2Cw_1920%2Ch_1080/c_fill%2Cw_1920%2Ch_1080/q_80/4111-26/fairchase-apartments-kitchen.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Gables Centerpointe",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-gables-centerpointe"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.gables.com/community/528451",
+      "image_url": "https://www.gables.com/_next/image?q=75&url=https%3A%2F%2Fcdngables.azureedge.net%2Fv3%2Fassets%2Fblte729c2e09de05641%2Fblt009582903d213ed6%2F65172c6ca452a295a58b40c1%2FCenterpointe_Courtyard_1.png&w=1080",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Halstead Square",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-halstead-square"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/fairfax/halstead-square-lotus-lofts",
+      "image_url": "https://d1kldynkubiuhd.cloudfront.net/eyJidWNrZXQiOiJ1YXQtc3RyYXBpLXVwbG9hZHMtYm96enV0by1yZXZhbXAiLCJrZXkiOiJjbXMtdXBsb2FkLWNtcy11cGxvYWQtcHJvcGVydHktcDA1NTgxMTItRXh0ZXJpb3ItMTc2MDYyNDIzMzg0MC0xNzYwNjI0MjMzODQ4LmpwZyJ9?aspectRatio=16%3A9&focalX=0.5&focalY=0.5&format=webp&q=75&width=1920",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Jefferson at Fair Oaks",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-jefferson-at-fair-oaks"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://jeffersonatfairoaks.prospectportal.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/19705/MLv3/9/36/2025/03/04/083138/67c71cda8d80a7.16595305792.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Modera Mosaic",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-modera-mosaic"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.moderamosaic.com/fairfax-va-apartments/modera-mosaic/map-and-directions/",
+      "image_url": "https://medialibrarycf.entrata.com/14034/MLv3/3/21/2022/2/10/15361/612945adcb5be4.08699611502.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Overture Fair Ridge",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-overture-fair-ridge"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://overturefairridge.prospectportal.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/15190/MLv3/3/21/2024/12/17/112434/19081_100065540_5c65a85a9708b2.66637305314.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Prosperity Flats",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-prosperity-flats"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.prosperityflats.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/84017/dsc_7862.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Radiant Fairfax Ridge",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-radiant-fairfax-ridge"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.equityapartments.com/northern-virginia/fairfax-corner/radiant-fairfax-ridge-apartments",
+      "image_url": "https://media.equityapartments.com/images/c_crop%2Cx_0%2Cy_0%2Cw_1920%2Ch_1080/c_fill%2Cw_1920%2Ch_1080/q_auto%2Cf_auto/4262-4/radiant-fairfax-ridge-apartments-resident-lounge",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Apartments at Regents Park",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-apartments-at-regents-park"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "The Ridgewood by Windsor",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-ridgewood-by-windsor"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.windsorcommunities.com/properties/the-ridgewood-by-windsor/gallery/",
+      "image_url": "https://d1uty3jitgnf7i.cloudfront.net/wp-content/uploads/2022/01/OurCommunity_Exterior5_Ridgewood1.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Loren",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-loren"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://liveloren.com/gallery/",
+      "image_url": "https://liveloren.com/assets/images/cache/bFKclQbYFdjEa4RAzR6po7kXB44bKxThyjXnCRPM-37dc4a72edd5adad46eb0a7031079803.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Vantage Mosaic",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-vantage-mosaic"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.vantagemosaic.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/8131/p0546534_vantagemosaic_ext_amenities_grillingarea_sept2016.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Belvoir Square Apartments",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-belvoir-square-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.belvoirsquare.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/1608/MLv3/9/36/2025/02/27/014019/67c0cdb3a3caa3.57609361370.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Discovery Square",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-discovery-square"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.discoverysquareherndon.com/apartments/va/herndon/gallery",
+      "image_url": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cg_center%2Ch_667%2Cw_1000/v1742324933/g5/g5-c-5g5sw5287-grady-management/g5-cl-1ojpk0nf5h-grady-management-herndon-va/uploads/57-web-or-mls-_DSC4543_wpzk24.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Dulles Center Apartments",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-dulles-center-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.rentwithdullescenter.com/",
+      "image_url": "https://res.cloudinary.com/g5-assets-cld/image/upload/x_0%2Cy_3%2Ch_1362%2Cw_2042%2Cc_crop/q_auto%2Cf_auto%2Cfl_lossy%2Cg_center%2Ch_800%2Cw_1200/g5/g5-c-5g5sw5287-grady-management/g5-cl-1pmufx41es-grady-management-inc-herndon-va/uploads/23-web-or-mls-_DSC6992_cov7oz.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Passport Apartments",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-passport-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.simpsonpropertygroup.com/apartments/herndon-virginia/passport-apartments-herndon",
+      "image_url": "https://www.simpsonpropertygroup.com/Uploads2/CommunitySliderImagesV2_resized/Passport_Exterior_06_HIGH_2022_plane.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Ian",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-ian"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.greystar.com/the-ian-herndon-va/p_20490",
+      "image_url": "https://s7d9.scene7.com/is/image/greystarprod/20490BDG1",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Point at Monroe Place",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-point-at-monroe-place"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thepointatmonroeplace.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/17202/MLv3/3/21/2022/2/4/7760/5fd7a74565ba90.83179564287.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Point at Ridgeline",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-point-at-ridgeline"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thepointatridgeline.com/herndon/the-point-at-ridgeline/photos/",
+      "image_url": "https://medialibrarycf.entrata.com/17202/MLv3/3/27/2022/2/24/6778/5f4423ff7be1a5.43913630310.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Van Metre at Woodland Park",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-van-metre-at-woodland-park"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.woodlandparkapt.com/",
+      "image_url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_2048%2Ch_1365%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.05%2Cg_auto/s3/2/43370/vanmetre-woodlandpark-13.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Vista Laurel Highlands",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-vista-laurel-highlands"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.vistalaurelhighlands.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/8131/p1412955_vistalh_ext_courtyard_oct2021.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Ovation at Park Crest",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-ovation-at-park-crest"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.ovationapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cw_540%2Car_1.384%2Cg_auto/s3/2/8131/ovation_ext_frontentrance_homevisit_jan2024.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Vinson Hall",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-vinson-hall"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://vinsonhall.org/",
+      "image_url": "https://assets.website-files.com/60818030729d0614715a0e94/6083f2f3099cd2af742416a3_7e8689fb-8.0-about-us-content-1024x819.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Point at Dunn Loring",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-point-at-dunn-loring"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thepointatdunnloring.com/vienna/the-point-at-dunn-loring/amenities/",
+      "image_url": "https://medialibrarycfo.entrata.com/17202/MLv3/5/29/2022/3/8/7791/5fd7b8ee2fcf38.94024373576.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Aperture",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-aperture"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.liveaperture.com/gallery/",
+      "image_url": "https://www.liveaperture.com/wp-content/uploads/2020/12/Untitled10W.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Avalon Dunn Loring",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-avalon-dunn-loring"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.avaloncommunities.com/virginia/merrifield-apartments/avalon-dunn-loring/",
+      "image_url": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/U67YF66KFRMVXE5EMQXLLTRAR4.jpg?auth=7b5d7973e551d53897e6c8af5f66018595b5889f5906005d551c2f0dbdb318c0&height=1090&quality=85&smart=true&width=2400",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Reserve at Tysons Corner",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-reserve-at-tysons-corner"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.reserveattysonscorner.com/",
+      "image_url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1920%2Ch_1080%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/121499/tyson-slider4.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Aventon to Aspire Huntington Station",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-aventon-to-aspire-huntington-station"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://aspirehuntingtonstation.com/",
+      "image_url": "https://aspirehuntingtonstation.com/assets/images/cache/07-Aventon-Huntington-Station-Apartment-Living-Area1-8b5443bcba5ba8eee1206a94f8e2fb96.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Belhaven",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-belhaven"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.fairfieldresidential.com/apartmentality/distinguished-living-at-the-belhaven-in-alexandria-va",
+      "image_url": "https://cdn.fairfieldresidential.com/images/7X9SNlQLFGErzUV01BW1Tf9FhVN36gWZu22annAc.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Parker",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-parker"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://rent.brookfieldproperties.com/property/the-parker-at-huntington-metro/",
+      "image_url": "https://rent.brookfieldproperties.com/wp-content/uploads/2024/05/The-Parker_Ext_Building_LeasingOffice_Oct2015_Web.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Vista At Fairfax Corner",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-vista-at-fairfax-corner"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://vistafairfaxcorner.com/",
+      "image_url": "https://vistafairfaxcorner.com/assets/images/cache/gallery_2_vista_fairfax_3040-04c74a3df936aa2f53a92049659b17b8.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Alta Nova",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-alta-nova"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://altanovaapts.com/gallery/",
+      "image_url": "https://altanovaapts.com/assets/images/cache/I8VP8SZjYEpj1PTTyrsTTSAYuTtsOGrxHQxywyOZ-20c1e630734ee83ab22e9471c0dae06d.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Three Collective",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-three-collective"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.threecollective.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Car_1.384%2Cg_auto/s3/2/92213/_dsc5089_v2.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Makers Rise",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-makers-rise"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.makersrise.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/43370/makers-rise_evening-exterior.png",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Station on Silver",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-station-on-silver"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.udr.com/washington-dc-apartments/herndon/station-on-silver/",
+      "image_url": "https://www.udr.com/globalassets/communities/station-on-silver/images/community_stationonsilver_2020_bdg3_ek-1.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Cortland At McLean",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-cortland-at-mclean"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://cortland.com/apartments/cortland-at-mclean/",
+      "image_url": "https://cortland.com/assets/images/cache/1.1.22.1.4-Ashby-at-McLean-Courtyard-2024-LR-e8f785a6f1e3c77ef04842afa831ea06.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Arbor At Halley Rise",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-arbor-at-halley-rise"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://thearborathalleyrise.com/p/green-living/",
+      "image_url": "https://thearborathalleyrise.com/assets/images/Kettler_TheArboratHalleyRise_23.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "BLVD Haley",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-blvd-haley"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://blvdhaley.com/",
+      "image_url": "https://blvdhaley.com/assets/images/cache/noWgJ8aXjAMyQSX3mjFTcF5k3ciOMWoLCMXObL2t-34e606f8b8d5631afb30294e1d669773.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "BLVD Reston Station",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-blvd-reston-station"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://blvdreston.com/gallery/",
+      "image_url": "https://blvdreston.com/assets/images/cache/gallery_8_blvd__2831-44bdf9508af12fb35f6f20bf8e540dc3.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Exo",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-exo"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Faraday Park",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-faraday-park"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/reston/faraday-park/",
+      "image_url": "https://uat-strapi-uploads-bozzuto-revamp.s3.us-west-2.amazonaws.com/cms-upload-cms-upload-property-p1356777-Lobby-1760623928575-1760623928578.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Russell at Reston Station",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-russell-at-reston-station"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://russellapts.com/",
+      "image_url": "https://russellapts.com/assets/images/cache/RussellatRestonStation_Exteriors_July2025_HighRes-2-c60035706e00b3e984577fbc3611bb55.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Signature at Reston Town Center",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-signature-at-reston-town-center"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.simpsonpropertygroup.com/apartments/reston-virginia/signature-reston-town-center-apartments",
+      "image_url": "https://www.simpsonpropertygroup.com/Uploads2/CommunityNeighborhoodImages/Signature_BuildingExterior1.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Skymark",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-skymark"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "The Point at Reston",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-point-at-reston"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thepointatreston.com/reston/the-point-at-reston/photos/",
+      "image_url": "https://medialibrarycfo.entrata.com/17202/MLv3/3/27/2022/2/24/33246/618176f551f354.03086776958.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Avant at Reston Town Center",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-avant-at-reston-town-center"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.carmelpartners.com/project/avant-reston-town-center/",
+      "image_url": "https://www.carmelpartners.com/wp-content/uploads/2023/10/The-Avant-48-2048x1364.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Edmund",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-edmund"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.harborgroupmanagement.com/apartments/va/reston/the-edmund/gallery",
+      "image_url": "https://www.harborgroupmanagement.com/sites/g/files/iswmfx141/files/styles/gallery_full/public/2025-01/download_2.png?itok=TDx5tDh2",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Point at Rise",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-point-at-rise"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thepointatrise.com/reston/the-point-at-rise/amenities/",
+      "image_url": "https://medialibrarycfo.entrata.com/17202/MLv3/5/29/2025/12/10/081415/69398e47a62509.48241400821.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Hanover Springfield",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-hanover-springfield"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://hanoverspringfield.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/3156/MLv3/9/36/2025/12/31/090108/695548c4312210.19084083226.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "8421 Broad",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-8421-broad"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://rent.brookfieldproperties.com/property/8421-broad-affordable-housing/",
+      "image_url": "https://rent.brookfieldproperties.com/wp-content/uploads/2024/05/HDP_170731_19_FS_Web.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Adaire",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-adaire"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://adairetysons.com/",
+      "image_url": "https://cdn.carmel-apartments.com/system/uploads/fae/image/asset/36312/metro-2.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Brentford at the Mile",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-brentford-at-the-mile"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.livebrentford.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/johncolephoto-kettler-brentfordmile2-13.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Haden",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-haden"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://livehaden.com/",
+      "image_url": "https://livehaden.com/assets/images/cache/0222B-dc7802a2065ba08fb7948ad027c66e38.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Highgate at the Mile",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-highgate-at-the-mile"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.livehighgate.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/037_7915_jones_branch_drive__201215_255636.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Lumen",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-lumen"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://lumentysons.com/contact/",
+      "image_url": "https://lumentysons.com/assets/images/cache/20190907_9452-e872d0f620356ff6ac0362e54a779814.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Nouvelle",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-nouvelle"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://livenouvelle.com/virtual-tours/",
+      "image_url": "https://livenouvelle.com/assets/images/cache/exterior-6130ecad9921e6ff21f6f0ab80eefee9.JPG",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Heming",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-heming"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.liveheming.com/",
+      "image_url": "https://www.liveheming.com/wp-content/uploads/2024/09/Heming_INT_Apartments_Nightstand_RayCaviccho062024.jpg.webp?x95611=",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Jones at Tysons",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-jones-at-tysons"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/tysons-corner/the-jones-at-tysons",
+      "image_url": "https://uat-strapi-uploads-bozzuto-revamp.s3.us-west-2.amazonaws.com/cms-upload-cms-upload-property-p1858181-2852217_HanoverTysons_INT_OlmoBorgheseSchemeKitchen_June22-1760629128415-1760629128420.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Point at Mclean",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-point-at-mclean"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://thepointatmclean.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/17202/MLv3/9/36/2026/01/26/095838/69779d3d9887c7.84923783851.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Rylan",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-the-rylan"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://rylantysons.com/gallery/",
+      "image_url": "https://rylantysons.com/assets/images/cache/Rylan-Front-Wide-Across-Street-Morning-241-eac94a40181fabb56ce7993c9d2f6fad.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "VITA",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-vita"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.tysonscornercenter.com/LiveOffice",
+      "image_url": "https://assets.macerichepicenter.com/FileManager/Property/Albums/TysonsCornerCenter/10661/VITA_Gallery1.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Carlin",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-the-carlin"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Claridge House",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-claridge-house"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Culpepper Gardens",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-culpepper-gardens"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://vibrantcommunities.us/news/culpepper-garden",
+      "image_url": "https://images.squarespace-cdn.com/content/v1/5f4fde63fa39ac5601b24d24/1602632940318-0MROQARYAFWHP637QQWR/20180613_154532.jpg?format=1000w",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Hunter’s Park at Cherrydale",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-hunter-s-park-at-cherrydale"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Affordable-Housing/Development/Hunters-Park",
+      "image_url": "https://www.arlingtonva.us/files/sharedassets/public/housing/images/hunters-park-patio-ahc-inc.jpg?h=3456&w=5184",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Jordan",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-the-jordan"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thejordanapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/5465/p1580515_jordan_09_photogallery.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Placemakr",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-placemakr"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.placemakr.com/locations/arlington/marymount-ballston",
+      "image_url": "https://www.placemakr.com/hs-fs/hubfs/0-pm-corp-website-brand-refresh/property-pages/Marymount%20Ballston/PMRIXEY-P2BDB%20%28Premium%20Two%20Bed%20with%20Balcony%2C%20Unit%201401%29/PMRIXEY-Prem2BedBalcony_26.jpg?length=1200&name=PMRIXEY-Prem2BedBalcony_26.jpg&width=1200",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Waycroft",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-the-waycroft"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://thewaycroft.com/gallery/",
+      "image_url": "https://thewaycroft.com/wp-content/uploads/2020/07/living-room-large-windows.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Ballston Park at Historic Buckingham Village",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-ballston-park-at-historic-buckingham-village"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.ballstonpark.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/21/2022/2/10/93177/61534905c22950.18105306589.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Buckingham Gardens",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-buckingham-gardens"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "The Cadence",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-the-cadence"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://livethecadence.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/176993434/1920x1080/176993434.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Knightsbridge Apts",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-knightsbridge-apts"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "The Madison at Ballston Station",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-the-madison-at-ballston-station"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.madisonatballstonstation.com/arlington-arlington/the-madison-at-ballston-station/photos/",
+      "image_url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/27/2024/12/18/094852/6762fcf44fd860.08686446102.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Whitefield Commons",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-whitefield-commons"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.whitefieldcommonsapts.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg-crop/176895465/420x550/176895465.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Spectrum",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-the-spectrum"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thespectrumapts.com/amenities",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/85707/spectrum-thumb.png",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Earl",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-the-earl"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://theearlapartments.com/",
+      "image_url": "https://theearlapartments.com/assets/images/cache/XIR9qaTRhmlzbAORBTi66pmydJ96pXFacNNYWeoR-f4e3038de446b1c08c9c859313eec9ad.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Ten at Clarendon",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-ten-at-clarendon"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.tenatclarendon.com/",
+      "image_url": "https://images.squarespace-cdn.com/content/v1/667aea9953deb9770e328812/0eb3548a-f9e8-47e2-a6d1-2b2261191f57/HDP_171116_04V3_FS.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "vPoint",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-vpoint"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Wholey Legacy Homes",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-wholey-legacy-homes"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.legacyhomesarlington.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/174678003/1920x1080/174678003.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Oakwood Meadow Senior Residences",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-oakwood-meadow-senior-residences"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.oakwoodmeadowsenior.com/Gallery.aspx",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/151300645/1920x1080/151300645.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Ilda’s Overlook Senior Residences",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-ilda-s-overlook-senior-residences"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://ildasoverlooksenior.com/Gallery.aspx",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/164187206/1920x1080/164187206.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Loudoun View Senior Residences",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-loudoun-view-senior-residences"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.loudounviewsenior.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/158129585/1920x1080/158129585.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Arlington Mill",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-arlington-mill"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.arlingtonmillapts.com/",
+      "image_url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1920%2Ch_1280%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_419%2Car_0.9767441860465115%2Cg_auto/s3/2/92891/arlington%20mill_va_kitchen_new%20hero_icp_2761.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Gilliam Place",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-gilliam-place"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.gilliamplace.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92891/gilliam%20place%20apartments_va_new%20gallery%20image%20%2812%29.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Courthouse Crossings",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-courthouse-crossings"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Columbia Hills Apartments",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-columbia-hills-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.columbiahillsarlington.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/66208464/1920x1080/66208464.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Columbia Grove",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-columbia-grove"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.columbiagroveapts.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/66459712/1920x1080/66459712.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Springs",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-the-springs"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Queens Court",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-queens-court"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.queenscourtapartments.com/Gallery.aspx",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/69743124/1920x1080/69743124.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Parc Rosslyn",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-parc-rosslyn"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.paradigmcos.com/parc-rosslyn",
+      "image_url": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cg_center%2Ch_667%2Cw_1000/v1649457723/g5/g5-c-5smeemg8y-paradigm-companies/g5-cl-1ly834bqj5-paradigm-companies-arlington-va/uploads/Port_ParcRosslyn_4_q4heug.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Marbella",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-marbella"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Cameron Commons",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-cameron-commons"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Calvert Manor",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-calvert-manor"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Leckey Gardens",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-leckey-gardens"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Buchanan Gardens",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-buchanan-gardens"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://buchanangardensarlington.com/Gallery.aspx",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/161727998/1920x1080/161727998.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Barkalow",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-the-barkalow"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Unity Homes at Ballston",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-unity-homes-at-ballston"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Fisher House",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-fisher-house"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.fisherhouseapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92891/fisher%20house_va_new%20gallery%20image%20%286%29.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Arna Valley View",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-arna-valley-view"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Acclaim at Ashburn",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-acclaim-at-ashburn"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Ashburn Chase",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-ashburn-chase"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.ashburnchaseapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/110733/tm_ashburn_chase_2803-1200x.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Ashburn Meadows",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-ashburn-meadows"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.ashburnmeadows.com/gallery",
+      "image_url": "https://images.squarespace-cdn.com/content/v1/5edfbbbee6fdcf0c12b1b6e9/1595000565557-PYU4Q046Y759WCCD40LN/Exterior-Community-DSC0697%2B-%2BEdited%2B-%2BV1%2B-%2BRCA.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Atley on the Greenway",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-atley-on-the-greenway"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.atley-apts.com/va/ashburn/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1800%2Ch_1200%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/3/686299/living%20room%20and%20dining%20area%20at%20atley%20on%20the%20greenway%20apartments%20in%20ashburn%20va.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "BLVD Commons",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-blvd-commons"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://blvdcommons.com/gallery/",
+      "image_url": "https://blvdcommons.com/assets/images/cache/gallery_3_blvd__2830-20f7293f3f81d55948ec4e5ecb4a06a8.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "BLVD Gramercy East & BLVD Flats",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-blvd-gramercy-east-blvd-flats"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://blvdgramercyeast.com/",
+      "image_url": "https://blvdgramercyeast.com/assets/images/cache/rotator_3_blvd__2833-58ea83fb1f29c53fd971d13b881e28f4.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Grove at Flynn’s Crossing",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-the-grove-at-flynn-s-crossing"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.evergreenreg.com/communities/grove-at-flynns-crossing/",
+      "image_url": "https://www.evergreenreg.com/wp-content/uploads/2025/05/Grove-at-Flynns-Crossing-1.webp",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Vyne One Loudoun",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-vyne-one-loudoun"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.livevyne.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/img_6124.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Waxpool Apartments",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-waxpool-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.waxpoolapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/110733/dji_20240306104324_0477_d.jpeg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The William",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-the-william"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.livethewilliam.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/jcp-kettler-thewilliam-day1-37.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Abbey & The Devon at South Riding",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-the-abbey-the-devon-at-south-riding"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Bell Ashburn Farms",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-bell-ashburn-farms"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.bellashburnfarms.com/gallery/",
+      "image_url": "https://www.bellashburnfarms.com/wp-content/uploads/sites/80/2022/04/BellAshburnFarms_Model_Living_1.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Braddock Terrace",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-braddock-terrace"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.braddockterrace.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/109082/braddock%206.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "TGM Moorefield",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-tgm-moorefield"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Shreveport Ridge",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-shreveport-ridge"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.tmamgroup.com/shreveport-ridge/default",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/3/650536/photogal1.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Woods at Brambleton",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-the-woods-at-brambleton"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thewoodsatbrambleton.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1024%2Ch_768%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/3/650566/photo_gal5.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Woods at Westpark",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-the-woods-at-westpark"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thewoodsatwestpark.com/",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.4%2Cg_auto/s3/2/110733/51312910041_207496ab2a_o.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Acclaim at Sterling",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-acclaim-at-sterling"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.acclaimatsterling.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/57804/avanath_006%20-sterling%20dji_0244_5_6_7_8.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Cascades Crossing",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-cascades-crossing"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.cascadescrossing.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/84017/p1693021-5-1-photogallery.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Commons at Potomac Square",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-the-commons-at-potomac-square"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.potomacsquareapts.com/apartments/va/sterling/photos",
+      "image_url": "https://g5-assets-cld-res.cloudinary.com/image/upload/x_-2%2Cy_371%2Ch_1226%2Cw_2502%2Cc_crop/q_auto%2Cf_auto%2Cfl_lossy%2Cg_center%2Ch_588%2Cw_1200/v1725892016/g5/g5-c-5vee2vhsk-fca-management-llc/g5-cl-1p4co92ykv-fca-management-llc-sterling-va/uploads/000_4613_1_nwimyu.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Elms at Arcola",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-the-elms-at-arcola"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.arcolaelmsliving.com/",
+      "image_url": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto%2Cf_auto%2Cfl_lossy/v1666031493/g5/g5-c-5weyr3gl3-legend-management-group/g5-cl-1n20g75azp-legend-management-group-dulles-va/uploads/cywcoccswx3poilfvzyp.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Heronview Apartments",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-heronview-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.heronviewapts.com/",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/109082/02-dji_0166.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Lerner Windmill Parc",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-lerner-windmill-parc"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.lernerwindmillparc.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/227691/windmill%20parc%20apartment%20community%20sign.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Stone Springs Apartments",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-stone-springs-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.stonespringsapartments.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/109082/bldg%20ext%281%29.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Wyatt",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-the-wyatt"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.greystar.com/wyatt-sterling-va/p_22188",
+      "image_url": "https://s7d9.scene7.com/is/image/greystarprod/22188BDG2",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Llewellyn Village",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-llewellyn-village"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://windyhillfoundation.org/our-properties/llewellyn-village/",
+      "image_url": "https://windyhillfoundation.org/wp-content/uploads/2017/03/Llewelyn-Village-Apartments.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Maple Avenue Apartments",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-maple-avenue-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://armigermanagement.com/apartments/purcellville/maple-avenue/9/",
+      "image_url": "https://www.armigermanagement.com/admin/uploads/IMG_4280.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Purcellville East",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-purcellville-east"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Purcellville Pointe",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-purcellville-pointe"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.purcellvillepointe.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/100025/MLv3/9/36/2025/05/06/094539/681a2ea32ade91.31554564730.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Levis Hill House",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-levis-hill-house"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
+      "reason": "Provider URL returned inconsistent content; no trustworthy property photograph was established."
+    },
+    {
+      "community": "Madison House",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-madison-house"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Annie B. Rose House",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-annie-b-rose-house"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.anniebrosehouse.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/120987/abrh-exterior05.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Claridge House Alexandria",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-claridge-house-alexandria"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Foxchase",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-foxchase"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.foxchaseofalexandriaapts.com/residences.html",
+      "image_url": "https://s7d9.scene7.com/is/image/aimcoprod/Foxchase-Gadsby-GeneralExterior1-1?%24large-desktop-1990px%24=&fmt=webp",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "New Brookside Apartments",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-new-brookside-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.newbrooksideapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/120987/_bnp0651.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Olde Towne West III",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-olde-towne-west-iii"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Acclaim at Alexandria",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-acclaim-at-alexandria"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.acclaimatalexandria.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/57804/avanath_026%20alexandriastation%20dsc_2609_10_11_12_13.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Beasley Square",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-beasley-square"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Beverly Park",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-beverly-park"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://wesleypropertymanagement.com/property/beverly-park/",
+      "image_url": "https://wesleypropertymanagement.com/wp-content/uploads/Wesley-Property-Management-Communities-Gallery-Beverly-Park-4.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Bloom at Braddock",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-bloom-at-braddock"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thebloomalexandria.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/21/2025/01/31/123802/679d2699c54211.70813974373.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Brent Place",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-brent-place"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thectgroupllc.com/brent-place",
+      "image_url": "https://images.squarespace-cdn.com/content/v1/6388ffb60b70956b8d39a40b/0014c1fc-7fef-4f05-9c59-87c6dda94457/2020-03-02.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Ellsworth",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-ellsworth"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.housingalexandria.org/properties/ellsworth/",
+      "image_url": "https://www.housingalexandria.org/wp-content/uploads/2023/04/exterior-11-22-scaled.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Waypoint at Fairlington",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-waypoint-at-fairlington"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://thewaypointalx.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/177677061/1920x1080/177677061.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Fields of Alexandria",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-fields-of-alexandria"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thefieldsalexandria.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/063_4309_duke_street_309523_576019.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Fields of Old Town",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-fields-of-old-town"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thefieldsoldtown.com/",
+      "image_url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_6064%2Ch_4040%2Cc_crop/q_auto%2Cf_auto%2Cc_fill%2Cw_576%2Car_1%2Cg_auto/s3/2/101498/old%20town-poi-16.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Jackson Crossing",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-jackson-crossing"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.alexandriava.gov/housing/housing-2040-education-month",
+      "image_url": "https://www.alexandriava.gov/sites/default/files/styles/crop_card_image/public/2024-09/Jackson%20Crossing%20Full%20View%20%28landscape.jpg?h=e2915dde&itok=k-rbM62x",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Lacy Court",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-lacy-court"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.lacycourt-apartments.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/21/2025/09/11/121430/68c31186b0eec5.06180989287.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Lineage",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-lineage"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.lineageapts.com/",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/233585/pratumcompanies_6061-031_625_n_patrick_street_305645_610041.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Longview Terrace",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-longview-terrace"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.housingalexandria.org/properties/longview/",
+      "image_url": "https://www.housingalexandria.org/wp-content/uploads/2023/04/longview_i1.webp",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Lynhaven",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-lynhaven"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://wesleypropertymanagement.com/property/lynhaven-apartments/",
+      "image_url": "https://wesleypropertymanagement.com/wp-content/uploads/Wesley-Property-Management-Lynhaven-Apartments-Side-View.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Nexus West Alex",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-nexus-west-alex"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.nexusalexandria.com/alexandria/the-nexus/conventional/",
+      "image_url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/21/2025/12/17/092215/6942d8b787a7b0.82652582647.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Parc Square",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-parc-square"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.parcsquareapts.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg-crop/177664083/420x550/177664083.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Parcview",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-parcview"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.parcviewapts.com/Gallery.aspx",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/177408740/1920x1080/177408740.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Parkstone Alexandria",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-parkstone-alexandria"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.parkstonealexandria.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/157786160/1920x1080/157786160.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Square at 511",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-square-at-511"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thesquareat511.com/alexandria/the-square-at-511/photos/",
+      "image_url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/27/2025/12/01/011806/692df7fecac306.08314136247.png",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Potomac West",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-potomac-west"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Saint James Plaza",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-saint-james-plaza"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.huduser.gov/archives/portal/pdredge/pdr-edge-inpractice-102119.html",
+      "image_url": "https://www.huduser.gov/portal/sites/default/files/images/Edge-IP-1-102119.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Station at Potomac Yard",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-station-at-potomac-yard"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.housingalexandria.org/properties/the-station/",
+      "image_url": "https://www.housingalexandria.org/wp-content/uploads/2023/04/station_i9.webp",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Alate Old Town",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-alate-old-town"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Alexan Florence",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-alexan-florence"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/alexandria/alexan-florence",
+      "image_url": "https://d1kldynkubiuhd.cloudfront.net/eyJidWNrZXQiOiJ1YXQtc3RyYXBpLXVwbG9hZHMtYm96enV0by1yZXZhbXAiLCJrZXkiOiJjbXMtdXBsb2FkLWNtcy11cGxvYWQtcHJvcGVydHktcDEzNzE3MzQtRml0bmVzc19DZW50ZXItMTc2MDYyMjg1NDkzMy0xNzYwNjIyODU0OTM4LmpwZyJ9?aspectRatio=16%3A9&focalX=0.5&focalY=0.5&format=webp&q=75&width=1920",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Blake",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-blake"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.theblakealexandria.com/virtual-tours/",
+      "image_url": "https://www.theblakealexandria.com/wp-content/uploads/JPE_6717_1-1.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Bradley",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-bradley"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.fairfieldresidential.com/apartmentality/well-connected-living-at-the-bradley-braddock-road-station",
+      "image_url": "https://cdn.fairfieldresidential.com/2020/01/Concierge-Desk-at-The-Bradley-Alexandria-VA.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Carlyle Place",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-carlyle-place"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.carlyleplaceapt.com/alexandria/carlyle-place/photos/",
+      "image_url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/27/2024/03/12/114725/65f0952d12edb6.64722843187.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Del Ray Central (Fuse)",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-del-ray-central-fuse"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.greystar.com/del-ray-central-at-fuse-alexandria-va/p_12044",
+      "image_url": "https://s7d9.scene7.com/is/image/greystarprod/12044BDG4",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Point at Eisenhower Square",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-point-at-eisenhower-square"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thepointateisenhowersq.com/alexandria/the-point-at-eisenhower-square/photos/",
+      "image_url": "https://medialibrarycf.entrata.com/17202/MLv3/3/27/2022/05/17/102921/6283cd60db0195.74380859801.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Foundry",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-foundry"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://thefoundryalexandria.com/",
+      "image_url": "https://resource.rentcafe.com/image/upload/w_1504%2Ch_1299%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/3013/the%20foundry_exterior%20%289%29_highres_oct2020.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Gables Old Town North",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-gables-old-town-north"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.gables.com/communities/virginia/alexandria/gables-old-town-north",
+      "image_url": "https://cdn.rentcafe.com/dmslivecafe/3/891787/Pool%20Area.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Grayson",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-grayson"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.graysonapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/2834/graysonpatio.png",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Halstead Tower by Windsor",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-halstead-tower-by-windsor"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.windsorcommunities.com/properties/halstead-tower-by-windsor/gallery/",
+      "image_url": "https://d1uty3jitgnf7i.cloudfront.net/wp-content/uploads/2022/01/1OurCommunity_P1_Halstead1.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Ives at Oakville",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-ives-at-oakville"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
+      "reason": "Only construction or rendering evidence was established; a real community photograph is still needed."
+    },
+    {
+      "community": "Meridian at Eisenhower Station",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-meridian-at-eisenhower-station"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.meridianeisenhower.com/alexandria-va-apartments/meridian-at-eisenhower-meridianeisenhowerstation/photos/",
+      "image_url": "https://medialibrarycf.entrata.com/17698/MLv3/3/27/2022/4/13/90411/613be78f02f685.64471901318.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Meridian 2250",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-meridian-2250"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.meridian2250.com/alexandria/meridian-2250-at-eisenhower-station/photos/",
+      "image_url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/27/2024/09/28/072912/66f804a876c116.81013162405.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Notch 8",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-notch-8"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://liveatnotch8.com/",
+      "image_url": "https://liveatnotch8.com/assets/images/cache/ePXJ8orNUOoj75uYkDv7m0vb1YzOtM1QMNi7gVDq-2ac0ba979dd15c9e90f5325b23e96778.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Parc Meridian",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-parc-meridian"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.paradigmcos.com/real-estate-development",
+      "image_url": "https://g5-assets-cld-res.cloudinary.com/image/upload/x_0%2Cy_252%2Ch_1119%2Cw_1678%2Cc_crop/q_auto%2Cf_auto%2Cc_fill%2Cg_center%2Ch_667%2Cw_1000/v1706046500/g5/g5-c-5smeemg8y-paradigm-companies/g5-cl-1ly834bqj5-paradigm-companies-arlington-va/uploads/Vertical_Nighttime_Exterior_From_Across_Eisenhower_Ave_yfyr31.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Park + Ford",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-park-ford"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://lowe-re.com/park-ford-completed-transformation-of-1980s-era-office-complex-into-modern-apartments-in-alexandria-virginia/",
+      "image_url": "https://lowe-re.com/app/uploads/2022/10/Side-by-Side-Spring-2048x1401.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Platform",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-platform"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://platformalexandria.com/amenities",
+      "image_url": "https://cdn.carmel-apartments.com/system/uploads/fae/image/asset/27465/27.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Residences at Carlyle Square",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-residences-at-carlyle-square"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.crccompanies.com/portfolio/post-carlyle-square",
+      "image_url": "https://images.squarespace-cdn.com/content/v1/664f9a2e28814f09f62cdb26/1716492893546-Q2UUDPPN4ZI3GMOCPEV1/Post%2BCarlyle%2BSquare%2BExterior%2BImage-141581.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Raeburn",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-the-raeburn"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
+      "reason": "Only construction or rendering evidence was established; a real community photograph is still needed."
+    },
+    {
+      "community": "Station 650",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-station-650"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.crccompanies.com/portfolio/station-650",
+      "image_url": "https://images.squarespace-cdn.com/content/v1/664f9a2e28814f09f62cdb26/1716492893758-3WSMPRARWZMMTJTK24JX/exterior.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Bell Old Town",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-bell-old-town"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.belloldtown.com/gallery/",
+      "image_url": "https://www.belloldtown.com/wp-content/uploads/sites/195/2025/05/BellOldTown_Game-Room-1_May2025_HighRes.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Tuscany Apartments",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-tuscany-apartments"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thetuscanyapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/89430/065_260_yoakum_pkwy_267288_447355.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Landing at Mason’s Bridge",
+      "jurisdiction": "Prince William County",
+      "record_ids": [
+        "nova-prince-william-county-the-landing-at-mason-s-bridge"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://lawsoncompanies.com/apartments/the-landing-at-masons-bridge-apartments-woodbridge-va/",
+      "reason": "Official gallery exposes 150-pixel thumbnails; a usable larger original was not established."
+    },
+    {
+      "community": "The Flats at Neabsco",
+      "jurisdiction": "Prince William County",
+      "record_ids": [
+        "nova-prince-william-county-the-flats-at-neabsco"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.theflatsatneabsco.com/",
+      "image_url": "https://cdngeneral.rentcafe.com/dmslivecafe/3/888598/Pool.jpg?crop=%280%2C0%2C300%2C200%29&cropxunits=300&cropyunits=200&quality=85&scale=both",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Park Landing",
+      "jurisdiction": "Prince William County",
+      "record_ids": [
+        "nova-prince-william-county-park-landing"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.park-landing.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/174723970/1920x1080/174723970.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Harbor at Quantico Creek",
+      "jurisdiction": "Prince William County",
+      "record_ids": [
+        "nova-prince-william-county-the-harbor-at-quantico-creek"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.harboratquanticocreek.com/",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "455 Tinner Hill",
+      "jurisdiction": "Falls Church City",
+      "record_ids": [
+        "nova-falls-church-city-455-tinner-hill"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://455tinnerhill.com/",
+      "image_url": "https://capi.myleasestar.com/v2/dimg/175898830/1920x1080/175898830.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Alder at West Falls",
+      "jurisdiction": "Falls Church City",
+      "record_ids": [
+        "nova-falls-church-city-the-alder-at-west-falls"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.bozzuto.com/apartments-for-rent/va/falls-church/the-alder",
+      "image_url": "https://uat-strapi-uploads-bozzuto-revamp.s3.us-west-2.amazonaws.com/cms-upload-cms-upload-property-p1752918-2853373_6.TheAlder_INT_Apartments_Bedroom_462_KevinCarney_Feb2025-1760628748435-1760628748439.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "West Broad",
+      "jurisdiction": "Falls Church City",
+      "record_ids": [
+        "nova-falls-church-city-west-broad"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.westbroad.com/gallery/",
+      "image_url": "https://www.westbroad.com/wp-content/uploads/2025/03/WestBroad_Int_Model_2bedKitchen_Feb2016.jpg?x90118=",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Read Building",
+      "jurisdiction": "Falls Church City",
+      "record_ids": [
+        "nova-falls-church-city-the-read-building"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
+      "reason": "Official sources and image results were searched; no suitable property-specific official image URL could be established."
+    },
+    {
+      "community": "Arlington View Terrace",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "arlington-view-terrace-two-bedroom"
+      ],
+      "status": "needs_verified_property_photo",
+      "source_url": "https://www.avtapts.com/",
+      "reason": "Rejected a neighboring Terraces at Arlington View East image: its 1420 address differs from this record at 1429 S. Rolfe Street."
+    },
+    {
+      "community": "Taylor Square Apartments",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "taylor-square-one-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://ahcommunities.org/property/taylor-square/",
+      "image_url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Taylor-Square-Featured%402x-1030x644.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Shelton",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "the-shelton-two-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://ahcommunities.org/property/the-shelton/",
+      "image_url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Shelton-Featured%402x-1030x644.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Macedonian",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "the-macedonian-two-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://ahcommunities.org/property/the-macedonian/",
+      "image_url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Macedonian-Featured%402x-1030x644.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Fort Henry Gardens",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "fort-henry-gardens-two-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://ahcommunities.org/property/fort-henry-gardens/",
+      "image_url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Fort-Henry-Gardens-2%402x-1030x644.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Key Gardens",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "key-gardens-one-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://ahcommunities.org/property/key-gardens/",
+      "image_url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Key-Gardens-Featured%402x-1030x644.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Serrano Apartments",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "serrano-apartments-one-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.theserranoapts.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/85707/barbara%20darter%205535%20columbia%20pike%20%2816%20of%2030%29.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Westover Apartments",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "westover-apartments-one-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://ahcommunities.org/property/westover-apartments/",
+      "image_url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Westover-Apartments-Featured%402x-1030x644.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Ashtons",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "the-ashtons-one-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://ahcommunities.org/property/the-ashtons/",
+      "image_url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Ashtons-Featured%402x-1030x644.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Fields of Arlington",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "the-fields-of-arlington-one-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.thefieldsarlington.com/photogallery",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/leasing%20office.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Lenox Club",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "lenox-club-studio"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.lenoxclubliving.com/",
+      "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/85201/lenoxclub_9a_exterior3.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Carlton Scott Apartments",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-carlton-scott-apartments-c27-room-in-2-bedroom-apartment"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://granitestudentliving.com/listings/carlton-scott-apartments-remodeled-3-bed-1-5-bath/",
+      "image_url": "https://images.cdn.appfolio.com/granitesl/images/ca5d40be-0e5d-40f4-a53b-d8d699b32bc8/large.jpg",
+      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "dimensions_checked": false
+    },
+    {
+      "community": "300 McDonald Street",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-300-mcdonald-street-c24-room-in-shared-apartment"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://granitestudentliving.com/listings/300-mcdonald-street-apartments-individual-lease-option-7-7-2024-2/",
+      "image_url": "https://images.cdn.appfolio.com/granitesl/images/260ea87e-98f6-4743-a97b-4c9efd5c716b/large.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "1711 Apartments",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-1711-apartments-unit-04-private-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://granitestudentliving.com/listings/1711-whipple-drive-4bed-2bath/",
+      "image_url": "https://images.cdn.appfolio.com/granitesl/images/4b384edc-f743-40a9-a6ba-1c72d8e8be26/large.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Alight Blacksburg",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-alight-blacksburg-east-bedroom-in-4-2",
+        "blacksburg-alight-blacksburg-west-bedroom-in-4-2",
+        "blacksburg-alight-blacksburg-standard-bedroom-in-2-1",
+        "blacksburg-alight-blacksburg-fireplace-bedroom-in-2-1"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://alight-blacksburg.com/",
+      "image_url": "https://alight-blacksburg.com/wp-content/uploads/sites/19/2023/02/Alight-Blacksburg-POI-11.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    },
+    {
+      "community": "The Mill at Blacksburg",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "blacksburg-the-mill-at-blacksburg-1-bedroom-whole-apartment",
+        "blacksburg-the-mill-at-blacksburg-2-bedroom-whole-apartment",
+        "blacksburg-the-mill-at-blacksburg-3-bedroom-whole-apartment"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.blacksburgmill.com/",
+      "image_url": "https://www.blacksburgmill.com/wp-content/uploads/2019/09/The-Mill-Apartments-Blacksburg.jpg",
+      "method": "official_page_image_link",
+      "dimensions_checked": false
+    }
+  ]
+}
