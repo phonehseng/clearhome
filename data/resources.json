@@ -75,7 +75,8 @@
     },
     "lat": 38.920169,
     "lon": -77.212352,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "indigo-one-bedroom-a14",
@@ -153,7 +154,8 @@
     },
     "lat": 38.920169,
     "lon": -77.212352,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "indigo-two-bedroom-d",
@@ -227,7 +229,8 @@
     },
     "lat": 38.920169,
     "lon": -77.212352,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "arbor-heights-one-bedroom",
@@ -256,7 +259,7 @@
     "accessibility_notes": "Owner identifies accessible apartments, but the accessibility of the advertised vacant unit is unconfirmed.",
     "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
     "minimum_age": null,
-    "source_url": "https://www.arborheightsapts.com/floorplans",
+    "source_url": "https://ahcommunities.org/property/arbor-heights/",
     "sources": [
       {
         "url": "https://www.arborheightsapts.com/floorplans",
@@ -268,7 +271,7 @@
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -305,7 +308,9 @@
     },
     "lat": 38.856944,
     "lon": -77.116844,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "owner_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "arbor-heights-two-bedroom",
@@ -334,7 +339,7 @@
     "accessibility_notes": "Owner identifies accessible apartments, but the accessibility of the advertised vacant unit is unconfirmed.",
     "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
     "minimum_age": null,
-    "source_url": "https://www.arborheightsapts.com/floorplans",
+    "source_url": "https://ahcommunities.org/property/arbor-heights/",
     "sources": [
       {
         "url": "https://www.arborheightsapts.com/floorplans",
@@ -346,7 +351,7 @@
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -383,7 +388,9 @@
     },
     "lat": 38.856944,
     "lon": -77.116844,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "owner_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "glen-ridge-two-bedroom-50",
@@ -461,7 +468,8 @@
     },
     "lat": 38.675936,
     "lon": -77.362716,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "glen-ridge-two-bedroom-60",
@@ -539,7 +547,8 @@
     },
     "lat": 38.675936,
     "lon": -77.362716,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "glen-ridge-three-bedroom-60",
@@ -617,7 +626,8 @@
     },
     "lat": 38.675936,
     "lon": -77.362716,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "riverwoods-one-bedroom",
@@ -691,7 +701,8 @@
     },
     "lat": 38.590997,
     "lon": -77.296098,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "riverwoods-two-bedroom",
@@ -765,7 +776,8 @@
     },
     "lat": 38.590997,
     "lon": -77.296098,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "atlantic-boulevard",
@@ -832,7 +844,9 @@
     },
     "lat": 39.011445,
     "lon": -77.429043,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "linden-senior",
@@ -861,7 +875,7 @@
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
     "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
     "minimum_age": 55,
-    "source_url": "https://www.thelindenseniorresidences.com/",
+    "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/loudoun-county/the-linden-senior-residences/",
     "sources": [
       {
         "url": "https://www.thelindenseniorresidences.com/",
@@ -903,7 +917,9 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "source_kind": "owner_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "arbelo-one-bedroom",
@@ -944,7 +960,7 @@
       },
       {
         "url": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -981,7 +997,8 @@
     },
     "lat": 38.818719,
     "lon": -77.046597,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "arbelo-two-bedroom",
@@ -1022,7 +1039,7 @@
       },
       {
         "url": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -1059,7 +1076,8 @@
     },
     "lat": 38.818719,
     "lon": -77.046597,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "spire-one-bedroom",
@@ -1088,7 +1106,7 @@
     "accessibility_notes": "Floor-plan page mentions wheelchair accessible rooms. The accessibility of specific vacant apartments remains unconfirmed.",
     "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
     "minimum_age": null,
-    "source_url": "https://www.spireapts.com/floorplans/one-bedroom",
+    "source_url": "https://ahcommunities.org/property/the-spire/",
     "sources": [
       {
         "url": "https://www.spireapts.com/floorplans/one-bedroom",
@@ -1104,7 +1122,7 @@
       },
       {
         "url": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -1141,7 +1159,9 @@
     },
     "lat": 38.836501,
     "lon": -77.114425,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "owner_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "witter-place-closed",
@@ -1211,7 +1231,9 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "source_kind": "owner_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "brentwood-one-bedroom",
@@ -1285,7 +1307,8 @@
     },
     "lat": 38.769901,
     "lon": -77.483325,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "west-wood-oaks-two-bedroom",
@@ -1363,7 +1386,8 @@
     },
     "lat": 38.841298,
     "lon": -77.317675,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "park-place-senior-one-bedroom",
@@ -1515,7 +1539,9 @@
     },
     "lat": 38.8816,
     "lon": -77.170007,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "falls-church-adu-waitlist",
@@ -5007,7 +5033,7 @@
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/waitlist",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/fairfax-county-rental-program",
@@ -5039,7 +5065,8 @@
     },
     "lat": 38.862905,
     "lon": -77.330764,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "redbud-glen-one-bedroom",
@@ -5076,7 +5103,7 @@
       },
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.littleriverglen4apts.com/",
@@ -5113,7 +5140,9 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "little-river-glen-one-bedroom",
@@ -5131,7 +5160,7 @@
     "website": "https://www.littleriverglenapts.com/",
     "hours": null,
     "who_it_serves": "Adults ages 62+ within published income limits ($68,880 for 1 person; $78,720 for 2 people per FCRHA page).",
-    "cost": "Published rent range $890 to $2,315 per month; utilities included per county page. Subsidized units available. Rent varies by unit and program.",
+    "cost": "Published rent $890 to $2,315 per month, varying by unit size and program financing; subsidized units available. Utilities included.",
     "monthly_rent": 890,
     "rent_basis": "starting_at",
     "currency": "USD",
@@ -5142,11 +5171,11 @@
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
     "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
     "minimum_age": 62,
-    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "source_url": "https://www.fcrha.org/properties/little-river-glen/1",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.fcrha.org/properties/little-river-glen/1",
@@ -5169,7 +5198,7 @@
       "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
       "source_updated_on": null
     },
-    "notes": "120 one-bedroom units. Provider site returned HTTP 403; facts come from county and FCRHA pages. Address is from county senior page and FCRHA map link. FCRHA also lists temporary property number 571-474-5523.",
+    "notes": "Independent senior apartments (ages 62+). Assisted living is a separate program on the same Glens at Little River campus, and Little River Glen IV (now Redbud Glen, 4103 Barker Court) is a separate listing. Advertised rent doesn't mean a unit is available now. The property's own site (littleriverglenapts.com) blocks automated checks, so it isn't used as a verified link.",
     "area": "Fairfax County",
     "affordability": {
       "status": "documented",
@@ -5190,7 +5219,25 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_property_page",
+    "source_checked_on": "2026-10-24",
+    "utilities": "Included (per FCRHA and Fairfax County).",
+    "unit_count": 120,
+    "amenities": [
+      "Elevator in each building",
+      "Accessible units available (not every unit)",
+      "Personal emergency response system available",
+      "Lounges and sitting areas",
+      "Covered walkways",
+      "Laundry room on each floor",
+      "Bi-monthly shopping trips",
+      "Cable ready",
+      "Gated community with interior courtyard and fountain",
+      "Senior center and wellness center on campus",
+      "Close to shopping centers and public transportation"
+    ],
+    "application_info": "Call the leasing office at 571-544-7100 and ask to be placed on the waitlist. Fairfax County fills vacancies from each community's waitlist and says it can't estimate when units open."
   },
   {
     "id": "olley-glen-one-bedroom",
@@ -5219,11 +5266,11 @@
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
     "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
     "minimum_age": 62,
-    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "source_url": "https://www.fcrha.org/properties/olley-glen/1",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.fcrha.org/properties/olley-glen/1",
@@ -5267,7 +5314,9 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "gum-springs-glen-one-bedroom",
@@ -5304,7 +5353,7 @@
       },
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -5340,7 +5389,9 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "gum-springs-glen-two-bedroom",
@@ -5377,7 +5428,7 @@
       },
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -5413,7 +5464,9 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "morris-glen-one-bedroom",
@@ -5442,11 +5495,11 @@
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
     "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
     "minimum_age": 62,
-    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "source_url": "https://www.fcrha.org/properties/morris-glen/1",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.fcrha.org/properties/morris-glen/1",
@@ -5486,7 +5539,9 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "herndon-harbor-house-senior-apartment",
@@ -5515,11 +5570,11 @@
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
     "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
     "minimum_age": 62,
-    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "source_url": "https://www.qpmgmt.com/properties/herndon-house/",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.qpmgmt.com/properties/herndon-house/",
@@ -5527,7 +5582,7 @@
       },
       {
         "url": "https://www.fairfaxcounty.gov/housing/waitlist",
-        "role": "government"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -5563,7 +5618,9 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "property_website",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "atrium-at-metro-west-two-bedroom-one-bath",
@@ -5596,7 +5653,7 @@
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.fcrha.org/properties/atrium-at-metrowest/1",
@@ -5633,7 +5690,8 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_directory"
   },
   {
     "id": "atrium-at-metro-west-two-bedroom-two-bath",
@@ -5666,7 +5724,7 @@
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.fcrha.org/properties/atrium-at-metrowest/1",
@@ -5703,7 +5761,8 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_directory"
   },
   {
     "id": "saintsbury-plaza-two-bedroom",
@@ -5732,11 +5791,11 @@
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
     "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
     "minimum_age": 55,
-    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "source_url": "https://www.fcrha.org/properties/saintsbury-plaza/1",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.fcrha.org/properties/saintsbury-plaza/1",
@@ -5776,7 +5835,9 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "crest-of-alexandria-one-bedroom",
@@ -5805,11 +5866,11 @@
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
     "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
     "minimum_age": 55,
-    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "source_url": "https://www.fcrha.org/properties/crest-of-alexandria/1",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.fcrha.org/properties/crest-of-alexandria/1",
@@ -5846,7 +5907,9 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "crest-of-alexandria-two-bedroom",
@@ -5875,11 +5938,11 @@
     "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
     "requirements": "Contact the provider to confirm income qualification, age, household-size rules, documentation, fees, and availability before applying.",
     "minimum_age": 55,
-    "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
+    "source_url": "https://www.fcrha.org/properties/crest-of-alexandria/1",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.fcrha.org/properties/crest-of-alexandria/1",
@@ -5916,7 +5979,9 @@
       "credit": "Fairfax County Redevelopment and Housing Authority",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "official_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "lindsay-hill-senior-apartments",
@@ -5981,7 +6046,9 @@
     },
     "lat": 38.713726,
     "lon": -77.235397,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "owner_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "virginia-gardens-one-bedroom",
@@ -6011,7 +6078,7 @@
     "accessibility_notes": "Accessible features for the specific offered apartment are not confirmed; ask leasing.",
     "requirements": "Income guidelines apply. Confirm the offered unit’s income tier and household limits with leasing; prepare the documentation requested by the provider.",
     "minimum_age": null,
-    "source_url": "https://www.virginiagardensapts.com/floorplans/1-bedroom-1-bath",
+    "source_url": "https://ahcommunities.org/property/virginia-gardens/",
     "sources": [
       {
         "url": "https://www.virginiagardensapts.com/floorplans/1-bedroom-1-bath",
@@ -6054,7 +6121,9 @@
     },
     "lat": 38.851779,
     "lon": -77.10036,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "owner_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "gates-ballston-studio",
@@ -6273,7 +6342,9 @@
       "credit": "True Ground Housing Partners",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the official owner; the offered apartment may differ."
-    }
+    },
+    "source_kind": "owner_property_page",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "fields-manassas-community",
@@ -6338,7 +6409,8 @@
     },
     "lat": 38.794467,
     "lon": -77.527496,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "nova-fairfax-county-bailey-s-crossing",
@@ -6369,11 +6441,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6432,11 +6504,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6495,11 +6567,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6558,11 +6630,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6621,11 +6693,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6681,11 +6753,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6741,11 +6813,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6804,11 +6876,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6867,11 +6939,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6930,11 +7002,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6993,11 +7065,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7056,11 +7128,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7119,11 +7191,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7182,11 +7254,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7242,11 +7314,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7305,11 +7377,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7368,11 +7440,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7431,11 +7503,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7494,11 +7566,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7557,11 +7629,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7620,11 +7692,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7683,11 +7755,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7746,11 +7818,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7809,11 +7881,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7872,11 +7944,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7935,11 +8007,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7998,11 +8070,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8058,11 +8130,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8121,11 +8193,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8184,11 +8256,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8247,11 +8319,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8310,11 +8382,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8373,11 +8445,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": 55,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8436,11 +8508,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8496,11 +8568,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8559,11 +8631,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8622,11 +8694,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8685,11 +8757,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8745,11 +8817,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8808,11 +8880,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8871,11 +8943,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8934,11 +9006,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8997,11 +9069,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9060,11 +9132,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9123,11 +9195,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9183,11 +9255,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9246,11 +9318,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9306,11 +9378,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9366,11 +9438,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9429,11 +9501,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9492,11 +9564,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9552,11 +9624,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9612,11 +9684,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9675,11 +9747,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9735,11 +9807,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9798,11 +9870,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9858,11 +9930,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9918,11 +9990,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9981,11 +10053,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10041,11 +10113,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10104,11 +10176,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10164,11 +10236,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10224,11 +10296,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10287,11 +10359,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10350,11 +10422,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10413,11 +10485,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10476,11 +10548,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10539,11 +10611,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10602,11 +10674,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10665,11 +10737,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10728,11 +10800,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10791,11 +10863,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10854,11 +10926,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10917,11 +10989,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10980,11 +11052,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11043,11 +11115,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11106,11 +11178,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11169,11 +11241,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11232,11 +11304,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11295,11 +11367,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11358,11 +11430,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11421,11 +11493,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11484,11 +11556,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11547,11 +11619,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11610,11 +11682,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11670,11 +11742,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11733,11 +11805,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11796,11 +11868,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11859,11 +11931,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11922,11 +11994,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11985,11 +12057,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12048,11 +12120,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12111,11 +12183,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12174,11 +12246,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12237,11 +12309,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12300,11 +12372,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12363,11 +12435,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12426,11 +12498,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12489,11 +12561,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12552,11 +12624,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12615,11 +12687,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12678,11 +12750,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12741,11 +12813,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12804,11 +12876,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12867,11 +12939,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12930,11 +13002,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12993,11 +13065,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13056,11 +13128,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13119,11 +13191,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-    "source_kind": "provider",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/",
-        "role": "provider"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13182,11 +13254,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13245,11 +13317,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13308,11 +13380,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13371,11 +13443,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13434,11 +13506,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13497,11 +13569,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13557,11 +13629,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13620,11 +13692,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13683,11 +13755,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13743,11 +13815,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13803,11 +13875,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13866,11 +13938,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13929,11 +14001,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13992,11 +14064,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14055,11 +14127,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14115,11 +14187,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14178,11 +14250,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14238,11 +14310,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14301,11 +14373,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14364,11 +14436,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14427,11 +14499,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14490,11 +14562,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14553,11 +14625,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14616,11 +14688,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14676,11 +14748,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14736,11 +14808,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14799,11 +14871,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14862,11 +14934,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14925,11 +14997,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14988,11 +15060,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15051,11 +15123,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15114,11 +15186,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": 62,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15177,11 +15249,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": 62,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15240,11 +15312,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15303,11 +15375,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15366,11 +15438,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15429,11 +15501,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15492,11 +15564,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15555,11 +15627,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15618,11 +15690,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15681,11 +15753,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15744,11 +15816,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15807,11 +15879,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15870,11 +15942,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15930,11 +16002,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15993,11 +16065,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16056,11 +16128,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16119,11 +16191,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16182,11 +16254,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16245,11 +16317,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16308,11 +16380,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16368,11 +16440,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16431,11 +16503,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16494,11 +16566,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16557,11 +16629,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16620,11 +16692,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16683,11 +16755,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16746,11 +16818,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16809,11 +16881,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": 62,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16872,11 +16944,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16935,11 +17007,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16998,11 +17070,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17061,11 +17133,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17124,11 +17196,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17187,11 +17259,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17247,11 +17319,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17310,11 +17382,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17373,11 +17445,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17433,11 +17505,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17496,11 +17568,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17559,11 +17631,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17622,11 +17694,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17685,11 +17757,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17745,11 +17817,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17808,11 +17880,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17871,11 +17943,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17934,11 +18006,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17997,11 +18069,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18060,11 +18132,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18123,11 +18195,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18183,11 +18255,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18245,12 +18317,12 @@
     "accessibility_notes": "Accessible features and the availability of an appropriate unit have not been confirmed.",
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
-    "source_url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-    "source_kind": "public_authority",
+    "source_url": "https://thefitzapts.com/",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://thefitzapts.com/",
@@ -18279,7 +18351,8 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "nova-prince-william-county-joyfield-flats-at-woodbridge",
@@ -18310,11 +18383,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://www.joyfieldflatswoodbridge.com/",
@@ -18373,12 +18446,12 @@
     "accessibility_notes": "Accessible features and the availability of an appropriate unit have not been confirmed.",
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
-    "source_url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-    "source_kind": "public_authority",
+    "source_url": "https://lawsoncompanies.com/apartments/the-landing-at-masons-bridge-apartments-woodbridge-va/",
+    "source_kind": "owner_property_page",
     "sources": [
       {
         "url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://lawsoncompanies.com/apartments/the-landing-at-masons-bridge-apartments-woodbridge-va/",
@@ -18407,7 +18480,8 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "nova-prince-william-county-the-flats-at-neabsco",
@@ -18438,11 +18512,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://www.theflatsatneabsco.com/",
@@ -18504,12 +18578,12 @@
     "accessibility_notes": "Accessible features and the availability of an appropriate unit have not been confirmed.",
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": 55,
-    "source_url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-    "source_kind": "public_authority",
+    "source_url": "https://www.park-landing.com/",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://www.park-landing.com/",
@@ -18541,7 +18615,8 @@
     },
     "lat": 38.648872,
     "lon": -77.308953,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "nova-prince-william-county-the-harbor-at-quantico-creek",
@@ -18572,11 +18647,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": 55,
     "source_url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://www.harboratquanticocreek.com/",
@@ -18638,12 +18713,12 @@
     "accessibility_notes": "Accessible features and the availability of an appropriate unit have not been confirmed.",
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
-    "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-    "source_kind": "public_authority",
+    "source_url": "https://455tinnerhill.com/",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://455tinnerhill.com/",
@@ -18675,7 +18750,8 @@
     },
     "lat": 38.880054,
     "lon": -77.177692,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_checked_on": "2026-10-24"
   },
   {
     "id": "nova-falls-church-city-the-alder-at-west-falls",
@@ -18706,11 +18782,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://www.thealderwestfalls.com/",
@@ -18770,11 +18846,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://www.westbroad.com/",
@@ -18837,11 +18913,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-        "role": "public_authority"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18900,11 +18976,11 @@
     "requirements": "Ask leasing about the designated affordable units, household income limits, required documents, current openings, and whether the waitlist is accepting applications.",
     "minimum_age": null,
     "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-    "source_kind": "public_authority",
+    "source_kind": "official_directory",
     "sources": [
       {
         "url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-        "role": "public_authority"
+        "role": "directory"
       },
       {
         "url": "https://www.thefieldsfallschurch.com/",
@@ -19166,7 +19242,7 @@
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19195,7 +19271,8 @@
     },
     "lat": 38.860703,
     "lon": -77.074191,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "taylor-square-one-bedroom",
@@ -19232,7 +19309,7 @@
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19261,7 +19338,8 @@
     },
     "lat": 38.853116,
     "lon": -77.101047,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "property_website"
   },
   {
     "id": "the-shelton-two-bedroom",
@@ -19294,11 +19372,11 @@
     "sources": [
       {
         "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19327,7 +19405,8 @@
     },
     "lat": 38.848596,
     "lon": -77.084239,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "the-macedonian-two-bedroom",
@@ -19360,11 +19439,11 @@
     "sources": [
       {
         "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19393,7 +19472,8 @@
     },
     "lat": 38.849441,
     "lon": -77.084341,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "fort-henry-gardens-two-bedroom",
@@ -19426,11 +19506,11 @@
     "sources": [
       {
         "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19459,7 +19539,8 @@
     },
     "lat": 38.84665,
     "lon": -77.086435,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "key-gardens-one-bedroom",
@@ -19492,11 +19573,11 @@
     "sources": [
       {
         "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19525,7 +19606,8 @@
     },
     "lat": 38.855688,
     "lon": -77.112869,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "serrano-apartments-one-bedroom",
@@ -19558,11 +19640,11 @@
     "sources": [
       {
         "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19591,7 +19673,8 @@
     },
     "lat": 38.853721,
     "lon": -77.119354,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "westover-apartments-one-bedroom",
@@ -19624,11 +19707,11 @@
     "sources": [
       {
         "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19657,7 +19740,8 @@
     },
     "lat": 38.884139,
     "lon": -77.138923,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "the-ashtons-one-bedroom",
@@ -19690,11 +19774,11 @@
     "sources": [
       {
         "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19723,7 +19807,8 @@
     },
     "lat": 38.884139,
     "lon": -77.138923,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "the-fields-of-arlington-one-bedroom",
@@ -19756,11 +19841,11 @@
     "sources": [
       {
         "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19789,7 +19874,8 @@
     },
     "lat": 38.857755,
     "lon": -77.115715,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "lenox-club-studio",
@@ -19822,11 +19908,11 @@
     "sources": [
       {
         "url": "https://www.arlingtonva.us/files/sharedassets/public/v/1/housing/documents/affordable-housing/cafs-october-2026.pdf",
-        "role": "government"
+        "role": "directory"
       },
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-        "role": "corroboration"
+        "role": "directory"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19855,7 +19941,8 @@
     },
     "lat": 38.863017,
     "lon": -77.052838,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "source_kind": "official_directory"
   },
   {
     "id": "blacksburg-stonegate-apartments-s22-room-in-3-bedroom-apartment",
@@ -19900,7 +19987,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://granitesl.appfolio.com/listings/detail/cf255e6e-a55c-4e91-a0c0-b80aaceb66e9",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://granitesl.appfolio.com/listings/detail/cf255e6e-a55c-4e91-a0c0-b80aaceb66e9",
@@ -19983,7 +20070,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://granitesl.appfolio.com/listings/detail/c7faebea-2fa0-4146-ac4b-86f0dc9bf624",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://granitesl.appfolio.com/listings/detail/c7faebea-2fa0-4146-ac4b-86f0dc9bf624",
@@ -20058,7 +20145,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://granitesl.appfolio.com/listings/detail/0b75fde4-93b8-4a77-811e-317626fda8c7",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://granitesl.appfolio.com/listings/detail/0b75fde4-93b8-4a77-811e-317626fda8c7",
@@ -20133,7 +20220,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://granitesl.appfolio.com/listings/detail/2c9ee737-5b8b-4d57-a2e8-51e44327343b",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://granitesl.appfolio.com/listings/detail/2c9ee737-5b8b-4d57-a2e8-51e44327343b",
@@ -20216,7 +20303,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://granitesl.appfolio.com/listings/detail/33dd546d-1b74-4f42-9f16-039be6c641e7",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://granitesl.appfolio.com/listings/detail/33dd546d-1b74-4f42-9f16-039be6c641e7",
@@ -20291,7 +20378,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://alight-blacksburg.com/rates-floorplans/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://alight-blacksburg.com/rates-floorplans/",
@@ -20370,7 +20457,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://alight-blacksburg.com/rates-floorplans/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://alight-blacksburg.com/rates-floorplans/",
@@ -20449,7 +20536,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://alight-blacksburg.com/rates-floorplans/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://alight-blacksburg.com/rates-floorplans/",
@@ -20528,7 +20615,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://alight-blacksburg.com/rates-floorplans/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://alight-blacksburg.com/rates-floorplans/",
@@ -20607,7 +20694,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
@@ -20694,7 +20781,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
@@ -20781,7 +20868,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
@@ -20868,7 +20955,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
@@ -20955,7 +21042,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
@@ -21042,7 +21129,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://entratasnipit.terraceviewblacksburg.com/blacksburg/terrace-view/student/",
@@ -21129,7 +21216,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://collegiatesuitesblacksburg.com/pricing",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://collegiatesuitesblacksburg.com/pricing",
@@ -21204,7 +21291,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://mapleridgeblacksburg.com/pricing",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://mapleridgeblacksburg.com/pricing",
@@ -21287,7 +21374,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://cmgleasing.com/office/the-edge/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://cmgleasing.com/office/the-edge/",
@@ -21370,7 +21457,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://cmgleasing.com/office/the-edge/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://cmgleasing.com/office/the-edge/",
@@ -21453,7 +21540,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://cmgleasing.com/office/the-edge/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://cmgleasing.com/office/the-edge/",
@@ -21536,7 +21623,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://www.unionblacksburg.com/blacksburg/union-blacksburg/student/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://www.unionblacksburg.com/blacksburg/union-blacksburg/student/",
@@ -21611,7 +21698,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://www.unionblacksburg.com/blacksburg/union-blacksburg/student/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://www.unionblacksburg.com/blacksburg/union-blacksburg/student/",
@@ -21686,7 +21773,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://www.unionblacksburg.com/blacksburg/union-blacksburg/student/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://www.unionblacksburg.com/blacksburg/union-blacksburg/student/",
@@ -21761,7 +21848,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://www.blacksburgmill.com/floor-plans/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://www.blacksburgmill.com/floor-plans/",
@@ -21836,7 +21923,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://www.blacksburgmill.com/floor-plans/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://www.blacksburgmill.com/floor-plans/",
@@ -21911,7 +21998,7 @@
     "who_it_serves": "Students and other applicants meeting the provider’s rental criteria; student-friendly does not mean a student-only eligibility rule.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://www.blacksburgmill.com/floor-plans/",
-    "source_kind": "provider",
+    "source_kind": "property_website",
     "sources": [
       {
         "url": "https://www.blacksburgmill.com/floor-plans/",
@@ -21986,7 +22073,7 @@
     "who_it_serves": "Income-qualified households; students must ask leasing about any program-specific student eligibility rules.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://www.communityhousingpartners.org/properties/legacy-on-main/",
-    "source_kind": "provider",
+    "source_kind": "owner_property_page",
     "sources": [
       {
         "url": "https://www.communityhousingpartners.org/properties/legacy-on-main/",
@@ -22061,7 +22148,7 @@
     "who_it_serves": "Income-qualified households; students must ask leasing about any program-specific student eligibility rules.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://www.communityhousingpartners.org/properties/cedar-crest-apartments/",
-    "source_kind": "provider",
+    "source_kind": "owner_property_page",
     "sources": [
       {
         "url": "https://www.communityhousingpartners.org/properties/cedar-crest-apartments/",
@@ -22136,7 +22223,7 @@
     "who_it_serves": "Income-qualified households; students must ask leasing about any program-specific student eligibility rules.",
     "requirements": "Confirm exact room, roommates, move-in/out dates, total charges, application requirements, guarantor rules, and lease responsibility directly with the provider.",
     "source_url": "https://www.communityhousingpartners.org/properties/ellett-road-community/",
-    "source_kind": "provider",
+    "source_kind": "owner_property_page",
     "sources": [
       {
         "url": "https://www.communityhousingpartners.org/properties/ellett-road-community/",

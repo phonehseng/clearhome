@@ -83,6 +83,10 @@ class RetrievalTests(unittest.TestCase):
         download.assert_not_called()
         self.assertIsNone(result['document'])
         self.assertIn('agency directory', result['message'])
+        with patch('lease_journey._download') as download:
+            result = journey.retrieve_public_document(dict(row, source_kind='official_directory', website=row['source_url']))
+        download.assert_not_called()
+        self.assertIsNone(result['document'])
         row['website'] = 'https://provider.example/'
         with patch('lease_journey._download', return_value=(b'<p>Call leasing</p>', 'text/html')) as download:
             journey.retrieve_public_document(row)

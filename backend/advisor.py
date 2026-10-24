@@ -166,6 +166,42 @@ def area_for(text):
     return "Northern Virginia" if len(t.split()) > 2 else None
 
 
+# About 60% of area median income in Northern Virginia, from the limits Fairfax County publishes for its
+# affordable senior housing ($68,880 for 1 person, $78,720 for 2), scaled with HUD's standard household-size
+# factors. Programs set their own exact limits; this only decides whether to show assistance programs.
+_MEDIAN_60 = 98_400  # 60% of median for a 4-person household
+_SIZE_FACTOR = {1: 0.7, 2: 0.8, 3: 0.9, 4: 1.0, 5: 1.08, 6: 1.16}
+
+
+def assistance_income_limit(household):
+    """About 80% of area median income for this household size: the usual ceiling for assistance programs."""
+    size = household if isinstance(household, int) and household > 0 else 1
+    factor = _SIZE_FACTOR.get(size, 1.16 + 0.08 * (size - 6))
+    return round(_MEDIAN_60 * factor * 80 / 60, -2)
+
+
+def program_need(profile):
+    """Whether to show rent help, vouchers and legal aid, plus a short note when income rules them out."""
+    from prompt_tools import keyword_filters  # imported here: prompt_tools imports this module
+    # The NoVA screening estimate is not a Blacksburg income limit. Local
+    # agencies must assess eligibility; retain their contacts without a cutoff.
+    if area_for(profile.get('location')) == 'Blacksburg':
+        return True, None
+    if profile.get("tonight") or profile.get("voucher"):
+        return True, None
+    text_types = set(keyword_filters(profile.get("situation") or "")[0]["types"]) & {"rental_assistance", "housing_authority", "legal_aid", "emergency_shelter"}
+    if text_types or re.search(r"\b(low[- ]income|afford|struggl|section 8|voucher|evict|behind)\b", (profile.get("situation") or "").lower()):
+        return True, None
+    income = profile.get("income")
+    if isinstance(income, (int, float)) and income > 0:
+        limit = assistance_income_limit(profile.get("household"))
+        if income <= limit:
+            return True, None
+        return False, (f"With a household income of ${income:,.0f}, most rent-help and voucher programs likely don't apply "
+                       f"(they usually stop around ${limit:,.0f} for your household size). Some listings have higher income tiers.")
+    return False, None
+
+
 def options(profile):
     """Instant, no-AI matches for the find form: listings, programs and (if urgent) shelters for an area."""
     area = area_for(profile.get("location"))
@@ -193,7 +229,9 @@ def options(profile):
                 if not isinstance(r.get("availability"), dict)][:12]
     shelters = [keep(r) for r in filter_catalog(rows, {**base, "needs_accessible": False, "types": ["emergency_shelter", "other"], "urgency": "emergency"})
                 if r["type"] == "emergency_shelter" or "intake" in str(r.get("name", "")).lower() or "coordinated" in str(r.get("name", "")).lower()][:10] if profile.get("tonight") else []
-    return {"area": area, "listings": listings, "programs": programs, "shelters": shelters}
+    need, income_note = program_need(profile)
+    return {"area": area, "listings": listings, "programs": programs, "shelters": shelters,
+            "programs_relevant": need, "income_note": income_note}
 
 
 if __name__ == "__main__":
