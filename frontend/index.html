@@ -533,7 +533,7 @@
     <p class="browse-hint">One card per community. Expand floor plans for each option’s price, eligibility, and availability. Room prices are per person; whole-apartment prices cover the full home. Installments, move-in dates, and lease responsibility are labeled. Fees and utilities may be extra; unknown prices are excluded by budget filters. Eligibility must be confirmed even when senior-only housing is excluded. Program waitlists may have no quoted rent.</p>
     <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p>
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
-    <button id="show-more-listings" class="more-listings" type="button" hidden>Show more opportunities</button>
+    <button id="show-more-listings" class="more-listings" type="button" hidden>Show all communities</button>
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
   </section>
   <section class="trust-banner" id="our-promise" aria-labelledby="promise-title"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#shield"/></svg><div><h2 id="promise-title">Real resources. A little more peace of mind.</h2><p>Housing recommendations come from our source-reviewed list. Availability and eligibility can change, so always confirm with the provider.</p></div><span class="trust-badge">People first. Always.</span></section>
@@ -707,7 +707,7 @@
     });
     listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
     moreListings.hidden = visibleHousingCount >= housingRows.length;
-    moreListings.textContent = `Show more communities (${Math.max(0,housingRows.length-visibleHousingCount)} remaining)`;
+    moreListings.textContent = `Show all communities (${Math.max(0,housingRows.length-visibleHousingCount)} more)`;
     browseMessage.dataset.state = 'success';
     browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs. Floor plans are grouped together.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
   }
@@ -734,7 +734,13 @@
   budgetShortcut.addEventListener('click',()=>{rentFilter.value='1500';document.getElementById('browse-sort').value='rent_asc';updateBudgetShortcut();browseForm.requestSubmit();});
   rentFilter.addEventListener('input',updateBudgetShortcut);
   browseForm.addEventListener('submit',event=>{event.preventDefault();updateBudgetShortcut();loadHousing();});
-  moreListings.addEventListener('click',()=>{visibleHousingCount+=6;renderHousing();});
+  moreListings.addEventListener('click',()=>{
+    const firstNewIndex=visibleHousingCount;
+    visibleHousingCount=housingRows.length;
+    renderHousing();
+    const firstNewCard=listingsGrid.children[firstNewIndex];
+    if(firstNewCard){firstNewCard.tabIndex=-1;firstNewCard.focus({preventScroll:true});}
+  });
   const initialFilters=new URLSearchParams(location.search);for(const key of ['location','max_rent','rental_space','age_group']){const field=browseForm.elements.namedItem(key);if(field&&initialFilters.has(key))field.value=initialFilters.get(key);}
   document.getElementById('blacksburg-student-rooms').addEventListener('click',()=>{document.getElementById('browse-location').value='Blacksburg';document.getElementById('browse-space').value='room';document.getElementById('browse-age-group').value='general';document.getElementById('browse-category').value='all';document.getElementById('browse-status').value='';document.getElementById('browse-sort').value='rent_asc';rentFilter.value='1000';document.getElementById('location').value='Blacksburg';document.getElementById('browse-location').dispatchEvent(new Event('change'));browseForm.requestSubmit();});
   loadHousing();
