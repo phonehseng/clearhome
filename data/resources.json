@@ -72,7 +72,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.920169,
+    "lon": -77.212352,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "indigo-one-bedroom-a14",
@@ -147,7 +150,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.920169,
+    "lon": -77.212352,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "indigo-two-bedroom-d",
@@ -218,7 +224,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.920169,
+    "lon": -77.212352,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arbor-heights-one-bedroom",
@@ -293,7 +302,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.856944,
+    "lon": -77.116844,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arbor-heights-two-bedroom",
@@ -368,7 +380,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.856944,
+    "lon": -77.116844,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "glen-ridge-two-bedroom-50",
@@ -443,7 +458,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.675936,
+    "lon": -77.362716,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "glen-ridge-two-bedroom-60",
@@ -518,7 +536,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.675936,
+    "lon": -77.362716,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "glen-ridge-three-bedroom-60",
@@ -593,7 +614,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.675936,
+    "lon": -77.362716,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "riverwoods-one-bedroom",
@@ -664,7 +688,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.590997,
+    "lon": -77.296098,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "riverwoods-two-bedroom",
@@ -735,7 +762,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.590997,
+    "lon": -77.296098,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "atlantic-boulevard",
@@ -799,7 +829,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 39.011445,
+    "lon": -77.429043,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "linden-senior",
@@ -945,7 +978,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.818719,
+    "lon": -77.046597,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arbelo-two-bedroom",
@@ -1020,7 +1056,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.818719,
+    "lon": -77.046597,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "spire-one-bedroom",
@@ -1099,7 +1138,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.836501,
+    "lon": -77.114425,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "witter-place-closed",
@@ -1233,7 +1275,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.769901,
+    "lon": -77.483325,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "west-wood-oaks-two-bedroom",
@@ -1308,7 +1353,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.841298,
+    "lon": -77.317675,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "park-place-senior-one-bedroom",
@@ -1383,7 +1431,10 @@
       "checked_on": "2026-10-24",
       "individual_eligibility_confirmed": false
     },
-    "review_notes": "Current rental details have provider evidence. Listed only as a regular rental; historical affordable designation is insufficient for the affordable category."
+    "review_notes": "Current rental details have provider evidence. Listed only as a regular rental; historical affordable designation is insufficient for the affordable category.",
+    "lat": 38.759475,
+    "lon": -77.432187,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "broad-washington-adu",
@@ -1454,7 +1505,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.8816,
+    "lon": -77.170007,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "falls-church-adu-waitlist",
@@ -1593,7 +1647,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.841465,
+    "lon": -77.394333,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fair-ridge-shelter",
@@ -1631,7 +1688,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.871381,
+    "lon": -77.368508,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "facets-next-steps-family-program",
@@ -1665,7 +1725,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.72052,
+    "lon": -77.125786,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "baileys-shelter-and-supportive-housing",
@@ -1703,7 +1766,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.848533,
+    "lon": -77.128238,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "eleanor-u-kennedy-shelter",
@@ -1775,7 +1841,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.962062,
+    "lon": -77.359868,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fairfax-hpp-rotating-sites-central-western",
@@ -1869,7 +1938,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.734129,
+    "lon": -77.101328,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "reston-drop-in-hypothermia-entrance",
@@ -1899,7 +1971,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.963545,
+    "lon": -77.359397,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fairfax-dsvs-24-hour-hotline",
@@ -2073,7 +2148,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax City"
+    "area": "Fairfax City",
+    "lat": 38.865116,
+    "lon": -77.278009,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "falls-church-homeless-shelter",
@@ -2111,7 +2189,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Falls Church City"
+    "area": "Falls Church City",
+    "lat": 38.892274,
+    "lon": -77.191052,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "falls-church-housing-human-services",
@@ -2145,7 +2226,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Falls Church City"
+    "area": "Falls Church City",
+    "lat": 38.884922,
+    "lon": -77.172613,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arlington-dhs-centralized-access-system",
@@ -2191,7 +2275,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Arlington County"
+    "area": "Arlington County",
+    "lat": 38.873049,
+    "lon": -77.082689,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arlington-homeless-services-center",
@@ -2229,7 +2316,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Arlington County"
+    "area": "Arlington County",
+    "lat": 38.889598,
+    "lon": -77.082923,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arlington-hypothermia-shelter",
@@ -2263,7 +2353,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Arlington County"
+    "area": "Arlington County",
+    "lat": 38.889598,
+    "lon": -77.082923,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arlington-residential-program-center",
@@ -2301,7 +2394,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Arlington County"
+    "area": "Arlington County",
+    "lat": 38.866535,
+    "lon": -77.071329,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "sullivan-house-family-shelter",
@@ -2437,7 +2533,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Alexandria City"
+    "area": "Alexandria City",
+    "lat": 38.802932,
+    "lon": -77.06862,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "carpenters-shelter",
@@ -2471,7 +2570,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Alexandria City"
+    "area": "Alexandria City",
+    "lat": 38.815469,
+    "lon": -77.049336,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "alexandria-winter-shelter",
@@ -2509,7 +2611,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Alexandria City"
+    "area": "Alexandria City",
+    "lat": 38.802932,
+    "lon": -77.06862,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "davids-place-day-center",
@@ -2543,7 +2648,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Alexandria City"
+    "area": "Alexandria City",
+    "lat": 38.815469,
+    "lon": -77.049336,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "alexandria-domestic-violence-program",
@@ -2637,7 +2745,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Loudoun County"
+    "area": "Loudoun County",
+    "lat": 39.076244,
+    "lon": -77.549929,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "loudoun-homeless-services-center-drop-in",
@@ -2667,7 +2778,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Loudoun County"
+    "area": "Loudoun County",
+    "lat": 39.076244,
+    "lon": -77.549929,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "eastern-loudoun-drop-in-center",
@@ -2727,7 +2841,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Loudoun County"
+    "area": "Loudoun County",
+    "lat": 39.084571,
+    "lon": -77.556737,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "laws-24-hour-hotline",
@@ -2825,7 +2942,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Loudoun County"
+    "area": "Loudoun County",
+    "lat": 39.109679,
+    "lon": -77.556795,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "pwa-coordinated-entry-system-hotline",
@@ -3011,7 +3131,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Manassas City"
+    "area": "Manassas City",
+    "lat": 38.746463,
+    "lon": -77.495654,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "streetlight-supportive-shelter",
@@ -3105,7 +3228,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Manassas City"
+    "area": "Manassas City",
+    "lat": 38.767042,
+    "lon": -77.484418,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "pwc-ferlazzo-drop-in-center",
@@ -3135,7 +3261,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William County"
+    "area": "Prince William County",
+    "lat": 38.607218,
+    "lon": -77.295307,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "pwc-mobile-drop-in-center-west",
@@ -3267,7 +3396,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Manassas City"
+    "area": "Manassas City",
+    "lat": 38.753921,
+    "lon": -77.473985,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "manassas-park-department-of-social-services",
@@ -3340,7 +3472,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.862905,
+    "lon": -77.330764,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fairfax-county-rad-project-based-voucher",
@@ -3379,7 +3514,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.862905,
+    "lon": -77.330764,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fairfax-county-rental-program",
@@ -3414,7 +3552,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.862905,
+    "lon": -77.330764,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fairfax-county-adu-wdu-rentals",
@@ -3445,7 +3586,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax County"
+    "area": "Fairfax County",
+    "lat": 38.862905,
+    "lon": -77.330764,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fairfax-county-coordinated-services-planning-rent-help",
@@ -3511,7 +3655,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax City"
+    "area": "Fairfax City",
+    "lat": 38.841266,
+    "lon": -77.307091,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fairfax-city-rent-relief",
@@ -3542,7 +3689,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Fairfax City"
+    "area": "Fairfax City",
+    "lat": 38.841266,
+    "lon": -77.307091,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fairfax-city-affordable-dwelling-units",
@@ -3608,7 +3758,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Falls Church City"
+    "area": "Falls Church City",
+    "lat": 38.884922,
+    "lon": -77.172613,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "falls-church-rent-relief",
@@ -3639,7 +3792,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Falls Church City"
+    "area": "Falls Church City",
+    "lat": 38.884922,
+    "lon": -77.172613,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "falls-church-hhs-emergency-rent-help",
@@ -3674,7 +3830,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Falls Church City"
+    "area": "Falls Church City",
+    "lat": 38.884922,
+    "lon": -77.172613,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arlington-housing-choice-voucher",
@@ -3713,7 +3872,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Arlington County"
+    "area": "Arlington County",
+    "lat": 38.873049,
+    "lon": -77.082689,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arlington-housing-grants",
@@ -3861,7 +4023,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Alexandria City"
+    "area": "Alexandria City",
+    "lat": 38.81152,
+    "lon": -77.04223,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "arha-public-housing",
@@ -3892,7 +4057,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Alexandria City"
+    "area": "Alexandria City",
+    "lat": 38.81152,
+    "lon": -77.04223,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "alexandria-ocs-rental-assistance",
@@ -3927,7 +4095,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Alexandria City"
+    "area": "Alexandria City",
+    "lat": 38.830441,
+    "lon": -77.116305,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "alexandria-rent-relief-older-disabled",
@@ -3997,7 +4168,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Alexandria City"
+    "area": "Alexandria City",
+    "lat": 38.804839,
+    "lon": -77.044811,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "loudoun-county-housing-choice-voucher",
@@ -4032,7 +4206,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Loudoun County"
+    "area": "Loudoun County",
+    "lat": 39.106989,
+    "lon": -77.561926,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "loudoun-county-adu-rental-program",
@@ -4063,7 +4240,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Loudoun County"
+    "area": "Loudoun County",
+    "lat": 39.113939,
+    "lon": -77.56156,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "loudoun-cares-rent-and-eviction-prevention",
@@ -4098,7 +4278,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Loudoun County"
+    "area": "Loudoun County",
+    "lat": 39.112016,
+    "lon": -77.562934,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "loudoun-county-homeless-prevention-coordinated-entry",
@@ -4172,7 +4355,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Prince William County"
+    "area": "Prince William County",
+    "lat": 38.607218,
+    "lon": -77.295307,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "prince-william-county-afdu-rental",
@@ -4277,7 +4463,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Manassas City and Manassas Park City"
+    "area": "Manassas City and Manassas Park City",
+    "lat": 38.753921,
+    "lon": -77.473985,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "manassas-park-housing-resources",
@@ -4382,7 +4571,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Northern Virginia"
+    "area": "Northern Virginia",
+    "lat": 38.87253,
+    "lon": -77.159437,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "virginia-legal-aid-866-legal-aid",
@@ -4460,7 +4652,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Northern Virginia"
+    "area": "Northern Virginia",
+    "lat": 37.538051,
+    "lon": -77.43615,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "virginia-dhcd-landlord-tenant-resources",
@@ -4491,7 +4686,10 @@
     "last_verified": "2026-10-24",
     "verified": true,
     "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
-    "area": "Northern Virginia"
+    "area": "Northern Virginia",
+    "lat": 37.539839,
+    "lon": -77.438899,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "virginia-housing-renter-resources",
@@ -4697,7 +4895,10 @@
       "checked_on": "2026-10-24",
       "evidence": "Provider publishes standard floor-plan rental prices, 12-month terms, and unit availability; no subsidized eligibility is asserted.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.802675,
+    "lon": -77.121253,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "reserve-eisenhower-brookdale",
@@ -4763,7 +4964,10 @@
       "checked_on": "2026-10-24",
       "evidence": "Provider publishes standard floor-plan rental prices, 12-month terms, and unit availability; no subsidized eligibility is asserted.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.802675,
+    "lon": -77.121253,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "coan-pond-residences-efficiency",
@@ -4825,7 +5029,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.862905,
+    "lon": -77.330764,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "redbud-glen-one-bedroom",
@@ -4957,7 +5164,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.839169,
+    "lon": -77.266552,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "olley-glen-one-bedroom",
@@ -5023,7 +5233,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.837582,
+    "lon": -77.266976,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "gum-springs-glen-one-bedroom",
@@ -5085,7 +5298,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.744522,
+    "lon": -77.083851,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "gum-springs-glen-two-bedroom",
@@ -5147,7 +5363,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.744522,
+    "lon": -77.083851,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "morris-glen-one-bedroom",
@@ -5209,7 +5428,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.764348,
+    "lon": -77.151894,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "herndon-harbor-house-senior-apartment",
@@ -5275,7 +5497,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.9737,
+    "lon": -77.389077,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "atrium-at-metro-west-two-bedroom-one-bath",
@@ -5461,7 +5686,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.875751,
+    "lon": -77.276544,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "crest-of-alexandria-one-bedroom",
@@ -5647,7 +5875,10 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.713726,
+    "lon": -77.235397,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "virginia-gardens-one-bedroom",
@@ -5717,7 +5948,10 @@
       "credit": "AHC / official community page",
       "reviewed_on": "2026-10-24",
       "caption": "Owner’s community photo; not a photo of the specific offered apartment."
-    }
+    },
+    "lat": 38.851779,
+    "lon": -77.10036,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "gates-ballston-studio",
@@ -5787,7 +6021,10 @@
       "credit": "AHC / official community page",
       "reviewed_on": "2026-10-24",
       "caption": "Owner’s community photo; not a photo of the specific offered apartment."
-    }
+    },
+    "lat": 38.875348,
+    "lon": -77.107553,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "harvey-hall-studio",
@@ -5857,7 +6094,10 @@
       "credit": "AHC / official community page",
       "reviewed_on": "2026-10-24",
       "caption": "Owner’s community photo; not a photo of the specific offered apartment."
-    }
+    },
+    "lat": 38.855584,
+    "lon": -77.118586,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "terwilliger-place-community",
@@ -5919,7 +6159,10 @@
       "checked_on": "2026-10-24",
       "method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.886101,
+    "lon": -77.101741,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "fields-manassas-community",
@@ -5981,6 +6224,9 @@
       "checked_on": "2026-10-24",
       "method": "AI-assisted review of official owner and leasing pages; no phone or in-person confirmation.",
       "individual_eligibility_confirmed": false
-    }
+    },
+    "lat": 38.794467,
+    "lon": -77.527496,
+    "geocode_source": "US Census Geocoder"
   }
 ]

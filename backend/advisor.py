@@ -22,10 +22,21 @@ MAX_RECORDS = 18
 MAX_FIELD = 350
 AREAS = [  # longest names first, so "manassas park" wins over "manassas"
     ("manassas park", "Manassas Park City"), ("manassas", "Manassas City"), ("falls church", "Falls Church City"),
-    ("fairfax city", "Fairfax City"), ("city of fairfax", "Fairfax City"), ("fairfax", "Fairfax County"),
-    ("arlington", "Arlington County"), ("alexandria", "Alexandria City"),
+    ("fairfax city", "Fairfax City"), ("city of fairfax", "Fairfax City"), ("fairfax station", "Fairfax County"),
+    ("fairfax county", "Fairfax County"), ("fairfax", "Fairfax County"),
+    ("reston", "Fairfax County"), ("herndon", "Fairfax County"), ("mclean", "Fairfax County"), ("vienna", "Fairfax County"),
+    ("tysons", "Fairfax County"), ("springfield", "Fairfax County"), ("annandale", "Fairfax County"), ("burke", "Fairfax County"),
+    ("centreville", "Fairfax County"), ("chantilly", "Fairfax County"), ("lorton", "Fairfax County"), ("oakton", "Fairfax County"),
+    ("great falls", "Fairfax County"), ("mount vernon", "Fairfax County"), ("franconia", "Fairfax County"), ("merrifield", "Fairfax County"),
+    ("arlington", "Arlington County"), ("ballston", "Arlington County"), ("clarendon", "Arlington County"), ("crystal city", "Arlington County"),
+    ("rosslyn", "Arlington County"), ("columbia pike", "Arlington County"),
+    ("alexandria", "Alexandria City"), ("old town", "Alexandria City"), ("del ray", "Alexandria City"),
     ("loudoun", "Loudoun County"), ("leesburg", "Loudoun County"), ("sterling", "Loudoun County"), ("ashburn", "Loudoun County"),
+    ("purcellville", "Loudoun County"), ("south riding", "Loudoun County"), ("brambleton", "Loudoun County"),
     ("prince william", "Prince William County"), ("woodbridge", "Prince William County"), ("dumfries", "Prince William County"),
+    ("gainesville", "Prince William County"), ("haymarket", "Prince William County"), ("bristow", "Prince William County"),
+    ("dale city", "Prince William County"), ("lake ridge", "Prince William County"), ("triangle", "Prince William County"),
+    ("montclair", "Prince William County"),
 ]
 TOPICS = [
     (("voucher", "section 8", "hcv", "public housing", "waitlist", "wait list", "housing authority", "qualify", "eligib", "income"), {"housing_authority"}),
@@ -132,6 +143,38 @@ def programs():
     """Verified non-shelter help (vouchers, rent help, legal aid, other services) for the resources page."""
     keep = {"housing_authority", "rental_assistance", "legal_aid", "other"}
     return [_compact(r) for r in load_catalog() if r.get("type") in keep and not isinstance(r.get("availability"), dict)]
+
+
+def area_for(text):
+    """Map free text like 'Reston' to a Northern Virginia jurisdiction ("Northern Virginia" if general, None if outside)."""
+    t = (text or "").lower()
+    if not t.strip() or "northern virginia" in t or t.strip() in ("nova", "northern va"):
+        return "Northern Virginia"
+    return next((area for word, area in AREAS if word in t), None)
+
+
+def options(profile):
+    """Instant, no-AI matches for the find form: listings, programs and (if urgent) shelters for an area."""
+    area = area_for(profile.get("location"))
+    if area is None:
+        return {"error": "Clear House covers Northern Virginia. Try a city or county there, like Reston or Woodbridge."}
+    base = {"locations": [] if area == "Northern Virginia" else [area], "needs_accessible": bool(profile.get("accessible"))}
+    listing_filters = {**base, "types": ["affordable_listing"]}
+    if profile.get("budget"):
+        listing_filters["max_budget_per_month"] = profile["budget"]
+    if profile.get("bedrooms") is not None:
+        listing_filters["bedrooms"] = profile["bedrooms"]
+    listing_filters["age"] = 62 if profile.get("senior") else 30  # 30 excludes senior-only homes for younger people
+    if profile.get("tonight"):
+        listing_filters["urgency"] = "emergency"
+    rows = load_catalog()
+    keep = lambda r: {**_compact(r), "lat": r.get("lat"), "lon": r.get("lon"), "floor_plan": r.get("floor_plan"), "community": r.get("community")}
+    listings = [keep(r) for r in filter_catalog(rows, listing_filters)][:12]
+    programs = [keep(r) for r in filter_catalog(rows, {**base, "needs_accessible": False, "types": ["housing_authority", "rental_assistance", "legal_aid"]})
+                if not isinstance(r.get("availability"), dict)][:12]
+    shelters = [keep(r) for r in filter_catalog(rows, {**base, "needs_accessible": False, "types": ["emergency_shelter", "other"], "urgency": "emergency"})
+                if r["type"] == "emergency_shelter" or "intake" in str(r.get("name", "")).lower() or "coordinated" in str(r.get("name", "")).lower()][:10] if profile.get("tonight") else []
+    return {"area": area, "listings": listings, "programs": programs, "shelters": shelters}
 
 
 if __name__ == "__main__":

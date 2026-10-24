@@ -8,9 +8,10 @@ import math
 
 from flask import Flask, jsonify, request, send_from_directory, send_file
 
-from advisor import ask, programs, warm_examples
+from advisor import AREAS, ask, options, programs, warm_examples
+from live_search import search as live_search
 from extract_text import extract_text
-from lease_checker import check_listing, explain_lease
+from lease_checker import check_listing, explain_lease, review
 from matcher import find_help
 from catalog import filter_catalog, group_listings, load_catalog, STATUSES
 from listing_photos import cached_photo, photo_mimetype, PhotoUnavailable
@@ -19,6 +20,8 @@ from sources import refresh_in_background
 from freshness import check_in_background
 
 FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
+# Cloud Run's disk resets on every restart, so the hosted copy never writes data files.
+READ_ONLY = os.environ.get("CLEARHOUSE_READ_ONLY") == "1"
 app = Flask(__name__, static_folder=None)
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB uploads
 
@@ -103,6 +106,48 @@ def resources_page():
     return send_from_directory(FRONTEND, "resources.html")
 
 
+@app.get("/api/places")
+def places():
+    """Northern Virginia place names and the jurisdiction each belongs to, for the map."""
+    return jsonify(places=AREAS)
+
+
+@app.post("/api/options")
+def find_options():
+    """Instant matches for the find form (no AI): listings, programs, and shelters when it's urgent."""
+    body = request.get_json(silent=True) or {}
+    def number(key, kind=float, low=0, high=10_000_000):
+        try:
+            value = kind(body.get(key))
+            return value if low <= value <= high else None
+        except (TypeError, ValueError):
+            return None
+    profile = {"location": str(body.get("location") or "")[:100], "budget": number("budget"), "bedrooms": number("bedrooms", int, 0, 6),
+               "accessible": body.get("accessible") is True, "senior": body.get("senior") is True, "tonight": body.get("tonight") is True}
+    result = options(profile)
+    return jsonify(result), (400 if "error" in result else 200)
+
+
+@app.get("/api/boundaries")
+def boundaries():
+    """Outlines of the nine Northern Virginia jurisdictions (US Census TIGERweb), for the map."""
+    return send_from_directory(os.path.join(FRONTEND, "..", "data"), "nova_boundaries.geojson", mimetype="application/geo+json")
+
+
+@app.post("/api/live-search")
+def web_search():
+    """Gemma searches the web for affordable listings in a typed location. Results are labeled unreviewed."""
+    location = str((request.get_json(silent=True) or {}).get("location", "")).strip()[:100]
+    if len(location) < 3:
+        return jsonify(error="Type a city or county in Northern Virginia."), 400
+    location, _ = redact(location)
+    try:
+        result = live_search(location, queue_results=not READ_ONLY)
+    except Exception:
+        return jsonify(error="The web search didn't work this time. Please try again."), 502
+    return jsonify(result), (400 if "error" in result else 200)
+
+
 @app.get("/api/programs")
 def list_programs():
     """Verified vouchers, rent help, legal aid and other services, without an AI call."""
@@ -122,6 +167,19 @@ def ask_advisor():
     for turn in (body.get("history") or [])[-4:]:
         if isinstance(turn, dict) and turn.get("role") in ("user", "assistant") and isinstance(turn.get("text"), str):
             history.append({"role": turn["role"], "text": redact(turn["text"][:2000])[0]})
+    # Choices from the find form, so the assistant can tailor its answer (no names or IDs are collected).
+    profile = body.get("profile") if isinstance(body.get("profile"), dict) else {}
+    about = []
+    if profile.get("location"): about.append(f"looking in {str(profile['location'])[:100]}")
+    for key, label in (("budget", "monthly budget ${:,.0f}"), ("income", "household income ${:,.0f} a year")):
+        if isinstance(profile.get(key), (int, float)) and profile[key] > 0: about.append(label.format(profile[key]))
+    if isinstance(profile.get("household"), int): about.append(f"{profile['household']} people in the home")
+    if isinstance(profile.get("bedrooms"), int): about.append("studio" if profile["bedrooms"] == 0 else f"{profile['bedrooms']} bedrooms")
+    if profile.get("timing") in ("now", "soon", "planning"): about.append({"now": "needs to move as soon as possible", "soon": "moving in the next 3 months", "planning": "planning ahead"}[profile["timing"]])
+    for key, label in (("tonight", "needs a safe place tonight"), ("accessible", "needs an accessible home"), ("senior", "someone is 62 or older"), ("voucher", "already has a housing voucher")):
+        if profile.get(key) is True: about.append(label)
+    if about:
+        question = f"{question}\n\n(About me: {'; '.join(about)}.)"
     try:
         return jsonify(answer=ask(question, history))
     except Exception:
@@ -136,8 +194,9 @@ def match():
     if len(message) > 2000:
         return jsonify(error="Please keep it under 2000 characters."), 400
     message, _ = redact(message)
-    refresh_in_background()  # queue new open-data records for team review; no-op if refreshed today
-    check_in_background()  # take down listings whose provider page no longer offers them
+    if not READ_ONLY:  # hosted copies can't keep file changes, so these only run locally
+        refresh_in_background()  # queue new open-data records for team review; no-op if refreshed today
+        check_in_background()  # take down listings whose provider page no longer offers them
     try:
         filters, answer = find_help(message, include_unverified=bool(os.getenv("INCLUDE_UNVERIFIED")))
     except Exception:
@@ -186,9 +245,20 @@ def lease():
     return _text_endpoint(explain_lease)
 
 
+@app.post("/api/review")
+def review_document():
+    """One tool for both: explains a lease, or checks a listing or landlord messages for scam signs."""
+    return _text_endpoint(review)
+
+
 @app.post("/api/listing")
 def listing():
     return _text_endpoint(check_listing)
+
+
+# Under gunicorn (the hosted server) this module is imported once per worker, so warm up here.
+if os.environ.get("WARM_EXAMPLES") == "1":
+    warm_examples()
 
 
 if __name__ == "__main__":
