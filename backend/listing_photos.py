@@ -20,6 +20,8 @@ from catalog import load_catalog
 CACHE_DIR = Path(__file__).resolve().parent.parent / '.cache' / 'listing-photos'
 # Exact image hosts reviewed in data/photo_sources.json and existing catalog sources.
 ALLOWED_HOSTS = {
+    'fitchirick.com',
+    'www.qpmgmt.com',
     'ahcommunities.org',
     'alight-blacksburg.com',
     'altanovaapts.com',
