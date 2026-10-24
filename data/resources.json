@@ -1,66 +1,1142 @@
 [
   {
-    "id": "example-shelter-1",
-    "name": "PLACEHOLDER - Example Emergency Shelter",
-    "type": "emergency_shelter",
-    "address": "REPLACE with real street address, Blacksburg, VA",
-    "phone": "REPLACE",
-    "website": "REPLACE",
-    "hours": "REPLACE",
-    "who_it_serves": "REPLACE (e.g. adults, families, youth)",
-    "cost": "REPLACE (e.g. free)",
-    "accessible": null,
-    "requirements": "REPLACE (e.g. ID needed? referral needed?)",
-    "source_url": "REPLACE with the organization's own page you checked",
-    "last_verified": null,
-    "verified": false
-  },
-  {
-    "id": "example-rental-assistance-1",
-    "name": "PLACEHOLDER - Example Rental Assistance Program",
-    "type": "rental_assistance",
-    "address": "REPLACE",
-    "phone": "REPLACE",
-    "website": "REPLACE",
-    "hours": "REPLACE",
-    "who_it_serves": "REPLACE (e.g. income limits)",
-    "cost": "REPLACE",
-    "accessible": null,
-    "requirements": "REPLACE",
-    "source_url": "REPLACE",
-    "last_verified": null,
-    "verified": false
-  },
-  {
-    "id": "example-legal-aid-1",
-    "name": "PLACEHOLDER - Example Tenant Legal Aid",
-    "type": "legal_aid",
-    "address": "REPLACE",
-    "phone": "REPLACE",
-    "website": "REPLACE",
-    "hours": "REPLACE",
-    "who_it_serves": "REPLACE",
-    "cost": "REPLACE",
-    "accessible": null,
-    "requirements": "REPLACE",
-    "source_url": "REPLACE",
-    "last_verified": null,
-    "verified": false
-  },
-  {
-    "id": "example-listing-1",
-    "name": "PLACEHOLDER - Example Affordable Apartment",
+    "id": "indigo-studio-std",
+    "name": "Indigo at McLean Station — A ST-D studio",
+    "community": "Indigo at McLean Station",
+    "record_kind": "floor_plan",
+    "floor_plan": "A ST-D studio",
     "type": "affordable_listing",
-    "address": "REPLACE",
-    "phone": "REPLACE",
-    "website": "REPLACE",
-    "hours": "REPLACE",
-    "who_it_serves": "REPLACE (e.g. income-restricted, students)",
-    "cost": "REPLACE (e.g. $850/month, 12-month lease)",
+    "address": "1750 Old Meadow Road, McLean, VA 22102",
+    "city": "McLean",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-804-0234",
+    "website": "https://www.indigomcleanstation.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised total monthly leasing price from $1,550 on a 12-month lease; optional charges may apply.",
+    "monthly_rent": 1550,
+    "rent_basis": "advertised_total_monthly",
+    "currency": "USD",
+    "bedrooms": 0,
+    "bathrooms": 1,
+    "square_feet": 437,
     "accessible": null,
-    "requirements": "REPLACE",
-    "source_url": "REPLACE",
-    "last_verified": null,
-    "verified": false
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.indigomcleanstation.com/floorplans/mclean-VA/indigo-at-mclean-station/a-st-d-1163197-6/",
+    "sources": [
+      {
+        "url": "https://www.indigomcleanstation.com/floorplans/mclean-VA/indigo-at-mclean-station/a-st-d-1163197-6/",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.indigomcleanstation.com/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station/affordable",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider shows studio unit 448 available now at $1,550 for a 12-month lease.",
+      "source_url": "https://www.indigomcleanstation.com/floorplans/mclean-VA/indigo-at-mclean-station/a-st-d-1163197-6/",
+      "source_updated_on": null
+    },
+    "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office."
+  },
+  {
+    "id": "indigo-one-bedroom-a14",
+    "name": "Indigo at McLean Station — A 1BR-A1.4",
+    "community": "Indigo at McLean Station",
+    "record_kind": "floor_plan",
+    "floor_plan": "A 1BR-A1.4",
+    "type": "affordable_listing",
+    "address": "1750 Old Meadow Road, McLean, VA 22102",
+    "city": "McLean",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-804-0234",
+    "website": "https://www.indigomcleanstation.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised total monthly leasing price $1,727 on a 12-month lease; optional charges may apply.",
+    "monthly_rent": 1727,
+    "rent_basis": "advertised_total_monthly",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": 565,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.indigomcleanstation.com/floorplans/mclean-VA/indigo-at-mclean-station/a-1br-a14-1163205-6/",
+    "sources": [
+      {
+        "url": "https://www.indigomcleanstation.com/floorplans/mclean-VA/indigo-at-mclean-station/a-1br-a14-1163205-6/",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.indigomcleanstation.com/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station/affordable",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider shows one unit at $1,727; confirm its move-in date.",
+      "source_url": "https://www.indigomcleanstation.com/floorplans/mclean-VA/indigo-at-mclean-station/a-1br-a14-1163205-6/",
+      "source_updated_on": null
+    },
+    "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office."
+  },
+  {
+    "id": "indigo-two-bedroom-d",
+    "name": "Indigo at McLean Station — A 2BR-D",
+    "community": "Indigo at McLean Station",
+    "record_kind": "floor_plan",
+    "floor_plan": "A 2BR-D",
+    "type": "affordable_listing",
+    "address": "1750 Old Meadow Road, McLean, VA 22102",
+    "city": "McLean",
+    "jurisdiction": "Fairfax County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-804-0234",
+    "website": "https://www.indigomcleanstation.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised total monthly leasing price $2,062 on a 12-month lease; optional charges may apply.",
+    "monthly_rent": 2062,
+    "rent_basis": "advertised_total_monthly",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "square_feet": 877,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station/affordable",
+    "sources": [
+      {
+        "url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station/affordable",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.indigomcleanstation.com/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider lists one two-bedroom A 2BR-D; move-in date needs confirmation.",
+      "source_url": "https://www.indigomcleanstation.com/mclean/indigo-at-mclean-station/affordable",
+      "source_updated_on": null
+    },
+    "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office."
+  },
+  {
+    "id": "arbor-heights-one-bedroom",
+    "name": "Arbor Heights — 1 bedroom",
+    "community": "Arbor Heights",
+    "record_kind": "floor_plan",
+    "floor_plan": "1 bedroom",
+    "type": "affordable_listing",
+    "address": "5203 8th Road South, Arlington, VA 22204",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-957-7477",
+    "website": "https://www.arborheightsapts.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised starting monthly rent: $1,299. Utilities and fees must be confirmed.",
+    "monthly_rent": 1299,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Owner identifies accessible apartments, but the accessibility of the advertised vacant unit is unconfirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arborheightsapts.com/floorplans",
+    "sources": [
+      {
+        "url": "https://www.arborheightsapts.com/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://ahcommunities.org/property/arbor-heights/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider advertises available now.",
+      "source_url": "https://www.arborheightsapts.com/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "Provider site and owner directory publish different phone numbers. This record uses the property-site location phone. Confirm rent, fees, and an accessible vacancy with the leasing office."
+  },
+  {
+    "id": "arbor-heights-two-bedroom",
+    "name": "Arbor Heights — 2 bedroom",
+    "community": "Arbor Heights",
+    "record_kind": "floor_plan",
+    "floor_plan": "2 bedroom",
+    "type": "affordable_listing",
+    "address": "5203 8th Road South, Arlington, VA 22204",
+    "city": "Arlington",
+    "jurisdiction": "Arlington County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-957-7477",
+    "website": "https://www.arborheightsapts.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised starting monthly rent: $1,316. Utilities and fees must be confirmed.",
+    "monthly_rent": 1316,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "square_feet": 924,
+    "accessible": null,
+    "accessibility_notes": "Owner identifies accessible apartments, but the accessibility of the advertised vacant unit is unconfirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.arborheightsapts.com/floorplans",
+    "sources": [
+      {
+        "url": "https://www.arborheightsapts.com/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://ahcommunities.org/property/arbor-heights/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider posts availability from October 11, 2026; reconfirm that it remains open.",
+      "source_url": "https://www.arborheightsapts.com/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "Provider site and owner directory publish different phone numbers. This record uses the property-site location phone. Confirm rent, fees, and an accessible vacancy with the leasing office."
+  },
+  {
+    "id": "glen-ridge-two-bedroom-50",
+    "name": "Glen Ridge Commons — Two Bedroom One and half Bathroom 50%",
+    "community": "Glen Ridge Commons",
+    "record_kind": "floor_plan",
+    "floor_plan": "Two Bedroom One and half Bathroom 50%",
+    "type": "affordable_listing",
+    "address": "12810 Island House Loop, Woodbridge, VA 22193",
+    "city": "Woodbridge",
+    "jurisdiction": "Prince William County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-450-9795",
+    "website": "https://www.glenridgecommons.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised starting monthly rent: $1,713. Utilities and fees must be confirmed.",
+    "monthly_rent": 1713,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 1.5,
+    "square_feet": 872,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.glenridgecommons.com/floorplans",
+    "sources": [
+      {
+        "url": "https://www.glenridgecommons.com/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.glenridgecommons.com/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.glenridgecommons.com/contactus",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider lists three units and marks this 50% tier floor plan available now.",
+      "source_url": "https://www.glenridgecommons.com/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office."
+  },
+  {
+    "id": "glen-ridge-two-bedroom-60",
+    "name": "Glen Ridge Commons — Two Bedroom One and half Bathroom 60%",
+    "community": "Glen Ridge Commons",
+    "record_kind": "floor_plan",
+    "floor_plan": "Two Bedroom One and half Bathroom 60%",
+    "type": "affordable_listing",
+    "address": "12810 Island House Loop, Woodbridge, VA 22193",
+    "city": "Woodbridge",
+    "jurisdiction": "Prince William County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-450-9795",
+    "website": "https://www.glenridgecommons.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised starting monthly rent: $1,841. Utilities and fees must be confirmed.",
+    "monthly_rent": 1841,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 1.5,
+    "square_feet": 872,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.glenridgecommons.com/floorplans",
+    "sources": [
+      {
+        "url": "https://www.glenridgecommons.com/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.glenridgecommons.com/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.glenridgecommons.com/contactus",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider lists three units and marks this 60% tier floor plan available now.",
+      "source_url": "https://www.glenridgecommons.com/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office."
+  },
+  {
+    "id": "glen-ridge-three-bedroom-60",
+    "name": "Glen Ridge Commons — Three Bedroom Two Bathroom 60%",
+    "community": "Glen Ridge Commons",
+    "record_kind": "floor_plan",
+    "floor_plan": "Three Bedroom Two Bathroom 60%",
+    "type": "affordable_listing",
+    "address": "12810 Island House Loop, Woodbridge, VA 22193",
+    "city": "Woodbridge",
+    "jurisdiction": "Prince William County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-450-9795",
+    "website": "https://www.glenridgecommons.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised starting monthly rent: $2,191. Utilities and fees must be confirmed.",
+    "monthly_rent": 2191,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "square_feet": 1101,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.glenridgecommons.com/floorplans",
+    "sources": [
+      {
+        "url": "https://www.glenridgecommons.com/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.glenridgecommons.com/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.glenridgecommons.com/contactus",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "upcoming",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": "2026-11-19",
+      "evidence": "Provider shows one unit with a November 19, 2026 availability date.",
+      "source_url": "https://www.glenridgecommons.com/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office."
+  },
+  {
+    "id": "riverwoods-one-bedroom",
+    "name": "Riverwoods Apartment Communities — A1_Riverwoods",
+    "community": "Riverwoods Apartment Communities",
+    "record_kind": "floor_plan",
+    "floor_plan": "A1_Riverwoods",
+    "type": "affordable_listing",
+    "address": "16573 Nanticoke Way, Woodbridge, VA 22191 (community leasing contact)",
+    "city": "Woodbridge",
+    "jurisdiction": "Prince William County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "844-584-0804",
+    "website": "https://www.riverwoodsvaapartments.com/va/woodbridge/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised starting monthly rent: $1,605. Utilities and fees must be confirmed.",
+    "monthly_rent": 1605,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": 659,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.riverwoodsvaapartments.com/va/woodbridge/floorplans",
+    "sources": [
+      {
+        "url": "https://www.riverwoodsvaapartments.com/va/woodbridge/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.riverwoodsvaapartments.com/va/woodbridge/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "waitlist_open",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider says pre-applying adds the applicant to a waitlist; no immediate vacancy is established.",
+      "source_url": "https://www.riverwoodsvaapartments.com/va/woodbridge/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "Address is the shared community contact address, not a confirmed vacant-unit address. Pre-application does not guarantee a unit. Provider advertises a $250 deposit; confirm all charges."
+  },
+  {
+    "id": "riverwoods-two-bedroom",
+    "name": "Riverwoods Apartment Communities — B1_Riverwoods",
+    "community": "Riverwoods Apartment Communities",
+    "record_kind": "floor_plan",
+    "floor_plan": "B1_Riverwoods",
+    "type": "affordable_listing",
+    "address": "16573 Nanticoke Way, Woodbridge, VA 22191 (community leasing contact)",
+    "city": "Woodbridge",
+    "jurisdiction": "Prince William County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "844-584-0804",
+    "website": "https://www.riverwoodsvaapartments.com/va/woodbridge/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised starting monthly rent: $1,749. Utilities and fees must be confirmed.",
+    "monthly_rent": 1749,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "square_feet": 836,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.riverwoodsvaapartments.com/va/woodbridge/floorplans",
+    "sources": [
+      {
+        "url": "https://www.riverwoodsvaapartments.com/va/woodbridge/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.riverwoodsvaapartments.com/va/woodbridge/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "waitlist_open",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider says pre-applying adds the applicant to a waitlist; no immediate vacancy is established.",
+      "source_url": "https://www.riverwoodsvaapartments.com/va/woodbridge/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "Address is the shared community contact address, not a confirmed vacant-unit address. Pre-application does not guarantee a unit. Provider advertises a $250 deposit; confirm all charges."
+  },
+  {
+    "id": "atlantic-boulevard",
+    "name": "Atlantic Boulevard Apartments",
+    "community": "Atlantic Boulevard Apartments",
+    "record_kind": "community",
+    "floor_plan": null,
+    "type": "affordable_listing",
+    "address": "21895 Atlantic Boulevard, Sterling, VA 20166",
+    "city": "Sterling",
+    "jurisdiction": "Loudoun County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-529-5140",
+    "website": "https://liveatlanticblvd.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Contact provider to confirm rent, utilities, and fees.",
+    "monthly_rent": null,
+    "rent_basis": null,
+    "currency": "USD",
+    "bedrooms": null,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://liveatlanticblvd.com/",
+    "sources": [
+      {
+        "url": "https://liveatlanticblvd.com/",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.loudoun.gov/m/NewsFlash/Home/Detail/10906",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "leasing",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": "2026-10-29",
+      "evidence": "Provider is accepting leasing inquiries; county expects first move-ins around October 29, 2026.",
+      "source_url": "https://liveatlanticblvd.com/",
+      "source_updated_on": null
+    },
+    "notes": "One-, two-, and three-bedroom income-restricted homes. Do not visit until the provider permits site access; the county describes ongoing construction. Exact rent and current units are unconfirmed."
+  },
+  {
+    "id": "linden-senior",
+    "name": "The Linden Senior Residences",
+    "community": "The Linden Senior Residences",
+    "record_kind": "community",
+    "floor_plan": null,
+    "type": "affordable_listing",
+    "address": "42715 Avonlea Grand Drive, South Riding, VA 20152",
+    "city": "South Riding",
+    "jurisdiction": "Loudoun County",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-946-8668",
+    "website": "https://www.thelindenseniorresidences.com/",
+    "hours": null,
+    "who_it_serves": "Independent seniors aged 55+; owner describes income bands from 30% to 60% of area median income.",
+    "cost": "Contact provider to confirm rent, utilities, and fees.",
+    "monthly_rent": null,
+    "rent_basis": null,
+    "currency": "USD",
+    "bedrooms": null,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": 55,
+    "source_url": "https://www.thelindenseniorresidences.com/",
+    "sources": [
+      {
+        "url": "https://www.thelindenseniorresidences.com/",
+        "role": "provider"
+      },
+      {
+        "url": "https://truegroundhousing.org/what-we-do/real-estate/communities/loudoun-county/the-linden-senior-residences/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "leasing",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider advertises leasing for a 55+ community; specific vacancies require confirmation.",
+      "source_url": "https://www.thelindenseniorresidences.com/",
+      "source_updated_on": null
+    },
+    "notes": "A $1,699 promotion on selected 60% tier one-bedroom homes requires moving in by October 30, 2026. Ongoing rent is unconfirmed, so no numeric rent is used for budget matching."
+  },
+  {
+    "id": "arbelo-one-bedroom",
+    "name": "Arbelo Apartments — 1/1/A",
+    "community": "Arbelo Apartments",
+    "record_kind": "floor_plan",
+    "floor_plan": "1/1/A",
+    "type": "affordable_listing",
+    "address": "831 Bashford Lane, Alexandria, VA 22314",
+    "city": "Alexandria",
+    "jurisdiction": "Alexandria City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-890-5348",
+    "website": "https://www.arbelo-apartments.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; city lists 2026 income limits for these affordable homes.",
+    "cost": "Advertised monthly rent $1,581 for a 12-month lease. City says tenants pay utilities.",
+    "monthly_rent": 1581,
+    "rent_basis": "advertised",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": 677,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "City lists minimum annual income of $47,430 for the one-bedroom or $54,090 for the two-bedroom; maximums vary by household size. Confirm full eligibility with the provider.",
+    "minimum_age": null,
+    "source_url": "https://www.arbelo-apartments.com/alexandria/arbelo/conventional/",
+    "sources": [
+      {
+        "url": "https://www.arbelo-apartments.com/alexandria/arbelo/conventional/",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.housingalexandria.org/looking-to-rent/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider lists one unit.",
+      "source_url": "https://www.arbelo-apartments.com/alexandria/arbelo/conventional/",
+      "source_updated_on": null
+    },
+    "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office."
+  },
+  {
+    "id": "arbelo-two-bedroom",
+    "name": "Arbelo Apartments — 2/1/C",
+    "community": "Arbelo Apartments",
+    "record_kind": "floor_plan",
+    "floor_plan": "2/1/C",
+    "type": "affordable_listing",
+    "address": "831 Bashford Lane, Alexandria, VA 22314",
+    "city": "Alexandria",
+    "jurisdiction": "Alexandria City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-890-5348",
+    "website": "https://www.arbelo-apartments.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; city lists 2026 income limits for these affordable homes.",
+    "cost": "Advertised monthly rent $1,803 for a 12-month lease. City says tenants pay utilities.",
+    "monthly_rent": 1803,
+    "rent_basis": "advertised",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "square_feet": 898,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "City lists minimum annual income of $47,430 for the one-bedroom or $54,090 for the two-bedroom; maximums vary by household size. Confirm full eligibility with the provider.",
+    "minimum_age": null,
+    "source_url": "https://www.arbelo-apartments.com/alexandria/arbelo/conventional/",
+    "sources": [
+      {
+        "url": "https://www.arbelo-apartments.com/alexandria/arbelo/conventional/",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.housingalexandria.org/looking-to-rent/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider lists two units.",
+      "source_url": "https://www.arbelo-apartments.com/alexandria/arbelo/conventional/",
+      "source_updated_on": null
+    },
+    "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office."
+  },
+  {
+    "id": "spire-one-bedroom",
+    "name": "The Spire — One bedroom",
+    "community": "The Spire",
+    "record_kind": "floor_plan",
+    "floor_plan": "One bedroom",
+    "type": "affordable_listing",
+    "address": "2875 N. Beauregard Street, Alexandria, VA 22311",
+    "city": "Alexandria",
+    "jurisdiction": "Alexandria City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "571-367-9572",
+    "website": "https://www.spireapts.com/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Pricing needs confirmation: floor-plan page advertises $1,699; unit page lists $1,869 base rent plus $1,699 specials.",
+    "monthly_rent": null,
+    "rent_basis": null,
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": 614,
+    "accessible": null,
+    "accessibility_notes": "Floor-plan page mentions wheelchair accessible rooms. The accessibility of specific vacant apartments remains unconfirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.spireapts.com/floorplans/one-bedroom",
+    "sources": [
+      {
+        "url": "https://www.spireapts.com/floorplans/one-bedroom",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.spireapts.com/floorplans",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://ahcommunities.org/property/the-spire/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.alexandriava.gov/sites/default/files/2026-10/Availablecommittedaffordablerentalunits.pdf",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider lists three units, but floor-plan and unit-level prices differ.",
+      "source_url": "https://www.spireapts.com/floorplans/one-bedroom",
+      "source_updated_on": null
+    },
+    "notes": "Do not use the lowest advertised special to assert budget eligibility. Confirm base rent, promotion duration, total monthly cost, and accessibility directly."
+  },
+  {
+    "id": "witter-place-closed",
+    "name": "Witter Place Apartments",
+    "community": "Witter Place Apartments",
+    "record_kind": "community",
+    "floor_plan": null,
+    "type": "affordable_listing",
+    "address": "2712 Witter Drive, Alexandria, VA 22314",
+    "city": "Alexandria",
+    "jurisdiction": "Alexandria City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-344-7737",
+    "website": "https://www.communityhousingpartners.org/properties/witter-place-apartments/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households at 40% to 60% of area median income; two- and three-bedroom homes.",
+    "cost": "Contact provider to confirm rent, utilities, and fees.",
+    "monthly_rent": null,
+    "rent_basis": null,
+    "currency": "USD",
+    "bedrooms": null,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Owner describes ten mobility-accessible and two visual/hearing-design units; no accessible vacancy is confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.communityhousingpartners.org/properties/witter-place-apartments/",
+    "sources": [
+      {
+        "url": "https://www.communityhousingpartners.org/properties/witter-place-apartments/",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.alexandriava.gov/housing-services/renter-resources",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "closed",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Owner explicitly says the lottery leasing period is closed and applications are not being accepted.",
+      "source_url": "https://www.communityhousingpartners.org/properties/witter-place-apartments/",
+      "source_updated_on": null
+    },
+    "notes": "Retained for audit and to prevent recommending a closed application window. Provider and city use different street-address descriptions; owner address is recorded. Not an active recommendation."
+  },
+  {
+    "id": "brentwood-one-bedroom",
+    "name": "Brentwood Apartment Homes — A1",
+    "community": "Brentwood Apartment Homes",
+    "record_kind": "floor_plan",
+    "floor_plan": "A1",
+    "type": "affordable_listing",
+    "address": "8669 Devonshire Court, Manassas, VA 20110",
+    "city": "Manassas",
+    "jurisdiction": "Manassas City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "844-532-1435",
+    "website": "https://www.brentwood-apts.com/va/manassas/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised starting monthly rent: $1,449. Utilities and fees must be confirmed.",
+    "monthly_rent": 1449,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": 603,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.brentwood-apts.com/va/manassas/floorplans",
+    "sources": [
+      {
+        "url": "https://www.brentwood-apts.com/va/manassas/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.brentwood-apts.com/va/manassas/",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "waitlist_open",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider states that pre-applications join a waitlist; no immediate placement is promised.",
+      "source_url": "https://www.brentwood-apts.com/va/manassas/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "Website-advertised information is a dated snapshot, not a reservation or guarantee. Confirm directly with the leasing office."
+  },
+  {
+    "id": "west-wood-oaks-two-bedroom",
+    "name": "West Wood Oaks — Two-bedroom",
+    "community": "West Wood Oaks",
+    "record_kind": "floor_plan",
+    "floor_plan": "Two-bedroom",
+    "type": "affordable_listing",
+    "address": "10734 West Drive, Fairfax, VA 22030",
+    "city": "Fairfax",
+    "jurisdiction": "Fairfax City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "888-594-5930",
+    "website": "https://westwoodoaks.enterpriseresidential.org/",
+    "hours": null,
+    "who_it_serves": "Income-qualified households; eligibility must be confirmed by the provider.",
+    "cost": "Advertised starting monthly rent: $1,498. Utilities and fees must be confirmed.",
+    "monthly_rent": 1498,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://westwoodoaks.enterpriseresidential.org/floorplans",
+    "sources": [
+      {
+        "url": "https://westwoodoaks.enterpriseresidential.org/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://westwoodoaks.enterpriseresidential.org/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://www.fairfaxva.gov/Services/Support-Programs/Housing-and-Homelessness",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "advertised_vacancy",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider lists three two-bedroom units; confirm the actual move-in dates.",
+      "source_url": "https://westwoodoaks.enterpriseresidential.org/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "Provider publishes more than one tracking phone number. This uses the location footer number. City property-wide unit totals are not interpreted as vacancy counts."
+  },
+  {
+    "id": "park-place-senior-one-bedroom",
+    "name": "Park Place Senior — 1 Bedroom 1 Bath",
+    "community": "Park Place Senior",
+    "record_kind": "floor_plan",
+    "floor_plan": "1 Bedroom 1 Bath",
+    "type": "affordable_listing",
+    "address": "9659 Manassas Drive, Manassas Park, VA 20111",
+    "city": "Manassas Park",
+    "jurisdiction": "Manassas Park City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-257-3455",
+    "website": "https://www.parkplacesenior.com/",
+    "hours": null,
+    "who_it_serves": "Adults aged 55+. Confirm current income restrictions and affordable-unit eligibility with management.",
+    "cost": "Advertised starting monthly rent: $1,833. Utilities and fees must be confirmed.",
+    "monthly_rent": 1833,
+    "rent_basis": "starting_at",
+    "currency": "USD",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": 55,
+    "source_url": "https://www.parkplacesenior.com/floorplans",
+    "sources": [
+      {
+        "url": "https://www.parkplacesenior.com/floorplans",
+        "role": "provider"
+      },
+      {
+        "url": "https://www.parkplacesenior.com/",
+        "role": "corroboration"
+      },
+      {
+        "url": "https://cms7files.revize.com/manassasparkva/Planning%20%26%20Zoning/Comprehensive%20Plan/chapter%204.pdf",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "available_now",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider marks one one-bedroom unit available now.",
+      "source_url": "https://www.parkplacesenior.com/floorplans",
+      "source_updated_on": null
+    },
+    "notes": "City comprehensive plan documents the affordable senior development historically; it does not verify current rent or income limits. Current advertised rent and vacancy come from the provider, not third-party subsidy estimates. Footer leasing contact is used."
+  },
+  {
+    "id": "broad-washington-adu",
+    "name": "Broad & Washington — Affordable Dwelling Units",
+    "community": "Broad & Washington",
+    "record_kind": "floor_plan",
+    "floor_plan": "Affordable Dwelling Units",
+    "type": "affordable_listing",
+    "address": "111 E. Broad Street, Falls Church, VA 22046",
+    "city": "Falls Church",
+    "jurisdiction": "Falls Church City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "866-348-6136",
+    "website": "https://www.broadandwashington.com/",
+    "hours": null,
+    "who_it_serves": "Households qualifying for the Falls Church Affordable Dwelling Unit program. City currently limits new waitlist applications to people living or working in the city.",
+    "cost": "Published ADU rents are regulatory caps, not a confirmed vacant-unit quote. Call for current rent.",
+    "monthly_rent": null,
+    "rent_basis": null,
+    "currency": "USD",
+    "bedrooms": null,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Contact the provider to confirm income qualification, documentation, fees, and availability before applying.",
+    "minimum_age": null,
+    "source_url": "https://www.broadandwashington.com/housing-for-all",
+    "sources": [
+      {
+        "url": "https://www.broadandwashington.com/housing-for-all",
+        "role": "provider"
+      },
+      {
+        "url": "https://fallschurchva.gov/687/Affordable-Dwelling-Unit-Program",
+        "role": "corroboration"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "contact_for_availability",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "Provider offers ADU studios and two-bedrooms but asks applicants to contact leasing for current ADU vacancies.",
+      "source_url": "https://www.broadandwashington.com/housing-for-all",
+      "source_updated_on": null
+    },
+    "notes": "Do not substitute market-rate availability or regulatory rent caps for an affordable vacancy. Confirm city-program eligibility and current leasing status."
+  },
+  {
+    "id": "falls-church-adu-waitlist",
+    "name": "Falls Church Affordable Dwelling Unit Program",
+    "community": "Falls Church Affordable Dwelling Unit Program",
+    "record_kind": "community",
+    "floor_plan": null,
+    "type": "housing_authority",
+    "address": null,
+    "city": "Falls Church",
+    "jurisdiction": "Falls Church City",
+    "region": "Northern Virginia",
+    "state": "VA",
+    "phone": "703-248-5005",
+    "website": "https://fallschurchva.gov/687/Affordable-Dwelling-Unit-Program",
+    "hours": null,
+    "who_it_serves": "Income-qualified households that live and/or work in the City of Falls Church (priorities 1–2).",
+    "cost": "Rents depend on the property and AMI band; no uniform rent is quoted.",
+    "monthly_rent": null,
+    "rent_basis": null,
+    "currency": "USD",
+    "bedrooms": null,
+    "bathrooms": null,
+    "square_feet": null,
+    "accessible": null,
+    "accessibility_notes": "Accessible unit features and current availability have not been confirmed.",
+    "requirements": "Confirm live/work location is within the independent city, not just a Falls Church mailing address. City states minimum income of 2.5 times monthly ADU rent; maximum income varies by household and AMI band.",
+    "minimum_age": null,
+    "source_url": "https://fallschurchva.gov/687/Affordable-Dwelling-Unit-Program",
+    "sources": [
+      {
+        "url": "https://fallschurchva.gov/687/Affordable-Dwelling-Unit-Program",
+        "role": "public_authority"
+      }
+    ],
+    "last_verified": "2026-10-24",
+    "verified": true,
+    "verification_method": "AI-assisted review of official provider and public-agency web sources; no phone or in-person confirmation.",
+    "availability": {
+      "status": "waitlist_open",
+      "checked_on": "2026-10-24",
+      "review_due": "2026-10-31",
+      "available_from": null,
+      "evidence": "City accepts ADU waitlist applications only from households living or working in the City of Falls Church.",
+      "source_url": "https://fallschurchva.gov/687/Affordable-Dwelling-Unit-Program",
+      "source_updated_on": null
+    },
+    "notes": "Program waitlist, not a vacant apartment. Priority and income qualification do not guarantee placement."
   }
 ]

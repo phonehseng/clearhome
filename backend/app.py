@@ -4,12 +4,14 @@ Run:  python backend/app.py      then open http://localhost:8000
 Set INCLUDE_UNVERIFIED=1 to also use placeholder entries while testing.
 """
 import os
+import math
 
 from flask import Flask, jsonify, request, send_from_directory
 
 from extract_text import extract_text
 from lease_checker import check_listing, explain_lease
 from matcher import find_help
+from catalog import filter_catalog, load_catalog, STATUSES
 from redact import redact
 
 FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
@@ -20,6 +22,37 @@ app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB uploads
 @app.get("/")
 def index():
     return send_from_directory(FRONTEND, "index.html")
+
+
+@app.get("/api/listings")
+def listings():
+    """Browse the reviewed catalog without an AI call or API key."""
+    filters = {"types": ["affordable_listing", "housing_authority"]}
+    location = request.args.get("location", "").strip()
+    if location:
+        filters["locations"] = [location]
+    for query, field in (("max_rent", "max_budget_per_month"), ("bedrooms", "bedrooms"), ("age", "age")):
+        value = request.args.get(query)
+        if value is None:
+            continue
+        try:
+            parsed = float(value)
+            if not math.isfinite(parsed) or parsed < 0 or (query != "max_rent" and not parsed.is_integer()):
+                raise ValueError
+        except ValueError:
+            return jsonify(error=f"{query} must be a nonnegative {'number' if query == 'max_rent' else 'integer'}."), 400
+        filters[field] = parsed if query == "max_rent" else int(parsed)
+    accessible = request.args.get("accessible", "false").lower()
+    if accessible not in {"true", "false"}:
+        return jsonify(error="accessible must be true or false."), 400
+    filters["needs_accessible"] = accessible == "true"
+    status = request.args.get("status")
+    if status is not None and status not in STATUSES - {"closed"}:
+        return jsonify(error="Unsupported active availability status."), 400
+    rows = filter_catalog(load_catalog(), filters)
+    if status:
+        rows = [r for r in rows if r.get("availability", {}).get("status") == status]
+    return jsonify(listings=rows, count=len(rows), notice="Official-source web review, not a live vacancy feed. Confirm rent, eligibility and availability directly. Closed or overdue records are excluded.")
 
 
 @app.post("/api/match")

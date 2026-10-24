@@ -30,7 +30,7 @@ To avoid made-up information, the assistant only recommends places from our hand
 | `backend/lease_checker.py` | Explains a lease (summary, key dates and costs, clauses to watch, questions to ask) or checks a listing for scam red flags. |
 | `backend/extract_text.py` | Reads PDF, Word, text and image uploads into plain text, on our own server. |
 | `backend/redact.py` | Removes SSNs, ITINs, card numbers and account numbers by their format before any text reaches the AI. |
-| `backend/app.py` | Flask server for the web page and the `/api/match`, `/api/lease`, `/api/listing` and `/api/extract` endpoints. |
+| `backend/app.py` | Flask server for the web page and the `/api/match`, `/api/lease`, `/api/listing`, `/api/extract`, and read-only `/api/listings` endpoints. |
 | `frontend/index.html` | The web page. |
 | `data/resources.json` | The hand-verified resource list. See [data/README.md](data/README.md). |
 
@@ -51,7 +51,10 @@ python backend/app.py
 Open http://localhost:8000.
 
 - `python backend/test_gemma.py` checks that your key works.
-- `INCLUDE_UNVERIFIED=1 python backend/app.py` also uses the placeholder entries, for testing before real data is added.
+- Browse the catalog without an AI key at `http://localhost:8000/api/listings`.
+- `python backend/catalog.py --check` validates the source catalog.
+- `python -m unittest discover -s backend -p 'test_catalog.py' -v` runs offline catalog/matching/API checks.
+- The starter catalog includes openings and waitlists across Northern Virginia. See [source verification notes](data/VERIFICATION.md) for dated evidence and [catalog maintenance](data/README.md) for weekly review rules. Verification is AI-assisted review of official web sources, not phone confirmation or a live vacancy feed. Closed and overdue records are excluded from matching.
 
 ## Responsible AI, privacy and accessibility
 
