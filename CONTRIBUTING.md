@@ -31,6 +31,10 @@ git push                          # 5. send it to GitHub
 
 `git status` shows what has changed at any time.
 
+## Demo
+
+Use the [two-minute video demo script](docs/DEMO_SCRIPT.md) when presenting Clear House. Check its recording notes and confirm listing details before recording.
+
 ## Habits that prevent most problems
 
 - Pull before you start working, and before you push.
