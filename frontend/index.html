@@ -363,6 +363,14 @@
     .housing-card.has-photo .property-photo{width:auto;height:auto;top:12px;right:12px;padding:7px 11px;border-radius:999px;font-size:12px}
     .housing-card.has-photo .property-photo>img{display:none}
     .housing-card.has-photo .photo-expand-mark{position:static;display:inline;background:none;box-shadow:none;color:#14203f;font-size:14px}
+    /* "View photo" on photo cards: a white glass pill in the site's blue, with a drawn expand icon (the ⤢ character renders unevenly). */
+    .housing-card.has-photo .property-photo{display:inline-flex;align-items:center;gap:6px;padding:7px 12px 7px 10px;line-height:1;
+      background:#ffffffe6;border:1px solid #ffffffcc;box-shadow:0 6px 18px #0b14332e;color:var(--blue);font-size:12px;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s}
+    .housing-card.has-photo .property-photo::after{content:'View photo'}
+    .housing-card.has-photo .property-photo:hover{background:#fff;border-color:#6f8fd6}
+    .housing-card.has-photo .photo-expand-mark{display:block;width:13px;height:13px;font-size:0;color:inherit;background:currentColor;
+      -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6'/%3E%3C/svg%3E") center/contain no-repeat;
+      mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6'/%3E%3C/svg%3E") center/contain no-repeat}
     
     @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card.has-photo .card-glass{background:#fffffff0}}
 
