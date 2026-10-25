@@ -327,6 +327,7 @@ def cards_for(text, limit=6):
             "id": r["id"], "name": r.get("community") or r["name"], "type": r.get("type"), "jurisdiction": r.get("jurisdiction"),
             "monthly_rent": r.get("monthly_rent"), "price_unit": r.get("price_unit"), "rent_basis": r.get("rent_basis"),
             "rental_space": r.get("rental_space"), "phone": r.get("phone"), "source_url": r.get("source_url"),
+            "website": r.get("website") if r.get("website") and not re.search(r"\.gov/|/DocumentCenter/|\.pdf\b", r["website"]) else None,
             "address": r.get("address"), "waitlist_status": r.get("waitlist_status"), "availability_status": avail.get("status"),
             "has_photo": bool(r.get("photo")), "lat": r.get("lat"), "lon": r.get("lon"),
             "rent_estimate": rent_estimate(r),

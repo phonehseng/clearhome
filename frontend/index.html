@@ -690,7 +690,7 @@
   }
   // Label a listing's main link by where it actually goes (see backend/source_audit.py).
   const SOURCE_LABELS = { official_property_page: 'View official property page ↗', owner_property_page: 'View owner’s property page ↗',
-                          property_website: 'View property website ↗', official_directory: 'View official county listing ↗' };
+                          property_website: 'View property website ↗', official_directory: 'County housing list ↗' };
   const sourceLabel = (row, fallback) => SOURCE_LABELS[row.source_kind] || fallback;
   const ROLE_LABELS = { provider: 'Property website', government: 'Official government page', directory: 'Official directory or list', corroboration: 'Supporting page' };
   function mapLink(row) {
@@ -818,7 +818,9 @@
         details.append(options);card.append(details);
       } else card.append(eligibilityDetails(row));
       const actions = housingElement('div','housing-actions');
-      const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-price source ↗':'View source ↗')); if (source) actions.append(source);
+      // The property's own site comes first; a county list (names, addresses, phones) is labeled as a list, not a property page.
+      const ownSite = row.website && row.website !== row.source_url && !['property_website','owner_property_page','official_property_page'].includes(row.source_kind) && !/\.gov\/|\/DocumentCenter\/|\.pdf($|\?)/i.test(row.website) ? sourceLink(row.website,'Property website ↗') : null; if (ownSite) actions.append(ownSite);
+      const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-price source ↗':'View source ↗')); if (source) { if (row.source_kind==='official_directory') source.title='The county’s list of income-restricted properties, with each one’s address and phone. Call the property to apply.'; actions.append(source); }
       const map = mapLink(row); if (map) actions.append(map);
       if (row.phone && (row.phone.match(/\d/g) || []).length >= 10) { const phone = housingElement('a','','Call leasing office'); phone.href=ClearHouseDial(row.phone); actions.append(phone); }
       const reviewDates=plans.map(p=>p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
@@ -951,7 +953,7 @@
       if (Array.isArray(r.links) && r.links.length) return r.links.filter(l => safeUrl(l.url)).map(l => ({ url: l.url, label: l.label, note: l.note }));
       const out = [], seen = new Set(), add = (url, label) => { if (safeUrl(url) && !seen.has(url)) { seen.add(url); out.push({ url, label }); } };
       const sourceLabel = r.source_kind === 'official_directory' || /fairfaxcounty\.gov\/homeless\/emergency-shelters|directory|guide/i.test(r.source_url || '') ? 'Official county listing' : 'Program details';
-      add(r.source_url, sourceLabel); add(r.website, 'Provider website');
+      add(r.website, 'Provider website'); add(r.source_url, sourceLabel);
       return out;
     }
     function shelterCard(r) {
@@ -1127,6 +1129,7 @@
         if (c.address) body.append(el('span', c.address, { class: 'chat-card-address' }));
         const links = el('div', null, { class: 'chat-card-actions' });
         if (c.phone) links.append(el('a', c.phone, { href: tel(c.phone), 'aria-label': `Call ${c.name}: ${c.phone}` }));
+        const own = safeUrl(c.website); if (own && own !== c.source_url) links.append(el('a', 'Website ↗', { href: own, target: '_blank', rel: 'noopener', 'aria-label': `${c.name} website (opens in a new tab)` }));
         const site = safeUrl(c.source_url); if (site) links.append(el('a', 'Source ↗', { href: site, target: '_blank', rel: 'noopener', 'aria-label': `Source page for ${c.name} (opens in a new tab)` }));
         if (typeof c.lat === 'number') links.append(el('a', 'Map ↗', { href: `https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lon}`, target: '_blank', rel: 'noopener', 'aria-label': `${c.name} on Google Maps (opens in a new tab)` }));
         if (links.childNodes.length) body.append(links);
