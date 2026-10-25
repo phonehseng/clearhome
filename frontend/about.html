@@ -404,6 +404,10 @@
       background:radial-gradient(60% 50% at 20% 25%,#2f55b566,transparent 70%),radial-gradient(50% 45% at 80% 75%,#6f8fd64d,transparent 70%),linear-gradient(135deg,#081029,#0d1738 45%,#16306f);
       background-size:160% 160%,160% 160%,100% 100%;animation:start-in .45s ease both,start-drift 18s ease-in-out infinite alternate}
     .start[open]{display:grid;place-items:center}
+    /* Phones: the window follows the part of the screen the keyboard leaves visible (set below), and the card sits near
+       the top, so the reply box is never hidden behind the keyboard. */
+    .start{top:var(--start-top,0px);height:var(--start-h,100%)}
+    @media(max-width:600px){.start[open]{place-items:start center;padding-top:max(28px,env(safe-area-inset-top))}.start .start-form input{font-size:16px}}
     .start::backdrop{background:transparent}
     .start.leaving{animation:none}
     .start.leaving .start-card{animation:start-card-out .24s ease both}
@@ -799,9 +803,13 @@
       e.preventDefault(); openTools();
     });
     dlg.addEventListener('cancel', e => { if (leaving) e.preventDefault(); });
+    // iOS keeps the page full height when the keyboard opens, so size the intro to the visible part instead.
+    const vv = window.visualViewport;
+    const fit = () => { if (!vv) return; dlg.style.setProperty('--start-h', vv.height + 'px'); dlg.style.setProperty('--start-top', vv.offsetTop + 'px'); };
+    vv?.addEventListener('resize', fit); vv?.addEventListener('scroll', fit);
     document.querySelectorAll('a[data-start]').forEach(a => a.addEventListener('click', e => {
       if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      e.preventDefault(); dlg.classList.remove('leaving'); dlg.showModal(); input.focus();
+      e.preventDefault(); dlg.classList.remove('leaving'); dlg.showModal(); fit(); input.focus({ preventScroll: true });
       if (!greeted) { greeted = true; setTimeout(() => {
         const hello = document.createElement('p'); hello.textContent = 'Hi, I’m Gemma. What kind of housing help do you need?';
         msgs.replaceChildren(hello);
