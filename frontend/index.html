@@ -767,6 +767,14 @@
     #tools .emergency-card .tonight-links span{color:#4b5a7a;font-size:13.5px;font-weight:600}
     #tools .emergency-card .tonight-links button{background:#fff;border:1px solid #d2dcf0;color:#14203f;font-weight:600;box-shadow:0 2px 8px #23408f0f}
     #tools .emergency-card .tonight-links button:hover{background:#f6f9ff;border-color:#9db2e3}
+    /* Phone: bigger touch targets (at least 40px tall) for the tools page controls. */
+    @media (max-width:600px){
+      .housing-card :is(details>summary,.eligibility-details summary,.floor-plans-details>summary){min-height:44px;display:flex;align-items:center}
+      .housing-card details a,.housing-card .housing-actions a{min-height:40px;display:inline-flex;align-items:center;padding:4px 0}
+      .more-options>summary,.more-filters>summary,.filter-summary .filter-reset{min-height:44px;padding:9px 16px}
+      .leaflet-control-zoom a{width:40px!important;height:40px!important;line-height:40px!important;font-size:20px}
+      .budget-shortcut button,.walk-toggle button{min-height:44px}
+    }
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
