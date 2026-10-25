@@ -397,6 +397,14 @@ class LowIncomeAndEmergencyTests(unittest.TestCase):
         price = first.get("monthly_rent") if isinstance(first.get("monthly_rent"), (int, float)) else (advisor.rent_estimate(first) or {}).get("low")
         self.assertLessEqual(price, 1200)  # what fits the budget comes first
 
+    def test_budget_searches_only_show_homes_that_fit(self):
+        rows = advisor._records("studio in Arlington under $1500")
+        self.assertGreaterEqual(len(rows), 2)
+        self.assertTrue(all(isinstance(r.get("monthly_rent"), (int, float)) and r["monthly_rent"] <= 1500 for r in rows))
+        seniors = advisor._records("senior apartment under 1500 in Arlington")
+        self.assertTrue(seniors and all("62" in str(r.get("who_it_serves")) or "enior" in r["name"] for r in seniors))
+        self.assertIsNone(advisor.rent_estimate({"type": "rental_assistance", "cost": "Grants from $500 to $6,000 a month"}))
+
     def test_emergency_housing_is_tonight_and_asks_which_county(self):
         with patch("advisor.stream_gemma", side_effect=no_gemma):
             found = events(server.app.test_client().post("/api/ask/stream", json={"question": "EMERGEncy housing in nova", "chat": {}}))

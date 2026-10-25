@@ -207,11 +207,18 @@ def _records(question, history=None):
                 return 0 if r["monthly_rent"] <= cap else 2
             return 1 if (rent_estimate(r) or {}).get("low", float("inf")) <= cap else 2
         homes = ("affordable_listing", "rental_listing")
-        if sum(fit(r) <= 1 for r in rows if r.get("type") in homes) >= 2:  # enough fit: Gemma doesn't see the pricier ones
-            rows = [r for r in rows if r.get("type") not in homes or fit(r) <= 1]
+        # Enough fit: Gemma only reads those. Two with a published rent in budget beat estimates; estimates beat pricier homes.
         older = re.search(r"\b(seniors?|elder\w*|older|retire\w*|62|55)\b", question, re.I)
-        seniors = lambda r: 0 if older else int(bool(re.search(r"\b(?:62|55) (?:and|or) older|\bseniors?\b", str(r.get("who_it_serves", "")), re.I)))
-        rows = sorted(rows, key=lambda r: (seniors(r), fit(r)))  # senior buildings last for everyone else
+        senior = lambda r: bool(re.search(r"\b(?:62|55) (?:and|or) older|\bseniors?\b", f"{r.get('who_it_serves', '')} {r.get('name', '')}", re.I))
+        if older and sum(senior(r) and fit(r) <= 1 for r in rows if r.get("type") in homes) >= 2:  # senior housing asked for: those
+            rows = [r for r in rows if r.get("type") not in homes or (senior(r) and fit(r) <= 1)]
+        else:
+            keep = 0 if sum(fit(r) == 0 for r in rows if r.get("type") in homes) >= 2 else 1 if sum(fit(r) <= 1 for r in rows if r.get("type") in homes) >= 2 else 2
+            rows = [r for r in rows if r.get("type") not in homes or fit(r) <= keep]
+            if not older:  # senior buildings only when the question is about older adults (and something else fits)
+                plain = [r for r in rows if r.get("type") not in homes or not senior(r)]
+                rows = plain if sum(r.get("type") in homes for r in plain) >= 2 else sorted(rows, key=senior)
+        rows = sorted(rows, key=fit)
     if search and LOW_INCOME.search(question):  # "low income housing": the programs that set rent by income, too
         area = next((a for w, a in AREAS if w in text.lower()), None)
         programs = [r for r in pool if r.get("type") == "housing_authority" and (not area or serves_location(r, area))]
