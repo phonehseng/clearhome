@@ -65,6 +65,48 @@ Then connect GitHub and create the trigger in the console (the GitHub connection
 After that, merging a pull request or pushing to `main` updates the live site a few minutes later. Pushes to other
 branches don't deploy. The manual command above still works for a one-off deploy.
 
+## Automatic listing upkeep (every day)
+
+`.github/workflows/listing-upkeep.yml` keeps the listings current without anyone having to remember. Every day at
+5:30 am Eastern it:
+
+1. pulls new open-data records into the review queue (`backend/sources.py`);
+2. has Gemini look for new listings in the next two areas of a rotation (`backend/discover.py`): it thinks first, searches
+   with Google Search, then rereads each source page and quotes it, and code checks every quote is really on the page.
+   A find goes live only if it comes from the property's own site or a public agency, every fact was confirmed, the
+   address maps inside our service area and the record passes the catalog checks. It's labeled as added automatically
+   and flagged on `/review`. Everything else waits in `data/candidates.json` (`python backend/review.py list`);
+3. renews listings their providers still offer (another week, only with a quote found on the provider's own page) and
+   takes down ones they don't (`backend/freshness.py --limit 60`, soonest review date first);
+4. checks the catalog and runs the tests, commits and pushes any data changes to `main`, and redeploys the site.
+
+The run summary (Actions tab) lists what was found, published, queued, renewed and taken down.
+
+One-time setup, from the project folder:
+
+```bash
+gh secret set GEMINI_API_KEY        # paste the Gemini key when asked
+```
+
+For the redeploy step, a service account that can deploy, saved as the `GCP_SA_KEY` secret (without it the job still
+commits and pushes; deploy by hand):
+
+```bash
+SA=clear-house-upkeep@gen-lang-client-0995218526.iam.gserviceaccount.com
+gcloud iam service-accounts create clear-house-upkeep --display-name "Listing upkeep deploys"
+for ROLE in roles/run.admin roles/iam.serviceAccountUser roles/cloudbuild.builds.editor roles/artifactregistry.writer \
+            roles/storage.admin roles/serviceusage.serviceUsageConsumer; do
+  gcloud projects add-iam-policy-binding gen-lang-client-0995218526 --member=serviceAccount:$SA --role=$ROLE --condition=None --quiet >/dev/null
+done
+gcloud iam service-accounts keys create key.json --iam-account=$SA
+gh secret set GCP_SA_KEY < key.json && rm key.json
+```
+
+- Google Search grounding has a small free daily limit; for a dependable daily run, turn on billing for the Gemini key's
+  project. When the limit is reached, that area is simply searched again on a later run.
+- To send every new find to the review queue instead of publishing: `gh variable set AUTO_PUBLISH --body 0`.
+- Run it now: `gh workflow run listing-upkeep.yml` (or Actions → Listing upkeep → Run workflow).
+
 ## Change the key
 
 ```bash

@@ -15,6 +15,7 @@ from flask import Flask, Response, jsonify, request, send_from_directory, send_f
 from advisor import AREAS, ask, cards_for, clarify, options, programs, quick_nearby, stream_ask, warm_examples, with_context
 from live_search import search as live_search
 import hotels
+import sorter
 import nearby
 import walkable
 from matcher import gemma_unavailable, find_help
@@ -303,6 +304,18 @@ def find_options():
         profile['rental_space'] = body['rental_space']
     result = options(profile)
     return jsonify(result), (400 if "error" in result else 200)
+
+
+@app.post("/api/listings/sort")
+def sort_listings():
+    """The mini Gemma chat above the listings: which of the communities on screen fit best, plus a few lines why."""
+    body = _body()
+    question, ids = _text(body, "question", 300), body.get("ids")
+    if not question:
+        return jsonify(error="Tell Gemma what matters most, like \"cheapest rooms near Virginia Tech first\"."), 400
+    if not isinstance(ids, list) or not ids or len(ids) > 600 or not all(isinstance(i, str) and len(i) < 200 for i in ids):
+        return jsonify(error="ids must be the list of communities on screen."), 400
+    return jsonify(sorter.sort(redact(question)[0], ids))
 
 
 @app.post("/api/hotels")

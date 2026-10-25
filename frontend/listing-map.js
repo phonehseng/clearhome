@@ -247,7 +247,7 @@
       const id = ++searchId; clearWeb(); webList.hidden = true; webList.replaceChildren();
       setStatus(`Gemma is searching the web for affordable listings in ${location}. This can take a minute…`, 'loading');
       try {
-        const controller = new AbortController(); setTimeout(() => controller.abort(), 180000);
+        const controller = new AbortController(); setTimeout(() => controller.abort(), 60000);  // the server gives up at 45 seconds
         const res = await fetch('/api/live-search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ location }), signal: controller.signal });
         const data = await res.json();
         if (id !== searchId) return;

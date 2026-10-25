@@ -329,6 +329,23 @@
     .find-checks label{display:flex;gap:9px;align-items:center;font-weight:400;font-size:13px;margin:0;cursor:pointer}
     .find-checks input{width:17px;height:17px;accent-color:#23408f}
     .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+    /* Mini Gemma chat above the listings: one line of glass and a short reply; the cards below re-sort to fit. */
+    .sort-chat{scroll-margin-top:100px;margin:16px 0 6px;padding:10px;border-radius:20px;background:var(--glass-bg,#ffffffcc);border:1px solid var(--glass-border,#ffffffd9);
+      box-shadow:var(--glass-shadow,0 10px 30px #0b143314);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6)}
+    .sort-form{display:flex;align-items:center;gap:10px}
+    .sort-avatar{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#e8f0fe}
+    .sort-form input{flex:1;min-width:0;min-height:44px;padding:10px 16px;border-radius:999px;border:1px solid #c9d5ea;background:#fff;font-size:14.5px;color:var(--ink)}
+    .sort-form input:focus-visible{outline:2px solid #2f55b5;outline-offset:1px}
+    .sort-form button{flex:none;min-height:44px;padding:10px 22px;border-radius:999px;border:0;background:#2f55b5;color:#fff;font-size:14px;font-weight:650}
+    .sort-form button:hover{background:#23408f}
+    .sort-form button:disabled{opacity:.6;cursor:progress}
+    .sort-reply{margin:9px 6px 3px 52px;font-size:13.5px;line-height:1.55;color:var(--ink)}
+    .sort-reply>b{color:#2f55b5}
+    .sort-reply[data-state=loading] #sort-text{color:var(--muted)}
+    .sort-chip{margin:4px 0 0 6px;padding:4px 11px;border-radius:999px;border:1px solid #c9d5ea;background:#fff;font-size:12.5px;font-weight:600;color:#2f55b5}
+    .sort-chip:hover{background:#f1f5fd}
+    .housing-card[data-gemma-rank]{box-shadow:0 0 0 2px #6f8fd699,0 14px 34px #0b143326}
+    @media(max-width:560px){.sort-reply{margin-left:6px}.sort-form button{padding:10px 16px}}
     .find-results{margin-top:22px;display:grid;gap:18px}
     .walk-results:has(#walk-layout[hidden]) .walk-toggle{display:none}
     .notice-urgent{background:#fbf5ec;border:1px solid #eadfce;color:#765539;border-radius:8px;padding:11px 14px;font-size:13px;font-weight:600}
@@ -827,6 +844,10 @@
         <button class="primary" type="submit">Update Results</button></div>
     </form>
     
+    <div class="sort-chat" id="sort-chat">
+      <form class="sort-form" id="sort-form"><span class="sort-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="24" height="24"></span><label class="visually-hidden" for="sort-input">Ask Gemma to sort these listings</label><input id="sort-input" type="text" maxlength="300" autocomplete="off" placeholder="Ask Gemma to sort these listings…"><button type="submit" id="sort-send">Sort</button></form>
+      <p class="sort-reply" id="sort-reply" role="status" aria-live="polite"><b>Gemma:</b> <span id="sort-text">Tell me what matters most and I’ll move the best fits to the top.</span> <button type="button" class="sort-chip" id="sort-sample" data-q="Cheapest rooms near Virginia Tech first">Try “Cheapest rooms near Virginia Tech first”</button><button type="button" class="sort-chip" id="sort-reset" hidden>Reset order</button></p>
+    </div>
     <p class="browse-hint">Room prices are per person. Fees and utilities may be extra.</p>
     <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p><div class="share-toast" id="share-toast" role="status" aria-live="polite"></div>
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
@@ -856,7 +877,7 @@
   const listingsGrid = document.getElementById('listings-grid');
   const moreListings = document.getElementById('show-more-listings');
   const allListings = document.getElementById('show-all-listings');
-  let housingRows = [], visibleHousingCount = 6, browseRequest = null;
+  let housingRows = [], visibleHousingCount = 6, browseRequest = null, gemmaOrder = null;
   // Favorites live in this browser only (no account), saved as the listing itself so they show whatever the filters are.
   const FAVORITES_KEY = 'clearhouse.favorites';
   let favorites = {}; try { favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || {}; } catch { favorites = {}; }
@@ -1005,7 +1026,8 @@
     const hasPhoto = row => (row.floor_plans?.length ? row.floor_plans : [row]).some(p => p.photo);
     // Listings with a photo always come first; the sort is stable, so the chosen order (like rent low to high) holds within each group.
     const rows = shownRows();
-    const ordered = [...rows].sort((a, b) => (b.id === sharedListingId) - (a.id === sharedListingId) || hasPhoto(b) - hasPhoto(a));
+    const rank = row => gemmaOrder?.has(row.id) ? gemmaOrder.get(row.id) : Infinity;  // the mini Gemma chat's order, if any
+    const ordered = [...rows].sort((a, b) => (b.id === sharedListingId) - (a.id === sharedListingId) || (rank(a) === rank(b) ? 0 : rank(a) - rank(b)) || hasPhoto(b) - hasPhoto(a));
     ordered.slice(0,visibleHousingCount).forEach(row => {
       const plans = row.floor_plans?.length ? row.floor_plans : [row];
       const availability = row.availability || {};
@@ -1128,6 +1150,7 @@
         [...card.children].filter(n => !n.classList.contains('property-photo')).forEach(n => glass.append(n));
         card.append(glass);
       }
+      if (gemmaOrder?.has(row.id)) { card.dataset.gemmaRank = gemmaOrder.get(row.id) + 1; card.title = `Gemma's pick #${gemmaOrder.get(row.id) + 1}`; }
       listingsGrid.append(card);
     });
     listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
@@ -1151,7 +1174,7 @@
       if (!response.ok || !Array.isArray(data.listings)) throw new Error(data.error || 'We couldn’t load housing opportunities.');
       if (browseRequest !== controller) return;
       // Floor plans arrive holding only what differs from their community card.
-      housingRows=data.listings.map(row => row.floor_plans ? {...row, floor_plans: row.floor_plans.map(plan => ({...row, ...plan, floor_plans: undefined}))} : row); visibleHousingCount=6; renderHousing();
+      housingRows=data.listings.map(row => row.floor_plans ? {...row, floor_plans: row.floor_plans.map(plan => ({...row, ...plan, floor_plans: undefined}))} : row); visibleHousingCount=6; window.clearGemmaSort?.(); renderHousing();
       const sharedCard = sharedListingId && [...listingsGrid.children].find(c => c.dataset.listingId === sharedListingId);
       if (sharedListingId) setTimeout(() => (sharedCard || document.getElementById('listings')).scrollIntoView({behavior:'auto',block:'start'}), 300);  // wait for the page above to settle
       // After someone changes the filters, the map follows the homes that match.
@@ -1175,6 +1198,32 @@
   // "More filters" shows how many of its filters are changed from the default.
   function updateMoreCount(){const changed=[['browse-category','all'],['browse-age-group','general'],['browse-status','']].filter(([id,def])=>document.getElementById(id).value!==def).length;const badge=document.getElementById('more-filters-count');badge.hidden=!changed;badge.textContent=`${changed} on`;}
   browseForm.addEventListener('submit',updateMoreCount);
+  // Mini Gemma chat above the listings: a few lines back, and the best fits move to the top of the list below.
+  const sortForm = document.getElementById('sort-form'), sortInput = document.getElementById('sort-input'), sortSend = document.getElementById('sort-send');
+  const sortReply = document.getElementById('sort-reply'), sortText = document.getElementById('sort-text');
+  const sortSample = document.getElementById('sort-sample'), sortReset = document.getElementById('sort-reset'), SORT_HELLO = sortText.textContent;
+  window.clearGemmaSort = () => { gemmaOrder = null; sortText.textContent = SORT_HELLO; sortSample.hidden = false; sortReset.hidden = true; delete sortReply.dataset.state; };
+  sortSample.addEventListener('click', () => { sortInput.value = sortSample.dataset.q; sortForm.requestSubmit(); });
+  sortReset.addEventListener('click', () => { window.clearGemmaSort(); renderHousing(); });
+  sortForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const question = sortInput.value.trim(), ids = shownRows().map(r => r.id);
+    if (!question || !ids.length) { sortInput.focus(); return; }
+    sortSend.disabled = true; sortReply.dataset.state = 'loading'; sortSample.hidden = true; sortReset.hidden = true;
+    sortText.textContent = 'Sorting the listings for you…';
+    try {
+      const res = await fetch('/api/listings/sort', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, ids }) });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Gemma couldn’t sort these right now. Try again in a minute.');
+      gemmaOrder = new Map((data.order || []).map((id, i) => [id, i]));
+      visibleHousingCount = Math.max(visibleHousingCount, gemmaOrder.size);  // every pick is on screen
+      renderHousing();
+      sortText.textContent = data.note; sortReset.hidden = !gemmaOrder.size;
+      document.getElementById('sort-chat').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    } catch (err) {
+      sortText.textContent = err.message || 'Gemma couldn’t sort these right now. Try again in a minute.'; sortSample.hidden = false;
+    } finally { delete sortReply.dataset.state; sortSend.disabled = false; }
+  });
   function revealCommunities(count){
     const firstNewIndex=visibleHousingCount;
     visibleHousingCount=Math.min(shownRows().length,visibleHousingCount+count);

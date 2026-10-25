@@ -26,7 +26,11 @@ from sources import CANDIDATES_PATH, _load_queue, _lock
 
 CACHE_SECONDS = 6 * 3600
 MAX_RESULTS = 6
+REST_SECONDS = 20 * 60  # after Google Search fails (daily limit used up, or it drops the call), stop trying for a while
 _cache, _cache_lock = {}, threading.Lock()
+_resting_until = 0.0
+RESTING = ("The web search isn't available right now (Google Search has reached its limit for today). "
+           "The verified listings and the map still work.")
 
 
 def area_for(location):
@@ -52,19 +56,17 @@ Return ONLY a JSON array (no other text) of up to {MAX_RESULTS} objects with the
 Only include places that appear in your search results.
 Only include places in {area}. Do not include phone numbers. Never guess a value; use null.
 If you find nothing reliable, return []."""
-    # Grounded search often hits temporary 500s. Two quick tries with a hard limit each, so the page
-    # never waits for minutes; the library's own backoff retries are turned off here.
+    # One try with a hard limit, so the page never waits for minutes; the library's own retries are off. When it
+    # fails (daily limit used up, or Google drops the call), searches rest for a while and answer at once instead.
+    global _resting_until
     config = types.GenerateContentConfig(
         tools=[types.Tool(google_search=types.GoogleSearch())],
-        http_options=types.HttpOptions(timeout=90_000, retry_options=types.HttpRetryOptions(attempts=1)))
-    for attempt in range(2):
-        try:
-            response = _get_client().models.generate_content(model=MODEL, contents=prompt, config=config)
-            break
-        except Exception:
-            if attempt == 1:
-                raise
-            time.sleep(2)
+        http_options=types.HttpOptions(timeout=45_000, retry_options=types.HttpRetryOptions(attempts=1)))
+    try:
+        response = _get_client().models.generate_content(model=MODEL, contents=prompt, config=config)
+    except Exception:
+        _resting_until = time.time() + REST_SECONDS
+        raise
     text = response.text or ""
     meta = response.candidates[0].grounding_metadata if response.candidates else None
     # Google lists the pages it returned; their titles are the sites' domains.
@@ -119,8 +121,14 @@ def search(location, queue_results=True):
         hit = _cache.get(key)
     if hit and time.time() - hit[0] < CACHE_SECONDS:
         return hit[1]
+    if time.time() < _resting_until:
+        return {"error": RESTING}
     reviewed = {str(r.get("community") or r.get("name")).casefold() for r in load_catalog()}
-    results = [r for r in _search(area, location) if r["name"].casefold() not in reviewed]
+    try:
+        found = _search(area, location)
+    except Exception:
+        return {"error": RESTING}
+    results = [r for r in found if r["name"].casefold() not in reviewed]
     for r in results:
         point = None
         if r.get("address") and re.match(r"\s*\d", r["address"]):

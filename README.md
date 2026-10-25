@@ -17,6 +17,8 @@ Finding safe, affordable housing is hard for low-income people, especially stude
 - **Ask Gemma, live.** A chat that streams its answer as Gemma writes it, grounded in the verified list. "Near my office at …" questions are answered instantly with distances and drive/transit times (Google Places + Routes), no AI needed, and walking-time questions ("within a 15 minute walk of VT") are measured, not guessed. If Gemma is unavailable, the chat still lists matching verified resources.
 - **See it on a map.** Reviewed homes on Google Maps (Leaflet fallback) with Northern Virginia and Blacksburg tabs, plus homes within walking distance of a grocery store, pharmacy or transit stop.
 - **Find new listings on the web.** Gemma searches the web with Google Search grounding; results appear as orange pins labeled "not verified by our team yet".
+- **Sort the listings by asking.** A mini Gemma chat above the listings answers in a few lines and moves the communities that fit to the top.
+- **Listings stay current on their own.** A daily job has Gemini find new listings (thinking, Google Search, then a second reading of each source page with its quotes checked by code), renews listings still offered, takes down ones that are gone, then commits, pushes and redeploys. See [DEPLOY.md](DEPLOY.md), "Automatic listing upkeep".
 - **Save favorites.** Save listing cards to a Favorites tab and share a link to one.
 
 To avoid made-up information, the assistant only recommends places from our hand-verified resource list (`data/resources.json`, 436 records across both areas). Answers are informational and are not legal advice.
