@@ -669,11 +669,34 @@
     /* Closing banner as a light card, like the GitHub card and the other white cards: navy text, a navy button, muted fine print. */
     .cl-section.cl-end.cta{background:#fff!important;border:1px solid #d2dcf0;box-shadow:0 10px 30px #14203f0f;color:#14203f}
     .cl-end .cl-title{color:#14203f!important}
-    .cl-end .cl-title span,.cl-end .cl-title>span:not(.word){background:none!important;-webkit-background-clip:border-box;background-clip:border-box;color:#2f55b5!important}
+    .cl-end .cl-title span,.cl-end .cl-title>span:not(.word){background:none!important;-webkit-background-clip:border-box;background-clip:border-box;color:#14203f!important}
     .cl-end .cl-btn{background:#14203f!important;color:#fff!important;box-shadow:0 6px 16px #14203f2e!important}
     .cl-end .cl-btn:hover{background:#23408f!important}
     .cl-end .cl-urgent{color:#4b5a7a;border-top-color:#d2dcf0}
     .cl-end .cl-urgent a{color:#14203f;text-decoration-color:#2f55b5}
+    /* GitHub card in GitHub's own dark look (the repo page colours and the green "View the Code" button). */
+    #github .repo-card{background:#0d1117;color:#e6edf3;border:1px solid #30363d;box-shadow:0 10px 30px #0d111733}
+    #github .repo-card h3,#github .repo-card h3 a{color:#fff}
+    #github .repo-card p{color:#9da7b3}
+    #github .repo-tree{background:#161b22;border:1px solid #30363d;color:#c9d1d9}
+    #github .repo-tree:hover{border-color:#58a6ff;background:#161b22}
+    #github .repo-tree span{color:#8b949e}
+    #github .repo-tree b{color:#58a6ff}
+    #github .repo-tree-head{color:#e6edf3!important;border-bottom-color:#30363d}
+    #github .repo-stats li{background:#161b22;border-color:#30363d;color:#e6edf3}
+    #github .repo-stats b{color:#fff}
+    #github .repo-team a{background:#161b22;border-color:#30363d;color:#e6edf3}
+    #github .repo-langs-key{color:#9da7b3}
+    #github .repo-actions .primary-gh{background:#238636;color:#fff}
+    #github .repo-actions .primary-gh:hover{background:#2ea043}
+    #github .repo-actions .ghost-gh{background:transparent;border:1px solid #30363d;color:#e6edf3}
+    #github .repo-actions .ghost-gh:hover{border-color:#8b949e;color:#fff}
+    /* Closing section sits in the page's rhythm like the other headings: centred, no box, a thin rule above the fine print. */
+    .cl-section.cl-end.cta{width:min(760px,calc(100% - 32px));background:none!important;border:0!important;box-shadow:none!important;
+      display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding:56px 0 0;margin:24px auto 56px;color:#14203f}
+    .cl-end .cl-title{font-size:clamp(30px,3.6vw,44px);text-align:center}
+    .cl-end .cl-btn{margin:0;min-height:48px;padding:13px 24px;font-size:15px;justify-content:center}
+    .cl-end .cl-urgent{grid-column:auto;width:100%;max-width:620px;margin:10px 0 0;padding:16px 0 0;border-top:1px solid #d2dcf0;text-align:center;font-size:14px;line-height:1.6;color:#4b5a7a}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
