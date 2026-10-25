@@ -390,6 +390,15 @@
     .chat-card-media img{width:100%;height:100%;object-fit:cover;display:block}
     /* No photo: a close-up of the area's map under frosted liquid glass, like the listing cards. */
     .chat-card-media.map-thumb{position:relative;background:var(--thumb) 45% 45%/220% no-repeat,#e7edf8}
+    .chat-card-media.stock-thumb{position:relative;background:var(--thumb) center/cover no-repeat,#e7edf8}
+    .chat-card-media.stock-thumb::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(140deg,#ffffff4d,#ffffff0d 55%,#ffffff33);
+      -webkit-backdrop-filter:blur(1.5px) saturate(1.3);backdrop-filter:blur(1.5px) saturate(1.3);box-shadow:inset 0 0 0 1px #ffffffb3,inset 0 1px 0 #fff}
+    /* The tonight panel's cards open with a small photo of the kind of place (or the area's map), under liquid glass. */
+    .opt-card .stock-banner{position:relative;flex:none;height:88px;margin:-14px -15px 6px;border-radius:15px 15px 0 0;overflow:hidden;
+      background:var(--thumb) center/cover no-repeat,#e7edf8}
+    .opt-card .stock-banner.map{background-position:45% 45%;background-size:160%}
+    .opt-card .stock-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(140deg,#ffffff4d,#ffffff0d 55%,#ffffff40);
+      -webkit-backdrop-filter:blur(2px) saturate(1.3);backdrop-filter:blur(2px) saturate(1.3);box-shadow:inset 0 -1px 0 #ffffffb3}
     .chat-card-media.map-thumb::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(140deg,#ffffff59,#ffffff14 55%,#ffffff40);
       -webkit-backdrop-filter:blur(1px) saturate(1.4);backdrop-filter:blur(1px) saturate(1.4);box-shadow:inset 0 0 0 1px #ffffffb3,inset 0 1px 0 #fff}
     .chat-card-body{display:grid;gap:2px;min-width:0;font-size:12.5px;line-height:1.45}
@@ -1464,6 +1473,21 @@
     let h = 0; for (const ch of String(url || '')) h = (h * 31 + ch.charCodeAt(0)) | 0;
     return '/media/listings/' + encodeURIComponent(id) + (url ? '?v=' + (h >>> 0).toString(36) : '');
   }
+  // Placeholder art by kind (public-domain / CC0 photos, see images/CREDITS.md): hotels, shelters, legal aid, other
+  // programs; homes get the map of their area. Never a photo that could pass for a real listing.
+  const STOCK = { hotel: 'hotel', emergency_shelter: 'shelter', shelter: 'shelter', legal_aid: 'legal', rental_assistance: 'help',
+                  housing_authority: 'help', program: 'help', other: 'help', food_support: 'help' };
+  function placeholderArt(kind, place) {
+    if (STOCK[kind]) return { url: `/images/stock-${STOCK[kind]}.jpg`, map: false };
+    const blacksburg = /blacksburg|christiansburg|radford|montgomery/i.test(place || '');
+    return { url: `/images/placeholder-${blacksburg ? 'blacksburg' : 'nova'}.jpg`, map: true };
+  }
+  // A small glass-covered banner for the tonight panel's cards.
+  function stockBanner(kind, place) {
+    const art = placeholderArt(kind, place), b = document.createElement('div');
+    b.className = 'stock-banner' + (art.map ? ' map' : ''); b.setAttribute('aria-hidden', 'true'); b.style.setProperty('--thumb', `url("${art.url}")`);
+    return b;
+  }
   function housingElement(tag, className, content) {
     const node = document.createElement(tag); if (className) node.className = className; if (content !== undefined) node.textContent = content; return node;
   }
@@ -1867,6 +1891,7 @@
     }
     function shelterCard(r) {
       const c = el('article', null, { class: 'opt-card shelter' });
+      c.append(stockBanner(r.type === 'emergency_shelter' ? 'shelter' : r.type, `${r.jurisdiction || ''} ${r.city || ''}`));
       // Never a promise of a bed: what the source supports, or "call to confirm".
       const badge = r.intake_status === 'closed' ? (r.intake_status_note || 'Closed right now') : r.referral_required ? 'Referral or screening required' : 'Call to confirm a bed tonight';
       c.append(el('span', badge, { class: 'opt-badge confirm' }));
@@ -1909,6 +1934,7 @@
     function card(r, kind) {
       if (kind === 'shelter') return shelterCard(r);
       const c = el('article', null, { class: 'opt-card' });
+      c.append(stockBanner(kind === 'listing' ? 'listing' : r.type, `${r.jurisdiction || ''} ${r.city || ''}`));
       if (kind === 'listing' && STATUS[r.availability_status]) c.append(el('span', STATUS[r.availability_status], { class: 'opt-badge' }));
       if (kind === 'program' && r.waitlist_status === 'closed') c.append(el('span', 'Waitlist closed', { class: 'opt-badge closed' }));
       if (kind === 'program' && r.waitlist_status === 'open') c.append(el('span', 'Waitlist open', { class: 'opt-badge' }));
@@ -1958,6 +1984,7 @@
     }
     function hotelCard(h) {
       const c = el('article', null, { class: 'opt-card' });
+      c.append(stockBanner('hotel'));
       c.append(el('span', 'Google Maps · not verified by us', { class: 'opt-badge web' }), el('strong', h.name));
       if (hotelMeta(h)) c.append(el('span', hotelMeta(h), { class: 'meta' }));
       c.append(...hotelCost(h, 'meta'));
@@ -2179,7 +2206,6 @@
       if (row.children.length) { bubble.after(row); pinTurn(); }
     }
     // Hotels and motels for a "somewhere to stay tonight" question, under the answer and its cards.
-    const BED = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18V6M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></svg>';
     function showHotels(bubble, data) {
       const place = data.place.toLowerCase();
       if (hotelsShown.has(place) || hotelsShown.has(place.replace(/, va$/, ''))) return;  // already listed with the form's options
@@ -2190,7 +2216,7 @@
         const list = el('div', null, { class: 'chat-cards', role: 'list', 'aria-label': `Hotels and motels near ${data.place}` });
         data.hotels.slice(0, 4).forEach(h => {
           const card = el('article', null, { class: 'chat-card', role: 'listitem', 'aria-label': h.name });
-          const media = el('div', null, { class: 'chat-card-media', 'aria-hidden': 'true' }); media.innerHTML = BED;
+          const media = el('div', null, { class: 'chat-card-media stock-thumb', 'aria-hidden': 'true' }); media.style.setProperty('--thumb', 'url("/images/stock-hotel.jpg")');
           const body = el('div', null, { class: 'chat-card-body' });
           body.append(el('span', 'Google Maps · not verified by us', { class: 'opt-badge web' }), el('span', h.name, { class: 'chat-card-title' }));
           if (hotelMeta(h)) body.append(el('span', hotelMeta(h), { class: 'chat-card-meta' }));
@@ -2218,9 +2244,9 @@
         // Thumbnail: the provider's photo of this property, or (no photo, or one that won't load) a frosted map of its area,
         // never a stand-in photo of another place.
         const media = el('div', null, { class: 'chat-card-media', 'aria-hidden': 'true' });
-        const mapThumb = () => {
-          const region = /blacksburg|christiansburg|radford|montgomery/i.test(`${c.jurisdiction || ''} ${c.address || ''}`) ? 'blacksburg' : 'nova';
-          media.replaceChildren(); media.classList.add('map-thumb'); media.style.setProperty('--thumb', `url("/images/placeholder-${region}.jpg")`);
+        const mapThumb = () => {  // homes: their area's map; shelters, legal aid and programs: a photo of the kind of place
+          const art = placeholderArt(c.type, `${c.jurisdiction || ''} ${c.address || ''}`);
+          media.replaceChildren(); media.classList.add(art.map ? 'map-thumb' : 'stock-thumb'); media.style.setProperty('--thumb', `url("${art.url}")`);
         };
         if (c.has_photo) { const img = el('img', null, { src: listingPhotoSrc(c.id, c.photo_url), alt: '', loading: 'lazy' }); img.addEventListener('error', mapThumb, { once: true }); media.append(img); }
         else mapThumb();
