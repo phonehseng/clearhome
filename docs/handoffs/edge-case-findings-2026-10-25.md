@@ -1,5 +1,7 @@
 # Handoff: additional edge-case findings
 
+> **Status: done.** (1) A yearly budget becomes its monthly amount everywhere ($12,000 a year -> $1,000 a month, in follow-ups too); weekly amounts and incomes are not read as rent budgets. (2) What someone said no to does not count ("not a room, an entire apartment" is a whole place; naming both asks). Tests for 1 and 2 in backend/test_clarifier.py. (3) Lowest advertised rent keeps the API order exactly; in Availability first a photo only lifts a listing within its own availability run; Gemma and shared listings still lead. (4) Broken or old-format saved favorites are dropped and valid ones kept, so Favorites opens. 3 and 4 checked in the browser.
+
 ## Scope
 
 Tested `ffefdfa` on October 25, 2026, in an isolated repository copy, using the local Gunicorn server and Chromium. No application code, catalog records, or review decisions were changed in the working checkout. This report requests fixes; it does not implement them.

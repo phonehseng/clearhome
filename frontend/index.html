@@ -1277,6 +1277,12 @@
   // Favorites saved before the rename (under the old Clear House key) still load; the next save moves them to the new key.
   const FAVORITES_KEY = 'clearhome.favorites', OLD_FAVORITES_KEY = 'clearhouse.favorites';
   let favorites = {}; try { favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY) ?? localStorage.getItem(OLD_FAVORITES_KEY)) || {}; } catch { favorites = {}; }
+  // A saved listing must look like a listing (an object with an id, and floor plans as a list when present): anything else,
+  // from an older version or a damaged save, is dropped and the rest are kept, so Favorites always opens.
+  const savedListing = row => row && typeof row === 'object' && !Array.isArray(row) && typeof row.id === 'string' && row.id
+    && (row.floor_plans === undefined || (Array.isArray(row.floor_plans) && row.floor_plans.every(p => p && typeof p === 'object' && !Array.isArray(p))));
+  favorites = favorites && typeof favorites === 'object' && !Array.isArray(favorites)
+    ? Object.fromEntries(Object.entries(favorites).filter(([, row]) => savedListing(row))) : {};
   let showingFavorites = false;
   const shownRows = () => showingFavorites ? Object.values(favorites) : housingRows;
   const favoriteCount = document.getElementById('favorite-count');
@@ -1439,7 +1445,14 @@
     // Listings with a photo always come first; the sort is stable, so the chosen order (like rent low to high) holds within each group.
     const rows = shownRows();
     const rank = row => gemmaOrder?.has(row.id) ? gemmaOrder.get(row.id) : Infinity;  // the mini Gemma chat's order, if any
-    const ordered = [...rows].sort((a, b) => (b.id === sharedListingId) - (a.id === sharedListingId) || (rank(a) === rank(b) ? 0 : rank(a) - rank(b)) || hasPhoto(b) - hasPhoto(a));
+    // The chosen sort holds: with "Lowest advertised rent" photos never move a listing; with "Availability first" a photo
+    // only lifts a listing within its own run of the same availability. A shared listing, then Gemma's picks, come first.
+    const byPhoto = document.getElementById('browse-sort')?.value === 'recommended' && !showingFavorites;
+    const group = new Map(); let run = -1, last = null;
+    rows.forEach((row, i) => { const status = row.availability?.status || ''; if (i === 0 || status !== last) { run = i; last = status; } group.set(row, run); });
+    const position = new Map(rows.map((row, i) => [row, i]));
+    const ordered = [...rows].sort((a, b) => (b.id === sharedListingId) - (a.id === sharedListingId) || (rank(a) === rank(b) ? 0 : rank(a) - rank(b))
+      || (byPhoto ? group.get(a) - group.get(b) || hasPhoto(b) - hasPhoto(a) : 0) || position.get(a) - position.get(b));
     ordered.slice(0,visibleHousingCount).forEach(row => {
       const plans = row.floor_plans?.length ? row.floor_plans : [row];
       const availability = row.availability || {};
