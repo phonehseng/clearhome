@@ -1333,6 +1333,12 @@
       if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault(); openTools(null);
     });
+    // From the tools page's "Talk to Gemma: I need a place tonight" (/?tonight): open this chat straight away, as if it
+    // had been started here, and drop the marker from the address so a reload doesn't reopen it.
+    if (new URLSearchParams(location.search).has('tonight')) {
+      history.replaceState(null, '', location.pathname + location.hash);
+      leaving = false; dlg.showModal(); fit(); chat();
+    }
     dlg.addEventListener('close', () => { run++; });  // closing stops the script
     dlg.addEventListener('cancel', e => { if (leaving) e.preventDefault(); });
     addEventListener('pageshow', e => { if (e.persisted && leaving) { leaving = false; dlg.classList.remove('leaving'); dlg.close(); } });
