@@ -45,6 +45,19 @@ AREAS = [  # longest names first, so "manassas park" wins over "manassas"
     ("dale city", "Prince William County"), ("lake ridge", "Prince William County"), ("triangle", "Prince William County"),
     ("montclair", "Prince William County"),
 ]
+# Someone hurt or threatened at home, or who has to leave right now: 911, a domestic violence hotline, shelters and
+# hotels tonight, never apartment listings or voucher waitlists. People in crisis type fast, so this reads the words
+# around a typo ("my boyfriuend beat me"), not the name of the person.
+DANGER = re.compile(r"\b(?:beat(?:s|en|ing)?|hit(?:s|ting)?|hurt(?:s|ing)?|chok(?:e|es|ed|ing)|punch(?:es|ed|ing)?|kick(?:s|ed|ing)?|"
+                    r"slap(?:s|ped|ping)?|push(?:es|ed|ing)?|threaten(?:s|ed|ing)?|rap(?:e|ed)) (?:me|us|my (?:kids?|children|baby|son|daughter))\b(?! with)"
+                    r"|\b(?:abus\w*|assault\w*|domestic (?:violence|abuse)|violent|unsafe|in danger|not safe|afraid (?:of|for) (?:him|her|my)|"
+                    r"scared (?:of|for) (?:him|her|my)|fle(?:e|eing|d) (?:from |my |the |him|her)|"
+                    r"(?:get|got|getting) (?:out|away) (?:of |from )?(?:the |my |our |this )?(?:house|home|apartment|place|him|her)(?! lease)|"
+                    r"(?:have|need|had|needs) to (?:leave|get out|run) (?:now|tonight|today|right now|the house|home|him|her))\b", re.I)  # not "have to leave by May"
+# "Where can I stay?" asks for a bed, not an apartment ("I need a place to stay" stays vague, so the chat asks which help).
+STAY_NOW = re.compile(r"\bwhere (?:can|could|do|should|will) (?:i|we|me and my \w+) (?:stay|sleep|go)\b", re.I)
+
+
 TOPICS = [
     (("voucher", "section 8", "hcv", "public housing", "waitlist", "wait list", "housing authority", "qualify", "eligib", "income"), {"housing_authority"}),
     (("rent help", "behind on rent", "back rent", "owe rent", "pay rent", "pay my rent", "evict", "late", "can't pay", "cant pay", "assistance", "deposit", "utility", "help with rent"), {"rental_assistance", "legal_aid"}),
@@ -63,6 +76,9 @@ def _pick(resources, question, listings_only=False):
         if word in q and not any(word in longer and longer in q for longer, _ in AREAS if longer != word and word in longer):
             areas.add(area)
     matched = [t for words, t in TOPICS if any(w in q for w in words)]
+    danger = DANGER.search(q)
+    if danger or STAY_NOW.search(q):  # a bed tonight comes before anything else they mention
+        matched = [{"emergency_shelter", "other"}] + matched
     types = set().union(*matched) or {"housing_authority", "rental_assistance", "affordable_listing", "rental_listing"}
     # The first topic named is usually the need ("back rent" before "apartment"), so its types rank first.
     first = matched[0] if matched else set()
@@ -77,6 +93,7 @@ def _pick(resources, question, listings_only=False):
     def score(r):
         text = f"{r.get('name', '')} {r.get('who_it_serves', '')} {r.get('requirements', '')}".lower()
         return ((r.get("type") in first) * 4 + sum(w in text for w in words)
+                + 8 * bool(danger and re.search(r"domestic|violence|abuse|safe ?house", r.get("name", ""), re.I))  # the DV hotline and safe house first
                 + 3 * ("furnish" in q and r.get("furnished") is True and "unfurnish" not in q)  # asked for furnished: those first
                 + 3 * (access and r.get("accessible") is True)  # asked for accessible: confirmed ones first
                 - (r.get("jurisdiction") == "Northern Virginia"))  # local records before region-wide ones
@@ -231,6 +248,9 @@ Rules:
 - When you recommend a resource, give its name, phone and how to apply, and mention its source_url.
 - Typical documents to prepare: photo ID, Social Security numbers or immigration documents for household members, proof of income (pay stubs, benefit letters), and your current lease or eviction notice. Say the program decides the final list.
 - If the person may be unsafe or without shelter tonight, start with: call 911 in an emergency, or 211 for shelter.
+- If they describe violence, abuse or threats at home, or having to leave now: first say to call 911 if they're in danger, then give the domestic violence hotline for their area from the resources (it can help find a safe place tonight), then shelters. Don't list apartments, vouchers or waitlists. Be brief and kind; don't ask them to explain.
+- If they mention suicide, self-harm or wanting to die: first say to call or text 988 (the Suicide & Crisis Lifeline, free, any time), and 911 if they might act on it now. Then gently offer housing help.
+- Fair housing: never help exclude other people, or steer anyone toward or away from a place, because of race, color, religion, national origin, sex, sexual orientation, gender identity, disability, familial status (having children), elderliness, military status, or source of income such as a housing voucher. All are protected under Virginia's fair housing law. If asked to (for example "no Section 8 tenants" or "a neighborhood without a certain group"), say kindly that you can't help with that part and help with the housing need itself. Describe places by facts such as rent, transit and distance, never by who lives there. A person's own needs (an accessible home, senior housing for themselves or family, room for their kids, a landlord who takes their voucher) are fine to search for.
 - Hotels and motels nearby are listed from Google Maps under your answer when someone needs a place tonight. Never name a hotel or motel yourself; you may say the list is below.
 - Never ask for or repeat SSNs, bank details or other sensitive data.
 - Keep it short and plain: a direct answer first, then up to 5 bullet points. Use **bold** only for names. End with one line saying this is guidance, not legal advice.
@@ -747,7 +767,7 @@ def options(profile):
 NEAR = re.compile(r"\b(near|close to|next to|walking distance|walk to|within \d+ (?:mi|miles?))\b")
 # Someone who may be unsafe, without shelter or facing eviction needs shelter and help lines, not a list of
 # apartments near a place, so the no-AI shortcuts step aside for these.
-URGENT = re.compile(r"\b(tonight|shelter|homeless|nowhere to (?:go|sleep|stay)|kicked out|evict\w*|on the street|sleep(?:ing)? in (?:my|a) car|unsafe|in danger|abuse|behind on rent|back rent|can'?t pay)\b", re.I)
+URGENT = re.compile(r"\b(tonight|shelter|homeless|nowhere to (?:go|sleep|stay)|kicked out|evict\w*|on the street|sleep(?:ing)? in (?:my|a) car|unsafe|in danger|abuse|behind on rent|back rent|can'?t pay)\b|" + DANGER.pattern + "|" + STAY_NOW.pattern, re.I)
 
 
 # "Cheapest room near X": order by rent instead of distance.

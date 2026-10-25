@@ -1257,9 +1257,14 @@
         say('I need a place to stay tonight.', true);
         await gemma('I’m here to help. First, are you safe right now?', 900);
         const safe = await ask([{ label: 'I’m safe for now', value: true }, { label: 'I’m not safe', value: false, urgent: true }]);
-        if (!safe) {
-          await gemma('Please call 911 now. If it isn’t safe to talk, you can text 911 in many places. I’ll be right here.');
-          await ask([{ label: 'Call 911', href: 'tel:911', urgent: true }, { label: 'I’m safe now', value: true }]);
+        // Not safe: 911 first, and leaving abuse as its own answer there.
+        const next = safe ? 'safe' : (await gemma('Please call 911 if you’re in danger right now. If it isn’t safe to talk, you can text 911 in many places. I’ll be right here.'),
+          await ask([{ label: 'Call 911', href: 'tel:911', urgent: true }, { label: 'I’m leaving abuse', value: 'abuse' }, { label: 'I’m safe now', value: 'safe' }]));
+        // Domestic violence shelters keep their addresses private, so the statewide hotline is the way in (checked 2026-10-25 on vsdvalliance.org).
+        if (next === 'abuse') {
+          await gemma('You deserve to be safe. The Virginia Family Violence & Sexual Assault Hotline is free, confidential and open 24/7. They can find you a domestic violence shelter (those keep their addresses private) and help you plan how to leave safely.');
+          await ask([{ label: 'Call 1-800-838-8238', href: 'tel:+18008388238', urgent: true }, { label: 'Text 804-793-9999', href: 'sms:+18047939999' },
+                     { label: 'Show places to stay', value: true }]);
         }
         await gemma('Where should I look? I can use your location to find the closest shelters and budget hotels, or you can pick an area.');
         let area = null;

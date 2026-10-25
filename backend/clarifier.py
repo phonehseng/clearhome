@@ -19,7 +19,7 @@ The picked value comes back as "near Walmart, Christiansburg" in the request.
 import re
 import secrets
 
-from advisor import (AREAS, BUDGET_ANY, CAMPUS, CHEAP, CLARIFY_MARK, LANDMARKS, NEAR_ANY, OUTSIDE, URGENT, Instant,
+from advisor import (AREAS, BUDGET_ANY, CAMPUS, CHEAP, CLARIFY_MARK, DANGER, LANDMARKS, NEAR_ANY, OUTSIDE, STAY_NOW, URGENT, Instant,
                      area_for, household_size, housing_search, understood, with_context)
 from redact import redact
 
@@ -176,7 +176,7 @@ def _plain(text):
 def detect_help(text):
     """The kind of help the words ask for: rental, tonight or rent_help, or None when they don't say."""
     t = _plain(text)
-    if TONIGHT.search(t):
+    if TONIGHT.search(t) or DANGER.search(t) or STAY_NOW.search(t):
         return "tonight"
     if RENT_HELP.search(t):
         return "rent_help"

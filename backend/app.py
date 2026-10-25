@@ -14,6 +14,7 @@ from flask import Flask, Response, g, jsonify, request, send_from_directory, sen
 
 from advisor import AREAS, ask, cards_for, clarify, options, programs, quick_nearby, stream_ask, warm_examples, with_context
 import clarifier
+import crisis
 from live_search import search as live_search
 import hotels
 import sorter
@@ -442,6 +443,7 @@ def _chat_request():
     if len(question) > 1500:
         return None, None, (jsonify(error="Please keep your question under 1,500 characters."), 400)
     question, _ = redact(question)
+    lifeline = crisis.answer(question)  # suicide, self-harm or abuse at home: the hotline first, before any other step
     history = []
     for turn in (body.get("history") if isinstance(body.get("history"), list) else [])[-4:]:
         if isinstance(turn, dict) and turn.get("role") in ("user", "assistant") and isinstance(turn.get("text"), str):
@@ -477,7 +479,7 @@ def _chat_request():
     # "Close to walmart": which store (asked when no town is known), then only homes a measured walk away (near_place.py).
     # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
     # These shortcuts read the person's own words, not the profile note added below.
-    instant = (asking or (None if chat is not None else clarify(question, profile)) or near_place.answer(question, profile, history)
+    instant = lifeline or (asking or (None if chat is not None else clarify(question, profile)) or near_place.answer(question, profile, history)
                or nearby.answer(question, profile, history) or quick_nearby(question, profile))  # "near George Mason" etc.: catalog, no AI
     if chat is not None and isinstance(instant, clarifier.Question) and not asking:
         clarifier.record(chat, instant)  # near_place.py or nearby.py asked ("which Walmart?"): that's the open question now
@@ -493,7 +495,8 @@ def ask_advisor():
         return instant
     chat = {"chat": g.chat} if "chat" in g else {}
     if instant:
-        return jsonify(answer=instant, **chat, **({"question": instant.question} if isinstance(instant, clarifier.Question) else {}))
+        return jsonify(answer=instant, **chat, **({"question": instant.question} if isinstance(instant, clarifier.Question) else {}),
+                       **({"lines": instant.lines} if getattr(instant, "lines", None) else {}))
     try:
         return jsonify(answer=ask(question, history), **chat)
     except Exception as error:
@@ -531,6 +534,7 @@ def ask_advisor_stream():
         engine = getattr(instant, "engine", "Instant answer from our verified list with Google Maps Platform (Places + Routes); no AI needed")
         # A question goes as its words (for the transcript) plus its answer choices as data; no cards or map moves yet.
         updates = ([("engine", engine), ("answer", instant)] + ([("question", instant.question)] if asking else [("cards", cards_for(instant))])
+                   + ([("lines", instant.lines)] if getattr(instant, "lines", None) else [])  # crisis answers: call and text buttons
                    if instant else stream_ask(question, history))
         sent = False
         if chat is not None:  # the conversation's answers, for the page to send back with the next message

@@ -16,7 +16,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote
 
-from advisor import area_for
+from advisor import AREAS, DANGER, STAY_NOW, area_for
 from nearby import PLACES_TEXT_URL, REGIONS, _key, _miles, _post
 
 MAX_HOTELS = 6
@@ -126,13 +126,15 @@ def _lookup(label, area):
 
 def place_for(question, profile=None):
     """Where to look for hotels when a chat question asks for somewhere to stay tonight, else None."""
-    if not NEEDS_A_ROOM.search(question or ""):
+    if not any(p.search(question or "") for p in (NEEDS_A_ROOM, DANGER, STAY_NOW)):  # "he beat me, where can I stay" needs a room too
         return None
     # A place named in the question wins ("tonight in Arlington"); otherwise the find form's location.
     # area_for falls back to "Northern Virginia" for any longer sentence, so that only counts when they said it.
     named = area_for(question)
     if named and (named != "Northern Virginia" or re.search(r"northern virginia|\bnova\b", question, re.I)):
-        return named
+        # The town they named ("im in reston") finds closer hotels than the whole county would.
+        town = next((word for word, area in AREAS if area == named and re.search(rf"\b{re.escape(word)}\b", question, re.I)), None)
+        return town.title() if town and not named.lower().startswith(town) else named  # "arlington" stays Arlington County
     location = (profile or {}).get("location")
     location = location.strip()[:100] if isinstance(location, str) else ""
     return location if location and area_for(location) else named

@@ -70,6 +70,31 @@ class ChatStreamTests(unittest.TestCase):
         self.assertNotIn("answer", [e["kind"] for e in got])  # no instant "homes near" list
         self.assertIn("211", "".join(e["text"] for e in got if isinstance(e["text"], str)))
 
+    def test_someone_fleeing_violence_gets_the_dv_hotline_shelter_and_hotels(self):
+        places = []
+        message = "my boyfriuend beat me i need to get out the house now where can i stay im in reston"
+        with patch("advisor.stream_gemma", side_effect=AssertionError("no waiting on AI here")), \
+                patch("hotels.near", side_effect=lambda place: places.append(place)):
+            got = events(self.client.post("/api/ask/stream", json={"question": message, "chat": {}, "profile": {}}))
+        answer = next(e["text"] for e in got if e["kind"] == "answer")
+        self.assertIn("911", answer)
+        self.assertIn("Domestic Violence Hotline", answer)
+        self.assertEqual(places, ["Reston"])  # hotels near the town they named, tonight
+        # If Gemma does answer (a later message), the area's DV shelter and hotline lead, not apartments.
+        picked = [r["name"] for r in advisor._pick(advisor.filter_catalog(advisor.load_catalog()), message)[:2]]
+        self.assertTrue(all("Domestic" in name for name in picked), picked)
+
+    def test_violence_and_where_can_i_stay_read_as_tonight(self):
+        for message in ("he hit me and I need to leave tonight", "my husband threatened me, where can we sleep", "I'm not safe at home",
+                        "where can i stay tonight in arlington", "I need to get out of the house right now"):
+            with self.subTest(message):
+                self.assertTrue(advisor.URGENT.search(message))
+                self.assertEqual(server.clarifier.detect_help(message), "tonight")
+        for message in ("I have to leave my apartment by May, any 2 bedrooms in Fairfax?", "inflation hit me with a rent increase",
+                        "rooms near Virginia Tech under $700", "I want to get out of my apartment lease early"):
+            with self.subTest(message):
+                self.assertFalse(advisor.DANGER.search(message) or advisor.STAY_NOW.search(message))
+
     def test_bad_input_is_refused_not_crashed(self):
         for body in ({"question": 123}, {"question": ""}, {"question": "x" * 2000}, [1, 2]):
             with self.subTest(body):

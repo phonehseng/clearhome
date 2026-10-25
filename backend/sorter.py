@@ -89,7 +89,9 @@ Reply with ONLY a JSON object, no other text: {{"order": [ids, best fit first, a
 - rent_from with price_unit per_person is per person per month; per_home is for the whole home.
 - The note says, in plain words, what you put first and why. If nothing fits, say so and list the closest.
 - A missing field (pets, accessible, furnished) means "confirm with the provider", never yes.
-- Never invent prices, places or facts."""
+- Never invent prices, places or facts.
+- Fair housing: never sort or leave out places by who lives there (race, religion, national origin, family status, disability, source
+  of income or any other protected group). If asked to, keep the usual order and say in the note that you can't sort that way."""
     text = ask_gemma(prompt) or ""
     match = re.search(r"\{.*\}", text, re.DOTALL)
     return json.loads(match.group(0)) if match else {}
