@@ -60,7 +60,7 @@ STAY_NOW = re.compile(r"\bwhere (?:can|could|do|should|will) (?:i|we|me and my \
 
 TOPICS = [
     (("voucher", "section 8", "hcv", "public housing", "waitlist", "wait list", "housing authority", "qualify", "eligib", "income"), {"housing_authority"}),
-    (("rent help", "behind on rent", "back rent", "owe rent", "pay rent", "pay my rent", "evict", "late", "can't pay", "cant pay", "assistance", "deposit", "utility", "help with rent"), {"rental_assistance", "legal_aid"}),
+    (("rent help", "behind on rent", "back rent", "owe rent", "pay rent", "pay my rent", "evict", "late", "can't pay", "cant pay", "lose my", "lose our", "losing my", "losing our", "can't afford", "cant afford", "assistance", "deposit", "utility", "help with rent"), {"rental_assistance", "legal_aid"}),
     (("lawyer", "legal", "landlord", "rights", "repair", "court"), {"legal_aid"}),
     (("apartment", "listing", "unit", "bedroom", "studio", "affordable", "move", "rent is", "qualify", "income", "place to live", "cheap"), {"affordable_listing", "rental_listing"}),
     (("room", "roommate", "student", "shared", "near campus", "sublet"), {"rental_listing", "affordable_listing"}),
@@ -226,7 +226,9 @@ def _prompt(question, history, rows, needs=None, walk=None, place=None):
     cap = BUDGET_ANY.search((question or "").replace(",", "")) if housing_search(question) else None
     prices = [p for p in ((r.get("monthly_rent") if isinstance(r.get("monthly_rent"), (int, float)) else (rent_estimate(r) or {}).get("low")) for r in rows)
               if isinstance(p, (int, float))] if cap else []
+    opening = ""
     if prices and min(prices) > int(cap.group(1)):
+        opening = f' Your first words must be: "The lowest rents I found start around ${min(prices):,.0f}, above your ${int(cap.group(1)):,} budget:"'
         notes.append(f"Their budget is ${int(cap.group(1)):,} a month and every home below costs more. Start your answer with exactly: "
                      f"\"The lowest rents I found start around ${min(prices):,.0f}, above your ${int(cap.group(1)):,} budget:\" "
                      "Then give the two lowest-priced homes, and end by saying 211 can help with rent assistance.")
@@ -286,7 +288,7 @@ QUESTION END
 Resources (source-reviewed, for the requested area):
 {json.dumps(resources, ensure_ascii=False, separators=(",", ":"))}
 
-Now write your answer. Keep it short: 3 to 5 short sentences and at most 2 places (each "**Name**: rent, why it fits, phone"). No tables, no headings, no long lists, under 100 words unless they asked for more detail. Lead with the answer; anything you assumed or still need goes in one friendly line at the end. Only if they sound worried or lost, start with one kind sentence and one first step; otherwise no "I'm sorry" opener. End with: Guidance only, not legal advice."""
+Now write your answer. Keep it short: 3 to 5 short sentences and at most 2 places (each "**Name**: rent, why it fits, phone"). No tables, no headings, no long lists, under 100 words unless they asked for more detail. Lead with the answer; anything you assumed or still need goes in one friendly line at the end.{opening} Only if they sound worried or lost, start with one kind sentence and one first step; otherwise no "I'm sorry" opener. End with: Guidance only, not legal advice."""
     # The style reminder comes last: after thousands of characters of listings, Gemma follows what it read most recently.
     return prompt
 
