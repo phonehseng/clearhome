@@ -11,6 +11,21 @@
       "note": "Phone conflict: 703.596.8159 vs 703-890-5348 (record uses 703-890-5348) → Call both and keep the one that reaches Arbelo leasing",
       "on": "2026-10-24"
     },
+    "atrium-at-metro-west-two-bedroom-one-bath": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "atrium-at-metro-west-two-bedroom-two-bath": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "baileys-shelter-and-supportive-housing": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists (703) 337-0282 (Greystar); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
     "blacksburg-1203-north-main-apt-m-room-a-in-4-bedroom-apartment": {
       "state": "flagged",
       "note": "Provider headline \"Spring 2026\" vs availability field 11/15/26 → Call (540) 953-1341 (Pointe West) for the actual move-in date",
@@ -81,10 +96,30 @@
       "note": "Phone conflict: property site 540.724.8575 vs Park Properties 540.552.0826 → Call both and keep the leasing-office line",
       "on": "2026-10-24"
     },
+    "crest-of-alexandria-one-bedroom": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "crest-of-alexandria-two-bedroom": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
     "falls-church-homeless-shelter": {
       "state": "flagged",
       "note": "jurisdiction: Falls Church City, but the geocoded point (38.8923, -77.1911) falls in Fairfax County. The provider writes \"217 Gordon Road\"; the record has \"217 Gordons Rd\" → Confirm the exact street name and which jurisdiction the site is in. Keep the city filter working either way",
       "on": "2026-10-24"
+    },
+    "fort-henry-gardens-two-bedroom": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-568-7804 (AHC); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "lenox-club-studio": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.lenoxclubliving.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
     },
     "lindsay-hill-senior-apartments": {
       "state": "flagged",
@@ -96,20 +131,165 @@
       "note": "No phone. Joyfield's owner page shows conflicting header/footer numbers → Find the official leasing number for each | Status upcoming with no available_from; the city notice says \"tentatively December 2026 and January 2027\" → Leave the date null until it is firm; recheck after the Nov 2, 2026 lottery",
       "on": "2026-10-24"
     },
+    "nova-alexandria-city-alate-old-town": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-210-3032 (manager page 571-408-0772); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-beasley-square": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-brent-place": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.brentplace.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-claridge-house-alexandria": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none | City senior page: \"Claridge House II\", 301 North Ripley Street → confirm name and address",
+      "on": "2026-10-25"
+    },
     "nova-alexandria-city-foxchase": {
       "state": "flagged",
-      "note": "276 (SW Virginia) area code for an Alexandria property; source guide dated August 2025 → Confirm the leasing number from the property's own site",
+      "note": "276 (SW Virginia) area code for an Alexandria property; source guide dated August 2025 → Confirm the leasing number from the property's own site | Property site phone 434-337-5919 (we have 276-421-4480); city senior page lists a different \"Foxchase of Alexandria\" at 320 N Jordan St, 703-823-5150 → confirm",
       "on": "2026-10-24"
     },
     "nova-alexandria-city-gables-old-town-north": {
       "state": "flagged",
-      "note": "202 (DC) area code for an Alexandria property; source guide dated August 2025 → Confirm the leasing number (it may be a regional call center)",
+      "note": "202 (DC) area code for an Alexandria property; source guide dated August 2025 → Confirm the leasing number (it may be a regional call center) | Phone differs: the official page lists 571-982-8072; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
       "on": "2026-10-24"
+    },
+    "nova-alexandria-city-lacy-court": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-601-3267; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-longview-terrace": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 703-854-9903; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-meridian-2250": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 703-202-4532 (city March 2026 list); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-olde-towne-west-iii": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.oldtownwestapts.com/ → check it in a browser and add it, or confirm the property has none | Phone differs: the official page lists 571-814-5940; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-parc-meridian": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 703-567-6003; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-parcview": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-556-1932; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-potomac-west": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://potomacwest.prospectportal.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-station-650": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 833-625-9360; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-the-blake": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-548-3728; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-the-bloom-at-braddock": {
+      "state": "flagged",
+      "note": "Now \"The Bloom\" (thebloomalexandria.com) → rename",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-the-ellsworth": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-771-2760; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-the-fields-of-alexandria": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thefieldsalexandria.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-the-fields-of-old-town": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thefieldsoldtown.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
     },
     "nova-alexandria-city-the-foundry": {
       "state": "flagged",
       "note": "517 (Michigan) area code for an Alexandria property; source guide dated August 2025 → Confirm the leasing number",
       "on": "2026-10-24"
+    },
+    "nova-alexandria-city-the-residences-at-carlyle-square": {
+      "state": "flagged",
+      "note": "Now \"MAA Carlyle Square\" (same address); MAA lists 571-560-3394 vs our 571-454-9486 → rename, confirm phone",
+      "on": "2026-10-25"
+    },
+    "nova-alexandria-city-the-waypoint-at-fairlington": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-248-5355; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-ballston-park-at-historic-buckingham-village": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 703-774-9739 (AHC); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-buckingham-gardens": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-claridge-house": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-hunter-s-park-at-cherrydale": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-206-3895 (AHC); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-knightsbridge-apts": {
+      "state": "flagged",
+      "note": "Address: we have 204 N. Thomas St; Wesley Housing / property site say 210 North Glebe Road → confirm which entrance to list",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-ten-at-clarendon": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.tenatclarendon.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-the-earl": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists (855) 953-4305; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-the-madison-at-ballston-station": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.madisonatballstonstation.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-the-spectrum": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 703-596-8643 (AHC); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-arlington-county-vpoint": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists (703) 436-9183; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
     },
     "nova-broadfalls-efficiency": {
       "state": "flagged",
@@ -126,15 +306,270 @@
       "note": "Phone 540-565-5835 is a 540 number for a Falls Church property. It may be a call-tracking line. The official site blocks automated checks → Call it, or check broadfallsapts.com in a browser, and confirm it reaches the Broadfalls leasing office",
       "on": "2026-10-24"
     },
+    "nova-fairfax-county-aventon-to-aspire-huntington-station": {
+      "state": "flagged",
+      "note": "Now \"Aspire Huntington Station\" → rename",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-bailey-s-crossing": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists (703) 337-0282 (Greystar); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-bell-vienna-metro": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.akelius-properties.us/dwell-vienna-metro0/ → check it in a browser and add it, or confirm the property has none | Renamed \"Dwell Vienna Metro\" (owner Akelius) → confirm and rename",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-blvd-reston-station": {
+      "state": "flagged",
+      "note": "Now \"BLVD Reston\" (same address) → rename",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-brentford-at-the-mile": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-camden-monument-place": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-946-2882; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-discovery-square": {
+      "state": "flagged",
+      "note": "Street may be \"Atlantis Street\", not \"Atlantic Street\" (Grady Management page, search results) → confirm",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-fairchase-apartments": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.equityapartments.com/northern-virginia/fairfax-corner/fairchase-apartments → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-hanover-springfield": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://hanoverspringfield.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-highgate-at-the-mile": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.livehighgate.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-jefferson-at-fair-oaks": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 703-804-0240; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-makers-rise": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-modera-mosaic": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://moderamosaic.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-passport-apartments": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.simpsonpropertygroup.com/apartments/herndon-virginia/passport-apartments-herndon/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
     "nova-fairfax-county-preserve-at-westfields": {
       "state": "flagged",
       "note": "980 (North Carolina) area code for a Chantilly property; no website on record → Check the county directory or owner site for a local leasing number",
       "on": "2026-10-24"
     },
+    "nova-fairfax-county-prosperity-flats": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.prosperityflats.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-radiant-fairfax-ridge": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.equityapartments.com/northern-virginia/fairfax-corner/radiant-fairfax-ridge-apartments → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-signature-at-reston-town-center": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.simpsonpropertygroup.com/apartments/reston-virginia/signature-reston-town-center-apartments/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-sully-at-westfields": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thesullyapts.com/ → check it in a browser and add it, or confirm the property has none | Now \"The Sully\" → rename",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-belhaven": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-courts-at-huntington-station": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-586-1570 (UDR); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-emerson": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-400-2250; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-heming": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-point-at-dunn-loring": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thepointatdunnloring.com/ → check it in a browser and add it, or confirm the property has none | Address may be 2677 Avenir Place, not 2679 (property site, blocked) → confirm",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-point-at-mclean": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thepointatmclean.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-point-at-monroe-place": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://thepointatmonroeplace.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-point-at-reston": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thepointatreston.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-point-at-ridgeline": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thepointatridgeline.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-point-at-rise": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thepointatrise.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-reserve-at-tysons-corner": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.reserveattysonscorner.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-ridgeleigh-at-van-dorn-metro": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 703-750-8142; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-ridgewood-by-windsor": {
+      "state": "flagged",
+      "note": "Now \"Windsor Ridgewood\" → rename",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-the-shelby": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.theshelbyapartments.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-three-collective": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.threecollective.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-van-metre-at-woodland-park": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.woodlandparkapt.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-fairfax-county-vinson-hall": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-462-2709 / 703-506-6900; ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-falls-church-city-west-broad": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 833-503-5032 (city page still shows ours); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-ashburn-chase": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.tmamgroup.com/apartments/va/ashburn/ashburn-chase-i/default → check it in a browser and add it, or confirm the property has none | Phone: we have 703-713-5678; TM Associates page appears to list 703-439-4246 → confirm",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-ashburn-meadows": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.ashburnmeadows.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-braddock-terrace": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.braddockterrace.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-heronview-apartments": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.heronviewapts.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-llewellyn-village": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://windyhillfoundation.org/about/our-properties/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-purcellville-east": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-purcellville-pointe": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.purcellvillepointe.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-shreveport-ridge": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.tmamgroup.com/shreveport-ridge/default → check it in a browser and add it, or confirm the property has none | Manager (TM Associates) page appears to say 42597 Prescott Green Square, not Prescott Ridge → confirm",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-stone-springs-apartments": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.stonespringsapartments.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-the-abbey-the-devon-at-south-riding": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-the-william": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none | Address is probably 43300 Mossimo Sq, Chantilly 20152 (we have 4330) → confirm on an official page",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-the-woods-at-brambleton": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thewoodsatbrambleton.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-the-woods-at-westpark": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thewoodsatwestpark.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
     "nova-loudoun-county-the-wyatt": {
       "state": "flagged",
-      "note": "No phone. Joyfield's owner page shows conflicting header/footer numbers → Find the official leasing number for each",
+      "note": "No phone. Joyfield's owner page shows conflicting header/footer numbers → Find the official leasing number for each | Greystar lists (517) 893-5801 and ZIP 20170; we have no phone → confirm a local leasing number",
       "on": "2026-10-24"
+    },
+    "nova-loudoun-county-vyne-one-loudoun": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.livevyne.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "nova-loudoun-county-waxpool-apartments": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.waxpoolapts.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
     },
     "nova-prince-william-county-joyfield-flats-at-woodbridge": {
       "state": "flagged",
@@ -151,6 +586,16 @@
       "note": "available_from 2026-10-23 has passed (status available_now, so not contradictory) → Recheck by review_due 2026-10-31. If the unit was leased, close the record",
       "on": "2026-10-24"
     },
+    "saintsbury-plaza-two-bedroom": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "serrano-apartments-one-bedroom": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-771-1631 (AHC); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
     "terwilliger-place-community": {
       "state": "flagged",
       "note": "757 area code for an Arlington property → Check the TrueGround Housing page and confirm the leasing number",
@@ -160,6 +605,26 @@
       "state": "flagged",
       "note": "Both use the shared leasing office 5819 Washington Blvd (same coordinates). The county directory lists the buildings at 1649 N. Longfellow St and 5701 N. 10th Rd → Ask leasing (703.636.9960) which building each available unit is in, then correct the address and coordinates",
       "on": "2026-10-24"
+    },
+    "the-fields-of-arlington-one-bedroom": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.thefieldsarlington.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
+    },
+    "the-macedonian-two-bedroom": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-946-8876 (AHC); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "the-shelton-two-bedroom": {
+      "state": "flagged",
+      "note": "Phone differs: the official page lists 571-568-7788 (AHC); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
+      "on": "2026-10-25"
+    },
+    "thin-fairfax-burke-lake-gardens": {
+      "state": "flagged",
+      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://www.burkelakegardens.com/ → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
     },
     "thin-fairfax-chantilly-mews": {
       "state": "flagged",
@@ -178,13 +643,18 @@
     },
     "thin-fairfax-summit-oaks": {
       "state": "flagged",
-      "note": "Address conflict in HUD data: 10550 vs 10538 Oak Bluff Ct → confirm the building address",
+      "note": "Address conflict in HUD data: 10550 vs 10538 Oak Bluff Ct → confirm the building address | No official website found → check it in a browser and add it, or confirm the property has none",
       "on": "2026-10-24"
     },
     "thin-fairfax-wedgewood-apartments": {
       "state": "flagged",
-      "note": "County page ZIP 22033 vs Census 22003; management moved to Quantum 2026-09-01 → confirm phone and ZIP",
+      "note": "County page ZIP 22033 vs Census 22003; management moved to Quantum 2026-09-01 → confirm phone and ZIP | Couldn't confirm an official website (site blocks automated checks); candidate: https://www.wedgewood-apartmentliving.com/ → check it in a browser and add it, or confirm the property has none",
       "on": "2026-10-24"
+    },
+    "thin-montgomery-christiansburg-bluff": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
     },
     "thin-montgomery-henley-place": {
       "state": "flagged",
@@ -203,8 +673,13 @@
     },
     "westover-apartments-one-bedroom": {
       "state": "flagged",
-      "note": "Both use the shared leasing office 5819 Washington Blvd (same coordinates). The county directory lists the buildings at 1649 N. Longfellow St and 5701 N. 10th Rd → Ask leasing (703.636.9960) which building each available unit is in, then correct the address and coordinates",
+      "note": "Both use the shared leasing office 5819 Washington Blvd (same coordinates). The county directory lists the buildings at 1649 N. Longfellow St and 5701 N. 10th Rd → Ask leasing (703.636.9960) which building each available unit is in, then correct the address and coordinates | Phone differs: the official page lists 571-568-7895 (AHC); ours may be outdated or a call-tracking line → call and keep the leasing-office number",
       "on": "2026-10-24"
+    },
+    "william-watters-house": {
+      "state": "flagged",
+      "note": "No official website found → check it in a browser and add it, or confirm the property has none",
+      "on": "2026-10-25"
     }
   }
 }
