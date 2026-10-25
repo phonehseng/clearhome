@@ -471,6 +471,150 @@
       "status": "needs_verified_property_photo",
       "photo_reviewed_on": "2026-10-24",
       "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Burke Lake Gardens",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "thin-fairfax-burke-lake-gardens"
+      ],
+      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800021717%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Chantilly Mews",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "thin-fairfax-chantilly-mews"
+      ],
+      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800022120%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Evergreen House",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "thin-fairfax-evergreen-house"
+      ],
+      "official_source": "https://www.qpmgmt.com/properties/evergreen-house/",
+      "provider_website": "https://www.qpmgmt.com/properties/evergreen-house/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Forest Glen at Sully Station",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "thin-fairfax-forest-glen-at-sully-station"
+      ],
+      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?where=HUD_ID%3D%27VAA20170019%27&outFields=PROJECT%2CPROJ_ADD%2CPROJ_CTY%2CPROJ_ZIP%2CN_UNITS%2CLI_UNITS%2CN_1BR%2CN_2BR%2CN_3BR%2CN_4BR%2CYR_PIS%2CTRGT_ELD%2CTRGT_FAM&returnGeometry=false&f=html",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Strawbridge Square",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "thin-fairfax-strawbridge-square"
+      ],
+      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800022084%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Summit Oaks",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "thin-fairfax-summit-oaks"
+      ],
+      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800022090%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Wedgewood Apartments",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "thin-fairfax-wedgewood-apartments"
+      ],
+      "official_source": "https://www.fcrha.org/properties/wedgewood-apartments/1",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Christiansburg Bluff",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "thin-montgomery-christiansburg-bluff"
+      ],
+      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800021752%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Henley Place Apartments",
+      "jurisdiction": "Montgomery County",
+      "record_ids": [
+        "thin-montgomery-henley-place"
+      ],
+      "official_source": "https://www.communityhousingpartners.org/properties/henley-place-apartments/",
+      "provider_website": "https://www.communityhousingpartners.org/properties/henley-place-apartments/",
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Glen Arbor",
+      "jurisdiction": "Prince William County",
+      "record_ids": [
+        "thin-pwc-glen-arbor"
+      ],
+      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?where=HUD_ID%3D%27VAA20180015%27&outFields=PROJECT%2CPROJ_ADD%2CPROJ_CTY%2CPROJ_ZIP%2CN_UNITS%2CLI_UNITS%2CN_1BR%2CN_2BR%2CN_3BR%2CN_4BR%2CYR_PIS%2CTRGT_ELD%2CTRGT_FAM&returnGeometry=false&f=html",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Lake Ridge Fellowship House",
+      "jurisdiction": "Prince William County",
+      "record_ids": [
+        "thin-pwc-lake-ridge-fellowship-house"
+      ],
+      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800021921%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+    },
+    {
+      "community": "Somerset Pointe",
+      "jurisdiction": "Prince William County",
+      "record_ids": [
+        "thin-pwc-somerset-pointe"
+      ],
+      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?where=HUD_ID%3D%27VAA20020561%27&outFields=PROJECT%2CPROJ_ADD%2CPROJ_CTY%2CPROJ_ZIP%2CN_UNITS%2CLI_UNITS%2CN_1BR%2CN_2BR%2CN_3BR%2CN_4BR%2CYR_PIS%2CTRGT_ELD%2CTRGT_FAM&returnGeometry=false&f=html",
+      "provider_website": null,
+      "status": "needs_verified_property_photo",
+      "photo_reviewed_on": "2026-10-24",
+      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
     }
   ]
 }

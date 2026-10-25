@@ -161,6 +161,46 @@
       "note": "Both use the shared leasing office 5819 Washington Blvd (same coordinates). The county directory lists the buildings at 1649 N. Longfellow St and 5701 N. 10th Rd → Ask leasing (703.636.9960) which building each available unit is in, then correct the address and coordinates",
       "on": "2026-10-24"
     },
+    "thin-fairfax-chantilly-mews": {
+      "state": "flagged",
+      "note": "Address conflict in HUD data: 4151 vs 4114 Chantilly Lace Ct → confirm the building address",
+      "on": "2026-10-24"
+    },
+    "thin-fairfax-forest-glen-at-sully-station": {
+      "state": "flagged",
+      "note": "No official phone or website (HUD lists none); age rule not stated → find the leasing contact and age requirement",
+      "on": "2026-10-24"
+    },
+    "thin-fairfax-strawbridge-square": {
+      "state": "flagged",
+      "note": "Address conflict in HUD data: 5131 vs 5144 Lincoln Ave → confirm the building address",
+      "on": "2026-10-24"
+    },
+    "thin-fairfax-summit-oaks": {
+      "state": "flagged",
+      "note": "Address conflict in HUD data: 10550 vs 10538 Oak Bluff Ct → confirm the building address",
+      "on": "2026-10-24"
+    },
+    "thin-fairfax-wedgewood-apartments": {
+      "state": "flagged",
+      "note": "County page ZIP 22033 vs Census 22003; management moved to Quantum 2026-09-01 → confirm phone and ZIP",
+      "on": "2026-10-24"
+    },
+    "thin-montgomery-henley-place": {
+      "state": "flagged",
+      "note": "Owner says 1664 York Dr, HUD says 1215 Silver Lake Rd → confirm the address",
+      "on": "2026-10-24"
+    },
+    "thin-pwc-glen-arbor": {
+      "state": "flagged",
+      "note": "No official phone or website (HUD lists none) → find the leasing contact",
+      "on": "2026-10-24"
+    },
+    "thin-pwc-somerset-pointe": {
+      "state": "flagged",
+      "note": "No official phone or website; tax credit placed in service 2002, income limits may have expired → confirm it is still income-restricted",
+      "on": "2026-10-24"
+    },
     "westover-apartments-one-bedroom": {
       "state": "flagged",
       "note": "Both use the shared leasing office 5819 Washington Blvd (same coordinates). The county directory lists the buildings at 1649 N. Longfellow St and 5701 N. 10th Rd → Ask leasing (703.636.9960) which building each available unit is in, then correct the address and coordinates",
