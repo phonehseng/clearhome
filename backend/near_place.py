@@ -436,6 +436,9 @@ def compose(found, want, result):
     pool_all = filter_catalog(load_catalog(), {"types": ["affordable_listing", "rental_listing"]})  # for rent estimates
     many = len(stores) > 1
     it = "one of them" if many else "it"
+    # The result comes first, naming the place; which store was picked (for a chain) follows it.
+    place = found["label"] if not found.get("chain") else stores[0]["name"] + (f" ({stores[0]['address'].split(',')[0]})" if stores[0].get("address") else "")
+    target = "one of these stores" if many else place
     lines = [found["label"] + "."]
     if result["routes"] is None:
         near = ", ".join(f"{h.get('community') or h['name']} ({min(nearby._miles(h['lat'], h['lon'], s['lat'], s['lon']) for s in stores):.1f} mi)" for h in result["nearest"])
@@ -444,12 +447,10 @@ def compose(found, want, result):
             lines.append(f"Nearest verified homes in a straight line (not a {ROUTE_WORD[mode]} route, so not confirmed as close): {near}.")
         return Answer("\n".join(lines) + "\n\nThis is guidance, not legal advice.")
     matches = result["matches"]
-    if matches:
-        lines.append(f"Verified homes {rule} {it}, measured with Google Maps {ROUTE_WORD[mode]} routes:")
-    else:
-        lines.append(f"None of the verified homes that fit your choices is {rule} {it} by Google Maps {ROUTE_WORD[mode]} routes, so I won't call any of them close.")
-    if not want["stated"]:
-        lines[0] += " " + _default_note(want)
+    lines = [f"Verified homes {rule} {target}, measured with Google Maps {ROUTE_WORD[mode]} routes:" if matches
+             else f"None of the verified homes that fit your choices is {rule} {target} by Google Maps {ROUTE_WORD[mode]} routes."]
+    if found.get("chain") or many:
+        lines.append(found["label"] + ".")
     shown = matches[:MAX_SHOWN]
     for t in shown:
         lines.append(_line(t, stores, mode, pool_all, many))
@@ -467,12 +468,14 @@ def compose(found, want, result):
         for t in alt:
             lines.append(_line(t, stores, "DRIVE" if t in result.get("by_car", []) else mode, pool_all, many))
         if not alt:
-            lines.append("I don't have a verified home near enough to measure. Try a longer trip, a nearby town, or call 211 for local housing help.")
+            lines.append("Try a longer trip or a nearby town, or call 211 for local housing help.")
     missing = len(result["pool"]) - len(result["routes"])
     if missing:
         lines.append(f"Google found no {ROUTE_WORD[mode]} route for {missing} nearby home{'' if missing == 1 else 's'}, so {'it is' if missing == 1 else 'they are'} left out rather than guessed.")
     if mode == "WALK" and (matches or result["over"]):  # only when walking times are shown, not the by-car option
         lines.append("Walking times are Google's estimate at an average pace. They don't show sidewalks, crossings, steps or hills, so check the route if walking is hard.")
+    if not want["stated"]:
+        lines.append(_default_note(want))
     lines.append("Advertised rents and openings aren't guaranteed, so confirm with the property.\n\nThis is guidance, not legal advice.")
     answer = Answer("\n".join(lines))
     answer.directions = {}
@@ -485,8 +488,8 @@ def compose(found, want, result):
 def _default_note(want):
     """Said out loud whenever no time was given, since there's no universal "close"."""
     if want["mode"] == "WALK":
-        return f"You didn't give a time, so I used up to {want['minutes']} minutes on foot; tell me another time, or \"a 10-minute drive\", to change it."
-    return f"You didn't give a time, so I used up to {want['minutes']} minutes; tell me another time to change it."
+        return f"I took walking distance as about {want['minutes']} minutes on foot. Want a different time, or a 10-minute drive instead? Just say so."
+    return f"I used up to {want['minutes']} minutes since no time was given. Want a different time? Just say so."
 
 
 def _needs(want):

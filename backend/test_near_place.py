@@ -101,8 +101,10 @@ class NearPlaceTests(unittest.TestCase):
         for question in ("give me something close to walmart in blacksburg", "cheapest place close to walmart in blacksburg"):
             with self.subTest(question):
                 text, _ = self.answer(question)
-                self.assertTrue(text.startswith("The Walmart nearest Blacksburg is Walmart Supercenter, 1 Test Rd, Blacksburg"), text)
-                self.assertIn("didn't give a time, so I used up to 15 minutes on foot", text)  # the default is said out loud
+                self.assertTrue(text.startswith("Verified homes within a 15-minute walk of Walmart Supercenter (1 Test Rd)"), text)  # the result first
+                self.assertIn("The Walmart nearest Blacksburg is Walmart Supercenter, 1 Test Rd, Blacksburg", text)
+                self.assertIn("I took walking distance as about 15 minutes on foot", text)  # the default is said, at the end
+                self.assertLess(text.index("**Near The Store**"), text.index("I took walking distance"))
                 self.assertIn("**Near The Store**: 8 min walk", text)
                 self.assertIn("**Twelve Minutes Away**: 12 min walk", text)
                 self.assertNotIn("Cheap Across The Highway", text)
@@ -113,7 +115,7 @@ class NearPlaceTests(unittest.TestCase):
 
     def test_an_explicit_time_limit_is_enforced(self, *_):
         text, _ = self.answer("homes within a 10 minute walk of walmart in blacksburg")
-        self.assertIn("within a 10-minute walk of it", text)
+        self.assertIn("within a 10-minute walk of Walmart Supercenter (1 Test Rd)", text)
         self.assertNotIn("give a time", text)
         self.assertIn("Near The Store", text)
         self.assertNotIn("Twelve Minutes Away", text)
@@ -155,7 +157,7 @@ class NearPlaceTests(unittest.TestCase):
         history = [{"role": "user", "text": "give me something close to walmart under 1500"}, {"role": "assistant", "text": ask}]
         merged = advisor.with_context("blacksburg, 10 minutes", history)
         text, google = self.answer(merged, history=history)
-        self.assertIn("within a 10-minute walk of it", text)
+        self.assertIn("within a 10-minute walk of Walmart Supercenter (1 Test Rd)", text)
         self.assertTrue(any("blacksburg" in q.lower() for q in google.queries))
         self.assertIn("under 1500", homes.seen)  # the budget from the first message still filters the homes
 
@@ -163,14 +165,14 @@ class NearPlaceTests(unittest.TestCase):
         first, _ = self.answer("close to walmart in blacksburg")
         history = [{"role": "user", "text": "close to walmart in blacksburg"}, {"role": "assistant", "text": str(first)}]
         text, _ = self.answer("what about a 25 minute walk from that store?", history=history)
-        self.assertIn("within a 25-minute walk of it", text)
+        self.assertIn("within a 25-minute walk of Walmart Supercenter (1 Test Rd)", text)
         self.assertIn("Walmart Supercenter", text)
         self.assertNotIn("Cheap Across The Highway", text)  # two hours is still not 25 minutes
 
     def test_drive_and_bus_change_the_route_mode(self, *_):
         text, google = self.answer("a 10 minute drive to walmart in blacksburg")
         self.assertEqual(google.modes, ["DRIVE"])
-        self.assertIn("within a 10-minute drive of it", text)
+        self.assertIn("within a 10-minute drive of Walmart Supercenter (1 Test Rd)", text)
         _, google = self.answer("20 minutes by bus to walmart in blacksburg")
         self.assertEqual(google.modes, ["TRANSIT"])
         self.assertEqual(near_place._trip("walk instead (earlier in this chat: a 10 minute drive to walmart)")[0], "WALK")  # newest words win
@@ -181,9 +183,10 @@ class NearPlaceTests(unittest.TestCase):
                    "location": {"latitude": 37.2200, "longitude": -80.4139}}]
         text, google = self.answer("walking distance from the walmart on richmond hwy", FakeGoogle(places=on_hwy))
         self.assertEqual(google.queries, ["Walmart richmond hwy, VA"])
-        self.assertTrue(text.startswith('The 2 Walmart stores matching "richmond hwy"'), text)
+        self.assertTrue(text.startswith("Verified homes within a 15-minute walk of one of these stores"), text)
+        self.assertIn('The 2 Walmart stores matching "richmond hwy"', text)
         text, _ = self.answer("walking distance from the walmart at 7910 richmond hwy", FakeGoogle(places=on_hwy))
-        self.assertTrue(text.startswith("Walmart, 7910 Richmond Hwy"), text)
+        self.assertIn("Walmart, 7910 Richmond Hwy", text.splitlines()[1])
 
     def test_names_spellings_and_other_places_are_read(self, *_):
         for question, chain in [("near Wal-Mart", "Walmart"), ("close to wallmart", "Walmart"), ("close to walmrat", "Walmart"),

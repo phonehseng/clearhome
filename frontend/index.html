@@ -977,7 +977,7 @@
     #tools .primary:hover{background:#23408f!important}
     #tools .assistant-chips button,#tools .examples button{background:#fff;border:1px solid var(--line);border-radius:999px;color:var(--ink)}
       /* Simple /app: the chat first, the map beside "Need a Safe Place Tonight?", tonight results, then rentals in a drop-down. */
-    #tools.simple-tools{display:grid;gap:22px;margin-top:28px}
+    #tools.simple-tools{display:grid;gap:22px;margin-top:0;padding-top:14px}  /* the chat starts right under the header */
     #tools.simple-tools .assistant{margin:0}
     .tools-row{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,1fr);gap:22px;align-items:start}
     .tools-row .hero-map-wrap{min-width:0}
@@ -1012,7 +1012,8 @@
     #tools .assistant-log .msg{font-size:15px;line-height:1.6;padding:12px 16px;border-radius:20px;max-width:min(78%,640px)}
     #tools .assistant-log .msg.user{background:#23408f;color:#fff;border-bottom-right-radius:6px}
     #tools .assistant-log .msg.bot{position:relative;margin-left:44px;background:#eef2fa;color:#14203f;border-bottom-left-radius:6px}
-    #tools .assistant-log .msg.bot::after{content:'';position:absolute;left:-44px;bottom:0;width:32px;height:32px;border-radius:50%;
+    #tools .assistant-log .msg.bot{justify-self:start}
+    #tools .assistant-log .msg.bot::after{content:'';position:absolute;left:-44px;top:2px;width:32px;height:32px;border-radius:50%;
       background:#fff url(/logo.svg) center/22px no-repeat;box-shadow:0 0 0 1px #dfe6f3,0 2px 6px #0b143314}
     #tools .assistant-log .msg.bot[data-state=update]{background:transparent}
     #tools .assistant-log>:is(.chat-cards,.chat-hotels,.chat-lines,.chat-next,.msg-engine){margin-left:44px;width:auto;max-width:calc(100% - 44px)}
@@ -1033,9 +1034,10 @@
     @media(max-width:560px){
       #tools.simple-tools .assistant-log{min-height:220px;padding:16px 14px 8px}
       #tools .assistant-log .msg{max-width:88%}
-      #tools .assistant-log .msg.bot{margin-left:38px}
-      #tools .assistant-log .msg.bot::after{left:-38px;width:28px;height:28px;background-size:19px}
-      #tools .assistant-log>:is(.chat-cards,.chat-hotels,.chat-lines,.chat-next,.msg-engine){margin-left:38px;max-width:calc(100% - 38px)}
+      /* Phones: Gemma's replies sit flush left, full width, without the avatar indent. */
+      #tools .assistant-log .msg.bot{margin-left:0;justify-self:start;max-width:94%}
+      #tools .assistant-log .msg.bot::after{display:none}
+      #tools .assistant-log>:is(.chat-cards,.chat-hotels,.chat-lines,.chat-next,.msg-engine){margin-left:0;max-width:100%}
       #tools .assistant-chips{padding:4px 14px 10px}
       #tools .assistant-form{margin:6px 12px 0}
     }
