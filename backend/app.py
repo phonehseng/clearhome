@@ -185,6 +185,11 @@ def review_page():
     return send_from_directory(FRONTEND, "review.html")
 
 
+@app.get("/google-cloud")
+def google_cloud_page():
+    return send_from_directory(FRONTEND, "google-cloud.html")
+
+
 _review_lock = threading.Lock()
 REVIEW_FIELDS = ('id', 'name', 'community', 'floor_plan', 'type', 'jurisdiction', 'area', 'region', 'address', 'phone',
                  'monthly_rent', 'rent_basis', 'source_url', 'website', 'last_verified', 'minimum_age', 'lat', 'lon')
