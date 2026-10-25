@@ -346,9 +346,6 @@
     .cl-hero-art svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(.9)}
     .cl-section{max-width:1200px;margin:0 auto;padding:120px 24px 0;text-align:center}
     .cl-title{font-size:clamp(36px,5vw,60px);letter-spacing:-.03em;line-height:1.08;margin:0;font-weight:700;color:#14203f}
-    /* Only the highlighted half fades to grey. The word-by-word animation wraps every word in its own span, so the rule skips those
-       (they'd all turn grey) and repeats the gradient on each highlighted word (an animated inline-block word can't show its parent's). */
-    .cl-title span:not(.word),.cl-title span:not(.word) .word{background:linear-gradient(90deg,#5b6b85,#a9b4c8);-webkit-background-clip:text;background-clip:text;color:transparent}
     .cl-lead{font-size:19px;color:#5b6b85;margin:16px auto 0;max-width:560px}
     .cl-frame{margin:44px auto 0;padding:22px;border-radius:32px;background:linear-gradient(180deg,#e6eefc,#f6f9ff);box-shadow:0 30px 80px #23408f1f;text-align:left}
     .cl-frame .hero-map{height:460px}
@@ -375,6 +372,11 @@
     .cl-end{width:min(1100px,calc(100% - 32px));margin:40px auto 90px;padding:84px 28px;border-radius:28px;box-shadow:0 30px 80px #14203f33}
     .cl-end .cl-title{color:#fff}
     .cl-end .cl-title span{background:linear-gradient(90deg,#9fbff5,#ffffff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    /* Headings: the word-by-word animation wraps every word in a span, which gave each word its own faded gradient.
+       Words now take the heading's solid color; the highlighted phrase is solid blue (light blue on the dark band). */
+    .cl-title span.word{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:inherit}
+    .cl-title>span:not(.word){background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#2f55b5}
+    .cl-end .cl-title>span:not(.word){color:#9fbff5}
     .cl-end .cl-btn{margin-top:30px;background:#fff;color:#14203f}
     .cl-end{padding-bottom:26px}
     .cl-end .cl-urgent{color:#b7c3e6;margin-top:70px;font-size:13.5px}  /* small, at the bottom of the box */
