@@ -5758,7 +5758,10 @@
       "caption": "Community photo from the official owner; the offered apartment may differ."
     },
     "source_kind": "official_property_page",
-    "source_checked_on": "2026-10-24"
+    "source_checked_on": "2026-10-24",
+    "lat": 38.839046,
+    "lon": -77.266235,
+    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)"
   },
   {
     "id": "little-river-glen-one-bedroom",
@@ -7394,7 +7397,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.872685,
+    "lon": -77.450171,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-fairfax-county-sully-at-westfields",
@@ -9433,7 +9439,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.881384,
+    "lon": -77.230138,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-fairfax-county-aperture",
@@ -9706,7 +9715,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.791316,
+    "lon": -77.074705,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-fairfax-county-the-belhaven",
@@ -10407,7 +10419,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.950415,
+    "lon": -77.337582,
+    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)"
   },
   {
     "id": "nova-fairfax-county-blvd-reston-station",
@@ -10609,7 +10624,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.947012,
+    "lon": -77.333165,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-fairfax-county-russell-at-reston-station",
@@ -10677,7 +10695,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.946132,
+    "lon": -77.342111,
+    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)"
   },
   {
     "id": "nova-fairfax-county-signature-at-reston-town-center",
@@ -10816,7 +10837,10 @@
       "credit": "Property provider / management listing",
       "reviewed_on": "2026-10-24",
       "caption": "Community photo from the provider; the offered apartment may differ."
-    }
+    },
+    "lat": 38.955188,
+    "lon": -77.361822,
+    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)"
   },
   {
     "id": "nova-fairfax-county-the-point-at-reston",
@@ -10947,7 +10971,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.957878,
+    "lon": -77.361071,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-fairfax-county-the-edmund",
@@ -11015,7 +11042,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.948694,
+    "lon": -77.359634,
+    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)"
   },
   {
     "id": "nova-fairfax-county-the-point-at-rise",
@@ -11361,7 +11391,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.927127,
+    "lon": -77.219367,
+    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)"
   },
   {
     "id": "nova-fairfax-county-haden",
@@ -12967,7 +13000,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.844175,
+    "lon": -77.109788,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-arlington-county-the-earl",
@@ -15288,7 +15324,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 39.015132,
+    "lon": -77.485483,
+    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)"
   },
   {
     "id": "nova-loudoun-county-the-william",
@@ -16401,7 +16440,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.967223,
+    "lon": -77.421401,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-loudoun-county-llewellyn-village",
@@ -17707,7 +17749,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.812141,
+    "lon": -77.107041,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-alexandria-city-the-fields-of-old-town",
@@ -18201,7 +18246,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.841073,
+    "lon": -77.107496,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-alexandria-city-parc-square",
@@ -19378,7 +19426,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.817492,
+    "lon": -77.049718,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-alexandria-city-halstead-tower-by-windsor",
@@ -19730,7 +19781,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.825359,
+    "lon": -77.049201,
+    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)"
   },
   {
     "id": "nova-alexandria-city-parc-meridian",
@@ -20224,7 +20278,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.792154,
+    "lon": -77.051278,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-alexandria-city-tuscany-apartments",
@@ -20885,7 +20942,10 @@
       "credit": "Official property, owner or public-agency website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 38.8956,
+    "lon": -77.190702,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "nova-falls-church-city-west-broad",
@@ -23979,7 +24039,10 @@
       "credit": "Official property owner / management website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 37.238089,
+    "lon": -80.435155,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "blacksburg-union-blacksburg-d6-existing-furnished-bedroom",
@@ -24062,7 +24125,10 @@
       "credit": "Official property owner / management website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 37.238089,
+    "lon": -80.435155,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "blacksburg-union-blacksburg-d2-furnished-pool-view-bedroom",
@@ -24145,7 +24211,10 @@
       "credit": "Official property owner / management website",
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
-    }
+    },
+    "lat": 37.238089,
+    "lon": -80.435155,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "blacksburg-the-mill-at-blacksburg-1-bedroom-whole-apartment",
@@ -25311,7 +25380,10 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Provider advertises $965 per month for Room A in a 4-bedroom, 4-bath apartment. Additional fees, deposits, and utilities may apply; confirm the written total.",
-    "photo": null
+    "photo": null,
+    "lat": 37.244605,
+    "lon": -80.430137,
+    "geocode_source": "OpenStreetMap Nominatim"
   },
   {
     "id": "blacksburg-1203-north-main-apt-m-room-a-in-4-bedroom-apartment",
@@ -26450,9 +26522,11 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "geocode_source": null,
+    "geocode_source": "OpenStreetMap Nominatim",
     "source_kind": "official_directory",
-    "source_checked_on": "2026-10-24"
+    "source_checked_on": "2026-10-24",
+    "lat": 38.997142,
+    "lon": -77.404383
   },
   {
     "id": "wingler-house",
@@ -26597,9 +26671,11 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "geocode_source": null,
+    "geocode_source": "OpenStreetMap Nominatim",
     "source_kind": "official_directory",
-    "source_checked_on": "2026-10-24"
+    "source_checked_on": "2026-10-24",
+    "lat": 38.960913,
+    "lon": -77.516733
   },
   {
     "id": "virginia-lane-middleburg",
@@ -26679,9 +26755,11 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "geocode_source": null,
+    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)",
     "source_kind": "owner_property_page",
-    "source_checked_on": "2026-10-24"
+    "source_checked_on": "2026-10-24",
+    "lat": 38.967082,
+    "lon": -77.755683
   },
   {
     "id": "nrv-to-our-house-winter-shelter",
@@ -27423,9 +27501,9 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Rent not published on the reviewed pages. Provider lists a $57 per person application fee, security deposit (or alternative) equal to one month's rent, and optional garage and pet fees. Confirm the written total.",
-    "lat": null,
-    "lon": null,
-    "geocode_source": null,
+    "lat": 37.185449,
+    "lon": -80.422376,
+    "geocode_source": "OpenStreetMap Nominatim",
     "photo": {
       "url": "https://www.goparkproperties.com/wp-content/uploads/2024/08/Highlands.webp",
       "source_url": "https://www.goparkproperties.com/the-highlands-at-huckleberry-ridge/",
@@ -27517,9 +27595,9 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Rent not published on the reviewed pages. Provider lists a $57 per person application fee, security deposit (or alternative) equal to one month's rent, and optional garage and pet fees. Confirm the written total.",
-    "lat": null,
-    "lon": null,
-    "geocode_source": null,
+    "lat": 37.185449,
+    "lon": -80.422376,
+    "geocode_source": "OpenStreetMap Nominatim",
     "photo": {
       "url": "https://www.goparkproperties.com/wp-content/uploads/2024/08/Highlands.webp",
       "source_url": "https://www.goparkproperties.com/the-highlands-at-huckleberry-ridge/",
@@ -27611,9 +27689,9 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Rent not published on the reviewed pages. Provider lists a $57 per person application fee, security deposit (or alternative) equal to one month's rent, and optional garage and pet fees. Confirm the written total.",
-    "lat": null,
-    "lon": null,
-    "geocode_source": null,
+    "lat": 37.185449,
+    "lon": -80.422376,
+    "geocode_source": "OpenStreetMap Nominatim",
     "photo": {
       "url": "https://www.goparkproperties.com/wp-content/uploads/2024/08/Highlands.webp",
       "source_url": "https://www.goparkproperties.com/the-highlands-at-huckleberry-ridge/",
@@ -27705,9 +27783,9 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Rent not published on the reviewed pages. Provider lists a $57 per person application fee, security deposit (or alternative) equal to one month's rent, and optional garage and pet fees. Confirm the written total.",
-    "lat": null,
-    "lon": null,
-    "geocode_source": null,
+    "lat": 37.185449,
+    "lon": -80.422376,
+    "geocode_source": "OpenStreetMap Nominatim",
     "photo": {
       "url": "https://www.goparkproperties.com/wp-content/uploads/2024/08/Highlands.webp",
       "source_url": "https://www.goparkproperties.com/the-highlands-at-huckleberry-ridge/",
@@ -27799,9 +27877,9 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Rent not published on the reviewed pages. Provider lists a $57 per person application fee, security deposit (or alternative) equal to one month's rent, and optional garage and pet fees. Confirm the written total.",
-    "lat": null,
-    "lon": null,
-    "geocode_source": null,
+    "lat": 37.185449,
+    "lon": -80.422376,
+    "geocode_source": "OpenStreetMap Nominatim",
     "photo": {
       "url": "https://www.goparkproperties.com/wp-content/uploads/2024/08/Highlands.webp",
       "source_url": "https://www.goparkproperties.com/the-highlands-at-huckleberry-ridge/",
