@@ -66,7 +66,7 @@ To avoid made-up information, the assistant only recommends places from our hand
 | `frontend/listing-map.js` | The listings map shared by the front page and the tools page: Google Maps (Leaflet fallback), county outlines, Northern Virginia / Blacksburg tabs, Near me, and web finds. |
 | `frontend/rental-labels.js` | Keeps the offered space (room or whole apartment) and payment basis worded the same on every card. |
 | `frontend/interface.css` | Shared styles, such as keeping listing text copyable. |
-| `data/resources.json` | The hand-verified resource list. See [data/README.md](data/README.md). |
+| `data/resources.json` | The hand-verified resource list. See [data/README.md](data/README.md). Sites that don't allow scraping (Zillow, Apartments.com, Rent.com) are never crawled: the few listings found there were added by hand and stay hidden until a person confirms them ([details](data/README.md#listings-from-sites-that-dont-allow-scraping)). |
 | `gemma/` | The Gemma 4 GPU service for Cloud Run. See [gemma/README.md](gemma/README.md). |
 | `video/` | A code-drawn explainer video of how Clear Home works. See [video/README.md](video/README.md). |
 

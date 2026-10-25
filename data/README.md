@@ -194,6 +194,37 @@ python backend/add_listing.py --dry-run  # practice run, never writes
 
 It fills in every field the site checks: location (Blacksburg and Christiansburg are Montgomery County, New River Valley), availability with a review date 7 days out, affordability evidence, and a map pin from the Census Geocoder. It also warns when the community already has a listing of that size. Facts copied from listing sites (Zillow, Apartments.com, Rent.com and the like) are saved unverified and flagged on /review, so they stay hidden until someone confirms them from the property's own page or by phone. Then run `python backend/catalog.py --check`, commit and push.
 
+## Listings from sites that don't allow scraping
+
+Zillow, Apartments.com, Rent.com and similar listing sites don't allow automated
+collection, so Clear Home never crawls them or calls their APIs. Any listing found on one of those sites was **added by hand**: a team
+member read the listing in a browser and typed the details in. A hand-added listing
+starts unverified, and the app keeps it out of answers, lists and the map until a
+person confirms it on the property's own website or by phone, then sets
+`verified: true` and `last_verified` on its record in `resources.json`.
+
+As of October 25, 2026 there are three, all in Blacksburg (`catalog_batch`
+`blacksburg-hand-added-2026-10-24`), each flagged on `/review` with what to check:
+
+| Listing | Found on | Status |
+|---|---|---|
+| Ridgewood Village Apartments | Apartments.com | Waiting for a teammate to confirm |
+| The Arbors of Blacksburg | Rent.com, HotPads, Redfin | Waiting for a teammate to confirm |
+| Smiths Landing Apartments | Listing sites (the property's own site blocks automated checks) | Waiting for a teammate to confirm |
+
+Every other record comes from a property's own website, a public agency, or open
+government data, never from a listing site. To find hand-added records:
+`source_kind` is `listing_site` and `verification_method` starts with "Hand-entered".
+
+Photos are the one exception: nine listings whose facts come from public agencies
+(Claridge House in Arlington and in Alexandria, Buckingham Gardens, The Abbey and The
+Devon at South Riding, Purcellville East, Olde Towne West III, Potomac West, The Harbor
+at Quantico Creek, The Read Building) show one building photo from their Apartments.com
+page, credited on the card as "Property listing gallery via Apartments.com". Each was
+picked for that one listing and checked against its address, not gathered by crawling
+the site; they are listed in `photo_sources.json` with `source_kind: listing_platform`.
+Removing a listing's `photo` entry makes its card show the area map instead.
+
 ## Open-data review queue
 
 `candidates.json` holds records pulled from public APIs by `backend/sources.py`. They are not shown to users until approved.
