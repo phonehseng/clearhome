@@ -268,6 +268,17 @@
     .pin-track.pinned .pin-stage{position:sticky;top:0;box-sizing:border-box;height:calc(100vh / var(--page-zoom, 1));display:flex;flex-direction:column;align-items:center;justify-content:center}
     .pin-track.pinned .pin-fit{transform:translateY(calc((.5 - var(--p, 0)) * 28px))}
     .google-track.pinned .google-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    /* Phones: a pinned scene shows its cards as a sideways deck, one at a time, slid along by the scroll (the script sets
+       --deck-x). The stage is the smallest screen height, so the browser's address bar never covers it, and the
+       "Keep scrolling" bar sits at the bottom, clear of the header. */
+    .pin-track.deck .pin-stage{height:100vh;height:100svh}
+    #how .how-track.deck .cl-duo,#google .google-track.deck .google-grid{display:flex;flex-wrap:nowrap;align-items:stretch;width:max-content;max-width:none;
+      gap:14px;margin-left:0;margin-right:0;transform:translateX(var(--deck-x, 0px));will-change:transform}
+    #how .how-track.deck .cl-duo{align-items:flex-start}
+    #how .how-track.deck .cl-card{flex:none;width:min(84vw,360px)}
+    #google .google-track.deck .card{flex:none;width:min(74vw,300px)}
+    .pin-track.deck .scene-progress{top:auto!important;bottom:calc(12px + env(safe-area-inset-bottom, 0px))}
+    .pin-track.deck .scene-progress b{width:110px}
     /* Birds crossing each pinned scene in the background (the hero's flock), moved by the same gliding scroll progress
        as the scene: scrolling down sends them across, scrolling up brings them back. Their wings keep flapping. */
     .scene-birds{position:absolute;inset:0;z-index:0;display:none;overflow:hidden;pointer-events:none;container-type:size}
@@ -487,6 +498,7 @@
     .start-head span{font-size:13px;color:#b7c3e6}
     .start-skip{margin-left:auto;padding:7px 14px;border-radius:999px;border:1px solid #ffffff40;color:#eef3ff;text-decoration:none;font-size:13px;font-weight:600}
     .start-skip:hover,.start-skip:focus-visible{background:#ffffff1f}
+    .start-skip.start-x{display:grid;place-items:center;width:40px;height:40px;padding:0;border-radius:50%}  /* opened from the tools page */
     .start-msgs{min-height:84px;margin:16px 0 14px}
     .start-msgs p{margin:0;padding:12px 15px;border-radius:16px 16px 16px 6px;background:#fff;color:#14203f;font-size:15px;line-height:1.5;max-width:92%;animation:start-rise .35s ease both}
     .start-typing{display:inline-flex!important;gap:5px}
@@ -876,13 +888,15 @@
     }));
     // Scroll scenes. On wide screens a scene stays pinned on screen while the next `distance` px of scrolling play it, then
     // the page carries on. So the page never looks frozen, everything in a scene moves with the scroll itself (nothing
-    // waits for a threshold), the stage drifts gently, and a progress bar at the bottom fills as you go. Narrow or short
-    // windows scroll freely and call loose() instead; reduced motion skips the scenes (callers show the finished state).
+    // waits for a threshold), the stage drifts gently, and a progress bar at the bottom fills as you go. On phones a scene
+    // with a `deck` (a row of cards) pins too, showing one card at a time over `deckDistance` px; play() then gets `stops`,
+    // the slide that centers each card. Other narrow or short windows scroll freely and call loose() instead; reduced
+    // motion skips the scenes (callers show the finished state).
     const calmPage = matchMedia('(prefers-reduced-motion: reduce)').matches, siteHeader = document.querySelector('.site-header');
     const BIRD = '<svg viewBox="-10 -6 20 8.5"><g stroke="#7e9bc8" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/>'
       + '<path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7e9bc8"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7e9bc8"/></svg>';
     let scenes = 0;
-    function pinScene(track, { distance, play, loose, fitTo }) {
+    function pinScene(track, { distance, play, loose, fitTo, deck, deckDistance }) {
       const stage = track.firstElementChild, fit = stage.firstElementChild;
       const bar = document.createElement('div');
       bar.className = 'scene-progress'; bar.setAttribute('aria-hidden', 'true');
@@ -896,25 +910,34 @@
       birds.innerHTML = [[1.5, -.3, 14, 1, 1.1], [1.8, -.62, 24, .75, .95], [1.3, -.2, 76, .9, 1.25], [1.65, -.48, 86, .65, 1]]
         .map(([s, o, y, size, flap]) => `<i style="--s:${s + turn};--o:${o - turn};--y:${(y + turn * 60) % 92}%;--size:${size};--flap:${flap}s">${BIRD}</i>`).join('');
       stage.prepend(birds);
-      let pinned = false;
+      let pinned = false, stops = null, laidOut = 0;
+      const span = () => (stops && deckDistance) || distance;
       // Wide screens zoom the whole page (html zoom), so window sizes are divided by it to get CSS pixels.
       const zoom = () => parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
       const layout = () => {
-        track.classList.remove('pinned');
+        track.classList.remove('pinned', 'deck');
         fit.style.zoom = fit.style.width = track.style.height = stage.style.paddingTop = '';
+        deck?.style.removeProperty('--deck-x');
         fitTo?.(null);
-        pinned = false;
-        if (innerWidth < 900) return;
+        pinned = false; stops = null; laidOut = innerWidth;
+        const phone = innerWidth < 900;
+        if (phone && !deck) return;
         track.classList.add('pinned');
-        const top = siteHeader ? siteHeader.offsetHeight : 0, room = innerHeight / zoom() - top - 44;
+        if (phone) track.classList.add('deck');
+        const top = siteHeader ? siteHeader.offsetHeight : 0, room = innerHeight / zoom() - top - (phone ? 66 : 44);  // phones keep room for the bar at the bottom
         stage.style.paddingTop = `${top + 12}px`;
         bar.style.top = `${Math.max(8, (top - bar.offsetHeight) / 2)}px`;  // in the header's row, at the very top of the window
         fit.style.width = `${stage.clientWidth}px`;  // zoom then shrinks it evenly, keeping its columns
         if (fitTo) fitTo(room);
         const scale = Math.min(1, room / fit.offsetHeight);
-        if (scale < (fitTo ? .98 : .6)) { track.classList.remove('pinned'); fit.style.width = stage.style.paddingTop = ''; fitTo?.(null); return; }
+        if (scale < (fitTo ? .98 : phone ? .72 : .6)) { track.classList.remove('pinned', 'deck'); fit.style.width = stage.style.paddingTop = ''; fitTo?.(null); return; }
         if (scale < 1 && !fitTo) fit.style.zoom = scale;
-        track.style.height = `${innerHeight / zoom() + distance}px`;
+        if (phone) {
+          // How far to slide the row (in its own pixels, whatever the zoom) to put each card in the middle of the screen.
+          const row = deck.getBoundingClientRect(), s = row.width / deck.offsetWidth || 1;
+          stops = [...deck.children].map(card => (innerWidth / 2 - row.left) / s - (card.offsetLeft - deck.offsetLeft + card.offsetWidth / 2));
+        }
+        track.style.height = `${innerHeight / zoom() + span()}px`;
         pinned = true;
       };
       // The scene glides after the scroll instead of following it 1:1, like skates on ice: each frame closes part of
@@ -923,7 +946,7 @@
       const draw = () => {
         stage.style.setProperty('--p', shown.toFixed(4));
         bar.classList.toggle('done', shown > .97);
-        play(shown);
+        play(shown, stops);
       };
       const glide = now => {
         const dt = Math.min(64, now - (last || now - 16.7));
@@ -936,13 +959,16 @@
       };
       const sync = (jump = false) => {
         if (!pinned) { loose?.(); return; }
-        target = Math.min(1, Math.max(0, -track.getBoundingClientRect().top / (distance * zoom())));
+        target = Math.min(1, Math.max(0, -track.getBoundingClientRect().top / (span() * zoom())));
         if (jump) { shown = target; draw(); return; }  // on load and resize: no glide from wherever it was
         if (!gliding) { gliding = true; requestAnimationFrame(glide); }
       };
       const relayout = () => { layout(); sync(true); };
       addEventListener('scroll', () => sync(), { passive: true });
-      addEventListener('resize', relayout);
+      // On touch screens the address bar and keyboard change the height as you scroll; only a new width (turning the
+      // phone) lays the scene out again, so the page doesn't jump.
+      const touch = matchMedia('(pointer: coarse)').matches;
+      addEventListener('resize', () => { if (!(touch && innerWidth === laidOut)) relayout(); });
       addEventListener('load', relayout);
       document.fonts?.ready.then(relayout);
       relayout();
@@ -956,6 +982,7 @@
     const flipTrack = document.querySelector('.google-track');
     if (flipTrack && !calmPage) {
       const LEAD = 30, TURN = 100, GAP = 40, TAIL = 90, distance = LEAD + GAP * (flips.length - 1) + TURN + TAIL;
+      const grid = flipTrack.querySelector('.google-grid'), last = flips.length - 1, clamp01 = x => Math.min(1, Math.max(0, x));
       const turned = flips.map(() => false);  // which side scrolling last asked for
       const byHand = new Map();  // card -> the side scrolling wanted when it was tapped
       const inner = card => card.querySelector('.flip-in');
@@ -967,11 +994,21 @@
         inner(card).style.transition = 'transform .6s cubic-bezier(.2,.7,.2,1)';
         inner(card).style.transform = `rotateY(${card.classList.contains('flipped') ? 180 : 0}deg)`;
       }));
-      isPinned = pinScene(flipTrack, { distance,
-        play: p => {
-          const at = p * distance - LEAD;
+      isPinned = pinScene(flipTrack, { distance, deck: grid, deckDistance: 230 * flips.length,
+        play: (p, stops) => {
+          let turn;
+          if (stops) {
+            // Phones: each card turns over in the middle of the screen, then the next one slides in.
+            const u = Math.max(0, p * (last + .75) - .25), k = Math.min(last, Math.floor(u)), f = u - k;
+            const x = k >= last ? stops[last] : stops[k] + (stops[k + 1] - stops[k]) * ease(clamp01((f - .45) / .55));
+            grid.style.setProperty('--deck-x', `${x.toFixed(1)}px`);
+            turn = i => clamp01((u - i) / .4);
+          } else {
+            const at = p * distance - LEAD;
+            turn = i => clamp01((at - i * GAP) / TURN);
+          }
           flips.forEach((card, i) => {
-            const deg = 180 * ease(Math.min(1, Math.max(0, (at - i * GAP) / TURN))), on = deg > 90;
+            const deg = 180 * ease(turn(i)), on = deg > 90;
             if (card.contains(document.activeElement)) return;  // never turn the card a keyboard user is on
             if (byHand.has(card)) { if (byHand.get(card) === on) return; byHand.delete(card); }
             inner(card).style.transition = 'none';
@@ -1070,7 +1107,7 @@
       });
       chat.replaceChildren(...lines);
       homes.forEach(li => li.classList.add('demo'));
-      const render = p => {
+      const chatAt = p => {
         TALK.forEach((line, i) => {
           const bubble = lines[i];
           bubble.classList.toggle('on', p >= line.at);
@@ -1081,9 +1118,13 @@
           bubble.shown = n; typed(bubble, line.ai, n);
           const dots = document.createElement('span'); dots.className = 'dots'; dots.append(...[0, 1, 2].map(() => document.createElement('i'))); bubble.append(dots);
         });
+      };
+      const searchAt = p => {
         typed(query, [[QUERY]], Math.round(QUERY.length * clamp((p - .05) / .17)));
         homes.forEach((li, i) => li.classList.toggle('on', p >= .26 + i * .08));
       };
+      const render = p => { chatAt(p); searchAt(p); };
+      const duo = howTrack.querySelector('.cl-duo');
       if (calmPage) render(1);
       else {
         let played = false;
@@ -1095,7 +1136,14 @@
           requestAnimationFrame(tick);
         };
         render(0);
-        pinScene(howTrack, { distance: 550, play: p => { played = true; render(p); }, loose: playOnce });
+        pinScene(howTrack, { distance: 550, deck: duo, deckDistance: 1000, loose: playOnce,
+          play: (p, stops) => {
+            played = true;
+            if (!stops) { render(p); return; }
+            // Phones: the chat plays on the first card, the deck slides over, then the search fills in on the second.
+            chatAt(clamp(p / .46)); searchAt(clamp((p - .56) / .36) * .6);
+            duo.style.setProperty('--deck-x', `${(stops[0] + (stops[1] - stops[0]) * ease(clamp((p - .46) / .12))).toFixed(1)}px`);
+          } });
       }
     }
   </script>
@@ -1329,14 +1377,23 @@
       if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;  // a new tab or window gets the plain link
       e.preventDefault(); leaving = false; dlg.classList.remove('leaving'); dlg.showModal(); fit(); chat();
     }));
-    dlg.querySelector('.start-skip').addEventListener('click', e => {
+    let fromTools = false;
+    const skip = dlg.querySelector('.start-skip');
+    skip.addEventListener('click', e => {
       if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      e.preventDefault(); openTools(null);
+      e.preventDefault();
+      // The X goes back to the tools page as it was left; without that page in the history, it opens the tools page.
+      if (fromTools && !leaving && history.length > 1 && document.referrer.startsWith(location.origin + '/app')) {
+        leaving = true; dlg.classList.add('leaving'); setTimeout(() => history.back(), calm ? 0 : 240); return;
+      }
+      openTools(null);
     });
-    // From the tools page's "Talk to Gemma: I need a place tonight" (/?tonight): open this chat straight away, as if it
-    // had been started here, and drop the marker from the address so a reload doesn't reopen it.
+    // From the tools page's "I need a place tonight" (/?tonight): open this chat straight away, as if it had been started
+    // here, with an X to go back instead of Skip, and drop the marker from the address so a reload doesn't reopen it.
     if (new URLSearchParams(location.search).has('tonight')) {
       history.replaceState(null, '', location.pathname + location.hash);
+      fromTools = true; skip.classList.add('start-x'); skip.setAttribute('aria-label', 'Close and go back to the tools page');
+      skip.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
       leaving = false; dlg.showModal(); fit(); chat();
     }
     dlg.addEventListener('close', () => { run++; });  // closing stops the script
