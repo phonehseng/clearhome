@@ -12,7 +12,7 @@ from datetime import date
 
 from flask import Flask, Response, g, jsonify, request, send_from_directory, send_file, stream_with_context
 
-from advisor import AREAS, ask, cards_for, clarify, options, outside_answer, programs, quick_nearby, stream_ask, warm_examples, with_context
+from advisor import AREAS, advice_question, ask, cards_for, clarify, expand_nicknames, options, outside_answer, programs, quick_nearby, stream_ask, warm_examples, with_context
 import clarifier
 import crisis
 from live_search import search as live_search
@@ -361,7 +361,7 @@ def sort_listings():
         return jsonify(error="Tell Gemma what matters most, like \"cheapest rooms near Virginia Tech first\"."), 400
     if not isinstance(ids, list) or not ids or len(ids) > 600 or not all(isinstance(i, str) and len(i) < 200 for i in ids):
         return jsonify(error="ids must be the list of communities on screen."), 400
-    return jsonify(sorter.sort(redact(question)[0], ids))
+    return jsonify(sorter.sort(expand_nicknames(redact(question)[0]), ids))
 
 
 @app.post("/api/hotels")
@@ -482,14 +482,14 @@ def _chat_request():
         return None, None, (jsonify(error="Please type a question."), 400)
     if len(question) > 1500:
         return None, None, (jsonify(error="Please keep your question under 1,500 characters."), 400)
-    question, _ = redact(question)
+    question = expand_nicknames(redact(question)[0])  # "vtech", "gmu": the campus written out for every step below
     # Suicide, self-harm or abuse at home: the hotline first, before any other step (plus the area's own line when it's known).
     form_place = body.get("profile", {}).get("location") if isinstance(body.get("profile"), dict) else None
     lifeline = crisis.answer(question, redact(form_place[:100])[0] if isinstance(form_place, str) else None)
     history = []
     for turn in (body.get("history") if isinstance(body.get("history"), list) else [])[-4:]:
         if isinstance(turn, dict) and turn.get("role") in ("user", "assistant") and isinstance(turn.get("text"), str):
-            history.append({"role": turn["role"], "text": redact(turn["text"][:2000])[0]})
+            history.append({"role": turn["role"], "text": expand_nicknames(redact(turn["text"][:2000])[0])})
     # Choices from the find form, so the assistant can tailor its answer (no names or IDs are collected).
     profile = body.get("profile") if isinstance(body.get("profile"), dict) else {}
     # The /app chat sends this conversation's answers to its follow-up questions (kept by the page, checked here): a vague
@@ -568,6 +568,7 @@ def ask_advisor_stream():
     body, chat, asking = _body(), g.get("chat"), isinstance(instant, clarifier.Question)
     place = None if asking else hotels.place_for(g.get("chat_question") or redact(_text(body, "question"))[0], body.get("profile") if isinstance(body.get("profile"), dict) else {})
     rooms = hotels.lookup_later(place) if place else None
+    advice = not asking and advice_question(g.get("chat_question") or question)
 
     def hotels_event():
         try:
@@ -591,6 +592,8 @@ def ask_advisor_stream():
                 if kind == "done":  # hotels go just before the end
                     sent = True
                     yield hotels_event()
+                if kind == "cards" and advice:  # advice, not a search: the page keeps the cards behind a button
+                    yield f"data: {json.dumps({'kind': 'advice', 'text': True})}\n\n"
                 yield f"data: {json.dumps({'kind': kind, 'text': text})}\n\n"
         except Exception:
             yield f"data: {json.dumps({'kind': 'fallback', 'text': 'Something went wrong. Please try again, or call 211 for help.'})}\n\n"

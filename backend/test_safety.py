@@ -230,6 +230,42 @@ class OutsideAreaTests(unittest.TestCase):
             self.assertIsNone(advisor.outside_answer(question), question)
 
 
+class NicknameTests(unittest.TestCase):
+    def test_campus_nicknames_are_written_out(self):
+        for typed, campus in (("rooms near vtech under 500", "Virginia Tech"), ("room by VT", "Virginia Tech"), ("va tech apartments", "Virginia Tech"),
+                              ("near the hokies", "Virginia Tech"), ("vpi housing", "Virginia Tech"), ("cheap studio near gmu", "George Mason"),
+                              ("by nvcc", "NOVA Community College")):
+            self.assertIn(campus, advisor.expand_nicknames(typed), typed)
+        self.assertEqual(advisor.area_for(advisor.expand_nicknames("rooms near vtech")), "Blacksburg")
+
+    def test_vtech_question_answers_with_blacksburg_rooms(self):
+        with patch("advisor.stream_gemma", side_effect=no_gemma):
+            found = events(server.app.test_client().post("/api/ask/stream", json={"question": "rooms near vtech under 500"}))
+        answer = next(e["text"] for e in found if e["kind"] == "answer")
+        self.assertIn("Virginia Tech", answer)
+        self.assertTrue(all(c["jurisdiction"] == "Montgomery County" for e in found if e["kind"] == "cards" for c in e["text"]))
+
+    def test_other_colleges_are_outside(self):
+        self.assertIsNotNone(advisor.outside_answer("apartments near uva"))
+
+
+class AdviceTests(unittest.TestCase):
+    def kinds(self, question):
+        with patch("advisor.stream_gemma", side_effect=lambda *a, **k: iter([(False, "Call **211**.")])):
+            return [e["kind"] for e in events(server.app.test_client().post("/api/ask/stream", json={"question": question}))]
+
+    def test_advice_keeps_cards_behind_a_button(self):
+        advisor._cache.clear()
+        kinds = self.kinds("how do I apply for section 8 in Fairfax?")
+        self.assertIn("advice", kinds)
+        self.assertLess(kinds.index("advice"), kinds.index("cards"))
+
+    def test_searches_and_urgent_needs_show_cards(self):
+        for question in ("cheap rooms near Virginia Tech", "I am behind on rent in Alexandria, who can help?"):
+            advisor._cache.clear()
+            self.assertNotIn("advice", self.kinds(question), question)
+
+
 class AnswerStyleTests(unittest.TestCase):
     def test_prompt_keeps_sympathy_for_worried_people_and_names_the_budget_gap(self):
         prompt = advisor._prompt("studio in Arlington under $400", [], [])

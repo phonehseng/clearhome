@@ -722,7 +722,33 @@ def programs():
 
 
 # Common places people mention that are outside Clear Home's service area.
-OUTSIDE = r"\b(richmond|baltimore|maryland|silver spring|bethesda|rockville|washington,? dc|d\.?c\.?|norfolk|virginia beach|chesapeake|charlottesville|roanoke|fredericksburg|stafford|winchester|harrisonburg|lynchburg|frederick)\b"
+OUTSIDE = r"\b(richmond|baltimore|maryland|silver spring|bethesda|rockville|washington,? dc|d\.?c\.?|norfolk|virginia beach|chesapeake|charlottesville|roanoke|fredericksburg|stafford|winchester|harrisonburg|lynchburg|frederick|uva|university of virginia|vcu|jmu|james madison|odu|old dominion|william (?:and|&) mary)\b"
+
+# Nicknames people type for the campuses we cover, written out as soon as a question arrives, so every step (the
+# follow-up questions, areas, walking times and Gemma) reads the same name.
+NICKNAMES = [
+    (re.compile(r"\b(?:v\.?\s?tech|va\.?\s?tech|virginia polytechnic(?: institute)?(?: and state university)?|vpi|vt|hokies?)\b(?!\s+tech)", re.I), "Virginia Tech"),
+    (re.compile(r"\b(?:gmu|george mason university|mason university)\b", re.I), "George Mason"),
+    (re.compile(r"\b(?:nvcc|nova cc|northern virginia community college|nova community college)\b", re.I), "NOVA Community College"),
+]
+
+
+# Advice or information ("how do I apply for Section 8?", "what are my rights?"): the answer may name places, but their
+# cards wait behind a button. Searches and urgent needs (behind on rent, eviction, tonight) still show them.
+ADVICE = re.compile(r"^\s*(?:what|what's|whats|how|why|when|should|can|could|is|are|does|do|explain|tell me about)\b"
+                    r"|\b(?:advice|tips?|my rights|what (?:should|do|can) i)\b", re.I)
+
+
+def advice_question(text):
+    t = text or ""
+    return bool(ADVICE.search(t)) and not housing_search(t) and not URGENT.search(t) and not STAY_NOW.search(t) and not DANGER.search(t)
+
+
+def expand_nicknames(text):
+    """'rooms near vtech' -> 'rooms near Virginia Tech'; 'by gmu' -> 'by George Mason'."""
+    for pattern, name in NICKNAMES:
+        text = pattern.sub(name, text or "")
+    return text
 OUTSIDE_NAMES = {"dc": "Washington, DC", "d.c.": "Washington, DC", "d.c": "Washington, DC", "washington dc": "Washington, DC", "washington, dc": "Washington, DC"}
 
 
