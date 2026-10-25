@@ -1048,6 +1048,17 @@
     #tools .assistant-chips{justify-content:center;padding:14px 0 4px;background:none}
     #tools .assistant:has(.assistant-log:empty) .assistant-privacy{padding-bottom:40px}
     @media(max-width:560px){#tools .assistant-welcome{padding:40px 16px 16px}#tools .assistant-form,#tools .assistant-chips,#tools .assistant-privacy{width:calc(100% - 24px)}}
+      /* Gemma's sort box is the one that stands out in Explore Rentals: a blue rim and glow on a light blue fill. The
+       Filters & Favorites bar and the "Showing..." summary sit back in a quiet grey. */
+    #listings .sort-chat{background:linear-gradient(135deg,#e7eeff,#f4f7ff)!important;border:2px solid #3b63c4!important;
+      box-shadow:0 12px 30px #2f55b533,0 0 0 5px #3b63c414!important}
+    #listings .sort-chat .sort-reply strong,#listings .sort-chat .sort-reply b{color:#23408f}
+    #listings .listings-drawer,#listings .filter-summary{background:#eceff5!important;border:1px solid #dde2eb!important;box-shadow:none!important}
+    #listings .listings-drawer>summary:hover{background:#e3e7ef}
+    #listings .listings-drawer .drawer-title{color:#3d4a66}
+    #listings .listings-drawer .drawer-hint{background:#fff;color:#14203f;border:1px solid #cdd5e3}
+    #listings .listings-drawer[open] .listings-body{background:#fff;border-radius:0 0 18px 18px;padding-top:18px}
+    #listings .filter-summary .filter-summary-text{color:#3d4a66}
   </style>
 </head>
 <body>
