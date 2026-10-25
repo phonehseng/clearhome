@@ -977,7 +977,6 @@
       /* Simple /app: the chat first, the map beside "Need a Safe Place Tonight?", tonight results, then rentals in a drop-down. */
     #tools.simple-tools{display:grid;gap:22px;margin-top:28px}
     #tools.simple-tools .assistant{margin:0}
-    #tools.simple-tools .assistant-log:not(.chatting){min-height:0}
     .tools-row{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,1fr);gap:22px;align-items:start}
     .tools-row .hero-map-wrap{min-width:0}
     .tools-row .hero-map{height:340px}
@@ -999,6 +998,58 @@
     .listings-drawer .drawer-hint::after{content:'';width:8px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
     .listings-drawer[open] .drawer-hint::after{transform:translateY(2px) rotate(-135deg)}
     .listings-drawer .listings-body{padding:6px 20px 20px}
+      /* The chat looks like a messaging app (like popular chat apps): a roomy conversation, Gemma's messages beside its
+       avatar, your messages on the right, and a rounded message box with the send button inside it. */
+    #tools .assistant{display:flex;flex-direction:column;border-radius:24px!important;overflow:hidden}
+    #tools .assistant-head{padding:14px 20px;background:#fff!important;border-bottom:1px solid #e6ebf5}
+    #tools .assistant-head strong{font-size:16px}
+    #tools .assistant-status{display:flex;align-items:center;gap:6px}
+    #tools .assistant-status::before{content:'';width:8px;height:8px;border-radius:50%;background:#1f9d55;box-shadow:0 0 0 3px #1f9d5526}
+    #tools.simple-tools .assistant-log{min-height:260px;padding:22px 22px 10px;gap:14px;background:#fbfcff}
+    #tools.simple-tools .assistant-log.chatting{height:min(560px,68vh)}
+    #tools .assistant-log .msg{font-size:15px;line-height:1.6;padding:12px 16px;border-radius:20px;max-width:min(78%,640px)}
+    #tools .assistant-log .msg.user{background:#23408f;color:#fff;border-bottom-right-radius:6px}
+    #tools .assistant-log .msg.bot{position:relative;margin-left:44px;background:#eef2fa;color:#14203f;border-bottom-left-radius:6px}
+    #tools .assistant-log .msg.bot::after{content:'';position:absolute;left:-44px;bottom:0;width:32px;height:32px;border-radius:50%;
+      background:#fff url(/logo.svg) center/22px no-repeat;box-shadow:0 0 0 1px #dfe6f3,0 2px 6px #0b143314}
+    #tools .assistant-log .msg.bot[data-state=update]{background:transparent}
+    #tools .assistant-log>:is(.chat-cards,.chat-hotels,.chat-lines,.chat-next,.msg-engine){margin-left:44px;width:auto;max-width:calc(100% - 44px)}
+    #tools .assistant-log .msg-engine{margin-top:-8px}
+    #tools .assistant-chips{padding:4px 22px 10px;background:#fbfcff}
+    #tools .assistant-chips button{border-radius:14px;padding:9px 14px;font-size:13.5px;text-align:left}
+    #tools .assistant-form{display:flex;align-items:flex-end;gap:8px;margin:6px 18px 0;padding:6px 6px 6px 18px;border:1px solid #cfd8ea!important;border-radius:28px;
+      background:#fff;box-shadow:0 2px 10px #0b143312;transition:border-color .15s,box-shadow .15s}
+    #tools .assistant-form:focus-within{border-color:#6f8fd6!important;box-shadow:0 0 0 4px #2f55b51f,0 2px 10px #0b143312}
+    #tools .assistant-form textarea{flex:1;min-height:42px;max-height:160px;padding:10px 0;border:0!important;border-radius:0;background:transparent;box-shadow:none!important;
+      outline:none;resize:none;font-size:15.5px;line-height:1.45}
+    #tools .assistant-form .send-button{flex:none;display:grid;place-items:center;width:42px;height:42px;min-height:0;padding:0;border-radius:50%}
+    #tools .assistant-form .send-button:disabled{opacity:.45}
+    #tools .assistant-privacy{padding:8px 18px 14px;text-align:center;font-size:12.5px}
+    #tools .assistant-privacy summary{margin:0 auto;text-decoration:none}
+    #tools .assistant-privacy summary:hover{text-decoration:underline}
+    #tools .assistant-privacy p{text-align:left}
+    @media(max-width:560px){
+      #tools.simple-tools .assistant-log{min-height:220px;padding:16px 14px 8px}
+      #tools .assistant-log .msg{max-width:88%}
+      #tools .assistant-log .msg.bot{margin-left:38px}
+      #tools .assistant-log .msg.bot::after{left:-38px;width:28px;height:28px;background-size:19px}
+      #tools .assistant-log>:is(.chat-cards,.chat-hotels,.chat-lines,.chat-next,.msg-engine){margin-left:38px;max-width:calc(100% - 38px)}
+      #tools .assistant-chips{padding:4px 14px 10px}
+      #tools .assistant-form{margin:6px 12px 0}
+    }
+      /* Start screen (chat-app style): room at the top, "Hi, I'm Gemma." and the message box under it, examples below.
+       Once there's a message, the conversation fills the window and the box sits under it. */
+    #tools .assistant-welcome{display:grid;justify-items:center;gap:6px;padding:64px 24px 22px;text-align:center}
+    #tools .assistant-welcome img{width:48px;height:48px;border-radius:14px;box-shadow:0 6px 18px #23408f33;margin-bottom:6px}
+    #tools .assistant-welcome h2{margin:0;font-size:clamp(28px,3.4vw,38px);font-weight:700;letter-spacing:-.8px;color:#14203f}
+    #tools .assistant-welcome p{margin:0;font-size:16px;color:var(--muted)}
+    #tools .assistant:has(.assistant-log:not(:empty)) .assistant-welcome{display:none}
+    #tools.simple-tools .assistant-log:empty{display:none}
+    #tools .assistant-form,#tools .assistant-chips,#tools .assistant-privacy{width:min(760px,calc(100% - 36px));margin-left:auto;margin-right:auto}
+    #tools .assistant-form{margin-top:6px}
+    #tools .assistant-chips{justify-content:center;padding:14px 0 4px;background:none}
+    #tools .assistant:has(.assistant-log:empty) .assistant-privacy{padding-bottom:40px}
+    @media(max-width:560px){#tools .assistant-welcome{padding:40px 16px 16px}#tools .assistant-form,#tools .assistant-chips,#tools .assistant-privacy{width:calc(100% - 24px)}}
   </style>
 </head>
 <body>
@@ -1069,15 +1120,15 @@
   <section id="tools" class="simple-tools" aria-label="Ask Clear Home">
     <h1 class="visually-hidden">Clear Home: housing help for Northern Virginia and Blacksburg</h1>
     <div class="assistant" id="assistant">
-      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="34" height="34"></span><div><strong>Ask about housing</strong><span>Gemma 4 · answers from verified places only</span></div></div>
+      <div class="assistant-welcome"><img src="/logo.svg" alt="" width="44" height="44"><h2>Hi, I’m Gemma.</h2><p>Ask about homes, rent help or shelters in Northern Virginia and Blacksburg.</p></div>
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
+      <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the Assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" aria-describedby="assistant-privacy" placeholder="Message Gemma about housing…"></textarea><button class="primary send-button" type="submit" aria-label="Send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg></button></form>
       <div class="assistant-chips" id="assistant-chips" role="group" aria-label="Example housing questions">
         <button type="button">Rooms near Virginia Tech under $700</button>
         <button type="button">Rent help in Alexandria</button>
         <button type="button">Shelter tonight in Arlington</button>
       </div>
-      <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the Assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" aria-describedby="assistant-privacy" placeholder="Ask anything about housing, or “near my office at …”"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
-      <details class="assistant-privacy" id="assistant-privacy"><summary>Please use made-up details. Chats aren’t saved.</summary><p>Gemma 4 answers on our own server in Google Cloud, so your message doesn’t go to an outside AI company. If that server is busy, Google’s Gemini API answers instead, and on its free tier Google may use what’s sent to improve its products. Before either sees it, we remove SSNs, card and account numbers, email addresses and phone numbers. Names and street addresses are not removed, so please use made-up details. Clear Home doesn’t save chats.</p></details>
+      <details class="assistant-privacy" id="assistant-privacy"><summary>Gemma can make mistakes. Please use made-up details; chats aren’t saved.</summary><p>Gemma 4 answers on our own server in Google Cloud, so your message doesn’t go to an outside AI company. If that server is busy, Google’s Gemini API answers instead, and on its free tier Google may use what’s sent to improve its products. Before either sees it, we remove SSNs, card and account numbers, email addresses and phone numbers. Names and street addresses are not removed, so please use made-up details. Clear Home doesn’t save chats.</p></details>
     </div>
     <div class="tools-row"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Look for shelters or hotels tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div></section></div>
     <div class="tools-results"><div class="walk-results">
@@ -2104,7 +2155,7 @@
     wake.observe(document.getElementById('assistant'));
     const chips = document.getElementById('assistant-chips');
     chips.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { chips.hidden = true; ask(b.textContent); } });
-    botSay("Hi, I'm Gemma. Find homes near work or campus, or ask about rent help, shelters, and vouchers. I use our verified resources.");
+    // The greeting is the start screen above the message box ("Hi, I'm Gemma."); the log fills once someone writes.
 
     // "Pick an area" fills the box and moves the map there, the same as typing a place.
     document.getElementById('location-pick').addEventListener('change', e => {
@@ -2138,6 +2189,9 @@
 
     chatForm.addEventListener('submit', e => { e.preventDefault(); const q = chatInput.value.trim(); if (!q || busy) return; chips.hidden = true; chatInput.value = ''; ask(q); });
     chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit(); } });
+    // The message box grows with what's typed, up to a few lines, like a messaging app.
+    const fitInput = () => { chatInput.style.height = 'auto'; chatInput.style.height = Math.min(chatInput.scrollHeight, 160) + 'px'; };
+    chatInput.addEventListener('input', fitInput); chatForm.addEventListener('submit', () => setTimeout(fitInput));
     // A first question typed in the front page's "Get started" intro is waiting here: show the chat and send it right away.
     let firstQuestion = null; try { firstQuestion = sessionStorage.getItem('ch:first-question'); sessionStorage.removeItem('ch:first-question'); } catch {}
     if (firstQuestion) { document.getElementById('assistant').scrollIntoView({ block: 'center' }); chatInput.value = firstQuestion; chatForm.requestSubmit(); }
