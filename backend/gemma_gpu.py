@@ -7,11 +7,13 @@ If the GPU is still starting (it scales to zero) or fails, callers fall back to 
 
 Usage: python backend/gemma_gpu.py "What is a housing choice voucher?"
 """
+import http.client
 import json
 import os
 import sys
 import threading
 import time
+import urllib.parse
 
 import requests
 
@@ -20,6 +22,7 @@ FIRST_BYTE_SECONDS = 20  # a cold GPU takes minutes to start; don't make anyone 
 _token, _lock = {"value": None, "expires": 0.0}, threading.Lock()
 _cold_until = 0.0  # after a failed call, skip the GPU briefly instead of waiting on it every time
 _ready_at = 0.0  # last time the GPU answered; Cloud Run lets an idle GPU sleep after about 15 minutes
+_warm_started, _warm_lock = 0.0, threading.Lock()  # one wake-up call at a time (a cold start takes a few minutes)
 
 
 def url():
@@ -98,17 +101,34 @@ def ask(prompt):
 
 
 def warm():
-    """Start the GPU in the background (it scales to zero), so the first question doesn't wait for it."""
-    if not url():
-        return
+    """Wake the GPU (it scales to zero) so it's ready by the first question; True when a wake-up call went out.
+    Waits until that call has reached the GPU: on Cloud Run this app's CPU slows to a crawl once it has answered, so a
+    call still in a background thread might never be sent. Only one wake-up at a time, and none while the GPU is awake."""
+    global _warm_started
+    with _warm_lock:
+        if not url() or not asleep() or time.time() - _warm_started < 5 * 60:
+            return False
+        _warm_started = time.time()
+    sent = threading.Event()
+
     def run():
+        global _warm_started
         try:
-            requests.post(f"{url()}/api/generate", headers=_auth(), timeout=300,
-                          json={"model": MODEL, "prompt": "hi", "stream": False, "think": False, "options": {"num_predict": 1}}).raise_for_status()
-            _mark_ready()
+            parts = urllib.parse.urlsplit(url())
+            conn = (http.client.HTTPSConnection if parts.scheme == "https" else http.client.HTTPConnection)(parts.netloc, timeout=300)
+            body = json.dumps({"model": MODEL, "prompt": "hi", "stream": False, "think": False, "options": {"num_predict": 1}})
+            conn.request("POST", parts.path + "/api/generate", body, {"Content-Type": "application/json", **_auth()})
+            sent.set()  # the GPU has the call and starts up; the answer (once the model is loaded) can take minutes
+            if conn.getresponse().status == 200:
+                _mark_ready()
+                return
         except Exception:
             pass
+        _warm_started = 0.0  # it didn't work, so the next visitor can try again
+        sent.set()
     threading.Thread(target=run, daemon=True).start()
+    sent.wait(5)
+    return True
 
 
 if __name__ == "__main__":

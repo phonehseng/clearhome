@@ -123,5 +123,45 @@ class ThinkingTests(unittest.TestCase):
         self.assertFalse(post.call_args_list[1].kwargs["json"]["think"])
 
 
+class WakeUpTests(unittest.TestCase):
+    """Get Started wakes the GPU: the call is sent before the page gets its answer, only one goes out at a time, none
+    while the GPU is awake, and a failed one lets the next visitor try again."""
+
+    def wake(self, conn, ready_at=0.0, started=0.0):
+        env = {"GEMMA_GPU_URL": "https://gpu.example", "GEMMA_GPU_TOKEN": "t"}
+        with patch.dict("os.environ", env), patch.object(gemma_gpu, "_ready_at", ready_at), \
+                patch.object(gemma_gpu, "_warm_started", started), patch.object(gemma_gpu.http.client, "HTTPSConnection", return_value=conn) as make:
+            first = gemma_gpu.warm()
+            sent_before_reply = conn.request.called
+            second = gemma_gpu.warm()
+            return first, second, sent_before_reply, make, gemma_gpu._warm_started
+
+    def test_a_sleeping_gpu_gets_one_wake_up_call(self):
+        conn = MagicMock()
+        conn.getresponse.return_value.status = 200
+        first, second, sent, make, _ = self.wake(conn)
+        self.assertEqual((first, second, sent), (True, False, True))
+        make.assert_called_once_with("gpu.example", timeout=300)
+        self.assertEqual(conn.request.call_args[0][:2], ("POST", "/api/generate"))
+
+    def test_an_awake_gpu_is_left_alone(self):
+        import time
+        first, _, _, make, _ = self.wake(MagicMock(), ready_at=time.time())
+        self.assertFalse(first)
+        make.assert_not_called()
+
+    def test_a_failed_wake_up_lets_the_next_visitor_try(self):
+        conn = MagicMock()
+        conn.request.side_effect = OSError("refused")
+        first, _, _, _, started = self.wake(conn)
+        self.assertTrue(first)
+        self.assertEqual(started, 0.0)
+
+    def test_the_endpoint_says_whether_it_woke_the_gpu(self):
+        with patch.object(gemma_gpu, "warm", return_value=True):
+            body = server.app.test_client().post("/api/gemma/warm").get_json()
+        self.assertTrue(body["waking"])
+
+
 if __name__ == "__main__":
     unittest.main()

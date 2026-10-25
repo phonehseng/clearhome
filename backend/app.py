@@ -578,10 +578,11 @@ def ask_advisor():
 
 @app.post("/api/gemma/warm")
 def warm_gemma():
-    """The page calls this when the chat comes into view, so our Gemma GPU (which sleeps when idle) wakes up."""
+    """Pages call this when someone presses Get Started or the chat comes into view, so our Gemma GPU (which sleeps
+    when idle) wakes up before the first question."""
     import gemma_gpu
-    gemma_gpu.warm()
-    return jsonify(ok=True, gpu=bool(gemma_gpu.url()))
+    woke = gemma_gpu.warm()
+    return jsonify(ok=True, gpu=bool(gemma_gpu.url()), waking=woke)
 
 
 @app.post("/api/ask/stream")
