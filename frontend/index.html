@@ -861,12 +861,34 @@
   const shownRows = () => showingFavorites ? Object.values(favorites) : housingRows;
   const favoriteCount = document.getElementById('favorite-count');
   function saveFavorites() { try { localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites)); } catch {} favoriteCount.textContent = Object.keys(favorites).length; }
+  function celebrateFavorite(button) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = button.getBoundingClientRect();
+    const heart = document.createElement('span');
+    heart.className = 'favorite-float';
+    heart.setAttribute('aria-hidden', 'true');
+    heart.style.left = `${rect.left + rect.width / 2}px`;
+    heart.style.top = `${rect.top + rect.height / 2}px`;
+    heart.append(button.querySelector('svg').cloneNode(true));
+    document.body.append(heart);
+    const remove = () => heart.remove();
+    heart.addEventListener('animationend', remove, {once: true});
+    setTimeout(remove, 1100);
+  }
   function favoriteButton(row) {
     const button = housingElement('button','favorite-btn'); button.type = 'button';
     const draw = () => { const saved = Boolean(favorites[row.id]); button.setAttribute('aria-pressed', String(saved));
       button.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9Z"/></svg>';
       button.title = saved ? 'Saved. Tap to remove' : 'Save'; button.setAttribute('aria-label', `${saved ? 'Remove' : 'Save'} ${row.community || row.name} ${saved ? 'from' : 'to'} favorites`); };
-    button.addEventListener('click', () => { if (favorites[row.id]) delete favorites[row.id]; else favorites[row.id] = row; saveFavorites(); if (showingFavorites) renderHousing(); else draw(); });
+    button.addEventListener('click', () => {
+      const saving = !favorites[row.id];
+      if (saving) favorites[row.id] = row;
+      else delete favorites[row.id];
+      saveFavorites();
+      if (saving) celebrateFavorite(button);
+      if (showingFavorites) renderHousing();
+      else draw();
+    });
     draw(); return button;
   }
   // "Browse housing" links: a quick (~350 ms) smooth scroll to the listings that keeps the real #listings URL.

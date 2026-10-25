@@ -60,3 +60,34 @@ body { -webkit-user-select: text; user-select: text; }
   font-size: 11px;
   line-height: 1.6;
 }
+
+/* A gentle rose halo distinguishes Save from the adjacent Share control. */
+.card-tools .favorite-btn:hover,
+.card-tools .favorite-btn:focus-visible {
+  background: #fff0f2;
+  border-color: #d88e99;
+  color: #ac3548;
+  box-shadow: 0 0 0 4px #c944591a;
+}
+
+/* Mounted above the cards so their clipped photo panels cannot hide it. */
+.favorite-float {
+  position: fixed;
+  z-index: 1000;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  color: #bc3d53;
+  pointer-events: none;
+  animation: favorite-drift 850ms ease-out both;
+}
+.favorite-float svg { display: block; width: 100%; height: 100%; fill: currentColor; }
+@keyframes favorite-drift {
+  0% { opacity: 0; transform: translate(0, 0) scale(.65); }
+  20% { opacity: 1; transform: translate(-3px, -12px) scale(1); }
+  65% { opacity: .8; transform: translate(6px, -38px) scale(.95); }
+  100% { opacity: 0; transform: translate(10px, -62px) scale(.75); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .favorite-float { display: none; animation: none; }
+}
