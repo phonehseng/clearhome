@@ -589,6 +589,9 @@
     #github .repo-team a{font-size:12px;padding:3px 9px 3px 3px}
     #github .repo-team img{width:20px;height:20px}
     #github .repo-actions{gap:8px}
+    #github .repo-actions{flex-wrap:nowrap}  /* the code and commits buttons sit side by side */
+    #github .repo-actions a{white-space:nowrap}
+    @media (max-width:520px){#github .repo-actions{flex-wrap:wrap}}
     #github .repo-actions a{min-height:38px;padding:8px 14px;font-size:14px;border-radius:9px}
     /* Closing banner and GitHub card, smaller again: narrower boxes, less padding, smaller type. */
     .cl-section.cl-end{width:min(640px,calc(100% - 32px));margin:28px auto 40px;padding:18px 20px;gap:12px 16px;border-radius:18px}
