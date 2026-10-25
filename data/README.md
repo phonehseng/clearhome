@@ -132,41 +132,58 @@ Keep the team's Northern Virginia scope when adding support resources: start wit
 
 ## Listing photos
 
-The latest pass researched all **218 previously missing communities** and added
-official photo sources for **183 communities / 188 listing records**. The catalog
-now has photos on **250 housing records across 206 communities**. The remaining
-**35 communities** are listed in `photo_review.json`, with the reason each still
-needs review. `photo_sources.json` records the outcome for all 218 communities,
-including exact image and supporting page URLs for accepted matches. Existing
-photos are shared only across plans at the same physical community. No rent,
-vacancy, eligibility or availability-review date was changed.
+After reconciling the latest remote catalog, **296 of 336 housing records**
+have image metadata across 299 community groups. This pass adds 16 image records
+that were still missing on remote main. Previously removed photos remain removed;
+the newer catalog's 40 missing records are tracked in `photo_review.json`.
+`photo_sources.json` records source decisions and supporting pages. Source review
+does not certify vacancy, condition or provider permission. No rent, eligibility,
+availability or availability-review date was changed by this pass.
 
-This workspace blocks direct provider/CDN downloads. Official page links were
-reviewed through web tools, but downloaded pixel dimensions and successful
-image delivery have not been established here. Some provider-published images
-are thumbnails, not high-resolution originals. Prefer a published larger image
-when available; do not manufacture a larger original by editing its URL. Wrong
-properties, generic decorations, logos, floor plans and identified renderings
-were rejected. The neighboring Arlington View East building was excluded from
-the Arlington View Terrace record after its different address was confirmed.
-Do not claim that every listing now has a high-quality image.
+Sources include property/owner/public-agency websites, official project-team
+galleries and address-matched listing platforms. Provider renderings are explicitly labeled. Beasley Square uses the project owner's approved
+Wikimedia Commons photograph by Beyond My Ken, captured October 4, 2021, under
+CC BY-SA 4.0. Its credit, source and license appear on the card and enlarged view.
+The latest catalog's existing property image choices are preserved; rendering
+metadata is labeled explicitly without changing its source image.
 
-On a machine with provider access, audit the recorded images with
-`python backend/photo_audit.py --download`. It reports native dimensions,
-missing sources, failed downloads and images below 1200×675; it never enlarges
-images, invents replacements or automatically certifies a photo's identity.
+`photo_delivery_review.json` distinguishes URL checks from catalog coverage.
+Of 260 unique current image URLs, the web connector returned 178 images; delivery
+of 51 could not be confirmed, and 31 newly pulled image URLs have not been checked
+in this pass. Unconfirmed does not establish that a URL is broken. Direct provider
+and CDN downloads are blocked in this workspace, so native dimensions and full
+browser delivery have not been verified here. Some official images are small;
+**do not claim every listing has a high-resolution or currently deliverable image**.
 
-Optional `photo` metadata contains an HTTPS image `url`, the supporting `source_url`, descriptive `alt`, `credit`, `reviewed_on`, and a caption explaining that community/model photos may differ from the offered unit. Photos are hosted by providers or their listing platform; they are not proof of vacancy or condition. The UI shows a labeled fallback if a photo is missing or fails to load. Photo research never resets the listing's availability review date.
-
-The app now serves photos at `/media/listings/<id>`. It downloads only the record's real provider image (from approved source hosts), validates the image, and caches the original bytes in ignored `.cache/listing-photos/`. It never generates replacement photography. Failed downloads show a source link instead. Thumbnail, hover, and enlarged views reuse the same cached image. Internet access is needed once per unique photo; subsequent requests use disk.
-
-To prefetch photos on a machine with provider-host access:
+On a machine with provider access, run:
 
 ```sh
-python backend/listing_photos.py
+python backend/photo_audit.py --download --require-complete
 ```
 
-A source review date is not a guarantee of future CDN access. This cloud workspace denies the photo hosts; run the importer locally or allow those hosts using the environment network settings. No source images were successfully downloaded in that restricted workspace.
+This checks every housing record, validates downloaded images, reports native
+dimensions and flags images below 1200×675. It exits unsuccessfully when images
+are missing or cannot be validated. Small images are reported separately; a
+successful delivery check does not certify high resolution or property identity.
+The audit never enlarges images, invents replacements or changes listing facts.
+
+`photo` metadata contains an HTTPS image `url`, supporting `source_url`,
+descriptive `alt`, `credit`, `reviewed_on` and caption. `kind: "rendering"`
+requires explicit labeling. Licensed archive images also carry `license_url`,
+`license_name` and `captured_on`. Community/model images may differ from the
+actual unit and are not proof of vacancy or condition.
+
+The app first serves `/media/listings/<id>`, downloading only the canonical image
+from approved hosts, validating its bytes and caching it in ignored
+`.cache/listing-photos/`. Catalog and walking-search cards retry the same source
+URL directly in the browser if the server cannot fetch it. If both fail, the
+card shows an unavailable message and source link. No replacement image is
+invented. To prefetch images locally, run `python backend/listing_photos.py`.
+
+Shared `frontend/interface.css` prevents accidental selection of buttons,
+navigation and decorative elements. Listing details, addresses, prices, lease
+text and form input remain selectable and copyable. It does not block keyboard
+navigation, clipboard shortcuts or context menus.
 
 ## Adding a listing by hand
 

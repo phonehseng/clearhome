@@ -4,16 +4,6 @@
   "review_method": "AI-assisted review of indexed images and official property, owner and public-agency pages; not a provider permission, inspection, vacancy confirmation or pixel-dimension audit.",
   "communities": [
     {
-      "community": "Atlantic Boulevard Apartments",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "atlantic-boulevard"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://liveatlanticblvd.com/",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
       "community": "Coan Pond Residences",
       "jurisdiction": "Fairfax County",
       "record_ids": [
@@ -638,16 +628,6 @@
       "dimensions_checked": false
     },
     {
-      "community": "Exo",
-      "jurisdiction": "Fairfax County",
-      "record_ids": [
-        "nova-fairfax-county-exo"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
       "community": "Faraday Park",
       "jurisdiction": "Fairfax County",
       "record_ids": [
@@ -912,16 +892,6 @@
       "reviewed_on": "2026-10-24"
     },
     {
-      "community": "Claridge House",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-claridge-house"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
       "community": "Culpepper Gardens",
       "jurisdiction": "Arlington County",
       "record_ids": [
@@ -994,16 +964,6 @@
       "dimensions_checked": false
     },
     {
-      "community": "Buckingham Gardens",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-buckingham-gardens"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
       "community": "The Cadence",
       "jurisdiction": "Arlington County",
       "record_ids": [
@@ -1014,16 +974,6 @@
       "image_url": "https://capi.myleasestar.com/v2/dimg/176993434/1920x1080/176993434.jpg",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
       "dimensions_checked": false
-    },
-    {
-      "community": "Knightsbridge Apts",
-      "jurisdiction": "Arlington County",
-      "record_ids": [
-        "nova-arlington-county-knightsbridge-apts"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "The Madison at Ballston Station",
@@ -1350,16 +1300,6 @@
       "reviewed_on": "2026-10-24"
     },
     {
-      "community": "Acclaim at Ashburn",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "nova-loudoun-county-acclaim-at-ashburn"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
       "community": "Ashburn Chase",
       "jurisdiction": "Loudoun County",
       "record_ids": [
@@ -1466,16 +1406,6 @@
       "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/jcp-kettler-thewilliam-day1-37.jpg",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
       "dimensions_checked": false
-    },
-    {
-      "community": "The Abbey & The Devon at South Riding",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "nova-loudoun-county-the-abbey-the-devon-at-south-riding"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Bell Ashburn Farms",
@@ -1670,16 +1600,6 @@
       "dimensions_checked": false
     },
     {
-      "community": "Purcellville East",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "nova-loudoun-county-purcellville-east"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
       "community": "Purcellville Pointe",
       "jurisdiction": "Loudoun County",
       "record_ids": [
@@ -1704,16 +1624,6 @@
       "reviewed_on": "2026-10-24"
     },
     {
-      "community": "Madison House",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "nova-loudoun-county-madison-house"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
       "community": "Annie B. Rose House",
       "jurisdiction": "Alexandria City",
       "record_ids": [
@@ -1724,16 +1634,6 @@
       "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/120987/abrh-exterior05.jpg",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
       "dimensions_checked": false
-    },
-    {
-      "community": "Claridge House Alexandria",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "nova-alexandria-city-claridge-house-alexandria"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Foxchase",
@@ -1760,16 +1660,6 @@
       "dimensions_checked": false
     },
     {
-      "community": "Olde Towne West III",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "nova-alexandria-city-olde-towne-west-iii"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
       "community": "Acclaim at Alexandria",
       "jurisdiction": "Alexandria City",
       "record_ids": [
@@ -1780,16 +1670,6 @@
       "image_url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/57804/avanath_026%20alexandriastation%20dsc_2609_10_11_12_13.jpg",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
       "dimensions_checked": false
-    },
-    {
-      "community": "Beasley Square",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "nova-alexandria-city-beasley-square"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Beverly Park",
@@ -1994,16 +1874,6 @@
       "image_url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/27/2025/12/01/011806/692df7fecac306.08314136247.png",
       "method": "indexed_image_on_official_property_owner_or_agency_page",
       "dimensions_checked": false
-    },
-    {
-      "community": "Potomac West",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "nova-alexandria-city-potomac-west"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
       "community": "Saint James Plaza",
@@ -2330,16 +2200,6 @@
       "dimensions_checked": false
     },
     {
-      "community": "The Harbor at Quantico Creek",
-      "jurisdiction": "Prince William County",
-      "record_ids": [
-        "nova-prince-william-county-the-harbor-at-quantico-creek"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://www.pwcva.gov/department/housing-community-development/list-of-affordable-rental-units",
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
       "community": "455 Tinner Hill",
       "jurisdiction": "Falls Church City",
       "record_ids": [
@@ -2373,16 +2233,6 @@
       "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
       "method": "official_page_image_link",
       "dimensions_checked": false,
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
-    },
-    {
-      "community": "The Read Building",
-      "jurisdiction": "Falls Church City",
-      "record_ids": [
-        "nova-falls-church-city-the-read-building"
-      ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
       "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
     },
     {
@@ -2566,6 +2416,249 @@
       "image_url": "https://www.blacksburgmill.com/wp-content/uploads/2019/09/The-Mill-Apartments-Blacksburg.jpg",
       "method": "official_page_image_link",
       "dimensions_checked": false
+    },
+    {
+      "community": "Atlantic Boulevard Apartments",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "atlantic-boulevard"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartmenthomeliving.com/apartment-finder/Atlantic-Boulevard-Apartments-Sterling-VA-20166-27628662",
+      "image_url": "https://assets.apartmenthomeliving.com/imgs/829805208/1382-922-117-B/atlantic-boulevard-apartments-sterling-va-20166-27628662-building-photo-1.jpg",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property name, address or documented redevelopment identity corroborated against official property evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://liveatlanticblvd.com/"
+    },
+    {
+      "community": "Exo",
+      "jurisdiction": "Fairfax County",
+      "record_ids": [
+        "nova-fairfax-county-exo"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://myexoreston.prospectportal.com/",
+      "image_url": "https://medialibrarycfo.entrata.com/15077/MLv3/3/21/2025/02/21/013551/67b8e3a73be544.87327926599.jpg",
+      "kind": "photo",
+      "source_kind": "owner_or_property_website",
+      "method": "Property identity and address reviewed against the publisher page and existing official evidence.",
+      "dimensions_checked": false
+    },
+    {
+      "community": "Claridge House",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-claridge-house"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartments.com/building/claridge-house-arlington-va/fkfglfv/",
+      "image_url": "https://images1.apartments.com/i2/KMXEKrieDL6iacQ51CiNWr3jquh95GU-HRjPSfzkc7I/111/image.jpg",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property identity and address reviewed against the publisher page and existing official evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units"
+    },
+    {
+      "community": "Buckingham Gardens",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-buckingham-gardens"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartments.com/buckingham-gardens-arlington-va/nkm8xzm/",
+      "image_url": "https://images1.apartments.com/i2/yK6EmpD8AdiNAbeVf-_VB7odX43iJJ3c3xYUeTcYmmo/111/buckingham-gardens-arlington-va-primary-photo.jpg?p=1",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property identity and address reviewed against the publisher page and existing official evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units"
+    },
+    {
+      "community": "Knightsbridge Apts",
+      "jurisdiction": "Arlington County",
+      "record_ids": [
+        "nova-arlington-county-knightsbridge-apts"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://wesleyhousing.org/knightsbridge-apartments-welcomes-residents-home/",
+      "image_url": "https://wesleyhousing.org/wp-content/uploads/Wesley-Housing-Properties-Under-Development-Knightsbridge-1030x641.jpg",
+      "kind": "photo",
+      "source_kind": "owner_website",
+      "method": "Property name, address or documented redevelopment identity corroborated against official property evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units"
+    },
+    {
+      "community": "Acclaim at Ashburn",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-acclaim-at-ashburn"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.avanath.com/community/acclaim-at-ashburn/",
+      "image_url": "https://www.avanath.com/wp-content/uploads/2018/08/000_8882-1024x684.jpg",
+      "kind": "photo",
+      "source_kind": "owner_website",
+      "method": "Property name, address or documented redevelopment identity corroborated against official property evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English"
+    },
+    {
+      "community": "The Abbey & The Devon at South Riding",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-the-abbey-the-devon-at-south-riding"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartments.com/the-abbey-at-south-riding-south-riding-va/z06et4x/",
+      "image_url": "https://images1.apartments.com/i2/Hf6iEoVhuSL9KgaUQ4_BYhSorn2Jh7tNUtY_Qq_NJX0/110/the-abbey-at-south-riding-south-riding-va-building-photo.jpg",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property identity and address reviewed against the publisher page and existing official evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English"
+    },
+    {
+      "community": "Purcellville East",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-purcellville-east"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartments.com/purcellville-east-apartments-purcellville-va/2gpmnq8/",
+      "image_url": "https://images1.apartments.com/i2/nhuuSh_yEShqWmBnh6vWdxPTsl4IfDSC4o5tOrk329o/116/purcellville-east-apartments-purcellville-va-primary-photo.jpg",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property identity and address reviewed against the publisher page and existing official evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English"
+    },
+    {
+      "community": "Madison House",
+      "jurisdiction": "Loudoun County",
+      "record_ids": [
+        "nova-loudoun-county-madison-house"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://residentialone.mystagingwebsite.com/apartments/madison-house/",
+      "image_url": "https://residentialone.mystagingwebsite.com/wp-content/uploads/2023/09/senior-apartments-leesburg-virginia-750x750-1.jpg",
+      "kind": "photo",
+      "source_kind": "owner_or_provider_website",
+      "method": "Property name, address or documented redevelopment identity corroborated against official property evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English"
+    },
+    {
+      "community": "Claridge House Alexandria",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-claridge-house-alexandria"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartments.com/claridge-house-of-alexandria-alexandria-va/ce5v4eg/",
+      "image_url": "https://images1.apartments.com/i2/Q3Vb4nCTZN8WFTkfZ7gnEJ2tj4ASP-K8ahLfMV7d2bo/111/claridge-house-of-alexandria-alexandria-va-primary-photo.jpg",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property identity and address reviewed against the publisher page and existing official evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf"
+    },
+    {
+      "community": "Olde Towne West III",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-olde-towne-west-iii"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartments.com/olde-towne-west-alexandria-va/dnnl2tk/",
+      "image_url": "https://images1.apartments.com/i2/0dktMPbKuxapCP7IJ3pKLEIU3V8pjYcWHeYgc72KhKI/111/olde-towne-west-alexandria-va-building-photo.jpg",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property identity and address reviewed against the publisher page and existing official evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf"
+    },
+    {
+      "community": "Beasley Square",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-beasley-square"
+      ],
+      "status": "licensed_archive_photo_reviewed",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1323_Duke_Street_at_South_West,_Alexandria.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/1323_Duke_Street_at_South_West%2C_Alexandria.jpg?utm_campaign=index&utm_content=original&utm_source=commons.wikimedia.org",
+      "kind": "photo",
+      "source_kind": "licensed_public_archive",
+      "method": "Property name, address or documented redevelopment identity corroborated against official property evidence; licensed archive use explicitly authorized by project owner.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_name": "CC BY-SA 4.0",
+      "photographer": "Beyond My Ken",
+      "captured_on": "2021-10-04"
+    },
+    {
+      "community": "Potomac West",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "nova-alexandria-city-potomac-west"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartments.com/potomac-west-apartments-alexandria-va/ztf58rx/",
+      "image_url": "https://images1.apartments.com/i2/jCYZNgK9HlktMoy1PQrK3PPUi-733SVDTot5BkmCAJ4/116/potomac-west-apartments-alexandria-va-primary-photo.jpg?p=1",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property name, address or documented redevelopment identity corroborated against official property evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf"
+    },
+    {
+      "community": "The Harbor at Quantico Creek",
+      "jurisdiction": "Prince William County",
+      "record_ids": [
+        "nova-prince-william-county-the-harbor-at-quantico-creek"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartments.com/the-harbor-at-quantico-creek-dumfries-va/wtj1xsl/",
+      "image_url": "https://images1.apartments.com/i2/nPA37tSfUR8eNLZopwH7ACDeQm4NCS_nKZ7rsbHuA5c/116/the-harbor-at-quantico-creek-dumfries-va-primary-photo.jpg",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property identity and address reviewed against the publisher page and existing official evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://www.harboratquanticocreek.com/"
+    },
+    {
+      "community": "The Read Building",
+      "jurisdiction": "Falls Church City",
+      "record_ids": [
+        "nova-falls-church-city-the-read-building"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://www.apartments.com/read-building-falls-church-va/s4fnqe6/",
+      "image_url": "https://images1.apartments.com/i2/AqMMbOvOEc-6RFv1ypdgva7Rw9mG49hPrtTRrxOGI2Y/111/read-building-falls-church-va-building-photo.jpg",
+      "kind": "photo",
+      "source_kind": "listing_platform",
+      "method": "Property identity and address reviewed against the publisher page and existing official evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums"
+    },
+    {
+      "community": "Community Lodgings Elbert Avenue Apartments",
+      "jurisdiction": "Alexandria City",
+      "record_ids": [
+        "community-lodgings-elbert-avenue-one-to-three-bedroom"
+      ],
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://communitylodgings.org/get-involved/a-home-in-alexandria-campaign/",
+      "image_url": "https://communitylodgings.org/wp-content/uploads/2025/02/3912Elbert3-crop.webp",
+      "kind": "photo",
+      "source_kind": "owner_or_provider_website",
+      "method": "Property name, address or documented redevelopment identity corroborated against official property evidence.",
+      "dimensions_checked": false,
+      "owner_source_url": "https://communitylodgings.org/programs/affordable-housing/"
     }
   ]
 }

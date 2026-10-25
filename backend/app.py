@@ -81,6 +81,11 @@ def rental_labels():
     return send_from_directory(FRONTEND, 'rental-labels.js')
 
 
+@app.get('/interface.css')
+def interface_styles():
+    return send_from_directory(FRONTEND, 'interface.css')
+
+
 @app.get("/media/listings/<resource_id>")
 def listing_photo(resource_id):
     # IDs resolve to trusted catalog metadata; arbitrary URLs are never accepted.
