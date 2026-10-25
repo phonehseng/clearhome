@@ -23017,7 +23017,15 @@
     "cost": "Provider advertises $730 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.241875,
     "lon": -80.427638,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.cdn.appfolio.com/granitesl/images/38cacbed-5a2b-4faa-b0e0-882ad851b20b/medium.jpg",
+      "source_url": "https://granitesl.appfolio.com/listings/detail/c7faebea-2fa0-4146-ac4b",
+      "alt": "Carlton Scott Apartments listing photo from Granite Properties.",
+      "credit": "Granite Properties listing",
+      "reviewed_on": "2026-10-25",
+      "caption": "Listing photo from the property manager; the offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-300-mcdonald-street-c24-room-in-shared-apartment",
@@ -23095,7 +23103,15 @@
     "cost": "Provider advertises $675 per person per month. Additional fees, deposits, and utilities may apply; confirm the written total.",
     "lat": 37.238003,
     "lon": -80.419319,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://images.cdn.appfolio.com/granitesl/images/d29d0416-54cb-43c5-94a8-12db1d50f687/medium.jpg",
+      "source_url": "https://granitesl.appfolio.com/listings/detail/0b75fde4-93b8-4a77-811e",
+      "alt": "300 McDonald Street listing photo from Granite Properties.",
+      "credit": "Granite Properties listing",
+      "reviewed_on": "2026-10-25",
+      "caption": "Listing photo from the property manager; the offered unit may differ."
+    }
   },
   {
     "id": "blacksburg-university-terrace-1213k-1213k-individual-bedroom-agreement",
@@ -26057,7 +26073,14 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Provider advertises $965 per month for Room A in a 4-bedroom, 4-bath apartment. Additional fees, deposits, and utilities may apply; confirm the written total.",
-    "photo": null,
+    "photo": {
+      "url": "https://images.cdn.appfolio.com/granitesl/images/35a06a0e-592f-4f3f-a682-ba0f3bb6d496/medium.jpg",
+      "source_url": "https://granitesl.appfolio.com/listings/detail/5afce595-4747-414b-88d7",
+      "alt": "Fourteen35 listing photo from Granite Properties.",
+      "credit": "Granite Properties listing",
+      "reviewed_on": "2026-10-25",
+      "caption": "Listing photo from the property manager; the offered unit may differ."
+    },
     "lat": 37.244605,
     "lon": -80.430137,
     "geocode_source": "OpenStreetMap Nominatim"
@@ -26136,7 +26159,14 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Provider advertises $550 per month for Room A in a 4-bedroom, 2-bath apartment. Additional fees, deposits, and utilities may apply; confirm the written total.",
-    "photo": null,
+    "photo": {
+      "url": "https://images.cdn.appfolio.com/granitesl/images/37530107-91e8-4339-9ff4-3849ca7c5d36/medium.jpeg",
+      "source_url": "https://granitesl.appfolio.com/listings/detail/0bb3581a-2283-4fcd-b164",
+      "alt": "1203 North Main Street listing photo from Granite Properties.",
+      "credit": "Granite Properties listing",
+      "reviewed_on": "2026-10-25",
+      "caption": "Listing photo from the property manager; the offered unit may differ."
+    },
     "lat": 37.241271,
     "lon": -80.418586,
     "geocode_source": "US Census Geocoder"
@@ -26215,7 +26245,14 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Provider advertises $570 per month for a bed space in a 4-bedroom, 2-bath condo; trash included. Additional fees, deposits, and utilities may apply; confirm the written total.",
-    "photo": null,
+    "photo": {
+      "url": "https://images.cdn.appfolio.com/granitesl/images/58ae3dd2-aa42-46be-9e2a-7c448412ed38/medium.jpg",
+      "source_url": "https://granitesl.appfolio.com/listings/detail/702e28e5-42fe-4f94-8bb7-",
+      "alt": "University Terrace Condos bedroom listing photo from Granite Properties.",
+      "credit": "Granite Properties listing",
+      "reviewed_on": "2026-10-25",
+      "caption": "Listing photo from the property manager; the offered unit may differ."
+    },
     "lat": 37.243808,
     "lon": -80.420787,
     "geocode_source": "US Census Geocoder"

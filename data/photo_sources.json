@@ -2373,11 +2373,12 @@
       "record_ids": [
         "blacksburg-carlton-scott-apartments-c27-room-in-2-bedroom-apartment"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://granitesl.appfolio.com/listings/detail/c7faebea-2fa0-4146-ac4b-86f0dc9bf624",
-      "method": "indexed_image_on_official_property_owner_or_agency_page",
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://granitesl.appfolio.com/listings/detail/c7faebea-2fa0-4146-ac4b",
+      "method": "property_manager_listing_photo",
       "dimensions_checked": false,
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
+      "reason": "Listing photo from Granite Properties (property manager) on its listing page; saved in data/listing-photos.",
+      "image_url": "https://images.cdn.appfolio.com/granitesl/images/38cacbed-5a2b-4faa-b0e0-882ad851b20b/medium.jpg"
     },
     {
       "community": "300 McDonald Street",
@@ -2385,11 +2386,12 @@
       "record_ids": [
         "blacksburg-300-mcdonald-street-c24-room-in-shared-apartment"
       ],
-      "status": "needs_verified_property_photo",
-      "source_url": "https://granitesl.appfolio.com/listings/detail/0b75fde4-93b8-4a77-811e-317626fda8c7",
-      "method": "official_page_image_link",
+      "status": "official_photo_source_reviewed",
+      "source_url": "https://granitesl.appfolio.com/listings/detail/0b75fde4-93b8-4a77-811e",
+      "method": "property_manager_listing_photo",
       "dimensions_checked": false,
-      "reason": "Photo credit failed live link audit; verify an image and working property-specific source before restoring."
+      "reason": "Listing photo from Granite Properties (property manager) on its listing page; saved in data/listing-photos.",
+      "image_url": "https://images.cdn.appfolio.com/granitesl/images/d29d0416-54cb-43c5-94a8-12db1d50f687/medium.jpg"
     },
     {
       "community": "1711 Apartments",

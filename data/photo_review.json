@@ -101,66 +101,6 @@
       "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
     },
     {
-      "community": "Carlton Scott Apartments",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-carlton-scott-apartments-c27-room-in-2-bedroom-apartment"
-      ],
-      "official_source": "https://granitesl.appfolio.com/listings/detail/c7faebea-2fa0-4146-ac4b-86f0dc9bf624",
-      "provider_website": "https://granitesl.appfolio.com/listings/detail/c7faebea-2fa0-4146-ac4b-86f0dc9bf624",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
-      "community": "300 McDonald Street",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-300-mcdonald-street-c24-room-in-shared-apartment"
-      ],
-      "official_source": "https://granitesl.appfolio.com/listings/detail/0b75fde4-93b8-4a77-811e-317626fda8c7",
-      "provider_website": "https://granitesl.appfolio.com/listings/detail/0b75fde4-93b8-4a77-811e-317626fda8c7",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
-      "community": "Fourteen35",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-fourteen35-apt-201-room-a-in-4-bedroom-apartment"
-      ],
-      "official_source": "https://granitesl.appfolio.com/listings/detail/5afce595-4747-414b-88d7-315d3bcad62b",
-      "provider_website": "https://granitesl.appfolio.com/listings/detail/5afce595-4747-414b-88d7-315d3bcad62b",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
-    },
-    {
-      "community": "1203 North Main Street",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-1203-north-main-apt-m-room-a-in-4-bedroom-apartment"
-      ],
-      "official_source": "https://granitesl.appfolio.com/listings/detail/0bb3581a-2283-4fcd-b164-6e7ae8fa2b33",
-      "provider_website": "https://granitesl.appfolio.com/listings/detail/0bb3581a-2283-4fcd-b164-6e7ae8fa2b33",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
-    },
-    {
-      "community": "University Terrace Condos",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-university-terrace-1205d-bed-space-in-4-bedroom-condo"
-      ],
-      "official_source": "https://granitesl.appfolio.com/listings/detail/702e28e5-42fe-4f94-8bb7-6c3ef1af8add",
-      "provider_website": "https://granitesl.appfolio.com/listings/detail/702e28e5-42fe-4f94-8bb7-6c3ef1af8add",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
-    },
-    {
       "community": "Pheasant Run Townhomes",
       "jurisdiction": "Montgomery County",
       "record_ids": [
