@@ -14,6 +14,9 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 RESOURCES_PATH = Path(__file__).resolve().parent.parent / 'data' / 'resources.json'
+# Team decisions from the /review page: verified, flagged (needs a human check) or hidden (kept out of every answer).
+REVIEW_PATH = Path(__file__).resolve().parent.parent / 'data' / 'listing_review.json'
+REVIEW_STATES = {'verified', 'flagged', 'hidden'}
 STATUSES = {'available_now', 'advertised_vacancy', 'upcoming', 'leasing', 'waitlist_open', 'contact_for_availability', 'closed'}
 # affordable_property: an income-restricted building from a public database, without unit-level availability.
 TYPES = {'rental_listing', 'affordable_listing', 'affordable_property', 'emergency_shelter', 'rental_assistance', 'housing_authority', 'legal_aid', 'food_support', 'other'}
@@ -222,12 +225,37 @@ def validate_resources(records):
             errors.append(f'{label}: availability needs source evidence.')
     return errors
 
+def load_reviews(path=None):
+    """{id: {"state", "note", "on"}} from the review page's file; empty if there is none yet."""
+    try:
+        data = json.loads(Path(path or REVIEW_PATH).read_text())
+    except (OSError, ValueError):
+        return {}
+    decisions = data.get('decisions') if isinstance(data, dict) else None
+    return {k: v for k, v in (decisions or {}).items() if isinstance(v, dict) and v.get('state') in REVIEW_STATES}
+
+
+_loaded = {}  # validated catalog, kept until the data files change (checking every record takes ~40 ms)
+
+
+def _mtime(path):
+    try:
+        return Path(path).stat().st_mtime_ns
+    except OSError:
+        return None
+
+
 def load_catalog(path=None, include_unverified=False):
-    rows = json.loads(Path(path or RESOURCES_PATH).read_text())
     if include_unverified:
-        return rows
-    # Reject invalid data individually so a malformed entry cannot become a recommendation.
-    return deduplicate_listings([r for r in rows if isinstance(r, dict) and r.get('verified') is True and not validate_resources([r])])
+        return json.loads(Path(path or RESOURCES_PATH).read_text())
+    stamp = (str(path or RESOURCES_PATH), _mtime(path or RESOURCES_PATH), None if path else _mtime(REVIEW_PATH), date.today())
+    if _loaded.get('stamp') != stamp:
+        rows = json.loads(Path(path or RESOURCES_PATH).read_text())
+        hidden = {k for k, v in load_reviews().items() if v['state'] == 'hidden'} if path is None else set()
+        # Reject invalid data individually so a malformed entry cannot become a recommendation.
+        _loaded.update(stamp=stamp, rows=deduplicate_listings([r for r in rows if isinstance(r, dict) and r.get('verified') is True
+                                                               and r.get('id') not in hidden and not validate_resources([r])]))
+    return copy.deepcopy(_loaded['rows'])  # callers may edit their rows
 
 def effective_availability(resource, today=None):
     """Derive staleness without silently changing the reviewed evidence in the file."""

@@ -278,7 +278,8 @@ def cards_for(text, limit=6):
     # A bold name that is only part of a record's name ("Fairfax County", "Alexandria") is a place, not a program:
     # it counts only when it points at one or two records.
     partial = {}
-    for r in filter_catalog(load_catalog()):
+    catalog = filter_catalog(load_catalog())
+    for r in catalog:
         name = r.get("community") or r["name"]
         key = name.casefold()
         if key in found:
@@ -304,7 +305,7 @@ def cards_for(text, limit=6):
         if len("".join(bw)) < 8 or any(b in k or norm(b) in norm(k) for k in found):
             continue
         hits = {}
-        for r in filter_catalog(load_catalog()):
+        for r in catalog:
             key = (r.get("community") or r["name"]).casefold()
             rw = words(key)
             if set(bw) <= set(rw) or "".join(bw) in "".join(rw):

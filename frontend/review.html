@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0d1738">
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <title>Clear House — Listing review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Same palette as the other pages. */
+    :root {
+      --bg: #eef3fc; --ink: #14203f; --muted: #4b5a7a; --line: #d2dcf0; --card: #fff; --soft: #e7eefc;
+      --blue: #23408f; --blue-2: #2f55b5; --navy: #0d1738; --green: #254f40;
+      --ok: #1f6b4a; --ok-bg: #e5f4ec; --warn: #8a5a12; --warn-bg: #fbf1dd; --bad: #9b2c2c; --bad-bg: #fbe7e7;
+      --font-body: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body); }
+    h1, h2, h3, p { margin: 0; }
+    a { color: var(--blue-2); }
+    :focus-visible { outline: 3px solid #e0a100; outline-offset: 3px; }
+    .container { width: min(1180px, calc(100% - 32px)); margin-inline: auto; }
+    .site-header { background: var(--navy); color: #eef3ff; }
+    .header-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 10px 0; }
+    .brand { color: #fff; text-decoration: none; font-weight: 800; font-size: 20px; letter-spacing: -.6px; }
+    .header-inner nav { display: flex; gap: 18px; font-size: 14px; }
+    .header-inner nav a { color: #eef3ff; text-decoration: none; }
+    .page-head { padding: 28px 0 8px; }
+    h1 { font-size: clamp(26px, 3.4vw, 36px); letter-spacing: -1px; font-weight: 800; margin-bottom: 6px; }
+    .lead { color: var(--muted); max-width: 760px; }
+    .banner { margin-top: 14px; padding: 12px 14px; border-radius: 10px; border: 1px solid #eadfce; background: #fbf5ec; color: #765539; font-size: 14px; }
+    .banner[hidden] { display: none; }
+    .stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 12px; }
+    .stat { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: 13px; color: var(--muted); cursor: pointer; font-family: inherit; }
+    .stat strong { display: block; font-size: 20px; color: var(--ink); line-height: 1.2; }
+    .stat[aria-pressed="true"] { border-color: var(--blue-2); box-shadow: inset 0 0 0 1px var(--blue-2); }
+    .filters { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .filters input, .filters select { width: 100%; font: inherit; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); }
+    .count { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    .list { display: grid; gap: 10px; padding-bottom: 48px; }
+    .rec { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; }
+    .rec[data-state="verified"] { border-left-color: var(--ok); }
+    .rec[data-state="flagged"] { border-left-color: #d29a2b; }
+    .rec[data-state="hidden"] { border-left-color: var(--bad); opacity: .78; }
+    .rec h3 { font-size: 15.5px; font-weight: 700; }
+    .rec .id { font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); word-break: break-all; }
+    .facts { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13.5px; color: var(--muted); grid-column: 1 / -1; }
+    .facts a { word-break: break-all; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; justify-content: flex-end; }
+    .tag { font-size: 12px; font-weight: 650; padding: 2px 8px; border-radius: 999px; background: var(--soft); color: var(--blue); white-space: nowrap; }
+    .tag.ok { background: var(--ok-bg); color: var(--ok); }
+    .tag.warn { background: var(--warn-bg); color: var(--warn); }
+    .tag.bad { background: var(--bad-bg); color: var(--bad); }
+    .evidence { grid-column: 1 / -1; font-size: 13px; color: var(--muted); }
+    .note { grid-column: 1 / -1; font-size: 13.5px; background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 6px 10px; }
+    .note[data-state="verified"] { background: var(--ok-bg); color: var(--ok); }
+    .note[data-state="hidden"] { background: var(--bad-bg); color: var(--bad); }
+    .actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; }
+    .actions button { font: 600 13px var(--font-body); padding: 6px 12px; border-radius: 7px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+    .actions button:hover:not(:disabled) { border-color: var(--blue-2); }
+    .actions button:disabled { opacity: .5; cursor: not-allowed; }
+    .actions .verify { color: var(--ok); } .actions .flag { color: var(--warn); } .actions .hide { color: var(--bad); }
+    .more { justify-self: center; font: 600 14px var(--font-body); padding: 10px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); cursor: pointer; }
+    @media (max-width: 720px) {
+      .filters { grid-template-columns: 1fr 1fr; }
+      .filters input { grid-column: 1 / -1; }
+      .rec { grid-template-columns: 1fr; }
+      .tags { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">Clear House</a>
+      <nav aria-label="Main"><a href="/app">Find housing</a><a href="/resources">Resources</a></nav>
+    </div>
+  </header>
+  <main class="container">
+    <div class="page-head">
+      <h1>Listing review</h1>
+      <p class="lead">Every record in the catalog, for the team to check by hand. <strong>Verify</strong> after calling or checking the official page, <strong>Flag</strong> what needs a human check, and <strong>Hide</strong> anything wrong: hidden records leave every list, map and chat answer.</p>
+      <p class="banner" id="banner" hidden></p>
+    </div>
+    <div class="stats" id="stats" role="group" aria-label="Quick filters"></div>
+    <div class="filters">
+      <input id="q" type="search" placeholder="Search name, id, phone, address…" aria-label="Search records">
+      <select id="region" aria-label="Region"><option value="">All regions</option></select>
+      <select id="type" aria-label="Type"><option value="">All types</option></select>
+      <select id="state" aria-label="Review state">
+        <option value="">Any review state</option><option value="none">Not reviewed</option><option value="verified">Verified</option>
+        <option value="flagged">Flagged</option><option value="hidden">Hidden</option><option value="problems">Has data problems</option><option value="notshown">Not shown to users</option>
+      </select>
+    </div>
+    <p class="count" id="count" aria-live="polite">Loading…</p>
+    <div class="list" id="list"></div>
+  </main>
+  <script>
+    const $ = id => document.getElementById(id);
+    const el = (tag, text, attrs) => { const n = document.createElement(tag); if (text != null) n.textContent = text; for (const [k, v] of Object.entries(attrs || {})) n.setAttribute(k, v); return n; };
+    const safeUrl = u => { try { const x = new URL(u); return x.protocol === 'https:' ? x.href : null; } catch { return null; } };
+    const TYPES = { affordable_listing: 'Income-restricted home', rental_listing: 'Regular rental', affordable_property: 'Affordable property', emergency_shelter: 'Shelter', rental_assistance: 'Rent help', housing_authority: 'Housing program', legal_aid: 'Legal aid', food_support: 'Food', other: 'Other' };
+    const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability', closed: 'Closed' };
+    const STATE_LABEL = { verified: 'Verified by team', flagged: 'Flagged', hidden: 'Hidden' };
+    let records = [], decisions = {}, canEdit = false, page = 60, quick = '';
+
+    function stateOf(r) { return decisions[r.id]?.state || 'none'; }
+    function matches(r) {
+      const q = $('q').value.trim().toLowerCase(), want = $('state').value || quick;
+      if (q && ![r.id, r.name, r.community, r.phone, r.address, r.jurisdiction, decisions[r.id]?.note].some(v => String(v || '').toLowerCase().includes(q))) return false;
+      if ($('region').value && (r.region || 'Other') !== $('region').value) return false;
+      if ($('type').value && r.type !== $('type').value) return false;
+      if (want === 'problems') return r.problems.length > 0;
+      if (want === 'notshown') return !r.shown;
+      if (want === 'due') return r.availability.review_due && r.availability.review_due < new Date().toISOString().slice(0, 10);
+      return !want || stateOf(r) === want;
+    }
+
+    function card(r) {
+      const state = stateOf(r), d = decisions[r.id];
+      const box = el('article', null, { class: 'rec', 'data-state': state });
+      const head = el('div');
+      head.append(el('h3', r.name), el('div', r.id, { class: 'id' }));
+      const tags = el('div', null, { class: 'tags' });
+      tags.append(el('span', TYPES[r.type] || r.type || 'No type', { class: 'tag' }));
+      if (r.availability.status) tags.append(el('span', STATUS[r.availability.status] || r.availability.status, { class: 'tag' }));
+      if (!r.shown) tags.append(el('span', 'Not shown to users', { class: 'tag bad' }));
+      if (r.problems.length) tags.append(el('span', `${r.problems.length} data problem${r.problems.length > 1 ? 's' : ''}`, { class: 'tag bad' }));
+      if (state !== 'none') tags.append(el('span', STATE_LABEL[state], { class: 'tag ' + ({ verified: 'ok', flagged: 'warn', hidden: 'bad' })[state] }));
+      box.append(head, tags);
+      const facts = el('div', null, { class: 'facts' });
+      [r.address || [r.area, r.jurisdiction].filter(Boolean).join(' · '), r.phone && '☎ ' + r.phone,
+       typeof r.monthly_rent === 'number' && `$${r.monthly_rent.toLocaleString('en-US')}/mo`, r.minimum_age && `${r.minimum_age}+`,
+       r.last_verified && `checked ${r.last_verified}`, r.availability.review_due && `recheck by ${r.availability.review_due}`,
+       r.lat == null && 'no map location', r.has_photo && 'photo'].filter(Boolean).forEach(t => facts.append(el('span', t)));
+      const link = safeUrl(r.source_url); if (link) { const a = el('a', 'Source ↗', { href: link, target: '_blank', rel: 'noopener' }); facts.append(a); }
+      box.append(facts);
+      if (r.availability.evidence) box.append(el('p', r.availability.evidence, { class: 'evidence' }));
+      if (r.problems.length) box.append(el('p', 'Data problems: ' + r.problems.join('; '), { class: 'note', 'data-state': 'hidden' }));
+      if (d && (d.note || state !== 'none')) box.append(el('p', `${STATE_LABEL[state]} ${d.on || ''}${d.note ? ': ' + d.note : ''}`, { class: 'note', 'data-state': state }));
+      const actions = el('div', null, { class: 'actions' });
+      const button = (label, cls, next) => {
+        const b = el('button', label, { type: 'button', class: cls }); b.disabled = !canEdit;
+        if (!canEdit) b.title = 'Saving works on a local copy only';
+        b.addEventListener('click', () => decide(r, next, b)); actions.append(b);
+      };
+      if (state !== 'verified') button('Verify', 'verify', 'verified');
+      button(state === 'flagged' ? 'Edit flag note' : 'Flag', 'flag', 'flagged');
+      if (state !== 'hidden') button('Hide', 'hide', 'hidden');
+      if (state !== 'none') button(state === 'hidden' ? 'Unhide' : 'Clear', '', 'clear');
+      box.append(actions);
+      return box;
+    }
+
+    async function decide(r, state, button) {
+      let note = decisions[r.id]?.note || '';
+      if (state === 'flagged' || state === 'hidden') {
+        const asked = prompt(state === 'hidden' ? 'Why hide it? (shown to the team only)' : 'What needs checking?', note);
+        if (asked === null) return;
+        note = asked;
+      } else if (state === 'verified') {
+        const asked = prompt('How did you verify it? (e.g. "called 10/25, rent confirmed")', '');
+        if (asked === null) return;
+        note = asked;
+      }
+      button.disabled = true;
+      try {
+        const res = await fetch('/api/review', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: r.id, state, note }) });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Could not save.');
+        decisions = data.decisions; render(false);
+      } catch (e) { alert(e.message); button.disabled = false; }
+    }
+
+    function stats() {
+      const today = new Date().toISOString().slice(0, 10);
+      const n = f => records.filter(f).length;
+      const items = [['', 'All records', records.length], ['none', 'Not reviewed', n(r => stateOf(r) === 'none')],
+        ['flagged', 'Flagged', n(r => stateOf(r) === 'flagged')], ['verified', 'Verified', n(r => stateOf(r) === 'verified')],
+        ['hidden', 'Hidden', n(r => stateOf(r) === 'hidden')], ['problems', 'Data problems', n(r => r.problems.length)],
+        ['notshown', 'Not shown', n(r => !r.shown)], ['due', 'Recheck overdue', n(r => r.availability.review_due && r.availability.review_due < today)]];
+      $('stats').replaceChildren(...items.map(([key, label, count]) => {
+        const b = el('button', null, { type: 'button', class: 'stat', 'aria-pressed': String(quick === key && !$('state').value) });
+        b.append(el('strong', String(count)), label);
+        b.addEventListener('click', () => { quick = key; $('state').value = ''; page = 60; render(); });
+        return b;
+      }));
+    }
+
+    function render(resetPage = true) {
+      if (resetPage) page = 60;
+      stats();
+      const shown = records.filter(matches);
+      $('count').textContent = `${shown.length} of ${records.length} records`;
+      const list = $('list'); list.replaceChildren(...shown.slice(0, page).map(card));
+      if (shown.length > page) {
+        const more = el('button', `Show ${Math.min(60, shown.length - page)} more`, { type: 'button', class: 'more' });
+        more.addEventListener('click', () => { page += 60; render(false); }); list.append(more);
+      }
+    }
+
+    fetch('/api/review').then(r => r.json()).then(data => {
+      records = data.records || []; decisions = data.decisions || {}; canEdit = !!data.can_edit;
+      // Flagged first, then anything with data problems, then the rest by name.
+      const rank = r => ({ flagged: 0, hidden: 3, verified: 4 })[stateOf(r)] ?? (r.problems.length || !r.shown ? 1 : 2);
+      records.sort((a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name));
+      [...new Set(records.map(r => r.region || 'Other'))].sort().forEach(v => $('region').append(new Option(v, v)));
+      [...new Set(records.map(r => r.type).filter(Boolean))].sort().forEach(v => $('type').append(new Option(TYPES[v] || v, v)));
+      if (!canEdit) { $('banner').hidden = false; $('banner').textContent = 'View only. To save decisions, run the app on your own computer (python backend/app.py), open http://localhost:8000/review, then commit data/listing_review.json and redeploy.'; }
+      render();
+    }).catch(() => { $('count').textContent = 'Could not load the catalog.'; });
+    for (const id of ['q', 'region', 'type', 'state']) $(id).addEventListener('input', () => { if (id === 'state') quick = ''; render(); });
+  </script>
+</body>
+</html>
