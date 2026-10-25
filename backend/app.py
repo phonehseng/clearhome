@@ -443,7 +443,9 @@ def _chat_request():
     if len(question) > 1500:
         return None, None, (jsonify(error="Please keep your question under 1,500 characters."), 400)
     question, _ = redact(question)
-    lifeline = crisis.answer(question)  # suicide, self-harm or abuse at home: the hotline first, before any other step
+    # Suicide, self-harm or abuse at home: the hotline first, before any other step (plus the area's own line when it's known).
+    form_place = body.get("profile", {}).get("location") if isinstance(body.get("profile"), dict) else None
+    lifeline = crisis.answer(question, redact(form_place[:100])[0] if isinstance(form_place, str) else None)
     history = []
     for turn in (body.get("history") if isinstance(body.get("history"), list) else [])[-4:]:
         if isinstance(turn, dict) and turn.get("role") in ("user", "assistant") and isinstance(turn.get("text"), str):

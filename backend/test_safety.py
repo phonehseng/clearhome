@@ -40,6 +40,19 @@ class CrisisTests(unittest.TestCase):
             self.assertEqual(reply.lines[0]["href"], "tel:+18008388238")
             self.assertEqual(reply.lines[-1]["href"], "tel:911")
 
+    def test_a_named_area_adds_its_own_line_and_isnt_asked_again(self):
+        reston = crisis.answer("my boyfriend beat me i need to get out the house now, im in reston")
+        self.assertIn("703-360-7273", reston)  # Fairfax County's 24-hour line, from the verified list
+        self.assertIn("housing help in Fairfax County", reston)
+        self.assertNotIn(crisis.ASK_WHERE, reston)
+        self.assertIn({"label": "Call 703-360-7273", "href": "tel:+17033607273"}, reston.lines)
+        from_form = crisis.answer("my husband hits me", location="Arlington")
+        self.assertIn("Arlington County", from_form)
+        blacksburg = crisis.answer("my roommate threatened me, I'm in Blacksburg")  # no local line on file: the statewide one only
+        self.assertIn("housing help in Blacksburg", blacksburg)
+        self.assertEqual(len(blacksburg.lines), 4)
+        self.assertIn(crisis.ASK_WHERE, crisis.answer("he threatened me"))
+
     def test_both_at_once_gets_both(self):
         reply = crisis.answer("He beats me and some days I want to die")
         self.assertIn("988", reply)
