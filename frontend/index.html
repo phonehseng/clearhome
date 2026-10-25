@@ -855,6 +855,10 @@
     .call-links a[href="tel:911"]:hover{background:#912018}
     .tonight-links span{font-size:13.5px;color:#5a3a0e}
     /* Hotline buttons under a crisis answer in the chat. */
+    .chat-next{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 12px}
+    .chat-next button{min-height:40px;padding:8px 16px;border-radius:999px;border:1px solid #c9d5ec;background:#fff;color:#14203f;font-size:14px;font-weight:650;cursor:pointer}
+    .chat-next button:hover{background:#eef3fd;border-color:#6f8fd6}
+    .chat-next button:focus-visible{outline:3px solid #f2b84b;outline-offset:2px}
     .field-error{margin:6px 2px 0;font-size:13.5px;font-weight:600;color:#b42318}
     .input-wrapper:has([aria-invalid="true"]),select[aria-invalid="true"]{border-color:#b42318!important;box-shadow:0 0 0 3px #b4231826}
     .chat-lines{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
@@ -1839,13 +1843,14 @@
       if (busy) return false;
       busy = true;
       const resets = chatReset, closed = closeQuestions(); chatInput.placeholder = PLACEHOLDER;
+      log.querySelectorAll('.chat-next').forEach(n => n.remove());  // the last answer's "more" buttons
       userSay(question);
       const button = chatForm.querySelector('button'); button.disabled = true;
       const started = Date.now();
       const status = botSay('Reading your question…', 'loading');
       let note = 'Reading your question…';
       const timer = setInterval(() => { status.textContent = `${note} (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
-      let answer = '', bubble = null, engine = '', asked = null, state = null, lines = null, ok = false;
+      let answer = '', bubble = null, engine = '', asked = null, state = null, lines = null, more = [], ok = false;
       const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); pinTurn(); };
       const finish = () => { clearInterval(timer); status.remove(); };
       const stale = () => resets !== chatReset;  // the chat was reset while this reply was on its way
@@ -1868,6 +1873,7 @@
             else if (event.kind === 'state') { if (event.text && typeof event.text === 'object') state = event.text; }
             else if (event.kind === 'question') { asked = event.text; }
             else if (event.kind === 'lines') { if (Array.isArray(event.text)) lines = event.text; }
+            else if (event.kind === 'more') { if (Array.isArray(event.text)) more = event.text; }
             else if (event.kind === 'status') { note = event.text; status.textContent = note; }
             else if (event.kind === 'thinking') { note = `Gemma is thinking: ${event.text}`; status.textContent = note; }
             else if (event.kind === 'chunk') { if (!answer) finish(); answer += event.text; show(answer); }
@@ -1883,6 +1889,7 @@
         if (asked) showQuestion(bubble, asked, keyboard, answer);
         else if (keyboard) chatInput.focus({ preventScroll: true });
         if (engine) { const by = el('div', (asked ? 'Asked by ' : 'Answered by ') + engine, { class: 'msg-engine' }); let after = bubble; while (/chat-(cards|lines)/.test(after.nextElementSibling?.className || '')) after = after.nextElementSibling; after.after(by); pinTurn(); }
+        if (!asked) showNext(more, /Gemma 4 26B/.test(engine) && !lines);  // short answers: more on request
         history.push({ role: 'user', text: question }, { role: 'assistant', text: answer });
         if (state && resets === chatReset) chat = state;  // only once the whole reply arrived, so a failed one leaves the open question open
         ok = true;
@@ -1896,6 +1903,22 @@
       if (inflight === controller) inflight = null;
       button.disabled = false; busy = false;
       return ok;
+    }
+    // Gemma names at most two places and keeps it short. "Show more options" adds the other places it weighed, from the
+    // verified list with no AI call; "Tell me more" asks Gemma to go into detail.
+    function showNext(more, tellMore) {
+      const row = el('div', null, { class: 'chat-next', role: 'group', 'aria-label': 'More from this answer' });
+      if (more.length) {
+        const b = el('button', `Show ${more.length} more option${more.length === 1 ? '' : 's'}`, { type: 'button' });
+        b.addEventListener('click', () => { const spot = el('div'); row.before(spot); showCards(spot, '', more); spot.remove(); b.remove(); if (!row.children.length) row.remove(); });
+        row.append(b);
+      }
+      if (tellMore) {
+        const b = el('button', 'Tell me more', { type: 'button' });
+        b.addEventListener('click', () => ask('Tell me more about these, like how to apply and what to ask them.'));
+        row.append(b);
+      }
+      if (row.children.length) { log.append(row); pinTurn(); }
     }
     // Crisis answers (suicide, self-harm, abuse at home) come with call and text buttons for the hotlines: one tap on a phone.
     function showLines(bubble, lines) {
