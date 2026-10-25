@@ -381,7 +381,7 @@ def next_question(request, state, profile=None):
     free = lambda field: field not in a and field not in state["asked"]  # not answered, and not asked yet for this request
     kind = a.get("help") or detect_help(t)
     keys = places_in(t)
-    if kind is None and keys and len(t.split()) <= 3 and free("help"):  # just a place ("blacksburg"): what for?
+    if kind is None and keys and len(t.split()) <= 3 and not NEAR_ANY.search(t) and free("help"):  # just a place ("blacksburg"): what for?
         return question("help", f"What are you looking for in {place_name(keys[0])}?", [(k, label) for k, label in
                         (("rental", "Find a rental"), ("tonight", "Somewhere safe tonight"), ("rent_help", "Help paying rent"))],
                         skip=False, unsure=True)

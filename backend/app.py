@@ -498,7 +498,8 @@ def _chat_request():
     chat, asking = (clarifier.load_state(body.get("chat")), None) if "chat" in body else (None, None)
     # Finding or avoiding places by who lives there: a fair-housing answer first, before any follow-up question.
     # Questions about Clear Home itself, "thanks"/"bye", a role to play or a notice to write: answered before any follow-up question.
-    fair = None if lifeline else (fair_housing_answer(question) or boundary_answer(question) or about_answer(question) or social_answer(question, history))
+    fair = None if lifeline else (fair_housing_answer(question) or boundary_answer(question) or about_answer(question)
+                                  or social_answer(question, history, pending=bool(chat and chat.get("pending"))))
     if chat is not None and not fair:
         question = clarifier.reply_in_words(question, chat, history)  # a reply to near_place.py's "Which Walmart, or which city?"
         try:

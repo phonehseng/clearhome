@@ -447,6 +447,10 @@ class CasualBrowsingTests(unittest.TestCase):
         for word in ("ok", "lol", "test", "whatever", "?"):
             self.assertIn("What kind of help", self.chat(word), word)  # with nothing before it: the help buttons
 
+    def test_idk_answers_an_open_question(self):
+        self.assertIsNone(advisor.social_answer("idk", [{"role": "user", "text": "apartments"}], pending=True))
+        self.assertIsNotNone(advisor.social_answer("idk", [{"role": "user", "text": "apartments"}], pending=False))
+
     def test_one_word_places_and_students_ask_what_for(self):
         self.assertEqual(self.chat("blacksburg"), "What are you looking for in Blacksburg?")
         self.assertEqual(self.chat("places for students"), "Which campus?")

@@ -725,7 +725,7 @@ THINKING_STEPS = [(0, "reading the listings and checking each of your requiremen
                   (50, "writing your answer (a careful answer can take up to two minutes)")]
 
 
-THINK_SECONDS = 25  # past this, Gemma stops thinking and answers straight away
+THINK_SECONDS = 15  # past this, Gemma stops thinking and answers straight away (its notes go with it)
 
 
 def _thinking_step(seconds):
@@ -1071,7 +1071,7 @@ FILLER = re.compile(r"^\s*(?:ok(?:ay)?|k+|cool|nice|lol+|lmao|haha+|hmm+|test(?:
                     r"nothing|nah|\?+|\.+|\d{1,4})[\s!.?]*$", re.I)
 
 
-def social_answer(text, history=None):
+def social_answer(text, history=None, pending=False):
     """'Thanks', 'bye', and 'ok'/'cool' after an answer: a short friendly reply, never more listings. With no conversation
     yet, 'ok' and 'test' are left to the chat's own first question (the help buttons)."""
     t = text or ""
@@ -1079,7 +1079,7 @@ def social_answer(text, history=None):
         return About("You're welcome! If you want to look again, tell me an area, a budget or what you need. For urgent help any time, call **211**.")
     if BYE.match(t):
         return About("Take care! Clear Home is here any time. For urgent help, call **211**, or **911** in an emergency.")
-    if FILLER.match(t) and history:
+    if FILLER.match(t) and history and not pending:  # with a chat question open, "idk" answers it
         return About("Anything else I can help with? You can ask for more options, another area, a different budget, or how to apply.")
     return None
 
