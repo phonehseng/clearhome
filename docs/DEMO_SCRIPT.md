@@ -31,7 +31,7 @@ shot separately and cut the waiting: Gemma takes about 20 seconds when it thinks
 - Use fictional details only. The app removes common contact and financial number patterns, but not names or addresses.
 - Capture at a readable desktop size, keep the pointer away from text, add accurate captions, and avoid rapid scrolls.
 
-**Backup if Gemma is unavailable:** replace 0:24–1:13 with the catalog. Click **Blacksburg Student Rooms · Under
+**Backup if Gemma is unavailable:** replace 0:24–1:13 with the catalog. Open **Filters & Favorites**, click **Blacksburg Student Rooms · Under
 $1,000**, expand **Eligibility & Important Details** on the first card (rent per person, lease, source), then show the
 follow-up question buttons, which work without AI.
 

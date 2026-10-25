@@ -987,16 +987,18 @@
     #tools .assistant-privacy summary{width:fit-content;cursor:pointer;text-decoration:underline;text-decoration-color:#9fb0d3;text-underline-offset:3px}
     #tools .assistant-privacy summary:focus-visible{outline:3px solid #f2b84b;outline-offset:2px;border-radius:4px}
     #tools .assistant-privacy p{margin:8px 0 0;line-height:1.55}
-    .listings-drawer>summary{list-style:none;cursor:pointer;margin-bottom:0!important}
+    .listings-drawer{margin:0 0 22px;border:1px solid #d6e0f2;border-radius:18px;background:#fff}
+    .listings-drawer>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px 12px 20px;list-style:none;cursor:pointer;border-radius:18px}
     .listings-drawer>summary::-webkit-details-marker{display:none}
-    .listings-drawer[open]>summary{margin-bottom:24px!important}
-    .listings-drawer>summary:focus-visible{outline:3px solid #f2b84b;outline-offset:6px;border-radius:14px}
-    .listings-drawer .drawer-hint{display:inline-flex;align-items:center;gap:8px;margin-left:12px;padding:9px 16px;border-radius:999px;background:#14203f;color:#fff;font-size:14px;font-weight:700;white-space:nowrap}
+    .listings-drawer>summary:hover{background:#f6f9ff}
+    .listings-drawer>summary:focus-visible{outline:3px solid #f2b84b;outline-offset:3px}
+    .listings-drawer .drawer-title{font-size:16px;font-weight:700;color:#14203f}
+    .listings-drawer .drawer-hint{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;background:#14203f;color:#fff;font-size:14px;font-weight:700;white-space:nowrap}
     .listings-drawer .drawer-hint::before{content:'Show'}
     .listings-drawer[open] .drawer-hint::before{content:'Hide'}
     .listings-drawer .drawer-hint::after{content:'';width:8px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
     .listings-drawer[open] .drawer-hint::after{transform:translateY(2px) rotate(-135deg)}
-    @media(max-width:560px){.listings-drawer .catalog-label{display:none}}
+    .listings-drawer .listings-body{padding:6px 20px 20px}
   </style>
 </head>
 <body>
@@ -1112,8 +1114,12 @@
   </section>
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
-    <details class="listings-drawer" id="listings-drawer"><summary class="section-heading"><div><h2 id="listings-title">Explore Rentals & Housing Waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span><span class="drawer-hint" aria-hidden="true"></span></summary><div class="listings-body">
-    <p class="catalog-notice">Listed doesn’t mean vacant. Confirm rent, fees and eligibility with the provider.</p>
+    <div class="section-heading"><div><h2 id="listings-title">Explore Rentals & Housing Waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
+    <div class="sort-chat" id="sort-chat">
+      <form class="sort-form" id="sort-form"><span class="sort-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="24" height="24"></span><label class="visually-hidden" for="sort-input">Ask Gemma to sort these listings</label><input id="sort-input" type="text" maxlength="300" autocomplete="off" placeholder="Ask Gemma to sort these listings…"><button type="submit" id="sort-send">Sort</button></form>
+      <p class="sort-reply" id="sort-reply" role="status" aria-live="polite"><b>Gemma:</b> <span id="sort-text">Tell me what matters most and I’ll move the best fits to the top.</span> <button type="button" class="sort-chip" id="sort-sample" data-q="Cheapest rooms near Virginia Tech first">Try “Cheapest rooms near Virginia Tech first”</button><button type="button" class="sort-chip" id="sort-reset" hidden>Reset order</button></p>
+    </div>
+    <details class="listings-drawer" id="listings-drawer"><summary><span class="drawer-title">Filters &amp; Favorites</span><span class="drawer-hint" aria-hidden="true"></span></summary><div class="listings-body"><p class="catalog-notice">Listed doesn’t mean vacant. Confirm rent, fees and eligibility with the provider.</p>
     <div class="listing-tabs" role="group" aria-label="Which listings to show"><button type="button" data-list="all" aria-pressed="true">All Listings</button><button type="button" data-list="favorites" aria-pressed="false">Favorites<span class="favorite-count" id="favorite-count">0</span></button></div>
     <div class="budget-shortcut"><span class="quick-label">Quick picks</span><button type="button" id="blacksburg-student-rooms">Blacksburg Student Rooms · Under $1,000</button><button type="button" id="budget-under-1500" aria-pressed="false">Up to $1,500 / Month</button></div>
     <form id="browse-form" class="browse-filters">
@@ -1121,12 +1127,7 @@
       <div class="filter-bar"><details class="more-filters" id="more-filters"><summary>More Filters <span class="more-filters-note">Housing Type, Eligibility, Availability</span><span class="more-filters-count" id="more-filters-count" hidden></span></summary>
         <div class="filter-more"><div><label for="browse-category">Housing Type</label><select id="browse-category" name="housing_type"><option value="all">Affordable & regular rentals</option><option value="affordable">Affordable housing & waitlists</option><option value="regular">Regular rentals</option></select></div><div><label for="browse-age-group">Eligibility</label><select id="browse-age-group" name="age_group"><option value="general">Exclude senior-only housing</option><option value="senior">Senior housing</option><option value="all">All eligibility groups</option></select></div><div><label for="browse-status">Availability</label><select id="browse-status" name="status"><option value="">Openings & waitlists</option><option value="available_now">Advertised available now</option><option value="advertised_vacancy">Advertised vacancies</option><option value="upcoming">Upcoming availability</option><option value="leasing">Now leasing</option><option value="waitlist_open">Open waitlists</option><option value="contact_for_availability">Contact for availability</option></select></div></div></details>
         <button class="primary" type="submit">Update Results</button></div>
-    </form>
-    
-    <div class="sort-chat" id="sort-chat">
-      <form class="sort-form" id="sort-form"><span class="sort-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="24" height="24"></span><label class="visually-hidden" for="sort-input">Ask Gemma to sort these listings</label><input id="sort-input" type="text" maxlength="300" autocomplete="off" placeholder="Ask Gemma to sort these listings…"><button type="submit" id="sort-send">Sort</button></form>
-      <p class="sort-reply" id="sort-reply" role="status" aria-live="polite"><b>Gemma:</b> <span id="sort-text">Tell me what matters most and I’ll move the best fits to the top.</span> <button type="button" class="sort-chip" id="sort-sample" data-q="Cheapest rooms near Virginia Tech first">Try “Cheapest rooms near Virginia Tech first”</button><button type="button" class="sort-chip" id="sort-reset" hidden>Reset order</button></p>
-    </div>
+    </form></div></details>
     <p class="browse-hint">Room prices are per person. Fees and utilities may be extra.</p>
     <div class="filter-summary" id="filter-summary"><p class="filter-summary-text" id="filter-summary-text" aria-live="polite"></p><button type="button" class="filter-reset" id="filter-reset">Reset filters</button></div>
     <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p><div class="share-toast" id="share-toast" role="status" aria-live="polite"></div>
@@ -1136,7 +1137,6 @@
       <button id="show-all-listings" class="more-listings" type="button" hidden>Show All Communities</button>
     </div>
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
-  </div></details>
   </section>
 </main><footer class="cl-footer">
     <div class="container cl-footer-top">
@@ -1219,10 +1219,6 @@
   }));
   // Share copies a link that opens the site with that listing pinned first and highlighted.
   let sharedListingId = new URLSearchParams(location.search).get('listing');
-  // Explore Rentals is a drop-down: closed at first, opened by a link to #listings or a shared listing.
-  const listingsDrawer = document.getElementById('listings-drawer');
-  if (location.hash === '#listings' || sharedListingId) listingsDrawer.open = true;
-  addEventListener('hashchange', () => { if (location.hash === '#listings') listingsDrawer.open = true; });
   const shareToast = document.getElementById('share-toast'); let shareToastTimer;
   document.body.append(shareToast);  // inside the glass listings section a fixed message is placed against the section, off-screen
   function notify(message) { shareToast.textContent = message; shareToast.classList.add('show'); clearTimeout(shareToastTimer); shareToastTimer = setTimeout(() => shareToast.classList.remove('show'), 2000); }
