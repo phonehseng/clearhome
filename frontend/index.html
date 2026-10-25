@@ -1115,6 +1115,34 @@
     @media(prefers-reduced-transparency:reduce){
       #tools :is(button,a),#listings :is(button,a){backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
     }
+      /* Gemma's sort box sits right above the listing photos: tight spacing and small notes in between. The filter summary
+       shows only once a filter is set (Reset filters is enabled then). */
+    #listings .sort-chat{margin:12px 0 8px;padding:8px 10px}
+    #listings .sort-reply{margin:6px 4px 2px 48px;font-size:13px;line-height:1.45}
+    #listings .sort-chip{margin:3px 0 0 4px;padding:3px 10px;font-size:12px}
+    #listings .listings-drawer{margin:0 0 8px}
+    #listings .listings-section .browse-hint,#listings .browse-hint{margin:4px 2px 0;font-size:12px;line-height:1.4}
+    #listings .filter-summary:has(#filter-reset:disabled){display:none}
+    #listings .filter-summary{margin:6px 0 0}
+    #listings .browse-message{margin:6px 2px 8px;font-size:12.5px;font-weight:600}
+    @media(max-width:600px){
+      /* Panels fill the screen edge to edge, so no background shows at the sides. */
+      main.container{width:100%;max-width:none;padding-left:0;padding-right:0}
+      #tools.simple-tools,#listings.listings-section{border-radius:0;padding-left:10px;padding-right:10px;border-left:0;border-right:0;margin-left:0;margin-right:0}
+      #tools .assistant{border-radius:18px!important}
+      #listings .sort-reply{margin-left:4px;font-size:12.5px}
+      #listings .sort-chip{white-space:normal;text-align:left}
+      #listings .section-heading h2{font-size:21px!important}
+    }
+    @media(max-width:820px){
+      /* Bigger tap targets on phones: every button and button-like link is at least 48px tall. */
+      #tools :is(button,.call-links a,.chat-lines a,.chat-card-actions a,.opt-card .opt-links a,.hotel-more),
+      #listings :is(button,.housing-actions a,.drawer-hint){min-height:48px}
+      #tools .assistant-form .send-button{width:48px;height:48px}
+      #listings :is(.favorite-btn,.share-btn){width:48px;height:48px}
+      #tools :is(.assistant-chips button,.chat-next button,.chat-q-choice,.tonight-links button),#listings :is(.budget-shortcut button,.listing-tabs button){font-size:15px;padding-left:16px;padding-right:16px}
+      #listings .sort-chip{font-size:13px;min-height:44px}
+    }
   </style>
 </head>
 <body>
@@ -1587,7 +1615,7 @@
     allListings.textContent = 'Show All Results';
     browseMessage.dataset.state = 'success';
     if (showingFavorites) { browseMessage.textContent = rows.length ? `${rows.length} saved listing${rows.length === 1 ? '' : 's'}. Saved on this device only; details are as of when you saved them.` : 'No favorites yet. Select Save on any listing to keep it here for later.'; return; }
-    browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs. Each community lists all its floor plans together, so the count can be lower than the number of individual options.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
+    browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
   }
   async function loadHousing() {
     if (browseRequest) browseRequest.abort();
