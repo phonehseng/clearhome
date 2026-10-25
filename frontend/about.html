@@ -455,11 +455,11 @@
     .cl-title>span:not(.word){background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#2f55b5}
     .cl-end .cl-title>span:not(.word){color:#dbe8fc}
     .cl-end .cl-btn{margin:0;padding:11px 18px;min-height:44px;font-size:14px;justify-content:center;
-      color:#f7faff;background:linear-gradient(135deg,#ffffff30,#ffffff14);border:1px solid #ffffff59;
+      color:#fff;background:radial-gradient(120% 100% at 15% 0%,#ffffff2e,#ffffff00 55%),linear-gradient(140deg,#0b1535eb,#1a2f6ed1);border:1px solid #ffffff33;
       backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);
       box-shadow:inset 0 1px 0 #ffffff66,inset 0 -1px 0 #ffffff0d,0 4px 14px #050d2526;
       transition:background .15s,border-color .15s,box-shadow .15s,transform .15s}
-    .cl-end .cl-btn:hover{background:linear-gradient(135deg,#ffffff40,#ffffff20);border-color:#ffffff85;
+    .cl-end .cl-btn:hover{background:radial-gradient(120% 100% at 15% 0%,#ffffff40,#ffffff00 55%),linear-gradient(140deg,#14203ff0,#23408fd9);border-color:#ffffff59;
       box-shadow:inset 0 1px 0 #ffffff80,0 6px 18px #050d2533;transform:translateY(-1px)}
     .cl-end .cl-btn:active{transform:translateY(0)}
     .cl-end .cl-btn:focus-visible{outline:3px solid #b5d1ff;outline-offset:4px}
@@ -666,7 +666,7 @@
       <nav class="header-links" aria-label="Page navigation">
         <a href="#map">Map</a>
         <a href="/google-cloud">Built with Google Cloud</a>
-        <a href="#github">GitHub</a>
+        <a href="#github"><svg class="gh-mark" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.01 8.01 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A8 8 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>GitHub</a>
         <a class="cl-nav-btn" href="/app" data-start>Get Started</a>
       </nav>
     </div>
@@ -694,12 +694,12 @@
     <section class="cl-section" id="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title" class="cl-title reveal">What’s in <span>the list</span></h2>
       <ul class="cl-numbers reveal">
-        <li><strong data-count="records">419</strong><span>verified housing and shelter records across Northern Virginia and Blacksburg</span></li>
+        <li><strong data-count="communities">293</strong><span>housing communities and waitlists to browse across Northern Virginia and Blacksburg</span></li>
         <li><strong data-count="shelters">31</strong><span>emergency shelters</span></li>
         <li><strong data-count="legal_aid">5</strong><span>legal aid services</span></li>
         <li><strong data-count="with_rent">75</strong><span>listings with a rent we could read</span></li>
       </ul>
-      <p class="cl-lead reveal">Counted from the verified list the app serves, <span id="coverage-date">as of October 25, 2026</span>, after unverified, hidden and duplicate records are left out. These are records, not open beds or available homes: confirm with the provider. The list grows as we review more sources.</p>
+      <p class="cl-lead reveal">Counted from the verified list the app serves, <span id="coverage-date">as of October 25, 2026</span>: <span data-count="records">419</span> records in all, where each floor plan, shelter and program counts once, after unverified, hidden and duplicate records are left out. The listings page hides senior-only communities until you choose them. These are records, not open beds or available homes: confirm with the provider. The list grows as we review more sources.</p>
     </section>
 
     <section class="cl-section" id="how" aria-labelledby="how-title">

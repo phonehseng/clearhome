@@ -16,6 +16,7 @@
 .ch-header .header-links>a:not(.cl-nav-btn){display:inline-block;padding:8px 11px;border-radius:9px;color:#4b5a7a!important;font-size:13px;font-weight:500;
   text-decoration:none!important;box-shadow:none!important;transition:background .15s,color .15s,opacity .2s,visibility .2s}
 .ch-header .header-links>a:not(.cl-nav-btn):hover,.ch-header .header-links>a[aria-current="page"]{color:#23408f!important;background:#e8effc}
+.ch-header .header-links .gh-mark{display:inline-block;width:15px;height:15px;margin:0 6px 0 0;vertical-align:-2px}
 .ch-header .header-links .cl-nav-btn{margin-left:auto;display:inline-flex!important;align-items:center;justify-content:center;min-height:40px;padding:9px 17px;
   border-radius:999px;color:#fff!important;font-size:13px;font-weight:600;white-space:nowrap;text-decoration:none!important;
   background:linear-gradient(160deg,#4f7ff0,#2f55b5)!important;box-shadow:0 4px 12px #2f55b52e;transition:background .15s,box-shadow .15s}
