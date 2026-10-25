@@ -87,6 +87,16 @@ def interface_styles():
     return send_from_directory(FRONTEND, 'interface.css')
 
 
+@app.get('/site-header.css')
+def site_header_styles():
+    return send_from_directory(FRONTEND, 'site-header.css')
+
+
+@app.get('/site-header.js')
+def site_header_js():
+    return send_from_directory(FRONTEND, 'site-header.js')
+
+
 @app.get("/media/listings/<resource_id>")
 def listing_photo(resource_id):
     # IDs resolve to trusted catalog metadata; arbitrary URLs are never accepted.
