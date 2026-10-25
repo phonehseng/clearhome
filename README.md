@@ -103,7 +103,7 @@ Open http://localhost:8000.
 
 - **Nothing is stored.** No accounts, no cookies, no analytics, and no chat history on our server: a conversation lives only in the open page. Saved favorites stay in your own browser.
 - **Your question goes to our own Gemma.** On the live site, Gemma 4 runs on our own Cloud Run GPU in our Google Cloud project, so questions aren't sent to an outside AI company. The redaction above runs first.
-- **Fallback:** if our GPU is asleep or busy, the same redacted question goes to Google's Gemini API. On its free tier Google may use submitted text to improve its products, so a real deployment should use a paid key or Vertex AI, or keep the GPU awake.
+- **Fallback:** if our GPU is asleep or busy, the same redacted question goes to Google's Gemini API. Gemma 4 is free there but has no paid tier, and Google uses free-tier text to improve its products, so a deployment that needs privacy should keep Gemma on its own GPU, as we do.
 - **Places you name:** an address or place in a "near..." question is looked up with Google Maps Platform (Places and Routes) to find it and measure walking times. **Near me** sends your location rounded to about 100 meters, with that one question only.
 - **Logs:** Cloud Run keeps standard request logs (time, path, status), not the text of what you typed.
 
@@ -118,6 +118,8 @@ Open http://localhost:8000.
 - **Limits:** the AI can still make mistakes, and listings change, so answers point to real people (211, tenant legal aid, the provider) for decisions.
 
 ## Deploy
+
+**Running your own copy** (a nonprofit, library or campus office): [docs/COST_AND_SETUP.md](docs/COST_AND_SETUP.md) has a one-click **Run on Google Cloud** button, what works with no keys at all, measured speeds and token counts, and what each level costs.
 
 The live site runs on **Google Cloud Run** in us-east4, with the Gemma and Maps keys in Secret Manager. To redeploy what's committed, download the listing photos and deploy from the project folder:
 

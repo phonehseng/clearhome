@@ -6,6 +6,7 @@ This documentation describes the implementation in this repository, not a promis
 
 - **Using the website:** [User guide](USER_GUIDE.md).
 - **Running it on your computer:** [Setup and troubleshooting](SETUP.md).
+- **Running your own copy cheaply:** [Cost and setup for a nonprofit](COST_AND_SETUP.md): one-click deploy, what works with no keys, measured cost and speed.
 - **Changing the frontend or backend:** [Architecture](ARCHITECTURE.md), then [API reference](API.md).
 - **Maintaining listings or releasing changes:** [Maintenance and testing](MAINTENANCE.md).
 - **Deploying:** [Cloud Run deployment](../DEPLOY.md) and [optional GPU service](../gemma/README.md).

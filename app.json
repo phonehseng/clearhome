@@ -1,0 +1,23 @@
+{
+  "name": "clear-home",
+  "env": {
+    "GEMINI_API_KEY": {
+      "description": "Optional. A free key from https://aistudio.google.com turns on the Gemma 4 chat. Leave empty to run with listings, filters, the map and emergency lines only.",
+      "required": false
+    },
+    "GOOGLE_MAPS_SERVER_API_KEY": {
+      "description": "Optional. Places + Routes key for 'near a place' answers, walking times and nearby hotels.",
+      "required": false
+    },
+    "GOOGLE_MAPS_BROWSER_API_KEY": {
+      "description": "Optional. Maps JavaScript key (restrict it to your site's address). Without it the map uses OpenStreetMap.",
+      "required": false
+    }
+  },
+  "options": {
+    "allow-unauthenticated": true,
+    "memory": "1Gi",
+    "cpu": "1",
+    "max-instances": 2
+  }
+}
