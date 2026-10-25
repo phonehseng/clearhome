@@ -268,7 +268,11 @@
     .g-tag.gemini{background:#ede7fb;color:#5b3fb5}
     .g-tag.maps{background:#e6f4ea;color:#137333}
     .g-tag.cloud{background:#e8f0fe;color:#1a56c4}
-    /* Flip cards: they turn over one by one as you scroll down through the grid; a tap (or the button) flips one by hand. */
+    /* Pinned flip cards (wide screens): the section stays on screen while scrolling turns the cards over one by one, then
+       the page carries on. The script sets the track's height (the scroll distance) and scales the stage down if needed. */
+    .google-track.pinned .google-stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .google-track.pinned .google-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    /* Flip cards: they turn over one by one as you scroll through the section; a tap (or the button) flips one by hand. */
     .google-grid .card.flip{padding:0;background:none;border:0;box-shadow:none;overflow:visible;perspective:1000px;cursor:pointer}
     .google-grid .card.flip::before{content:none}
     .flip-in{display:grid;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -541,6 +545,7 @@
     </section>
 
     <section class="cl-section" id="google" aria-labelledby="google-title">
+      <div class="google-track"><div class="google-stage"><div class="google-fit">
       <h2 id="google-title" class="cl-title reveal">Built with <span>Google Cloud</span></h2>
       <div class="google-grid stagger">
         <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Writes every chat answer.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Turns your message into filters, then writes the answer using only checked listings, streamed as it types. It also rereads listing pages and hides ones that are gone.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
@@ -553,6 +558,7 @@
         <div class="card reveal g-cloud flip"><div class="flip-in"><div class="face front"><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Ships every release.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Every deploy builds a fresh container from our Dockerfile, so a pushed fix is live in minutes.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
       </div>
       <a class="cl-more reveal" href="/google-cloud">More Information: How We Use Google Cloud <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a>
+      </div></div></div>
     </section>
 
     <section class="cl-section" id="github" aria-labelledby="github-title">
@@ -680,8 +686,8 @@
       }, { passive: true });
     }
 
-    // Built-with-Google flip cards: the back says how we use each service. Scrolling down through the grid turns them over
-    // one by one, in order, and scrolling back up turns them back; a tap flips one by hand.
+    // Built-with-Google flip cards: the back says how we use each service. Scrolling turns them over one by one, in order,
+    // and scrolling back up turns them back; a tap flips one by hand.
     const flips = [...document.querySelectorAll('.flip')];
     const setFlip = (card, on) => {
       const [front, back] = card.querySelectorAll('.face');
@@ -694,23 +700,45 @@
       setFlip(card, on);
       if (e.target.closest('.flip-btn')) card.querySelector(on ? '.back .flip-btn' : '.front .flip-btn').focus();
     }));
-    const flipGrid = document.querySelector('.google-grid');
-    if (flipGrid && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const track = document.querySelector('.google-track');
+    if (track && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const stage = track.firstElementChild, fit = stage.firstElementChild, header = document.querySelector('.site-header');
+      const LEAD = 120, STEP = 150, TAIL = 260;  // px of scrolling once pinned: before the first card turns, per card, after the last
       const turned = flips.map(() => false);  // what scrolling last asked for, so a tapped card stays put until its turn comes round again
-      let queued = false;
+      let pinned = false, queued = false;
+      // Wide screens pin the section (scaled down if it's taller than the window) while the cards turn. Narrow screens
+      // stack the cards, so the page scrolls normally and each card turns as it reaches the middle of the screen.
+      const layout = () => {
+        track.classList.remove('pinned');
+        fit.style.zoom = fit.style.width = track.style.height = stage.style.paddingTop = '';
+        pinned = false;
+        if (innerWidth < 900) return;
+        track.classList.add('pinned');
+        const top = header ? header.offsetHeight : 0;
+        stage.style.paddingTop = `${top}px`;
+        fit.style.width = `${stage.clientWidth}px`;  // zoom then shrinks it evenly, keeping the 4 columns
+        const scale = Math.min(1, (innerHeight - top - 32) / fit.offsetHeight);
+        if (scale < .6) { track.classList.remove('pinned'); fit.style.width = stage.style.paddingTop = ''; return; }
+        if (scale < 1) fit.style.zoom = scale;
+        track.style.height = `${innerHeight + LEAD + STEP * flips.length + TAIL}px`;
+        pinned = true;
+      };
       const syncFlips = () => {
         queued = false;
-        // 0 when the grid's top is 70% of the way down the screen, 1 when its bottom is halfway up.
-        const r = flipGrid.getBoundingClientRect(), progress = (innerHeight * .7 - r.top) / (r.height + innerHeight * .2);
+        const count = pinned ? Math.floor((-track.getBoundingClientRect().top - LEAD) / STEP) + 1 : 0;
         flips.forEach((card, i) => {
-          const on = progress > (i + .5) / flips.length;
+          const r = card.getBoundingClientRect();
+          const on = pinned ? i < count : r.top + r.height / 2 < innerHeight * .55;
           if (on === turned[i] || card.contains(document.activeElement)) return;  // never flip the card a keyboard user is on
           turned[i] = on; setFlip(card, on);
         });
       };
+      const relayout = () => { layout(); syncFlips(); };
       addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(syncFlips); } }, { passive: true });
-      addEventListener('resize', syncFlips);
-      syncFlips();
+      addEventListener('resize', relayout);
+      addEventListener('load', relayout);
+      document.fonts?.ready.then(relayout);
+      relayout();
     }
   </script>
 
