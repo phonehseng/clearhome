@@ -2017,6 +2017,7 @@
       return text.split('\n').map(line => {
         // Markdown escapes (\* \_ \#) show as the plain character; a line wrapped in *italics* (Gemma's footnotes) loses the stars.
         line = line.replace(/\\\*/g, '✱').replace(/\\([_#|`\-])/g, '$1');
+        line = line.replace(/\$\\(?:le|leq)\$/g, '≤').replace(/\$\\(?:ge|geq)\$/g, '≥').replace(/\$\\(?:times)\$/g, '×').replace(/\$\\approx\$/g, '≈');  // math marks as plain symbols
         if (/^\s*\*[^*\s](.*[^*\s])?\*\s*$/.test(line)) line = line.trim().slice(1, -1);
         line = line.replace(/✱/g, '*');
         const t = line.trim();
