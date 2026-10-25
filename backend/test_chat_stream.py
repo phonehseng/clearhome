@@ -26,6 +26,21 @@ class ChatStreamTests(unittest.TestCase):
         self.assertEqual("".join(e["text"] for e in got if e["kind"] == "chunk"), "Call **ARHA**.")
         self.assertEqual(got[-1]["kind"], "done")
 
+    def test_thinking_shows_plain_steps_not_raw_notes(self):
+        with patch("advisor.stream_gemma", return_value=iter([(True, "Constraint check: persona = advisor\n"), (False, "Call 211.")])):
+            got = events(self.client.post("/api/ask/stream", json={"question": "How do vouchers work in Alexandria?"}))
+        notes = [e["text"] for e in got if e["kind"] == "thinking"]
+        self.assertEqual(notes, [advisor.THINKING_STEPS[0][1]])
+
+    def test_cold_gpu_says_it_is_warming_up(self):
+        import gemma_gpu
+        import matcher
+        with patch.dict("os.environ", {"GEMMA_GPU_URL": "https://gpu.example"}), patch.object(gemma_gpu, "_ready_at", 0.0), \
+                patch.object(gemma_gpu, "stream", side_effect=RuntimeError("cold")), patch.object(matcher, "_get_client", side_effect=RuntimeError("no key")):
+            kind, text = next(matcher.stream_gemma("hi", thoughts=True))
+        self.assertEqual(kind, "status")
+        self.assertIn("warming up", text)
+
     def test_named_places_become_cards(self):
         cards = advisor.cards_for("Call **Arlington Housing Choice Voucher Program (AHCVP)** or try **West Wood Oaks**.")
         self.assertEqual([c["name"] for c in cards][:1], ["Arlington Housing Choice Voucher Program (AHCVP, formerly Section 8)"])

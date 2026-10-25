@@ -69,6 +69,8 @@ def stream_gemma(prompt, thoughts=False):
     With thoughts=True, yields (is_thought, text) pairs so the chat can also show what Gemma is working on,
     starting with ("engine", <which model and where>) so the page can say exactly what answered."""
     import gemma_gpu  # our own Gemma 4 GPU first: no hidden reasoning, so words start in seconds
+    if thoughts and gemma_gpu.url() and (gemma_gpu.asleep() or not gemma_gpu.available()):
+        yield "status", "Gemma is warming up (it sleeps when nobody's asking). The first answer can take up to a minute; after that it's quick."
     if gemma_gpu.available():
         started = False
         try:

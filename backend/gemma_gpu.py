@@ -19,6 +19,7 @@ MODEL = os.environ.get("GEMMA_GPU_MODEL", "gemma4:26b")
 FIRST_BYTE_SECONDS = 20  # a cold GPU takes minutes to start; don't make anyone wait for that
 _token, _lock = {"value": None, "expires": 0.0}, threading.Lock()
 _cold_until = 0.0  # after a failed call, skip the GPU briefly instead of waiting on it every time
+_ready_at = 0.0  # last time the GPU answered; Cloud Run lets an idle GPU sleep after about 15 minutes
 
 
 def url():
@@ -27,6 +28,16 @@ def url():
 
 def available():
     return bool(url()) and time.time() >= _cold_until
+
+
+def asleep():
+    """True when the GPU probably needs a cold start (minutes), so the page can say it's warming up."""
+    return bool(url()) and time.time() - _ready_at > 12 * 60
+
+
+def _mark_ready():
+    global _ready_at
+    _ready_at = time.time()
 
 
 def _auth():
@@ -60,6 +71,7 @@ def stream(prompt):
                 continue
             data = json.loads(line)
             text = (data.get("message") or {}).get("content")
+            _mark_ready()
             if text:
                 yield text
             if data.get("done"):
@@ -81,7 +93,8 @@ def warm():
     def run():
         try:
             requests.post(f"{url()}/api/generate", headers=_auth(), timeout=300,
-                          json={"model": MODEL, "prompt": "hi", "stream": False, "think": False, "options": {"num_predict": 1}})
+                          json={"model": MODEL, "prompt": "hi", "stream": False, "think": False, "options": {"num_predict": 1}}).raise_for_status()
+            _mark_ready()
         except Exception:
             pass
     threading.Thread(target=run, daemon=True).start()
