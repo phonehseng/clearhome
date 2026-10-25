@@ -659,6 +659,13 @@
     #github .repo-actions .ghost-gh:hover{border-color:#6f8fd6;color:#23408f}
     @media (max-width:820px){#github .repo-card{grid-template-columns:1fr;max-width:520px}}
     .cl-hero .cl-chip.cl-in{animation:none;opacity:1;transform:none}  /* always visible at full strength, like the logo */
+    /* Hero buttons, flat like the rest of the site: solid navy primary, solid white secondary. No glass or gloss. */
+    .cl-hero .cl-btn,.cl-hero .cl-btn.ghost{position:static;isolation:auto;overflow:visible;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:0!important;
+      background:#14203f!important;color:#fff!important;box-shadow:0 8px 22px #14203f2e!important}
+    .cl-hero .cl-btn::before{content:none}
+    .cl-hero .cl-btn.ghost{background:#fff!important;color:#14203f!important;box-shadow:0 4px 14px #14203f1f!important}
+    .cl-hero .cl-btn:hover{background:#23408f!important}
+    .cl-hero .cl-btn.ghost:hover{background:#e7eefc!important}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
