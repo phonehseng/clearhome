@@ -2001,7 +2001,16 @@
       mapText.textContent = a ? `${h.name} to ${a.name}: ${walkText(a)}.` : `${h.name}: no nearby place verified.`;
       [...cards.children].forEach(c => c.setAttribute('aria-current', String(c.dataset.id === h.id)));
       try { await loadMaps(); } catch { mapEl.replaceChildren(el('p', 'Map unavailable. Use “Walking directions” to open the route in Google Maps.', { class: 'walk-map-text', style: 'padding:14px' })); return; }
-      if (!gmap) gmap = new google.maps.Map(mapEl, { center: { lat: 38.85, lng: -77.3 }, zoom: 11, mapTypeControl: false, streetViewControl: false, fullscreenControl: false });
+      if (!gmap) gmap = new google.maps.Map(mapEl, {
+        center: { lat: 38.85, lng: -77.3 }, zoom: 11,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: google.maps.ControlPosition.TOP_LEFT,
+          mapTypeIds: ['roadmap', 'satellite']
+        },
+        streetViewControl: false, fullscreenControl: false
+      });
       overlays.forEach(o => o.setMap(null)); overlays = [];
       if (h.lat == null) return;
       const home = { lat: h.lat, lng: h.lon }, bounds = new google.maps.LatLngBounds(home);
