@@ -1520,7 +1520,7 @@
         card.classList.add('has-photo', 'map-photo'); card.style.setProperty('--card-photo', `url("/images/placeholder-${blacksburg ? 'blacksburg' : 'nova'}.jpg")`);
         const cover = housingElement('div', 'map-photo-glass'); cover.setAttribute('role', 'img');
         cover.setAttribute('aria-label', `Map of the ${blacksburg ? 'Blacksburg' : 'Northern Virginia'} area; no photo of this property yet`);
-        cover.append(housingElement('span', 'map-photo-label', 'Photo coming soon'), housingElement('small', 'map-photo-credit', 'Map data © Google'));
+        cover.append(housingElement('small', 'map-photo-credit', 'Map data © Google'));
         card.append(cover);
       }
       if (safePhoto) {
