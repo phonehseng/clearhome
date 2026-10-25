@@ -5623,7 +5623,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-246-5072",
-    "website": "https://www.fairfaxcounty.gov/housing/waitlist",
+    "website": "https://www.fairfaxcounty.gov/housing/rentalhousing/coan-pond",
     "hours": null,
     "who_it_serves": "Single adults seeking single-room-occupancy efficiency housing in the Fairfax County Rental Program; eligibility must be confirmed with the property.",
     "cost": "Rent not published on the county pages reviewed. Contact the property for rent and fees.",
@@ -5646,6 +5646,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/fairfax-county-rental-program",
         "role": "government"
+      },
+      {
+        "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/coan-pond",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -5950,7 +5954,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-780-9072",
-    "website": null,
+    "website": "https://www.qpmgmt.com/properties/gum-springs-apartments/",
     "hours": null,
     "who_it_serves": "Adults ages 62+; FCRHA page lists income limits of $57,400 (1 person) and $65,600 (2 people).",
     "cost": "FCRHA lists $1,125 for the one-bedroom unit; county page says utilities included.",
@@ -5973,6 +5977,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
         "role": "directory"
+      },
+      {
+        "url": "https://www.qpmgmt.com/properties/gum-springs-apartments/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6025,7 +6033,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-780-9072",
-    "website": null,
+    "website": "https://www.qpmgmt.com/properties/gum-springs-apartments/",
     "hours": null,
     "who_it_serves": "Adults ages 62+; FCRHA page lists income limits of $57,400 (1 person) and $65,600 (2 people). Two-bedroom units require a two-person household.",
     "cost": "FCRHA lists $1,360 for the two-bedroom unit; county page says utilities included.",
@@ -6048,6 +6056,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/senior-housing",
         "role": "directory"
+      },
+      {
+        "url": "https://www.qpmgmt.com/properties/gum-springs-apartments/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -6100,7 +6112,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-719-7268",
-    "website": null,
+    "website": "https://www.qpmgmt.com/properties/morris-glen-apartments/",
     "hours": null,
     "who_it_serves": "Adults ages 62+ within published income limits ($68,880 for 1 person; $78,720 for 2 people per FCRHA page).",
     "cost": "Published rent range $1,100 to $1,255 per month; utilities included per county page. Some subsidized units.",
@@ -6123,6 +6135,10 @@
       {
         "url": "https://www.fcrha.org/properties/morris-glen/1",
         "role": "government"
+      },
+      {
+        "url": "https://www.qpmgmt.com/properties/morris-glen-apartments/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7061,7 +7077,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-931-3600",
-    "website": null,
+    "website": "https://www.greystar.com/baileys-crossing-apartments-alexandria-va/p_15000",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7081,6 +7097,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.greystar.com/baileys-crossing-apartments-alexandria-va/p_15000",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7132,7 +7152,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-347-6778",
-    "website": null,
+    "website": "https://www.udr.com/washington-dc-apartments/alexandria/the-courts-at-huntington-station/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7152,6 +7172,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.udr.com/washington-dc-apartments/alexandria/the-courts-at-huntington-station/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7203,7 +7227,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-924-1000",
-    "website": null,
+    "website": "https://www.ridgeleighapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7223,6 +7247,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.ridgeleighapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7344,8 +7372,8 @@
     "area": "Fairfax County",
     "region": "Northern Virginia",
     "state": "VA",
-    "phone": "980-270-1680",
-    "website": null,
+    "phone": "571-540-7925",
+    "website": "https://www.greystar.com/preserve-at-westfields-chantilly-va/p_23411",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7365,6 +7393,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.greystar.com/preserve-at-westfields-chantilly-va/p_23411",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7484,7 +7516,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-266-5865",
-    "website": null,
+    "website": "https://emersonlife.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7504,6 +7536,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://emersonlife.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7555,7 +7591,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-280-0111",
-    "website": null,
+    "website": "https://www.avaloncommunities.com/virginia/merrifield-apartments/avalon-mosaic/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7575,6 +7611,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.avaloncommunities.com/virginia/merrifield-apartments/avalon-mosaic/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7689,7 +7729,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-218-2088",
-    "website": null,
+    "website": "https://www.camdenliving.com/apartments/fairfax-va/camden-monument-place",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7709,6 +7749,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.camdenliving.com/apartments/fairfax-va/camden-monument-place",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7831,7 +7875,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-218-8492",
-    "website": null,
+    "website": "https://www.gables.com/community/528451",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7851,6 +7895,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.gables.com/community/528451",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7902,7 +7950,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-638-1495",
-    "website": null,
+    "website": "https://www.halsteadsquare.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7922,6 +7970,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.halsteadsquare.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -7973,7 +8025,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-277-7000",
-    "website": null,
+    "website": "https://www.jeffersonatfairoaks.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -7993,6 +8045,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.jeffersonatfairoaks.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8105,14 +8161,14 @@
     "record_kind": "community",
     "floor_plan": "Age-restricted community · confirm eligibility",
     "type": "affordable_listing",
-    "address": "3951 Fair Ridge Drive, Fairfax, VA",
+    "address": "3955 Fair Ridge Drive, Fairfax, VA",
     "city": "Fairfax",
     "jurisdiction": "Fairfax County",
     "area": "Fairfax County",
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-246-1615",
-    "website": null,
+    "website": "https://www.greystar.com/overture-fair-ridge-fairfax-va/p_14425",
     "hours": null,
     "who_it_serves": "Older adults; ask leasing for the exact age and household eligibility requirements.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -8132,6 +8188,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.greystar.com/overture-fair-ridge-fairfax-va/p_14425",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8157,8 +8217,8 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "lat": 38.872772,
-    "lon": -77.369622,
+    "lat": 38.872693,
+    "lon": -77.369445,
     "geocode_source": "US Census Geocoder",
     "photo": {
       "url": "https://medialibrarycfo.entrata.com/15190/MLv3/3/21/2024/12/17/112434/19081_100065540_5c65a85a9708b2.66637305314.jpg",
@@ -8325,7 +8385,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-352-0300",
-    "website": null,
+    "website": "https://www.regentsparkapartments.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -8345,6 +8405,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.regentsparkapartments.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8396,7 +8460,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-383-3996",
-    "website": null,
+    "website": "https://www.windsorcommunities.com/properties/windsor-ridgewood/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -8416,6 +8480,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.windsorcommunities.com/properties/windsor-ridgewood/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8467,7 +8535,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-479-3300",
-    "website": null,
+    "website": "https://www.greystar.com/loren-falls-church-va/p_16461",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -8487,6 +8555,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.greystar.com/loren-falls-church-va/p_16461",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8538,7 +8610,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-297-4760",
-    "website": null,
+    "website": "https://www.bozzuto.com/apartments-for-rent/va/falls-church/vantage-mosaic",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -8558,6 +8630,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.bozzuto.com/apartments-for-rent/va/falls-church/vantage-mosaic",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8609,7 +8685,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-372-5799",
-    "website": null,
+    "website": "https://chesapeakerealtypartners.com/belvoir-square/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -8629,6 +8705,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://chesapeakerealtypartners.com/belvoir-square/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8680,7 +8760,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-953-3303",
-    "website": null,
+    "website": "https://www.gradymgt.com/discoverysquare",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -8700,6 +8780,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.gradymgt.com/discoverysquare",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8751,7 +8835,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-713-6060",
-    "website": null,
+    "website": "https://www.gradymgt.com/dullescenter",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -8771,6 +8855,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.gradymgt.com/dullescenter",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -8893,7 +8981,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-956-1027",
-    "website": null,
+    "website": "https://www.greystar.com/the-ian-herndon-va/p_20490",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -8913,6 +9001,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.greystar.com/the-ian-herndon-va/p_20490",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9174,7 +9266,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-495-8080",
-    "website": null,
+    "website": "https://www.bozzuto.com/apartments-for-rent/va/lorton/vista-laurel-highlands",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -9194,6 +9286,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.bozzuto.com/apartments-for-rent/va/lorton/vista-laurel-highlands",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9245,7 +9341,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-712-0180",
-    "website": null,
+    "website": "https://www.bozzuto.com/apartments-for-rent/va/mclean/ovation-at-park-crest",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -9265,6 +9361,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.bozzuto.com/apartments-for-rent/va/mclean/ovation-at-park-crest",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9316,7 +9416,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-506-2146",
-    "website": null,
+    "website": "https://www.vinsonhall.org/",
     "hours": null,
     "who_it_serves": "Income-qualified residents age 55+; confirm all household and program requirements with leasing.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -9336,6 +9436,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.vinsonhall.org/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9458,7 +9562,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-348-5541",
-    "website": null,
+    "website": "https://www.liveaperture.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -9478,6 +9582,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.liveaperture.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9521,7 +9629,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-636-0400",
-    "website": null,
+    "website": "https://www.avaloncommunities.com/virginia/merrifield-apartments/avalon-dunn-loring/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -9541,6 +9649,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.avaloncommunities.com/virginia/merrifield-apartments/avalon-dunn-loring/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9663,7 +9775,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-914-3557",
-    "website": null,
+    "website": "https://aspirehuntingtonstation.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -9683,6 +9795,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://aspirehuntingtonstation.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9805,7 +9921,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-267-2885",
-    "website": null,
+    "website": "https://lyvwellapartments.com/our-communities/the-parker-at-huntington-metro/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -9825,6 +9941,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://lyvwellapartments.com/our-communities/the-parker-at-huntington-metro/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9876,7 +9996,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-350-8200",
-    "website": null,
+    "website": "https://vistafairfaxcorner.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -9896,6 +10016,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://vistafairfaxcorner.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -9947,7 +10071,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-670-6762",
-    "website": null,
+    "website": "https://altanovaapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -9967,6 +10091,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://altanovaapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10160,7 +10288,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-520-3162",
-    "website": null,
+    "website": "https://www.udr.com/washington-dc-apartments/herndon/station-on-silver/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10180,6 +10308,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.udr.com/washington-dc-apartments/herndon/station-on-silver/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10221,14 +10353,14 @@
     "record_kind": "community",
     "floor_plan": "Community · contact for unit sizes",
     "type": "affordable_listing",
-    "address": "1360 Beverly Road, McLean, VA",
+    "address": "1350 Beverly Road, McLean, VA",
     "city": "McLean",
     "jurisdiction": "Fairfax County",
     "area": "Fairfax County",
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-442-4881",
-    "website": null,
+    "website": "https://cortland.com/apartments/cortland-at-mclean/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10248,6 +10380,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://cortland.com/apartments/cortland-at-mclean/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10273,8 +10409,8 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "lat": 38.936267,
-    "lon": -77.17843,
+    "lat": 38.936445,
+    "lon": -77.178225,
     "geocode_source": "US Census Geocoder",
     "photo": {
       "url": "https://cortland.com/assets/images/cache/1.1.22.1.4-Ashby-at-McLean-Courtyard-2024-LR-e8f785a6f1e3c77ef04842afa831ea06.jpg",
@@ -10299,7 +10435,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "866-570-2715",
-    "website": null,
+    "website": "https://thearborathalleyrise.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10319,6 +10455,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://thearborathalleyrise.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10367,7 +10507,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-230-1168",
-    "website": null,
+    "website": "https://blvdhaley.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10387,6 +10527,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://blvdhaley.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10438,7 +10582,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-230-1110",
-    "website": null,
+    "website": "https://blvdreston.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10458,6 +10602,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://blvdreston.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10509,7 +10657,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-826-0808",
-    "website": null,
+    "website": "https://exoreston.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10529,6 +10677,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://exoreston.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10572,7 +10724,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-822-7450",
-    "website": null,
+    "website": "https://www.faradaypark.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10592,6 +10744,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.faradaypark.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10636,14 +10792,14 @@
     "record_kind": "community",
     "floor_plan": "Community · contact for unit sizes",
     "type": "affordable_listing",
-    "address": "1500 Commerce Park Drive, Reston, VA",
+    "address": "11500 Commerce Park Drive, Reston, VA",
     "city": "Reston",
     "jurisdiction": "Fairfax County",
     "area": "Fairfax County",
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-860-3311",
-    "website": null,
+    "website": "https://russellapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10663,6 +10819,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://russellapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10696,9 +10856,9 @@
       "reviewed_on": "2026-10-24",
       "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
     },
-    "lat": 38.946132,
-    "lon": -77.342111,
-    "geocode_source": "OpenStreetMap Nominatim (street, not exact address)"
+    "lat": 38.94576,
+    "lon": -77.343,
+    "geocode_source": "US Census Geocoder"
   },
   {
     "id": "nova-fairfax-county-signature-at-reston-town-center",
@@ -10785,7 +10945,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-487-7809",
-    "website": null,
+    "website": "https://www.skymarkreston.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10805,6 +10965,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.skymarkreston.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10919,7 +11083,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-385-0214",
-    "website": null,
+    "website": "https://www.avantreston.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -10939,6 +11103,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.avantreston.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -10990,7 +11158,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-946-7615",
-    "website": null,
+    "website": "https://www.harborgroupmanagement.com/apartments/va/reston/the-edmund/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -11010,6 +11178,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.harborgroupmanagement.com/apartments/va/reston/the-edmund/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11200,7 +11372,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-712-8866",
-    "website": null,
+    "website": "https://lyvwellapartments.com/our-communities/8421-broad/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -11220,6 +11392,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://lyvwellapartments.com/our-communities/8421-broad/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11271,7 +11447,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-462-8044",
-    "website": null,
+    "website": "https://adairetysons.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -11291,6 +11467,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://adairetysons.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11410,7 +11590,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-506-0745",
-    "website": null,
+    "website": "https://livehaden.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -11430,6 +11610,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://livehaden.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11552,7 +11736,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-997-7721",
-    "website": null,
+    "website": "https://lumentysons.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -11572,6 +11756,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://lumentysons.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11623,7 +11811,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-222-3220",
-    "website": null,
+    "website": "https://livenouvelle.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -11643,6 +11831,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://livenouvelle.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11765,7 +11957,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-705-7279",
-    "website": null,
+    "website": "https://www.thejonesattysons.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -11785,6 +11977,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thejonesattysons.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11907,7 +12103,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "833-208-9469",
-    "website": null,
+    "website": "https://rylantysons.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -11927,6 +12123,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://rylantysons.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -11978,7 +12178,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-884-8482",
-    "website": null,
+    "website": "https://www.gables.com/community/1633587",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -11998,6 +12198,10 @@
       {
         "url": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
         "role": "directory"
+      },
+      {
+        "url": "https://www.gables.com/community/1633587",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12049,7 +12253,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-243-4300",
-    "website": null,
+    "website": "https://rhf.org/the-carlin/",
     "hours": null,
     "who_it_serves": "Income-qualified residents 62 and older and disabled persons, as listed in the county directory. Ask leasing about the eligibility rules for your household.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12069,6 +12273,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://rhf.org/the-carlin/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12183,7 +12391,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-528-0162",
-    "website": null,
+    "website": "https://culpeppergarden.org/",
     "hours": null,
     "who_it_serves": "Income-qualified residents 62 and older and disabled persons, as listed in the county directory. Ask leasing about the eligibility rules for your household.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12203,6 +12411,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://culpeppergarden.org/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12254,7 +12466,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-592-6390",
-    "website": null,
+    "website": "https://www.huntersparkapts.com",
     "hours": null,
     "who_it_serves": "Income-qualified residents 62 and older and disabled persons, as listed in the county directory. Ask leasing about the eligibility rules for your household.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12274,6 +12486,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.huntersparkapts.com",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12325,7 +12541,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-970-1876",
-    "website": null,
+    "website": "https://www.thejordanapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12345,6 +12561,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thejordanapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12396,7 +12616,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-267-2879",
-    "website": null,
+    "website": "https://www.placemakr.com/locations/arlington/marymount-ballston",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12416,6 +12636,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.placemakr.com/locations/arlington/marymount-ballston",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12467,7 +12691,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-972-7500",
-    "website": null,
+    "website": "https://thewaycroft.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12487,6 +12711,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://thewaycroft.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12538,7 +12766,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-526-9600",
-    "website": null,
+    "website": "https://www.ballstonpark.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12558,6 +12786,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.ballstonpark.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12672,7 +12904,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-641-8006",
-    "website": null,
+    "website": "https://www.livethecadence.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12692,6 +12924,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.livethecadence.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12742,8 +12978,8 @@
     "area": "Arlington County",
     "region": "Northern Virginia",
     "state": "VA",
-    "phone": "703-528-7751",
-    "website": null,
+    "phone": "571-559-7159",
+    "website": "https://knightsbridge-apts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12763,6 +12999,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://knightsbridge-apts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12876,8 +13116,8 @@
     "area": "Arlington County",
     "region": "Northern Virginia",
     "state": "VA",
-    "phone": "703-528-7751",
-    "website": null,
+    "phone": "571-568-9759",
+    "website": "https://whitefieldcommonsapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12897,6 +13137,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://whitefieldcommonsapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -12948,7 +13192,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-671-1777",
-    "website": null,
+    "website": "https://www.thespectrumapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -12968,6 +13212,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thespectrumapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13019,7 +13267,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-705-4811",
-    "website": null,
+    "website": "https://theearlapartments.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -13039,6 +13287,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://theearlapartments.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -13161,7 +13413,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-229-6927",
-    "website": null,
+    "website": "https://www.vpointapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -13181,6 +13433,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.vpointapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14723,7 +14979,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-858-5222",
-    "website": null,
+    "website": "https://acclaimatashburn.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -14743,6 +14999,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://acclaimatashburn.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14920,7 +15180,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-350-3232",
-    "website": null,
+    "website": "https://www.atley-apts.com",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -14940,6 +15200,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://www.atley-apts.com",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -14991,7 +15255,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-601-1932",
-    "website": null,
+    "website": "https://blvdcommons.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -15011,6 +15275,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://blvdcommons.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15062,7 +15330,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-556-9953",
-    "website": null,
+    "website": "https://blvdgramercyeast.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -15082,6 +15350,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://blvdgramercyeast.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15130,7 +15402,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-724-7889",
-    "website": null,
+    "website": "https://www.evergreenreg.com/communities/grove-at-flynns-crossing/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -15150,6 +15422,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://www.evergreenreg.com/communities/grove-at-flynns-crossing/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15474,7 +15750,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "833-623-1508",
-    "website": null,
+    "website": "https://www.bellashburnfarms.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -15494,6 +15770,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://www.bellashburnfarms.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15616,7 +15896,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "877-211-3494",
-    "website": null,
+    "website": "https://tgmmoorefield.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -15636,6 +15916,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://tgmmoorefield.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15894,7 +16178,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-404-9711",
-    "website": null,
+    "website": "https://acclaimatsterling.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -15914,6 +16198,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://acclaimatsterling.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -15965,7 +16253,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "888-695-5735",
-    "website": null,
+    "website": "https://www.cascadescrossing.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -15985,6 +16273,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://www.cascadescrossing.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16036,7 +16328,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-556-8291",
-    "website": null,
+    "website": "https://www.potomacsquareapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -16056,6 +16348,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://www.potomacsquareapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16107,7 +16403,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-327-9300",
-    "website": null,
+    "website": "https://www.elmsliving.com/communities/the-elms-at-arcola",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -16127,6 +16423,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://www.elmsliving.com/communities/the-elms-at-arcola",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16249,7 +16549,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-430-9000",
-    "website": null,
+    "website": "https://www.lernerwindmillparc.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -16269,6 +16569,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://www.lernerwindmillparc.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16388,7 +16692,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": null,
-    "website": null,
+    "website": "https://www.greystar.com/wyatt-sterling-va/p_22188",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -16408,6 +16712,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://www.greystar.com/wyatt-sterling-va/p_22188",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16530,7 +16838,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "540-751-0100",
-    "website": null,
+    "website": "https://armigermanagement.com/apartments/purcellville/maple-avenue/9/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -16550,6 +16858,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://armigermanagement.com/apartments/purcellville/maple-avenue/9/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16735,7 +17047,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "540-687-3402",
-    "website": null,
+    "website": "https://www.qpmgmt.com/properties/levis-hill-house/",
     "hours": null,
     "who_it_serves": "Older adults; ask leasing for the exact age and household eligibility requirements.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -16755,6 +17067,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://www.qpmgmt.com/properties/levis-hill-house/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16806,7 +17122,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-777-5510",
-    "website": null,
+    "website": "https://res1.net/apartments/madison-house/",
     "hours": null,
     "who_it_serves": "Older adults; ask leasing for the exact age and household eligibility requirements.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -16826,6 +17142,10 @@
       {
         "url": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
         "role": "directory"
+      },
+      {
+        "url": "https://res1.net/apartments/madison-house/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -16868,8 +17188,8 @@
     "area": "Alexandria City",
     "region": "Northern Virginia",
     "state": "VA",
-    "phone": "833-835-1469",
-    "website": null,
+    "phone": "703-548-4946",
+    "website": "https://www.anniebrosehouse.com/",
     "hours": null,
     "who_it_serves": "Income-qualified residents age 62+; confirm all household and program requirements with leasing.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -16889,6 +17209,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.anniebrosehouse.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17003,7 +17327,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "276-421-4480",
-    "website": null,
+    "website": "https://www.foxchaseofalexandriaapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -17023,6 +17347,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.foxchaseofalexandriaapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17074,7 +17402,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "833-799-2930",
-    "website": null,
+    "website": "https://www.newbrooksideapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -17094,6 +17422,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.newbrooksideapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17208,7 +17540,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "855-431-2275",
-    "website": null,
+    "website": "https://www.avanath.com/community/acclaim-at-alexandria/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -17228,6 +17560,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.avanath.com/community/acclaim-at-alexandria/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17278,7 +17614,7 @@
     "area": "Alexandria City",
     "region": "Northern Virginia",
     "state": "VA",
-    "phone": "703-853-0638",
+    "phone": "703-683-9077",
     "website": null,
     "hours": null,
     "who_it_serves": "Older adults; ask leasing for the exact age and household eligibility requirements.",
@@ -17341,8 +17677,8 @@
     "area": "Alexandria City",
     "region": "Northern Virginia",
     "state": "VA",
-    "phone": "703-548-0093",
-    "website": null,
+    "phone": "571-605-1890",
+    "website": "https://www.beverlyparkapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -17362,6 +17698,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.beverlyparkapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17413,7 +17753,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-718-4856",
-    "website": null,
+    "website": "https://www.thebloomalexandria.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -17433,6 +17773,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thebloomalexandria.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17555,7 +17899,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-378-3775",
-    "website": null,
+    "website": "https://www.ellsworth-apartments.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -17575,6 +17919,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.ellsworth-apartments.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17626,7 +17974,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-659-6568",
-    "website": null,
+    "website": "https://www.thewaypointalx.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -17646,6 +17994,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thewaypointalx.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17839,7 +18191,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-554-2138",
-    "website": null,
+    "website": "https://ahcommunities.org/property/jackson-crossing/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -17859,6 +18211,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://ahcommunities.org/property/jackson-crossing/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17910,7 +18266,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-946-5490",
-    "website": null,
+    "website": "https://www.lacycourt-apartments.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -17930,6 +18286,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.lacycourt-apartments.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -17981,7 +18341,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-982-6984",
-    "website": null,
+    "website": "https://www.edgewoodmgmt.com/apartments/va/alexandria/lineage-north-patrick-st/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18001,6 +18361,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.edgewoodmgmt.com/apartments/va/alexandria/lineage-north-patrick-st/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18052,7 +18416,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-688-3972",
-    "website": null,
+    "website": "https://www.longviewterrace-apartments.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18072,6 +18436,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.longviewterrace-apartments.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18122,8 +18490,8 @@
     "area": "Alexandria City",
     "region": "Northern Virginia",
     "state": "VA",
-    "phone": "703-548-0093",
-    "website": null,
+    "phone": "571-385-4881",
+    "website": "https://lynhavenapartments.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18143,6 +18511,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://lynhavenapartments.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18194,7 +18566,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-462-6373",
-    "website": null,
+    "website": "https://www.nexusalexandria.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18214,6 +18586,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.nexusalexandria.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18264,8 +18640,8 @@
     "area": "Alexandria City",
     "region": "Northern Virginia",
     "state": "VA",
-    "phone": "703-548-0093",
-    "website": null,
+    "phone": "571-520-4126",
+    "website": "https://parcsquareapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18285,6 +18661,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://parcsquareapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18336,7 +18716,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-751-2297",
-    "website": null,
+    "website": "https://www.parcviewapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18356,6 +18736,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.parcviewapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18407,7 +18791,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-554-6398",
-    "website": null,
+    "website": "https://www.parkstonealexandria.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18427,6 +18811,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.parkstonealexandria.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18478,7 +18866,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-832-0275",
-    "website": null,
+    "website": "https://www.thesquareat511.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18498,6 +18886,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thesquareat511.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18612,7 +19004,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-570-8475",
-    "website": null,
+    "website": "https://ahcommunities.org/property/st-james-plaza/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18632,6 +19024,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://ahcommunities.org/property/st-james-plaza/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18683,7 +19079,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-567-0190",
-    "website": null,
+    "website": "https://www.thestationalexandria.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18703,6 +19099,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thestationalexandria.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18754,7 +19154,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-254-3382",
-    "website": null,
+    "website": "https://alateoldtown.com/",
     "hours": null,
     "who_it_serves": "Income-qualified residents age 62+; confirm all household and program requirements with leasing.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18774,6 +19174,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://alateoldtown.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18825,7 +19229,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "833-897-8721",
-    "website": null,
+    "website": "https://alexanflorenceapartments.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18845,6 +19249,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://alexanflorenceapartments.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18896,7 +19304,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-844-9529",
-    "website": null,
+    "website": "https://www.theblakealexandria.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18916,6 +19324,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.theblakealexandria.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -18959,7 +19371,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-347-9775",
-    "website": null,
+    "website": "https://www.thebradleybraddockroadstationapartments.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -18979,6 +19391,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thebradleybraddockroadstationapartments.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19030,7 +19446,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-665-6869",
-    "website": null,
+    "website": "https://www.carlyleplaceapt.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19050,6 +19466,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.carlyleplaceapt.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19101,7 +19521,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "833-681-1413",
-    "website": null,
+    "website": "https://delraycentral.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19121,6 +19541,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://delraycentral.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19172,7 +19596,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-290-7047",
-    "website": null,
+    "website": "https://www.thepointateisenhowersquare.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19192,6 +19616,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thepointateisenhowersquare.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19232,7 +19660,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "517-781-7830",
-    "website": null,
+    "website": "https://www.thefoundryalexandria.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19252,6 +19680,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thefoundryalexandria.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19303,7 +19735,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "202-968-3758",
-    "website": null,
+    "website": "https://www.gables.com/communities/virginia/alexandria/gables-old-town-north/1a2",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19323,6 +19755,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.gables.com/communities/virginia/alexandria/gables-old-town-north/1a2",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19374,7 +19810,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-970-1443",
-    "website": null,
+    "website": "https://www.graysonapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19394,6 +19830,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.graysonapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19445,7 +19885,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-701-1591",
-    "website": null,
+    "website": "https://www.windsorcommunities.com/properties/halstead-tower-by-windsor/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19465,6 +19905,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.windsorcommunities.com/properties/halstead-tower-by-windsor/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19516,7 +19960,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "877-731-4683",
-    "website": null,
+    "website": "https://www.oakvilleva.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19536,6 +19980,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.oakvilleva.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19587,7 +20035,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-281-2701",
-    "website": null,
+    "website": "https://www.meridianeisenhower.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19607,6 +20055,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.meridianeisenhower.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19658,7 +20110,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-348-2017",
-    "website": null,
+    "website": "https://www.meridian2250.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19678,6 +20130,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.meridian2250.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19729,7 +20185,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "888-705-3815",
-    "website": null,
+    "website": "https://liveatnotch8.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19749,6 +20205,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://liveatnotch8.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19800,7 +20260,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-348-6870",
-    "website": null,
+    "website": "https://www.parcmeridian.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19820,6 +20280,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.parcmeridian.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19871,7 +20335,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "833-221-6314",
-    "website": null,
+    "website": "https://www.parkandford.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19891,6 +20355,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.parkandford.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -19942,7 +20410,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-810-7822",
-    "website": null,
+    "website": "https://platformalexandria.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -19962,6 +20430,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://platformalexandria.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -20013,7 +20485,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-454-9486",
-    "website": null,
+    "website": "https://www.maac.com/virginia/dc-metro/maa-carlyle-square/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -20033,6 +20505,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.maac.com/virginia/dc-metro/maa-carlyle-square/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -20084,7 +20560,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "877-731-4683",
-    "website": null,
+    "website": "https://www.oakvilleva.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -20104,6 +20580,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.oakvilleva.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -20155,7 +20635,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "844-542-1820",
-    "website": null,
+    "website": "https://www.station650apts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -20175,6 +20655,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.station650apts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -20226,7 +20710,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "844-925-5039",
-    "website": null,
+    "website": "https://www.belloldtown.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -20246,6 +20730,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.belloldtown.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -20297,7 +20785,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-212-6959",
-    "website": null,
+    "website": "https://www.thetuscanyapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -20317,6 +20805,10 @@
       {
         "url": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
         "role": "directory"
+      },
+      {
+        "url": "https://www.thetuscanyapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -20961,7 +21453,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-279-0849",
-    "website": null,
+    "website": "https://www.westbroad.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -20981,6 +21473,10 @@
       {
         "url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
         "role": "directory"
+      },
+      {
+        "url": "https://www.westbroad.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -21024,7 +21520,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "571-749-2739",
-    "website": null,
+    "website": "https://www.young-grp.com/residential",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the designated affordable units.",
     "cost": "Rent not confirmed. Ask leasing for current affordable-unit prices, fees, utilities, and deposits.",
@@ -21044,6 +21540,10 @@
       {
         "url": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
         "role": "directory"
+      },
+      {
+        "url": "https://www.young-grp.com/residential",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -21528,7 +22028,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703.673.7030",
-    "website": null,
+    "website": "https://www.sheltonapts.com",
     "hours": null,
     "who_it_serves": "Income-qualified households of 2-4 people; county-listed maximum income $79,740 - $99,660. Eligibility must be confirmed by the provider.",
     "cost": "County-listed monthly rent: $2,003. Utilities: Residents pay electricity and water/sewer. Fees and deposits must be confirmed.",
@@ -21551,6 +22051,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.sheltonapts.com",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -21603,7 +22107,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703.673.7030",
-    "website": null,
+    "website": "https://www.macedonianapts.com",
     "hours": null,
     "who_it_serves": "Income-qualified households of 2-4 people; county-listed maximum income $79,740 - $99,660. Eligibility must be confirmed by the provider.",
     "cost": "County-listed monthly rent: $2,016. Utilities: Residents pay electricity and water/sewer. Fees and deposits must be confirmed.",
@@ -21626,6 +22130,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.macedonianapts.com",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -21678,7 +22186,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703.673.7030",
-    "website": null,
+    "website": "https://www.fthenryapts.com",
     "hours": null,
     "who_it_serves": "Income-qualified households of 2-4 people; county-listed maximum income $79,740 - $99,660. Eligibility must be confirmed by the provider.",
     "cost": "County-listed monthly rent: $2,088. Utilities: Residents pay gas and electric. Fees and deposits must be confirmed.",
@@ -21701,6 +22209,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.fthenryapts.com",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -21747,13 +22259,13 @@
     "record_kind": "floor_plan",
     "floor_plan": "1 bedroom",
     "type": "affordable_listing",
-    "address": "5121 Columbia Pike, Arlington, VA 22204",
+    "address": "5125 Columbia Pike, Arlington, VA 22204",
     "city": "Arlington",
     "jurisdiction": "Arlington County",
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703.671.3200",
-    "website": null,
+    "website": "https://www.keygardensapts.com",
     "hours": null,
     "who_it_serves": "Income-qualified households of 1-2 people; county-listed maximum income $69,780 - $79,740. Eligibility must be confirmed by the provider.",
     "cost": "County-listed monthly rent: $1,650. Utilities: Tenants pay water and electric. Fees and deposits must be confirmed.",
@@ -21776,6 +22288,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.keygardensapts.com",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -21802,8 +22318,8 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "lat": 38.855688,
-    "lon": -77.112869,
+    "lat": 38.855639,
+    "lon": -77.112986,
     "geocode_source": "US Census Geocoder",
     "source_kind": "official_directory",
     "photo": {
@@ -21828,7 +22344,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703.671.3200",
-    "website": null,
+    "website": "https://www.theserranoapts.com/",
     "hours": null,
     "who_it_serves": "Income-qualified households of 3 people; county-listed maximum income $93,040 - $119,600. Eligibility must be confirmed by the provider.",
     "cost": "County-listed monthly rent: $1,875. Utilities: Tenants pay water and gas. Fees and deposits must be confirmed.",
@@ -21851,6 +22367,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.theserranoapts.com/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -21903,7 +22423,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703.636.9960",
-    "website": null,
+    "website": "https://www.westoverapts.com",
     "hours": null,
     "who_it_serves": "Income-qualified households of 1-2 people; county-listed maximum income $69,780 - $79,740. Eligibility must be confirmed by the provider.",
     "cost": "County-listed monthly rent: $1,750. Utilities: Resident pays for electricity and water. Fees and deposits must be confirmed.",
@@ -21926,6 +22446,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.westoverapts.com",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -21972,13 +22496,13 @@
     "record_kind": "floor_plan",
     "floor_plan": "1 bedroom",
     "type": "affordable_listing",
-    "address": "5819 Washington Blvd. #A, Arlington, VA 22205",
+    "address": "5712 N 10th Road, Arlington, VA 22205",
     "city": "Arlington",
     "jurisdiction": "Arlington County",
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703.636.9960",
-    "website": null,
+    "website": "https://www.theashtonsapts.com",
     "hours": null,
     "who_it_serves": "Income-qualified households of 1-2 people; county-listed maximum income $58,150 - $66,450. Eligibility must be confirmed by the provider.",
     "cost": "County-listed monthly rent: $1,472. Utilities: Resident pays for electricity, and gas. Fees and deposits must be confirmed.",
@@ -22001,6 +22525,10 @@
       {
         "url": "https://www.arlingtonva.us/Government/Programs/Housing/Get-Help/Rental-Services/Affordable-Units",
         "role": "directory"
+      },
+      {
+        "url": "https://www.theashtonsapts.com",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -22027,8 +22555,8 @@
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "lat": 38.884139,
-    "lon": -77.138923,
+    "lat": 38.880389,
+    "lon": -77.133317,
     "geocode_source": "US Census Geocoder",
     "source_kind": "official_directory",
     "photo": {
@@ -28170,7 +28698,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-378-4810",
-    "website": null,
+    "website": "https://www.amurcon.com/communities/chantilly-mews/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the assisted or income-restricted units.",
     "cost": "Rent not confirmed. Ask leasing for current rent, how it is calculated, fees, utilities, and deposits.",
@@ -28194,6 +28722,10 @@
       {
         "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?where=HUD_ID%3D%27VAA20060751%27&outFields=PROJECT%2CPROJ_ADD%2CPROJ_CTY%2CPROJ_ZIP%2CN_UNITS%2CLI_UNITS%2CN_1BR%2CN_2BR%2CN_3BR%2CN_4BR%2CYR_PIS%2CTRGT_ELD%2CTRGT_FAM&returnGeometry=false&f=html",
         "role": "government"
+      },
+      {
+        "url": "https://www.amurcon.com/communities/chantilly-mews/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -28438,7 +28970,7 @@
     "region": "Northern Virginia",
     "state": "VA",
     "phone": "703-354-1155",
-    "website": null,
+    "website": "https://slnusbaum.com/property-search/multifamily/",
     "hours": null,
     "who_it_serves": "Income-qualified households; the provider determines eligibility for the assisted or income-restricted units.",
     "cost": "Rent not confirmed. Ask leasing for current rent, how it is calculated, fees, utilities, and deposits.",
@@ -28462,6 +28994,10 @@
       {
         "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?where=HUD_ID%3D%27VAA20100065%27&outFields=PROJECT%2CPROJ_ADD%2CPROJ_CTY%2CPROJ_ZIP%2CN_UNITS%2CLI_UNITS%2CN_1BR%2CN_2BR%2CN_3BR%2CN_4BR%2CYR_PIS%2CTRGT_ELD%2CTRGT_FAM&returnGeometry=false&f=html",
         "role": "government"
+      },
+      {
+        "url": "https://slnusbaum.com/property-search/multifamily/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
@@ -28634,8 +29170,8 @@
     "area": "Prince William County",
     "region": "Northern Virginia",
     "state": "VA",
-    "phone": "703-494-5337",
-    "website": null,
+    "phone": "703-494-4455",
+    "website": "https://www.fellowshipsquare.org/housing/our-properties/",
     "hours": null,
     "who_it_serves": "Older adults; ask leasing for the exact age and household eligibility requirements.",
     "cost": "Rent not confirmed. Ask leasing for current rent, how it is calculated, fees, utilities, and deposits.",
@@ -28655,6 +29191,10 @@
       {
         "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800021921%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
         "role": "government"
+      },
+      {
+        "url": "https://www.fellowshipsquare.org/housing/our-properties/",
+        "role": "provider"
       }
     ],
     "last_verified": "2026-10-24",
