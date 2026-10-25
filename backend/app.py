@@ -10,9 +10,10 @@ import math
 import threading
 from datetime import date
 
-from flask import Flask, Response, jsonify, request, send_from_directory, send_file, stream_with_context
+from flask import Flask, Response, g, jsonify, request, send_from_directory, send_file, stream_with_context
 
 from advisor import AREAS, ask, cards_for, clarify, options, programs, quick_nearby, stream_ask, warm_examples, with_context
+import clarifier
 from live_search import search as live_search
 import hotels
 import sorter
@@ -435,14 +436,29 @@ def _chat_request():
     for turn in (body.get("history") if isinstance(body.get("history"), list) else [])[-4:]:
         if isinstance(turn, dict) and turn.get("role") in ("user", "assistant") and isinstance(turn.get("text"), str):
             history.append({"role": turn["role"], "text": redact(turn["text"][:2000])[0]})
-    question = with_context(question, history)  # a reply to the chat's own follow-up question keeps the earlier request
     # Choices from the find form, so the assistant can tailor its answer (no names or IDs are collected).
     profile = body.get("profile") if isinstance(body.get("profile"), dict) else {}
+    # The /app chat sends this conversation's answers to its follow-up questions (kept by the page, checked here): a vague
+    # request gets one question with answer buttons first, and the answers are written into the request.
+    chat, asking = (clarifier.load_state(body.get("chat")), None) if "chat" in body else (None, None)
+    if chat is not None:
+        if not chat["pending"]:  # a reply to a question asked in words only (near_place.py's "Which Walmart, or which city?")
+            question = with_context(question, history)
+        try:
+            asking, question = clarifier.resolve(question, chat, profile, body.get("reply"))
+        except clarifier.Stale as error:
+            return None, None, (jsonify(error=str(error)), 409)
+        except ValueError as error:
+            return None, None, (jsonify(error=str(error)), 400)
+        g.chat, g.chat_question = chat, question
+    else:
+        question = with_context(question, history)  # a reply to the chat's own follow-up question keeps the earlier request
     about = []
     real = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)  # true/false and Infinity aren't numbers here
-    if isinstance(profile.get("location"), str) and profile["location"].strip(): about.append(f"looking in {redact(profile['location'][:100])[0]}")
+    # An area or budget answered in the chat is newer than the find form's, so the form's isn't repeated.
+    if isinstance(profile.get("location"), str) and profile["location"].strip() and not clarifier.known(chat, "area"): about.append(f"looking in {redact(profile['location'][:100])[0]}")
     for key, label in (("budget", "monthly budget ${:,.0f}"), ("income", "household income ${:,.0f} a year")):
-        if real(profile.get(key)) and 0 < profile[key] < 10_000_000: about.append(label.format(profile[key]))
+        if real(profile.get(key)) and 0 < profile[key] < 10_000_000 and not (key == "budget" and clarifier.known(chat, "budget")): about.append(label.format(profile[key]))
     if real(profile.get("household")) and 1 <= profile["household"] <= 20: about.append(f"{int(profile['household'])} people in the home")
     if real(profile.get("bedrooms")) and 0 <= profile["bedrooms"] <= 6 and float(profile["bedrooms"]).is_integer(): profile["bedrooms"] = int(profile["bedrooms"]); about.append("studio" if profile["bedrooms"] == 0 else f"{profile['bedrooms']} bedrooms")
     if profile.get("timing") in ("now", "soon", "planning"): about.append({"now": "needs to move as soon as possible", "soon": "moving in the next 3 months", "planning": "planning ahead"}[profile["timing"]])
@@ -452,8 +468,10 @@ def _chat_request():
     # "Close to walmart": which store (asked when no town is known), then only homes a measured walk away (near_place.py).
     # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
     # These shortcuts read the person's own words, not the profile note added below.
-    instant = (clarify(question, profile) or near_place.answer(question, profile, history) or nearby.answer(question, profile, history)
-               or quick_nearby(question, profile))  # "near George Mason" etc.: catalog, no AI
+    instant = (asking or (None if chat is not None else clarify(question, profile)) or near_place.answer(question, profile, history)
+               or nearby.answer(question, profile, history) or quick_nearby(question, profile))  # "near George Mason" etc.: catalog, no AI
+    if chat is not None and isinstance(instant, clarifier.Question) and not asking:
+        clarifier.record(chat, instant)  # near_place.py or nearby.py asked ("which Walmart?"): that's the open question now
     if about:
         question = f"{question}\n\n(About me: {'; '.join(about)}.)"
     return question, history, instant
@@ -464,10 +482,11 @@ def ask_advisor():
     question, history, instant = _chat_request()
     if question is None:
         return instant
+    chat = {"chat": g.chat} if "chat" in g else {}
     if instant:
-        return jsonify(answer=instant)
+        return jsonify(answer=instant, **chat, **({"question": instant.question} if isinstance(instant, clarifier.Question) else {}))
     try:
-        return jsonify(answer=ask(question, history))
+        return jsonify(answer=ask(question, history), **chat)
     except Exception as error:
         return _gemma_error(error)
 
@@ -487,8 +506,9 @@ def ask_advisor_stream():
     if question is None:
         return instant
     # Somewhere to stay tonight: hotels and motels nearby are looked up while Gemma writes, and sent after its answer.
-    body = _body()
-    place = hotels.place_for(redact(_text(body, "question"))[0], body.get("profile") if isinstance(body.get("profile"), dict) else {})
+    # Not while the chat is still asking where: no results from a guessed place.
+    body, chat, asking = _body(), g.get("chat"), isinstance(instant, clarifier.Question)
+    place = None if asking else hotels.place_for(g.get("chat_question") or redact(_text(body, "question"))[0], body.get("profile") if isinstance(body.get("profile"), dict) else {})
     rooms = hotels.lookup_later(place) if place else None
 
     def hotels_event():
@@ -500,8 +520,12 @@ def ask_advisor_stream():
 
     def events():
         engine = getattr(instant, "engine", "Instant answer from our verified list with Google Maps Platform (Places + Routes); no AI needed")
-        updates = [("engine", engine), ("answer", instant), ("cards", cards_for(instant))] if instant else stream_ask(question, history)
+        # A question goes as its words (for the transcript) plus its answer choices as data; no cards or map moves yet.
+        updates = ([("engine", engine), ("answer", instant)] + ([("question", instant.question)] if asking else [("cards", cards_for(instant))])
+                   if instant else stream_ask(question, history))
         sent = False
+        if chat is not None:  # the conversation's answers, for the page to send back with the next message
+            yield f"data: {json.dumps({'kind': 'state', 'text': chat})}\n\n"
         try:
             for kind, text in updates:
                 if kind == "done":  # hotels go just before the end

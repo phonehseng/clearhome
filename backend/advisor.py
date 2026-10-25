@@ -388,11 +388,12 @@ def requirements(text):
 
 def housing_search(text):
     """A search for a place to rent (not shelter tonight, rent help or legal help): housing words plus a budget, a place
-    to be near, a household size or another requirement."""
+    to be near, a household size or another requirement. "I want to find a rental" (the chat's own follow-up answer) counts too."""
     t = text or ""
     if URGENT.search(t):
         return False
-    return bool(HOUSING_WORDS.search(t)) and any((BUDGET_ANY.search(t), NEAR_ANY.search(t), household_size(t), ACCESSIBLE.search(t), extra_needs(t)))
+    return bool(HOUSING_WORDS.search(t)) and any((BUDGET_ANY.search(t), NEAR_ANY.search(t), household_size(t), ACCESSIBLE.search(t), extra_needs(t),
+                                                  re.search(r"\bfind a rental\b", t, re.I)))
 
 
 def campus_unclear(text, profile=None):
@@ -412,19 +413,25 @@ def clarify(question, profile=None):
     if not housing_search(question) or not campus_unclear(question, profile):
         return None
     budget, people = BUDGET_ANY.search(question), household_size(question)
-    understood = ["near campus"]
-    if budget:
-        understood.append(f"under ${int(budget.group(1)):,} a month")
-    if ACCESSIBLE.search(question):
-        understood.append("accessible")
-    understood += ["allows pets" if need == "pets" else need for need in extra_needs(question) if need != "walking time"]
-    if people:
-        understood.append(f"for {people} {'person' if people == 1 else 'people'}")
-    text = (f"Got it: a place {', '.join(understood)}. {CLARIFY_MARK} For example, Virginia Tech (Blacksburg) "
+    text = (f"Got it: a place {', '.join(understood(question))}. {CLARIFY_MARK} For example, Virginia Tech (Blacksburg) "
             f"or George Mason (Fairfax).")
     if budget and people and people > 1:
         text += f" And is ${int(budget.group(1)):,} your total monthly budget or per person?"
     return Instant(text)
+
+
+def understood(question):
+    """What a "near campus" rental search already says, repeated back before asking which campus."""
+    budget, people = BUDGET_ANY.search(question), household_size(question)
+    said = ["near campus"]
+    if budget:
+        said.append(f"under ${int(budget.group(1)):,} a month")
+    if ACCESSIBLE.search(question):
+        said.append("accessible")
+    said += ["allows pets" if need == "pets" else need for need in extra_needs(question) if need != "walking time"]
+    if people:
+        said.append(f"for {people} {'person' if people == 1 else 'people'}")
+    return said
 
 
 def with_context(question, history=None):

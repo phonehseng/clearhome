@@ -404,6 +404,28 @@
     .assistant-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
     .assistant-chips button{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:7px 12px;font-size:12.5px;min-height:36px;transition:background .15s,border-color .15s}
     .assistant-chips button:hover{background:#e2eafbcc;border-color:#6f8fd6}
+    /* Gemma's follow-up question: answer buttons inside its bubble (ticks and Continue when several can apply). */
+    .chat-q{white-space:normal;border:0;margin:10px 0 2px;padding:0;min-width:0;display:grid;gap:8px}
+    .msg>.chat-q:first-child{margin-top:0}
+    .chat-q legend{padding:0;margin-bottom:8px;font-size:inherit;line-height:1.6;font-weight:600}
+    .chat-q-choices,.chat-q-more{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .chat-q-choice,.chat-q-check,.chat-q-continue{border:1px solid var(--pill-line,#b9c7e6);background:#fff;color:var(--ink);border-radius:999px;padding:8px 15px;min-height:40px;font-size:13.5px;font-weight:600;line-height:1.3;text-align:left}
+    .chat-q-choice:hover:not(:disabled),.chat-q-check:hover{background:#eef3fd;border-color:#6f8fd6;color:#1a3170}
+    .chat-q-choice.escape{background:transparent;border-style:dashed;color:#4a5668;font-weight:550}
+    .chat-q-check{display:inline-flex;align-items:center;gap:8px;margin:0;cursor:pointer}
+    .chat-q-check input{width:18px;height:18px;margin:0;accent-color:#23408f}
+    .chat-q-check:has(input:checked){background:#e2eafb;border-color:#23408f}
+    .chat-q-check:has(input:focus-visible){outline:3px solid #8b6fb2;outline-offset:2px}
+    .chat-q-continue{background:#23408f;border-color:#23408f;color:#fff;box-shadow:inset 0 1px 0 #ffffff2e,0 6px 16px #23408f33}
+    .chat-q-continue:hover:not(:disabled){background:#1a3170}
+    .chat-q-type{background:none;border:0;padding:8px 4px;min-height:40px;color:#23408f;font-size:12.5px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+    .chat-q:disabled :is(button,.chat-q-check){cursor:default}
+    .chat-q:disabled .chat-q-type{display:none}
+    .chat-q[data-state] :is(.chat-q-choice,.chat-q-check,.chat-q-continue):not([aria-pressed=true]):not(:has(input:checked)){opacity:.5}
+    .chat-q .chat-q-choice[aria-pressed=true]{opacity:1;background:#23408f;border-color:#23408f;color:#fff}
+    .chat-q[data-state=answered] .chat-q-continue{display:none}
+    @media(pointer:coarse){.chat-q-choice,.chat-q-check,.chat-q-continue,.chat-q-type{min-height:44px}}
+    @media(max-width:560px){.msg.bot:has(.chat-q){max-width:100%}}
     @media(prefers-reduced-motion:reduce){.msg{animation:none}}
     .assistant-form{display:grid;grid-template-columns:1fr auto;gap:9px;padding:12px 16px;border-top:1px solid var(--line)}
     .assistant-form textarea{min-height:45px;resize:vertical}
@@ -1657,20 +1679,66 @@
     }
     function userSay(text) { log.classList.add('chatting'); turnStart = el('div', text, { class: 'msg user' }); log.append(turnStart); pinTurn(true); }
 
+    // Gemma's follow-up questions: when a request is missing something that changes the answer (which area, what kind of
+    // help), the reply is one question with answer buttons. The server sends it as data (never HTML) plus this
+    // conversation's answers ("state"), which go back with each message; the server checks every value.
+    let chat = {}, busy = false, chatReset = 0;  // chatReset counts resets, so a reply still on its way can't bring old answers back
+    const PLACEHOLDER = chatInput.placeholder, ANSWER_HINT = 'Or type your own answer';
+    function closeQuestions() {  // a new message closes any open question, so a late click can't answer a stale one
+      const open = [...log.querySelectorAll('fieldset.chat-q:not(:disabled)')];
+      open.forEach(box => { box.disabled = true; box.dataset.state = 'closed'; });
+      return open;
+    }
+    function showQuestion(bubble, q, focus, words) {
+      const choices = Array.isArray(q?.choices) ? q.choices.filter(c => typeof c?.id === 'string' && typeof c?.label === 'string' && c.label.trim()).slice(0, 8) : [];
+      if (typeof q?.id !== 'string' || (!choices.length && !q.skip && !q.unsure)) return;  // malformed: the words still show, and typing still works
+      const box = el('fieldset', null, { class: 'chat-q' }); box.dataset.qid = q.id;
+      // The question itself labels its buttons, so it moves out of the bubble's text into the group's legend.
+      const text = typeof q.text === 'string' && q.text.trim() ? q.text.trim() : 'Choose an answer';
+      if (words.trim().endsWith(text)) { setText(bubble, words.trim().slice(0, -text.length).trim()); box.append(el('legend', text)); }
+      else box.append(el('legend', text, { class: 'visually-hidden' }));
+      const row = el('div', null, { class: 'chat-q-choices' }), more = el('div', null, { class: 'chat-q-more' });
+      const send = async (ids, label, e, chosen) => {
+        if (busy || box.disabled) return;
+        box.disabled = true; box.dataset.state = 'answered'; if (chosen.classList.contains('chat-q-choice')) chosen.setAttribute('aria-pressed', 'true');
+        // Keyboard users (a click with no pointer) keep their place: focus moves on to what comes next.
+        if (!(await ask(label, { id: q.id, choices: ids }, e.detail === 0))) { box.disabled = false; delete box.dataset.state; chosen.removeAttribute('aria-pressed'); chatInput.placeholder = ANSWER_HINT; }
+      };
+      const escape = (id, label) => { const b = el('button', label, { type: 'button', class: 'chat-q-choice escape' }); b.addEventListener('click', e => send([id], label, e, b)); more.append(b); };
+      if (q.multi) {  // several can apply: tick them, then Continue
+        choices.forEach(c => { const tick = el('label', null, { class: 'chat-q-check' }); tick.append(el('input', null, { type: 'checkbox', value: c.id }), document.createTextNode(c.label)); row.append(tick); });
+        const go = el('button', 'Continue', { type: 'button', class: 'chat-q-continue' }); go.disabled = true;
+        row.addEventListener('change', () => { go.disabled = !row.querySelector('input:checked'); });
+        go.addEventListener('click', e => { const picked = [...row.querySelectorAll('input:checked')]; send(picked.map(i => i.value), picked.map(i => i.parentElement.textContent).join(', '), e, go); });
+        more.append(go);
+      } else choices.forEach(c => { const b = el('button', c.label, { type: 'button', class: 'chat-q-choice' }); b.addEventListener('click', e => send([c.id], c.label, e, b)); row.append(b); });
+      if (q.unsure) escape('unsure', 'Not sure');
+      if (q.skip) escape('skip', 'Skip');
+      if (q.custom !== false) { const type = el('button', 'Type My Own Answer', { type: 'button', class: 'chat-q-type' }); type.addEventListener('click', () => chatInput.focus()); more.append(type); }
+      box.append(row, more); bubble.append(box);
+      chatInput.placeholder = ANSWER_HINT;
+      if (focus) box.querySelector('button:not(:disabled), input')?.focus({ preventScroll: true });
+      pinTurn();
+    }
+
     // Streams the answer: a progress note right away, then Gemma's words as they're written.
-    async function ask(question) {
+    // reply: a button answer to the open question; returns whether an answer came back (so a failed click can be retried).
+    async function ask(question, reply, keyboard) {
+      if (busy) return false;
+      busy = true;
+      const resets = chatReset, closed = closeQuestions(); chatInput.placeholder = PLACEHOLDER;
       userSay(question);
       const button = chatForm.querySelector('button'); button.disabled = true;
       const started = Date.now();
       const status = botSay('Reading your question…', 'loading');
       let note = 'Reading your question…';
       const timer = setInterval(() => { status.textContent = `${note} (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
-      let answer = '', bubble = null, engine = '';
+      let answer = '', bubble = null, engine = '', asked = null, state = null, ok = false;
       const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); pinTurn(); };
       const finish = () => { clearInterval(timer); status.remove(); };
       try {
         const controller = new AbortController(); const stop = setTimeout(() => controller.abort(), 180000);  // a careful think on specific needs can take two minutes
-        const res = await fetch('/api/ask/stream', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile: { ...profile, ...oneShot } }), signal: controller.signal });
+        const res = await fetch('/api/ask/stream', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile: { ...profile, ...oneShot }, chat, ...(reply ? { reply } : {}) }), signal: controller.signal });
         oneShot = {};
         if (!res.ok || !res.body) { const data = await res.json().catch(() => ({})); throw new Error(data.error || 'Something went wrong.'); }
         const reader = res.body.getReader(), decoder = new TextDecoder(); let buffer = '';
@@ -1682,6 +1750,8 @@
             const line = buffer.slice(0, cut).replace(/^data: /, ''); buffer = buffer.slice(cut + 2);
             let event; try { event = JSON.parse(line); } catch { continue; }
             if (event.kind === 'engine') { engine = event.text; }
+            else if (event.kind === 'state') { if (event.text && typeof event.text === 'object') state = event.text; }
+            else if (event.kind === 'question') { asked = event.text; }
             else if (event.kind === 'status') { note = event.text; status.textContent = note; }
             else if (event.kind === 'thinking') { note = `Gemma is thinking: ${event.text}`; status.textContent = note; }
             else if (event.kind === 'chunk') { if (!answer) finish(); answer += event.text; show(answer); }
@@ -1692,13 +1762,19 @@
         }
         clearTimeout(stop); finish();
         if (!answer) throw new Error('No answer came back.');
-        if (engine) { const by = el('div', 'Answered by ' + engine, { class: 'msg-engine' }); (bubble.nextElementSibling?.classList.contains('chat-cards') ? bubble.nextElementSibling : bubble).after(by); pinTurn(); }
+        if (asked) showQuestion(bubble, asked, keyboard, answer);
+        else if (keyboard) chatInput.focus({ preventScroll: true });
+        if (engine) { const by = el('div', (asked ? 'Asked by ' : 'Answered by ') + engine, { class: 'msg-engine' }); (bubble.nextElementSibling?.classList.contains('chat-cards') ? bubble.nextElementSibling : bubble).after(by); pinTurn(); }
         history.push({ role: 'user', text: question }, { role: 'assistant', text: answer });
+        if (state && resets === chatReset) chat = state;  // only once the whole reply arrived, so a failed one leaves the open question open
+        ok = true;
       } catch (err) {
         finish();
-        botSay((err.name === 'AbortError' ? 'This is taking too long, the AI service is busy. Please try again in a minute.' : (err.message || 'We could not reach the assistant.')) + ' For urgent help, call 211.', 'error');
+        botSay((err.name === 'AbortError' ? 'This is taking too long, the AI service is busy. Please try again in a minute.' : err instanceof TypeError ? 'We could not reach the assistant. Check your connection and try again.' : (err.message || 'We could not reach the assistant.')) + ' For urgent help, call 211.', 'error');
+        if (!reply) closed.forEach(box => { if (box.dataset.qid === chat.pending?.id) { box.disabled = false; delete box.dataset.state; chatInput.placeholder = ANSWER_HINT; } });  // still the open question: answer it again
       }
-      button.disabled = false;
+      button.disabled = false; busy = false;
+      return ok;
     }
     // Hotels and motels for a "somewhere to stay tonight" question, under the answer and its cards.
     const BED = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18V6M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></svg>';
@@ -1840,7 +1916,7 @@
           results.append(more);
         }
         // The assistant introduces itself once options are on screen; chatting is optional.
-        log.replaceChildren(); history = []; turnStart = null; log.style.paddingBottom = ''; log.classList.remove('chatting'); document.getElementById('assistant-chips').hidden = true;
+        log.replaceChildren(); history = []; chat = {}; chatReset++; chatInput.placeholder = PLACEHOLDER; turnStart = null; log.style.paddingBottom = ''; log.classList.remove('chatting'); document.getElementById('assistant-chips').hidden = true;
         const counts = [`${homeCount} home${homeCount === 1 ? '' : 's'}`];
         if (data.programs_relevant) counts.push(`${data.programs.length} program${data.programs.length === 1 ? '' : 's'}`);
         if (profile.tonight) counts.unshift(`${data.shelters.length} shelter option${data.shelters.length === 1 ? '' : 's'}`);
@@ -1890,7 +1966,7 @@
       setTimeout(() => results.scrollIntoView({ behavior: 'auto', block: 'start' }), 300);
     }
 
-    chatForm.addEventListener('submit', e => { e.preventDefault(); chips.hidden = true; const q = chatInput.value.trim(); if (!q) return; chatInput.value = ''; ask(q); });
+    chatForm.addEventListener('submit', e => { e.preventDefault(); const q = chatInput.value.trim(); if (!q || busy) return; chips.hidden = true; chatInput.value = ''; ask(q); });
     chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit(); } });
     // A first question typed in the front page's "Get started" intro is waiting here: show the chat and send it right away.
     let firstQuestion = null; try { firstQuestion = sessionStorage.getItem('ch:first-question'); sessionStorage.removeItem('ch:first-question'); } catch {}

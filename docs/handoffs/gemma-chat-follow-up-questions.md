@@ -1,5 +1,13 @@
 # Handoff: selectable clarification questions inside Gemma chat
 
+## Status: implemented
+
+- `backend/clarifier.py` decides when to ask (a script, no AI), validates every field and value the page sends back, and writes answers into the request (newer answers win; Skip and Not sure stay unknown). Up to three questions per request.
+- `backend/app.py`: the `/app` chat sends `chat` (its state) and `reply` (a button answer); the stream adds `state` and `question` events. Pages that send no `chat` (resources page) work as before. A stale or invalid reply gets 409 or 400.
+- `frontend/index.html`: questions render as a fieldset inside Gemma's bubble (buttons, or ticks plus Continue), with Not sure, Skip and Type My Own Answer; the text box stays usable; a find-form search resets the chat and its answers.
+- Other modules can ask with `clarifier.question(field, text, choices)` (a `place` field is registered for "which store or city?" questions).
+- Tests: `backend/test_clarifier.py`.
+
 ## User request
 
 When the user has not provided enough information, Gemma should ask a follow-up question inside the chat instead of assuming their needs. Embed selectable answers or a compact questionnaire directly in Gemma's message. Use the user's answers to continue the same conversation and produce better grounded recommendations.
