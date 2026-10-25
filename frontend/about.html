@@ -268,14 +268,6 @@
     .g-tag.gemini{background:#ede7fb;color:#5b3fb5}
     .g-tag.maps{background:#e6f4ea;color:#137333}
     .g-tag.cloud{background:#e8f0fe;color:#1a56c4}
-    /* Pinned scroll scenes (wide screens): the map, How Clear House Helps and the flip cards each stay on screen while
-       scrolling plays them, then the page carries on. The script sets each track's height (the scroll distance). */
-    .pin-track.pinned .pin-stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
-    .google-track.pinned .google-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .scene-dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
-    .scene-dots i{width:7px;height:7px;border-radius:4px;background:#c7d4ee;transition:width .3s,background .3s}
-    .scene-dots i.on{width:22px;background:#2f55b5}
-    .pin-track:not(.pinned) .scene-dots{display:none}
     /* The sample chat and search in How Clear House Helps: lines appear as the scene plays, and Gemma's answer is typed
        over its own invisible full text, so nothing around it moves. */
     .cl-chat .demo,.cl-list .demo{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
@@ -425,17 +417,17 @@
     #google .card p{font-size:15px}
     #github .repo-card{margin-top:44px;text-align:left}
     /* The closing box keeps the old dark blue, with the light sweep that follows the scroll. */
-    .cl-end{width:min(1100px,calc(100% - 32px));margin:40px auto 90px;padding:84px 28px;border-radius:28px;box-shadow:0 30px 80px #14203f33}
-    .cl-end .cl-title{color:#fff}
+    .cl-section.cl-end{width:min(940px,calc(100% - 32px));margin:40px auto 56px;padding:30px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px 24px;text-align:left;border-radius:22px;box-shadow:0 12px 32px #14203f1a}
+    .cl-end .cl-title{color:#fff;font-size:clamp(26px,2.6vw,32px);line-height:1.15;letter-spacing:-.025em}
     .cl-end .cl-title span{background:linear-gradient(90deg,#9fbff5,#ffffff);-webkit-background-clip:text;background-clip:text;color:transparent}
     /* Headings: the word-by-word animation wraps every word in a span, which gave each word its own faded gradient.
        Words now take the heading's solid color; the highlighted phrase is solid blue (light blue on the dark band). */
     .cl-title span.word{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:inherit}
     .cl-title>span:not(.word){background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#2f55b5}
     .cl-end .cl-title>span:not(.word){color:#9fbff5}
-    .cl-end .cl-btn{margin-top:30px;background:#fff;color:#14203f}
-    .cl-end{padding-bottom:26px}
-    .cl-end .cl-urgent{color:#b7c3e6;margin-top:70px;font-size:13.5px}  /* small, at the bottom of the box */
+    .cl-end .cl-btn{margin:0;padding:11px 18px;min-height:44px;font-size:14px;background:#fff;color:#14203f;box-shadow:none;justify-content:center}
+    .cl-end .cl-urgent{grid-column:1 / -1;max-width:none;margin:0;padding-top:16px;border-top:1px solid #ffffff26;color:#c9d4ed;font-size:13px;line-height:1.65}
+    @media(max-width:640px){.cl-section.cl-end{grid-template-columns:1fr;justify-items:start;gap:16px;padding:24px;margin-bottom:36px}.cl-end .cl-title{font-size:28px}.cl-end .cl-urgent{padding-top:14px}}
     .cl-end .cl-urgent a{color:#ffd66b}
     .cl-urgent{margin-top:26px;color:#5b6b85;font-size:16px}
     .cl-urgent a{color:#c5221f;font-weight:700}
@@ -503,6 +495,42 @@
     .cl-frame .map-hood{height:40px;max-width:200px;padding-right:38px;cursor:pointer;-webkit-appearance:none;appearance:none;
       background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%2314203f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E") no-repeat right 14px center}
     .cl-frame .map-tab.near-me svg{color:var(--blue-2)}
+    /* How Clear House Helps, scaled down: narrower cards, smaller type, compact chat bubbles and rows. */
+    .cl-title{font-size:clamp(30px,3.6vw,44px)}  /* every front page section heading, not just this one */
+    #how .cl-duo{gap:16px;margin:28px auto 0;max-width:940px}
+    #how .cl-card{padding:24px;border-radius:22px;min-height:0;box-shadow:0 14px 40px #23408f12}
+    #how .cl-card h3{font-size:21px;margin-bottom:6px}
+    #how .cl-card h3 em{padding:1px 7px;border-radius:7px}
+    #how .cl-card p{font-size:15px}
+    #how .cl-chat{gap:8px;padding-top:16px;font-size:13.5px}
+    #how .cl-chat>span{padding:9px 13px;border-radius:12px}
+    #how .cl-query{padding:7px 13px;font-size:13px}
+    #how .cl-query+.cl-list{margin-top:10px}
+    #how .cl-list{gap:6px}
+    #how .cl-list li{padding:9px 14px;border-radius:12px;font-size:13.5px}
+    #how .cl-tags{margin-top:20px;gap:8px}
+    #how .cl-tags li{padding:7px 14px;font-size:13.5px}
+    /* Built with Google Cloud, scaled down the same way: tighter grid, smaller padding and type on both card faces. */
+    #google .google-grid{gap:12px;margin-top:28px}
+    #google .flip .face{padding:18px;border-radius:14px}
+    #google .card h3{font-size:17px;margin:6px 0 4px}
+    #google .card p{font-size:13.5px;line-height:1.5}
+    #google .g-tag{font-size:10px;padding:2px 8px}
+    #google .flip-btn{padding-top:10px;font-size:12.5px}
+    /* Open Source on GitHub, scaled down like the sections above: a narrower card with smaller type and buttons. */
+    #github .repo-card{max-width:940px;margin:28px auto 0;padding:20px;gap:22px;border-radius:20px}
+    #github .repo-tree{font-size:11.5px;padding:12px 14px 14px}
+    #github .repo-tree b{min-width:12.5em}
+    #github .repo-card h3{font-size:19px;margin-bottom:4px}
+    #github .repo-card p{font-size:14px;line-height:1.55;margin-bottom:12px}
+    #github .repo-stats{gap:6px;margin-bottom:12px}
+    #github .repo-stats li{padding:4px 10px;font-size:12px}
+    #github .repo-langs-key{font-size:11.5px;margin-bottom:12px}
+    #github .repo-team{gap:6px;margin-bottom:14px}
+    #github .repo-team a{font-size:12px;padding:3px 9px 3px 3px}
+    #github .repo-team img{width:20px;height:20px}
+    #github .repo-actions{gap:8px}
+    #github .repo-actions a{min-height:38px;padding:8px 14px;font-size:14px;border-radius:9px}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -551,7 +579,7 @@
     <section class="cl-section" id="map" aria-labelledby="map-title">
       <div class="pin-track map-track"><div class="pin-stage"><div class="pin-fit">
       <h2 id="map-title" class="cl-title reveal">Every Checked Home, <span>on One Map</span></h2>
-      <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p><div class="scene-dots" aria-hidden="true"></div>
+      <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p>
       <div class="cl-frame reveal"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></div>
       </div></div></div>
     </section>
@@ -731,90 +759,30 @@
       setFlip(card, on);
       if (e.target.closest('.flip-btn')) card.querySelector(on ? '.back .flip-btn' : '.front .flip-btn').focus();
     }));
-    // Pinned scroll scenes. On wide screens a scene's stage stays on screen while the next `distance` px of scrolling play
-    // it (play gets progress from 0 to 1), then the page carries on. A stage taller than the window is scaled down to fit,
-    // or reshaped by fitTo when scaling won't do (the map). Narrow or short windows scroll normally and call loose().
-    const calmPage = matchMedia('(prefers-reduced-motion: reduce)').matches, siteHeader = document.querySelector('.site-header');
-    function pinScene(track, { distance, play, loose, fitTo }) {
-      const stage = track.firstElementChild, fit = stage.firstElementChild;
-      let pinned = false, queued = false;
-      const layout = () => {
-        track.classList.remove('pinned');
-        fit.style.zoom = fit.style.width = track.style.height = stage.style.paddingTop = '';
-        fitTo?.(null);
-        pinned = false;
-        if (innerWidth < 900) return;
-        track.classList.add('pinned');
-        const top = siteHeader ? siteHeader.offsetHeight : 0, room = innerHeight - top - 32;
-        stage.style.paddingTop = `${top}px`;
-        fit.style.width = `${stage.clientWidth}px`;  // zoom then shrinks it evenly, keeping its columns
-        if (fitTo) fitTo(room);
-        const scale = Math.min(1, room / fit.offsetHeight);
-        if (scale < (fitTo ? .98 : .6)) { track.classList.remove('pinned'); fit.style.width = stage.style.paddingTop = ''; fitTo?.(null); return; }
-        if (scale < 1 && !fitTo) fit.style.zoom = scale;
-        track.style.height = `${innerHeight + distance}px`;
-        pinned = true;
-      };
-      const sync = () => {
-        queued = false;
-        if (pinned) play(Math.min(1, Math.max(0, -track.getBoundingClientRect().top / distance)));
-        else loose?.();
-      };
-      const relayout = () => { layout(); sync(); };
+    // Scroll scenes: the page always scrolls freely (nothing is pinned); each scene reacts to where it sits on screen.
+    const calmPage = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function scrollScene(onScroll) {
+      let queued = false;
+      const sync = () => { queued = false; onScroll(); };
       addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(sync); } }, { passive: true });
-      addEventListener('resize', relayout);
-      addEventListener('load', relayout);
-      document.fonts?.ready.then(relayout);
-      relayout();
+      addEventListener('resize', sync);
+      sync();
     }
 
-    // Flip cards: one turn per 150px, with a pause before the first and after the last. Stacked on phones, each card
-    // turns as it reaches the middle of the screen.
+    // Flip cards: each card turns over as it reaches the middle of the screen, and back when you scroll up past it.
     const flipTrack = document.querySelector('.google-track');
     if (flipTrack && !calmPage) {
-      const LEAD = 120, STEP = 150, TAIL = 260, distance = LEAD + STEP * flips.length + TAIL;
       const turned = flips.map(() => false);  // what scrolling last asked for, so a tapped card stays put until its turn comes round again
       const turn = wanted => flips.forEach((card, i) => {
         const on = wanted(card, i);
         if (on === turned[i] || card.contains(document.activeElement)) return;  // never flip the card a keyboard user is on
         turned[i] = on; setFlip(card, on);
       });
-      pinScene(flipTrack, { distance,
-        play: p => { const count = Math.floor((p * distance - LEAD) / STEP) + 1; turn((card, i) => i < count); },
-        loose: () => turn(card => { const r = card.getBoundingClientRect(); return r.top + r.height / 2 < innerHeight * .55; }) });
+      scrollScene(() => turn(card => { const r = card.getBoundingClientRect(); return r.top + r.height / 2 < innerHeight * .55; }));
     }
 
-    // The map: pinned while it flies from all of Northern Virginia to a neighborhood, to Reston, then to Blacksburg, with
-    // a caption for each stop. Scrolling back up goes back. Once someone uses the map themselves, scrolling leaves it be.
-    const mapTrack = document.querySelector('.map-track');
-    if (mapTrack && !calmPage) {
-      const STOPS = [['Northern Virginia', 'Every checked home across Northern Virginia.'], ['Arlington (Ballston)', 'Zoom into a neighborhood, like Ballston in Arlington.'],
-                     ['Reston', 'Or look near work, like Reston.'], ['Blacksburg', 'And Blacksburg, right by Virginia Tech.']];
-      const lead = mapTrack.querySelector('.cl-lead'), dots = mapTrack.querySelector('.scene-dots'), mapBox = mapTrack.querySelector('#listing-map');
-      const intro = lead.textContent;
-      dots.replaceChildren(...STOPS.map(() => document.createElement('i')));
-      let stop = -1, driving = true;
-      const handsOn = () => { driving = false; };
-      mapTrack.querySelector('.cl-frame').addEventListener('pointerdown', handsOn);
-      mapTrack.querySelector('.cl-frame').addEventListener('keydown', handsOn);
-      const show = i => {
-        if (i === stop) return;
-        stop = i;
-        lead.textContent = i < 0 ? intro : STOPS[i][1];
-        lead.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
-        [...dots.children].forEach((d, n) => d.classList.toggle('on', n === i));
-        if (i >= 0 && driving) window.clearHouseMapGoTo?.(STOPS[i][0]);
-      };
-      pinScene(mapTrack, { distance: 1320,
-        play: p => show(p <= 0 ? -1 : Math.min(STOPS.length - 1, Math.floor(p * STOPS.length))),
-        loose: () => show(-1),
-        // A Google map shouldn't be zoomed with CSS (clicks land in the wrong place), so the map gets shorter instead.
-        fitTo: room => { mapBox.style.height = ''; if (room == null) return; const extra = mapTrack.querySelector('.pin-fit').offsetHeight - room; if (extra > 0) mapBox.style.height = `${Math.max(300, mapBox.offsetHeight - extra)}px`; } });
-    }
-
-    // How Clear House Helps: pinned while a sample chat plays (each question appears, then Gemma types its answer) and the
-    // near-my-office search fills in. Scrolling back up rewinds it; phones play it once as it comes into view. The chat
-    // quotes real records from our checked list.
+    // How Clear House Helps: a sample chat plays once as it comes into view (each question appears, then Gemma types its
+    // answer) and the near-my-office search fills in. The chat quotes real records from our checked list.
     const howTrack = document.querySelector('.how-track');
     if (howTrack) {
       const TALK = [{ me: 'I’m behind on rent in Arlington. Who can help?', at: .03 },
@@ -857,7 +825,7 @@
       if (calmPage) render(1);
       else {
         let played = false;
-        const playOnce = () => {  // phones and short windows: the same scene over 7 seconds, once it's in view
+        const playOnce = () => {  // the whole scene over 7 seconds, once it's in view
           if (played) return;
           const r = howTrack.getBoundingClientRect(); if (r.top > innerHeight * .65 || r.bottom < 0) return;
           played = true;
@@ -865,7 +833,7 @@
           requestAnimationFrame(tick);
         };
         render(0);
-        pinScene(howTrack, { distance: 1500, play: p => { played = true; render(p); }, loose: playOnce });
+        scrollScene(playOnce);
       }
     }
 
