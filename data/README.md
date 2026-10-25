@@ -168,6 +168,15 @@ python backend/listing_photos.py
 
 A source review date is not a guarantee of future CDN access. This cloud workspace denies the photo hosts; run the importer locally or allow those hosts using the environment network settings. No source images were successfully downloaded in that restricted workspace.
 
+## Adding a listing by hand
+
+```bash
+python backend/add_listing.py            # answer the questions; it shows the record and saves only after you say yes
+python backend/add_listing.py --dry-run  # practice run, never writes
+```
+
+It fills in every field the site checks: location (Blacksburg and Christiansburg are Montgomery County, New River Valley), availability with a review date 7 days out, affordability evidence, and a map pin from the Census Geocoder. It also warns when the community already has a listing of that size. Facts copied from listing sites (Zillow, Apartments.com, Rent.com and the like) are saved unverified and flagged on /review, so they stay hidden until someone confirms them from the property's own page or by phone. Then run `python backend/catalog.py --check`, commit and push.
+
 ## Open-data review queue
 
 `candidates.json` holds records pulled from public APIs by `backend/sources.py`. They are not shown to users until approved.
