@@ -71,5 +71,7 @@ Records missing coordinates: `linden-senior`, `witter-place-closed`, `redbud-gle
 
 ## Code-side observations (not data)
 
+Implemented: phone links now dial only the first real number (extensions wait for the call to connect), and family and 55+ buildings at one address stay separate cards. The items above are loaded as "flagged" on the /review page (data/listing_review.json).
+
 - **Phone links:** `tel:` links are built by stripping every non-digit (`frontend/index.html` `tel()`, `frontend/resources.html` lines ~328 and ~379). With phone strings that are correct in the data, the dialed number comes out wrong: `(703) 792-3366 (TTY: 711)` → `tel:7037923366711`, `703-352-5090 ext. 1302` → `tel:70335250901302`, `1-800-SAY-TEEN (1-800-729-8336)` → `tel:180018007298336`. Affected records: `pwa-coordinated-entry-system-hotline`, `pwc-hilda-barg-homeless-prevention-center`, `pwc-ferlazzo-emergency-shelter`, `acts-beverly-warren-emergency-shelter`, `fairfax-hpp-rotating-sites-central-western`, `second-story-teens-in-crisis`.
 - **Merged cards:** `community_key()` drops the community name whenever the street address starts with a number. As a result, Fieldstone Apartments (family) and Fieldstone Senior (55+) at 300 Fieldstone Lane group into one listing card under whichever plan sorts first.
