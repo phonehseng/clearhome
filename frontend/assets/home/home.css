@@ -3044,8 +3044,28 @@ body {
   height: 1.35em;
   filter: drop-shadow(0 1px 3px #0b143340)
 }
+/* The event, in smaller text under the award line. */
+.cl-hero .cl-award-event {
+  margin: 4px 0 0;
+  color: #fff;
+  opacity: .92;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: .01em;
+  text-shadow: 0 1px 8px #0b143366, 0 0 2px #0b143340
+}
+.cl-hero .cl-award-date {
+  white-space: nowrap
+}
 @media (max-width: 560px) {
   .cl-hero .cl-award {
     font-size: 14px
+  }
+  /* On a phone the date gets its own line instead of breaking in the middle. */
+  .cl-hero .cl-award-sep {
+    display: none
+  }
+  .cl-hero .cl-award-date {
+    display: block
   }
 }
