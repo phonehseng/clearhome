@@ -4,7 +4,7 @@
 
 | Page | What to use it for |
 |---|---|
-| `/` | Learn about Clear House and enter the Gemma introduction before opening the tools. |
+| `/` | Learn about Clear Home and enter the Gemma introduction before opening the tools. |
 | `/app` | Ask questions, fill in housing preferences, browse listings, save/share options, and explore maps. |
 | `/resources` | Read housing-program guidance, view resources, and ask follow-up questions. |
 | `/google-cloud` | Read how the project uses Google Cloud services. |
@@ -55,6 +55,6 @@ Buttons, navigation, and decorative images resist accidental highlighting. Usefu
 
 ## Emergency help and applications
 
-For immediate danger call **911**. For help locating shelter or emergency housing resources call **211** and contact the listed local service directly. Clear House cannot guarantee a shelter bed, place someone in housing, or dispatch emergency services.
+For immediate danger call **911**. For help locating shelter or emergency housing resources call **211** and contact the listed local service directly. Clear Home cannot guarantee a shelter bed, place someone in housing, or dispatch emergency services.
 
 The current website has no lease upload, lease analysis, signing wizard, document forwarding, or electronic-signature service. Apply and sign through the verified provider. General housing explanations are informational and are not legal advice; use a listed legal-aid organization for advice about your situation.

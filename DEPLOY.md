@@ -1,13 +1,13 @@
 # Deploying to Google Cloud Run
 
-Clear House runs on Cloud Run in **us-east4 (Northern Virginia)**, in the `gen-lang-client-0995218526`
+Clear Home runs on Cloud Run in **us-east4 (Northern Virginia)**, in the `gen-lang-client-0995218526`
 ("Default Gemini Project") Google Cloud project.
 
 ## How the hosted copy differs
 
 - The Gemma and Google Maps keys are stored in **Secret Manager** (`gemini-api-key`, `google-maps-server-key`,
   `google-maps-browser-key`), never in the code or the container.
-- `CLEARHOUSE_READ_ONLY=1`: Cloud Run's disk resets on every restart, so the hosted copy doesn't run the
+- `CLEARHOME_READ_ONLY=1`: Cloud Run's disk resets on every restart, so the hosted copy doesn't run the
   open-data review queue or the listing take-downs. Run those locally and push the data.
 - `WARM_EXAMPLES=1`: the example questions on the resources page are answered when the server starts.
 - At most 2 instances run at once, so costs stay small.
@@ -55,8 +55,8 @@ Then connect GitHub and create the trigger in the console (the GitHub connection
 
 1. Open **Cloud Build → Triggers** (console.cloud.google.com/cloud-build/triggers), pick region **us-east4**
    (or **global**), and click **Connect repository**. Choose **GitHub (Cloud Build GitHub App)**, sign in, and select
-   `phonehseng/clearhouse`.
-2. Click **Create trigger**: name `clear-house-deploy`, event **Push to a branch**, branch `^main$`,
+   `phonehseng/clearhome`.
+2. Click **Create trigger**: name `clear-home-deploy`, event **Push to a branch**, branch `^main$`,
    configuration **Cloud Build configuration file**, location `cloudbuild.yaml`. Service account: the
    compute default (`…-compute@developer.gserviceaccount.com`). Save.
 3. Click **Run** on the trigger once to deploy the current `main` and check it works (about 4–6 minutes).
@@ -92,8 +92,8 @@ For the redeploy step, a service account that can deploy, saved as the `GCP_SA_K
 commits and pushes; deploy by hand):
 
 ```bash
-SA=clear-house-upkeep@gen-lang-client-0995218526.iam.gserviceaccount.com
-gcloud iam service-accounts create clear-house-upkeep --display-name "Listing upkeep deploys"
+SA=clear-home-upkeep@gen-lang-client-0995218526.iam.gserviceaccount.com
+gcloud iam service-accounts create clear-home-upkeep --display-name "Listing upkeep deploys"
 for ROLE in roles/run.admin roles/iam.serviceAccountUser roles/cloudbuild.builds.editor roles/artifactregistry.writer \
             roles/storage.admin roles/serviceusage.serviceUsageConsumer; do
   gcloud projects add-iam-policy-binding gen-lang-client-0995218526 --member=serviceAccount:$SA --role=$ROLE --condition=None --quiet >/dev/null

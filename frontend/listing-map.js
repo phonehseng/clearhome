@@ -1,11 +1,11 @@
 // Listings map shared by the tools page and the front page: Google Maps (Leaflet fallback), house pins,
 // county outlines, Northern Virginia / Blacksburg tabs, neighborhoods, Near me, and live web finds.
   // One Google Maps loader for the listings map and the walking map (the browser key is restricted to our sites).
-  window.clearHouseLoadMaps = (() => { let ready = null; return () => ready || (ready = fetch('/api/maps-config').then(r => r.json()).then(cfg => new Promise((resolve, reject) => {
+  window.clearHomeLoadMaps = (() => { let ready = null; return () => ready || (ready = fetch('/api/maps-config').then(r => r.json()).then(cfg => new Promise((resolve, reject) => {
     if (!cfg.browser_key) return reject(new Error('no key'));
-    window.__clearHouseMaps = () => resolve();
+    window.__clearHomeMaps = () => resolve();
     const sc = document.createElement('script');
-    sc.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(cfg.browser_key)}&libraries=geometry&loading=async&callback=__clearHouseMaps`;
+    sc.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(cfg.browser_key)}&libraries=geometry&loading=async&callback=__clearHomeMaps`;
     sc.async = true; sc.onerror = () => reject(new Error('load failed')); document.head.append(sc);
     setTimeout(() => reject(new Error('timeout')), 10000);
   }))); })();
@@ -120,7 +120,7 @@
     function useLeaflet() { if (window.L && !(view && view.leaflet)) { draw(Object.assign(leafletView(), { leaflet: true })); } }
     // A rejected key only shows up after the script loads; Google calls this global, so switch to Leaflet then.
     window.gm_authFailure = useLeaflet;
-    window.clearHouseLoadMaps().then(() => draw(googleView())).catch(useLeaflet);
+    window.clearHomeLoadMaps().then(() => draw(googleView())).catch(useLeaflet);
 
     const addPin = p => { state.pins.push(p); view?.pin(p); };
     const addWebPin = p => { state.webPins.push(p); view?.webPin(p); };
@@ -143,7 +143,7 @@
       state.homes = (data.listings || []).filter(l => typeof l.lat === 'number');
       fillHoods(tabs.find(t => t.getAttribute('aria-pressed') === 'true')?.dataset.region || 'nova');
       state.homes.forEach(l => addPin({ lat: l.lat, lon: l.lon, color: '#2f55b5', title: l.community || l.name,
-        popup: popup([l.community || l.name, l.floor_plan, typeof l.monthly_rent === 'number' ? ClearHouseRental.price(l) : null,
+        popup: popup([l.community || l.name, l.floor_plan, typeof l.monthly_rent === 'number' ? ClearHomeRental.price(l) : null,
                       STATUS[l.availability?.status], 'Reviewed by our team'], l.source_url, 'Provider Page') }));
     }).catch(() => {});
 
@@ -185,7 +185,7 @@
       fillWhere(where); setStatus(`Showing ${pick[0]}.`);
     });
     // The find form's "Pick an area" moves the map here: a region, a neighborhood, or a county outline.
-    window.clearHouseMapGoTo = name => {
+    window.clearHomeMapGoTo = name => {
       if (/^northern virginia$/i.test(name)) return tabs.find(t => t.dataset.region === 'nova')?.click();
       if (/^blacksburg$/i.test(name)) return tabs.find(t => t.dataset.region === 'blacksburg')?.click();
       const key = name.toLowerCase().replace(/ alexandria$/, '');
@@ -195,7 +195,7 @@
       }
       const area = areaFor(name); if (area) { selectArea(area); setStatus(`Showing ${area}.`); }
     };
-    window.clearHouseOfferWebSearch = place => offerWebSearch(place);
+    window.clearHomeOfferWebSearch = place => offerWebSearch(place);
     // Which county or city a point falls in, from the same boundary outlines the map draws.
     function areaAt(lat, lon) {
       const inside = (ring) => { let hit = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, yi] = ring[i], [xj, yj] = ring[j]; if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) hit = !hit; } return hit; };
@@ -224,7 +224,7 @@
         const here = areaAt(lat, lon);  // fill "Where are you looking?" with the county or city you're in
         if (here) { fillWhere(here); markTab(here === 'Blacksburg' ? 'blacksburg' : 'nova'); fillHoods(here === 'Blacksburg' ? 'blacksburg' : 'nova'); }
         state.focused = [[lat, lon]]; view?.center({ lat, lng: lon }, 13); setStatus('Showing homes near you.');
-        if (window.clearHouseAsk) window.clearHouseAsk('Homes near my current location', { coords: { lat, lon } });
+        if (window.clearHomeAsk) window.clearHomeAsk('Homes near my current location', { coords: { lat, lon } });
         else {  // front page: no chat, so fit the map to the 8 closest reviewed homes
           const near = state.pins.map(p => [Math.hypot(p.lat - lat, (p.lon - lon) * Math.cos(lat * Math.PI / 180)), p]).sort((a, b) => a[0] - b[0]).slice(0, 8);
           if (near.length) { state.focused = [[lat, lon], ...near.map(([, p]) => [p.lat, p.lon])]; view?.focus(state.focused); setStatus('Showing the 8 closest reviewed homes to you. Tap a pin for details.'); }
@@ -235,7 +235,7 @@
       }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
     });
     // Other parts of the page point the map at what they're showing: the places in Gemma's answer, or filter results.
-    window.clearHouseMapFocus = (rows, note) => {
+    window.clearHomeMapFocus = (rows, note) => {
       const points = (rows || []).filter(r => typeof r.lat === 'number' && typeof r.lon === 'number').map(r => [r.lat, r.lon]).slice(0, 60);
       if (!points.length) return;
       state.focused = points; view?.focus(points);
@@ -255,7 +255,7 @@
         const results = data.results || [];
         if (!results.length) { setStatus(`No new web listings with a confirmed source in ${data.area}. The blue pins are our reviewed listings.`); return; }
         setStatus(`Gemma found ${results.length} more on the web in ${data.area}. ${data.notice}`);
-        window.clearHouseAssistantNote?.(`Update: I found ${results.length} more listing${results.length === 1 ? '' : 's'} on the web in ${data.area}. They're the orange pins on the map, not verified by our team yet.`);
+        window.clearHomeAssistantNote?.(`Update: I found ${results.length} more listing${results.length === 1 ? '' : 's'} on the web in ${data.area}. They're the orange pins on the map, not verified by our team yet.`);
         results.forEach(r => {
           const lines = [r.name, r.address, r.rent_text, r.income_text, 'Found on the web, not verified by our team'];
           if (typeof r.lat === 'number') addWebPin({ lat: r.lat, lon: r.lon, color: '#d9822b', title: r.name, popup: popup(lines, r.source_url, 'Source Page') });
@@ -285,7 +285,7 @@
       if (!text || /^northern virginia$/i.test(text)) { selectArea(null); webBtn.hidden = true; setStatus('Pick or type an area to zoom in.'); return; }
       const area = areaFor(text) || (/blacksburg|virginia tech|christiansburg/i.test(text) ? 'Blacksburg' : null);
       const known = area || HOODS.nova.some(([n]) => n.toLowerCase().includes(text.toLowerCase())) || HOODS.blacksburg.some(([n]) => n.toLowerCase().includes(text.toLowerCase()));
-      if (!known) { webBtn.hidden = true; setStatus('Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, Reston, or Woodbridge.'); return; }
-      window.clearHouseMapGoTo(text); offerWebSearch(text);
+      if (!known) { webBtn.hidden = true; setStatus('Clear Home covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, Reston, or Woodbridge.'); return; }
+      window.clearHomeMapGoTo(text); offerWebSearch(text);
     });
   })();

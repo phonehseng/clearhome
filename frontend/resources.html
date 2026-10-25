@@ -8,7 +8,7 @@
   <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico?v=2" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-  <title>Clear House — Low-income housing resources</title>
+  <title>Clear Home — Low-income housing resources</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -198,7 +198,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header ch-header">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a>
+      <a class="brand" href="/" aria-label="Clear Home front page"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear home<span class="brand-dot">.</span></a>
       <nav class="header-links" aria-label="Page navigation">
         <a href="/#map">Map</a>
         <a href="/google-cloud">Built with Google Cloud</a>
@@ -272,8 +272,8 @@
 
   <footer class="cl-footer">
     <div class="container cl-footer-top">
-      <a class="cl-footer-brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="28" height="28">clear house<span>.</span></a>
-      <nav class="cl-footer-links" aria-label="Footer"><a href="/#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="/resources" aria-current="page">Resources</a><a href="/#github">GitHub</a><a href="/app">Open Clear House</a></nav>
+      <a class="cl-footer-brand" href="/" aria-label="Clear Home front page"><img src="/logo.svg" alt="" width="28" height="28">clear home<span>.</span></a>
+      <nav class="cl-footer-links" aria-label="Footer"><a href="/#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="/resources" aria-current="page">Resources</a><a href="/#github">GitHub</a><a href="/app">Open Clear Home</a></nav>
     </div>
     <p class="container cl-footer-note">Guidance, not legal advice. Information comes from official websites and was verified by our team; call providers to confirm.</p>
     <p class="container cl-footer-credit">Made by Pierce, Umair, Phone and Ryan for <b>GDG Build with AI × Hacktoberfest 2026</b>.</p>
@@ -355,7 +355,7 @@
         card.append(details);
       }
       const actions = el('div', { class: 'actions' });
-      if (p.phone) actions.append(el('a', { href: ClearHouseDial(p.phone) }, p.phone));
+      if (p.phone) actions.append(el('a', { href: ClearHomeDial(p.phone) }, p.phone));
       // Say where each link goes: a program page, an official county listing, or the provider's website.
       const links = Array.isArray(p.links) && p.links.length ? p.links : [
         { url: p.source_url, label: p.source_kind === 'official_directory' || /directory|guide|emergency-shelters/i.test(p.source_url || '') ? 'Official county listing' : 'Program details' },
@@ -402,11 +402,11 @@
         card.append(el('span', { class: 'badge' }, statuses.size>1 ? 'Availability varies by plan' : STATUS[l.availability?.status] || 'Check availability'));
         card.append(el('h3', {}, l.community || l.name));
         card.append(el('span', { class: 'meta' }, [l.city, l.jurisdiction].filter(Boolean).join(' · ')));
-        if (typeof l.monthly_rent === 'number') card.append(el('span', { class: 'rent' }, ClearHouseRental.price(l)));
+        if (typeof l.monthly_rent === 'number') card.append(el('span', { class: 'rent' }, ClearHomeRental.price(l)));
         if(plans.length>1)card.append(el('p', {}, `${plans.length} matching floor plans. Starting rent shown for the lowest-priced plan; eligibility and fees vary.`));
         if (l.who_it_serves) card.append(el('p', {}, l.who_it_serves));
         const actions = el('div', { class: 'actions' });
-        if (l.phone) actions.append(el('a', { href: ClearHouseDial(l.phone) }, l.phone));
+        if (l.phone) actions.append(el('a', { href: ClearHomeDial(l.phone) }, l.phone));
         const site = safeUrl(l.source_url);
         if (site) actions.append(el('a', { href: site, target: '_blank', rel: 'noopener' }, 'Provider Page'));
         card.append(actions);

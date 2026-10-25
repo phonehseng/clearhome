@@ -351,7 +351,7 @@ _NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
 
 class Instant(str):
     """An answer the chat gives without AI, with the line it shows about what answered."""
-    engine = "Clear House (a quick question first, no AI needed)"
+    engine = "Clear Home (a quick question first, no AI needed)"
 
 
 def household_size(text):
@@ -604,7 +604,7 @@ def programs():
     return [_compact(r) for r in load_catalog() if r.get("type") in keep and not isinstance(r.get("availability"), dict)]
 
 
-# Common places people mention that are outside Clear House's service area.
+# Common places people mention that are outside Clear Home's service area.
 OUTSIDE = r"\b(richmond|baltimore|maryland|silver spring|bethesda|rockville|washington,? dc|d\.?c\.?|norfolk|virginia beach|chesapeake|charlottesville|roanoke|fredericksburg|stafford|winchester|harrisonburg|lynchburg|frederick)\b"
 
 
@@ -675,7 +675,7 @@ def options(profile):
     """Instant, no-AI matches for the find form: listings, programs and (if urgent) shelters for an area."""
     area = area_for(profile.get("location"))
     if area is None:
-        return {"error": "Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Reston, or Woodbridge."}
+        return {"error": "Clear Home covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Reston, or Woodbridge."}
     base = {"locations": [area], "needs_accessible": bool(profile.get("accessible"))}
     listing_filters = {**base, "types": ["affordable_listing", "rental_listing"],
                        "age_group": "all" if profile.get("senior") else "general"}

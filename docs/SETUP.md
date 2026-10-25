@@ -9,8 +9,8 @@ Use Python 3.12, Git, a browser, and internet access to install dependencies. Py
 Run from the directory where you keep projects:
 
 ```bash
-git clone https://github.com/phonehseng/clearhouse.git
-cd clearhouse
+git clone https://github.com/phonehseng/clearhome.git
+cd clearhome
 python3 --version
 python3 -m venv .venv
 source .venv/bin/activate
@@ -25,8 +25,8 @@ The virtual environment provides the `python` command after activation. Before a
 ## First installation: Windows PowerShell
 
 ```powershell
-git clone https://github.com/phonehseng/clearhouse.git
-cd clearhouse
+git clone https://github.com/phonehseng/clearhome.git
+cd clearhome
 py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r backend/requirements.txt
@@ -76,7 +76,7 @@ Edit `.env` locally. `backend/matcher.py` loads it through `python-dotenv`. Exis
 | `GEMMA_GPU_URL` | Private Ollama-compatible Gemma service | Optional; absent means use Gemini where needed |
 | `GEMMA_GPU_MODEL` | GPU model name | `gemma4:26b`; read when `gemma_gpu.py` imports |
 | `GEMMA_GPU_TOKEN` | Local identity token for private GPU access | Optional local testing; Cloud Run uses its service identity when absent |
-| `CLEARHOUSE_READ_ONLY` | Disable HTTP review writes and automatic local queue/freshness writes | Set exactly `1` for hosted copies; does not disable standalone maintenance scripts |
+| `CLEARHOME_READ_ONLY` | Disable HTTP review writes and automatic local queue/freshness writes | Set exactly `1` for hosted copies; does not disable standalone maintenance scripts |
 | `WARM_EXAMPLES` | Precompute example answers at module startup | Set exactly `1` to enable; may call AI services |
 | `INCLUDE_UNVERIFIED` | Legacy matcher testing switch | Leave unset for normal use; not a way to approve resources for publication |
 | `PORT` | Gunicorn container bind port | Supplied by Cloud Run; `python backend/app.py` uses port 8000 instead |
@@ -99,7 +99,7 @@ For Google API enablement, key restrictions, and billing setup, use [WALKABILITY
 | Map unavailable | Check browser/server keys, enabled services, website restrictions, internet access, and browser console errors. Results and official links may remain useful. |
 | Photos do not load | Check provider access and the image source. Try the image audit on a network that can reach the publisher; do not substitute another building. |
 | Few or no listings | Relax filters; budget filters exclude unknown rents. Closed, stale, invalid, hidden, and unverified records may be excluded. |
-| Review save returns 403 | Saves require loopback access and `CLEARHOUSE_READ_ONLY` unset. Hosted review pages are read-only. |
+| Review save returns 403 | Saves require loopback access and `CLEARHOME_READ_ONLY` unset. Hosted review pages are read-only. |
 | Changes do not appear | Confirm the branch, restart the backend, and hard-refresh. A Git push is separate from a successful production deployment. |
 
 The built-in Flask server runs with debug enabled when started as `python backend/app.py`. Keep it for local development; the production container uses Gunicorn.

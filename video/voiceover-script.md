@@ -1,4 +1,4 @@
-# Clear House explainer: voiceover script
+# Clear Home explainer: voiceover script
 
 Long form, 16:9, 6:14.1 total. Narrator: calm, warm British professor. Read each line when its start time comes up;
 the silent player shows the same line as a subtitle, so you can read along while recording.
@@ -9,9 +9,9 @@ the silent player shows the same line as a subtitle, so you can read along while
 
 - `0:00.7` It's ten at night in Blacksburg, and someone has just realised they have nowhere safe to sleep.
 - `0:06.4` Searching dozens of websites is the last thing they should have to do right now.
-- `0:10.9` Today, we'll see how Clear House turns that search into one clear next step.
+- `0:10.9` Today, we'll see how Clear Home turns that search into one clear next step.
 
-**Scene 2 · TODAY'S CLASS · “How Clear House works”** (0:16.5–0:30.1)
+**Scene 2 · TODAY'S CLASS · “How Clear Home works”** (0:16.5–0:30.1)
 
 - `0:17.2` Here's our question for today: how can one website find real housing help, fast, without making things up?
 - `0:24.8` We'll go in five steps, from the problem itself to the AI that answers.
@@ -28,7 +28,7 @@ the silent player shows the same line as a subtitle, so you can read along while
 
 - `0:48.7` Shelters, rent help and affordable homes live on many different county, city and provider websites.
 - `0:55.4` Some waitlists are closed, some listings are out of date, and scams target people in a hurry.
-- `1:01.5` Clear House puts the checked options in one place, with the next step spelled out.
+- `1:01.5` Clear Home puts the checked options in one place, with the next step spelled out.
 
 **Scene 5 · MOST PEOPLE THINK · “Can't I just walk in?”** (1:07.0–1:23.7)
 
@@ -89,7 +89,7 @@ the silent player shows the same line as a subtitle, so you can read along while
 
 **Scene 14 · CHAPTER 4 · “Meet Gemma 4”** (3:28.6–3:43.6)
 
-- `3:29.3` For open questions, like how to qualify for a voucher, Clear House uses Gemma 4, Google's open model.
+- `3:29.3` For open questions, like how to qualify for a voucher, Clear Home uses Gemma 4, Google's open model.
 - `3:37.0` Specifically the twenty-six billion parameter version, and every answer says which model wrote it.
 
 **Scene 15 · KEY IDEA · “Grounding”** (3:43.6–3:55.7)
@@ -124,7 +124,7 @@ the silent player shows the same line as a subtitle, so you can read along while
 **Scene 20 · CHAPTER 5 · “Safety comes first”** (4:59.8–5:13.3)
 
 - `5:00.5` In an emergency, every page leads with nine one one and two one one, before any AI answer.
-- `5:06.7` And Clear House never claims a bed is free; shelters always say call to confirm a bed tonight.
+- `5:06.7` And Clear Home never claims a bed is free; shelters always say call to confirm a bed tonight.
 
 **Scene 21 · PRIVACY · “Collect only what we need”** (5:13.3–5:31.5)
 
@@ -135,7 +135,7 @@ the silent player shows the same line as a subtitle, so you can read along while
 **Scene 22 · HONEST BY DESIGN · “When rent isn't published”** (5:31.5–5:44.8)
 
 - `5:32.2` Many homes don't publish their rent, and a chatbot could easily invent one.
-- `5:37.0` Instead, Clear House shows a clearly labeled estimate from similar checked homes nearby, and tells you to ask the provider.
+- `5:37.0` Instead, Clear Home shows a clearly labeled estimate from similar checked homes nearby, and tells you to ask the provider.
 
 **Scene 23 · QUICK CHECK · “If the AI can't answer”** (5:44.8–5:58.0)
 

@@ -1,4 +1,4 @@
-"""Draw the Clear House logo from simple shapes and write every icon the site uses.
+"""Draw the Clear Home logo from simple shapes and write every icon the site uses.
 
 A rounded square in the site's blue (gradient #2f55b5 → #23408f), a white house (roof chevron, walls and a
 door), a soft light window, and the orange "ping" dot from the hero label as a small notification accent.
@@ -31,7 +31,7 @@ def svg():
     dx0, dy0, dx1, dy1 = DOOR
     door_r = (dx1 - dx0) / 2
     cx, cy, r = PING
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Clear House">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Clear Home">
   <defs>
     <linearGradient id="ch-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f55b5"/><stop offset="1" stop-color="#23408f"/></linearGradient>
     <radialGradient id="ch-glow"><stop offset="0" stop-color="#ff8a1f" stop-opacity=".55"/><stop offset="1" stop-color="#ff8a1f" stop-opacity="0"/></radialGradient>

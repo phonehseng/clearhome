@@ -16,6 +16,6 @@ COPY data data
 COPY .cache/listing-photos .cache/listing-photos
 
 # The hosted copy is read-only (Cloud Run's disk resets) and pre-answers the example questions.
-ENV CLEARHOUSE_READ_ONLY=1 WARM_EXAMPLES=1 PYTHONUNBUFFERED=1
+ENV CLEARHOME_READ_ONLY=1 WARM_EXAMPLES=1 PYTHONUNBUFFERED=1
 WORKDIR /app/backend
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 120 app:app

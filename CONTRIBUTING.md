@@ -10,8 +10,8 @@ Git only needs about six commands for this weekend.
 ## First time only
 
 ```bash
-git clone https://github.com/phonehseng/clearhouse
-cd clearhouse
+git clone https://github.com/phonehseng/clearhome
+cd clearhome
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
@@ -50,10 +50,10 @@ git push                          # 5. send it to GitHub
 
 [GitHub Desktop](https://desktop.github.com) gives a point-and-click version of the same loop (Fetch/Pull, Commit, Push).
 
-Clear House --- Google Places API + Walking-Distance Housing Search
+Clear Home --- Google Places API + Walking-Distance Housing Search
 Implementation instructions for an advanced AI coding model
 Mission
-Implement a real, polished feature in the existing Clear House
+Implement a real, polished feature in the existing Clear Home
 website so a user can search for affordable housing near a supermarket
 or other essential service.
 
@@ -71,9 +71,9 @@ This file is intended to be handed directly to an advanced AI coding
 model. Inspect the existing repository first, then implement the feature
 in the existing architecture. Do not merely provide a plan or
 mockup---make the changes, test them, and document setup.
-1. Preserve the existing Clear House design
+1. Preserve the existing Clear Home design
 Keep the current site's: - Dark navy background - Blue cards and
-borders - Warm gold accents - Existing Clear House logo, navigation,
+borders - Warm gold accents - Existing Clear Home logo, navigation,
 typography, and spacing
 
 Extend the current website rather than replacing it. Reuse existing
@@ -306,7 +306,7 @@ Avoid sending personal or sensitive information to the AI model unless
 necessary. - Follow Google's current terms, attribution rules, storage
 restrictions, and photo-display requirements.
 7. Result-card design
-Design polished cards consistent with Clear House's navy/blue/gold
+Design polished cards consistent with Clear Home's navy/blue/gold
 theme. Example layout (illustrative only):
 
 \(Property image or neutral placeholder\)

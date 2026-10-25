@@ -27,7 +27,7 @@ from freshness import check_in_background
 
 FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
 # Cloud Run's disk resets on every restart, so the hosted copy never writes data files.
-READ_ONLY = os.environ.get("CLEARHOUSE_READ_ONLY") == "1"
+READ_ONLY = os.environ.get("CLEARHOME_READ_ONLY") == "1"
 app = Flask(__name__, static_folder=None)
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024  # requests are small JSON; no uploads
 
@@ -58,7 +58,7 @@ def logo():
 @app.get("/favicon.ico")
 @app.get("/apple-touch-icon.png")
 def site_icon():
-    """The Clear House logo as the browser-tab and home-screen icon."""
+    """The Clear Home logo as the browser-tab and home-screen icon."""
     name = request.path.lstrip("/")
     return send_from_directory(FRONTEND, name, max_age=86400)
 
@@ -329,7 +329,7 @@ def hotels_nearby():
     """Hotels and motels near a place from Google Places, cheapest first, for someone who needs a room tonight (no AI)."""
     found = hotels.near(_text(_body(), "place", 100))
     if found is None:
-        return jsonify(error="Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Reston, or Woodbridge."), 400
+        return jsonify(error="Clear Home covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Reston, or Woodbridge."), 400
     return jsonify(found)
 
 

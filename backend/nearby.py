@@ -160,7 +160,7 @@ def answer(question, profile=None, history=None):
     if me and NEAR_ME.search(question or "") and not URGENT.search(question):
         inside = any(_miles(me[0], me[1], lat, lon) <= r for _, lat, lon, r in REGIONS)
         if not inside:
-            return ("You look to be outside the areas Clear House covers (Northern Virginia and Blacksburg). "
+            return ("You look to be outside the areas Clear Home covers (Northern Virginia and Blacksburg). "
                     "For housing help where you are, call 211.")
         return _homes_near("your location", me[0], me[1], question, profile)
     if NEAR_ME.search(question or ""):
@@ -177,7 +177,7 @@ def answer(question, profile=None, history=None):
         return None
     name, lat, lon = found
     if name == "outside":
-        return ("That place looks outside the areas Clear House covers (Northern Virginia and Blacksburg). "
+        return ("That place looks outside the areas Clear Home covers (Northern Virginia and Blacksburg). "
                 "For other areas, call 211 for local housing help.")
     return _homes_near(name, lat, lon, question, profile)
 
@@ -324,7 +324,7 @@ def walk_answer(question, profile=None, history=None):
         return None
     name, lat, lon = found
     if name == "outside":
-        return ("That place looks outside the areas Clear House covers (Northern Virginia and Blacksburg). "
+        return ("That place looks outside the areas Clear Home covers (Northern Virginia and Blacksburg). "
                 "For other areas, call 211 for local housing help.")
     limit = MINUTES.search(question)
     limit = int(limit.group(1)) if limit and 0 < int(limit.group(1)) <= 180 else None

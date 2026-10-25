@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d1738">
-  <meta name="description" content="Clear House helps you find verified housing resources in Northern Virginia and Blacksburg, shelters and programs.">
+  <meta name="description" content="Clear Home helps you find verified housing resources in Northern Virginia and Blacksburg, shelters and programs.">
   <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico?v=2" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-  <title>Clear House — Your next step starts here</title>
+  <title>Clear Home — Your next step starts here</title>
   <script>
     // Arriving from the front page's Gemma intro (Skip or a first question): the page starts under the intro's dark blue
     // and clears through a blur. The one-use marker is read before the first paint, so a reload, a direct visit or
@@ -959,7 +959,7 @@
 <a class="skip-link" href="#tools">Skip to housing tools</a>
 <header class="site-header ch-header">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a>
+      <a class="brand" href="/" aria-label="Clear Home front page"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear home<span class="brand-dot">.</span></a>
       <nav class="header-links" aria-label="Page navigation">
         <a href="/#map">Map</a>
         <a href="/google-cloud">Built with Google Cloud</a>
@@ -1045,8 +1045,8 @@
   </section>
 </main><footer class="cl-footer">
     <div class="container cl-footer-top">
-      <a class="cl-footer-brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="28" height="28">clear house<span>.</span></a>
-      <nav class="cl-footer-links" aria-label="Footer"><a href="/#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="/resources">Resources</a><a href="/#github">GitHub</a><a href="/app">Open Clear House</a></nav>
+      <a class="cl-footer-brand" href="/" aria-label="Clear Home front page"><img src="/logo.svg" alt="" width="28" height="28">clear home<span>.</span></a>
+      <nav class="cl-footer-links" aria-label="Footer"><a href="/#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="/resources">Resources</a><a href="/#github">GitHub</a><a href="/app">Open Clear Home</a></nav>
     </div>
     <p class="container cl-footer-note">Always confirm with the provider. AI can make mistakes. Not legal advice. Don’t share your SSN or bank details.</p>
     <p class="container cl-footer-credit">Made by Pierce, Umair, Phone and Ryan for <b>GDG Build with AI × Hacktoberfest 2026</b>.</p>
@@ -1065,7 +1065,7 @@
   const allListings = document.getElementById('show-all-listings');
   let housingRows = [], visibleHousingCount = 6, browseRequest = null, gemmaOrder = null;
   // Favorites live in this browser only (no account), saved as the listing itself so they show whatever the filters are.
-  const FAVORITES_KEY = 'clearhouse.favorites';
+  const FAVORITES_KEY = 'clearhome.favorites';
   let favorites = {}; try { favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || {}; } catch { favorites = {}; }
   let showingFavorites = false;
   const shownRows = () => showingFavorites ? Object.values(favorites) : housingRows;
@@ -1173,7 +1173,7 @@
     const date = new Date(value + 'T12:00:00'); return Number.isNaN(date.valueOf()) ? 'not recorded' : date.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
   }
   function rentLabel(row) {
-    return ClearHouseRental.price(row);
+    return ClearHomeRental.price(row);
   }
   function eligibilityDetails(row) {
       const availability = row.availability || {};
@@ -1182,9 +1182,9 @@
       const information=housingElement('div','eligibility-grid');
       const groups=[
         ['Housing Category & Program',row.affordability?.program],
-        ['Room or Apartment',ClearHouseRental.space(row)],
-        ['Lease & Responsibility',[ClearHouseRental.lease(row),row.lease_responsibility].filter(Boolean).join('. ')],
-        ['Lease Dates & Payments',[ClearHouseRental.term(row),row.payment_schedule].filter(Boolean).join('. ')],
+        ['Room or Apartment',ClearHomeRental.space(row)],
+        ['Lease & Responsibility',[ClearHomeRental.lease(row),row.lease_responsibility].filter(Boolean).join('. ')],
+        ['Lease Dates & Payments',[ClearHomeRental.term(row),row.payment_schedule].filter(Boolean).join('. ')],
                 ['Who Can Apply',[row.minimum_age ? `Age requirement: ${row.minimum_age} and older.` : null,row.who_it_serves].filter(Boolean).join(' ')],
         ['Before You Apply',row.requirements],
         ['Rent & Additional Costs',row.cost],
@@ -1274,15 +1274,15 @@
       else if(ages.some(Boolean))card.append(housingElement('p','housing-age','Some options have age requirements'));
       const rent = housingElement('p','housing-rent');
       if (typeof row.monthly_rent === 'number' && Number.isFinite(row.monthly_rent)) {
-        rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US',{maximumFractionDigits:0})}`; rent.append(housingElement('small','',ClearHouseRental.period(row)));
+        rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US',{maximumFractionDigits:0})}`; rent.append(housingElement('small','',ClearHomeRental.period(row)));
       } else rent.textContent = 'Rent: confirm with provider';
       card.append(rent);
       // Condensed: what you get, the move-in note, then one muted line of extras and the rent caveat.
-      const space=ClearHouseRental.space(row);
+      const space=ClearHomeRental.space(row);
       const shared=row.rental_space==='room' ? 'shared kitchen & living areas' : '';
       if(space)card.append(housingElement('p','housing-plan',[space,shared].filter(Boolean).join(' · ')));
-      const term=ClearHouseRental.term(row);if(term)card.append(housingElement('p','housing-plan',term));
-      const lease=ClearHouseRental.lease(row);
+      const term=ClearHomeRental.term(row);if(term)card.append(housingElement('p','housing-plan',term));
+      const lease=ClearHomeRental.lease(row);
       const features = [];
       if(lease && !`${row.floor_plan||''} ${category}`.toLowerCase().includes(lease.toLowerCase()))features.push(lease);
       const bedrooms=[...new Set(plans.map(p=>p.bedrooms).filter(b=>b!=null))].sort((a,b)=>a-b);
@@ -1303,14 +1303,14 @@
           option.append(housingElement('h4','',plan.floor_plan || plan.name));
           option.append(housingElement('p','option-price',rentLabel(plan)));
           const planFeatures=[];
-          if(plan.rental_space==='room')planFeatures.push(ClearHouseRental.space(plan));
+          if(plan.rental_space==='room')planFeatures.push(ClearHomeRental.space(plan));
           else if(plan.bedrooms!=null)planFeatures.push(plan.bedrooms===0?'Studio':`${plan.bedrooms} bed`);
           if(plan.bathrooms)planFeatures.push(`${plan.bathrooms} bath`);
           if(plan.square_feet)planFeatures.push(`${plan.square_feet.toLocaleString('en-US')} sq ft`);
           option.append(housingElement('p','housing-features',planFeatures.join(' · ')));
           option.append(housingElement('p','option-status',statusLabels[plan.availability?.status] || 'Contact for availability'));
-          if(ClearHouseRental.term(plan))option.append(housingElement('p','housing-plan',ClearHouseRental.term(plan)));
-          if(ClearHouseRental.lease(plan))option.append(housingElement('p','housing-features',ClearHouseRental.lease(plan)));
+          if(ClearHomeRental.term(plan))option.append(housingElement('p','housing-plan',ClearHomeRental.term(plan)));
+          if(ClearHomeRental.lease(plan))option.append(housingElement('p','housing-features',ClearHomeRental.lease(plan)));
           option.append(eligibilityDetails(plan));
           options.append(option);
         });
@@ -1321,7 +1321,7 @@
       const ownSite = row.website && row.website !== row.source_url && !['property_website','owner_property_page','official_property_page'].includes(row.source_kind) && !/\.gov\/|\/DocumentCenter\/|\.pdf($|\?)/i.test(row.website) ? sourceLink(row.website,'Website ↗') : null; if (ownSite) actions.append(ownSite);
       const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-Price Source ↗':'View Source ↗')); if (source) { if (row.source_kind==='official_directory') source.title='The county’s list of income-restricted properties, with each one’s address and phone. Call the property to apply.'; actions.append(source); }
       const map = mapLink(row); if (map) actions.append(map);
-      if (row.phone && (row.phone.match(/\d/g) || []).length >= 10) { const phone = housingElement('a','','Call'); phone.href=ClearHouseDial(row.phone); actions.append(phone); }
+      if (row.phone && (row.phone.match(/\d/g) || []).length >= 10) { const phone = housingElement('a','','Call'); phone.href=ClearHomeDial(row.phone); actions.append(phone); }
       const reviewDates=plans.map(p=>p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
       const reviewed=reviewDates[0]===reviewDates[reviewDates.length-1] ? reviewedDate(reviewDates[0]) : `${reviewedDate(reviewDates[0])} – ${reviewedDate(reviewDates[reviewDates.length-1])}`;
       card.append(actions,housingElement('p','housing-reviewed',`Source reviewed ${reviewed}`));
@@ -1364,7 +1364,7 @@
       const sharedCard = sharedListingId && [...listingsGrid.children].find(c => c.dataset.listingId === sharedListingId);
       if (sharedListingId) setTimeout(() => (sharedCard || document.getElementById('listings')).scrollIntoView({behavior:'auto',block:'start'}), 300);  // wait for the page above to settle
       // After someone changes the filters, the map follows the homes that match.
-      if (filtersChanged) window.clearHouseMapFocus?.(housingRows, `Map shows the ${housingRows.length} matching communit${housingRows.length === 1 ? 'y' : 'ies'}.`);
+      if (filtersChanged) window.clearHomeMapFocus?.(housingRows, `Map shows the ${housingRows.length} matching communit${housingRows.length === 1 ? 'y' : 'ies'}.`);
     } catch(error) {
       if (browseRequest !== controller) return;
       browseMessage.dataset.state='error'; browseMessage.textContent=error.name==='AbortError' ? 'Loading took too long. Select Update results to try again.' : 'We couldn’t load the housing catalog. Select Update results to retry. If you just updated the app, restart your local server.';
@@ -1484,7 +1484,7 @@
     const chatInput = document.getElementById('assistant-input');
     const el = (tag, text, attrs = {}) => { const n = document.createElement(tag); if (text != null) n.textContent = text; for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
     const safeUrl = u => typeof u === 'string' && u.startsWith('https://') ? u : null;
-    const tel = p => ClearHouseDial(p);
+    const tel = p => ClearHomeDial(p);
     const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
     let profile = {}, history = [];
 
@@ -1547,10 +1547,10 @@
       if (kind === 'program' && r.waitlist_status === 'closed') c.append(el('span', 'Waitlist closed', { class: 'opt-badge closed' }));
       if (kind === 'program' && r.waitlist_status === 'open') c.append(el('span', 'Waitlist open', { class: 'opt-badge' }));
       c.append(el('strong', r.community || r.name));
-      const meta = [r.floor_plan, r.jurisdiction, typeof r.monthly_rent === 'number' ? ClearHouseRental.price(r) : null].filter(Boolean).join(' · ');
+      const meta = [r.floor_plan, r.jurisdiction, typeof r.monthly_rent === 'number' ? ClearHomeRental.price(r) : null].filter(Boolean).join(' · ');
       if (meta) c.append(el('span', meta, { class: 'meta' }));
-      if(ClearHouseRental.term(r))c.append(el('span',ClearHouseRental.term(r),{class:'meta'}));
-      if(ClearHouseRental.lease(r))c.append(el('span',ClearHouseRental.lease(r),{class:'meta'}));
+      if(ClearHomeRental.term(r))c.append(el('span',ClearHomeRental.term(r),{class:'meta'}));
+      if(ClearHomeRental.lease(r))c.append(el('span',ClearHomeRental.lease(r),{class:'meta'}));
       if (kind !== 'listing' && r.who_it_serves) c.append(el('span', r.who_it_serves.slice(0, 160), { class: 'meta' }));
       const links = el('div', null, { class: 'opt-links' });
       if (r.phone) links.append(el('a', r.phone, { href: tel(r.phone) }));
@@ -1750,7 +1750,7 @@
         body.append(el('span', c.name, { class: 'chat-card-title' }));
         const meta = el('span', null, { class: 'chat-card-meta' });
         if (c.jurisdiction) meta.append(document.createTextNode(c.jurisdiction));
-        if (typeof c.monthly_rent === 'number') { if (c.jurisdiction) meta.append(document.createTextNode(' · ')); meta.append(el('b', ClearHouseRental.price(c))); }
+        if (typeof c.monthly_rent === 'number') { if (c.jurisdiction) meta.append(document.createTextNode(' · ')); meta.append(el('b', ClearHomeRental.price(c))); }
         else if (c.rent_estimate) { if (c.jurisdiction) meta.append(document.createTextNode(' · ')); const est = el('b', `est. $${Math.round(c.rent_estimate.low).toLocaleString()}–$${Math.round(c.rent_estimate.high).toLocaleString()}/mo`); est.title = 'Estimate from ' + c.rent_estimate.basis + '. The provider sets the real rent.'; meta.append(est); }
         if (meta.childNodes.length) body.append(meta);
         if (c.address) body.append(el('span', c.address, { class: 'chat-card-address' }));
@@ -1768,7 +1768,7 @@
         box.append(more);
       }
       bubble.after(box); pinTurn();
-      window.clearHouseMapFocus?.(cards, `Map shows the ${cards.length} place${cards.length === 1 ? '' : 's'} in this answer.`);
+      window.clearHomeMapFocus?.(cards, `Map shows the ${cards.length} place${cards.length === 1 ? '' : 's'} in this answer.`);
       // Turn each **name** in the answer into a link that brings its card into view.
       bubble.replaceChildren();
       tidy(text).split(/(\*\*[^*]+\*\*)/).forEach(part => {
@@ -1783,13 +1783,13 @@
     }
     // The map's "Near me" button asks here, sending the (rounded) location with this one question only.
     let oneShot = {};
-    window.clearHouseAsk = (question, extra) => {
+    window.clearHomeAsk = (question, extra) => {
       oneShot = extra || {}; document.getElementById('assistant-chips').hidden = true;
       document.getElementById('assistant').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
       ask(question);
     };
     // Other parts of the page (like the live web search) post short updates here.
-    window.clearHouseAssistantNote = text => { if (!log.querySelector('.msg')) return; botSay(text, 'update'); };
+    window.clearHomeAssistantNote = text => { if (!log.querySelector('.msg')) return; botSay(text, 'update'); };
 
     form.addEventListener('submit', async e => {
       e.preventDefault();
@@ -1823,7 +1823,7 @@
             maxWalkingMinutes: Number(v('find-walk')), strict: !checked('find-walk-pref'), bedrooms: profile.bedrooms, senior: profile.senior, sort: 'best' });
         } else {
           window.clearWalkSearch();
-          window.clearHouseMapFocus?.(data.listings, `Map shows the ${data.listings.length} homes that fit your choices.`);
+          window.clearHomeMapFocus?.(data.listings, `Map shows the ${data.listings.length} homes that fit your choices.`);
           results.append(group('Homes You Could Apply For', data.listings, 'listing',
             `No reviewed listings match these choices in ${data.area}. Try a higher budget, any bedroom count, or a nearby area. Gemma is also searching the web; see the map above.`));
         }
@@ -1842,7 +1842,7 @@
         const counts = [`${homeCount} home${homeCount === 1 ? '' : 's'}`];
         if (data.programs_relevant) counts.push(`${data.programs.length} program${data.programs.length === 1 ? '' : 's'}`);
         if (profile.tonight) counts.unshift(`${data.shelters.length} shelter option${data.shelters.length === 1 ? '' : 's'}`);
-        botSay(`Hi, I'm the Clear House assistant. I found ${counts.join(', ')} for ${data.area}. If you'd like, ask me anything about them, like which ones fit your income or how to apply.`);
+        botSay(`Hi, I'm the Clear Home assistant. I found ${counts.join(', ')} for ${data.area}. If you'd like, ask me anything about them, like which ones fit your income or how to apply.`);
         const extra = v('situation');
         if (extra) ask(extra);
       } catch (err) {
@@ -1862,7 +1862,7 @@
     document.getElementById('location-pick').addEventListener('change', e => {
       if (!e.target.value) return;
       const box = document.getElementById('location'); box.value = e.target.value; e.target.value = '';
-      window.clearHouseMapGoTo?.(box.value); window.clearHouseOfferWebSearch?.(box.value);
+      window.clearHomeMapGoTo?.(box.value); window.clearHomeOfferWebSearch?.(box.value);
     });
     // Walking time and "nice to have" only mean something once a place to be near is chosen.
     const amenitySel = document.getElementById('find-amenity'), walkSel = document.getElementById('find-walk'), walkSoft = document.getElementById('find-walk-pref'), walkNote = document.getElementById('find-walk-note');
@@ -1911,7 +1911,7 @@
 
     // Google Maps loads only if a restricted browser key is configured; otherwise the list still works.
     let gmap = null, overlays = [];
-    const loadMaps = () => window.clearHouseLoadMaps();
+    const loadMaps = () => window.clearHomeLoadMaps();
     function directionsUrl(h, a) {
       if (!a || h.lat == null) return null;
       return `https://www.google.com/maps/dir/?api=1&origin=${h.lat},${h.lon}&destination=${a.location.latitude},${a.location.longitude}&travelmode=walking`;

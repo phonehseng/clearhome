@@ -29,7 +29,7 @@ import requests
 
 from catalog import RESOURCES_PATH
 
-UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 Safari/605.1.15 (Clear House source check)"}
+UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 Safari/605.1.15 (Clear Home source check)"}
 GOV_HOSTS = (".gov", "fcrha.org", "arha.us", "arlingtonva.us")
 OWNER_HOSTS = ("ahcommunities.org", "apah.org", "truegroundhousing.org", "wesleyhousing.org", "communityhousingpartners.org",
                "enterprisecommunity.org", "lawsoncompanies.com")

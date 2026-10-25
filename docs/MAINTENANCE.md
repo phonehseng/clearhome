@@ -15,7 +15,7 @@ Raw catalog counts differ from what users see: loading removes invalid/unverifie
 5. Update canonical facts/evidence where genuinely rechecked. Inspect `data/listing_review.json` and any catalog diff before committing.
 6. Validate and publish the data with the normal Git workflow. The hosted site changes only after a deployment includes the new files.
 
-HTTP saves require a local loopback connection and `CLEARHOUSE_READ_ONLY` unset. The hosted page should remain read-only. This local restriction is not an account/role system.
+HTTP saves require a local loopback connection and `CLEARHOME_READ_ONLY` unset. The hosted page should remain read-only. This local restriction is not an account/role system.
 
 ## Add a listing
 
@@ -41,7 +41,7 @@ python backend/review.py show <candidate-id>
 
 After reviewing actual evidence, use `python backend/review.py approve <candidate-id>` or `python backend/review.py reject <candidate-id>`. Approval is a publication decision, not a substitute for checking the source. Confirm that required availability/rent details are adequate for the intended search; an approved community directory record is not automatically a vacant apartment.
 
-Open-data refresh is normally interval-limited. `--force` bypasses the refresh interval. Live web discoveries are separately labeled unreviewed; writable local calls can queue them. `CLEARHOUSE_READ_ONLY=1` disables application-triggered queue/review/freshness writes, but standalone CLI scripts still need careful use.
+Open-data refresh is normally interval-limited. `--force` bypasses the refresh interval. Live web discoveries are separately labeled unreviewed; writable local calls can queue them. `CLEARHOME_READ_ONLY=1` disables application-triggered queue/review/freshness writes, but standalone CLI scripts still need careful use.
 
 ## Sources and freshness
 

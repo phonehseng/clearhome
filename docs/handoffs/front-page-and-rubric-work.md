@@ -6,7 +6,7 @@ Please continue from here without redoing the work below. Read "Open decisions" 
 
 ## Context
 
-Clear House is a housing assistant for Northern Virginia and Blacksburg (see [README.md](../../README.md)). The team is preparing for a judged hackathon, and the judging rubric (100 points) covers Impact, Tech, Responsible AI and Feasibility. The front-page work in this handoff was aimed at those points. The main pages are `frontend/index.html` (tools, `/app`), `frontend/about.html` (front page, `/`), `frontend/google-cloud.html`, `frontend/resources.html` and `frontend/review.html`. The shared header is `frontend/site-header.css`.
+Clear Home is a housing assistant for Northern Virginia and Blacksburg (see [README.md](../../README.md)). The team is preparing for a judged hackathon, and the judging rubric (100 points) covers Impact, Tech, Responsible AI and Feasibility. The front-page work in this handoff was aimed at those points. The main pages are `frontend/index.html` (tools, `/app`), `frontend/about.html` (front page, `/`), `frontend/google-cloud.html`, `frontend/resources.html` and `frontend/review.html`. The shared header is `frontend/site-header.css`.
 
 Several teammates edit the same files, especially `frontend/about.html`. Run `git pull` before every edit, and expect merge conflicts.
 

@@ -53,7 +53,7 @@ class _Text(HTMLParser):
 
 
 def _page_text(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (ClearHouse listing check)"})
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (ClearHome listing check)"})
     with urllib.request.urlopen(req, timeout=20) as resp:
         parser = _Text()
         parser.feed(resp.read(2_000_000).decode("utf-8", errors="replace"))

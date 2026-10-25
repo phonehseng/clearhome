@@ -67,7 +67,7 @@ jobs:
       - name: Commit and push
         id: push
         run: |
-          git config user.name "clear-house-upkeep"
+          git config user.name "clear-home-upkeep"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data
           if git diff --cached --quiet; then

@@ -1,9 +1,9 @@
-// Clear House explainer: plays STORYBOARD on a 1920x1080 canvas. Every frame is a pure function of t (seconds),
+// Clear Home explainer: plays STORYBOARD on a 1920x1080 canvas. Every frame is a pure function of t (seconds),
 // so the video can be scrubbed, screen-recorded or exported frame-perfect. Injected by build_video.py:
 //   STORYBOARD (scenes), TIMINGS ({total, scenes:[{start,end,cues:[{text,start,end}]}]}), CHAPTERS, HAS_VOICE.
 (() => {
   const W = 1920, H = 1080;
-  const C = {  // Clear House UI + Google colors
+  const C = {  // Clear Home UI + Google colors
     bg1: '#f3f7ff', bg2: '#e4edfd', ink: '#14203f', muted: '#56657f', line: '#d4def2', navy: '#23408f',
     accent: '#1a73e8', blue: '#4285f4', red: '#ea4335', yellow: '#fbbc04', green: '#34a853',
     good: '#188038', goodFill: '#e6f4ea', bad: '#c5221f', badFill: '#fce8e6', ping: '#ff8a1f', white: '#ffffff', glass: 'rgba(255,255,255,0.86)',
@@ -143,7 +143,7 @@
     lines.forEach((l, k) => text(l, W / 2, y + 48 + k * 46, { size: 34, weight: 500, color: C.white, align: 'center' })); ctx.restore();
   }
   function topBar(s, i, lt) {
-    const ch = CHAPTERS[chapterOf(i)], title = `CLEAR HOUSE · ${ch.title.toUpperCase()}`;
+    const ch = CHAPTERS[chapterOf(i)], title = `CLEAR HOME · ${ch.title.toUpperCase()}`;
     ctx.save(); ctx.font = `800 34px ${HEAD}`; ctx.letterSpacing = '2px'; const w = ctx.measureText(title).width + 60;
     shadow(20, 8, 'rgba(0,0,0,.4)'); fillRR(W / 2 - w / 2, 28, w, 64, 10, C.red); noShadow(); strokeText(title, W / 2, 73, 34, C.white, 'center', 2); ctx.restore();
     const k = s.kicker; ctx.save(); ctx.globalAlpha *= prog(lt, .1); ctx.font = `700 28px ${HEAD}`; ctx.letterSpacing = '2px'; const pw = ctx.measureText(k).width + 100;
@@ -343,7 +343,7 @@
   function loop() { const t = now(); render(t); if (playing && t >= TIMINGS.total) { playing = false; btn.textContent = 'Restart'; window.dispatchEvent(new Event('videoend')); } if (playing) requestAnimationFrame(loop); }
   function play(from = 0) { playing = true; btn.textContent = 'Restart'; if (HAS_VOICE) { audio.currentTime = from; audio.play(); } else { startedAt = performance.now() - from * 1000; } requestAnimationFrame(loop); }
   btn.addEventListener('click', () => play(0));
-  window.clearHouseVideo = { render, play, total: TIMINGS.total };
+  window.clearHomeVideo = { render, play, total: TIMINGS.total };
   const seek = new URLSearchParams(location.search).get('t');
   Promise.all([document.fonts.load(`800 60px 'Google Sans'`), document.fonts.load(`400 30px 'Google Sans'`)]).then(() => { render(seek ? +seek : 0); window.videoReady = true; if (new URLSearchParams(location.search).get('autoexport')) { document.body.classList.add('recording'); document.getElementById('export').click(); } });
 
@@ -354,7 +354,7 @@
     const type = ['video/mp4;codecs=avc1,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m));
     const rec = new MediaRecorder(stream, { mimeType: type, videoBitsPerSecond: 8e6 }), parts = [];
     rec.ondataavailable = e => e.data.size && parts.push(e.data);
-    rec.onstop = async () => { const blob = new Blob(parts, { type }), name = `clear-house-explainer${HAS_VOICE ? '' : '-silent'}.${type.includes('mp4') ? 'mp4' : 'webm'}`;
+    rec.onstop = async () => { const blob = new Blob(parts, { type }), name = `clear-home-explainer${HAS_VOICE ? '' : '-silent'}.${type.includes('mp4') ? 'mp4' : 'webm'}`;
       if (window.UPLOAD_URL) await fetch(window.UPLOAD_URL + '?name=' + name, { method: 'POST', body: blob });
       else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); } };
     window.addEventListener('videoend', () => setTimeout(() => rec.stop(), 400), { once: true });

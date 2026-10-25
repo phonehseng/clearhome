@@ -1,7 +1,7 @@
-"""Build the Clear House explainer: two self-contained HTML players and a voiceover script.
+"""Build the Clear Home explainer: two self-contained HTML players and a voiceover script.
 
-  out/clear-house-explainer.html         plays with the recorded narration (voice track drives the clock)
-  out/clear-house-explainer-silent.html  same timing, no voice, for someone to narrate live or record over
+  out/clear-home-explainer.html         plays with the recorded narration (voice track drives the clock)
+  out/clear-home-explainer-silent.html  same timing, no voice, for someone to narrate live or record over
   out/voiceover-script.md                every line with its exact start time, for a manual voiceover
 
 Inputs: storyboard.json (scenes), timings.json (from the narration), out/narration.m4a, out/*.woff2 fonts.
@@ -27,7 +27,7 @@ def page(voice):
     audio = f'<audio id="voice" preload="auto" src="data:audio/mp4;base64,{b64(OUT / "narration.m4a")}"></audio>' if voice else '<audio id="voice"></audio>'
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Clear House: how it works{'' if voice else ' (silent)'}</title>
+<title>Clear Home: how it works{'' if voice else ' (silent)'}</title>
 <style>
   @font-face {{ font-family: 'Google Sans'; src: url(data:font/woff2;base64,{b64(OUT / "googlesans.woff2")}) format('woff2'); font-weight: 100 900; }}
   html, body {{ margin: 0; height: 100%; background: #0b1020; color: #fff; font-family: 'Google Sans', system-ui, sans-serif; }}
@@ -38,7 +38,7 @@ def page(voice):
   button.ghost {{ background: transparent; border: 1px solid #5f6f95; }}
   body.recording .bar {{ display: none; }}
 </style></head>
-<body><div class="wrap"><canvas id="stage" width="1920" height="1080" aria-label="Animated explainer of how Clear House works"></canvas>
+<body><div class="wrap"><canvas id="stage" width="1920" height="1080" aria-label="Animated explainer of how Clear Home works"></canvas>
 <div class="bar"><button id="play">Play</button><button id="export" class="ghost">Export video file</button></div></div>
 {audio}
 <!-- Sound direction: a calm, warm synth pad in the key of the chapter mood, ducked under the voice; a soft whoosh on each
@@ -59,7 +59,7 @@ window.UPLOAD_URL = new URLSearchParams(location.search).get('upload');
 def script_md():
     story, timings = json.loads((HERE / "storyboard.json").read_text()), json.loads((HERE / "timings.json").read_text())
     mm = lambda s: f"{int(s // 60)}:{s % 60:04.1f}"
-    out = ["# Clear House explainer: voiceover script", "",
+    out = ["# Clear Home explainer: voiceover script", "",
            f"Long form, 16:9, {mm(timings['total'])} total. Narrator: calm, warm British professor. Read each line when its start time comes up;",
            "the silent player shows the same line as a subtitle, so you can read along while recording.", ""]
     chapter_at = {i: t for t, i in CHAPTERS}
@@ -72,9 +72,9 @@ def script_md():
 
 
 if __name__ == "__main__":
-    (OUT / "clear-house-explainer.html").write_text(page(True))
-    (OUT / "clear-house-explainer-silent.html").write_text(page(False))
+    (OUT / "clear-home-explainer.html").write_text(page(True))
+    (OUT / "clear-home-explainer-silent.html").write_text(page(False))
     (HERE / "voiceover-script.md").write_text(script_md())
-    for f in ["clear-house-explainer.html", "clear-house-explainer-silent.html"]:
+    for f in ["clear-home-explainer.html", "clear-home-explainer-silent.html"]:
         print(f, (OUT / f).stat().st_size // 1024, "KB")
     print("voiceover-script.md written")

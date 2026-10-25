@@ -1,6 +1,6 @@
 # Handoff: fix the issues found in the full site check
 
-A full local test of Clear House on 2026-10-24 found the problems below. Fix each one, verify it, and push. Most of the site works and should not be touched: the find form, the map, listings browsing and filters, Show more/Show all, the photo dialog, the chat fallbacks and every page link passed. Pull first (`git pull`), because teammates push often and may already have changed these files.
+A full local test of Clear Home on 2026-10-24 found the problems below. Fix each one, verify it, and push. Most of the site works and should not be touched: the find form, the map, listings browsing and filters, Show more/Show all, the photo dialog, the chat fallbacks and every page link passed. Pull first (`git pull`), because teammates push often and may already have changed these files.
 
 ## Ground rules (from the project owner)
 

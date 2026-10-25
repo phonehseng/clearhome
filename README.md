@@ -1,8 +1,8 @@
-# Clear House
+# Clear Home
 
 Group hackathon effort by Pierce, Umair, Phone, and Ryan for **GDG Build with AI x Hacktoberfest 2026** (Virginia Tech, Oct 24-25, 2026). Theme: **AI for Housing**.
 
-**Live site:** https://clear-house-875094537886.us-east4.run.app
+**Live site:** https://clearhome.live (also at https://clear-house-875094537886.us-east4.run.app)
 
 ## Problem
 
@@ -10,7 +10,7 @@ Finding safe, affordable housing is hard for low-income people, especially stude
 
 ## Solution
 
-**Clear House** is an AI housing assistant for **Northern Virginia** and **Blacksburg (Virginia Tech)**, powered by Gemma 4, that helps people:
+**Clear Home** is an AI housing assistant for **Northern Virginia** and **Blacksburg (Virginia Tech)**, powered by Gemma 4, that helps people:
 
 - **Find affordable housing.** Matches a person's budget, location and accessibility needs to manually verified affordable and low-income housing listings. In Blacksburg the focus is student rooms under $1,000 per person, with individual and joint leases labeled.
 - **Find emergency help.** Points people to verified shelters and emergency housing resources, with urgent cases shown first.
@@ -35,7 +35,7 @@ To avoid made-up information, the assistant only recommends places from our hand
 
 | Address | Page |
 |---|---|
-| `/` | Front page (`frontend/about.html`): the map of every verified home, how Clear House works, Built with Google Cloud, the open-source repo, and the "Get started" chat with Gemma (your first question carries over to the tools page). |
+| `/` | Front page (`frontend/about.html`): the map of every verified home, how Clear Home works, Built with Google Cloud, the open-source repo, and the "Get started" chat with Gemma (your first question carries over to the tools page). |
 | `/app` | The tools (`frontend/index.html`): housing cards and filters, the map, the Gemma chat, walking distance, and Favorites. |
 | `/resources` | How qualifying works, programs and where to apply, rentals and student rooms, and example questions answered by Gemma (`frontend/resources.html`). |
 | `/google-cloud` | How the Google Cloud services fit together and what each one does (`frontend/google-cloud.html`). |
@@ -68,15 +68,15 @@ To avoid made-up information, the assistant only recommends places from our hand
 | `frontend/interface.css` | Shared styles, such as keeping listing text copyable. |
 | `data/resources.json` | The hand-verified resource list. See [data/README.md](data/README.md). |
 | `gemma/` | The Gemma 4 GPU service for Cloud Run. See [gemma/README.md](gemma/README.md). |
-| `video/` | A code-drawn explainer video of how Clear House works. See [video/README.md](video/README.md). |
+| `video/` | A code-drawn explainer video of how Clear Home works. See [video/README.md](video/README.md). |
 
 ## Getting started
 
 You need Python 3.9 or newer and a free Gemini API key from [Google AI Studio](https://aistudio.google.com).
 
 ```bash
-git clone https://github.com/phonehseng/clearhouse
-cd clearhouse
+git clone https://github.com/phonehseng/clearhome
+cd clearhome
 cp .env.example .env          # then put your key in .env
 python3 -m venv .venv
 source .venv/bin/activate     # Windows: .venv\Scripts\activate

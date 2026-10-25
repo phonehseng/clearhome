@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d1738">
-  <meta name="description" content="Clear House helps people in Northern Virginia and Blacksburg find verified affordable housing, shelters and rent help, with a live Gemma assistant and a map.">
+  <meta name="description" content="Clear Home helps people in Northern Virginia and Blacksburg find verified affordable housing, shelters and rent help, with a live Gemma assistant and a map.">
   <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico?v=2" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-  <title>Clear House</title>
+  <title>Clear Home</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -262,7 +262,7 @@
     .g-tag.gemini{background:#ede7fb;color:#5b3fb5}
     .g-tag.maps{background:#e6f4ea;color:#137333}
     .g-tag.cloud{background:#e8f0fe;color:#1a56c4}
-    /* Pinned scroll scenes (wide screens): the map, How Clear House Helps and the flip cards each stay on screen while
+    /* Pinned scroll scenes (wide screens): the map, How Clear Home Helps and the flip cards each stay on screen while
        scrolling plays them, then the page carries on. Everything moves with the scroll itself, the stage drifts a little,
        and a progress bar fills along the bottom, so the page never looks frozen. The script sets each track's height. */
     .pin-track.pinned .pin-stage{position:sticky;top:0;box-sizing:border-box;height:calc(100vh / var(--page-zoom, 1));display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -288,7 +288,7 @@
     .scene-progress i{width:7px;height:7px;margin-top:-4px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);animation:scene-nudge 1.3s ease-in-out infinite}
     .scene-progress.done{opacity:0}
     @keyframes scene-nudge{0%,100%{translate:0 -2px}50%{translate:0 3px}}
-    /* The sample chat and search in How Clear House Helps: lines appear as the scene plays, and Gemma's answer is typed
+    /* The sample chat and search in How Clear Home Helps: lines appear as the scene plays, and Gemma's answer is typed
        over its own invisible full text, so nothing around it moves. */
     .cl-chat .demo,.cl-list .demo{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
     .cl-chat .demo.on,.cl-list .demo.on{opacity:1;transform:none}
@@ -554,7 +554,7 @@
       #map .map-tabs :is(.map-tab,.map-hood){width:100%;min-width:0;max-width:none;min-height:40px;font-size:12.5px;justify-content:center;margin:0}
       #map .map-tabs .map-tab{padding-inline:8px}
     }
-    /* How Clear House Helps, scaled down: narrower cards, smaller type, compact chat bubbles and rows. */
+    /* How Clear Home Helps, scaled down: narrower cards, smaller type, compact chat bubbles and rows. */
     .cl-title{font-size:clamp(30px,3.6vw,44px)}  /* every front page section heading, not just this one */
     #how .cl-duo{gap:16px;margin:28px auto 0;max-width:940px}
     #how .cl-card{padding:24px;border-radius:22px;min-height:0;box-shadow:0 14px 40px #23408f12}
@@ -633,7 +633,7 @@
 
   <header class="site-header ch-header over-hero">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a>
+      <a class="brand" href="/" aria-label="Clear Home front page"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear home<span class="brand-dot">.</span></a>
       <nav class="header-links" aria-label="Page navigation">
         <a href="#map">Map</a>
         <a href="/google-cloud">Built with Google Cloud</a>
@@ -658,7 +658,7 @@
       <div class="pin-track map-track"><div class="pin-stage"><div class="pin-fit">
       <h2 id="map-title" class="cl-title reveal">Every Verified Home, <span>on One Map</span></h2>
       <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p>
-      <div class="cl-frame reveal map-video-frame"><video id="map-video" class="map-video" src="/videos/map-tour.mp4?v=3" poster="/videos/map-tour.jpg?v=3" muted playsinline preload="metadata" aria-label="A recording of someone using the Clear House map: browsing Northern Virginia, zooming into Ballston and Reston, opening listings, and switching to Blacksburg"></video><a class="map-video-cta" href="/app">Open the Live Map <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+      <div class="cl-frame reveal map-video-frame"><video id="map-video" class="map-video" src="/videos/map-tour.mp4?v=3" poster="/videos/map-tour.jpg?v=3" muted playsinline preload="metadata" aria-label="A recording of someone using the Clear Home map: browsing Northern Virginia, zooming into Ballston and Reston, opening listings, and switching to Blacksburg"></video><a class="map-video-cta" href="/app">Open the Live Map <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a></div>
       </div></div></div>
     </section>
 
@@ -675,7 +675,7 @@
 
     <section class="cl-section" id="how" aria-labelledby="how-title">
       <div class="pin-track how-track"><div class="pin-stage"><div class="pin-fit">
-      <h2 id="how-title" class="cl-title reveal">How Clear House <span>Helps</span></h2>
+      <h2 id="how-title" class="cl-title reveal">How Clear Home <span>Helps</span></h2>
       <div class="cl-duo">
         <article class="cl-card blue reveal from-left">
           <h3>Ask <em>Gemma 4</em> Anything</h3>
@@ -712,8 +712,8 @@
     <section class="cl-section" id="github" aria-labelledby="github-title">
       <h2 id="github-title" class="cl-title reveal">Open Source, <span>on GitHub</span></h2>
       <div class="repo-card reveal">
-        <a class="repo-tree" href="https://github.com/phonehseng/clearhouse" target="_blank" rel="noopener" aria-label="Open the Clear House repository on GitHub">
-          <span class="repo-tree-head"><i></i><i></i><i></i> clearhouse</span>
+        <a class="repo-tree" href="https://github.com/phonehseng/clearhome" target="_blank" rel="noopener" aria-label="Open the Clear Home repository on GitHub">
+          <span class="repo-tree-head"><i></i><i></i><i></i> clearhome</span>
           <span><b>backend/advisor.py</b> Gemma 4 chat, grounded in our list</span>
           <span><b>backend/gemma_gpu.py</b> Gemma 4 on our Cloud Run GPU</span>
           <span><b>backend/nearby.py</b> “near my office” with Places + Routes</span>
@@ -724,12 +724,12 @@
           <span><b>backend/test_*.py</b> tests that run offline</span>
         </a>
         <div>
-          <h3><a href="https://github.com/phonehseng/clearhouse" target="_blank" rel="noopener">phonehseng / clearhouse</a></h3>
-          <p id="repo-desc">Clear House: verified affordable housing, shelters and rent help for Northern Virginia and Blacksburg, built with Gemma 4 and Google Cloud.</p>
+          <h3><a href="https://github.com/phonehseng/clearhome" target="_blank" rel="noopener">phonehseng / clearhome</a></h3>
+          <p id="repo-desc">Clear Home: verified affordable housing, shelters and rent help for Northern Virginia and Blacksburg, built with Gemma 4 and Google Cloud.</p>
           <ul class="repo-stats" id="repo-stats"><li>Python + JavaScript</li><li>Flask · Gemma 4 · Google Maps · Cloud Run</li></ul>
           <div class="repo-langs" id="repo-langs" aria-hidden="true"></div><div class="repo-langs-key" id="repo-langs-key"></div>
           <div class="repo-team" id="repo-team" aria-label="Team"></div>
-          <div class="repo-actions"><a class="primary-gh" href="https://github.com/phonehseng/clearhouse" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View the Code on GitHub</a><a class="ghost-gh" href="https://github.com/phonehseng/clearhouse/commits/main" target="_blank" rel="noopener">See the Latest Commits ↗</a></div>
+          <div class="repo-actions"><a class="primary-gh" href="https://github.com/phonehseng/clearhome" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View the Code on GitHub</a><a class="ghost-gh" href="https://github.com/phonehseng/clearhome/commits/main" target="_blank" rel="noopener">See the Latest Commits ↗</a></div>
         </div>
       </div>
     </section>
@@ -744,7 +744,7 @@
   <!-- "Get started": a calm full-screen intro with one small chat. The first reply opens the tools page and is sent there. -->
   <dialog class="start" id="start" aria-labelledby="start-title">
     <div class="start-card">
-      <div class="start-head"><img src="/logo.svg" alt="" width="38" height="38"><div><strong id="start-title">Ask Gemma 4</strong><span>Clear House assistant</span></div><a class="start-skip" href="/app">Skip</a></div>
+      <div class="start-head"><img src="/logo.svg" alt="" width="38" height="38"><div><strong id="start-title">Ask Gemma 4</strong><span>Clear Home assistant</span></div><a class="start-skip" href="/app">Skip</a></div>
       <div class="start-msgs" aria-live="polite"><p class="start-typing" aria-label="Gemma is typing"><i></i><i></i><i></i></p></div>
       <form class="start-form" id="start-form"><label class="visually-hidden" for="start-input">Your Reply to Gemma</label><input id="start-input" maxlength="1500" autocomplete="off" placeholder="Type your reply…" required><button type="submit" aria-label="Send"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></button></form>
       <p class="start-note">Free, no account. Answers come only from verified resources.</p>
@@ -752,7 +752,7 @@
   </dialog>
   <dialog class="start tonight" id="tonight-chat" aria-labelledby="tonight-title">
     <div class="start-card">
-      <div class="start-head"><img src="/logo.svg" alt="" width="38" height="38"><div><strong id="tonight-title">Somewhere to Stay Tonight</strong><span>Gemma 4 · Clear House assistant</span></div><a class="start-skip" href="/app#emergency">Skip</a></div>
+      <div class="start-head"><img src="/logo.svg" alt="" width="38" height="38"><div><strong id="tonight-title">Somewhere to Stay Tonight</strong><span>Gemma 4 · Clear Home assistant</span></div><a class="start-skip" href="/app#emergency">Skip</a></div>
       <div class="start-msgs" aria-live="polite"></div>
       <div class="start-choices" id="tonight-choices" role="group" aria-label="Your answer"></div>
       <form class="start-form" id="tonight-form" hidden><label class="visually-hidden" for="tonight-input">A City, County or Address</label><input id="tonight-input" maxlength="100" autocomplete="off" placeholder="Or type a city or county…"><button type="submit" aria-label="Send"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></button></form>
@@ -768,9 +768,9 @@
 
   <footer class="cl-footer">
     <div class="container cl-footer-top">
-      <a class="cl-footer-brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="28" height="28">clear house<span>.</span></a>
+      <a class="cl-footer-brand" href="/" aria-label="Clear Home front page"><img src="/logo.svg" alt="" width="28" height="28">clear home<span>.</span></a>
       <nav class="cl-footer-links" aria-label="Footer">
-        <a href="#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="/resources">Resources</a><a href="#github">GitHub</a><a href="/app">Open Clear House</a>
+        <a href="#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="/resources">Resources</a><a href="#github">GitHub</a><a href="/app">Open Clear Home</a>
       </nav>
     </div>
     <p class="container cl-footer-credit">Made by Pierce, Umair, Phone and Ryan for <b>GDG Build with AI × Hacktoberfest 2026</b>.</p>
@@ -1003,7 +1003,7 @@
       }
     }
 
-    // How Clear House Helps: a sample chat (each question appears, then Gemma types its answer) and the near-my-office
+    // How Clear Home Helps: a sample chat (each question appears, then Gemma types its answer) and the near-my-office
     // search filling in. Pinned, the scroll itself types it, so scrolling back up rewinds; narrow screens play it once as
     // it comes into view. The chat quotes real records from our verified list.
     const howTrack = document.querySelector('.how-track');
@@ -1117,7 +1117,7 @@
 <script>
   // Live repository stats from GitHub's public API; the card still reads fine if this is blocked or rate-limited.
   (async () => {
-    const repo = 'phonehseng/clearhouse', api = 'https://api.github.com/repos/' + repo;
+    const repo = 'phonehseng/clearhome', api = 'https://api.github.com/repos/' + repo;
     // GitHub allows 60 calls an hour per visitor, so answers are kept for an hour in this browser.
     const get = async u => {
       try { const hit = JSON.parse(localStorage.getItem('gh:' + u) || 'null'); if (hit && Date.now() - hit.at < 3600e3) return hit.data; } catch {}
@@ -1257,7 +1257,7 @@
           await gemma('Your browser will ask to share your location. It stays on this device; I only use it to pick the area.', 500);
           const spot = await locate();
           area = spot && regionAt(spot.latitude, spot.longitude);
-          if (!area) await gemma(spot ? 'You look to be outside Northern Virginia and Blacksburg, where Clear House works. Call 211: they help anywhere in Virginia. Or pick one of our areas.'
+          if (!area) await gemma(spot ? 'You look to be outside Northern Virginia and Blacksburg, where Clear Home works. Call 211: they help anywhere in Virginia. Or pick one of our areas.'
                                       : 'I couldn’t get your location, and that’s okay. Pick an area or type a city.');
         }
         await gemma(`Okay. Opening shelters, intake lines and nearby budget hotels for ${area}. You can call 211 any time for help getting a bed.`);

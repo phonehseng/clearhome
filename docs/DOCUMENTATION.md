@@ -1,4 +1,4 @@
-# Clear House documentation
+# Clear Home documentation
 
 This documentation describes the implementation in this repository, not a promise that every external service or housing opportunity is available. Review the code and dated evidence when behavior or inventory changes.
 

@@ -2,7 +2,7 @@
 
 ## System overview
 
-Clear House is a single Flask application serving plain HTML/CSS/JavaScript and same-origin APIs. There is no frontend build pipeline, SQL database, user account system, or migration framework. The canonical resource database is a versioned JSON file.
+Clear Home is a single Flask application serving plain HTML/CSS/JavaScript and same-origin APIs. There is no frontend build pipeline, SQL database, user account system, or migration framework. The canonical resource database is a versioned JSON file.
 
 ```mermaid
 flowchart TD
@@ -104,7 +104,7 @@ The Gemini model name is defined in `matcher.py`. GPU configuration is in `gemma
 | Photo/source audit JSON files | Dated research and delivery evidence; not live inventory |
 | `.cache/listing-photos/` | Ignored, validated downloaded images; may be bundled into deployment |
 | Process memory | Catalog, answer, nearby/search and route-related caches; settings vary by module and reset with the process |
-| Browser local storage | Saved listings (`clearhouse.favorites`) and landing-page GitHub-stat cache |
+| Browser local storage | Saved listings (`clearhome.favorites`) and landing-page GitHub-stat cache |
 | Browser session storage | First question passed from the landing introduction to the tools |
 
 Check `frontend/index.html` when changing the favorites storage key. Browser-held favorites can contain old listing snapshots. Chat history is supplied by the client; there is no account-based conversation database. This does **not** mean nothing is retained: answer caches, browser storage, hosting logs and third-party processing have separate lifetimes. Advisor answer caching currently uses a 12-hour in-memory window.

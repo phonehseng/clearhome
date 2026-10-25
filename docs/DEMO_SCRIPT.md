@@ -1,8 +1,8 @@
-# Clear House demo script
+# Clear Home demo script
 
 ## Three-minute judging demo
 
-This script follows the current pages on `main`. It uses the Blacksburg room filter because it is quick, repeatable, and shows how Clear House distinguishes a per-person room price from a whole-apartment price. The homepage map is a recorded walkthrough; use `/app` for the live listing tools.
+This script follows the current pages on `main`. It uses the Blacksburg room filter because it is quick, repeatable, and shows how Clear Home distinguishes a per-person room price from a whole-apartment price. The homepage map is a recorded walkthrough; use `/app` for the live listing tools.
 
 ### Before presenting
 
@@ -16,7 +16,7 @@ This script follows the current pages on `main`. It uses the Blacksburg room fil
 
 **On screen:** Homepage hero.
 
-**Say:** “I’m Umair, and this is Clear House. Finding a safe, affordable place can mean searching scattered sites, decoding eligibility rules, and trying to find emergency help when time is short. We built one place to search housing and waitlists, find local support, and get plain-language guidance. The current service areas are Northern Virginia and Blacksburg, including student rooms near Virginia Tech.”
+**Say:** “I’m Umair, and this is Clear Home. Finding a safe, affordable place can mean searching scattered sites, decoding eligibility rules, and trying to find emergency help when time is short. We built one place to search housing and waitlists, find local support, and get plain-language guidance. The current service areas are Northern Virginia and Blacksburg, including student rooms near Virginia Tech.”
 
 ### 0:25–0:45 — Show the scope honestly
 
@@ -48,7 +48,7 @@ This script follows the current pages on `main`. It uses the Blacksburg room fil
 
 **On screen:** Point to the verified-source notice or the Gemma chat/sort controls; finish on the provider/source links.
 
-**Say:** “Gemma helps people ask in plain language and sort options. Housing recommendations come from the reviewed catalog; web-discovered leads are labeled unverified. We show what is unknown and send people back to the provider to confirm details. Clear House is an information and referral tool: it does not decide eligibility, guarantee availability, give legal advice, or handle lease signing. We’re looking for feedback from students, families, and local housing organizations so we can measure whether it saves people time and improve the directory.”
+**Say:** “Gemma helps people ask in plain language and sort options. Housing recommendations come from the reviewed catalog; web-discovered leads are labeled unverified. We show what is unknown and send people back to the provider to confirm details. Clear Home is an information and referral tool: it does not decide eligibility, guarantee availability, give legal advice, or handle lease signing. We’re looking for feedback from students, families, and local housing organizations so we can measure whether it saves people time and improve the directory.”
 
 ## If you have five minutes
 

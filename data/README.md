@@ -1,4 +1,4 @@
-# Clear House resource catalog
+# Clear Home resource catalog
 
 `resources.json` is the canonical, versioned database used by the assistant and the read-only `/api/listings` endpoint. No separate SQL database or new service is needed for this initial catalog. Updates go through the project's Git review workflow.
 

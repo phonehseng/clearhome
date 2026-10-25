@@ -173,7 +173,7 @@ def search(prompt, overrides=None):
     """Run a walking-distance housing search. Returns results plus warnings; never raises for API problems."""
     filters = parse_request(prompt, overrides)
     if filters["area"] is None:
-        return {"error": "Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, or Reston."}
+        return {"error": "Clear Home covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, or Reston."}
     if not _key():
         return {"configured": False, "filters": filters, "results": [],
                 "warnings": ["Walking-distance search needs a Google Maps server key (GOOGLE_MAPS_SERVER_API_KEY). See WALKABILITY.md for setup."]}

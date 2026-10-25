@@ -1,5 +1,5 @@
 /* Keep the offered space and payment basis consistent in cards and lease help. */
-window.ClearHouseRental = Object.freeze({
+window.ClearHomeRental = Object.freeze({
   period(row) {
     if (row.rental_space === 'room') return row.rent_basis === 'per_person_installment' ? ' / person / installment' : ' / person / month';
     return row.rental_space === 'entire_home' ? ' / apartment / month' : ' / month';
@@ -25,7 +25,7 @@ window.ClearHouseRental = Object.freeze({
 
 /* A tel: link for a phone as written in the catalog. Only the first real number is dialed, so
    "(703) 792-3366 (TTY: 711)" doesn't become 7037923366711; an extension waits for the call to connect. */
-window.ClearHouseDial = phone => {
+window.ClearHomeDial = phone => {
   const text = String(phone || '');
   const m = text.match(/(\+?1[\s.-]?)?\(?(\d{3})\)?[\s.-]?(\d{3})[\s.-]?(\d{4})(?:\s*(?:ext\.?|extension|x)\s*(\d{1,6}))?/i);
   if (m) return `tel:+1${m[2]}${m[3]}${m[4]}${m[5] ? ',' + m[5] : ''}`;

@@ -115,7 +115,7 @@ def search(location, queue_results=True):
     """Returns {"area": ..., "results": [...]} or {"error": ...}."""
     area = area_for(location)
     if not area:
-        return {"error": "Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, or Woodbridge."}
+        return {"error": "Clear Home covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Arlington, or Woodbridge."}
     key = " ".join(location.lower().split())
     with _cache_lock:
         hit = _cache.get(key)
