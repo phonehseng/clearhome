@@ -73,6 +73,12 @@ def index():
     return send_from_directory(FRONTEND, "index.html")
 
 
+@app.get("/videos/<path:name>")
+def videos(name):
+    """The front page's map recording and its poster; range requests let the page scrub through the video."""
+    return send_from_directory(os.path.join(FRONTEND, "videos"), name, max_age=86400, conditional=True)
+
+
 @app.get('/listing-map.js')
 def listing_map_js():
     return send_from_directory(FRONTEND, 'listing-map.js')

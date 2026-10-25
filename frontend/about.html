@@ -530,6 +530,10 @@
     #map .cl-lead{font-size:16px;margin-top:12px}
     #map .cl-frame{max-width:940px;margin:24px auto 0;padding:16px;border-radius:22px;box-shadow:0 12px 32px #23408f10}
     #map #listing-map{height:320px;border-radius:14px}
+    /* The map on the front page is a recording of someone using the live one (the real map is on the tools page). */
+    .map-video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#e6eefc;object-fit:cover}
+    .map-video-cta{display:inline-flex;align-items:center;gap:8px;margin:12px 4px 0;font-size:14px;font-weight:650;color:#2f55b5;text-decoration:none}
+    .map-video-cta:hover{text-decoration:underline}
     #map .map-tabs{margin-bottom:12px;gap:6px}
     @media(max-width:820px){#map{padding-top:40px}#map #listing-map{height:280px}}
     @media(max-width:560px){
@@ -642,7 +646,7 @@
       <div class="pin-track map-track"><div class="pin-stage"><div class="pin-fit">
       <h2 id="map-title" class="cl-title reveal">Every Verified Home, <span>on One Map</span></h2>
       <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p>
-      <div class="cl-frame reveal"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></div>
+      <div class="cl-frame reveal map-video-frame"><video id="map-video" class="map-video" src="/videos/map-tour.mp4" poster="/videos/map-tour.jpg" muted playsinline preload="metadata" aria-label="A recording of someone using the Clear House map: browsing Northern Virginia, zooming into Ballston and Reston, opening listings, and switching to Blacksburg"></video><a class="map-video-cta" href="/app">Open the Live Map <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a></div>
       </div></div></div>
     </section>
 
@@ -954,41 +958,42 @@
         }) });
     }
 
-    // The map. Pinned (wide screens): as you scroll it flies from all of Northern Virginia to a neighborhood, to Reston,
-    // then to Blacksburg, with a caption for each stop and the progress bar filling in between; scrolling back up goes
-    // back. Phones and short windows get the same tour once, on a timer, when the map comes into view. Either way it
-    // stops for good as soon as someone uses the map.
-    const mapTrack = document.querySelector('.map-track');
-    if (mapTrack && !calmPage) {
-      const STOPS = [['Northern Virginia', 'Every verified home across Northern Virginia.'], ['Arlington (Ballston)', 'Zoom into a neighborhood, like Ballston in Arlington.'],
-                     ['Reston', 'Or look near work, like Reston.'], ['Blacksburg', 'And Blacksburg, right by Virginia Tech.']];
-      const STOP_MS = 3200, lead = mapTrack.querySelector('.cl-lead'), mapBox = mapTrack.querySelector('#listing-map'), frame = mapTrack.querySelector('.cl-frame');
-      const intro = lead.textContent;
-      let stop = -1, driving = true, toured = false, timer = null;
-      const handsOn = () => { driving = false; clearTimeout(timer); };
-      ['pointerdown', 'keydown'].forEach(type => frame.addEventListener(type, handsOn, { passive: true }));  // not wheel: scrolling past the map isn't using it
-      const show = i => {
+    // The map: a recording of someone using the live map (all of Northern Virginia, zooming into Ballston, near work in
+    // Reston, then Blacksburg, opening listings on the way). Pinned on wide screens, the scroll plays it, back and forth,
+    // with a caption for each stop; phones and short windows play it on a loop while it's on screen. With reduced
+    // motion it stays still, with play controls. Times are from the recording (seconds).
+    const mapTrack = document.querySelector('.map-track'), mapVideo = document.getElementById('map-video');
+    if (mapTrack && mapVideo) {
+      const STOPS = [[0, 'Every verified home across Northern Virginia.'], [6.1, 'Zoom into a neighborhood, like Ballston in Arlington.'],
+                     [16.4, 'Or look near work, like Reston.'], [23.3, 'And Blacksburg, right by Virginia Tech.']];
+      const lead = mapTrack.querySelector('.cl-lead'), intro = lead.textContent;
+      let stop = -1, target = 0;
+      const caption = i => {
         if (i === stop) return;
         stop = i;
         lead.textContent = i < 0 ? intro : STOPS[i][1];
         lead.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
-        if (i >= 0 && driving) window.clearHouseMapGoTo?.(STOPS[i][0]);
       };
-      const tour = i => {  // the timed version
-        if (!driving) return;
-        if (!window.clearHouseMapGoTo) { timer = setTimeout(() => tour(i), 400); return; }  // map still loading
-        show(i);
-        if (i + 1 < STOPS.length) timer = setTimeout(() => tour(i + 1), STOP_MS);
-      };
-      pinScene(mapTrack, { distance: 500,
-        play: p => { clearTimeout(timer); show(p <= 0 ? -1 : Math.min(STOPS.length - 1, Math.floor(p * STOPS.length))); },
-        loose: () => {
-          if (toured) return;
-          const r = frame.getBoundingClientRect(); if (r.top > innerHeight * .6 || r.bottom < innerHeight * .3) return;
-          toured = true; tour(0);
-        },
-        // A Google map shouldn't be zoomed with CSS (clicks land in the wrong place), so the map gets shorter instead.
-        fitTo: room => { mapBox.style.height = ''; if (room == null) return; const extra = mapTrack.querySelector('.pin-fit').offsetHeight - room; if (extra > 0) mapBox.style.height = `${Math.max(240, mapBox.offsetHeight - extra)}px`; } });
+      const stopAt = t => STOPS.reduce((found, [from], i) => (t >= from ? i : found), 0);
+      // One seek at a time: the next waits for 'seeked', so fast scrolling never queues up a backlog.
+      const seek = () => { if (!mapVideo.seeking && Math.abs(mapVideo.currentTime - target) > 1 / 30) mapVideo.currentTime = target; };
+      mapVideo.addEventListener('seeked', seek);
+      if (calmPage) mapVideo.controls = true;
+      else {
+        const pinned = () => mapTrack.classList.contains('pinned');
+        mapVideo.addEventListener('timeupdate', () => { if (!pinned()) caption(stopAt(mapVideo.currentTime)); });
+        pinScene(mapTrack, { distance: 900,
+          play: p => { mapVideo.loop = false; if (!mapVideo.paused) mapVideo.pause(); target = p * (mapVideo.duration || 29.7); seek(); caption(p <= 0 ? -1 : stopAt(target)); },
+          // Phones and short windows: start loading when it's near, play while it's mostly on screen, pause once it's
+          // scrolled away (checked on each scroll, so it doesn't depend on observers).
+          loose: () => {
+            mapVideo.loop = true;
+            const r = mapVideo.getBoundingClientRect(), seen = r.top < innerHeight * .75 && r.bottom > innerHeight * .25;
+            if (r.top < innerHeight * 2 && r.bottom > -innerHeight) mapVideo.preload = 'auto';
+            if (seen && mapVideo.paused) mapVideo.play().catch(() => {});
+            else if (!seen && !mapVideo.paused) mapVideo.pause();
+          } });
+      }
     }
 
     // How Clear House Helps: a sample chat (each question appears, then Gemma types its answer) and the near-my-office
@@ -1135,8 +1140,6 @@
     } catch { /* keep the static summary */ }
   })();
 </script>
-<script src="/rental-labels.js"></script>
-<script src="/listing-map.js"></script>
 <script>
   // "Get started": open the intro, let Gemma say hello, and send the first reply to the tools page's chat.
   (() => {
