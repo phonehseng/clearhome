@@ -173,13 +173,16 @@
     @keyframes gc-pop { from { opacity: 0; transform: scale(0); } }
     @keyframes gc-packet { 0% { left: 0; opacity: 0; } 20%, 80% { opacity: 1; } 100% { left: calc(100% - 7px); opacity: 0; } }
     @keyframes gc-glow { 50% { box-shadow: 0 0 0 9px #4285f421, 0 14px 30px #2f55b540; } }
+    /* The clear header sits over this page's blue hero, as on the home page; the hero leaves room for it. */
+    .hero{padding-top:148px}
+    @media (max-width: 860px){.hero{padding-top:110px}}
 </style>
   <link rel="stylesheet" href="/interface.css">
   <link rel="stylesheet" href="/site-header.css">
   <script src="/site-header.js" defer></script>
 </head>
 <body>
-  <header class="site-header ch-header">
+  <header class="site-header ch-header over-hero">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a>
       <nav class="header-links" aria-label="Page navigation">

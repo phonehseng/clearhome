@@ -1,12 +1,12 @@
-/* Shared navigation: a compact light surface over each page's own background.
+/* Shared navigation, clear like Cluely's: no bar or background, just the logo, links and the navy "Get Started"
+   over each page's own background (white text over the home page's blue hero, navy text on the light pages).
    The start action stays pinned when scrolling; the rest of the navigation fades. */
 .ch-header{position:fixed!important;top:0;left:0;right:0;z-index:50;pointer-events:none;border:0!important;box-shadow:none!important;
   background:transparent!important}
 .ch-header a{pointer-events:auto}
 .ch-header .header-inner{width:min(1120px,calc(100% - 48px));margin:12px auto;height:60px!important;min-height:0;box-sizing:border-box;
-  display:flex;align-items:center;justify-content:flex-start!important;gap:24px;padding:8px 12px;
-  border:1px solid #ffffffd9;border-radius:18px;background:#f8fafff2;box-shadow:0 6px 24px #23408f0c;
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:background .2s,border-color .2s,box-shadow .2s}
+  display:flex;align-items:center;justify-content:flex-start!important;gap:24px;padding:8px 0;
+  border:0;background:transparent;box-shadow:none}
 .ch-header .brand{display:inline-flex;align-items:center;gap:8px;font-size:18px!important;font-weight:700;letter-spacing:-.4px;color:#14203f!important;
   text-decoration:none;white-space:nowrap;transition:opacity .2s,visibility .2s}
 .ch-header .brand-mark{width:28px!important;height:28px!important;flex-shrink:0;display:grid;place-items:center;background:none!important;border-radius:8px;box-shadow:0 2px 8px #23408f1a;overflow:visible}
@@ -21,16 +21,21 @@
   background:#14203f!important;box-shadow:0 3px 10px #14203f14;transition:background .15s,box-shadow .15s}
 .ch-header .header-links .cl-nav-btn:hover{background:#23408f!important;box-shadow:0 5px 14px #23408f26}
 .ch-header a:focus-visible{outline:3px solid #315fbd;outline-offset:3px}
-.ch-header.scrolled .header-inner{background:transparent;border-color:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
 .ch-header.scrolled :is(.brand,.header-links>a:not(.cl-nav-btn)){opacity:0;visibility:hidden}
 /* Interior pages reserve room; the home hero already supplies its own top spacing. */
 body:has(.ch-header:not(.over-hero)){padding-top:84px}
 @media (max-width:860px){
-  .ch-header .header-inner{height:56px!important;width:calc(100% - 24px);margin:10px auto;padding:7px 10px;gap:12px;border-radius:16px}
+  .ch-header .header-inner{height:56px!important;width:calc(100% - 32px);margin:10px auto;padding:7px 0;gap:12px}
   .ch-header .brand{font-size:16px!important;gap:7px}
   .ch-header .brand-mark{width:26px!important;height:26px!important}
   .ch-header .header-links>a:not(.cl-nav-btn){display:none!important}
   .ch-header .header-links .cl-nav-btn{min-height:40px;padding:9px 14px}
   body:has(.ch-header:not(.over-hero)){padding-top:76px}
 }
-@media (prefers-reduced-motion:reduce){.ch-header .header-inner,.ch-header :is(.brand,.header-links a){transition:none}}
+/* Home page: white text straight over the blue hero. */
+.ch-header.over-hero .brand{color:#fff!important}
+.ch-header.over-hero .brand-dot{color:#ffffffa6!important}
+.ch-header.over-hero .header-links>a:not(.cl-nav-btn){color:#ffffffd9!important}
+.ch-header.over-hero .header-links>a:not(.cl-nav-btn):hover,.ch-header.over-hero .header-links>a[aria-current="page"]{color:#fff!important;background:#ffffff26}
+.ch-header.over-hero .brand-mark{box-shadow:0 3px 10px #14203f33}
+@media (prefers-reduced-motion:reduce){.ch-header :is(.brand,.header-links a){transition:none}}
