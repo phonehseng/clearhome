@@ -277,7 +277,9 @@
     .repo-tree-head{color:#e6edf3!important;padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid #30363d;align-items:center}
     .repo-tree-head i{width:10px;height:10px;border-radius:50%;background:#ea4335;display:inline-block}
     .repo-tree-head i:nth-child(2){background:#fbbc04}.repo-tree-head i:nth-child(3){background:#34a853}
-    .repo-tree b{flex-shrink:0}
+    /* File names never shrink under their text. When a row has no room, the description moves under the name and wraps. */
+    .repo-tree span:not(.repo-tree-head){flex-wrap:wrap;row-gap:0;white-space:normal}
+    .repo-tree b{flex:none}
     /* Phones: each file name sits above its note, so the two never overlap. */
     @media (max-width: 560px){.repo-tree span:not(.repo-tree-head){display:block;white-space:normal;line-height:1.45;margin-bottom:6px}.repo-tree b{display:block;min-width:0;overflow-wrap:anywhere}}
     .repo-card img.repo-preview{width:100%;aspect-ratio:2/1;object-fit:cover;border-radius:14px;border:1px solid #30363d;background:#161b22}
