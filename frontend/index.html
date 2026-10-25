@@ -93,6 +93,12 @@
     .favorite-btn svg{fill:none;stroke:currentColor;stroke-width:1.8}
     .favorite-btn[aria-pressed=true]{border-color:#e7b7ba;background:#fbe3e3;color:#a3343a}
     .favorite-btn[aria-pressed=true] svg{fill:currentColor}
+    .share-btn{display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:5px 11px;border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);font-size:12px;font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease}
+    .share-btn:hover{border-color:#a9c1dc;background:#f1f6fc}
+    .share-btn svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .housing-card.shared-highlight{outline:3px solid #2f6fb5;outline-offset:4px;scroll-margin-top:24px}
+    .share-toast{position:fixed;left:50%;bottom:24px;z-index:1000;max-width:calc(100% - 32px);padding:10px 16px;border-radius:20px;background:#13263f;color:#fff;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translate(-50%,16px);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+    .share-toast.show{opacity:1;transform:translate(-50%,0)}
     @keyframes card-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
     @media(prefers-reduced-motion:reduce){.card-reveal{animation:none}.more-listings:hover{transform:none}}
     @media(max-width:1050px){.listings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browse-filters{grid-template-columns:1fr 1fr}.browse-filters .primary{min-height:45px}.header-links{gap:16px}}
@@ -684,7 +690,7 @@
     </form>
     <div class="budget-shortcut"><button type="button" id="blacksburg-student-rooms">Blacksburg student rooms · under $1,000</button><button type="button" id="budget-under-1500" aria-pressed="false">Up to $1,500 / month</button><span>Explore lower-cost options</span></div>
     <p class="browse-hint">Room prices are per person. Fees and utilities may be extra.</p>
-    <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p>
+    <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p><div class="share-toast" id="share-toast" role="status" aria-live="polite"></div>
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
     <div class="listing-reveal-actions">
       <button id="show-more-listings" class="more-listings" type="button" hidden>Show more communities</button>
@@ -720,6 +726,25 @@
       button.append(saved ? 'Saved' : 'Save'); button.setAttribute('aria-label', `${saved ? 'Remove' : 'Save'} ${row.community || row.name} ${saved ? 'from' : 'to'} favorites`); };
     button.addEventListener('click', () => { if (favorites[row.id]) delete favorites[row.id]; else favorites[row.id] = row; saveFavorites(); if (showingFavorites) renderHousing(); else draw(); });
     draw(); return button;
+  }
+  // Share copies a link that opens the site with that listing pinned first and highlighted.
+  let sharedListingId = new URLSearchParams(location.search).get('listing');
+  const shareToast = document.getElementById('share-toast'); let shareToastTimer;
+  function notify(message) { shareToast.textContent = message; shareToast.classList.add('show'); clearTimeout(shareToastTimer); shareToastTimer = setTimeout(() => shareToast.classList.remove('show'), 2500); }
+  async function copyText(text) {
+    try { await navigator.clipboard.writeText(text); return true; } catch {}
+    const area = document.createElement('textarea'); area.value = text; area.setAttribute('readonly',''); area.style.position = 'fixed'; area.style.opacity = '0'; document.body.append(area); area.select();
+    let ok = false; try { ok = document.execCommand('copy'); } catch {} area.remove(); return ok;
+  }
+  function shareButton(row) {
+    const button = housingElement('button','share-btn'); button.type = 'button';
+    button.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>';
+    button.append('Share'); button.setAttribute('aria-label', `Copy a link to ${row.community || row.name}`);
+    button.addEventListener('click', async () => {
+      const url = new URL(location.pathname, location.origin); url.searchParams.set('listing', row.id);
+      notify(await copyText(url.href) ? 'Link copied to clipboard' : 'Couldn’t copy the link. Try again.');
+    });
+    return button;
   }
   const listingTabs = [...document.querySelectorAll('.listing-tabs button')];
   listingTabs.forEach(tab => tab.addEventListener('click', () => {
@@ -792,12 +817,13 @@
     const hasPhoto = row => (row.floor_plans?.length ? row.floor_plans : [row]).some(p => p.photo);
     // Listings with a photo always come first; the sort is stable, so the chosen order (like rent low to high) holds within each group.
     const rows = shownRows();
-    const ordered = [...rows].sort((a, b) => hasPhoto(b) - hasPhoto(a));
+    const ordered = [...rows].sort((a, b) => (b.id === sharedListingId) - (a.id === sharedListingId) || hasPhoto(b) - hasPhoto(a));
     ordered.slice(0,visibleHousingCount).forEach(row => {
       const plans = row.floor_plans?.length ? row.floor_plans : [row];
       const availability = row.availability || {};
       const statuses = new Set(plans.map(p=>p.availability?.status));
-      const card = housingElement('article','housing-card');
+      const card = housingElement('article','housing-card'); card.dataset.listingId = row.id;
+      if (row.id === sharedListingId) card.classList.add('shared-highlight');
       const photoRow=plans.find(p=>p.photo) || row;
       const photo = photoRow.photo;
       const photoUrl = '/media/listings/' + encodeURIComponent(photoRow.id);
@@ -868,7 +894,7 @@
         details.append(options);card.append(details);
       } else card.append(eligibilityDetails(row));
       const actions = housingElement('div','housing-actions');
-      actions.append(favoriteButton(row));
+      actions.append(favoriteButton(row), shareButton(row));
       const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-price source ↗':'View source ↗')); if (source) actions.append(source);
       const map = mapLink(row); if (map) actions.append(map);
       if (row.phone && /^\+?[0-9 ()-]+$/.test(row.phone)) { const phone = housingElement('a','','Call leasing office'); phone.href='tel:'+row.phone.replace(/[^0-9+]/g,''); actions.append(phone); }
@@ -903,6 +929,8 @@
       if (!response.ok || !Array.isArray(data.listings)) throw new Error(data.error || 'We couldn’t load housing opportunities.');
       if (browseRequest !== controller) return;
       housingRows=data.listings; visibleHousingCount=6; renderHousing();
+      const sharedCard = sharedListingId && [...listingsGrid.children].find(c => c.dataset.listingId === sharedListingId);
+      if (sharedListingId) setTimeout(() => (sharedCard || document.getElementById('listings')).scrollIntoView({behavior:'auto',block:'start'}), 300);  // wait for the page above to settle
       // After someone changes the filters, the map follows the homes that match.
       if (filtersChanged) window.clearHouseMapFocus?.(housingRows, `Map shows the ${housingRows.length} matching communit${housingRows.length === 1 ? 'y' : 'ies'}.`);
     } catch(error) {
@@ -916,7 +944,7 @@
   budgetShortcut.addEventListener('click',()=>{rentFilter.value='1500';document.getElementById('browse-sort').value='rent_asc';updateBudgetShortcut();browseForm.requestSubmit();});
   rentFilter.addEventListener('input',updateBudgetShortcut);
   let filtersChanged = false;
-  browseForm.addEventListener('submit',event=>{event.preventDefault();filtersChanged=true;updateBudgetShortcut();loadHousing();});
+  browseForm.addEventListener('submit',event=>{event.preventDefault();filtersChanged=true;sharedListingId=null;updateBudgetShortcut();loadHousing();});
   function revealCommunities(count){
     const firstNewIndex=visibleHousingCount;
     visibleHousingCount=Math.min(shownRows().length,visibleHousingCount+count);
