@@ -257,29 +257,20 @@
 
     /* A little Google color: each card gets its family's accent stripe and tag. */
     .google-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-    @media (min-width: 1100px){.google-grid{grid-template-columns:repeat(4,1fr)}}
+    @media (min-width: 900px){.google-grid{grid-template-columns:repeat(3,1fr)}}
     .google-grid .card{position:relative;overflow:hidden;border-top:0}
     .google-grid .card::before{content:'';position:absolute;inset:0 0 auto 0;height:4px;background:var(--accent,#4285f4)}
     .g-ai{--accent:linear-gradient(90deg,#4285f4,#9b72cb,#d96570)}
-    .g-gemini{--accent:linear-gradient(90deg,#1c69ff,#9b72cb)}
     .g-maps{--accent:linear-gradient(90deg,#34a853 0 25%,#fbbc04 25% 50%,#ea4335 50% 75%,#4285f4 75%)}
     .g-cloud{--accent:#4285f4}
     .g-tag.ai{background:linear-gradient(90deg,#e8f0fe,#f3e8fd);color:#5b3fb5}
-    .g-tag.gemini{background:#ede7fb;color:#5b3fb5}
     .g-tag.maps{background:#e6f4ea;color:#137333}
     .g-tag.cloud{background:#e8f0fe;color:#1a56c4}
-    /* Flip cards: tap a card (or its button) to see how we use the service; it flips back once scrolled out of view. */
-    .google-grid .card.flip{padding:0;background:none;border:0;box-shadow:none;overflow:visible;perspective:1000px;cursor:pointer}
-    .google-grid .card.flip::before{content:none}
-    .flip-in{display:grid;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-    .flip.flipped .flip-in{transform:rotateY(180deg)}
-    .flip .face{grid-area:1/1;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;padding:26px;border-radius:14px;
-      background:var(--card);border:1px solid var(--line);box-shadow:0 2px 8px #14203f08;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-    .flip .face::before{content:'';position:absolute;inset:0 0 auto 0;height:4px;background:var(--accent,#4285f4)}
-    .flip .back{transform:rotateY(180deg);background:linear-gradient(160deg,#f6f9ff,#e8effc)}
-    .flip .back p{color:#14203f}
-    .flip-btn{margin-top:auto;padding:14px 0 0;border:0;background:none;font:inherit;font-size:13px;font-weight:700;color:#2f55b5;cursor:pointer}
-    .flip-btn:hover{text-decoration:underline}
+    /* One card per family: each service on its own line with what we use it for. */
+    .g-list{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:12px}
+    .g-list li{display:grid;gap:2px}
+    .g-list strong{font-size:16px;color:var(--ink)}
+    .g-list span{font-size:14px;line-height:1.5;color:var(--muted)}
     /* GitHub repository card */
     .repo-card{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:center;margin-top:26px;padding:22px;border-radius:22px;background:#0d1117;color:#e6edf3;box-shadow:0 24px 60px #0d111733;position:relative;overflow:hidden}
     .repo-card::before{content:'';position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#34a853,#fbbc04,#ea4335,#4285f4)}
@@ -461,14 +452,20 @@
     <section class="cl-section" id="google" aria-labelledby="google-title">
       <h2 id="google-title" class="cl-title reveal">Built with <span>Google</span></h2>
       <div class="google-grid stagger">
-        <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Writes every chat answer.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Turns your message into filters, then writes the answer using only checked listings, streamed as it types. It also rereads listing pages and hides ones that are gone.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Our own L4 GPU: answers in ~3 s.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Gemma 4 runs on our private Cloud Run service with an NVIDIA L4 GPU. Thinking is off so replies start fast; if the GPU is asleep, the Gemini API answers instead.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-gemini flip"><div class="flip-in"><div class="face front"><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Finds new listings on the web.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Searches the web with Google Search grounding for listings we don’t have yet. Only places in the search results are kept, and the map marks them “not checked”.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>The map, pins and Street View.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>Draws the map in the app with a pin for every checked home, so you can see where a place is before you call.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds “near my office”.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds the place you name (an employer, a hospital, a school) and the supermarkets, pharmacies and transit stops near a home.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Real commute times.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Drive and transit times from the closest homes to your place, and true walking times to the store. Real routes, not straight lines.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-cloud flip"><div class="flip-in"><div class="face front"><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site and the GPU.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site in Northern Virginia (us-east4). Keys live in Secret Manager, and at most two copies run, so costs stay small.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-cloud flip"><div class="flip-in"><div class="face front"><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Ships every release.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Every deploy builds a fresh container from our Dockerfile, so a pushed fix is live in minutes.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-ai"><span class="g-tag ai">AI</span><ul class="g-list">
+          <li><strong>Gemma 4 26B</strong><span>Writes every chat answer from checked listings.</span></li>
+          <li><strong>Gemma on Cloud Run</strong><span>Our own L4 GPU: answers in ~3&nbsp;s.</span></li>
+          <li><strong>Gemini API</strong><span>Finds new listings on the web.</span></li>
+        </ul></div>
+        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><ul class="g-list">
+          <li><strong>Maps JavaScript</strong><span>The map, pins and Street View.</span></li>
+          <li><strong>Places API</strong><span>Finds “near my office”.</span></li>
+          <li><strong>Routes API</strong><span>Real commute and walking times.</span></li>
+        </ul></div>
+        <div class="card reveal g-cloud"><span class="g-tag cloud">Cloud</span><ul class="g-list">
+          <li><strong>Cloud Run</strong><span>Hosts the site and the GPU.</span></li>
+          <li><strong>Cloud Build</strong><span>Ships every release in minutes.</span></li>
+        </ul></div>
       </div>
     </section>
 
@@ -578,25 +575,6 @@
       }, { passive: true });
     }
 
-    // Built-with-Google flip cards: the back says how we use each service; a flipped card turns back once you scroll past it.
-    const flips = document.querySelectorAll('.flip');
-    const setFlip = (card, on) => {
-      const [front, back] = card.querySelectorAll('.face');
-      card.classList.toggle('flipped', on);
-      front.inert = on; back.inert = !on;
-      front.querySelector('.flip-btn').setAttribute('aria-expanded', on);
-    };
-    flips.forEach(card => card.addEventListener('click', e => {
-      const on = !card.classList.contains('flipped');
-      setFlip(card, on);
-      if (e.target.closest('.flip-btn')) card.querySelector(on ? '.back .flip-btn' : '.front .flip-btn').focus();
-    }));
-    if ('IntersectionObserver' in window) {
-      const flipBack = new IntersectionObserver(entries => entries.forEach(e => {
-        if (!e.isIntersecting && e.target.classList.contains('flipped')) setFlip(e.target, false);
-      }), { threshold: 0.4 });
-      flips.forEach(card => flipBack.observe(card));
-    }
   </script>
 
 <script>
