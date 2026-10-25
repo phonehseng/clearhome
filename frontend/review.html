@@ -42,7 +42,7 @@
     .filters input, .filters select { width: 100%; font: inherit; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); }
     .count { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
     .list { display: grid; gap: 10px; padding-bottom: 48px; }
-    .rec { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; }
+    .rec { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; grid-template-columns: minmax(0, 1fr) auto; overflow-wrap: anywhere; gap: 6px 16px; }
     .rec[data-state="verified"] { border-left-color: var(--ok); }
     .rec[data-state="flagged"] { border-left-color: #d29a2b; }
     .rec[data-state="hidden"] { border-left-color: var(--bad); opacity: .78; }
@@ -68,7 +68,7 @@
     @media (max-width: 720px) {
       .filters { grid-template-columns: 1fr 1fr; }
       .filters input { grid-column: 1 / -1; }
-      .rec { grid-template-columns: 1fr; }
+      .rec { grid-template-columns: minmax(0, 1fr); }
       .tags { justify-content: flex-start; }
     }
   </style>

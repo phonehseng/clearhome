@@ -31,6 +31,11 @@
       "note": "Provider headline \"Spring 2026\" vs availability field 11/15/26 → Call (540) 953-1341 (Pointe West) for the actual move-in date",
       "on": "2026-10-24"
     },
+    "blacksburg-arbors-of-blacksburg-studio": {
+      "state": "flagged",
+      "note": "Hand-added from Rent.com/HotPads. No official site or phone found → find the leasing number, confirm the $630 studio, then set verified: true and last_verified to that date",
+      "on": "2026-10-25"
+    },
     "blacksburg-fieldstone-apartments-bluefield-2-bedroom-apartment": {
       "state": "flagged",
       "note": "Phone conflict: property site 540.701.7485 vs Park Properties 540.605.8156 → Call both and keep the leasing-office line",
@@ -70,6 +75,16 @@
       "state": "flagged",
       "note": "Raines listings say \"Available 10/01/26\", which has passed, but are still posted → Call Raines (540) 951-0000 to ask whether each home is still vacant",
       "on": "2026-10-24"
+    },
+    "blacksburg-ridgewood-village-01h-070": {
+      "state": "flagged",
+      "note": "Hand-added from apartments.com. Call 540-951-8100 (Virginia Navigator) to confirm unit 1H-070, $1,694 rent and Nov 9 move-in; find the manager (Beacon or Solomon) site. Then set verified: true and last_verified to that date",
+      "on": "2026-10-25"
+    },
+    "blacksburg-smiths-landing-1bd": {
+      "state": "flagged",
+      "note": "Hand-added. Official site blocks automated checks → open smithslandingapartments.com in a browser or call 540-961-1001; confirm the 1BR rent is per apartment (other plans are per bedroom), then set verified: true and last_verified to that date",
+      "on": "2026-10-25"
     },
     "blacksburg-the-highlands-at-huckleberry-ridge-castle-1-bedroom-with-loft-whole-apartment": {
       "state": "flagged",
