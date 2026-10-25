@@ -1081,7 +1081,7 @@
       else if(ages.some(Boolean))card.append(housingElement('p','housing-age','Some options have age requirements'));
       const rent = housingElement('p','housing-rent');
       if (typeof row.monthly_rent === 'number' && Number.isFinite(row.monthly_rent)) {
-        rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US')}`; rent.append(housingElement('small','',ClearHouseRental.period(row)));
+        rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US',{maximumFractionDigits:0})}`; rent.append(housingElement('small','',ClearHouseRental.period(row)));
       } else rent.textContent = 'Rent: confirm with provider';
       card.append(rent);
       // Condensed: what you get, the move-in note, then one muted line of extras and the rent caveat.
@@ -1795,7 +1795,7 @@
         if (!res.ok || data.error) throw new Error(data.error || 'Search failed.');
         const f = data.filters || {};
         const label = { supermarket: 'a supermarket', pharmacy: 'a pharmacy', transit: 'a bus or train stop' }[f.amenity];
-        setStatus(`${data.results.length} result${data.results.length === 1 ? '' : 's'} in ${f.area}${f.max_rent ? ` under $${Number(f.max_rent).toLocaleString()}` : ''} with ${label} within ${f.max_walk_minutes} minutes${f.strict ? '' : ' (preferred)'}.`);
+        setStatus(`${data.results.length} result${data.results.length === 1 ? '' : 's'} in ${f.area}${f.max_rent ? ` under $${Number(f.max_rent).toLocaleString('en-US',{maximumFractionDigits:0})}` : ''} with ${label} within ${f.max_walk_minutes} minutes${f.strict ? '' : ' (preferred)'}.`);
         if (data.warnings?.length) { const ul = el('ul', null, { class: 'walk-warnings' }); data.warnings.forEach(w => ul.append(el('li', w))); statusEl.after(ul); setTimeout(() => ul.remove(), 60000); }
         if (data.results.length) {
           data.results.forEach(r => cards.append(card(r)));
