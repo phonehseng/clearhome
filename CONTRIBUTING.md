@@ -10,8 +10,8 @@ Git only needs about six commands for this weekend.
 ## First time only
 
 ```bash
-git clone https://github.com/phonehseng/mlhhackathonbacteriagang
-cd mlhhackathonbacteriagang
+git clone https://github.com/phonehseng/clearhouse
+cd clearhouse
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```

@@ -45,8 +45,8 @@ To avoid made-up information, the assistant only recommends places from our hand
 You need Python 3.9 or newer and a free Gemini API key from [Google AI Studio](https://aistudio.google.com).
 
 ```bash
-git clone https://github.com/phonehseng/mlhhackathonbacteriagang
-cd mlhhackathonbacteriagang
+git clone https://github.com/phonehseng/clearhouse
+cd clearhouse
 cp .env.example .env          # then put your key in .env
 python3 -m venv .venv
 source .venv/bin/activate     # Windows: .venv\Scripts\activate
