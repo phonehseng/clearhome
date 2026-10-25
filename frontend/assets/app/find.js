@@ -358,7 +358,7 @@
       if (engine) { const by = el('div', (asked ? 'Asked by ' : 'Answered by ') + engine, { class: 'msg-engine' }); let after = bubble; while (/\bchat-(cards|lines)\b/.test(after.nextElementSibling?.className || '')) after = after.nextElementSibling;
         after.after(by);
         pinTurn(); }
-      if (!asked) showNext(more, /Gemma 4 26B/.test(engine) && !lines, suggest, bubble); // short answers: more on request; no match: next searches
+      if (!asked) showNext(more, /Gemma 4 26B/.test(engine) && !lines, suggest, bubble, question); // short answers: more on request; no match: next searches
       history.push({ role: 'user', text: question }, { role: 'assistant', text: answer });
       if (state && resets === chatReset) chat = state; // only once the whole reply arrived, so a failed one leaves the open question open
       ok = true;
@@ -379,7 +379,10 @@
   // An answer shows two places. "Show N more options" expands the message where it is: the rest of its list, the rest of
   // its cards, then the other places Gemma weighed (from the verified list, no AI call). "Tell me more" asks Gemma to
   // go into detail.
-  function showNext(more, tellMore, suggest = [], bubble = null) {
+  // Questions about programs and help (or answers whose places are programs) also offer the Resources page.
+  const RESOURCE_WORDS = /\b(resources?|programs?|help paying|rent help|rental assistance|assistance|vouchers?|section 8|legal aid|lawyer|waitlists?|eviction|behind on rent|qualify|eligib)/i;
+  const PROGRAM_TYPES = new Set(['rental_assistance', 'legal_aid', 'housing_authority', 'other', 'food_support']);
+  function showNext(more, tellMore, suggest = [], bubble = null, question = '') {
     const row = el('div', null, { class: 'chat-next', role: 'group', 'aria-label': 'More from this answer' });
     const box = bubble?.nextElementSibling?.classList.contains('chat-cards') ? bubble.nextElementSibling : null;
     const lines = bubble ? [...bubble.querySelectorAll('.chat-extra[hidden]')] : [],
@@ -409,6 +412,13 @@
     suggest.forEach(text => { const b = el('button', text, { type: 'button' });
       b.addEventListener('click', () => ask(text));
       row.append(b); });
+    const shownTypes = [...(bubble?.nextElementSibling?.cardsData || []), ...more].map(c => c.type);
+    if (RESOURCE_WORDS.test(question) || shownTypes.some(t => PROGRAM_TYPES.has(t))) {
+      const a = el('a', null, { href: '/resources', class: 'chat-resources' });
+      a.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#document"/></svg>';
+      a.append('See all housing resources');
+      row.append(a);
+    }
     if (tellMore) {
       const b = el('button', 'Tell me more', { type: 'button' });
       b.addEventListener('click', () => ask('Tell me more about these, like how to apply and what to ask them.'));

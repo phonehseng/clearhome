@@ -1041,6 +1041,10 @@ ABOUT = [
      "county and city housing offices), most recently on October 25, 2026, when we confirmed each one with Google Maps and its own pages. "
      "Rents are what providers advertise, or our labeled estimates. We never scrape sites like Zillow or Apartments.com. Call the provider "
      "to confirm before you pay anything."),
+    (re.compile(r"^\s*(?:(?:show|give|list|see)(?: me)? (?:all |the |your |some )?|all |any |more |what |which |housing |local )*(?:resources?|programs?)"
+                r"(?: (?:list|page|available|near me|for housing|i can use))?\s*[?.!]*\s*$|\bwhere (?:can|do) i find (?:help|resources|programs)\b", re.I),
+     "Our **Resources** page has it all in one place: how qualifying works, rent help and voucher programs by county with their waitlist "
+     "status, legal aid, and rentals and student rooms. Open it with the button below, or tell me what you need and I'll find the right one."),
     (re.compile(r"\b(?:is (?:this|it|clear home) free|does (?:this|it) cost|how much (?:does|is) (?:this|clear home|it) cost|do i (?:have to|need to) pay (?:for this|to use))\b", re.I),
      "Yes, Clear Home is free: no account, no sign-up, and your chat isn't saved. Housing programs set their own rents and fees, and I'll say "
      "what each one asks."),
