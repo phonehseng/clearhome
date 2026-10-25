@@ -32,6 +32,14 @@ Several teammates edit the same files, especially `frontend/about.html`. Run `gi
 
 Axe (run in the browser with the `wcag2a` and `wcag2aa` tags) reports no violations on the front page or the tools page. Contrast on solid backgrounds passes on the tools, Google Cloud and Resources pages.
 
+## Fix soon (small, not started)
+
+These are small, concrete fixes. Each one names the file and the cause, so they can be done in one pass. Each is independent, so do them in separate commits.
+
+1. **Billing test fails because its fake is out of date.** `backend/test_chat_stream.py`, test `test_catalog_answer_when_gemma_billing_fails`, defines `broken(prompt, thoughts=False)`. The real `stream_gemma` in `backend/matcher.py` (line 67) takes `think=False` too, and `advisor.py` (line 565) passes `think=`. The call therefore raises `TypeError: broken() got an unexpected keyword argument 'think'`. That exception is caught by the generic handler in `advisor.py` (line 579), so the user sees "The AI service didn't answer" instead of the billing message. **Fix:** change the fake to `def broken(prompt, thoughts=False, think=False):`. Re-run the test. It should pass without changing any app code, since `matcher.gemma_unavailable` already maps "402" and "prepayment" to the billing message.
+2. **`test_gemma` fails to import.** `backend/test_gemma.py` is a manual live check, not an offline unit test. It loads `.env` and calls the Gemini API at import time, and it stops with "Set GEMINI_API_KEY in the .env file" when no key is set. The README tells people to run it by hand (`python backend/test_gemma.py`), so keep that working. **Fix options:** (a) rename it so `unittest discover` (pattern `test_*.py`) skips it, for example `check_gemma.py`, and update the README line; or (b) keep the name and guard the live call so it is skipped when no key is set. Prefer (a).
+3. **Photo-card contrast on `/app`.** Axe cannot judge the 56 text spots over photos and gradients. Check them by eye in a screenshot, or measure against the rendered background. The handoff `photo-card-text-contrast.md` in this folder has the earlier measurements.
+
 ## Open decisions (ask the team first)
 
 1. **"Verified" wording does not match the data.** The site says listings are "verified." In `data/resources.json`, 419 of 436 records have `verified: true`, but most of their `verification_method` text says "AI-assisted review of official … web sources … without phone confirmation of current rents, vacancies, or an open waitlist." Choose one: change "verified" to "reviewed" across the site and the chat prompts, or add phone confirmation before keeping the word. The chat prompts and the `"verified"` wording come from commit `70a17ad`. (Earlier this session the count was given as 418; the correct figure is 419.)
@@ -52,7 +60,7 @@ Axe (run in the browser with the `wcag2a` and `wcag2aa` tags) reports no violati
 ## How to check your work
 
 - Run the local server: `python backend/app.py` (port 8000), then open `http://localhost:8000/` and `http://localhost:8000/app`.
-- Backend tests, using the project virtualenv: `.venv/bin/python -m unittest discover -s backend -p 'test_*.py'`. Currently 122 tests run, with 2 failures that also fail on the unchanged code: `test_gemma` (import error) and `test_catalog_answer_when_gemma_billing_fails`. Do not treat those as new breaks.
+- Backend tests, using the project virtualenv: `.venv/bin/python -m unittest discover -s backend -p 'test_*.py'`. Currently 122 tests run, with 2 known failures that also fail on the unchanged code. Both are in "Fix soon" above, with their causes: `test_gemma` (a live script picked up by discovery) and `test_catalog_answer_when_gemma_billing_fails` (a stale fake). Do not treat them as new breaks.
 - Accessibility: load axe-core 4.9.1 from `https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.9.1/axe.min.js` in the browser and call `axe.run`. Use `runOnly: {type: 'tag', values: ['wcag2a','wcag2aa']}`. Note that `runOnly` cannot take both rules and tags at once.
 - Contrast on the hero: check the gradient stops in `frontend/about.html` (the `.cl-hero` rule) and compute the ratio at each text element's vertical position. Axe does not judge text over gradients.
 
