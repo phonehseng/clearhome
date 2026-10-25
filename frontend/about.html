@@ -481,6 +481,28 @@
     .cl-frame .map-hood{height:40px;max-width:200px;padding-right:38px;cursor:pointer;-webkit-appearance:none;appearance:none;
       background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%2314203f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E") no-repeat right 14px center}
     .cl-frame .map-tab.near-me svg{color:var(--blue-2)}
+    /* How Clear House Helps, scaled down: narrower cards, smaller type, compact chat bubbles and rows. */
+    .cl-title{font-size:clamp(30px,3.6vw,44px)}  /* every front page section heading, not just this one */
+    #how .cl-duo{gap:16px;margin:28px auto 0;max-width:940px}
+    #how .cl-card{padding:24px;border-radius:22px;min-height:0;box-shadow:0 14px 40px #23408f12}
+    #how .cl-card h3{font-size:21px;margin-bottom:6px}
+    #how .cl-card h3 em{padding:1px 7px;border-radius:7px}
+    #how .cl-card p{font-size:15px}
+    #how .cl-chat{gap:8px;padding-top:16px;font-size:13.5px}
+    #how .cl-chat>span{padding:9px 13px;border-radius:12px}
+    #how .cl-query{padding:7px 13px;font-size:13px}
+    #how .cl-query+.cl-list{margin-top:10px}
+    #how .cl-list{gap:6px}
+    #how .cl-list li{padding:9px 14px;border-radius:12px;font-size:13.5px}
+    #how .cl-tags{margin-top:20px;gap:8px}
+    #how .cl-tags li{padding:7px 14px;font-size:13.5px}
+    /* Built with Google Cloud, scaled down the same way: tighter grid, smaller padding and type on both card faces. */
+    #google .google-grid{gap:12px;margin-top:28px}
+    #google .flip .face{padding:18px;border-radius:14px}
+    #google .card h3{font-size:17px;margin:6px 0 4px}
+    #google .card p{font-size:13.5px;line-height:1.5}
+    #google .g-tag{font-size:10px;padding:2px 8px}
+    #google .flip-btn{padding-top:10px;font-size:12.5px}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
