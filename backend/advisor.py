@@ -386,7 +386,7 @@ HOUSING_WORDS = re.compile(r"\b(something|somewhere|a place|place to (?:live|ren
 BUDGET_ANY = re.compile(r"(?:under|below|less than|at most|max(?:imum)?|up to|budget(?: is| of)?|afford|around|about|\$)\s*\$?\s*(\d{3,5})(?!\d)", re.I)
 NEAR_ANY = re.compile(r"\b(near|close to|walking distance|minutes? from|by campus)\b", re.I)
 CAMPUS = re.compile(r"\b(campus|university|college)\b", re.I)
-CLARIFY_MARK = "Which campus or city?"
+CLARIFY_MARK = "Which campus?"
 PLACE_MARK = "or which city?"  # ends near_place.py's "Which Walmart, or which city?", so the reply keeps the request too
 _NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
 

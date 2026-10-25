@@ -60,7 +60,8 @@ _PLACE_WORDS = re.compile(r"\b(" + "|".join(re.escape(k) for k in sorted(PLACES,
 RENTAL_AREAS = [("northern virginia", "Northern Virginia"), ("blacksburg", "Blacksburg (Virginia Tech)"), (ANY, "Anywhere is fine")]
 AREA_CHOICES = [("blacksburg", "Blacksburg (Virginia Tech)"), ("arlington", "Arlington"), ("alexandria", "Alexandria"),
                 ("fairfax county", "Fairfax County"), ("loudoun", "Loudoun County"), ("prince william", "Prince William County")]
-CAMPUS_CHOICES = [("virginia tech", "Virginia Tech (Blacksburg)"), ("george mason", "George Mason (Fairfax)")]
+CAMPUS_CHOICES = [("virginia tech", "Virginia Tech (Blacksburg)"), ("george mason", "George Mason (Fairfax)"), ("marymount", "Marymount (Arlington)"),
+                  ("nova community college", "NOVA Community College (Annandale)")]
 
 
 def place_name(key):

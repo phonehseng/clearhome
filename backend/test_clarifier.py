@@ -160,7 +160,8 @@ class DecisionTests(unittest.TestCase):
         reported = "i need something close to campus under 1000 and they need accessable with pets and is a 2 person"
         out, _ = talk(reported, ("Virginia Tech (Blacksburg)", ["virginia tech"]), ("Total for everyone", ["total"]), ("A whole place", ["entire_home"]),
                       ("2 bedrooms", ["2"]))
-        self.assertEqual([x["id"] for x in out[0][0].question["choices"]], ["virginia tech", "george mason"])
+        self.assertEqual([x["id"] for x in out[0][0].question["choices"]], ["virginia tech", "george mason", "marymount", "nova community college"])
+        self.assertIn("Which campus?", str(out[0][0]))
         self.assertIn("for 2 people", str(out[0][0]))
         self.assertEqual(out[1][0].question["field"], "basis")
         self.assertEqual([a.question["field"] for a, _ in out[:4]], ["area", "basis", "space", "bedrooms"])
