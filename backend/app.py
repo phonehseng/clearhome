@@ -89,6 +89,15 @@ def videos(name):
     return send_from_directory(os.path.join(FRONTEND, "videos"), name, max_age=86400, conditional=True)
 
 
+@app.get("/assets/<path:name>")
+def page_assets(name):
+    """Each page's own styles and scripts (frontend/assets/<page>/). Browsers check back each visit (a quick 304 when
+    nothing changed), so an edited file is live after a deploy without renaming it."""
+    response = send_from_directory(os.path.join(FRONTEND, "assets"), name, conditional=True)
+    response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
 @app.get('/listing-map.js')
 def listing_map_js():
     return send_from_directory(FRONTEND, 'listing-map.js')

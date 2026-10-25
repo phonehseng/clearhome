@@ -62,9 +62,10 @@ Use [API reference](API.md) for the HTTP surface. Maintenance scripts may write 
 | `frontend/interface.css` | Shared selection behavior and image attribution/failure styles |
 | `frontend/listing-map.js` | Shared map loading and map/listing interactions |
 | `frontend/rental-labels.js` | Shared rent, term, and lease-responsibility presentation helpers |
+| `frontend/assets/<page>/` | Each page's own styles and scripts, one file per job (see [frontend/assets/README.md](../frontend/assets/README.md)) |
 | Logo and favicon assets | Site identity and browser/app icons |
 
-Most page styles and scripts remain inline in the HTML. Serve pages through Flask so `/api/*`, helper scripts, CSS, images and icons resolve correctly; opening an HTML file directly is not equivalent to running the app.
+The HTML files hold the markup only. Each page links its own CSS and JavaScript from `frontend/assets/<page>/` in the order they apply, with `?v=<content hash>` so browsers never keep an old copy after a deploy. Serve pages through Flask so `/api/*`, helper scripts, CSS, images and icons resolve correctly; opening an HTML file directly is not equivalent to running the app.
 
 The frontend uses responsive grids, glass-style surfaces, disclosure controls and a native photo dialog. Google Maps is optional, with Leaflet/fallback behavior where implemented. Fonts, Leaflet, maps, and publisher images can need third-party network access. Do not treat cached dependencies or mocked browser responses as a full offline guarantee.
 
@@ -74,7 +75,7 @@ Keep accessible names, visible focus indicators, form labels, and readable empty
 
 Grouped listing responses contain a base card and floor-plan differences. The current browser restores each plan using `{...row, ...plan}`; consumers must honor explicit null differences. Save/share controls, image enlargement, details disclosures, and map actions must continue to refer to the same record or community after filtering.
 
-`interface.css` limits selection blocking to controls/decorations while preserving useful text. Check specificity against older inline rules. Reduced-motion styles exist, but their presence is not an accessibility certification.
+`interface.css` limits selection blocking to controls/decorations while preserving useful text. Check specificity against the page stylesheets in `frontend/assets/`. Reduced-motion styles exist, but their presence is not an accessibility certification.
 
 ## Catalog lifecycle
 
