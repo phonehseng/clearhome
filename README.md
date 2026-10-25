@@ -1,4 +1,4 @@
-# mlhhackathonbacteriagang
+# Clear House
 
 Group hackathon effort by Pierce, Umair, Phone, and Ryan for **GDG Build with AI x Hacktoberfest 2026** (Virginia Tech, Oct 24-25, 2026). Theme: **AI for Housing**.
 
