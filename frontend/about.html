@@ -268,10 +268,28 @@
     .g-tag.gemini{background:#ede7fb;color:#5b3fb5}
     .g-tag.maps{background:#e6f4ea;color:#137333}
     .g-tag.cloud{background:#e8f0fe;color:#1a56c4}
-    /* Pinned flip cards (wide screens): the section stays on screen while scrolling turns the cards over one by one, then
-       the page carries on. The script sets the track's height (the scroll distance) and scales the stage down if needed. */
-    .google-track.pinned .google-stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    /* Pinned scroll scenes (wide screens): the map, How Clear House Helps and the flip cards each stay on screen while
+       scrolling plays them, then the page carries on. The script sets each track's height (the scroll distance). */
+    .pin-track.pinned .pin-stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
     .google-track.pinned .google-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .scene-dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
+    .scene-dots i{width:7px;height:7px;border-radius:4px;background:#c7d4ee;transition:width .3s,background .3s}
+    .scene-dots i.on{width:22px;background:#2f55b5}
+    .pin-track:not(.pinned) .scene-dots{display:none}
+    /* The sample chat and search in How Clear House Helps: lines appear as the scene plays, and Gemma's answer is typed
+       over its own invisible full text, so nothing around it moves. */
+    .cl-chat .demo,.cl-list .demo{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
+    .cl-chat .demo.on,.cl-list .demo.on{opacity:1;transform:none}
+    .cl-chat .ai{position:relative}
+    .ghost{color:transparent}
+    .cl-chat .dots{position:absolute;left:16px;top:50%;display:none;gap:4px;transform:translateY(-50%)}
+    .cl-chat .typing .dots{display:flex}
+    .cl-chat .dots i{width:6px;height:6px;border-radius:50%;background:#6f8fd6;animation:demo-dot 1s ease-in-out infinite}
+    .cl-chat .dots i:nth-child(2){animation-delay:.15s}
+    .cl-chat .dots i:nth-child(3){animation-delay:.3s}
+    @keyframes demo-dot{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+    .cl-query{align-self:flex-start;margin-top:auto;padding:9px 16px;border-radius:999px;background:#f1f5fd;border:1px solid #dbe4f6;font-size:14px;font-weight:600;color:#14203f}
+    .cl-query+.cl-list{margin-top:12px}
     /* Flip cards: they turn over one by one as you scroll through the section; a tap (or the button) flips one by hand. */
     .google-grid .card.flip{padding:0;background:none;border:0;box-shadow:none;overflow:visible;perspective:1000px;cursor:pointer}
     .google-grid .card.flip::before{content:none}
@@ -372,8 +390,8 @@
     .cl-card h3 em{font-style:normal;padding:2px 10px;border-radius:10px;background:#ffffff2e;border:1px solid #ffffff55}
     .cl-card:not(.blue) h3 em{background:#e8f0fe;border-color:#c7d7f8;color:#1a73e8}
     .cl-card p{margin:0;font-size:17px;opacity:.85}
-    .cl-chat{margin-top:auto;display:grid;gap:10px;font-size:15px}
-    .cl-chat span{padding:12px 16px;border-radius:16px;max-width:88%}
+    .cl-chat{margin-top:auto;padding-top:20px;display:grid;gap:10px;font-size:15px}
+    .cl-chat>span{padding:12px 16px;border-radius:16px;max-width:88%}
     .cl-chat .me{justify-self:end;background:#14203f;color:#fff}
     .cl-chat .ai{background:#ffffff;color:#14203f}
     .cl-list{list-style:none;margin:auto 0 0;padding:0;display:grid;gap:10px}
@@ -509,30 +527,34 @@
     </section>
 
     <section class="cl-section" id="map" aria-labelledby="map-title">
+      <div class="pin-track map-track"><div class="pin-stage"><div class="pin-fit">
       <h2 id="map-title" class="cl-title reveal">Every Checked Home, <span>on One Map</span></h2>
-      <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p>
+      <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p><div class="scene-dots" aria-hidden="true"></div>
       <div class="cl-frame reveal"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></div>
+      </div></div></div>
     </section>
 
     <section class="cl-section" id="how" aria-labelledby="how-title">
+      <div class="pin-track how-track"><div class="pin-stage"><div class="pin-fit">
       <h2 id="how-title" class="cl-title reveal">How Clear House <span>Helps</span></h2>
       <div class="cl-duo">
         <article class="cl-card blue reveal from-left">
           <h3>Ask <em>Gemma 4</em> Anything</h3>
           <p>Answers stream in seconds, only from checked resources.</p>
-          <div class="cl-chat" aria-hidden="true"><span class="me">Who helps with back rent in Alexandria?</span><span class="ai">Call <b>City of Alexandria Rent Relief</b> at 703-746-5700…</span></div>
+          <div class="cl-chat" aria-hidden="true"><span class="me">I’m behind on rent in Arlington. Who can help?</span><span class="ai">Call <b>Arlington County DHS Emergency Financial Assistance</b> at 703-228-1300…</span></div>
         </article>
         <article class="cl-card reveal from-right">
           <h3>Search <em>Near My Office</em></h3>
           <p>Closest homes with real drive and transit times.</p>
-          <ul class="cl-list" aria-hidden="true"><li><b>Signature at Reston</b><span>0.3 mi · 3 min drive</span></li><li><b>Exo</b><span>0.6 mi · 6 min drive</span></li><li><b>The Point at Rise</b><span>0.9 mi · 6 min drive</span></li></ul>
+          <span class="cl-query" aria-hidden="true">Homes near my office in Reston</span><ul class="cl-list" aria-hidden="true"><li><b>Signature at Reston</b><span>0.3 mi · 3 min drive</span></li><li><b>Exo</b><span>0.6 mi · 6 min drive</span></li><li><b>The Point at Rise</b><span>0.9 mi · 6 min drive</span></li></ul>
         </article>
       </div>
       <ul class="cl-tags reveal" aria-label="Our promise"><li>Checked sources only</li><li>No accounts</li><li>SSNs removed</li><li>911 and 211 first</li></ul>
+      </div></div></div>
     </section>
 
     <section class="cl-section" id="google" aria-labelledby="google-title">
-      <div class="google-track"><div class="google-stage"><div class="google-fit">
+      <div class="pin-track google-track"><div class="pin-stage"><div class="pin-fit">
       <h2 id="google-title" class="cl-title reveal">Built with <span>Google Cloud</span></h2>
       <div class="google-grid stagger">
         <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Writes every chat answer.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Turns your message into filters, then writes the answer using only checked listings, streamed as it types. It also rereads listing pages and hides ones that are gone.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
@@ -687,45 +709,142 @@
       setFlip(card, on);
       if (e.target.closest('.flip-btn')) card.querySelector(on ? '.back .flip-btn' : '.front .flip-btn').focus();
     }));
-    const track = document.querySelector('.google-track');
-    if (track && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const stage = track.firstElementChild, fit = stage.firstElementChild, header = document.querySelector('.site-header');
-      const LEAD = 120, STEP = 150, TAIL = 260;  // px of scrolling once pinned: before the first card turns, per card, after the last
-      const turned = flips.map(() => false);  // what scrolling last asked for, so a tapped card stays put until its turn comes round again
+    // Pinned scroll scenes. On wide screens a scene's stage stays on screen while the next `distance` px of scrolling play
+    // it (play gets progress from 0 to 1), then the page carries on. A stage taller than the window is scaled down to fit,
+    // or reshaped by fitTo when scaling won't do (the map). Narrow or short windows scroll normally and call loose().
+    const calmPage = matchMedia('(prefers-reduced-motion: reduce)').matches, siteHeader = document.querySelector('.site-header');
+    function pinScene(track, { distance, play, loose, fitTo }) {
+      const stage = track.firstElementChild, fit = stage.firstElementChild;
       let pinned = false, queued = false;
-      // Wide screens pin the section (scaled down if it's taller than the window) while the cards turn. Narrow screens
-      // stack the cards, so the page scrolls normally and each card turns as it reaches the middle of the screen.
       const layout = () => {
         track.classList.remove('pinned');
         fit.style.zoom = fit.style.width = track.style.height = stage.style.paddingTop = '';
+        fitTo?.(null);
         pinned = false;
         if (innerWidth < 900) return;
         track.classList.add('pinned');
-        const top = header ? header.offsetHeight : 0;
+        const top = siteHeader ? siteHeader.offsetHeight : 0, room = innerHeight - top - 32;
         stage.style.paddingTop = `${top}px`;
-        fit.style.width = `${stage.clientWidth}px`;  // zoom then shrinks it evenly, keeping the 4 columns
-        const scale = Math.min(1, (innerHeight - top - 32) / fit.offsetHeight);
-        if (scale < .6) { track.classList.remove('pinned'); fit.style.width = stage.style.paddingTop = ''; return; }
-        if (scale < 1) fit.style.zoom = scale;
-        track.style.height = `${innerHeight + LEAD + STEP * flips.length + TAIL}px`;
+        fit.style.width = `${stage.clientWidth}px`;  // zoom then shrinks it evenly, keeping its columns
+        if (fitTo) fitTo(room);
+        const scale = Math.min(1, room / fit.offsetHeight);
+        if (scale < (fitTo ? .98 : .6)) { track.classList.remove('pinned'); fit.style.width = stage.style.paddingTop = ''; fitTo?.(null); return; }
+        if (scale < 1 && !fitTo) fit.style.zoom = scale;
+        track.style.height = `${innerHeight + distance}px`;
         pinned = true;
       };
-      const syncFlips = () => {
+      const sync = () => {
         queued = false;
-        const count = pinned ? Math.floor((-track.getBoundingClientRect().top - LEAD) / STEP) + 1 : 0;
-        flips.forEach((card, i) => {
-          const r = card.getBoundingClientRect();
-          const on = pinned ? i < count : r.top + r.height / 2 < innerHeight * .55;
-          if (on === turned[i] || card.contains(document.activeElement)) return;  // never flip the card a keyboard user is on
-          turned[i] = on; setFlip(card, on);
-        });
+        if (pinned) play(Math.min(1, Math.max(0, -track.getBoundingClientRect().top / distance)));
+        else loose?.();
       };
-      const relayout = () => { layout(); syncFlips(); };
-      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(syncFlips); } }, { passive: true });
+      const relayout = () => { layout(); sync(); };
+      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(sync); } }, { passive: true });
       addEventListener('resize', relayout);
       addEventListener('load', relayout);
       document.fonts?.ready.then(relayout);
       relayout();
+    }
+
+    // Flip cards: one turn per 150px, with a pause before the first and after the last. Stacked on phones, each card
+    // turns as it reaches the middle of the screen.
+    const flipTrack = document.querySelector('.google-track');
+    if (flipTrack && !calmPage) {
+      const LEAD = 120, STEP = 150, TAIL = 260, distance = LEAD + STEP * flips.length + TAIL;
+      const turned = flips.map(() => false);  // what scrolling last asked for, so a tapped card stays put until its turn comes round again
+      const turn = wanted => flips.forEach((card, i) => {
+        const on = wanted(card, i);
+        if (on === turned[i] || card.contains(document.activeElement)) return;  // never flip the card a keyboard user is on
+        turned[i] = on; setFlip(card, on);
+      });
+      pinScene(flipTrack, { distance,
+        play: p => { const count = Math.floor((p * distance - LEAD) / STEP) + 1; turn((card, i) => i < count); },
+        loose: () => turn(card => { const r = card.getBoundingClientRect(); return r.top + r.height / 2 < innerHeight * .55; }) });
+    }
+
+    // The map: pinned while it flies from all of Northern Virginia to a neighborhood, to Reston, then to Blacksburg, with
+    // a caption for each stop. Scrolling back up goes back. Once someone uses the map themselves, scrolling leaves it be.
+    const mapTrack = document.querySelector('.map-track');
+    if (mapTrack && !calmPage) {
+      const STOPS = [['Northern Virginia', 'Every checked home across Northern Virginia.'], ['Arlington (Ballston)', 'Zoom into a neighborhood, like Ballston in Arlington.'],
+                     ['Reston', 'Or look near work, like Reston.'], ['Blacksburg', 'And Blacksburg, right by Virginia Tech.']];
+      const lead = mapTrack.querySelector('.cl-lead'), dots = mapTrack.querySelector('.scene-dots'), mapBox = mapTrack.querySelector('#listing-map');
+      const intro = lead.textContent;
+      dots.replaceChildren(...STOPS.map(() => document.createElement('i')));
+      let stop = -1, driving = true;
+      const handsOn = () => { driving = false; };
+      mapTrack.querySelector('.cl-frame').addEventListener('pointerdown', handsOn);
+      mapTrack.querySelector('.cl-frame').addEventListener('keydown', handsOn);
+      const show = i => {
+        if (i === stop) return;
+        stop = i;
+        lead.textContent = i < 0 ? intro : STOPS[i][1];
+        lead.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
+        [...dots.children].forEach((d, n) => d.classList.toggle('on', n === i));
+        if (i >= 0 && driving) window.clearHouseMapGoTo?.(STOPS[i][0]);
+      };
+      pinScene(mapTrack, { distance: 1320,
+        play: p => show(p <= 0 ? -1 : Math.min(STOPS.length - 1, Math.floor(p * STOPS.length))),
+        loose: () => show(-1),
+        // A Google map shouldn't be zoomed with CSS (clicks land in the wrong place), so the map gets shorter instead.
+        fitTo: room => { mapBox.style.height = ''; if (room == null) return; const extra = mapTrack.querySelector('.pin-fit').offsetHeight - room; if (extra > 0) mapBox.style.height = `${Math.max(300, mapBox.offsetHeight - extra)}px`; } });
+    }
+
+    // How Clear House Helps: pinned while a sample chat plays (each question appears, then Gemma types its answer) and the
+    // near-my-office search fills in. Scrolling back up rewinds it; phones play it once as it comes into view. The chat
+    // quotes real records from our checked list.
+    const howTrack = document.querySelector('.how-track');
+    if (howTrack) {
+      const TALK = [{ me: 'I’m behind on rent in Arlington. Who can help?', at: .03 },
+        { ai: [['Call '], ['Arlington County DHS Emergency Financial Assistance', 1], [' at 703-228-1300. It helps Arlington tenants facing eviction with emergency rent.']], at: .1, type: [.16, .42] },
+        { me: 'And somewhere safe to sleep tonight?', at: .48 },
+        { ai: [['In danger, call 911. For a shelter bed, call '], ['Arlington DHS Shelter Access', 1], [' at 703-228-1300. Budget hotels nearby are listed too.']], at: .54, type: [.6, .86] }];
+      const QUERY = 'Homes near my office in Reston', clamp = x => Math.min(1, Math.max(0, x));
+      const chat = howTrack.querySelector('.cl-chat'), query = howTrack.querySelector('.cl-query'), homes = [...howTrack.querySelectorAll('.cl-list li')];
+      const typed = (node, parts, n) => {  // the first n characters show; the rest stay as invisible text holding the space
+        node.replaceChildren();
+        for (const [text, bold] of parts) {
+          const part = document.createElement(bold ? 'b' : 'span'), shown = text.slice(0, Math.max(0, n)), ghost = document.createElement('span');
+          ghost.className = 'ghost'; ghost.textContent = text.slice(shown.length);
+          part.append(shown, ghost); node.append(part); n -= text.length;
+        }
+      };
+      const lines = TALK.map(line => {
+        const bubble = document.createElement('span');
+        bubble.className = (line.me ? 'me' : 'ai') + ' demo';
+        if (line.me) bubble.textContent = line.me;
+        else { bubble.total = line.ai.reduce((sum, [t]) => sum + t.length, 0); typed(bubble, line.ai, 0); }
+        return bubble;
+      });
+      chat.replaceChildren(...lines);
+      homes.forEach(li => li.classList.add('demo'));
+      const render = p => {
+        TALK.forEach((line, i) => {
+          const bubble = lines[i];
+          bubble.classList.toggle('on', p >= line.at);
+          if (!line.type) return;
+          const n = Math.round(bubble.total * clamp((p - line.type[0]) / (line.type[1] - line.type[0])));
+          bubble.classList.toggle('typing', p >= line.at && n === 0);
+          if (bubble.shown === n) return;
+          bubble.shown = n; typed(bubble, line.ai, n);
+          const dots = document.createElement('span'); dots.className = 'dots'; dots.append(...[0, 1, 2].map(() => document.createElement('i'))); bubble.append(dots);
+        });
+        typed(query, [[QUERY]], Math.round(QUERY.length * clamp((p - .05) / .17)));
+        homes.forEach((li, i) => li.classList.toggle('on', p >= .26 + i * .08));
+      };
+      if (calmPage) render(1);
+      else {
+        let played = false;
+        const playOnce = () => {  // phones and short windows: the same scene over 7 seconds, once it's in view
+          if (played) return;
+          const r = howTrack.getBoundingClientRect(); if (r.top > innerHeight * .65 || r.bottom < 0) return;
+          played = true;
+          const t0 = performance.now(), tick = now => { const p = clamp((now - t0) / 7000); render(p); if (p < 1) requestAnimationFrame(tick); };
+          requestAnimationFrame(tick);
+        };
+        render(0);
+        pinScene(howTrack, { distance: 1500, play: p => { played = true; render(p); }, loose: playOnce });
+      }
     }
   </script>
 
