@@ -18,8 +18,8 @@
 .ch-header .header-links>a:not(.cl-nav-btn):hover,.ch-header .header-links>a[aria-current="page"]{color:#23408f!important;background:#e8effc}
 .ch-header .header-links .cl-nav-btn{margin-left:auto;display:inline-flex!important;align-items:center;justify-content:center;min-height:40px;padding:9px 17px;
   border-radius:999px;color:#fff!important;font-size:13px;font-weight:600;white-space:nowrap;text-decoration:none!important;
-  background:#14203f!important;box-shadow:0 3px 10px #14203f14;transition:background .15s,box-shadow .15s}
-.ch-header .header-links .cl-nav-btn:hover{background:#23408f!important;box-shadow:0 5px 14px #23408f26}
+  background:linear-gradient(160deg,#4f7ff0,#2f55b5)!important;box-shadow:0 4px 12px #2f55b52e;transition:background .15s,box-shadow .15s}
+.ch-header .header-links .cl-nav-btn:hover{background:linear-gradient(160deg,#5b8af5,#3a63c9)!important;box-shadow:0 6px 16px #2f55b53d}
 .ch-header a:focus-visible{outline:3px solid #315fbd;outline-offset:3px}
 .ch-header.scrolled :is(.brand,.header-links>a:not(.cl-nav-btn)){opacity:0;visibility:hidden}
 /* Interior pages reserve room; the home hero already supplies its own top spacing. */
@@ -38,4 +38,5 @@ body:has(.ch-header:not(.over-hero)){padding-top:84px}
 .ch-header.over-hero .header-links>a:not(.cl-nav-btn){color:#ffffffd9!important}
 .ch-header.over-hero .header-links>a:not(.cl-nav-btn):hover,.ch-header.over-hero .header-links>a[aria-current="page"]{color:#fff!important;background:#ffffff26}
 .ch-header.over-hero .brand-mark{box-shadow:0 3px 10px #14203f33}
+.ch-header.over-hero .header-links .cl-nav-btn{box-shadow:0 0 0 2px #ffffffb3,0 4px 12px #14203f24}  /* a white ring keeps the blue button apart from the blue hero */
 @media (prefers-reduced-motion:reduce){.ch-header :is(.brand,.header-links a){transition:none}}
