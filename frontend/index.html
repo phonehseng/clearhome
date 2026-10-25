@@ -925,6 +925,21 @@
     /* Without blur (or when the system asks for less transparency) the glass turns solid so text never sits on a busy backdrop. */
     @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card.has-photo .property-photo{background:#14203ff0}}
     @media (prefers-reduced-transparency:reduce){:root{--glass-bg:#fffffff7;--glare:linear-gradient(#fff0,#fff0)}.housing-card.has-photo .property-photo{background:#14203ff0}}
+    /* One card style for the whole "What Do You Need?" area, matching the rest of the site: plain white cards with a soft
+       border and the same corner radius. The only warm colour is the 911 button. Primary buttons use the site's navy. */
+    #tools .assistant,#tools .guidance-card,#tools .emergency-card,#tools .more-options,#tools .find-checks,#tools .trust-banner{
+      background:#fff!important;border:1px solid var(--line)!important;border-radius:18px!important;box-shadow:0 1px 2px #0b14330a,0 8px 24px #0b143310!important;
+      backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+    #tools .assistant-head{background:#f6f9ff}
+    #tools .guidance-card,#tools .emergency-card{padding:22px}
+    #tools .emergency-card h3{color:var(--ink)}
+    #tools .emergency-card p{color:var(--muted)}
+    #tools .emergency-card .call-links a:first-child{background:#14203f;box-shadow:0 6px 14px #14203f2e}
+    #tools .emergency-card .call-links a:last-child{background:#a3343a;box-shadow:0 6px 14px #a3343a2e}
+    #tools .emergency-card .tonight-links button{background:#fff;border:1px solid var(--line);color:var(--ink)}
+    #tools .primary,#tools .assistant-form .primary,#tools .find-form .primary{background:#14203f!important;color:#fff;box-shadow:0 6px 16px #14203f26}
+    #tools .primary:hover{background:#23408f!important}
+    #tools .assistant-chips button,#tools .examples button{background:#fff;border:1px solid var(--line);border-radius:999px;color:var(--ink)}
   </style>
 </head>
 <body>
@@ -2003,7 +2018,16 @@
       mapText.textContent = a ? `${h.name} to ${a.name}: ${walkText(a)}.` : `${h.name}: no nearby place verified.`;
       [...cards.children].forEach(c => c.setAttribute('aria-current', String(c.dataset.id === h.id)));
       try { await loadMaps(); } catch { mapEl.replaceChildren(el('p', 'Map unavailable. Use “Walking directions” to open the route in Google Maps.', { class: 'walk-map-text', style: 'padding:14px' })); return; }
-      if (!gmap) gmap = new google.maps.Map(mapEl, { center: { lat: 38.85, lng: -77.3 }, zoom: 11, mapTypeControl: false, streetViewControl: false, fullscreenControl: false });
+      if (!gmap) gmap = new google.maps.Map(mapEl, {
+        center: { lat: 38.85, lng: -77.3 }, zoom: 11,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: google.maps.ControlPosition.TOP_LEFT,
+          mapTypeIds: ['roadmap', 'satellite']
+        },
+        streetViewControl: false, fullscreenControl: false
+      });
       overlays.forEach(o => o.setMap(null)); overlays = [];
       if (h.lat == null) return;
       const home = { lat: h.lat, lng: h.lon }, bounds = new google.maps.LatLngBounds(home);

@@ -28,7 +28,13 @@
     let view = null;
 
     function googleView() {
-      const map = new google.maps.Map(mapEl, { center: { lat: 38.83, lng: -77.35 }, zoom: 9, mapTypeControl: false, fullscreenControl: false,
+      const map = new google.maps.Map(mapEl, { center: { lat: 38.83, lng: -77.35 }, zoom: 9,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: google.maps.ControlPosition.TOP_LEFT,
+          mapTypeIds: ['roadmap', 'satellite']
+        }, fullscreenControl: false,
         streetViewControl: true, clickableIcons: false, gestureHandling: 'cooperative' });
       const info = new google.maps.InfoWindow(), areas = {}, web = [];
       let all = null;
