@@ -760,6 +760,9 @@
     #tools .tab[aria-selected=true],#tools .map-tab[aria-pressed=true],.listings-section .budget-shortcut button[aria-pressed=true]{background:#14203f!important;border-color:#14203f!important;color:#fff!important}
     #tools .tab[aria-selected=true] *{color:inherit}
     .listings-section .housing-card.has-photo .card-glass{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important;border:0!important}
+    /* "View" on listing photos: a translucent navy glass pill so the photo shows through. */
+    .housing-card.has-photo .property-photo{background:linear-gradient(140deg,#14203f70,#14203f4d)!important;border-color:#ffffff5c!important;backdrop-filter:blur(12px) saturate(1.6);-webkit-backdrop-filter:blur(12px) saturate(1.6)}
+    .housing-card.has-photo .property-photo:hover{background:linear-gradient(140deg,#14203fa6,#14203f8c)!important;border-color:#ffffff8c!important}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -917,9 +920,9 @@
       mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpath d='m7 3 4 5-3 3a14 14 0 0 0 5 5l3-3 5 4-2 4C11 22 2 13 3 5Z'/%3E%3C/svg%3E") center/contain no-repeat}
     /* "View" over the photo: darkened liquid glass, like the "Link copied" toast, so it reads on any photo. */
     .housing-card.has-photo .property-photo{padding:8px 13px 8px 11px;font-size:13px;color:#fff;border:1px solid #ffffff4d;
-      background:radial-gradient(120% 90% at 20% 0%,#ffffff29,#ffffff00 60%),linear-gradient(140deg,#14203fe0,#14203fbd);
+      background:radial-gradient(120% 90% at 20% 0%,#ffffff29,#ffffff00 60%),linear-gradient(140deg,#14203f80,#14203f5c);
       box-shadow:inset 0 1px 0 #ffffff47,0 8px 20px #0b143347;backdrop-filter:blur(12px) saturate(1.6);-webkit-backdrop-filter:blur(12px) saturate(1.6)}
-    .housing-card.has-photo .property-photo:hover{background:radial-gradient(120% 90% at 20% 0%,#ffffff33,#ffffff00 60%),linear-gradient(140deg,#14203fed,#14203fd1);border-color:#ffffff80}
+    .housing-card.has-photo .property-photo:hover{background:radial-gradient(120% 90% at 20% 0%,#ffffff33,#ffffff00 60%),linear-gradient(140deg,#14203fb3,#14203f99);border-color:#ffffff80}
     /* Find results: solid cards to read from, and phone numbers as clear call buttons. */
     #tools .opt-card{background:#fff!important;border:1px solid var(--line)!important;border-radius:16px;box-shadow:0 6px 18px #0b143310;backdrop-filter:none;-webkit-backdrop-filter:none;font-size:14px}
     .opt-card strong{font-size:15.5px}
