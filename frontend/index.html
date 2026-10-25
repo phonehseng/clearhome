@@ -465,6 +465,24 @@
     :is(#tools,.listings-section) .section-heading{padding-top:0}
     .listings-section .catalog-notice{border-top:1px solid var(--line)!important;border-radius:0;padding:14px 0}
     .listings-section .browse-filters{padding:6px 0 4px}
+    /* Listings filters: quick picks first, four main filters, the rest folded under "More filters". Results update on change. */
+    .listings-section .budget-shortcut{margin:0 0 14px}
+    .quick-label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+    .listings-section .browse-filters{display:block}
+    .filter-main,.filter-more{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:end}
+    .filter-more{grid-template-columns:repeat(3,minmax(0,1fr));padding:10px 0 2px}
+    :is(.filter-main,.filter-more) label{font-size:13px;margin-bottom:6px}
+    .filter-bar{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-top:12px}
+    .more-filters{flex:1;min-width:0}
+    .more-filters>summary{display:inline-flex;align-items:center;gap:10px;min-height:44px;cursor:pointer;list-style:none;font-size:14px;font-weight:650;color:var(--blue)}
+    .more-filters>summary::-webkit-details-marker{display:none}
+    .more-filters>summary::after{content:'+';font-size:18px;line-height:1;transition:transform .2s}
+    .more-filters[open]>summary::after{transform:rotate(45deg)}
+    .more-filters-note{font-size:13px;font-weight:400;color:var(--muted)}
+    .more-filters-count{padding:2px 8px;border-radius:999px;background:var(--blue);color:#fff;font-size:11px;font-weight:700}
+    .filter-bar .primary{flex:none;min-height:44px;padding:10px 20px}
+    @media(max-width:1050px){.filter-main,.filter-more{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.filter-main,.filter-more{grid-template-columns:1fr}.filter-bar{flex-direction:column;align-items:stretch}.more-filters-note{display:none}.filter-bar .primary{width:100%}}
     /* Panels inside the section: a light outline instead of their own glass. */
     #tools :is(.tool-panel,.tab,.guidance-card){background:#ffffff8c!important;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;border:1px solid var(--line)!important}
     #tools .tab[aria-selected=true]{background:#e2eafbcc!important;border-color:#6f8fd6!important;box-shadow:inset 0 0 0 1px #6f8fd6}
@@ -679,16 +697,14 @@
     <div class="section-heading"><div><h2 id="listings-title">Explore rentals & housing waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
     <p class="catalog-notice">Listed doesn’t mean vacant. Confirm rent, fees and eligibility with the provider.</p>
     <div class="listing-tabs" role="group" aria-label="Which listings to show"><button type="button" data-list="all" aria-pressed="true">All listings</button><button type="button" data-list="favorites" aria-pressed="false">Favorites<span class="favorite-count" id="favorite-count">0</span></button></div>
-    <form id="browse-form" class="browse-filters"><div><label for="browse-category">Housing type</label><select id="browse-category" name="housing_type"><option value="all">Affordable & regular rentals</option><option value="affordable">Affordable housing & waitlists</option><option value="regular">Regular rentals</option></select></div>
-      <div><label for="browse-location">City or county</label><select id="browse-location" name="location"><option value="">All supported areas</option><option>Northern Virginia</option><option value="Blacksburg">Blacksburg, VA</option><option>Alexandria City</option><option>Arlington County</option><option>Fairfax City</option><option>Fairfax County</option><option>Falls Church City</option><option>Loudoun County</option><option>Manassas City</option><option>Manassas Park City</option><option>Prince William County</option></select></div>
-      <div><label for="browse-space">Rental space</label><select id="browse-space" name="rental_space"><option value="all">Rooms & whole apartments</option><option value="room">Rooms for rent</option><option value="entire_home">Whole apartments</option></select></div>
-      <div><label for="browse-age-group">Eligibility</label><select id="browse-age-group" name="age_group"><option value="general">Exclude senior-only housing</option><option value="senior">Senior housing</option><option value="all">All eligibility groups</option></select></div>
-      <div><label for="browse-status">Availability</label><select id="browse-status" name="status"><option value="">Openings & waitlists</option><option value="available_now">Advertised available now</option><option value="advertised_vacancy">Advertised vacancies</option><option value="upcoming">Upcoming availability</option><option value="leasing">Now leasing</option><option value="waitlist_open">Open waitlists</option><option value="contact_for_availability">Contact for availability</option></select></div>
-      <div><label for="browse-rent">Maximum monthly rent</label><input id="browse-rent" name="max_rent" type="number" min="0" placeholder="Any budget" inputmode="decimal"></div>
-      <div><label for="browse-sort">Sort by</label><select id="browse-sort" name="sort"><option value="rent_asc">Lowest advertised rent</option><option value="recommended">Availability first</option></select></div>
-      <button class="primary" type="submit">Update results</button>
+    <div class="budget-shortcut"><span class="quick-label">Quick picks</span><button type="button" id="blacksburg-student-rooms">Blacksburg student rooms · under $1,000</button><button type="button" id="budget-under-1500" aria-pressed="false">Up to $1,500 / month</button></div>
+    <form id="browse-form" class="browse-filters">
+      <div class="filter-main"><div><label for="browse-location">City or county</label><select id="browse-location" name="location"><option value="">All supported areas</option><option>Northern Virginia</option><option value="Blacksburg">Blacksburg, VA</option><option>Alexandria City</option><option>Arlington County</option><option>Fairfax City</option><option>Fairfax County</option><option>Falls Church City</option><option>Loudoun County</option><option>Manassas City</option><option>Manassas Park City</option><option>Prince William County</option></select></div><div><label for="browse-space">Rental space</label><select id="browse-space" name="rental_space"><option value="all">Rooms & whole apartments</option><option value="room">Rooms for rent</option><option value="entire_home">Whole apartments</option></select></div><div><label for="browse-rent">Maximum monthly rent</label><input id="browse-rent" name="max_rent" type="number" min="0" placeholder="Any budget" inputmode="decimal"></div><div><label for="browse-sort">Sort by</label><select id="browse-sort" name="sort"><option value="rent_asc">Lowest advertised rent</option><option value="recommended">Availability first</option></select></div></div>
+      <div class="filter-bar"><details class="more-filters" id="more-filters"><summary>More filters <span class="more-filters-note">Housing type, eligibility, availability</span><span class="more-filters-count" id="more-filters-count" hidden></span></summary>
+        <div class="filter-more"><div><label for="browse-category">Housing type</label><select id="browse-category" name="housing_type"><option value="all">Affordable & regular rentals</option><option value="affordable">Affordable housing & waitlists</option><option value="regular">Regular rentals</option></select></div><div><label for="browse-age-group">Eligibility</label><select id="browse-age-group" name="age_group"><option value="general">Exclude senior-only housing</option><option value="senior">Senior housing</option><option value="all">All eligibility groups</option></select></div><div><label for="browse-status">Availability</label><select id="browse-status" name="status"><option value="">Openings & waitlists</option><option value="available_now">Advertised available now</option><option value="advertised_vacancy">Advertised vacancies</option><option value="upcoming">Upcoming availability</option><option value="leasing">Now leasing</option><option value="waitlist_open">Open waitlists</option><option value="contact_for_availability">Contact for availability</option></select></div></div></details>
+        <button class="primary" type="submit">Update results</button></div>
     </form>
-    <div class="budget-shortcut"><button type="button" id="blacksburg-student-rooms">Blacksburg student rooms · under $1,000</button><button type="button" id="budget-under-1500" aria-pressed="false">Up to $1,500 / month</button><span>Explore lower-cost options</span></div>
+    
     <p class="browse-hint">Room prices are per person. Fees and utilities may be extra.</p>
     <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p><div class="share-toast" id="share-toast" role="status" aria-live="polite"></div>
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
@@ -948,6 +964,13 @@
   rentFilter.addEventListener('input',updateBudgetShortcut);
   let filtersChanged = false;
   browseForm.addEventListener('submit',event=>{event.preventDefault();filtersChanged=true;sharedListingId=null;updateBudgetShortcut();loadHousing();});
+  // Results update as soon as a filter changes; the rent box waits until typing pauses.
+  let rentTimer;
+  browseForm.addEventListener('change',event=>{if(event.target!==rentFilter)browseForm.requestSubmit();});
+  rentFilter.addEventListener('input',()=>{clearTimeout(rentTimer);rentTimer=setTimeout(()=>browseForm.requestSubmit(),700);});
+  // "More filters" shows how many of its filters are changed from the default.
+  function updateMoreCount(){const changed=[['browse-category','all'],['browse-age-group','general'],['browse-status','']].filter(([id,def])=>document.getElementById(id).value!==def).length;const badge=document.getElementById('more-filters-count');badge.hidden=!changed;badge.textContent=`${changed} on`;}
+  browseForm.addEventListener('submit',updateMoreCount);
   function revealCommunities(count){
     const firstNewIndex=visibleHousingCount;
     visibleHousingCount=Math.min(shownRows().length,visibleHousingCount+count);
@@ -961,6 +984,7 @@
   allListings.addEventListener('click',()=>revealCommunities(shownRows().length));
   const initialFilters=new URLSearchParams(location.search);for(const key of ['location','max_rent','rental_space','age_group']){const field=browseForm.elements.namedItem(key);if(field&&initialFilters.has(key))field.value=initialFilters.get(key);}
   document.getElementById('blacksburg-student-rooms').addEventListener('click',()=>{document.getElementById('browse-location').value='Blacksburg';document.getElementById('browse-space').value='room';document.getElementById('browse-age-group').value='general';document.getElementById('browse-category').value='all';document.getElementById('browse-status').value='';document.getElementById('browse-sort').value='rent_asc';rentFilter.value='1000';document.getElementById('location').value='Blacksburg';document.getElementById('browse-location').dispatchEvent(new Event('change'));browseForm.requestSubmit();});
+  updateMoreCount();
   loadHousing();
   const tabs = [...document.querySelectorAll('[role=tab]')];
   function selectTab(tab, moveFocus = false) {
