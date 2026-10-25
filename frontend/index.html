@@ -1075,6 +1075,44 @@
       backdrop-filter:blur(6px) saturate(1.5)!important;-webkit-backdrop-filter:blur(6px) saturate(1.5)!important}
     #listings .housing-card.has-photo .property-photo:hover{background:linear-gradient(140deg,#ffffff4d,#ffffff1a 55%,#ffffff38)!important;border-color:#ffffffb3!important}
     #listings .housing-card.has-photo .photo-expand-mark{filter:drop-shadow(0 1px 2px #0b1433a6)}
+      /* Liquid glass on every button of the tools page. Dark glass for the main actions (send, call, sort, update, show
+       more, the chosen tab), red glass for 911, and light glass for everything else. A soft glare along the top and a
+       bright rim make each one read as glass; the blur lets the page show through. */
+    #tools :is(.send-button,.call-links a[href="tel:211"],.chat-lines a:not(.urgent),.map-tab[aria-pressed=true],.chat-q-continue,.opt-card a[href^="tel:"],.find-results a[href^="tel:"]),
+    #listings :is(#sort-send,#browse-form .primary,.housing-actions a.next-step,.housing-actions a[href^="tel:"],#show-more-listings,
+      .listing-tabs button[aria-pressed=true],.budget-shortcut button[aria-pressed=true]){
+      background:radial-gradient(120% 100% at 15% 0%,#ffffff38,#ffffff00 55%),linear-gradient(140deg,#14203fe6,#23408fbf)!important;
+      border:1px solid #ffffff33!important;color:#fff!important;
+      box-shadow:inset 0 1px 0 #ffffff59,inset 0 -1px 0 #0b14334d,0 8px 22px #14203f33!important;
+      backdrop-filter:blur(14px) saturate(1.6)!important;-webkit-backdrop-filter:blur(14px) saturate(1.6)!important}
+    #tools :is(.send-button,.call-links a[href="tel:211"],.chat-lines a:not(.urgent),.map-tab[aria-pressed=true],.chat-q-continue,.opt-card a[href^="tel:"],.find-results a[href^="tel:"]):hover,
+    #listings :is(#sort-send,#browse-form .primary,.housing-actions a.next-step,.housing-actions a[href^="tel:"],#show-more-listings):hover{
+      background:radial-gradient(120% 100% at 15% 0%,#ffffff4d,#ffffff00 55%),linear-gradient(140deg,#1d2e5af0,#2f55b5d1)!important}
+    #tools :is(.call-links a[href="tel:911"],.chat-lines a.urgent){
+      background:radial-gradient(120% 100% at 15% 0%,#ffffff40,#ffffff00 55%),linear-gradient(140deg,#b42318eb,#d93025c7)!important;
+      border:1px solid #ffffff38!important;color:#fff!important;box-shadow:inset 0 1px 0 #ffffff59,0 8px 22px #b4231833!important;
+      backdrop-filter:blur(14px) saturate(1.6)!important;-webkit-backdrop-filter:blur(14px) saturate(1.6)!important}
+    #tools :is(.call-links a[href="tel:911"],.chat-lines a.urgent):hover{background:radial-gradient(120% 100% at 15% 0%,#ffffff4d,#ffffff00 55%),linear-gradient(140deg,#912018f0,#b42318d1)!important}
+    #tools :is(.assistant-chips button,.chat-next button,.chat-q-choice,.chat-q-type,.chat-cards-more,.chat-card-actions a,.hotel-more,.show-programs,
+      .map-tab:not([aria-pressed=true]),.tonight-links button,.opt-card .opt-links a:not([href^="tel:"])),
+    #listings :is(.sort-chip,#sort-reset,.drawer-hint,.listing-tabs button:not([aria-pressed=true]),.budget-shortcut button:not([aria-pressed=true]),.filter-reset,
+      .favorite-btn:not([aria-pressed=true]),.share-btn,.housing-actions a:not(.next-step):not([href^="tel:"]),#show-all-listings){
+      background:radial-gradient(120% 100% at 15% 0%,#ffffffeb,#ffffff00 60%),linear-gradient(140deg,#ffffffbf,#eef3fd8f)!important;
+      border:1px solid #ffffffd9!important;color:#14203f!important;text-decoration:none!important;
+      box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #23408f0d,0 0 0 1px #23408f24,0 6px 16px #14203f14!important;
+      backdrop-filter:blur(14px) saturate(1.6)!important;-webkit-backdrop-filter:blur(14px) saturate(1.6)!important}
+    #tools :is(.assistant-chips button,.chat-next button,.chat-q-choice,.chat-q-type,.chat-cards-more,.chat-card-actions a,.hotel-more,.show-programs,
+      .map-tab:not([aria-pressed=true]),.tonight-links button,.opt-card .opt-links a:not([href^="tel:"])):hover,
+    #listings :is(.sort-chip,#sort-reset,.drawer-hint,.listing-tabs button:not([aria-pressed=true]),.budget-shortcut button:not([aria-pressed=true]),.filter-reset:not(:disabled),
+      .favorite-btn:not([aria-pressed=true]),.share-btn,.housing-actions a:not(.next-step):not([href^="tel:"]),#show-all-listings):hover{
+      background:radial-gradient(120% 100% at 15% 0%,#fff,#ffffff00 60%),linear-gradient(140deg,#ffffffe0,#e3ebfcb3)!important;
+      box-shadow:inset 0 1px 0 #fff,0 0 0 1px #3b63c466,0 8px 20px #14203f1f!important}
+    #listings .favorite-btn[aria-pressed=true]{background:radial-gradient(120% 100% at 15% 0%,#ffffffcc,#ffffff00 60%),linear-gradient(140deg,#fbe3e3d9,#f6c9cc99)!important;
+      border:1px solid #ffffffd9!important;box-shadow:inset 0 1px 0 #fff,0 0 0 1px #a3343a33,0 6px 16px #a3343a1f!important;
+      backdrop-filter:blur(14px) saturate(1.6)!important;-webkit-backdrop-filter:blur(14px) saturate(1.6)!important}
+    @media(prefers-reduced-transparency:reduce){
+      #tools :is(button,a),#listings :is(button,a){backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+    }
   </style>
 </head>
 <body>
