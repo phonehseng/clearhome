@@ -2,6 +2,8 @@
 
 Group hackathon effort by Pierce, Umair, Phone, and Ryan for **GDG Build with AI x Hacktoberfest 2026** (Virginia Tech, Oct 24-25, 2026). Theme: **AI for Housing**.
 
+**Result: 1st place overall, and winner of the Best Use of Google Cloud track.**
+
 **Live site:** https://clearhome.live (also at https://clear-house-875094537886.us-east4.run.app)
 
 **Demo video (2 minutes):** https://drive.google.com/file/d/1U0Hd8VLAR6zEuiqLvSKKWC79sg3cA298/view?usp=sharing
