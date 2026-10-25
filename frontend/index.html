@@ -592,6 +592,23 @@
       box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:8px 15px;font-weight:600;transition:background .15s,border-color .15s}
     .site-header .header-links .emergency-link svg{color:#ffb15c}
     .site-header .header-links .emergency-link:hover{background:#ffffff2b!important;border-color:#ffffff73!important;text-decoration:none}
+    /* Listing cards, condensed: status with Save/Share icons on top, tighter text, links as small pills. */
+    .card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+    .card-top .housing-status{margin:0}
+    .card-tools{display:flex;gap:6px;flex:none}
+    .card-tools :is(.favorite-btn,.share-btn){width:36px;height:36px;min-height:0;padding:0;justify-content:center;border-radius:50%;background:#ffffffd9;border:1px solid var(--line)}
+    .card-tools :is(.favorite-btn,.share-btn) svg{width:17px;height:17px}
+    .card-tools .share-btn:hover{border-color:#6f8fd6;background:#fff;color:var(--blue)}
+    .housing-card h3{margin-bottom:3px}
+    .housing-card .housing-category{margin:0 0 4px}
+    .housing-card .housing-location{margin-bottom:2px}
+    .housing-card .housing-rent{margin:10px 0 4px}
+    .housing-card .housing-plan{margin-bottom:3px;font-size:12.5px}
+    .housing-card .housing-features{margin:6px 0 10px}
+    .housing-actions{gap:8px;margin-top:12px}
+    .housing-actions a{display:inline-flex;align-items:center;min-height:34px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:#ffffffd9;color:var(--ink);text-decoration:none;font-size:12.5px;font-weight:600}
+    .housing-actions a:hover{border-color:#6f8fd6;color:var(--blue);background:#fff}
+    .housing-reviewed{margin-top:10px}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -744,7 +761,7 @@
     const button = housingElement('button','favorite-btn'); button.type = 'button';
     const draw = () => { const saved = Boolean(favorites[row.id]); button.setAttribute('aria-pressed', String(saved));
       button.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9Z"/></svg>';
-      button.append(saved ? 'Saved' : 'Save'); button.setAttribute('aria-label', `${saved ? 'Remove' : 'Save'} ${row.community || row.name} ${saved ? 'from' : 'to'} favorites`); };
+      button.title = saved ? 'Saved. Tap to remove' : 'Save'; button.setAttribute('aria-label', `${saved ? 'Remove' : 'Save'} ${row.community || row.name} ${saved ? 'from' : 'to'} favorites`); };
     button.addEventListener('click', () => { if (favorites[row.id]) delete favorites[row.id]; else favorites[row.id] = row; saveFavorites(); if (showingFavorites) renderHousing(); else draw(); });
     draw(); return button;
   }
@@ -760,10 +777,10 @@
   function shareButton(row) {
     const button = housingElement('button','share-btn'); button.type = 'button';
     button.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>';
-    button.append('Share'); button.setAttribute('aria-label', `Copy a link to ${row.community || row.name}`);
+    button.title = 'Share: copy link'; button.setAttribute('aria-label', `Share ${row.community || row.name}: copy a link`);
     button.addEventListener('click', async () => {
       const url = new URL(location.pathname, location.origin); url.searchParams.set('listing', row.id);
-      notify(await copyText(url.href) ? 'Link copied to clipboard' : 'Couldn’t copy the link. Try again.');
+      notify(await copyText(url.href) ? 'Link copied. Paste it to send this listing to someone.' : 'Couldn’t copy the link. Try again.');
     });
     return button;
   }
@@ -864,12 +881,13 @@
           photoDialog.showModal();document.body.style.overflow='hidden';
         });card.append(button);
       }  // no photo: show nothing rather than a placeholder
-      const status = housingElement('span','housing-status',statuses.size>1 ? 'Availability varies by plan' : statusLabels[availability.status] || 'Contact for availability'); status.dataset.status = statuses.size>1 ? 'mixed' : availability.status || ''; card.append(status);
+      const status = housingElement('span','housing-status',statuses.size>1 ? 'Availability varies by plan' : statusLabels[availability.status] || 'Contact for availability'); status.dataset.status = statuses.size>1 ? 'mixed' : availability.status || '';
+      const tools = housingElement('div','card-tools'); tools.append(favoriteButton(row), shareButton(row));
+      const top = housingElement('div','card-top'); top.append(status, tools); card.append(top);
       card.append(housingElement('h3','',row.community || row.name));
       const categories=new Set(plans.map(p=>p.type));
       const category=categories.size>1 ? 'Affordable & regular options' : row.type==='rental_listing' ? row.rental_space==='room'?'Student room · regular rental':'Regular rental · program status unconfirmed' : row.type==='housing_authority' ? 'Housing program' : 'Income-restricted housing';
-      card.append(housingElement('p','housing-category',category));
-      if(plans.length===1 && row.floor_plan)card.append(housingElement('p','housing-plan',row.floor_plan));
+      card.append(housingElement('p','housing-category',plans.length===1 && row.floor_plan ? `${category} · ${row.floor_plan}` : category));
       card.append(housingElement('p','housing-location',row.address || [row.city,row.jurisdiction].filter(Boolean).join(' · ')));
       const ages=[...new Set(plans.map(p=>p.minimum_age))];
       if(ages.length===1 && row.minimum_age)card.append(housingElement('p','housing-age',`For adults ${row.minimum_age}+`));
@@ -879,17 +897,21 @@
         rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US')}`; rent.append(housingElement('small','',ClearHouseRental.period(row)));
       } else rent.textContent = 'Rent: confirm with provider';
       card.append(rent);
-      const space=ClearHouseRental.space(row);if(space)card.append(housingElement('p','housing-plan',space));
+      // Condensed: what you get, the move-in note, then one muted line of extras and the rent caveat.
+      const space=ClearHouseRental.space(row);
+      const shared=row.rental_space==='room' ? 'shared kitchen & living areas' : '';
+      if(space)card.append(housingElement('p','housing-plan',[space,shared].filter(Boolean).join(' · ')));
       const term=ClearHouseRental.term(row);if(term)card.append(housingElement('p','housing-plan',term));
-      const lease=ClearHouseRental.lease(row);if(lease)card.append(housingElement('p','housing-features',lease));
-      card.append(housingElement('p','rent-caveat',typeof row.monthly_rent!=='number' ? 'Ask the provider for rent, fees & utilities' : plans.length>1 ? 'Lowest starting rent among matching plans · fees may apply' : 'Advertised starting rent · confirm fees & utilities'));
+      const lease=ClearHouseRental.lease(row);
       const features = [];
+      if(lease && !`${row.floor_plan||''} ${category}`.toLowerCase().includes(lease.toLowerCase()))features.push(lease);
       const bedrooms=[...new Set(plans.map(p=>p.bedrooms).filter(b=>b!=null))].sort((a,b)=>a-b);
-      if(row.rental_space==='room')features.push('Shared kitchen & living areas');
+      if(row.rental_space==='room'){ if(!space)features.push('Shared kitchen & living areas'); }
       else if(bedrooms.length)features.push(bedrooms.map(b=>b===0?'Studio':`${b} bed`).join(' / '));
       if(plans.length===1 && row.bathrooms)features.push(`${row.bathrooms} bath`);
       if(plans.length>1)features.push(`${plans.length} matching plans`);
-      features.push(plans.every(p=>p.accessible===true) ? 'Accessible unit documented' : 'Confirm unit accessibility');
+      features.push(plans.every(p=>p.accessible===true) ? 'Accessible unit documented' : 'Confirm accessibility');
+      features.push(typeof row.monthly_rent!=='number' ? 'Ask for rent & fees' : plans.length>1 ? 'Lowest starting rent among plans' : 'Fees & utilities may be extra');
       card.append(housingElement('p','housing-features',features.join(' · ')));
       if (plans.length > 1) {
         const details=housingElement('details','floor-plans-details');
@@ -915,12 +937,11 @@
         details.append(options);card.append(details);
       } else card.append(eligibilityDetails(row));
       const actions = housingElement('div','housing-actions');
-      actions.append(favoriteButton(row), shareButton(row));
       // The property's own site comes first; a county list (names, addresses, phones) is labeled as a list, not a property page.
       const ownSite = row.website && row.website !== row.source_url && !['property_website','owner_property_page','official_property_page'].includes(row.source_kind) && !/\.gov\/|\/DocumentCenter\/|\.pdf($|\?)/i.test(row.website) ? sourceLink(row.website,'Property website ↗') : null; if (ownSite) actions.append(ownSite);
       const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-price source ↗':'View source ↗')); if (source) { if (row.source_kind==='official_directory') source.title='The county’s list of income-restricted properties, with each one’s address and phone. Call the property to apply.'; actions.append(source); }
       const map = mapLink(row); if (map) actions.append(map);
-      if (row.phone && (row.phone.match(/\d/g) || []).length >= 10) { const phone = housingElement('a','','Call leasing office'); phone.href=ClearHouseDial(row.phone); actions.append(phone); }
+      if (row.phone && (row.phone.match(/\d/g) || []).length >= 10) { const phone = housingElement('a','','Call'); phone.href=ClearHouseDial(row.phone); actions.append(phone); }
       const reviewDates=plans.map(p=>p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
       const reviewed=reviewDates[0]===reviewDates[reviewDates.length-1] ? reviewedDate(reviewDates[0]) : `${reviewedDate(reviewDates[0])} – ${reviewedDate(reviewDates[reviewDates.length-1])}`;
       card.append(actions,housingElement('p','housing-reviewed',`Source reviewed ${reviewed}`));
