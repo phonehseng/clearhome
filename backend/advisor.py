@@ -334,11 +334,14 @@ def cards_for(text, limit=6):
     return cards
 
 
-def _thinking_note(text):
-    """The latest complete line of Gemma's reasoning, cleaned of list marks, or None."""
-    lines = [re.sub(r"^[\s*#>\-\d.)]+|[*_`]", "", l).strip() for l in text.split("\n")[:-1]]
-    lines = [l for l in lines if 12 <= len(l) and not re.match(r"(draft|sentence|check|yes|no|persona|role|rules?|constraints?|instructions?|format|tone|goal|output|task|user|question)\b", l, re.I)]
-    return (lines[-1][:110] + ("…" if len(lines[-1]) > 110 else "")) if lines else None
+# What the chat says while Gemma reasons, by seconds since it started. Gemma's raw notes are never shown:
+# they're half-sentences in prompt jargon and can mention records it later drops.
+THINKING_STEPS = [(0, "reading the listings and programs we found"), (8, "checking rents, eligibility and phone numbers"),
+                  (18, "picking the best matches for you"), (30, "writing your answer (a long question can take up to a minute)")]
+
+
+def _thinking_step(seconds):
+    return [text for start, text in THINKING_STEPS if seconds >= start][-1]
 
 
 def stream_ask(question, history=None):
@@ -357,21 +360,21 @@ def stream_ask(question, history=None):
     names = list(dict.fromkeys(r.get("community") or r["name"] for r in rows))[:3]
     found = f"{len(rows)} reviewed resource{'' if len(rows) == 1 else 's'}" if rows else "our reviewed resources"
     yield "status", (f"Checking {found}" + (f", like {', '.join(names)}" if names else "") + ". Gemma is thinking…")
-    parts, thinking, last_note = [], "", 0.0
+    parts, step, started = [], None, None
     try:
         for is_thought, text in stream_gemma(_prompt(question, history, rows), thoughts=True):
-            if is_thought == "engine":
-                yield "engine", text
+            if is_thought in ("engine", "status"):
+                yield is_thought, text
                 continue
             if not is_thought:
                 parts.append(text)
                 yield "chunk", text
                 continue
-            # Every couple of seconds, share the line Gemma is reasoning about, so a long think shows progress.
-            thinking = (thinking + text)[-600:]
-            note = _thinking_note(thinking)
-            if note and time.time() - last_note > 2:
-                last_note = time.time()
+            # A long think shows plain progress steps, not Gemma's own notes.
+            started = started or time.time()
+            note = _thinking_step(time.time() - started)
+            if note != step:
+                step = note
                 yield "thinking", note
     except Exception as error:
         if parts:
