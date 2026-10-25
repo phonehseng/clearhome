@@ -123,6 +123,17 @@ ALLOWED_HOSTS = {
     'www.westbroad.com',
 }
 MAX_BYTES = 8 * 1024 * 1024
+# Photos saved in the project (data/listing-photos) for providers whose servers refuse our requests. The catalog keeps the
+# provider's own address; when that address is listed here, the saved copy is served instead.
+LOCAL_DIR = Path(__file__).resolve().parent.parent / 'data' / 'listing-photos'
+LOCAL_FILES = {
+    'https://images.cdn.appfolio.com/granitesl/images/58ae3dd2-aa42-46be-9e2a-7c448412ed38/medium.jpg': 'university-terrace-condos.jpg',
+    'https://images.cdn.appfolio.com/granitesl/images/38cacbed-5a2b-4faa-b0e0-882ad851b20b/medium.jpg': 'carlton-scott-apartments.jpg',
+    'https://images.cdn.appfolio.com/granitesl/images/d29d0416-54cb-43c5-94a8-12db1d50f687/medium.jpg': '300-mcdonald-street.jpg',
+    'https://images.cdn.appfolio.com/granitesl/images/35a06a0e-592f-4f3f-a682-ba0f3bb6d496/medium.jpg': 'fourteen35.jpg',
+    'https://images.cdn.appfolio.com/granitesl/images/37530107-91e8-4339-9ff4-3849ca7c5d36/medium.jpeg': '1203-north-main-street.jpeg',
+    'https://www.communityhousingpartners.org/wp-content/uploads/2026/06/LegacyOnMain-July2026.jpg': 'legacy-on-main.jpg',
+}
 _LOCK = threading.Lock()
 _LOCKS = {}
 _FAILURES = {}
@@ -133,6 +144,8 @@ class PhotoUnavailable(ValueError):
 def cached_photo(photo, cache_dir=None):
     """Download only an approved catalog image, validate it, and atomically cache it."""
     url = photo.get('url', '')
+    if LOCAL_FILES.get(url) and (LOCAL_DIR / LOCAL_FILES[url]).is_file():
+        return LOCAL_DIR / LOCAL_FILES[url]
     parsed = urlsplit(url)
     if parsed.scheme != 'https' or parsed.hostname not in ALLOWED_HOSTS or parsed.username or parsed.password or parsed.port not in (None,443):
         raise PhotoUnavailable('Unapproved photo source.')
