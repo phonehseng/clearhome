@@ -278,10 +278,6 @@
     .map-hood:focus-visible{outline:3px solid #e0a100;outline-offset:2px}
     .map-tab.near-me[aria-busy=true]{opacity:.7;cursor:wait}
     .hero-map{height:300px;border-radius:18px;border:1px solid var(--line);overflow:hidden;background:var(--sage)}
-    .map-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
-    .map-legend span{display:flex;align-items:center;gap:6px}
-    .map-dot{display:inline-block;width:13px;height:13px;clip-path:polygon(50% 0,100% 42%,100% 100%,0 100%,0 42%)}
-    .map-dot.reviewed{background:#2f55b5}.map-dot.web{background:#d9822b}
     .map-status{font-size:13px;color:var(--muted);margin-top:6px;min-height:1.4em}
     .map-status[data-state=loading]::before{content:'';display:inline-block;width:10px;height:10px;border:2px solid var(--line);border-top-color:#2f55b5;border-radius:50%;margin-right:7px;vertical-align:-1px;animation:spin .8s linear infinite}
     .web-results{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:8px;max-height:220px;overflow:auto}
@@ -450,7 +446,7 @@
       --glass-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff59,inset 0 0 20px #ffffff33,0 10px 30px #0b14331c;--glass-blur:blur(22px) saturate(1.8)}
     
     :is(.tool-panel,.tab,.guidance-card,.trust-banner,.catalog-notice,.opt-card,.assistant,.walk-card,.web-results li,.result,.upload-box,
-        .hero-copy,.section-heading,.map-legend,.map-status,.browse-hint,.browse-message:not(:empty),.site-footer,.walk-status:not(:empty),.find-checks){
+        .hero-copy,.section-heading,.map-status,.browse-hint,.browse-message:not(:empty),.site-footer,.walk-status:not(:empty),.find-checks){
       background:var(--glass-bg)!important;backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
       border:1px solid var(--glass-border)!important;box-shadow:var(--glass-shadow)}
     .tab[aria-selected=true]{background:linear-gradient(140deg,#e2eafbe6,#d5e1f8c7)!important;border-color:#6f8fd6!important;box-shadow:inset 0 0 0 1px #6f8fd6,var(--glass-shadow)}
@@ -459,12 +455,11 @@
     /* Loose text gets a soft glass backing with breathing room. */
     .hero-copy{padding:26px 28px;border-radius:22px}
     .section-heading{padding:14px 18px;border-radius:16px}
-    .map-legend,.map-status:not(:empty),.walk-status:not(:empty){padding:7px 12px;border-radius:12px;width:fit-content;max-width:100%}
+    .map-status:not(:empty),.walk-status:not(:empty){padding:7px 12px;border-radius:12px;width:fit-content;max-width:100%}
     .map-status:empty{display:none}
     /* Map legend and status sit side by side; the status drops to the next line when there isn't room. */
     .map-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
-    .map-meta>:is(.map-legend,.map-status){margin:0}
-    .map-meta .map-legend{gap:12px}
+    .map-meta>.map-status{margin:0}
     .map-meta .map-status{flex:1 1 110px;max-width:max-content;font-size:12px;line-height:1.45}
     .browse-hint,.browse-message:not(:empty){padding:10px 14px;border-radius:12px}
     .site-footer{padding:18px 22px;border-radius:16px;margin-bottom:24px}
@@ -765,7 +760,7 @@
     </div>
   </header>
 <main class="container">
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A Clearer Path.<br><span>A Place to Call Home.</span></h1><p>Verified homes, shelters and rent help.</p><a class="browse-link" href="#listings">Browse Housing & Waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official sources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not verified</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></section>
+  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A Clearer Path.<br><span>A Place to Call Home.</span></h1><p>Verified homes, shelters and rent help.</p><a class="browse-link" href="#listings">Browse Housing & Waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official sources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></section>
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What Do You Need?</h2></div><div class="tools"><div class="tool-workspace">
     <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find Housing Help</strong><small>A Place to Start</small></span></button></div>
     <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Ask, or Search.</h3><span class="step-label">HOUSING SUPPORT</span></div>
