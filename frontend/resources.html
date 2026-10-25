@@ -325,7 +325,7 @@
         card.append(details);
       }
       const actions = el('div', { class: 'actions' });
-      if (p.phone) actions.append(el('a', { href: 'tel:' + p.phone.replace(/[^0-9+]/g, '') }, p.phone));
+      if (p.phone) actions.append(el('a', { href: ClearHouseDial(p.phone) }, p.phone));
       // Say where each link goes: a program page, an official county listing, or the provider's website.
       const links = Array.isArray(p.links) && p.links.length ? p.links : [
         { url: p.source_url, label: p.source_kind === 'official_directory' || /directory|guide|emergency-shelters/i.test(p.source_url || '') ? 'Official county listing' : 'Program details' },
@@ -376,7 +376,7 @@
         if(plans.length>1)card.append(el('p', {}, `${plans.length} matching floor plans. Starting rent shown for the lowest-priced plan; eligibility and fees vary.`));
         if (l.who_it_serves) card.append(el('p', {}, l.who_it_serves));
         const actions = el('div', { class: 'actions' });
-        if (l.phone) actions.append(el('a', { href: 'tel:' + l.phone.replace(/[^0-9+]/g, '') }, l.phone));
+        if (l.phone) actions.append(el('a', { href: ClearHouseDial(l.phone) }, l.phone));
         const site = safeUrl(l.source_url);
         if (site) actions.append(el('a', { href: site, target: '_blank', rel: 'noopener' }, 'Provider page'));
         card.append(actions);
