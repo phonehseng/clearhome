@@ -206,7 +206,12 @@ def _records(question, history=None):
             if isinstance(r.get("monthly_rent"), (int, float)):
                 return 0 if r["monthly_rent"] <= cap else 2
             return 1 if (rent_estimate(r) or {}).get("low", float("inf")) <= cap else 2
-        rows = sorted(rows, key=fit)
+        homes = ("affordable_listing", "rental_listing")
+        if sum(fit(r) <= 1 for r in rows if r.get("type") in homes) >= 2:  # enough fit: Gemma doesn't see the pricier ones
+            rows = [r for r in rows if r.get("type") not in homes or fit(r) <= 1]
+        older = re.search(r"\b(seniors?|elder\w*|older|retire\w*|62|55)\b", question, re.I)
+        seniors = lambda r: 0 if older else int(bool(re.search(r"\b(?:62|55) (?:and|or) older|\bseniors?\b", str(r.get("who_it_serves", "")), re.I)))
+        rows = sorted(rows, key=lambda r: (seniors(r), fit(r)))  # senior buildings last for everyone else
     if search and LOW_INCOME.search(question):  # "low income housing": the programs that set rent by income, too
         area = next((a for w, a in AREAS if w in text.lower()), None)
         programs = [r for r in pool if r.get("type") == "housing_authority" and (not area or serves_location(r, area))]
@@ -414,9 +419,12 @@ def rent_estimate(r, rows=None):
     First the provider's own dollar figures (in its cost note); otherwise the middle half of published rents at
     similar verified homes nearby (same kind of home, same room-or-whole-home, within 5 miles, else the county).
     Returns {"low", "high", "basis"} or None. Always presented as an estimate, never as the home's rent."""
-    if isinstance(r.get("monthly_rent"), (int, float)):
-        return None
-    figures = [float(x.replace(",", "")) for x in re.findall(r"\$\s?(\d[\d,]{2,5})", r.get("cost") or "")]
+    if isinstance(r.get("monthly_rent"), (int, float)) or r.get("type") not in ("affordable_listing", "rental_listing", "affordable_property"):
+        return None  # homes only: a rent-relief program's grant amounts aren't a rent
+    cost = r.get("cost") or ""
+    # Dollar figures that are rents, not a deposit or a fee ("lists a $500 deposit" is not a $500 rent).
+    figures = [float(m.group(1).replace(",", "")) for m in re.finditer(r"\$\s?(\d[\d,]{2,5})", cost)
+               if not re.search(r"deposit|fee|application|admin|holding|pet|parking", cost[max(0, m.start() - 30):m.end() + 20], re.I)]
     figures = [f for f in figures if 300 <= f <= 10000]
     if figures:
         return {"low": min(figures), "high": max(figures), "basis": "the provider's published figures"}
@@ -755,7 +763,7 @@ def stream_ask(question, history=None):
     # Without Gemma, measured homes fall back to the same no-AI answer (store, limit, times), never a generic list.
     fallback = ((lambda reason: near_place.with_directions(f"{reason}, so here is what Google Maps measured:\n\n{place['fallback']}", place["fallback"].directions))
                 if place else (lambda reason: fallback_answer(rows, reason, question)))
-    parts, step, started = [], None, None
+    parts, step, started, notes = [], None, None, []
     prompt = _prompt(question, history, rows, needs, walk, place=place and place["note"])
     try:
         # Gemma thinks first on every answer: it checks each place against what was asked before writing.
@@ -769,6 +777,7 @@ def stream_ask(question, history=None):
                 yield "chunk", text
                 continue
             # A long think shows plain progress steps, not Gemma's own notes.
+            notes.append(text)
             started = started or time.time()
             note = _thinking_step(time.time() - started)
             if note != step:
@@ -779,7 +788,9 @@ def stream_ask(question, history=None):
                 break
         if not parts:  # it thought too long, or spent its whole reply thinking: a second, quick pass without the long think
             yield "thinking", "writing your answer"
-            for is_thought, text in stream_gemma(prompt, thoughts=True, think=False):
+            checked = "".join(notes)[-4000:]  # what it worked out while thinking, so the quick pass keeps it
+            again = prompt + (f"\n\nYour notes from checking the places (use them; don't repeat them):\n{checked}" if checked else "")
+            for is_thought, text in stream_gemma(again, thoughts=True, think=False):
                 if is_thought in ("engine", "status"):
                     yield is_thought, text
                 elif not is_thought:
