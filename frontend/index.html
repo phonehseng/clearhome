@@ -404,26 +404,28 @@
     .assistant-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
     .assistant-chips button{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:7px 12px;font-size:12.5px;min-height:36px;transition:background .15s,border-color .15s}
     .assistant-chips button:hover{background:#e2eafbcc;border-color:#6f8fd6}
-    /* Gemma's follow-up question: answer buttons inside its bubble (ticks and Continue when several can apply). */
+    /* Gemma's follow-up question: answer pills inside its bubble, like the front page's guided chat (.start-choice) in the
+       light chat's colors. Once answered they fold away: the pick shows as the person's own reply. Several can apply: ticks, then Continue. */
     .chat-q{white-space:normal;border:0;margin:10px 0 2px;padding:0;min-width:0;display:grid;gap:8px}
     .msg>.chat-q:first-child{margin-top:0}
     .chat-q legend{padding:0;margin-bottom:8px;font-size:inherit;line-height:1.6;font-weight:600}
+    .chat-q[data-state] legend{margin-bottom:0}
     .chat-q-choices,.chat-q-more{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-    .chat-q-choice,.chat-q-check,.chat-q-continue{border:1px solid var(--pill-line,#b9c7e6);background:#fff;color:var(--ink);border-radius:999px;padding:8px 15px;min-height:40px;font-size:13.5px;font-weight:600;line-height:1.3;text-align:left}
-    .chat-q-choice:hover:not(:disabled),.chat-q-check:hover{background:#eef3fd;border-color:#6f8fd6;color:#1a3170}
-    .chat-q-choice.escape{background:transparent;border-style:dashed;color:#4a5668;font-weight:550}
-    .chat-q-check{display:inline-flex;align-items:center;gap:8px;margin:0;cursor:pointer}
+    .chat-q[data-state] :is(.chat-q-choices,.chat-q-more){display:none}
+    .chat-q-choice,.chat-q-check,.chat-q-continue{display:inline-flex;align-items:center;min-height:40px;padding:9px 15px;border-radius:999px;
+      border:1px solid var(--pill-line,#c3cfe8);background:#fff;color:var(--ink);font:inherit;font-size:14px;font-weight:600;line-height:1.3;text-align:left;
+      box-shadow:0 2px 8px #23408f0f;animation:chat-q-rise .35s ease both}
+    .chat-q-choice:hover,.chat-q-choice:focus-visible,.chat-q-check:hover{background:#eef3fd;border-color:#6f8fd6;color:#1a3170}
+    .chat-q-choice.escape{background:transparent;border-style:dashed;color:var(--muted);box-shadow:none}
+    .chat-q-check{gap:8px;margin:0;cursor:pointer}
     .chat-q-check input{width:18px;height:18px;margin:0;accent-color:#23408f}
     .chat-q-check:has(input:checked){background:#e2eafb;border-color:#23408f}
     .chat-q-check:has(input:focus-visible){outline:3px solid #8b6fb2;outline-offset:2px}
     .chat-q-continue{background:#23408f;border-color:#23408f;color:#fff;box-shadow:inset 0 1px 0 #ffffff2e,0 6px 16px #23408f33}
     .chat-q-continue:hover:not(:disabled){background:#1a3170}
-    .chat-q-type{background:none;border:0;padding:8px 4px;min-height:40px;color:#23408f;font-size:12.5px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
-    .chat-q:disabled :is(button,.chat-q-check){cursor:default}
-    .chat-q:disabled .chat-q-type{display:none}
-    .chat-q[data-state] :is(.chat-q-choice,.chat-q-check,.chat-q-continue):not([aria-pressed=true]):not(:has(input:checked)){opacity:.5}
-    .chat-q .chat-q-choice[aria-pressed=true]{opacity:1;background:#23408f;border-color:#23408f;color:#fff}
-    .chat-q[data-state=answered] .chat-q-continue{display:none}
+    .chat-q-type{background:none;border:0;padding:8px 4px;min-height:40px;color:#23408f;font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+    @keyframes chat-q-rise{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+    @media(prefers-reduced-motion:reduce){.chat-q :is(.chat-q-choice,.chat-q-check,.chat-q-continue){animation:none}}
     @media(pointer:coarse){.chat-q-choice,.chat-q-check,.chat-q-continue,.chat-q-type{min-height:44px}}
     @media(max-width:560px){.msg.bot:has(.chat-q){max-width:100%}}
     @media(prefers-reduced-motion:reduce){.msg{animation:none}}
@@ -1698,20 +1700,20 @@
       if (words.trim().endsWith(text)) { setText(bubble, words.trim().slice(0, -text.length).trim()); box.append(el('legend', text)); }
       else box.append(el('legend', text, { class: 'visually-hidden' }));
       const row = el('div', null, { class: 'chat-q-choices' }), more = el('div', null, { class: 'chat-q-more' });
-      const send = async (ids, label, e, chosen) => {
+      const send = async (ids, label, e) => {
         if (busy || box.disabled) return;
-        box.disabled = true; box.dataset.state = 'answered'; if (chosen.classList.contains('chat-q-choice')) chosen.setAttribute('aria-pressed', 'true');
+        box.disabled = true; box.dataset.state = 'answered';  // the buttons fold away; the pick shows as the person's reply
         // Keyboard users (a click with no pointer) keep their place: focus moves on to what comes next.
-        if (!(await ask(label, { id: q.id, choices: ids }, e.detail === 0))) { box.disabled = false; delete box.dataset.state; chosen.removeAttribute('aria-pressed'); chatInput.placeholder = ANSWER_HINT; }
+        if (!(await ask(label, { id: q.id, choices: ids }, e.detail === 0))) { box.disabled = false; delete box.dataset.state; chatInput.placeholder = ANSWER_HINT; }
       };
-      const escape = (id, label) => { const b = el('button', label, { type: 'button', class: 'chat-q-choice escape' }); b.addEventListener('click', e => send([id], label, e, b)); more.append(b); };
+      const escape = (id, label) => { const b = el('button', label, { type: 'button', class: 'chat-q-choice escape' }); b.addEventListener('click', e => send([id], label, e)); more.append(b); };
       if (q.multi) {  // several can apply: tick them, then Continue
         choices.forEach(c => { const tick = el('label', null, { class: 'chat-q-check' }); tick.append(el('input', null, { type: 'checkbox', value: c.id }), document.createTextNode(c.label)); row.append(tick); });
         const go = el('button', 'Continue', { type: 'button', class: 'chat-q-continue' }); go.disabled = true;
         row.addEventListener('change', () => { go.disabled = !row.querySelector('input:checked'); });
-        go.addEventListener('click', e => { const picked = [...row.querySelectorAll('input:checked')]; send(picked.map(i => i.value), picked.map(i => i.parentElement.textContent).join(', '), e, go); });
+        go.addEventListener('click', e => { const picked = [...row.querySelectorAll('input:checked')]; send(picked.map(i => i.value), picked.map(i => i.parentElement.textContent).join(', '), e); });
         more.append(go);
-      } else choices.forEach(c => { const b = el('button', c.label, { type: 'button', class: 'chat-q-choice' }); b.addEventListener('click', e => send([c.id], c.label, e, b)); row.append(b); });
+      } else choices.forEach(c => { const b = el('button', c.label, { type: 'button', class: 'chat-q-choice' }); b.addEventListener('click', e => send([c.id], c.label, e)); row.append(b); });
       if (q.unsure) escape('unsure', 'Not sure');
       if (q.skip) escape('skip', 'Skip');
       if (q.custom !== false) { const type = el('button', 'Type My Own Answer', { type: 'button', class: 'chat-q-type' }); type.addEventListener('click', () => chatInput.focus()); more.append(type); }

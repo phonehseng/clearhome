@@ -442,8 +442,7 @@ def _chat_request():
     # request gets one question with answer buttons first, and the answers are written into the request.
     chat, asking = (clarifier.load_state(body.get("chat")), None) if "chat" in body else (None, None)
     if chat is not None:
-        if not chat["pending"]:  # a reply to a question asked in words only (near_place.py's "Which Walmart, or which city?")
-            question = with_context(question, history)
+        question = clarifier.reply_in_words(question, chat, history)  # a reply to near_place.py's "Which Walmart, or which city?"
         try:
             asking, question = clarifier.resolve(question, chat, profile, body.get("reply"))
         except clarifier.Stale as error:

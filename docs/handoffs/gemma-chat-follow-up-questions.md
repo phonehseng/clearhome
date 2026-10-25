@@ -2,7 +2,8 @@
 
 ## Status: implemented
 
-- `backend/clarifier.py` decides when to ask (a script, no AI), validates every field and value the page sends back, and writes answers into the request (newer answers win; Skip and Not sure stay unknown). Up to three questions per request.
+- `backend/clarifier.py` decides when to ask (a script, no AI), validates every field and value the page sends back, and writes answers into the request (newer answers win; Skip and Not sure stay unknown). Up to four questions per request.
+- Rental searches ask for whatever is missing: where (Northern Virginia, Blacksburg, Anywhere is fine, or a typed place), a budget (three ranges or Any budget is fine), then a room or a whole place (Blacksburg) and how many bedrooms (whole places), each with an "anything is fine" answer. Place searches ("near my office at ...") only add the budget.
 - `backend/app.py`: the `/app` chat sends `chat` (its state) and `reply` (a button answer); the stream adds `state` and `question` events. Pages that send no `chat` (resources page) work as before. A stale or invalid reply gets 409 or 400.
 - `frontend/index.html`: questions render as a fieldset inside Gemma's bubble (buttons, or ticks plus Continue), with Not sure, Skip and Type My Own Answer; the text box stays usable; a find-form search resets the chat and its answers.
 - Other modules can ask with `clarifier.question(field, text, choices)` (a `place` field is registered for "which store or city?" questions).

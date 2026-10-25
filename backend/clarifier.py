@@ -1,7 +1,8 @@
 """Follow-up questions in the chat, with answer buttons, for when a request is missing a detail that would change the answer.
 
 "I need somewhere to live" could mean a rental, a bed tonight or help paying rent, so the chat asks which first, then the
-area, then a budget, one question at a time, instead of guessing. A detailed request ("an entire one-bedroom home in
+area, then a budget, then (where it changes the results) a room or a whole place and how many bedrooms, one question at a
+time, instead of guessing. Each has an "anything is fine" answer, and typing works too. A detailed request ("an entire one-bedroom home in
 Blacksburg under $1,200") goes straight to an answer, a general question ("what is a housing voucher?") is just answered,
 and someone without a safe place tonight gets 911 and 211 right away, with the area question beside that help, never instead.
 
@@ -18,12 +19,12 @@ The picked value comes back as "near Walmart, Christiansburg" in the request.
 import re
 import secrets
 
-from advisor import (ACCESSIBLE, AREAS, BUDGET_ANY, CAMPUS, CHEAP, CLARIFY_MARK, LANDMARKS, NEAR_ANY, OUTSIDE, URGENT, Instant,
-                     area_for, extra_needs, household_size, housing_search, understood)
+from advisor import (AREAS, BUDGET_ANY, CAMPUS, CHEAP, CLARIFY_MARK, LANDMARKS, NEAR_ANY, OUTSIDE, URGENT, Instant,
+                     area_for, household_size, housing_search, understood, with_context)
 from redact import redact
 
-SKIP, UNSURE = "skip", "unsure"
-MAX_QUESTIONS = 3  # per request; after three, answer with what's known
+SKIP, UNSURE, ANY = "skip", "unsure", "any"  # "any" is an answer (no preference), not a skipped question
+MAX_QUESTIONS = 4  # per request; after four, answer with what's known
 QID = re.compile(r"q_[a-z_]{2,24}_[0-9a-f]{8}")
 
 
@@ -55,6 +56,8 @@ def _one_of(*ids):
 PLACES = {word: area for word, area in AREAS} | {k: v[0] for k, v in LANDMARKS.items()} | {"northern virginia": "Northern Virginia", "nova": "Northern Virginia"}
 NAMES = {"mclean": "McLean", "loudoun": "Loudoun County", "prince william": "Prince William County", "nova": "Northern Virginia", "old town": "Old Town Alexandria"}
 _PLACE_WORDS = re.compile(r"\b(" + "|".join(re.escape(k) for k in sorted(PLACES, key=len, reverse=True)) + r")\b", re.I)
+# A rental search can be anywhere in either region; shelters and rent help are run by each county, so those ask which.
+RENTAL_AREAS = [("northern virginia", "Northern Virginia"), ("blacksburg", "Blacksburg (Virginia Tech)"), (ANY, "Anywhere is fine")]
 AREA_CHOICES = [("blacksburg", "Blacksburg (Virginia Tech)"), ("arlington", "Arlington"), ("alexandria", "Alexandria"),
                 ("fairfax county", "Fairfax County"), ("loudoun", "Loudoun County"), ("prince william", "Prince William County")]
 CAMPUS_CHOICES = [("virginia tech", "Virginia Tech (Blacksburg)"), ("george mason", "George Mason (Fairfax)")]
@@ -78,8 +81,10 @@ SITUATIONS = [("back_rent", "Rent I'm behind on", "I'm behind on rent", re.compi
               ("eviction", "An eviction notice or court date", "I got an eviction notice or court date", re.compile(r"evict|\bcourt\b", re.I)),
               ("deposit", "A security deposit", "I need help with a security deposit", re.compile(r"\bdeposit", re.I)),
               ("utilities", "Utility bills", "I need help with utility bills", re.compile(r"utilit|electric bill|gas bill|water bill", re.I))]
-SPACE = {"room": "a room in a shared home (rent is per person)", "entire_home": "a whole apartment or house, not a shared room",
-         "either": "rooms or whole homes are both fine"}
+# Worded so the place searches read them right: only the room answer says "room" (nearby.py filters on that word).
+SPACE = {"room": "a room in a shared home (rent is per person)", "entire_home": "a whole apartment or house to myself",
+         "either": "no preference between a bedroom in a group rental and a whole home"}
+BEDS = {"0": "a studio", "1": "1 bedroom", "2": "2 bedrooms", "3": "3 or more bedrooms", ANY: "any number of bedrooms"}
 BASIS = {"total": "the budget is the total for everyone who will live there", "per_person": "the budget is per person"}
 
 
@@ -110,10 +115,11 @@ def _place(v):
 
 
 register("help", _one_of(*HELP), per_request=True)
-register("area", lambda v: v if v in (SKIP, UNSURE) or (isinstance(v, str) and v in PLACES) else None)
+register("area", lambda v: v if v in (SKIP, UNSURE, ANY) or (isinstance(v, str) and v in PLACES) else None)
 register("budget", _budget)
 register("basis", _one_of(*BASIS), lambda v: BASIS.get(v))
 register("space", _one_of(*SPACE), lambda v: SPACE.get(v))
+register("bedrooms", _one_of(*BEDS), lambda v: BEDS.get(v))
 register("situation", _situation, lambda v: "; ".join(p for k, _, p, _ in SITUATIONS if k in v) if isinstance(v, list) else None,
          multi=True, per_request=True)
 register("place", _place, lambda v: None if v in (SKIP, UNSURE) else f"near {v}", per_request=True)
@@ -155,6 +161,9 @@ ROOM = re.compile(r"\b(?:rooms?|roommates?|shared (?:apartment|house|home|room))
 WHOLE = re.compile(r"\b(?:entire|whole (?:place|apartment|home|house|unit)|my own place|to myself|studios?|townhouses?|condos?|"
                    r"(?:\d|one|two|three|four)[- ]?(?:bed(?:room)?s?|br|bd))\b", re.I)
 EITHER = re.compile(r"\b(either|both|no preference|doesn'?t matter)\b", re.I)
+ANYTHING = re.compile(r"(?:any|anything|anywhere|whatever|doesn'?t matter|no preference)(?: (?:size|budget|price|area|place|amount))?"
+                      r"(?: (?:is )?(?:fine|ok|okay|works))?", re.I)
+_WORD_NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4}
 SKIP_WORDS = re.compile(r"(skip|skip (?:it|this|this one|that)|pass|rather not say|prefer not to say)", re.I)
 UNSURE_WORDS = re.compile(r"(not sure|unsure|i'?m not sure|i don'?t know|idk|dunno|no idea|no preference|anywhere|either)", re.I)
 
@@ -197,13 +206,23 @@ def read_fields(text, pending=None):
         found["space"] = "room"
     elif WHOLE.search(t):
         found["space"] = "entire_home"
+    beds = BEDROOMS.search(t)
+    if beds:
+        n = re.match(r"\d|[a-z]+", beds.group(0).lower()).group(0)
+        found["bedrooms"] = str(min(int(n) if n.isdigit() else _WORD_NUMBERS[n], 3))
+    elif re.search(r"\bstudios?\b", t, re.I):
+        found["bedrooms"] = "0"
     hits = [k for k, _, _, pattern in SITUATIONS if pattern.search(t)]
     if hits:
         found["situation"] = hits
     bare = t.strip(" .!?").lower()
     if pending and pending not in found:
-        if pending == "space" and EITHER.search(bare):
+        if pending == "space" and (EITHER.search(bare) or ANYTHING.fullmatch(bare)):
             found["space"] = "either"
+        elif pending in ("area", "bedrooms") and ANYTHING.fullmatch(bare):
+            found[pending] = ANY
+        elif pending == "budget" and ANYTHING.fullmatch(bare):
+            found["budget"] = "none"
         elif SKIP_WORDS.fullmatch(bare):
             found[pending] = SKIP
         elif UNSURE_WORDS.fullmatch(bare):
@@ -309,8 +328,9 @@ def _area_question(kind, conflict=None, intro=""):
     if kind == "tonight":
         return question("area", "Where are you tonight? I'll show shelters, intake lines and hotels nearby.", AREA_CHOICES,
                         skip=False, unsure=True, intro=f"{intro} {TONIGHT_HELP}".strip())
-    text = "Where do you live? Rent help is run by each city and county." if kind == "rent_help" else "Where are you looking?"
-    return question("area", text, AREA_CHOICES, skip=True, unsure=True, intro=intro)
+    if kind == "rent_help":
+        return question("area", "Where do you live? Rent help is run by each city and county.", AREA_CHOICES, skip=True, unsure=True, intro=intro)
+    return question("area", "Where are you looking? Pick one, or type a city or neighborhood.", RENTAL_AREAS, skip=False, intro=intro)
 
 
 def next_question(request, state, profile=None):
@@ -339,33 +359,41 @@ def next_question(request, state, profile=None):
             return question("situation", "What do you need help paying? Pick all that apply.",
                             [(k, label) for k, label, *_ in SITUATIONS], multi=True, skip=False, unsure=True)
         return None
-    # A rental. "Near my office at ..." names its own place (nearby.py finds it), except a bare "campus".
-    if not has_area and free("area") and (CAMPUS.search(t) or not NEAR_ANY.search(t)):
+    # A rental: where and a budget whenever they're missing, then (where it changes the results) a room or a whole place,
+    # and how many bedrooms. Each has an "anything is fine" answer. "Near my office at ..." names its own place
+    # (nearby.py and near_place.py find it), except a bare "campus".
+    near = NEAR_ANY.search(t) and not CAMPUS.search(t)
+    if not has_area and free("area") and not near:
         if CAMPUS.search(t) and not conflict:
             return question("area", CLARIFY_MARK, CAMPUS_CHOICES, skip=False, unsure=True,
                             intro=f"Got it: a place {', '.join(understood(t))}.")
         return _area_question("rental", conflict)
-    detailed = any((BEDROOMS.search(t), household_size(t), ACCESSIBLE.search(t), extra_needs(t), NEAR_ANY.search(t), CHEAP.search(t),
-                    ROOM.search(t), WHOLE.search(t), profile.get("bedrooms") is not None))
     budget = a.get("budget") or (isinstance(profile.get("budget"), (int, float)) and not isinstance(profile["budget"], bool) and profile["budget"] > 0 and int(profile["budget"]))
     area = a.get("area") if a.get("area") in PLACES else (keys[0] if keys and not conflict else None)
-    blacksburg = (area and _region(area) == "Blacksburg") or _profile_area(profile) == "Blacksburg"
-    if not budget and not detailed and free("budget"):
-        amounts = (600, 800, 1000, 1400) if blacksburg else (1200, 1600, 2000, 2500)
+    region = _region(area) if area else ("Blacksburg" if _profile_area(profile) == "Blacksburg" else "Northern Virginia" if _profile_area(profile) else None)
+    if not budget and not CHEAP.search(t) and free("budget"):  # "the cheapest" already says how to sort
+        steps = {"Blacksburg": (600, 900, 1300), "Northern Virginia": (1200, 1800, 2500)}.get(region, (800, 1500, 2500))
         return question("budget", "About how much can you pay each month for rent?",
-                        [(str(n), f"Under ${n:,}") for n in amounts] + [("none", "No set budget")], skip=True)
+                        [(str(steps[0]), f"Under ${steps[0]:,}")] + [(str(hi), f"${lo:,}–${hi:,}") for lo, hi in zip(steps, steps[1:])]
+                        + [("none", "Any budget is fine")], skip=False)
     people = household_size(t) or (profile.get("household") if isinstance(profile.get("household"), int) else None)
     if isinstance(budget, int) and people and people > 1 and free("basis"):
         return question("basis", f"Is ${budget:,} your total monthly budget or per person?",
                         [("total", "Total for everyone"), ("per_person", "Per person")], skip=False, unsure=True)
-    if blacksburg and not detailed and free("space"):
+    if near:
+        return None  # a place search is specific enough; its own questions (which store?) come next
+    if region == "Blacksburg" and free("space"):  # student rooms are priced per person, whole places per home
         return question("space", "A room in a shared home, or a whole place?",
-                        [("room", "A room (rent is per person)"), ("entire_home", "A whole apartment or house"), ("either", "Either is fine")])
+                        [("room", "A room (rent is per person)"), ("entire_home", "A whole place"), ("either", "Anything is fine")], skip=False)
+    whole = a.get("space") == "entire_home" or (region == "Northern Virginia" and a.get("space") != "room")
+    if whole and profile.get("bedrooms") is None and free("bedrooms"):
+        return question("bedrooms", "How many bedrooms?", [("0", "Studio"), ("1", "1 bedroom"), ("2", "2 bedrooms"), ("3", "3 or more"),
+                                                           (ANY, "Any size is fine")], skip=False)
     return None
 
 
 # ---- Writing the answers into the request ---------------------------------------------------------------------
-BROAD = "no area chosen, so give broad results across Northern Virginia, say they're broad, and that naming a city or Blacksburg narrows them"
+BROAD = "no particular area, so give broad results across Northern Virginia, say they're broad, and that naming a city or Blacksburg narrows them"
 
 
 def compose(request, answers):
@@ -393,7 +421,7 @@ def compose(request, answers):
             t = CAMPUS.sub(name if area in LANDMARKS else lambda m: f"{m.group(0)} in {name}", t, count=1)
         elif not said and not NEAR_ANY.search(t):
             notes.append(f"{'near' if area in LANDMARKS else 'in'} {name}")
-    elif kind and area in (SKIP, UNSURE) and not places_in(t):
+    elif kind and area in (SKIP, UNSURE, ANY) and not places_in(t):
         notes.append(BROAD)
     if kind == "rental":
         budget = answers.get("budget")
@@ -409,7 +437,7 @@ def compose(request, answers):
     for field, spec in FIELDS.items():
         if field in ("help", "area", "budget") or field not in answers or not spec["phrase"]:
             continue
-        if (field in ("basis", "space") and kind != "rental") or (field == "situation" and kind != "rent_help"):
+        if (field in ("basis", "space", "bedrooms") and kind != "rental") or (field == "situation" and kind != "rent_help"):
             continue
         words = spec["phrase"](answers[field])
         if words:
@@ -418,6 +446,17 @@ def compose(request, answers):
         return request
     t = re.sub(r"\s{2,}", " ", t).strip()
     return f"{t.rstrip(' .?!;')}. My answers in this chat: {'; '.join(notes)}." if notes else t
+
+
+def reply_in_words(text, state, history=None):
+    """A reply to a question asked in words only (near_place.py's "Which Walmart, or which city?") keeps the request it
+    answers, with this chat's answers in it: the message before may have been a button answer like "Under $1,200"."""
+    if state["pending"]:
+        return text  # a question with buttons is open: resolve() reads the reply
+    last = (history or [])[-1:]
+    if state["request"] and last and last[0].get("role") == "assistant":
+        return with_context(text, [{"role": "user", "text": compose(state["request"], state["answers"])}, last[0]])
+    return with_context(text, history)
 
 
 def resolve(text, state, profile=None, reply=None):
