@@ -1065,8 +1065,9 @@
   const allListings = document.getElementById('show-all-listings');
   let housingRows = [], visibleHousingCount = 6, browseRequest = null, gemmaOrder = null;
   // Favorites live in this browser only (no account), saved as the listing itself so they show whatever the filters are.
-  const FAVORITES_KEY = 'clearhome.favorites';
-  let favorites = {}; try { favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || {}; } catch { favorites = {}; }
+  // Favorites saved before the rename (under the old Clear House key) still load; the next save moves them to the new key.
+  const FAVORITES_KEY = 'clearhome.favorites', OLD_FAVORITES_KEY = 'clearhouse.favorites';
+  let favorites = {}; try { favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY) ?? localStorage.getItem(OLD_FAVORITES_KEY)) || {}; } catch { favorites = {}; }
   let showingFavorites = false;
   const shownRows = () => showingFavorites ? Object.values(favorites) : housingRows;
   const favoriteCount = document.getElementById('favorite-count');
