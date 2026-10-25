@@ -277,7 +277,9 @@
     .repo-tree-head{color:#e6edf3!important;padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid #30363d;align-items:center}
     .repo-tree-head i{width:10px;height:10px;border-radius:50%;background:#ea4335;display:inline-block}
     .repo-tree-head i:nth-child(2){background:#fbbc04}.repo-tree-head i:nth-child(3){background:#34a853}
-    @media (max-width: 560px){.repo-tree b{min-width:0}}
+    .repo-tree b{flex-shrink:0}
+    /* Phones: each file name sits above its note, so the two never overlap. */
+    @media (max-width: 560px){.repo-tree span:not(.repo-tree-head){display:block;white-space:normal;line-height:1.45;margin-bottom:6px}.repo-tree b{display:block;min-width:0;overflow-wrap:anywhere}}
     .repo-card img.repo-preview{width:100%;aspect-ratio:2/1;object-fit:cover;border-radius:14px;border:1px solid #30363d;background:#161b22}
     .repo-card h3{font-size:22px;margin:0 0 6px;color:#fff}
     .repo-card h3 a{color:inherit;text-decoration:none}
@@ -465,7 +467,7 @@
           <span><b>backend/walkable.py</b> walking times to groceries and bus stops</span>
           <span><b>frontend/listing-map.js</b> Google Maps with house pins</span>
           <span><b>gemma/Dockerfile</b> the 17 GB Gemma 4 GPU image</span>
-          <span><b>data/resources.json</b> 409 hand-checked records</span>
+          <span><b>data/resources.json</b> 430+ hand-checked records</span>
           <span><b>backend/test_*.py</b> tests that run offline</span>
         </a>
         <div>
