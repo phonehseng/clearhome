@@ -17,6 +17,8 @@ SELF_HARM = re.compile(r"\b(?:suicid\w*|kill(?:ing)? my ?self|end(?:ing)? my (?:
 ABUSE = re.compile(r"\b(?:domestic (?:violence|abuse)|abusive(?! (?:landlord|property|manager|management|boss|employer))|abuser|being abused|abuses (?:me|us)|(?<!substance )(?<!drug )(?<!alcohol )abused|"
                    r"sexual(?:ly)? assault\w*|raped|stalk(?:ing|er|s me|ed)|(?:restraining|protective) order|"
                    r"(?:beat|beats|beating|hit|hits|hitting|hurts|chok\w+|punch\w*|slap\w*|threaten\w*) (?:me|us|my (?:kids?|children|baby|son|daughter))(?! (?:up|with|back|to it))|"
+                   r"threaten\w* to (?:kill|hurt|beat|stab|shoot|hit|rape)\w* (?:me|us|my (?:kids?|children|baby|son|daughter))|(?:going to|will|gonna) kill (?:me|us|my (?:kids?|children|baby|son|daughter))|"
+                   r"(?:has|have|had|with) a (?:gun|knife|weapon)\b.*\b(?:me|us|kill)\b|"
                    r"(?:afraid|scared|terrified) of (?:him|her|my (?:partner|boyfriend|girlfriend|husband|wife|spouse|ex|dad|mom|father|mother|parents?))|"
                    r"fle(?:e|eing|d) (?:from )?(?:him|her|abuse|violence|my (?:partner|boyfriend|girlfriend|husband|wife|spouse|ex|abuser)))\b", re.I)
 
