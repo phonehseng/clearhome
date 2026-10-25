@@ -275,16 +275,26 @@ def cards_for(text, limit=6):
     norm = lambda t: " ".join(re.sub(r"\([^)]*\)|[^a-z0-9]+", " ", t).split())
     acronyms = lambda t: set(re.findall(r"\(([a-z]{2,8})[,)]", t))
     found = {}
+    # A bold name that is only part of a record's name ("Fairfax County", "Alexandria") is a place, not a program:
+    # it counts only when it points at one or two records.
+    partial = {}
     for r in filter_catalog(load_catalog()):
         name = r.get("community") or r["name"]
         key = name.casefold()
         if key in found:
             continue
         n = norm(key)
-        hit = (any(b == key or (len(norm(b)) >= 8 and (norm(b) in n or n in norm(b))) or norm(b) in acronyms(key) for b in bold)
-               or (len(key) >= 12 and key in low))
-        if hit:
+        if (any(b == key or (len(n) >= 8 and n in norm(b)) or norm(b) in acronyms(key) for b in bold)
+                or (len(key) >= 12 and key in low)):
             found[key] = r
+            continue
+        for b in bold:
+            if len(norm(b)) >= 8 and norm(b) in n:
+                partial.setdefault(b, {})[key] = r
+    for b, hits in partial.items():
+        if len(hits) <= 2:
+            for key, r in hits.items():
+                found.setdefault(key, r)
     # Short forms like "Arlington DHS" or "PathForward": every word of the bold name is in the record's full name
     # (brackets included, spaces ignored). Only counts when it points at one or two records, so "Fairfax County" doesn't.
     words = lambda t: re.findall(r"[a-z0-9]+", t)

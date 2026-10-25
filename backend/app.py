@@ -3,6 +3,7 @@
 Run:  python backend/app.py      then open http://localhost:8000 (about page) or /app (tools)
 Set INCLUDE_UNVERIFIED=1 to also use placeholder entries while testing.
 """
+import gzip
 import json
 import os
 import math
@@ -25,6 +26,23 @@ FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
 READ_ONLY = os.environ.get("CLEARHOUSE_READ_ONLY") == "1"
 app = Flask(__name__, static_folder=None)
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024  # requests are small JSON; no uploads
+
+
+@app.after_request
+def compress(response):
+    """Gzip pages and JSON (the listings JSON shrinks about 13x). Streamed chat answers and photos are left alone."""
+    if (response.status_code != 200
+            or "Content-Encoding" in response.headers or "gzip" not in request.headers.get("Accept-Encoding", "")
+            or not (response.mimetype or "").startswith(("application/json", "text/html", "text/css", "text/javascript", "application/javascript", "image/svg"))):
+        return response
+    response.direct_passthrough = False  # page files are small enough to read and compress
+    data = response.get_data()
+    if len(data) < 1024:
+        return response
+    response.set_data(gzip.compress(data, compresslevel=6))
+    response.headers["Content-Encoding"] = "gzip"
+    response.headers["Vary"] = "Accept-Encoding"
+    return response
 
 
 @app.get("/logo.svg")
@@ -125,11 +143,34 @@ def listings():
     if status:
         rows = [r for r in rows if r.get("availability", {}).get("status") == status]
     option_count = len(rows)
-    if grouping == 'community':
-        rows = group_listings(rows, sort=sort)
-    elif sort == 'rent_asc':
-        rows.sort(key=lambda row: (row.get('monthly_rent') is None, row.get('monthly_rent') or 0))
+    if request.args.get('fields') == 'pins':  # the map only needs a pin and a popup
+        rows = [{k: r.get(k) for k in PIN_FIELDS} | {'availability': {'status': r['availability'].get('status')}}
+                for r in rows if isinstance(r.get('lat'), (int, float))]
+    elif grouping == 'community':
+        rows = [_slim_card(card) for card in group_listings(rows, sort=sort)]
+    else:
+        if sort == 'rent_asc':
+            rows.sort(key=lambda row: (row.get('monthly_rent') is None, row.get('monthly_rent') or 0))
+        rows = [_slim(r) for r in rows]
     return jsonify(listings=rows, count=len(rows), option_count=option_count, notice="Official-source web review, not a live vacancy feed. Confirm rent, eligibility and availability directly. Closed or overdue records are excluded.")
+
+
+# Bookkeeping fields no page shows; leaving them out keeps the listings response small.
+INTERNAL_FIELDS = {'catalog_batch', 'verification_method', 'geocode_source', 'source_link_audit', 'review_notes', 'currency', 'record_kind'}
+PIN_FIELDS = ('id', 'community', 'name', 'floor_plan', 'lat', 'lon', 'monthly_rent', 'rent_basis', 'rental_space', 'source_url')
+
+
+def _slim(row):
+    return {k: v for k, v in row.items() if k not in INTERNAL_FIELDS}
+
+
+def _slim_card(card):
+    """A grouped card whose floor plans list only what differs from the card; pages merge them back as {...card, ...plan}."""
+    card = _slim(card)
+    plans = card.pop('floor_plans', [])
+    card['floor_plans'] = [{k: v for k, v in _slim(p).items() if card.get(k) != v} | {k: None for k in card if k not in p and k not in INTERNAL_FIELDS}
+                           for p in plans]
+    return card
 
 
 @app.get("/resources")
