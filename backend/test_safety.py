@@ -405,6 +405,16 @@ class LowIncomeAndEmergencyTests(unittest.TestCase):
         self.assertTrue(seniors and all("62" in str(r.get("who_it_serves")) or "enior" in r["name"] for r in seniors))
         self.assertIsNone(advisor.rent_estimate({"type": "rental_assistance", "cost": "Grants from $500 to $6,000 a month"}))
 
+    def test_a_typo_section_8_question_gets_section_8_guidance(self):
+        typed = "I need help on whjat od i need for sdection 8 housing"
+        self.assertIn("Section 8", advisor.expand_nicknames(typed))
+        self.assertEqual(advisor.expand_nicknames("Station 8 apartments"), "Station 8 apartments")
+        with patch("advisor.stream_gemma", side_effect=lambda *a, **k: iter([(False, "Call 211.")])):
+            found = events(server.app.test_client().post("/api/ask/stream", json={"question": typed, "chat": {}}))
+        self.assertFalse(any(e["kind"] == "question" for e in found))  # answered, not "what kind of help?"
+        question = advisor.expand_nicknames(typed)
+        self.assertIn("Explain Section 8", advisor._prompt(question, [], advisor._records(question)).rsplit("Now write your answer.", 1)[1])
+
     def test_emergency_housing_is_tonight_and_asks_which_county(self):
         with patch("advisor.stream_gemma", side_effect=no_gemma):
             found = events(server.app.test_client().post("/api/ask/stream", json={"question": "EMERGEncy housing in nova", "chat": {}}))

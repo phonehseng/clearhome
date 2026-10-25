@@ -848,7 +848,7 @@ NICKNAMES = [
 # Advice or information ("how do I apply for Section 8?", "what are my rights?"): the answer may name places, but their
 # cards wait behind a button. Searches and urgent needs (behind on rent, eviction, tonight) still show them.
 ADVICE = re.compile(r"^\s*(?:what|what's|whats|how|why|when|should|can|could|is|are|does|do|explain|tell me about)\b"
-                    r"|\b(?:advice|tips?|my rights|what (?:should|do|can) i)\b", re.I)
+                    r"|\b(?:advice|tips?|my rights|what (?:should|do|can) i|what (?:do )?i need|requirements?|qualif\w*|eligib\w*)\b", re.I)
 
 
 LOW_INCOME = re.compile(r"\b(?:low[- ]income|income[- ](?:based|restricted|qualified)|subsidi[sz]ed|section ?8|public housing|affordable housing)\b", re.I)
@@ -866,7 +866,7 @@ BEDS = re.compile(r"\b(?:(studio|efficiency)|(\d|one|two|three|four)[\s-]*(?:bed
 
 
 # What a good answer to a common how-to or legal question explains (general Virginia rules; the person's case can differ).
-HOW_TO = [
+HOW_TO = [  # the first that matches is used, so the more specific ones come first
     (re.compile(r"\bsecurity deposit|\bdeposit back|\breturn (?:my |the )?deposit", re.I),
      "Explain the Virginia rule first: the landlord must return the deposit, minus itemized deductions, within 45 days after the tenancy ends. "
      "Then the steps: ask in writing with a forwarding address, keep photos and records, and if it isn't returned, legal aid or small claims court can help."),
@@ -882,6 +882,11 @@ HOW_TO = [
     (re.compile(r"\bhow (?:do|can|would) i apply\b|\bhow to apply\b", re.I),
      "Explain how to apply in plain steps: call or visit the leasing office, ask for an application and whether there is a waitlist, bring ID and "
      "proof of income, and ask about the application fee and income limits."),
+    (re.compile(r"\b(?:section 8|housing choice vouchers?|hcv|vouchers?)\b", re.I),
+     "Explain Section 8 (Housing Choice Vouchers) plainly: who usually qualifies (household income at or below about 50% of area median "
+     "income, citizenship or eligible immigration status, and screening), what to bring (photo ID, Social Security cards and birth "
+     "certificates for the household, proof of income), that you apply through your local housing authority only when its waitlist is "
+     "open, and that you then pay about 30% of income toward rent. Then give the waitlist status for their area exactly as recorded."),
 ]
 PRICE_Q = re.compile(r"\b(?:rent|price|cost|how much|available|availability|vacanc\w*|open(?:ings?)?|phone|number|call|address|where is)\b", re.I)
 
@@ -1047,6 +1052,9 @@ def expand_nicknames(text):
     import difflib
     for pattern, name in NICKNAMES:
         text = pattern.sub(name, text or "")
+    # "sdection 8", "secton 8", "sec 8": Section 8.
+    text = re.sub(r"\b(sec|sect|[a-z]{5,9})\.?\s?8\b", lambda m: "Section 8" if m.group(1).lower() in ("sec", "sect")
+                  or difflib.SequenceMatcher(None, m.group(1).lower(), "section").ratio() >= 0.8 else m.group(0), text, flags=re.I)
     text = re.sub(r"(?<![\w.])(\$?)(\d{1,3}(?:\.\d{1,2})?)\s?k\b", lambda m: f"{m.group(1)}{round(float(m.group(2)) * 1000)}", text, flags=re.I)  # "1.2k", "30k"
     text = ZIP.sub(lambda m: f"{m.group(1)} ({ZIPS[m.group(1)]})" if m.group(1) in ZIPS else m.group(1), text)
     # A misspelled place: a long word that isn't a place, but is very close to one (never a word that is a place already).
