@@ -97,12 +97,22 @@ Open http://localhost:8000.
 
 ## Responsible AI, privacy and accessibility
 
-> **Warning: free AI tier.** The assistant runs on Google's free Gemini tier. Google may use what you type to improve its products. Please don't enter your name, address, phone number or financial details. We automatically remove Social Security, card and account numbers, email addresses and phone numbers, but we can't remove names or street addresses.
+> **Please use made-up details.** We automatically remove Social Security, card and account numbers, email addresses and phone numbers, but we can't remove names or street addresses.
+
+### What we collect, and where your words go
+
+- **Nothing is stored.** No accounts, no cookies, no analytics, and no chat history on our server: a conversation lives only in the open page. Saved favorites stay in your own browser.
+- **Your question goes to our own Gemma.** On the live site, Gemma 4 runs on our own Cloud Run GPU in our Google Cloud project, so questions aren't sent to an outside AI company. The redaction above runs first.
+- **Fallback:** if our GPU is asleep or busy, the same redacted question goes to Google's Gemini API. On its free tier Google may use submitted text to improve its products, so a real deployment should use a paid key or Vertex AI, or keep the GPU awake.
+- **Places you name:** an address or place in a "near..." question is looked up with Google Maps Platform (Places and Routes) to find it and measure walking times. **Near me** sends your location rounded to about 100 meters, with that one question only.
+- **Logs:** Cloud Run keeps standard request logs (time, path, status), not the text of what you typed.
 
 - **Grounding:** the assistant only recommends entries from our hand-verified list, and only entries marked `verified`. It's told never to invent places, phone numbers or prices, and to point people to 211 when nothing fits.
 - **Safety:** every page shows 911 and 211 up front. Urgent situations list shelters first. Answers say they are guidance, not legal advice.
+- **Crisis lines:** a message about suicide or self-harm gets 988, and one about abuse at home gets the Virginia Family Violence & Sexual Assault Hotline, the National Domestic Violence Hotline and the county's own 24-hour line, instantly and with no AI, as tap-to-call buttons ([backend/crisis.py](backend/crisis.py)).
+- **Fair housing:** Gemma and the sort chat won't exclude or steer by any class protected under Virginia's fair housing law, source of income included. [backend/test_safety.py](backend/test_safety.py) checks these guardrails with hostile inputs: crisis messages, prompt injection, discriminatory requests and personal numbers.
 - **Prompt injection:** questions, chat history and catalog records are marked as data in the prompt, and the model is told not to follow instructions inside them.
-- **Privacy:** the site takes no file uploads. SSNs, account numbers, email addresses and phone numbers are removed by pattern from everything people type before it is sent to Gemma, and we don't store requests. On the free Gemini API tier Google may use submitted text to improve its products, so a real deployment should use a paid key or Vertex AI. Names and street addresses are not removed automatically, so the page asks people to keep personal details out.
+- **Privacy:** the site takes no file uploads. SSNs, account numbers, email addresses and phone numbers are removed by pattern from everything people type before it is sent to Gemma, and we don't store requests (see above). Names and street addresses are not removed automatically, so the page asks people to keep personal details out.
 - **Web finds:** listings Gemma finds on the web are labeled as not verified by our team, keep only sources Google actually returned, and never show a phone number taken from the web.
 - **Accessibility:** labelled form fields, keyboard-navigable tabs, visible focus outlines, high-contrast text, and results announced to screen readers.
 - **Limits:** the AI can still make mistakes, and listings change, so answers point to real people (211, tenant legal aid, the provider) for decisions.
