@@ -97,6 +97,8 @@ Open http://localhost:8000.
 
 ## Responsible AI, privacy and accessibility
 
+> **Warning: free AI tier.** The assistant runs on Google's free Gemini tier. Google may use what you type to improve its products. Please don't enter your name, address, phone number or financial details. We automatically remove Social Security, card and account numbers, email addresses and phone numbers, but we can't remove names or street addresses.
+
 - **Grounding:** the assistant only recommends entries from our hand-verified list, and only entries marked `verified`. It's told never to invent places, phone numbers or prices, and to point people to 211 when nothing fits.
 - **Safety:** every page shows 911 and 211 up front. Urgent situations list shelters first. Answers say they are guidance, not legal advice.
 - **Prompt injection:** questions, chat history and catalog records are marked as data in the prompt, and the model is told not to follow instructions inside them.

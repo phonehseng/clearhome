@@ -252,6 +252,19 @@
     .chat-hotels{display:grid;gap:8px;width:100%;animation:msg-in .3s ease-out}
     .chat-hotels .chat-cards{animation:none}
     .chat-hotels .hotel-note,.chat-hotels .hotel-more{margin:0}
+    .hotel-cost{color:var(--ink)}.hotel-cost b{font-weight:700}
+    .hotel-basis{font-size:12px}
+    /* Somewhere to stay tonight: free shelters beside paid hotels (stacked when narrow), so the cost is plain before anyone calls. */
+    .tonight-split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px;align-items:start}
+    .tonight-col{min-width:0;padding:13px 13px 14px;border-radius:12px;border:1px solid var(--line);border-top:3px solid}
+    .tonight-col.free{background:#f1f7f3cc;border-top-color:#3d7a5c}
+    .tonight-col.paid{background:#fff8efcc;border-top-color:#d9822b}
+    .find-results .tonight-col h4{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;color:var(--ink);margin-bottom:4px}
+    .find-results .tonight-col .opt-grid{grid-template-columns:1fr}
+    .cost-tag{padding:1px 8px;border-radius:999px;font-size:11px;letter-spacing:.6px}
+    .cost-tag.free{background:#d9ecdf;color:#24563d}
+    .cost-tag.paid{background:#fde4c4;color:#8a4b0f}
+    @media(max-width:560px){.tonight-col{padding:11px 10px 12px}}
     .web-search-btn{margin-top:8px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px dashed #d9822b;background:#fff8ef;color:#8a4b0f;font-size:12.5px;font-weight:650}
     .web-search-btn:hover{background:#fdeedd}
     /* Nearby essentials: one group, read top to bottom; the walking time only applies once a place is chosen. */
@@ -1081,7 +1094,7 @@
       else if(ages.some(Boolean))card.append(housingElement('p','housing-age','Some options have age requirements'));
       const rent = housingElement('p','housing-rent');
       if (typeof row.monthly_rent === 'number' && Number.isFinite(row.monthly_rent)) {
-        rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US')}`; rent.append(housingElement('small','',ClearHouseRental.period(row)));
+        rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US',{maximumFractionDigits:0})}`; rent.append(housingElement('small','',ClearHouseRental.period(row)));
       } else rent.textContent = 'Rent: confirm with provider';
       card.append(rent);
       // Condensed: what you get, the move-in note, then one muted line of extras and the rent caveat.
@@ -1376,10 +1389,18 @@
     }
     // Somewhere to stay tonight besides a shelter: budget hotels and motels near the area from Google Maps.
     // Our team hasn't verified them, so they say so, and a Google Maps link shows more.
-    const HOTEL_NOTE = 'Not verified by our team: call to ask tonight’s rate and whether a room is free. If the cost is a problem, ask 211 whether help paying for a room is available.';
+    const HOTEL_NOTE = 'Not verified by our team, and prices are estimates: call to ask tonight’s rate and whether a room is free. If the cost is a problem, ask 211 whether help paying for a room is available.';
     const hotelsShown = new Set();  // places whose hotels are already on screen, so the chat doesn't list them twice
     const hotelSearch = place => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('hotels near ' + place);
-    const hotelMeta = h => [h.kind, typeof h.rating === 'number' ? `★ ${h.rating.toFixed(1)}${h.ratings ? ` (${h.ratings.toLocaleString('en-US')})` : ''}` : null, h.price].filter(Boolean).join(' · ');
+    const hotelMeta = h => [h.kind, typeof h.rating === 'number' ? `★ ${h.rating.toFixed(1)}${h.ratings ? ` (${h.ratings.toLocaleString('en-US')})` : ''}` : null].filter(Boolean).join(' · ');
+    // An estimate, never a quote: the nightly range, then a line saying what it rests on (Google's price level, the chain, or neither).
+    function hotelCost(h, metaClass) {
+      const e = h.estimate;
+      if (!e || typeof e.low !== 'number' || typeof e.high !== 'number') return [];
+      const cost = el('span', null, { class: `${metaClass} hotel-cost` });
+      cost.append(el('b', `Est. $${e.low}–$${e.high} / night`), ' · call for tonight’s rate');
+      return e.basis ? [cost, el('span', e.basis, { class: `${metaClass} hotel-basis` })] : [cost];
+    }
     const hotelMore = url => el('a', 'See More Hotels on Google Maps ↗', { href: url, target: '_blank', rel: 'noopener', class: 'hotel-more' });
     async function fetchHotels(place) {
       const res = await fetch('/api/hotels', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ place }) });
@@ -1391,6 +1412,7 @@
       const c = el('article', null, { class: 'opt-card' });
       c.append(el('span', 'Google Maps · not verified by us', { class: 'opt-badge web' }), el('strong', h.name));
       if (hotelMeta(h)) c.append(el('span', hotelMeta(h), { class: 'meta' }));
+      c.append(...hotelCost(h, 'meta'));
       if (h.address) c.append(el('span', h.address, { class: 'meta' }));
       const links = el('div', null, { class: 'opt-links' });
       if (h.phone) links.append(el('a', `Call ${h.phone}`, { href: tel(h.phone) }));
@@ -1402,7 +1424,7 @@
     function hotelGroup(place) {
       const box = el('section');
       const note = el('p', 'Looking up hotels and motels on Google Maps…', { class: 'opt-empty' });
-      box.append(el('h4', 'Hotels and Motels Nearby'), note);
+      box.append(el('h4', 'Hotels & Motels'), note);
       hotelsShown.add(place.toLowerCase());
       fetchHotels(place).then(data => {
         hotelsShown.add(data.place.toLowerCase());
@@ -1513,6 +1535,7 @@
           const body = el('div', null, { class: 'chat-card-body' });
           body.append(el('span', 'Google Maps · not verified by us', { class: 'opt-badge web' }), el('span', h.name, { class: 'chat-card-title' }));
           if (hotelMeta(h)) body.append(el('span', hotelMeta(h), { class: 'chat-card-meta' }));
+          body.append(...hotelCost(h, 'chat-card-meta'));
           if (h.address) body.append(el('span', h.address, { class: 'chat-card-address' }));
           const links = el('div', null, { class: 'chat-card-actions' });
           if (h.phone) links.append(el('a', h.phone, { href: tel(h.phone), 'aria-label': `Call ${h.name}: ${h.phone}` }));
@@ -1605,8 +1628,12 @@
         results.replaceChildren();
         if (profile.tonight) {
           results.append(el('p', 'In danger right now? Call 911. For shelter tonight, call 211 or the intake line below. Don’t wait for an AI answer.', { class: 'notice-urgent' }));
-          results.append(group('Shelters and Intake Lines', data.shelters, 'shelter', 'Call 211 for shelter tonight.'));
-          results.append(hotelGroup(profile.location || data.area));
+          // Free shelters beside paid hotels, each column saying up front what it costs.
+          const column = (box, tag, note) => { const h = box.querySelector('h4'); h.append(el('span', ' · ', { class: 'visually-hidden' }), el('span', tag, { class: 'cost-tag ' + tag })); if (note) h.after(el('p', note, { class: 'hotel-note' })); box.classList.add('tonight-col', tag); return box; };
+          const split = el('div', null, { class: 'tonight-split' });
+          split.append(column(group('Shelters & Intake Lines', data.shelters, 'shelter', 'Call 211 for shelter tonight.'), 'free', 'No cost to stay. Call first: each card says how to get in.'),
+                       column(hotelGroup(profile.location || data.area), 'paid'));
+          results.append(split);
         }
         const amenity = profile.tonight ? '' : v('find-amenity');
         let homeCount = data.listings.length;
@@ -1795,7 +1822,7 @@
         if (!res.ok || data.error) throw new Error(data.error || 'Search failed.');
         const f = data.filters || {};
         const label = { supermarket: 'a supermarket', pharmacy: 'a pharmacy', transit: 'a bus or train stop' }[f.amenity];
-        setStatus(`${data.results.length} result${data.results.length === 1 ? '' : 's'} in ${f.area}${f.max_rent ? ` under $${Number(f.max_rent).toLocaleString()}` : ''} with ${label} within ${f.max_walk_minutes} minutes${f.strict ? '' : ' (preferred)'}.`);
+        setStatus(`${data.results.length} result${data.results.length === 1 ? '' : 's'} in ${f.area}${f.max_rent ? ` under $${Number(f.max_rent).toLocaleString('en-US',{maximumFractionDigits:0})}` : ''} with ${label} within ${f.max_walk_minutes} minutes${f.strict ? '' : ' (preferred)'}.`);
         if (data.warnings?.length) { const ul = el('ul', null, { class: 'walk-warnings' }); data.warnings.forEach(w => ul.append(el('li', w))); statusEl.after(ul); setTimeout(() => ul.remove(), 60000); }
         if (data.results.length) {
           data.results.forEach(r => cards.append(card(r)));

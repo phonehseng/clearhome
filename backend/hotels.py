@@ -2,7 +2,8 @@
 
 No AI is involved. Google Places Text Search finds budget hotels and motels in or near the area; when Google knows a
 price level, cheaper ones come first (Google's own order otherwise). These places aren't verified by our team, so the page labels them as
-Google Maps results and says to call for tonight's rate. Without a Maps key (or if Google doesn't answer), the list
+Google Maps results and says to call for tonight's rate. Each gets an estimated nightly range (see estimate), shown as an
+estimate along with what it's based on. Without a Maps key (or if Google doesn't answer), the list
 is empty and the page still gets a Google Maps search link.
 
 Usage: python backend/hotels.py "Arlington"
@@ -25,6 +26,21 @@ ROOM_TYPES = {"hotel", "motel", "extended_stay_hotel", "inn", "hostel", "lodging
 PRICE = {"PRICE_LEVEL_FREE": (0, "Free"), "PRICE_LEVEL_INEXPENSIVE": (1, "$ · Inexpensive"), "PRICE_LEVEL_MODERATE": (2, "$$ · Moderate"),
          "PRICE_LEVEL_EXPENSIVE": (3, "$$$ · Expensive"), "PRICE_LEVEL_VERY_EXPENSIVE": (4, "$$$$ · Very expensive")}
 UNKNOWN_PRICE = 2.5  # no price level from Google: after the inexpensive and moderate ones, before the expensive ones
+# What a night usually costs, so someone can tell a $70 motel from a $200 hotel before calling. Google rarely gives hotels
+# a price, so this is an estimate, never a quote: by Google's price level when it has one, else by the brand's chain scale,
+# else (an independent) the economy range. Typical weeknight rates; Northern Virginia runs higher than Blacksburg.
+NIGHTLY = {"Northern Virginia": {"economy": (75, 120), "midscale": (105, 160), "upper midscale": (140, 220), "upscale": (190, 320), "luxury": (300, 500)},
+           "Blacksburg": {"economy": (60, 95), "midscale": (80, 130), "upper midscale": (110, 175), "upscale": (150, 250), "luxury": (220, 380)}}
+LEVEL_TIER = {"PRICE_LEVEL_INEXPENSIVE": ("economy", "Inexpensive"), "PRICE_LEVEL_MODERATE": ("midscale", "Moderate"),
+              "PRICE_LEVEL_EXPENSIVE": ("upscale", "Expensive"), "PRICE_LEVEL_VERY_EXPENSIVE": ("luxury", "Very expensive")}
+# Checked in this order, so "Hampton Inn by Hilton" is upper midscale before "Hilton" can make it upscale,
+# and "Days Inn by Wyndham" is economy before "Wyndham" does.
+BRANDS = [(tier, re.compile(rf"\b(?:{names})\b", re.I)) for tier, names in (
+    ("economy", r"motel 6|studio 6|super 8|days inn|econo lodge|red roof|rodeway|travelodge|budget inn|red carpet inn|surestay|howard johnson|"
+                r"knights inn|america.?s best value|extended stay america|woodspring|intown suites"),
+    ("midscale", r"quality inn|comfort (?:inn|suites)|sleep inn|la quinta|baymont|wingate|microtel|country inn|best western|candlewood|ramada|clarion"),
+    ("upper midscale", r"hampton inn|hilton garden inn|courtyard|fairfield inn|holiday inn|homewood|residence inn|springhill|towneplace|hyatt place|home2|tru"),
+    ("upscale", r"marriott|hilton|hyatt|sheraton|westin|embassy suites|doubletree|crowne plaza|renaissance|radisson|wyndham|staybridge|kimpton|aloft"))]
 FIELDS = ("places.id,places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount,places.priceLevel,"
           "places.nationalPhoneNumber,places.websiteUri,places.googleMapsUri,places.businessStatus,places.primaryType,places.primaryTypeDisplayName")
 # A chat question is about a room for tonight (the person's own words, not the form's checkboxes).
@@ -53,6 +69,20 @@ def near(place):
     return {"area": area, "place": label, "hotels": _lookup(label, area), "search_url": search_url(label)}
 
 
+def estimate(name, level, area):
+    """{"low", "high", "basis"}: what a night likely costs here, and what that guess rests on (shown with it)."""
+    region = "Blacksburg" if area == "Blacksburg" else "Northern Virginia"
+    if level in LEVEL_TIER:
+        tier, word = LEVEL_TIER[level]
+        basis = f"Google lists it as {word}; typical {region} rate"
+    else:
+        tier, brand = next(((t, m.group(0)) for t, pattern in BRANDS if (m := pattern.search(name or ""))), ("economy", None))
+        basis = (f"{brand} is {'an' if tier[0] in 'aeiou' else 'a'} {tier.replace(' ', '-')} chain; typical {region} rate" if brand
+                 else f"Not a chain we know; typical {region} economy rate")
+    low, high = NIGHTLY[region][tier]
+    return {"low": low, "high": high, "basis": basis}
+
+
 def _lookup(label, area):
     if not _key():
         return []
@@ -76,12 +106,13 @@ def _lookup(label, area):
                 or "latitude" not in where or _miles(where["latitude"], where["longitude"], region[1], region[2]) > region[3]):
             continue
         rank, price = PRICE.get(p.get("priceLevel"), (UNKNOWN_PRICE, None))
+        name = (p.get("displayName") or {}).get("text")
         hotels.append({k: v for k, v in {
-            "name": (p.get("displayName") or {}).get("text"), "kind": (p.get("primaryTypeDisplayName") or {}).get("text"),
+            "name": name, "kind": (p.get("primaryTypeDisplayName") or {}).get("text"),
             "address": p.get("formattedAddress"), "phone": p.get("nationalPhoneNumber"),
             "website": p.get("websiteUri") if str(p.get("websiteUri", "")).startswith("https://") else None,
             "maps_url": p.get("googleMapsUri"), "rating": p.get("rating"), "ratings": p.get("userRatingCount"), "price": price,
-            "lat": where["latitude"], "lon": where["longitude"], "_rank": rank,
+            "estimate": estimate(name, p.get("priceLevel"), area), "lat": where["latitude"], "lon": where["longitude"], "_rank": rank,
         }.items() if v not in (None, "")})
     hotels = sorted((h for h in hotels if h.get("name")), key=lambda h: h["_rank"])[:MAX_HOTELS]  # stable: Google's order stays within a level
     for h in hotels:

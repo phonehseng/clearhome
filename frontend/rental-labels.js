@@ -6,7 +6,7 @@ window.ClearHouseRental = Object.freeze({
   },
   price(row) {
     return typeof row.monthly_rent === 'number' && Number.isFinite(row.monthly_rent)
-      ? `From $${row.monthly_rent.toLocaleString('en-US')}${this.period(row)}` : 'Rent: confirm with provider';
+      ? `From $${row.monthly_rent.toLocaleString('en-US',{maximumFractionDigits:0})}${this.period(row)}` : 'Rent: confirm with provider';
   },
   term(row) {
     const date = value => /^\d{4}-\d{2}-\d{2}$/.test(value || '')

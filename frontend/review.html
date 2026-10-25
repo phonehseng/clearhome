@@ -146,7 +146,7 @@
       box.append(head, tags);
       const facts = el('div', null, { class: 'facts' });
       [r.address || [r.area, r.jurisdiction].filter(Boolean).join(' · '), r.phone && '☎ ' + r.phone,
-       typeof r.monthly_rent === 'number' && `$${r.monthly_rent.toLocaleString('en-US')}/mo`, r.minimum_age && `${r.minimum_age}+`,
+       typeof r.monthly_rent === 'number' && `$${r.monthly_rent.toLocaleString('en-US',{maximumFractionDigits:0})}/mo`, r.minimum_age && `${r.minimum_age}+`,
        r.last_verified && `verified ${r.last_verified}`, r.availability.review_due && `recheck by ${r.availability.review_due}`,
        r.lat == null && 'no map location', r.has_photo && 'photo'].filter(Boolean).forEach(t => facts.append(el('span', t)));
       const link = safeUrl(r.source_url); if (link) { const a = el('a', 'Source ↗', { href: link, target: '_blank', rel: 'noopener' }); facts.append(a); }
