@@ -97,14 +97,17 @@ class ThinkingTests(unittest.TestCase):
         self.assertIn("They asked for at least 13 minutes", seen["prompt"])
         self.assertIn('"furnished":true', seen["prompt"])  # Gemma can now see furnished
 
-    def test_plain_questions_stay_fast(self):
-        seen = {}
+    def test_every_answer_thinks_and_a_long_think_falls_back_to_a_quick_answer(self):
+        calls = []
         def fake_stream(prompt, thoughts=False, think=False):
-            seen["think"] = think
-            return iter([(False, "Call 211.")])
+            calls.append(think)
+            # The first (thinking) pass only ever thinks; the quick second pass answers.
+            return iter([(True, "checking each program")] if think else [(False, "Call 211.")])
         with patch("advisor.stream_gemma", side_effect=fake_stream):
-            server.app.test_client().post("/api/ask/stream", json={"question": "How do vouchers work in Alexandria?"}).get_data()
-        self.assertFalse(seen["think"])
+            body = server.app.test_client().post("/api/ask/stream", json={"question": "How do vouchers work in Alexandria?"}).get_data(as_text=True)
+        self.assertEqual(calls, [True, False])
+        self.assertIn("Call 211.", body)
+        self.assertNotIn("fallback", body)
 
     def test_gpu_passes_thinking_through_separately(self):
         lines = [json.dumps({"message": {"thinking": "Checking walk times"}}).encode(),

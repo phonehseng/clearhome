@@ -386,6 +386,25 @@ class EdgeCaseRoundThreeTests(unittest.TestCase):
         self.assertIn("above about $750 a month, 30% of your income", tail)
 
 
+class LowIncomeAndEmergencyTests(unittest.TestCase):
+    def test_low_income_housing_is_a_rental_search_with_income_based_programs(self):
+        import clarifier
+        self.assertEqual(clarifier.detect_help("I need low income housing in Northern Virginia"), "rental")
+        question = "I need low income housing in Northern Virginia. My answers in this chat: under $1200 a month; any number of bedrooms."
+        rows = advisor._records(question)
+        self.assertIn("housing_authority", {r.get("type") for r in rows})
+        first = rows[0]
+        price = first.get("monthly_rent") if isinstance(first.get("monthly_rent"), (int, float)) else (advisor.rent_estimate(first) or {}).get("low")
+        self.assertLessEqual(price, 1200)  # what fits the budget comes first
+
+    def test_emergency_housing_is_tonight_and_asks_which_county(self):
+        with patch("advisor.stream_gemma", side_effect=no_gemma):
+            found = events(server.app.test_client().post("/api/ask/stream", json={"question": "EMERGEncy housing in nova", "chat": {}}))
+        asked = next(e["text"] for e in found if e["kind"] == "question")
+        self.assertEqual(asked["field"], "area")
+        self.assertIn("arlington", [c["id"] for c in asked["choices"]])
+
+
 class AnswerStyleTests(unittest.TestCase):
     def test_prompt_keeps_sympathy_for_worried_people_and_names_the_budget_gap(self):
         prompt = advisor._prompt("studio in Arlington under $400", [], [])

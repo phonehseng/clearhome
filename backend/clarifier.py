@@ -140,11 +140,12 @@ def question(field, text, choices, multi=False, skip=True, unsure=False, custom=
 
 
 # ---- Reading what was said -------------------------------------------------------------------------------------
-TONIGHT = re.compile(r"\b(tonight|shelters?|homeless|nowhere to (?:go|sleep|stay)|on the street|sleep(?:ing)? in (?:my|a) car|kicked out|"
+TONIGHT = re.compile(r"\b(emergency (?:housing|shelters?|places? to (?:stay|sleep)|beds?|rooms?)|crisis housing|need (?:a place|somewhere|housing) (?:now|today|asap|right now|immediately)|tonight|shelters?|homeless|nowhere to (?:go|sleep|stay)|on the street|sleep(?:ing)? in (?:my|a) car|kicked out|"
                      r"somewhere safe|safe place to (?:stay|sleep))\b", re.I)
 RENT_HELP = re.compile(r"\b(rent help|help (?:with|paying) (?:my |the )?rent|rent(?:al)? assistance|pay(?:ing)? (?:my |the )?rent|behind on rent|"
                        r"back rent|owe (?:my )?rent|evict\w*|security deposit|utility bills?|los(?:e|ing) (?:my|our|the) (?:apartment|home|house|place|housing)|can'?t afford (?:my |the )?rent)\b", re.I)
-RENTAL = re.compile(r"\b(apartments?|rentals?|for rent|to rent|rooms?|studios?|townhouses?|condos?|duplex|sublets?|subleases?)\b", re.I)
+RENTAL = re.compile(r"\b(apartments?|rentals?|for rent|to rent|rooms?|studios?|townhouses?|condos?|duplex|sublets?|subleases?|"
+                    r"low[- ]income|affordable|income[- ](?:based|restricted)|subsidi[sz]ed)\b", re.I)
 BEDROOMS = re.compile(r"\b(?:\d|one|two|three|four)[- ]?(?:bed(?:room)?s?|br|bd)\b", re.I)
 # "I need somewhere to live", "I need help": a need without the kind of help. Named topics (vouchers, a landlord) are not vague.
 VAGUE = re.compile(r"\b(somewhere|a place|housing|a home|new home|help|move|moving|relocat\w*)\b", re.I)
@@ -390,8 +391,9 @@ def next_question(request, state, profile=None):
     away = OUTSIDE_NOTE if not keys and re.search(OUTSIDE, t, re.I) else ""  # "apartments in Richmond": say we don't cover it
     if away and not has_area and free("area"):  # even "near UVA", before any place search
         return _area_question(kind if kind in ("tonight", "rent_help") else "rental", intro=away)
-    if kind == "tonight":
-        return _area_question("tonight", intro=away) if not has_area and free("area") else None
+    if kind == "tonight":  # shelter intake is run by each county, so "Northern Virginia" alone asks which
+        specific = (a.get("area") not in (None, "northern virginia", "nova", ANY)) or any(k not in ("northern virginia", "nova") for k in keys) or _profile_area(profile)
+        return _area_question("tonight", intro=away) if not specific and "area" not in state["asked"] else None
     if kind == "rent_help":
         if not has_area and free("area"):
             return _area_question("rent_help", conflict, intro=away)
