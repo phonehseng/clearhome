@@ -147,6 +147,32 @@
     .cl-footer-note + .cl-footer-credit{margin-top:6px;padding-top:0;border-top:0}
     .cl-footer-links a[aria-current="page"]{color:var(--blue-2);background:#e2eafb}
     @media (max-width: 640px){.cl-footer-note{text-align:center}}
+    /* Motion. The hero rises in on load, sections and cards come up as they scroll into view (siblings a beat apart,
+       set by the script at the end), and a small "request" dot keeps running along the diagram's arrows from your
+       browser to Cloud Run to Google's services. Nothing moves with reduced motion. */
+    @media (prefers-reduced-motion: no-preference) {
+      .cloud-hero-inner > :not(.stats), .stats li { animation: gc-rise .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--d, 0s); }
+      .cloud-hero-inner > :nth-child(2) { --d: .08s; } .cloud-hero-inner > :nth-child(3) { --d: .18s; }
+      .stats li:nth-child(1) { --d: .3s; } .stats li:nth-child(2) { --d: .38s; } .stats li:nth-child(3) { --d: .46s; } .stats li:nth-child(4) { --d: .54s; }
+      .g-dots i { animation: gc-pop .5s cubic-bezier(.3,1.6,.5,1) both; }
+      .g-dots i:nth-child(2) { animation-delay: .07s; } .g-dots i:nth-child(3) { animation-delay: .14s; } .g-dots i:nth-child(4) { animation-delay: .21s; }
+      .gc-reveal { opacity: 0; transform: translateY(24px);
+        transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1), translate .25s ease, box-shadow .25s ease;
+        transition-delay: var(--d, 0s), var(--d, 0s), 0s, 0s; }
+      .gc-reveal.gc-on { opacity: 1; transform: none; }
+      .arch-color-line.gc-reveal { transform: scaleX(.15); }
+      .arch-color-line.gc-reveal.gc-on { transform: none; }
+      .svc:hover, .control:hover { translate: 0 -4px; box-shadow: 0 22px 50px #23408f1f; }
+      .arrow { position: relative; }
+      .arch.gc-on .arrow::after { content: ''; position: absolute; top: 50%; left: 0; width: 7px; height: 7px; margin-top: -3px; border-radius: 50%;
+        background: #4285f4; box-shadow: 0 0 10px #4285f4aa; animation: gc-packet 2.6s ease-in-out 1s infinite both; }
+      .arch.gc-on .arch-row > .arrow:nth-of-type(2)::after { animation-delay: 2.3s; background: #34a853; box-shadow: 0 0 10px #34a853aa; }
+      .end .btn.gc-on { animation: gc-glow 2.2s ease-in-out .5s 2; }
+    }
+    @keyframes gc-rise { from { opacity: 0; transform: translateY(22px); } }
+    @keyframes gc-pop { from { opacity: 0; transform: scale(0); } }
+    @keyframes gc-packet { 0% { left: 0; opacity: 0; } 20%, 80% { opacity: 1; } 100% { left: calc(100% - 7px); opacity: 0; } }
+    @keyframes gc-glow { 50% { box-shadow: 0 0 0 9px #4285f421, 0 14px 30px #2f55b540; } }
 </style>
   <link rel="stylesheet" href="/interface.css">
   <link rel="stylesheet" href="/site-header.css">
@@ -237,7 +263,7 @@
           <h3>Cloud Run GPUs</h3>
           <p class="what">Our own NVIDIA L4 graphics card runs Gemma 4 26B (through Ollama), just for Clear House.</p>
           <ul>
-            <li><b>Quick replies</b><span>Hidden “thinking” is turned off, so answers start in seconds instead of after a minute.</span></li>
+            <li><b>Quick replies</b><span>Everyday questions skip hidden “thinking”, so answers start in seconds. Questions with specific needs (pets, furnished, roommates…) get time to check every home first.</span></li>
             <li><b>Private</b><span>It refuses public calls. The website signs each request with its own Google identity.</span></li>
             <li><b>Pay only when used</b><span>It shuts down when idle and costs about $1 an hour while awake. During judging, one copy stays on so the first answer is fast.</span></li>
             <li><b>Ready before you ask</b><span>The GPU wakes up as soon as the chat scrolls into view, before you finish typing.</span></li>
@@ -311,5 +337,22 @@
     <p class="container cl-footer-note">AI can make mistakes. Always confirm with the provider.</p>
     <p class="container cl-footer-credit">Made by Pierce, Umair, Phone and Ryan for <b>GDG Build with AI × Hacktoberfest 2026</b>.</p>
   </footer>
+  <script>
+    // Scroll entrances (see the Motion styles): each item rises in once, when it comes on screen, a beat after the
+    // sibling before it. The diagram starts its request dots when it's in view.
+    (() => {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+      const seen = new IntersectionObserver(entries => entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('gc-on'); seen.unobserve(e.target);
+      }), { threshold: .15, rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.arch-color-line, main h2:not(#cloud-hero-title), main .sub, .arch-row > *, .stack .node, .arch-support, .svc, .control, .end .btn').forEach(el => {
+        const n = [...el.parentElement.children].indexOf(el);
+        el.style.setProperty('--d', `${Math.min(n, 5) * .08}s`);
+        el.classList.add('gc-reveal'); seen.observe(el);
+      });
+      document.querySelectorAll('.arch').forEach(el => seen.observe(el));
+    })();
+  </script>
 </body>
 </html>
