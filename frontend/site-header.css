@@ -40,3 +40,6 @@ body:has(.ch-header:not(.over-hero)){padding-top:84px}
 .ch-header.over-hero .brand-mark{box-shadow:0 3px 10px #14203f33}
 .ch-header.over-hero .header-links .cl-nav-btn{box-shadow:0 0 0 2px #ffffffb3,0 4px 12px #14203f24}  /* a white ring keeps the blue button apart from the blue hero */
 @media (prefers-reduced-motion:reduce){.ch-header :is(.brand,.header-links a){transition:none}}
+
+/* No rubber-band bounce past the top or bottom: scrolling up past the hero would reveal the light page background. */
+html{overscroll-behavior-y:none}
