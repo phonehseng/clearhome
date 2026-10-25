@@ -1672,6 +1672,14 @@
       form.requestSubmit();
       results.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     }));
+    // From the front page's "Need a place tonight?" chat: the same search, for the area picked there (read once).
+    let tonightArea = null; try { tonightArea = sessionStorage.getItem('ch:tonight'); sessionStorage.removeItem('ch:tonight'); } catch {}
+    if (tonightArea) {
+      document.getElementById('location').value = tonightArea.slice(0, 100);
+      document.getElementById('tonight').checked = true;
+      form.requestSubmit();
+      setTimeout(() => results.scrollIntoView({ behavior: 'auto', block: 'start' }), 300);
+    }
 
     chatForm.addEventListener('submit', e => { e.preventDefault(); chips.hidden = true; const q = chatInput.value.trim(); if (!q) return; chatInput.value = ''; ask(q); });
     chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit(); } });

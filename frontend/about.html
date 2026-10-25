@@ -487,6 +487,19 @@
     .start-form button:hover{background:#23408f}
     .start-form:focus-within{box-shadow:0 0 0 3px #ffd66b}
     .start-note{margin:12px 4px 0;font-size:12px;color:#b7c3e6;text-align:center}
+    /* "Need a place tonight?": the same dark intro as a short guided chat (safe first, then where), ending on the tools
+       page's shelters, intake lines and hotels for that area. */
+    .tonight .start-msgs{display:grid;gap:8px;max-height:min(46vh,380px);overflow-y:auto;align-content:start}
+    .start-msgs p.me{justify-self:end;background:#2f55b5;color:#fff;border-radius:16px 16px 6px 16px}
+    .start-choices{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+    .start-choices:empty{display:none}
+    .start-choice{display:inline-flex;align-items:center;min-height:40px;padding:9px 15px;border-radius:999px;border:1px solid #ffffff59;
+      background:#ffffff1f;color:#fff;font:inherit;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;animation:start-rise .35s ease both}
+    .start-choice:hover,.start-choice:focus-visible{background:#ffffff33;border-color:#ffffffa6}
+    .start-choice:focus-visible{outline:2px solid #ffd66b;outline-offset:2px}
+    .start-choice.urgent{background:#d93025;border-color:#d93025}
+    .start-choice.urgent:hover{background:#b3261e}
+    .start-note a{color:#fff;font-weight:700}
     /* The header itself lives in /site-header.css; the hero leaves room for it. */
     .cl-hero{padding-top:140px}
     @media (max-width: 860px){.cl-hero{padding-top:110px}}
@@ -620,7 +633,7 @@
         <p class="cl-chip cl-in"><span class="cl-ping" aria-hidden="true"></span>Northern Virginia &amp; Blacksburg</p>
         <h1 id="hero-title">Find Your Way <span>Home.</span></h1>
         <p class="cl-sub cl-in" style="--d:.35s">Verified homes, shelters and rent help. Ask in plain words.</p>
-        <div class="cl-actions cl-in" style="--d:.5s"><a class="cl-btn" href="/app" data-start>Get Started for Free <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency">Need a place tonight?</a></div>
+        <div class="cl-actions cl-in" style="--d:.5s"><a class="cl-btn" href="/app" data-start>Get Started for Free <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency" data-tonight-start>Need a place tonight?</a></div>
       </div>
       <div class="cl-hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#dce7fb"/><defs><clipPath id="cl-planet"><path d="M0 260A490 490 0 0 1 470 260Z"/></clipPath></defs><path d="M0 260A490 490 0 0 1 470 260Z" fill="#d6e2f5"/><path d="M272 260c45-34 100-39 198-27" stroke="#eef3fc" stroke-width="20" clip-path="url(#cl-planet)"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8fbff"/><path d="m110 130 73-55 74 55" stroke="#5b74a3" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#b4c8e9"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8fbff" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#7892bc"/><circle cx="190" cy="215" r="2" fill="#f8fbff"/><path d="m260 151 59-43 61 43v80H260Z" fill="#c5d6f1"/><path d="m253 155 66-48 68 48" stroke="#7892bc" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#f4f8ff"/><path d="M289 167v29m66-29v29" stroke="#9eb7de" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#8aa4ce"/><g class="tree t1"><path d="M76 230v-55" stroke="#8aa4ce" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#b6cbed"/></g><g class="tree t2"><path d="M415 236v-93" stroke="#8aa4ce" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#9fbbe3"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#c5d6f1"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#a9c2e8"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#a9c2e8"/></g><g class="grass" transform="translate(46 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#92add5" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#92add5" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#92add5" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#92add5" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#92add5" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(428 241)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#92add5" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 229v-22m-9 9h26m-17 13v-22m9 22v-22" stroke="#f8fbff" stroke-width="4"/><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><g stroke="#7e9bc8" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7e9bc8"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7e9bc8"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><g stroke="#7e9bc8" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7e9bc8"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7e9bc8"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g stroke="#7e9bc8" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7e9bc8"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7e9bc8"/></g></g></g><path d="M49 82h20m-10-10v20" stroke="#b4c8e9" stroke-width="2"/></svg></div>
     </section>
@@ -719,6 +732,15 @@
       <div class="start-msgs" aria-live="polite"><p class="start-typing" aria-label="Gemma is typing"><i></i><i></i><i></i></p></div>
       <form class="start-form" id="start-form"><label class="visually-hidden" for="start-input">Your Reply to Gemma</label><input id="start-input" maxlength="1500" autocomplete="off" placeholder="Type your reply…" required><button type="submit" aria-label="Send"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></button></form>
       <p class="start-note">Free, no account. Answers come only from verified resources.</p>
+    </div>
+  </dialog>
+  <dialog class="start tonight" id="tonight-chat" aria-labelledby="tonight-title">
+    <div class="start-card">
+      <div class="start-head"><img src="/logo.svg" alt="" width="38" height="38"><div><strong id="tonight-title">Somewhere to Stay Tonight</strong><span>Gemma 4 · Clear House assistant</span></div><a class="start-skip" href="/app#emergency">Skip</a></div>
+      <div class="start-msgs" aria-live="polite"></div>
+      <div class="start-choices" id="tonight-choices" role="group" aria-label="Your answer"></div>
+      <form class="start-form" id="tonight-form" hidden><label class="visually-hidden" for="tonight-input">A City, County or Address</label><input id="tonight-input" maxlength="100" autocomplete="off" placeholder="Or type a city or county…"><button type="submit" aria-label="Send"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></button></form>
+      <p class="start-note">In danger? Call <a href="tel:911">911</a>. Shelter help any time: <a href="tel:211">211</a>.</p>
     </div>
   </dialog>
 
@@ -1155,6 +1177,99 @@
       try { sessionStorage.setItem('ch:first-question', q); } catch {}
       openTools();
     });
+  })();
+
+  // "Need a place tonight?": a short guided chat in the same dark intro. Gemma checks the person is safe (911 first if
+  // not), then asks where: their location (only if they allow it) or an area. Then the tools page opens on shelters,
+  // intake lines and nearby budget hotels for that area. Scripted on purpose: in an emergency nothing waits on an AI.
+  (() => {
+    const dlg = document.getElementById('tonight-chat'); if (!dlg || !dlg.showModal) return;  // old browsers just follow the link
+    const msgs = dlg.querySelector('.start-msgs'), choices = document.getElementById('tonight-choices');
+    const form = document.getElementById('tonight-form'), input = document.getElementById('tonight-input');
+    const calm = matchMedia('(prefers-reduced-motion: reduce)').matches, wait = ms => new Promise(r => setTimeout(r, calm ? 0 : ms));
+    let run = 0, leaving = false, onTyped = null;
+    const scrollDown = () => { msgs.scrollTop = msgs.scrollHeight; };
+    const say = (text, me) => { const p = document.createElement('p'); if (me) p.className = 'me'; p.textContent = text; msgs.append(p); scrollDown(); };
+    const gemma = async (text, ms = 700) => {
+      const id = run, dots = document.createElement('p');
+      dots.className = 'start-typing'; dots.setAttribute('aria-label', 'Gemma is typing');
+      dots.append(...[0, 1, 2].map(() => document.createElement('i'))); msgs.append(dots); scrollDown();
+      await wait(ms); dots.remove();
+      if (id !== run) throw new Error('closed');
+      say(text);
+    };
+    // Answer buttons (or links, like Call 911); the choice shows as the person's own reply.
+    const ask = options => new Promise(resolve => {
+      choices.replaceChildren(...options.map(o => {
+        const b = document.createElement(o.href ? 'a' : 'button');
+        b.className = 'start-choice' + (o.urgent ? ' urgent' : ''); b.textContent = o.label;
+        if (o.href) b.href = o.href; else b.type = 'button';
+        b.addEventListener('click', () => { if (o.href) return; choices.replaceChildren(); onTyped = null; say(o.label, true); resolve(o.value); });
+        return b;
+      }));
+      choices.querySelector('button, a')?.focus({ preventScroll: true });
+    });
+    const typed = () => new Promise(resolve => { onTyped = resolve; });
+    form.addEventListener('submit', e => {
+      e.preventDefault(); const place = input.value.trim(); if (!place || !onTyped) return;
+      const done = onTyped; onTyped = null; input.value = ''; choices.replaceChildren(); say(place, true); done(place);
+    });
+    const locate = () => new Promise(resolve => navigator.geolocation
+      ? navigator.geolocation.getCurrentPosition(p => resolve(p.coords), () => resolve(null), { timeout: 12000, maximumAge: 600000 })
+      : resolve(null));
+    // Which of our two areas a spot is in (rough miles from each center), or null outside both.
+    const regionAt = (lat, lon) => { const miles = (a, b) => Math.hypot((lat - a) * 69, (lon - b) * 54);
+      return miles(37.23, -80.42) < 30 ? 'Blacksburg' : miles(38.83, -77.3) < 40 ? 'Northern Virginia' : null; };
+    const openTools = area => {
+      if (leaving) return; leaving = true;
+      try { if (area) sessionStorage.setItem('ch:tonight', area); if (!calm) sessionStorage.setItem('ch:app-entry', String(Date.now())); } catch {}
+      dlg.classList.add('leaving');
+      setTimeout(() => location.assign('/app#emergency'), calm ? 0 : 240);
+    };
+    async function chat() {
+      const id = ++run; msgs.replaceChildren(); choices.replaceChildren(); form.hidden = true; onTyped = null;
+      try {
+        say('I need a place to stay tonight.', true);
+        await gemma('I’m here to help. First, are you safe right now?', 900);
+        const safe = await ask([{ label: 'I’m safe for now', value: true }, { label: 'I’m not safe', value: false, urgent: true }]);
+        if (!safe) {
+          await gemma('Please call 911 now. If it isn’t safe to talk, you can text 911 in many places. I’ll be right here.');
+          await ask([{ label: 'Call 911', href: 'tel:911', urgent: true }, { label: 'I’m safe now', value: true }]);
+        }
+        await gemma('Where should I look? I can use your location to find the closest shelters and budget hotels, or you can pick an area.');
+        let area = null;
+        while (!area) {
+          form.hidden = false;
+          const pick = await Promise.race([ask([{ label: 'Use my location', value: 'here' }, { label: 'Northern Virginia', value: 'Northern Virginia' },
+                                                { label: 'Blacksburg', value: 'Blacksburg' }]), typed()]);
+          form.hidden = true;
+          if (pick !== 'here') { area = pick; break; }
+          await gemma('Your browser will ask to share your location. It stays on this device; I only use it to pick the area.', 500);
+          const spot = await locate();
+          area = spot && regionAt(spot.latitude, spot.longitude);
+          if (!area) await gemma(spot ? 'You look to be outside Northern Virginia and Blacksburg, where Clear House works. Call 211: they help anywhere in Virginia. Or pick one of our areas.'
+                                      : 'I couldn’t get your location, and that’s okay. Pick an area or type a city.');
+        }
+        await gemma(`Okay. Opening shelters, intake lines and nearby budget hotels for ${area}. You can call 211 any time for help getting a bed.`);
+        await wait(1200);
+        if (id === run) openTools(area);
+      } catch {}  // closed partway: the next open starts over
+    }
+    // iOS keeps the page full height when the keyboard opens, so size the chat to the visible part instead.
+    const vv = window.visualViewport;
+    const fit = () => { if (!vv) return; dlg.style.setProperty('--start-h', vv.height + 'px'); dlg.style.setProperty('--start-top', vv.offsetTop + 'px'); };
+    vv?.addEventListener('resize', fit); vv?.addEventListener('scroll', fit);
+    document.querySelectorAll('a[data-tonight-start]').forEach(a => a.addEventListener('click', e => {
+      if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;  // a new tab or window gets the plain link
+      e.preventDefault(); leaving = false; dlg.classList.remove('leaving'); dlg.showModal(); fit(); chat();
+    }));
+    dlg.querySelector('.start-skip').addEventListener('click', e => {
+      if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault(); openTools(null);
+    });
+    dlg.addEventListener('close', () => { run++; });  // closing stops the script
+    dlg.addEventListener('cancel', e => { if (leaving) e.preventDefault(); });
+    addEventListener('pageshow', e => { if (e.persisted && leaving) { leaving = false; dlg.classList.remove('leaving'); dlg.close(); } });
   })();
 </script>
 </body>
