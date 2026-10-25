@@ -3023,36 +3023,26 @@ body {
   transform: none
 }
 /* always visible at full strength, like the logo */
-/* The hackathon result under the hero buttons: a small light-glass line with a trophy, navy text so it stays readable
-   where the hero fades to white. */
+/* The hackathon result under the hero buttons: plain white text with a trophy, a soft shadow keeping it readable where
+   the hero fades lighter. */
 .cl-hero .cl-award {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 26px auto 0;
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid #ffffffb3;
-  background: linear-gradient(140deg, #ffffffa6, #ffffff73);
-  box-shadow: inset 0 1px 0 #fff, 0 8px 22px #14203f1a;
-  backdrop-filter: blur(12px) saturate(1.5);
-  -webkit-backdrop-filter: blur(12px) saturate(1.5);
-  color: #14203f;
-  font-size: 14px;
+  margin: 22px auto 0;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
   line-height: 1.4;
+  text-shadow: 0 1px 10px #0b143366, 0 0 2px #0b143340;
   max-width: 100%
 }
 .cl-hero .cl-award svg {
   flex: none;
-  color: #c2410c
-}
-.cl-hero .cl-award b {
-  font-weight: 700
+  filter: drop-shadow(0 1px 4px #0b143366)
 }
 @media (max-width: 560px) {
   .cl-hero .cl-award {
-    border-radius: 18px;
-    font-size: 13px;
-    text-align: left
+    font-size: 14px
   }
 }
