@@ -200,6 +200,8 @@ def _records(question, history=None):
         pool = [r for r in pool if r.get("type") not in ("affordable_listing", "rental_listing") or r.get("bedrooms") in (None, beds)]
     rows = _pick(pool, text, listings_only=search, advice=advice_question(question))
     named = named_records(question)  # "what is the rent at Signature at Reston?": that place first
+    if not named and not own and history:  # "how do I apply there?": the places the last answer named
+        named = named_records(next((t["text"] for t in reversed(history) if t.get("role") == "assistant"), ""))[:4]
     return (named + [r for r in rows if r not in named])[:MAX_RECORDS] if named else rows
 
 
