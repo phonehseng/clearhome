@@ -12,7 +12,7 @@ from datetime import date
 
 from flask import Flask, Response, jsonify, request, send_from_directory, send_file, stream_with_context
 
-from advisor import AREAS, ask, cards_for, options, programs, quick_nearby, stream_ask, warm_examples
+from advisor import AREAS, ask, cards_for, clarify, options, programs, quick_nearby, stream_ask, warm_examples, with_context
 from live_search import search as live_search
 import hotels
 import nearby
@@ -415,6 +415,7 @@ def _chat_request():
     for turn in (body.get("history") if isinstance(body.get("history"), list) else [])[-4:]:
         if isinstance(turn, dict) and turn.get("role") in ("user", "assistant") and isinstance(turn.get("text"), str):
             history.append({"role": turn["role"], "text": redact(turn["text"][:2000])[0]})
+    question = with_context(question, history)  # a reply to the chat's own follow-up question keeps the earlier request
     # Choices from the find form, so the assistant can tailor its answer (no names or IDs are collected).
     profile = body.get("profile") if isinstance(body.get("profile"), dict) else {}
     about = []
@@ -427,9 +428,10 @@ def _chat_request():
     if profile.get("timing") in ("now", "soon", "planning"): about.append({"now": "needs to move as soon as possible", "soon": "moving in the next 3 months", "planning": "planning ahead"}[profile["timing"]])
     for key, label in (("tonight", "needs a safe place tonight"), ("accessible", "needs an accessible home"), ("senior", "someone is 62 or older"), ("voucher", "already has a housing voucher")):
         if profile.get(key) is True: about.append(label)
+    # A rental search near "campus" without saying which: ask first, repeating what was understood (no AI).
     # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
-    # Both shortcuts read the person's own words, not the profile note added below.
-    instant = nearby.answer(question, profile, history) or quick_nearby(question, profile)  # "near George Mason" etc.: catalog, no AI
+    # These shortcuts read the person's own words, not the profile note added below.
+    instant = clarify(question, profile) or nearby.answer(question, profile, history) or quick_nearby(question, profile)  # "near George Mason" etc.: catalog, no AI
     if about:
         question = f"{question}\n\n(About me: {'; '.join(about)}.)"
     return question, history, instant
@@ -475,7 +477,7 @@ def ask_advisor_stream():
         return f"data: {json.dumps({'kind': 'hotels', 'text': found})}\n\n" if found else ""
 
     def events():
-        engine = "Instant answer from our checked list with Google Maps Platform (Places + Routes); no AI needed"
+        engine = getattr(instant, "engine", "Instant answer from our checked list with Google Maps Platform (Places + Routes); no AI needed")
         updates = [("engine", engine), ("answer", instant), ("cards", cards_for(instant))] if instant else stream_ask(question, history)
         sent = False
         try:

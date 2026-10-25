@@ -15,7 +15,7 @@ import threading
 import time
 import urllib.request
 
-from advisor import CHEAP, LANDMARKS, OUTSIDE, URGENT, area_for, extra_needs, rent_estimate
+from advisor import CHEAP, LANDMARKS, OUTSIDE, URGENT, area_for, rent_estimate, requirements
 from catalog import filter_catalog, load_catalog
 from geocode import lookup as census_lookup
 
@@ -154,6 +154,8 @@ def answer(question, profile=None, history=None):
     walk = walk_answer(question, profile, history)
     if walk:
         return walk
+    if requirements(question):
+        return None  # pets, accessibility, household size...: Gemma checks each home against them
     me = _coords(profile)
     if me and NEAR_ME.search(question or "") and not URGENT.search(question):
         inside = any(_miles(me[0], me[1], lat, lon) <= r for _, lat, lon, r in REGIONS)
@@ -307,7 +309,7 @@ def walk_answer(question, profile=None, history=None):
     """Walking times between homes and a place, or None if the question isn't about walking to a place."""
     if not WALK.search(question or "") or URGENT.search(question):
         return None
-    if any(need != "walking time" for need in extra_needs(question)):
+    if requirements(question):
         return None  # "furnished, under $1000, a 13 minute walk from campus": Gemma checks it all, with walking times added
 
     m = WALK_FROM.search(question)

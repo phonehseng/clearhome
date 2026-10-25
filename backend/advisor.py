@@ -16,7 +16,7 @@ FIELDS = ("name", "type", "jurisdiction", "city", "address", "phone", "website",
           "cost", "monthly_rent", "bedrooms", "minimum_age", "requirements", "how_to_apply", "waitlist_status",
           "source_url", "region", "rental_space", "price_unit", "rent_basis",
           "lease_type", "lease_responsibility", "lease_start", "lease_end", "payment_schedule", "shared_home_bedrooms",
-          "lease_term_notes", "furnished", "utilities_notes", "private_bathroom",
+          "lease_term_notes", "furnished", "utilities_notes", "private_bathroom", "accessibility_notes", "notes",
           # Emergency services: how to get in and where to go (only present on shelter and intake records).
           "intake_steps", "intake_hours", "public_intake_address", "after_hours", "phone_role", "address_kind",
           "confidential_location", "referral_required", "intake_status", "intake_status_note", "distance_from_blacksburg", "transit", "links", "source_kind", "operator")
@@ -56,7 +56,7 @@ TOPICS = [
 ]
 
 
-def _pick(resources, question):
+def _pick(resources, question, listings_only=False):
     q = question.lower()
     areas = set()
     for word, area in AREAS:
@@ -66,6 +66,10 @@ def _pick(resources, question):
     types = set().union(*matched) or {"housing_authority", "rental_assistance", "affordable_listing", "rental_listing"}
     # The first topic named is usually the need ("back rent" before "apartment"), so its types rank first.
     first = matched[0] if matched else set()
+    if listings_only:  # a rental search wants homes, not programs or intake lines
+        types = first = {"affordable_listing", "rental_listing"}
+        matched = matched or [types]
+    access = bool(ACCESSIBLE.search(q))
     words = {w for w in re.findall(r"[a-z]{4,}", q)} - {"what", "where", "which", "help", "need", "with", "have", "that", "this", "from", "about", "there", "would", "could"}
     def serves(r):  # "area" covers programs shared across places, like Prince William's intake line
         return any(serves_location(r, area) for area in areas or {'Northern Virginia'})
@@ -74,6 +78,7 @@ def _pick(resources, question):
         text = f"{r.get('name', '')} {r.get('who_it_serves', '')} {r.get('requirements', '')}".lower()
         return ((r.get("type") in first) * 4 + sum(w in text for w in words)
                 + 3 * ("furnish" in q and r.get("furnished") is True and "unfurnish" not in q)  # asked for furnished: those first
+                + 3 * (access and r.get("accessible") is True)  # asked for accessible: confirmed ones first
                 - (r.get("jurisdiction") == "Northern Virginia"))  # local records before region-wide ones
 
     budget = re.search(r"(?:under|below|less than|at most|max(?:imum)?|up to|budget(?: is| of)?)\s*\$?\s*(\d{3,5})", q.replace(",", ""))
@@ -156,8 +161,11 @@ def warm_examples(gap_seconds=25):
 
 
 def _records(question, history=None):
-    # filter_catalog drops closed and overdue listings; _pick keeps the prompt small.
-    return _pick(filter_catalog(load_catalog()), " ".join([question] + [t['text'] for t in (history or [])[-2:]]))
+    # filter_catalog drops closed and overdue listings; _pick keeps the prompt small. A rental search is read on its
+    # own words, so an earlier shelter or rent-help conversation can't turn it back into a list of programs.
+    search = housing_search(question)
+    text = question if search else " ".join([question] + [t['text'] for t in (history or [])[-2:]])
+    return _pick(filter_catalog(load_catalog()), text, listings_only=search)
 
 
 def _ask(question, history=None):
@@ -176,8 +184,25 @@ def _prompt(question, history, rows, needs=None, walk=None):
             lines.append(f"Walking time: each listing's walk_minutes_to_* field is the measured walk to {name}. "
                          f"They asked for {rule}; use those numbers, never guess distances, and say the walk time for each home you mention.")
         lines.append("Recommend only listings that meet every requirement. If a needed field is missing or null (for example furnished is unknown), "
-                     "say it must be confirmed with the provider rather than assuming. If none meet everything, say so first, then give the closest options and what they miss.")
+                     "say it must be confirmed with the provider rather than assuming. If none meet everything, say so first, then give the closest options and what they miss. "
+                     "Group them as verified matches (every requirement confirmed by the fields) and possible matches to confirm; say plainly when there are no verified matches.")
         checklist = "\n".join(lines) + "\n\n"
+    people = household_size(question)
+    notes = []
+    if housing_search(question):
+        notes.append("This is a rental housing search: answer it with the matching listings below. Don't describe the list you were given, "
+                     "don't ask them to repeat what they want, don't offer sample questions, and don't add shelter or helpline referrals unless they asked for emergency help.")
+    if people:
+        notes.append(f"Household: {people} {'person' if people == 1 else 'people'} (a household size, not a bedroom count). Room prices are per person, so say "
+                     f"whether each option works for {people} (separate rooms in one shared home, or a whole apartment) and what that would cost in total, from the listed prices only.")
+    if ACCESSIBLE.search(question):
+        notes.append("They need an accessible home. Call a place accessible only when its accessible field is true; when it's null, say the accessible "
+                     "features must be confirmed with the provider (accessibility_notes may help).")
+    if "pets" in (needs or []):
+        notes.append("Pets: say pets are allowed only when a listing's fields say so; otherwise say to confirm the pet policy. "
+                     "An assistance animal is a separate accommodation request, not a pet.")
+    if notes:
+        checklist += "\n".join(notes) + "\n\n"
     past = "\n".join(f"{turn['role']}: {turn['text']}" for turn in (history or [])[-4:])
     prompt = f"""You are a patient, plain-spoken housing advisor for people in Northern Virginia and Blacksburg, Virginia.
 Blacksburg includes student rooms near Virginia Tech. Northern Virginia and Blacksburg are separate service regions.
@@ -305,6 +330,95 @@ def extra_needs(question):
     """Plain names of requirements in the question that the fixed filters (area, budget, size, age) don't handle."""
     q = (question or "").lower()
     return [name for pattern, name in EXTRA_NEEDS if re.search(pattern, q)]
+
+
+# ---- Rental searches with several requirements -------------------------------------------------------------
+# "i need something close to campus under 1000 and they need accessable with pets and is a 2 person" is a rental
+# search, typos and all: budget, accessibility, pets and a household of two (people, not bedrooms). A bare "campus"
+# could be Virginia Tech or George Mason, so the chat asks which (and, for two or more people, whether the budget is
+# the total or per person) instead of guessing, and the reply keeps everything already said.
+ACCESSIBLE = re.compile(r"\b(wheel ?chairs?|acc?ess?[aei]b\w*|handicap\w*|ada|disab\w*|mobility|no stairs|ground[- ]floor|elevators?)\b", re.I)
+HOUSEHOLD = re.compile(r"\b(\d{1,2}|one|two|three|four|five|six)[- ]?(?:persons?|people|ppl|adults|of us)\b"
+                       r"|\b(?:me and|my) (?:partner|girlfriend|boyfriend|wife|husband|fianc\w*|spouse)\b", re.I)
+HOUSING_WORDS = re.compile(r"\b(something|somewhere|a place|place to (?:live|rent)|apartments?|rooms?|housing|homes?|house|units?|studios?|"
+                           r"rentals?|to rent|lease|condo|townhouse|duplex)\b", re.I)
+BUDGET_ANY = re.compile(r"(?:under|below|less than|at most|max(?:imum)?|up to|budget(?: is| of)?|afford|around|about|\$)\s*\$?\s*(\d{3,5})(?!\d)", re.I)
+NEAR_ANY = re.compile(r"\b(near|close to|walking distance|minutes? from|by campus)\b", re.I)
+CAMPUS = re.compile(r"\b(campus|university|college)\b", re.I)
+CLARIFY_MARK = "Which campus or city?"
+_NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
+
+
+class Instant(str):
+    """An answer the chat gives without AI, with the line it shows about what answered."""
+    engine = "Clear House (a quick question first, no AI needed)"
+
+
+def household_size(text):
+    """How many people will live there ("a 2 person", "two people", "me and my partner"), or None."""
+    m = HOUSEHOLD.search(text or "")
+    if not m:
+        return None
+    word = (m.group(1) or "").lower()
+    n = int(word) if word.isdigit() else _NUMBERS.get(word, 2)  # "me and my partner" is two
+    return n if 1 <= n <= 20 else None
+
+
+def requirements(text):
+    """Needs a list of nearby homes can't check (pets, furnished, accessibility, household size...): Gemma weighs those,
+    so the instant no-AI answers step aside when there are any."""
+    return ([n for n in extra_needs(text) if n != "walking time"] + ["accessibility"] * bool(ACCESSIBLE.search(text or ""))
+            + ["household size"] * bool(household_size(text)))
+
+
+def housing_search(text):
+    """A search for a place to rent (not shelter tonight, rent help or legal help): housing words plus a budget, a place
+    to be near, a household size or another requirement."""
+    t = text or ""
+    if URGENT.search(t):
+        return False
+    return bool(HOUSING_WORDS.search(t)) and any((BUDGET_ANY.search(t), NEAR_ANY.search(t), household_size(t), ACCESSIBLE.search(t), extra_needs(t)))
+
+
+def campus_unclear(text, profile=None):
+    """They said "campus" (or university, college) without saying which one or where."""
+    t = (text or "").lower()
+    if not CAMPUS.search(t) or re.search(r"\bvt\b|\bhokies?\b", t):
+        return False
+    if any(re.search(rf"\b{re.escape(k)}\b", t) for k in LANDMARKS) or any(word in t for word, _ in AREAS):
+        return False
+    location = (profile or {}).get("location")
+    return not (isinstance(location, str) and area_for(location))
+
+
+def clarify(question, profile=None):
+    """For a rental search that only says "campus": repeat back everything understood and ask which campus, plus
+    whether the budget is the total or per person when two or more people will live there. None when not needed."""
+    if not housing_search(question) or not campus_unclear(question, profile):
+        return None
+    budget, people = BUDGET_ANY.search(question), household_size(question)
+    understood = ["near campus"]
+    if budget:
+        understood.append(f"under ${int(budget.group(1)):,} a month")
+    if ACCESSIBLE.search(question):
+        understood.append("accessible")
+    understood += ["allows pets" if need == "pets" else need for need in extra_needs(question) if need != "walking time"]
+    if people:
+        understood.append(f"for {people} {'person' if people == 1 else 'people'}")
+    text = (f"Got it: a place {', '.join(understood)}. {CLARIFY_MARK} For example, Virginia Tech (Blacksburg) "
+            f"or George Mason (Fairfax).")
+    if budget and people and people > 1:
+        text += f" And is ${int(budget.group(1)):,} your total monthly budget or per person?"
+    return Instant(text)
+
+
+def with_context(question, history=None):
+    """A reply to the chat's own follow-up question ("Virginia Tech, total for both of us") keeps the earlier request.
+    The reply comes first, so its answers win over anything it corrects."""
+    h = history or []
+    if len(h) >= 2 and h[-1].get("role") == "assistant" and CLARIFY_MARK in h[-1].get("text", "") and h[-2].get("role") == "user":
+        return f"{question} (earlier in this chat: {h[-2]['text']})"
+    return question
 
 
 def walk_target(question):
@@ -435,6 +549,8 @@ def stream_ask(question, history=None):
             return
     rows = _records(question, history)
     needs, walk = extra_needs(question), walk_target(question)
+    if housing_search(question):  # several requirements at once: give Gemma time to check every home against each
+        needs += ["accessibility"] * bool(ACCESSIBLE.search(question)) + ["household size"] * bool(household_size(question))
     if walk:
         rows = [dict(r) for r in rows]  # the catalog's own rows are never changed
         try:
@@ -603,7 +719,7 @@ def quick_nearby(question, profile=None):
     Returns None when the question isn't a simple "near a place" request."""
     import math
     q = (question or "").lower()
-    if not NEAR.search(q) or URGENT.search(q) or (profile or {}).get("tonight"):
+    if not NEAR.search(q) or URGENT.search(q) or (profile or {}).get("tonight") or requirements(question):
         return None
     landmark = next(((k, v) for k, v in LANDMARKS.items() if re.search(rf"\b{re.escape(k)}\b", q)), None)
     area = landmark[1][0] if landmark else area_for(question)
@@ -623,7 +739,7 @@ def quick_nearby(question, profile=None):
             seen.add(key)
             homes.append(r)
     if landmark:
-        _, (_, lat, lon) = landmark
+        lat, lon = landmark[1][1:3]  # (area, lat, lon) or (area, lat, lon, display name)
         def miles(r):
             if r.get("lat") is None:
                 return None

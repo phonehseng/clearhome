@@ -8,7 +8,7 @@
 """
 import re
 
-from advisor import area_for
+from advisor import ACCESSIBLE, area_for
 
 # Fields that matter for an answer; everything else (photos, review notes, source lists) only costs tokens.
 ANSWER_FIELDS = ("name", "type", "jurisdiction", "address", "phone", "hours", "who_it_serves", "cost", "monthly_rent",
@@ -42,7 +42,7 @@ def keyword_filters(message):
     filters = {
         "types": types,
         "max_budget_per_month": float(budget.group(1)) if budget else None,
-        "needs_accessible": bool(re.search(r"\b(wheelchair|accessible|disab|mobility|ada)\b", text)),
+        "needs_accessible": bool(ACCESSIBLE.search(text)),  # typos too, like "accessable"
         "urgency": "emergency" if emergency else ("soon" if re.search(r"\b(soon|this month|next month|asap)\b", text) else "planning"),
         "locations": [area] if area else ['__outside_service_area__'],
         "rental_space": 'room' if re.search(r'\b(room|rooms|roommate|roommates)\b', text) else 'all',
