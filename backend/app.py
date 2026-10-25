@@ -12,7 +12,7 @@ from datetime import date
 
 from flask import Flask, Response, g, jsonify, request, send_from_directory, send_file, stream_with_context
 
-from advisor import AREAS, advice_question, ask, cards_for, clarify, expand_nicknames, options, outside_answer, programs, quick_nearby, stream_ask, warm_examples, with_context
+from advisor import AREAS, advice_question, ask, cards_for, clarify, expand_nicknames, fair_housing_answer, options, outside_answer, programs, quick_nearby, stream_ask, warm_examples, with_context
 import clarifier
 import crisis
 from live_search import search as live_search
@@ -495,7 +495,9 @@ def _chat_request():
     # The /app chat sends this conversation's answers to its follow-up questions (kept by the page, checked here): a vague
     # request gets one question with answer buttons first, and the answers are written into the request.
     chat, asking = (clarifier.load_state(body.get("chat")), None) if "chat" in body else (None, None)
-    if chat is not None:
+    # Finding or avoiding places by who lives there: a fair-housing answer first, before any follow-up question.
+    fair = None if lifeline else fair_housing_answer(question)
+    if chat is not None and not fair:
         question = clarifier.reply_in_words(question, chat, history)  # a reply to near_place.py's "Which Walmart, or which city?"
         try:
             asking, question = clarifier.resolve(question, chat, profile, body.get("reply"))
@@ -522,7 +524,7 @@ def _chat_request():
     # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
     # These shortcuts read the person's own words, not the profile note added below.
     # A place we don't cover (Richmond, Maryland...): said plainly, with 211, instead of homes from elsewhere.
-    instant = lifeline or (asking or outside_answer(question) or (None if chat is not None else clarify(question, profile)) or near_place.answer(question, profile, history)
+    instant = lifeline or fair or (asking or outside_answer(question) or (None if chat is not None else clarify(question, profile)) or near_place.answer(question, profile, history)
                or nearby.answer(question, profile, history) or quick_nearby(question, profile))  # "near George Mason" etc.: catalog, no AI
     if chat is not None and isinstance(instant, clarifier.Question) and not asking:
         clarifier.record(chat, instant)  # near_place.py or nearby.py asked ("which Walmart?"): that's the open question now

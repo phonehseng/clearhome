@@ -19,7 +19,7 @@ The picked value comes back as "near Walmart, Christiansburg" in the request.
 import re
 import secrets
 
-from advisor import (AREAS, BUDGET_ANY, CAMPUS, CHEAP, CLARIFY_MARK, DANGER, LANDMARKS, NEAR_ANY, OUTSIDE, STAY_NOW, URGENT, Instant,
+from advisor import (advice_question, AREAS, BUDGET_ANY, CAMPUS, CHEAP, CLARIFY_MARK, DANGER, LANDMARKS, NEAR_ANY, OUTSIDE, STAY_NOW, URGENT, Instant,
                      area_for, household_size, housing_search, understood, with_context)
 from redact import redact
 
@@ -151,6 +151,7 @@ VAGUE = re.compile(r"\b(somewhere|a place|housing|a home|new home|help|move|movi
 SPECIFIC = re.compile(r"\b(vouchers?|section 8|hcv|public housing|wait ?lists?|housing authority|landlords?|lawyers?|legal|rights|repairs?|"
                       r"court|seniors?|elderly|veterans?|deposit|utilit\w*|mortgage|buy(?:ing)?|food|jobs?)\b", re.I)
 # A general question gets an answer, not a questionnaire. "Where can I find an apartment?" is a search, so "where" isn't here.
+GREETING = re.compile(r"^\s*(?:hi+|hello|hey+|hiya|howdy|yo|hola|good (?:morning|afternoon|evening)|sup|what'?s up)\b[\s!.?,]*(?:there|gemma)?[\s!.?]*$", re.I)
 INFO = re.compile(r"^\s*(what|what's|whats|how|why|who|explain|define|tell me about|is there|are there|does|do i|do you|do they|is it|is a|is an|are)\b", re.I)
 NO_BUDGET = re.compile(r"\b(no (?:set |real )?budget|any (?:price|budget)|price doesn'?t matter|whatever it costs)\b", re.I)
 BARE_NUMBER = re.compile(r"\$?\s*(\d{3,5})(?:\s*(?:a|per|/)\s*(?:month|mo))?")
@@ -368,8 +369,12 @@ def _area_question(kind, conflict=None, intro=""):
 def next_question(request, state, profile=None):
     """The one question that would most change the answer to this request, or None to answer now."""
     a, profile, t = state["answers"], profile or {}, _plain(request)
-    if len(state["asked"]) >= MAX_QUESTIONS or INFO.match(t) or profile.get("tonight"):
-        return None
+    if len(state["asked"]) >= MAX_QUESTIONS or INFO.match(t) or profile.get("tonight") or advice_question(t):
+        return None  # questions and advice are answered, not asked about
+    if GREETING.match(t) and "help" not in state["asked"]:  # "hi": the three kinds of help, as buttons
+        return question("help", "Hi, I'm Gemma. What kind of help do you need first?", [(k, label) for k, label in
+                        (("rental", "Find a rental"), ("tonight", "Somewhere safe tonight"), ("rent_help", "Help paying rent"))],
+                        skip=False, unsure=True)
     free = lambda field: field not in a and field not in state["asked"]  # not answered, and not asked yet for this request
     kind = a.get("help") or detect_help(t)
     if kind is None:
@@ -383,6 +388,8 @@ def next_question(request, state, profile=None):
     conflict = keys if len({_region(k) for k in keys}) > 1 and "area" not in a else None
     has_area = "area" in a or bool(keys and not conflict) or _profile_area(profile)
     away = OUTSIDE_NOTE if not keys and re.search(OUTSIDE, t, re.I) else ""  # "apartments in Richmond": say we don't cover it
+    if away and not has_area and free("area"):  # even "near UVA", before any place search
+        return _area_question(kind if kind in ("tonight", "rent_help") else "rental", intro=away)
     if kind == "tonight":
         return _area_question("tonight", intro=away) if not has_area and free("area") else None
     if kind == "rent_help":
@@ -404,7 +411,8 @@ def next_question(request, state, profile=None):
     budget = a.get("budget") or (isinstance(profile.get("budget"), (int, float)) and not isinstance(profile["budget"], bool) and profile["budget"] > 0 and int(profile["budget"]))
     area = a.get("area") if a.get("area") in PLACES else (keys[0] if keys and not conflict else None)
     region = _region(area) if area else ("Blacksburg" if _profile_area(profile) == "Blacksburg" else "Northern Virginia" if _profile_area(profile) else None)
-    if not budget and not CHEAP.search(t) and free("budget"):  # "the cheapest" already says how to sort
+    voucher = re.search(r"\b(?:vouchers?|section ?8|hcv)\b", t, re.I)  # a voucher sets what they pay
+    if not budget and not CHEAP.search(t) and not voucher and free("budget"):  # "the cheapest" already says how to sort
         steps = {"Blacksburg": (600, 900, 1300), "Northern Virginia": (1200, 1800, 2500)}.get(region, (800, 1500, 2500))
         return question("budget", "About how much can you pay each month for rent?",
                         [(str(steps[0]), f"Under ${steps[0]:,}")] + [(str(hi), f"${lo:,}–${hi:,}") for lo, hi in zip(steps, steps[1:])]

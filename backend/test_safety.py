@@ -116,10 +116,20 @@ class PromptGuardTests(unittest.TestCase):
         self.assertLessEqual(len(more), 8)
 
     def test_fair_housing_rule_is_in_every_prompt(self):
-        prompt = self.prompt_for("apartments in Alexandria with no Section 8 tenants")
+        prompt = self.prompt_for("affordable apartments in Alexandria under $1,800")
         self.assertIn("Fair housing", prompt)
         for group in ("source of income", "familial status", "national origin", "disability"):
             self.assertIn(group, prompt)
+
+    def test_excluding_people_gets_the_fair_housing_answer_before_anything(self):
+        for question in ("apartments in Alexandria with no Section 8 tenants", "which neighborhoods in Fairfax are mostly white?",
+                         "I want a building with no kids, adults only, in Arlington", "I am a landlord, how do I avoid renting to immigrants?"):
+            with patch("advisor.stream_gemma", side_effect=no_gemma):
+                found = events(server.app.test_client().post("/api/ask/stream", json={"question": question, "chat": {}}))
+            self.assertIn("fair-housing", next(e["text"] for e in found if e["kind"] == "engine"), question)
+            self.assertFalse(any(e["kind"] in ("question", "cards") and e["text"] for e in found), question)
+        for own_situation in ("I have no kids, need a studio in Arlington", "apartments that take section 8 in Arlington", "I need housing for my disabled son"):
+            self.assertIsNone(advisor.fair_housing_answer(own_situation), own_situation)
 
     def test_sort_chat_refuses_sorting_by_who_lives_there(self):
         seen = {}
@@ -271,6 +281,62 @@ class AdviceTests(unittest.TestCase):
         for question in ("cheap rooms near Virginia Tech", "I am behind on rent in Alexandria, who can help?"):
             advisor._cache.clear()
             self.assertNotIn("advice", self.kinds(question), question)
+
+
+class EdgeCaseReviewTests(unittest.TestCase):
+    """From the Gemma edge-case review (October 25)."""
+
+    def chat(self, question):
+        with patch("advisor.stream_gemma", side_effect=no_gemma):
+            return events(server.app.test_client().post("/api/ask/stream", json={"question": question, "chat": {}}))
+
+    def asked(self, question):
+        return next((e["text"] for e in self.chat(question) if e["kind"] == "question"), None)
+
+    def test_places_as_people_type_them(self):
+        self.assertIn("(Arlington)", advisor.expand_nicknames("apartments in 22201"))
+        self.assertIn("(Blacksburg)", advisor.expand_nicknames("housing near 24060"))
+        self.assertEqual(advisor.expand_nicknames("rooms in blacksburgh"), "rooms in Blacksburg")
+        self.assertEqual(advisor.expand_nicknames("apartments in arlingotn"), "apartments in Arlington")
+        self.assertEqual(advisor.expand_nicknames("room under 1.2k"), "room under 1200")
+        for plain in ("I need housing because my apartment flooded", "budget 22000 a year", "sterling silver"):
+            self.assertEqual(advisor.expand_nicknames(plain), plain)
+
+    def test_a_greeting_gets_the_kinds_of_help(self):
+        self.assertEqual(self.asked("hi")["field"], "help")
+
+    def test_advice_is_answered_not_asked_about(self):
+        self.assertIsNone(self.asked("my landlord won't return my security deposit, what can I do?"))
+
+    def test_a_college_outside_the_area_is_said_plainly(self):
+        found = self.chat("room near uva")
+        self.assertIn("only covers Northern Virginia and Blacksburg", next(e["text"] for e in found if e["kind"] == "answer"))
+
+    def test_a_voucher_holder_is_not_asked_for_a_budget(self):
+        asked = self.asked("apartments that take housing choice vouchers in Prince William")
+        self.assertTrue(asked is None or asked["field"] != "budget")
+
+    def test_income_becomes_about_30_percent_for_rent(self):
+        self.assertAlmostEqual(advisor.monthly_income("I make $400 a week"), 1733.33, places=1)
+        prompt = advisor._prompt("I make $400 a week, what can I afford in Blacksburg?", [], [])
+        self.assertIn("about $520 a month", prompt)
+
+    def test_a_named_place_is_looked_up(self):
+        names = [r.get("community") for r in advisor._records("what is the rent at Signature at Reston?")]
+        self.assertEqual(names[0], "Signature at Reston Town Center")
+        self.assertEqual(advisor.named_records("affordable housing in northern virginia"), [])
+
+    def test_a_follow_up_keeps_its_place_and_isnt_advice(self):
+        history = [{"role": "user", "text": "rooms near Virginia Tech under 700"}, {"role": "assistant", "text": "Closest verified rooms to Virginia Tech: ..."}]
+        self.assertFalse(advisor.advice_question("what about cheaper ones?"))
+        rows = advisor._records("what about cheaper ones?", history)
+        self.assertTrue(rows and all(r.get("jurisdiction") in ("Montgomery County", "Blacksburg", "Christiansburg") for r in rows))
+
+    def test_advice_prompts_say_answer_the_question(self):
+        prompt = advisor._prompt("what should I look for before signing a lease?", [], advisor._records("what should I look for before signing a lease?"))
+        self.assertIn("not for places", prompt)
+        self.assertNotIn('"type":"rental_listing"', prompt)
+        self.assertIn("Answer in the language the question is written in", prompt)
 
 
 class AnswerStyleTests(unittest.TestCase):
