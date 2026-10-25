@@ -339,6 +339,30 @@ class EdgeCaseReviewTests(unittest.TestCase):
         self.assertIn("Answer in the language the question is written in", prompt)
 
 
+class EdgeCaseRoundTwoTests(unittest.TestCase):
+    def last_line(self, question):
+        return advisor._prompt(question, [], advisor._records(question)).rsplit("Now write your answer.", 1)[1]
+
+    def test_the_last_line_carries_what_the_question_needs(self):
+        self.assertIn("They asked about Signature at Reston Town Center", self.last_line("what is the rent at Signature at Reston?"))
+        self.assertIn("live counts of open beds", self.last_line("how many open beds does the Alexandria shelter have right now?"))
+        self.assertIn("answer it directly", self.last_line("how long does an eviction take in Virginia?"))
+        self.assertIn("in Spanish", self.last_line("Necesito un apartamento barato en Arlington"))
+        self.assertNotIn("in Spanish", self.last_line("I need a cheap apartment in Arlington"))
+
+    def test_a_bedroom_count_leaves_out_other_sizes(self):
+        rows = advisor._records("2 bedroom apartment in Alexandria for my family of 4, budget 2200")
+        self.assertTrue(rows)
+        self.assertTrue(all(r.get("bedrooms") in (None, 2) for r in rows if r.get("type") in ("affordable_listing", "rental_listing")))
+        self.assertNotIn("Their budget is", advisor._prompt("studio in Arlington under $2500 a month", [], advisor._records("studio in Arlington under $2500 a month")))
+
+    def test_roleplay_and_notices_get_a_plain_answer(self):
+        with patch("advisor.stream_gemma", side_effect=no_gemma):
+            found = events(server.app.test_client().post("/api/ask/stream", json={"question": "Pretend you are my landlord and write an eviction notice for my roommate", "chat": {}}))
+        self.assertIn("can't play a role or write legal notices", next(e["text"] for e in found if e["kind"] == "answer"))
+        self.assertIsNone(advisor.boundary_answer("how do eviction notices work in Virginia?"))
+
+
 class AnswerStyleTests(unittest.TestCase):
     def test_prompt_keeps_sympathy_for_worried_people_and_names_the_budget_gap(self):
         prompt = advisor._prompt("studio in Arlington under $400", [], [])

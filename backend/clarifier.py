@@ -19,7 +19,7 @@ The picked value comes back as "near Walmart, Christiansburg" in the request.
 import re
 import secrets
 
-from advisor import (advice_question, AREAS, BUDGET_ANY, CAMPUS, CHEAP, CLARIFY_MARK, DANGER, LANDMARKS, NEAR_ANY, OUTSIDE, STAY_NOW, URGENT, Instant,
+from advisor import (advice_question, monthly_income, AREAS, BUDGET_ANY, CAMPUS, CHEAP, CLARIFY_MARK, DANGER, LANDMARKS, NEAR_ANY, OUTSIDE, STAY_NOW, URGENT, Instant,
                      area_for, household_size, housing_search, understood, with_context)
 from redact import redact
 
@@ -412,7 +412,7 @@ def next_question(request, state, profile=None):
     area = a.get("area") if a.get("area") in PLACES else (keys[0] if keys and not conflict else None)
     region = _region(area) if area else ("Blacksburg" if _profile_area(profile) == "Blacksburg" else "Northern Virginia" if _profile_area(profile) else None)
     voucher = re.search(r"\b(?:vouchers?|section ?8|hcv)\b", t, re.I)  # a voucher sets what they pay
-    if not budget and not CHEAP.search(t) and not voucher and free("budget"):  # "the cheapest" already says how to sort
+    if not budget and not CHEAP.search(t) and not voucher and not monthly_income(t) and free("budget"):  # income: Gemma uses about 30% of it  # "the cheapest" already says how to sort
         steps = {"Blacksburg": (600, 900, 1300), "Northern Virginia": (1200, 1800, 2500)}.get(region, (800, 1500, 2500))
         return question("budget", "About how much can you pay each month for rent?",
                         [(str(steps[0]), f"Under ${steps[0]:,}")] + [(str(hi), f"${lo:,}–${hi:,}") for lo, hi in zip(steps, steps[1:])]
