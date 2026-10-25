@@ -15,7 +15,7 @@ import threading
 import time
 import urllib.request
 
-from advisor import LANDMARKS, OUTSIDE, URGENT, area_for, rent_estimate
+from advisor import CHEAP, LANDMARKS, OUTSIDE, URGENT, area_for, rent_estimate
 from catalog import filter_catalog, load_catalog
 from geocode import lookup as census_lookup
 
@@ -37,7 +37,6 @@ NOT_A_PLACE = re.compile(r"^(?:\$|\d+\s*(?:%|dollars|people|months?|weeks?|days?
 FILLER_END = re.compile(r"\s+(?:please|thanks|thank you|(?:(?:for|around|about|under|below|less than|up to|max|at most)\s+)+\$?\s*\d[\d,]*.*|"
                         r"\$\s*\d[\d,]*.*|for (?:me|my family|\d+ people).*|with .*)$", re.I)
 BUDGET = re.compile(r"(?:under|below|around|about|less than|up to|max(?:imum)?|budget(?: is| of)?|afford|\$)\s*\$?\s*(\d{3,5})(?!\d)", re.I)
-CHEAP = re.compile(r"\b(?:cheap(?:est|er)?|lowest (?:rent|price|cost)|least expensive|most affordable|inexpensive|low[- ]cost)\b", re.I)
 _cache, _lock = {}, threading.Lock()
 
 
