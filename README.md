@@ -1,6 +1,6 @@
 # Clear Home
 
-Group hackathon effort by Pierce, Umair, Phone, and Ryan for **GDG Build with AI x Hacktoberfest 2026** (Virginia Tech, Oct 24-25, 2026). Theme: **AI for Housing**.
+Group hackathon effort by Pierce, Umair, Phone, and Ryan for **GDG DMV AI for Good: Housing × Hacktoberfest 2026**, hosted by Google Developer Group Virginia Tech (Oct 24-25, 2026). Theme: **AI for Housing**.
 
 **Result: 1st place overall, and winner of the Best Use of Google Cloud track.**
 

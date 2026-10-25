@@ -1038,7 +1038,7 @@ ABOUT = [
                 r"what are you built on|what powers you)\b", re.I),
      "I'm Gemma, the assistant in **Clear Home**. I run on Google's Gemma 4 (26B), served from the team's own Google Cloud Run GPU, and I "
      "answer only from Clear Home's verified list of homes, shelters and programs in Northern Virginia and Blacksburg. Clear Home was built "
-     "by Pierce, Umair, Phone and Ryan for GDG Build with AI × Hacktoberfest 2026 at Virginia Tech.\n\nWhat are you looking for? A place to "
+     "by Pierce, Umair, Phone and Ryan for GDG DMV AI for Good: Housing × Hacktoberfest 2026 at Virginia Tech.\n\nWhat are you looking for? A place to "
      "rent, somewhere safe tonight, or help paying rent?"),
     (re.compile(r"^\s*(?:what(?:'s| is) (?:this|clear home|this site|this app)|what (?:can|do) you do|how (?:does|do) (?:this|it|you|clear home) work|"
                 r"what is this for|how do i use (?:this|it))\b", re.I),
