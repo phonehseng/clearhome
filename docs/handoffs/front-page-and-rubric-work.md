@@ -32,6 +32,23 @@ Several teammates edit the same files, especially `frontend/about.html`. Run `gi
 
 Axe (run in the browser with the `wcag2a` and `wcag2aa` tags) reports no violations on the front page or the tools page. Contrast on solid backgrounds passes on the tools, Google Cloud and Resources pages.
 
+## Fix soon (small, not started)
+
+These are small, concrete fixes. Each one names the file and the cause, so they can be done in one pass. Each is independent, so do them in separate commits.
+
+1. **Billing test fails because its fake is out of date.** `backend/test_chat_stream.py`, test `test_catalog_answer_when_gemma_billing_fails`, defines `broken(prompt, thoughts=False)`. The real `stream_gemma` in `backend/matcher.py` (line 67) takes `think=False` too, and `advisor.py` (line 565) passes `think=`. The call therefore raises `TypeError: broken() got an unexpected keyword argument 'think'`. That exception is caught by the generic handler in `advisor.py` (line 579), so the user sees "The AI service didn't answer" instead of the billing message. **Fix:** change the fake to `def broken(prompt, thoughts=False, think=False):`. Re-run the test. It should pass without changing any app code, since `matcher.gemma_unavailable` already maps "402" and "prepayment" to the billing message.
+2. **`test_gemma` fails to import.** `backend/test_gemma.py` is a manual live check, not an offline unit test. It loads `.env` and calls the Gemini API at import time, and it stops with "Set GEMINI_API_KEY in the .env file" when no key is set. The README tells people to run it by hand (`python backend/test_gemma.py`), so keep that working. **Fix options:** (a) rename it so `unittest discover` (pattern `test_*.py`) skips it, for example `check_gemma.py`, and update the README line; or (b) keep the name and guard the live call so it is skipped when no key is set. Prefer (a).
+3. **Photo-card contrast on `/app`.** Axe cannot judge the 56 text spots over photos and gradients. Check them by eye in a screenshot, or measure against the rendered background. The handoff `photo-card-text-contrast.md` in this folder has the earlier measurements.
+
+## Smaller gaps (not started, lower priority)
+
+These don't block the rubric on their own, but each one is a visible or honesty gap.
+
+1. **Names and street addresses reach Gemma unredacted.** Email addresses and phone numbers are now removed (`backend/redact.py`, `EMAIL_RE` and `PHONE_RE`). Names and street addresses are not. A pattern can catch a street address well, such as a house number followed by a street suffix like "St", "Rd", "Ave", "Blvd" or "Ln". It can't reliably catch names. For names, the options are a small local named-entity model or simply keeping the on-page request to leave personal details out. `redact()` runs on every chat input in `backend/app.py` (nine call sites, including the `/api/ask/stream` path). Add tests to `backend/test_redact.py` for any new pattern.
+2. **The coverage numbers are typed in.** The "What's in the list" section (`frontend/about.html`, `id="coverage"`) has 436, 33, 5 and 82, plus the date "October 24, 2026." The counts come from `data/resources.json`: total records, `type == "emergency_shelter"`, `type == "legal_aid"`, and records with `monthly_rent` set. They will go stale as the list changes. Either generate them from the data at build time or serve them from an endpoint, and update the date line whenever the counts change.
+3. **Get Started on the light pages is still the blue gradient.** Over the blue hero it's a white pill with navy text (`frontend/site-header.css`, the `.ch-header.over-hero` rules). On Google Cloud, Resources, Review and `/app`, it stays the blue gradient (the base `.ch-header .header-links .cl-nav-btn` rule). The owner hasn't chosen whether the light pages should match the white pill or keep the blue. Ask before changing it.
+4. **Hero gradient and text selection need a sign-off.** These are covered in "Open decisions" items 6 and 7. They are listed here so they aren't missed.
+
 ## Open decisions (ask the team first)
 
 1. **"Verified" wording does not match the data.** The site says listings are "verified." In `data/resources.json`, 419 of 436 records have `verified: true`, but most of their `verification_method` text says "AI-assisted review of official … web sources … without phone confirmation of current rents, vacancies, or an open waitlist." Choose one: change "verified" to "reviewed" across the site and the chat prompts, or add phone confirmation before keeping the word. The chat prompts and the `"verified"` wording come from commit `70a17ad`. (Earlier this session the count was given as 418; the correct figure is 419.)
@@ -52,7 +69,7 @@ Axe (run in the browser with the `wcag2a` and `wcag2aa` tags) reports no violati
 ## How to check your work
 
 - Run the local server: `python backend/app.py` (port 8000), then open `http://localhost:8000/` and `http://localhost:8000/app`.
-- Backend tests, using the project virtualenv: `.venv/bin/python -m unittest discover -s backend -p 'test_*.py'`. Currently 122 tests run, with 2 failures that also fail on the unchanged code: `test_gemma` (import error) and `test_catalog_answer_when_gemma_billing_fails`. Do not treat those as new breaks.
+- Backend tests, using the project virtualenv: `.venv/bin/python -m unittest discover -s backend -p 'test_*.py'`. Currently 122 tests run, with 2 known failures that also fail on the unchanged code. Both are in "Fix soon" above, with their causes: `test_gemma` (a live script picked up by discovery) and `test_catalog_answer_when_gemma_billing_fails` (a stale fake). Do not treat them as new breaks.
 - Accessibility: load axe-core 4.9.1 from `https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.9.1/axe.min.js` in the browser and call `axe.run`. Use `runOnly: {type: 'tag', values: ['wcag2a','wcag2aa']}`. Note that `runOnly` cannot take both rules and tags at once.
 - Contrast on the hero: check the gradient stops in `frontend/about.html` (the `.cl-hero` rule) and compute the ratio at each text element's vertical position. Axe does not judge text over gradients.
 
