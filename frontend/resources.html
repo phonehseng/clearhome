@@ -367,7 +367,7 @@
       box.replaceChildren();
       (data.listings || []).slice(0, 8).forEach(l => {
         const card = el('article', { class: 'item' });
-        const plans=l.floor_plans || [l];
+        const plans=l.floor_plans ? l.floor_plans.map(p=>({...l,...p})) : [l];
         const statuses=new Set(plans.map(p=>p.availability?.status));
         card.append(el('span', { class: 'badge' }, statuses.size>1 ? 'Availability varies by plan' : STATUS[l.availability?.status] || 'Check availability'));
         card.append(el('h3', {}, l.community || l.name));

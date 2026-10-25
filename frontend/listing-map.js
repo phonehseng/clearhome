@@ -139,7 +139,7 @@
       return box;
     }
     const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
-    fetch('/api/listings').then(r => r.json()).then(data => {
+    fetch('/api/listings?fields=pins').then(r => r.json()).then(data => {
       (data.listings || []).filter(l => typeof l.lat === 'number').forEach(l => addPin({ lat: l.lat, lon: l.lon, color: '#2f55b5', title: l.community || l.name,
         popup: popup([l.community || l.name, l.floor_plan, typeof l.monthly_rent === 'number' ? ClearHouseRental.price(l) : null,
                       STATUS[l.availability?.status], 'Reviewed by our team'], l.source_url, 'Provider page') }));
