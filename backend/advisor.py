@@ -181,7 +181,10 @@ def _records(question, history=None):
     # filter_catalog drops closed and overdue listings; _pick keeps the prompt small. A rental search is read on its
     # own words, so an earlier shelter or rent-help conversation can't turn it back into a list of programs.
     search = housing_search(question)
-    text = question if search else " ".join([question] + [t['text'] for t in (history or [])[-2:]])
+    # A question with a topic of its own ("how do I apply for Section 8?") is read on its own words too, so an earlier
+    # room search can't fill it with apartments; only a follow-up without one ("how do I apply there?") borrows the last turns.
+    own = search or any(w in question.lower() for words, _ in TOPICS for w in words)
+    text = question if own else " ".join([question] + [t['text'] for t in (history or [])[-2:]])
     return _pick(filter_catalog(load_catalog()), text, listings_only=search)
 
 

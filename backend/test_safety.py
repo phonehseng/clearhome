@@ -260,6 +260,13 @@ class AdviceTests(unittest.TestCase):
         self.assertIn("advice", kinds)
         self.assertLess(kinds.index("advice"), kinds.index("cards"))
 
+    def test_a_new_topic_is_not_mixed_with_the_last_search(self):
+        history = [{"role": "user", "text": "rooms near Virginia Tech under 500"},
+                   {"role": "assistant", "text": "Closest verified rooms under $500/month to Virginia Tech: University Terrace 1213K room"}]
+        types = {r.get("type") for r in advisor._records("how do I apply for section 8 in Fairfax?", history)}
+        self.assertEqual(types, {"housing_authority"})
+        self.assertIn("rental_listing", {r.get("type") for r in advisor._records("how do I apply there?", history)})
+
     def test_searches_and_urgent_needs_show_cards(self):
         for question in ("cheap rooms near Virginia Tech", "I am behind on rent in Alexandria, who can help?"):
             advisor._cache.clear()
