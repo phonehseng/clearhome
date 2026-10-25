@@ -2,8 +2,31 @@
 * { -webkit-user-select: auto; user-select: auto; }
 body { -webkit-user-select: text; user-select: text; }
 
+/* Display headings and hero copy behave like interface decoration. Include
+   nested spans so animated words do not become individually selectable. */
+:is(h1, h2, .cl-hero-text, .hero-copy) {
+  -webkit-user-select: none;
+  user-select: none;
+}
+:is(h1, h2, .cl-hero-text, .hero-copy) * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Names, answers and practical details remain available to copy, even when
+   they contain headings or sit inside a decorative hero container. */
+:is(.housing-card, .chat-card, .msg, .resource-card, .item, .opt-card, .result, .selected-home,
+    .photo-attribution, .photo-source-notice, [data-selectable],
+    input, textarea, [contenteditable="true"],
+    a[href^="tel:"], a[href^="mailto:"]),
+:is(.housing-card, .chat-card, .msg, .resource-card, .item, .opt-card, .result, .selected-home,
+    .photo-attribution, .photo-source-notice, [data-selectable]) * {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 /* Avoid accidental selection while operating controls. */
-:where(button, button *, [role="button"], [role="button"] *, select, option,
+:is(button, button *, [role="button"], [role="button"] *, select, option,
        summary, nav a, .header-links a, .brand, .brand *, .hero-art, .hero-art *,
        .tab-icon, .step-number, .eyebrow, .housing-status, .photo-expand-mark) {
   -webkit-user-select: none;
