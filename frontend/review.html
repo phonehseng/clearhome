@@ -77,12 +77,19 @@
     }
   </style>
   <link rel="stylesheet" href="/interface.css">
+  <link rel="stylesheet" href="/site-header.css">
+  <script src="/site-header.js" defer></script>
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header ch-header">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="32" height="32">clear house<span class="brand-dot">.</span></a>
-      <nav aria-label="Main"><a href="/app">Find Housing</a><a href="/resources">Resources</a></nav>
+      <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a>
+      <nav class="header-links" aria-label="Page navigation">
+        <a href="/#map">Map</a>
+        <a href="/google-cloud">Built with Google Cloud</a>
+        <a href="/#github">GitHub</a>
+        <a class="cl-nav-btn" href="/app">Get Started</a>
+      </nav>
     </div>
   </header>
   <main class="container">

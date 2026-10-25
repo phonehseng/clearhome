@@ -1,0 +1,29 @@
+/* One header for every page, in the home page's style: small logo with the links beside it and a navy
+   "Get Started" pill. After you scroll, the logo and links fade away and "Get Started" stays pinned top-right.
+   On the home page the header sits transparent over the blue hero (.over-hero); elsewhere it carries
+   the same blue. Loaded after each page's own styles, so the !important marks win over older header rules. */
+.ch-header{position:fixed!important;top:0;left:0;right:0;z-index:50;pointer-events:none;border:0!important;box-shadow:none!important;
+  background:linear-gradient(180deg,#5b8def,#6b98f0)!important;transition:background .25s}
+.ch-header.over-hero,.ch-header.scrolled{background:transparent!important}
+.ch-header a{pointer-events:auto}
+.ch-header .header-inner{width:min(1120px,calc(100% - 64px));margin-inline:auto;height:68px!important;display:flex;align-items:center;justify-content:flex-start!important;gap:28px}
+.ch-header .brand{display:inline-flex;align-items:center;gap:9px;font-size:19px!important;font-weight:700;letter-spacing:-.4px;color:#fff!important;text-decoration:none;transition:opacity .25s,visibility .25s}
+.ch-header .brand-mark{width:30px!important;height:30px!important;display:grid;place-items:center;background:none!important;border-radius:9px;box-shadow:0 3px 10px #14203f33;overflow:visible}
+.ch-header .brand-mark img{width:100%;height:100%;display:block}
+.ch-header .brand-dot{color:#ffffffa6!important;margin-left:-8px}
+.ch-header .header-links{flex:1;display:flex!important;align-items:center;gap:2px!important;font-size:14px}
+.ch-header .header-links>a:not(.cl-nav-btn){display:inline-block;padding:8px 12px;border-radius:8px;color:#ffffffd9!important;font-size:14px;font-weight:500;text-decoration:none!important;box-shadow:none!important;
+  transition:background .15s,color .15s,opacity .25s,visibility .25s}
+.ch-header .header-links>a:not(.cl-nav-btn):hover,.ch-header .header-links>a[aria-current="page"]{color:#fff!important;background:#ffffff1f}
+.ch-header .header-links .cl-nav-btn{margin-left:auto;display:inline-flex!important;align-items:center;padding:10px 20px;border-radius:999px;color:#fff!important;font-size:15px;font-weight:700;text-decoration:none!important;
+  background:#14203f!important;box-shadow:0 8px 22px #14203f33;transition:transform .15s,box-shadow .15s}
+.ch-header .header-links .cl-nav-btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px #14203f40}
+.ch-header.scrolled :is(.brand,.header-links>a:not(.cl-nav-btn)){opacity:0;visibility:hidden}
+/* Pages without the home hero leave room for the fixed header. */
+body:has(.ch-header:not(.over-hero)){padding-top:68px}
+@media (max-width:860px){
+  .ch-header .header-inner{height:60px!important;width:calc(100% - 32px)}
+  .ch-header .header-links>a:not(.cl-nav-btn){display:none!important}
+  body:has(.ch-header:not(.over-hero)){padding-top:60px}
+}
+@media (prefers-reduced-motion:reduce){.ch-header,.ch-header :is(.brand,.header-links a){transition:none}}

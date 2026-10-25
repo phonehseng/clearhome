@@ -662,11 +662,30 @@
     .map-hood{height:40px;max-width:200px;padding-right:38px;-webkit-appearance:none;appearance:none;
       background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%2314203f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E") no-repeat right 14px center}
     .map-tab.near-me svg{color:#2f55b5}
+    /* Footer: brand and page links on one row, the team credit underneath. */
+    .cl-footer{border-top:1px solid var(--line);padding:34px 0 40px;margin-top:24px;color:var(--muted)}
+    .cl-footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .cl-footer-brand{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font-size:18px;font-weight:700;letter-spacing:-.4px}
+    .cl-footer-brand img{width:28px;height:28px;border-radius:8px;box-shadow:0 3px 10px #23408f33}
+    .cl-footer-brand span{color:#8d99ad;margin-left:-8px}
+    .cl-footer-links{display:flex;flex-wrap:wrap;gap:4px}
+    .cl-footer-links a{padding:7px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:background .15s,color .15s}
+    .cl-footer-links a:hover{color:#2f55b5;background:#e2eafb}
+    .cl-footer-credit{margin:18px auto 0;padding-top:18px;border-top:1px solid #d2dcf099;font-size:13.5px;line-height:1.6}
+    .cl-footer-credit b{color:var(--ink);font-weight:600}
+    @media (max-width: 640px){.cl-footer-top{flex-direction:column;align-items:center;text-align:center}.cl-footer-links{justify-content:center}.cl-footer-credit{text-align:center}}
+    .cl-footer{text-align:left}
+    .cl-footer-note{margin:18px auto 0;padding-top:18px;border-top:1px solid #d2dcf099;font-size:13.5px;line-height:1.6}
+    .cl-footer-note + .cl-footer-credit{margin-top:6px;padding-top:0;border-top:0}
+    .cl-footer-links a[aria-current="page"]{color:#2f55b5;background:#e2eafb}
+    @media (max-width: 640px){.cl-footer-note{text-align:center}}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="/interface.css">
+  <link rel="stylesheet" href="/site-header.css">
+  <script src="/site-header.js" defer></script>
 </head>
 <body>
 <div class="scene" aria-hidden="true"><div class="sc-stage">
@@ -722,7 +741,17 @@
   <symbol id="phone" viewBox="0 0 24 24"><path d="m7 3 4 5-3 3a14 14 0 0 0 5 5l3-3 5 4-2 4C11 22 2 13 3 5Z"/></symbol>
 </defs></svg>
 <a class="skip-link" href="#tools">Skip to housing tools</a>
-<header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>NoVA & Blacksburg</div><nav class="header-links" aria-label="Page navigation"><a href="/">About</a><a href="/resources">Resources</a><a href="#listings" class="browse-nav">Browse Housing</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
+<header class="site-header ch-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a>
+      <nav class="header-links" aria-label="Page navigation">
+        <a href="/#map">Map</a>
+        <a href="/google-cloud">Built with Google Cloud</a>
+        <a href="/#github">GitHub</a>
+        <a class="cl-nav-btn" href="#tools">Get Started</a>
+      </nav>
+    </div>
+  </header>
 <main class="container">
   <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A Clearer Path.<br><span>A Place to Call Home.</span></h1><p>Checked homes, shelters and rent help.</p><a class="browse-link" href="#listings">Browse Housing & Waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official sources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></section>
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What Do You Need?</h2></div><div class="tools"><div class="tool-workspace">
@@ -790,7 +819,14 @@
     </div>
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
   </section>
-</main><footer class="container site-footer"><div class="footer-notes"><p>Always confirm with the provider. AI can make mistakes. Not legal advice. Don’t share your SSN or bank details.</p></div></footer>
+</main><footer class="cl-footer">
+    <div class="container cl-footer-top">
+      <a class="cl-footer-brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="28" height="28">clear house<span>.</span></a>
+      <nav class="cl-footer-links" aria-label="Footer"><a href="/#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="/resources">Resources</a><a href="/#github">GitHub</a><a href="/app">Open Clear House</a></nav>
+    </div>
+    <p class="container cl-footer-note">Always confirm with the provider. AI can make mistakes. Not legal advice. Don’t share your SSN or bank details.</p>
+    <p class="container cl-footer-credit">Made by Pierce, Umair, Phone and Ryan for <b>GDG Build with AI × Hacktoberfest 2026</b>.</p>
+  </footer>
 <dialog id="property-photo-dialog" class="photo-dialog" aria-labelledby="property-photo-title"><header><h2 id="property-photo-title">Community Photo</h2><button type="button" id="close-property-photo" aria-label="Close photo preview">×</button></header><img id="property-photo-large" alt=""><p id="property-photo-caption"></p><div id="property-photo-source"></div></dialog>
 <script src="/rental-labels.js"></script>
 <script>

@@ -439,25 +439,9 @@
     .start-form button:hover{background:#23408f}
     .start-form:focus-within{box-shadow:0 0 0 3px #ffd66b}
     .start-note{margin:12px 4px 0;font-size:12px;color:#b7c3e6;text-align:center}
-    /* Header, Cluely style: transparent over the hero, small logo with the links beside it, one glossy blue button.
-       After you scroll, the logo and links fade away and "Get started" stays pinned top-right. */
-    .site-header{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent!important;pointer-events:none}
-    .site-header a{pointer-events:auto}
-    .site-header .header-inner{height:68px;justify-content:flex-start;gap:28px}
-    .site-header .brand{font-size:19px;font-weight:700;letter-spacing:-.4px;gap:9px;color:#fff;transition:opacity .25s,visibility .25s}
-    .site-header .brand-mark{width:30px!important;height:30px!important;border-radius:9px;box-shadow:0 3px 10px #14203f33}
-    .site-header .brand-dot{color:#ffffffa6;margin-left:-8px}
-    .site-header .header-links{flex:1;gap:2px;font-size:14px}
-    .site-header .header-links>a:not(.cl-nav-btn){padding:8px 12px;border-radius:8px;color:#ffffffd9!important;font-weight:500;text-decoration:none;transition:background .15s,color .15s,opacity .25s,visibility .25s}
-    .site-header .header-links>a:not(.cl-nav-btn):hover{color:#fff!important;background:#ffffff1f;text-decoration:none}
-    /* Same navy pill as the page's other buttons, just smaller for the header. */
-    .site-header .header-links .cl-nav-btn{margin-left:auto;display:inline-flex;align-items:center;padding:10px 20px;border-radius:999px;color:#fff!important;font-size:15px;font-weight:700;text-decoration:none;
-      background:#14203f;box-shadow:0 8px 22px #14203f33;transition:transform .15s,box-shadow .15s}
-    .site-header .header-links .cl-nav-btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px #14203f40}
-    .site-header.scrolled :is(.brand,.header-links>a:not(.cl-nav-btn)){opacity:0;visibility:hidden}
+    /* The header itself lives in /site-header.css; the hero leaves room for it. */
     .cl-hero{padding-top:140px}
-    @media (max-width: 860px){.site-header .header-links>a.cl-nav-btn{display:inline-flex}.site-header .header-inner{height:60px}.cl-hero{padding-top:110px}}
-    @media (prefers-reduced-motion: reduce){.site-header :is(.brand,.header-links a){transition:none}}
+    @media (max-width: 860px){.cl-hero{padding-top:110px}}
     /* Footer: brand and page links on one row, the team credit underneath. */
     .cl-footer{border-top:1px solid var(--line);padding:34px 0 40px;margin-top:24px;color:var(--muted)}
     .cl-footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -484,6 +468,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="/interface.css">
+  <link rel="stylesheet" href="/site-header.css">
+  <script src="/site-header.js" defer></script>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
@@ -499,7 +485,7 @@
 </defs></svg>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
+  <header class="site-header ch-header over-hero">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a>
       <nav class="header-links" aria-label="Page navigation">
@@ -614,7 +600,7 @@
     <div class="container cl-footer-top">
       <a class="cl-footer-brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="28" height="28">clear house<span>.</span></a>
       <nav class="cl-footer-links" aria-label="Footer">
-        <a href="#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="#github">GitHub</a><a href="/app">Open Clear House</a>
+        <a href="#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="/resources">Resources</a><a href="#github">GitHub</a><a href="/app">Open Clear House</a>
       </nav>
     </div>
     <p class="container cl-footer-credit">Made by Pierce, Umair, Phone and Ryan for <b>GDG Build with AI × Hacktoberfest 2026</b>.</p>
@@ -872,12 +858,6 @@
       openTools();
     });
   })();
-</script>
-<script>
-  // Header: once you scroll past the top, keep only the "Get started" button in view.
-  (() => { const header = document.querySelector('.site-header'); if (!header) return;
-    const update = () => header.classList.toggle('scrolled', scrollY > 40);
-    addEventListener('scroll', update, { passive: true }); update(); })();
 </script>
 </body>
 </html>
