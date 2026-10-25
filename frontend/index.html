@@ -767,6 +767,10 @@
     #tools .emergency-card .tonight-links span{color:#4b5a7a;font-size:13.5px;font-weight:600}
     #tools .emergency-card .tonight-links button{background:#fff;border:1px solid #d2dcf0;color:#14203f;font-weight:600;box-shadow:0 2px 8px #23408f0f}
     #tools .emergency-card .tonight-links button:hover{background:#f6f9ff;border-color:#9db2e3}
+    /* A listing whose picture is an artist's rendering: the photo pill says so, so nobody mistakes it for the real building. */
+    .housing-card.has-photo.is-rendering .property-photo::after{content:'Artist’s render'}
+    .housing-card.has-photo.is-rendering .property-photo{border-style:dashed}
+    .housing-card.has-photo.is-rendering .property-photo .photo-expand-mark{display:none}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -1469,6 +1473,7 @@
       const safePhoto = photo && sourceLink(photo.url, 'Photo') && sourceLink(photo.source_url, 'Photo source');
       if (safePhoto) {
         card.classList.add('has-photo'); card.style.setProperty('--card-photo', `url("${photoUrl}")`);
+        if (photo.kind === 'rendering') card.classList.add('is-rendering');  // an artist's drawing, not a photo of the building
         const button = housingElement('button','property-photo'); button.type='button'; button.setAttribute('aria-label',`Enlarge ${imageLabel} of ${row.community || row.name}`); button.setAttribute('aria-haspopup','dialog');
         // This image is a load/error probe even when the glass-card CSS hides it.
         const image=document.createElement('img'); image.alt=photo.alt || `Community photo of ${row.community}`;image.loading='eager';image.referrerPolicy='no-referrer';image.draggable=false;
