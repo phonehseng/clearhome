@@ -388,6 +388,18 @@
     .cl-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;background:#14203f;color:#fff;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 10px 30px #14203f33;transition:transform .15s,box-shadow .15s}
     .cl-btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px #14203f40}
     .cl-btn.ghost{background:#ffffffcc;color:#14203f;box-shadow:none;border:1px solid #ffffff}
+    /* Hero liquid glass: the region badge is clear glass, and the two buttons are a dark pane (the main action) and a light
+       one, each with a light rim and a soft glare; solid fallbacks where blur isn't supported. */
+    .cl-chip{background:linear-gradient(140deg,#ffffff40 0%,#ffffff17 60%,#ffffff2e 100%);border-color:#ffffff6b;backdrop-filter:blur(14px) saturate(1.6);
+      -webkit-backdrop-filter:blur(14px) saturate(1.6);box-shadow:inset 0 1px 0 #ffffff80,inset 0 -1px 0 #ffffff1f,0 8px 24px #0b14331f}
+    .cl-hero .cl-btn{position:relative;isolation:isolate;overflow:hidden;border:1px solid #ffffff38;
+      background:linear-gradient(140deg,#14203fe6 0%,#14203fb8 60%,#1c2d5ad9 100%);backdrop-filter:blur(14px) saturate(1.5);-webkit-backdrop-filter:blur(14px) saturate(1.5);
+      box-shadow:inset 0 1px 0 #ffffff40,inset 0 -1px 0 #ffffff12,0 12px 30px #14203f40}
+    .cl-hero .cl-btn::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 80% at 20% 0%,#ffffff2e 0%,#ffffff00 55%)}
+    .cl-hero .cl-btn.ghost{color:#14203f;border-color:#ffffffe6;background:linear-gradient(140deg,#ffffffe0 0%,#ffffffa8 60%,#ffffffcc 100%);
+      box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff59,0 10px 26px #14203f1f}
+    .cl-hero .cl-btn.ghost::before{background:radial-gradient(120% 80% at 20% 0%,#ffffffb3 0%,#ffffff00 55%)}
+    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.cl-hero .cl-btn{background:#14203f}.cl-hero .cl-btn.ghost{background:#fffffff0}.cl-chip{background:#ffffff38}}
     /* A supporting illustration, sized below the hero copy and blended into the page. */
     .cl-hero-art{position:relative;flex:none;width:min(560px,84%);aspect-ratio:470/260;max-height:260px;margin:8px auto 20px;z-index:1;opacity:.85;
       -webkit-mask-image:linear-gradient(#000 78%,transparent 100%);mask-image:linear-gradient(#000 78%,transparent 100%)}
@@ -492,7 +504,7 @@
     .tonight .start-msgs{display:grid;gap:8px;max-height:min(46vh,380px);overflow-y:auto;align-content:start}
     .start-msgs p.me{justify-self:end;background:#2f55b5;color:#fff;border-radius:16px 16px 6px 16px}
     .start-choices{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
-    .start-choices:empty{display:none}
+    .start-choices:empty,.start-form[hidden]{display:none}  /* the form's own display rule would otherwise beat [hidden] */
     .start-choice{display:inline-flex;align-items:center;min-height:40px;padding:9px 15px;border-radius:999px;border:1px solid #ffffff59;
       background:#ffffff1f;color:#fff;font:inherit;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;animation:start-rise .35s ease both}
     .start-choice:hover,.start-choice:focus-visible{background:#ffffff33;border-color:#ffffffa6}
@@ -646,7 +658,7 @@
       <div class="pin-track map-track"><div class="pin-stage"><div class="pin-fit">
       <h2 id="map-title" class="cl-title reveal">Every Verified Home, <span>on One Map</span></h2>
       <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p>
-      <div class="cl-frame reveal map-video-frame"><video id="map-video" class="map-video" src="/videos/map-tour.mp4" poster="/videos/map-tour.jpg" muted playsinline preload="metadata" aria-label="A recording of someone using the Clear House map: browsing Northern Virginia, zooming into Ballston and Reston, opening listings, and switching to Blacksburg"></video><a class="map-video-cta" href="/app">Open the Live Map <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+      <div class="cl-frame reveal map-video-frame"><video id="map-video" class="map-video" src="/videos/map-tour.mp4?v=2" poster="/videos/map-tour.jpg?v=2" muted playsinline preload="metadata" aria-label="A recording of someone using the Clear House map: browsing Northern Virginia, zooming into Ballston and Reston, opening listings, and switching to Blacksburg"></video><a class="map-video-cta" href="/app">Open the Live Map <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a></div>
       </div></div></div>
     </section>
 
@@ -959,40 +971,35 @@
     }
 
     // The map: a recording of someone using the live map (all of Northern Virginia, zooming into Ballston, near work in
-    // Reston, then Blacksburg, opening listings on the way). Pinned on wide screens, the scroll plays it, back and forth,
-    // with a caption for each stop; phones and short windows play it on a loop while it's on screen. With reduced
-    // motion it stays still, with play controls. Times are from the recording (seconds).
-    const mapTrack = document.querySelector('.map-track'), mapVideo = document.getElementById('map-video');
-    if (mapTrack && mapVideo) {
-      const STOPS = [[0, 'Every verified home across Northern Virginia.'], [6.1, 'Zoom into a neighborhood, like Ballston in Arlington.'],
-                     [16.4, 'Or look near work, like Reston.'], [23.3, 'And Blacksburg, right by Virginia Tech.']];
-      const lead = mapTrack.querySelector('.cl-lead'), intro = lead.textContent;
-      let stop = -1, target = 0;
-      const caption = i => {
+    // Reston, then Blacksburg, opening listings on the way). It plays on a slow, seamless loop while it's on screen,
+    // with a caption for each stop; with reduced motion it stays still, with play controls. The section isn't pinned.
+    // Stop times are from the recording (seconds).
+    const mapVideo = document.getElementById('map-video'), mapLead = document.querySelector('.map-track .cl-lead');
+    if (mapVideo && mapLead) {
+      const STOPS = [[0, 'Every verified home across Northern Virginia.'], [8.8, 'Zoom into a neighborhood, like Ballston in Arlington.'],
+                     [24.9, 'Or look near work, like Reston.'], [36.0, 'And Blacksburg, right by Virginia Tech.']];
+      let stop = -1;
+      mapVideo.addEventListener('timeupdate', () => {
+        const i = STOPS.reduce((found, [from], n) => (mapVideo.currentTime >= from ? n : found), 0);
         if (i === stop) return;
         stop = i;
-        lead.textContent = i < 0 ? intro : STOPS[i][1];
-        lead.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
-      };
-      const stopAt = t => STOPS.reduce((found, [from], i) => (t >= from ? i : found), 0);
-      // One seek at a time: the next waits for 'seeked', so fast scrolling never queues up a backlog.
-      const seek = () => { if (!mapVideo.seeking && Math.abs(mapVideo.currentTime - target) > 1 / 30) mapVideo.currentTime = target; };
-      mapVideo.addEventListener('seeked', seek);
+        mapLead.textContent = STOPS[i][1];
+        mapLead.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
+      });
       if (calmPage) mapVideo.controls = true;
       else {
-        const pinned = () => mapTrack.classList.contains('pinned');
-        mapVideo.addEventListener('timeupdate', () => { if (!pinned()) caption(stopAt(mapVideo.currentTime)); });
-        pinScene(mapTrack, { distance: 900,
-          play: p => { mapVideo.loop = false; if (!mapVideo.paused) mapVideo.pause(); target = p * (mapVideo.duration || 29.7); seek(); caption(p <= 0 ? -1 : stopAt(target)); },
-          // Phones and short windows: start loading when it's near, play while it's mostly on screen, pause once it's
-          // scrolled away (checked on each scroll, so it doesn't depend on observers).
-          loose: () => {
-            mapVideo.loop = true;
-            const r = mapVideo.getBoundingClientRect(), seen = r.top < innerHeight * .75 && r.bottom > innerHeight * .25;
-            if (r.top < innerHeight * 2 && r.bottom > -innerHeight) mapVideo.preload = 'auto';
-            if (seen && mapVideo.paused) mapVideo.play().catch(() => {});
-            else if (!seen && !mapVideo.paused) mapVideo.pause();
-          } });
+        mapVideo.loop = true;
+        // Load it as it nears the screen, play while it's mostly on screen, pause once it's scrolled away (checked on
+        // scroll, so it doesn't depend on observers).
+        const check = () => {
+          const r = mapVideo.getBoundingClientRect(), seen = r.top < innerHeight * .8 && r.bottom > innerHeight * .2;
+          if (r.top < innerHeight * 2 && r.bottom > -innerHeight) mapVideo.preload = 'auto';
+          if (seen && mapVideo.paused) mapVideo.play().catch(() => {});
+          else if (!seen && !mapVideo.paused) mapVideo.pause();
+        };
+        addEventListener('scroll', check, { passive: true });
+        addEventListener('resize', check);
+        check();
       }
     }
 
