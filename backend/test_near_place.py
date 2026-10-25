@@ -209,7 +209,7 @@ class NearPlaceTests(unittest.TestCase):
         prompt = seen["prompt"]
         self.assertIn("Place: The Walmart nearest Blacksburg is Walmart Supercenter", prompt)
         self.assertIn("within a 15-minute walk of", prompt)
-        resources = json.loads(prompt.rsplit("\n", 1)[-1])
+        resources = json.loads(prompt.split("for the requested area):\n", 1)[1].split("\n", 1)[0])  # the line after the label
         self.assertEqual({r["name"] for r in resources}, {"Near The Store", "Twelve Minutes Away"})
         self.assertTrue(all("walk_minutes_to_walmart" in r for r in resources))
 

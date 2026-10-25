@@ -272,7 +272,10 @@ QUESTION END
 {checklist}Answer the question directly in your first sentence (don't start with "Based on the data"). Plain text only: no tables, no # headings, at most 2 places, under 100 words unless they asked for more detail.
 
 Resources (source-reviewed, for the requested area):
-{json.dumps(resources, ensure_ascii=False, separators=(",", ":"))}"""
+{json.dumps(resources, ensure_ascii=False, separators=(",", ":"))}
+
+Now write your answer. Keep it short: 3 to 5 short sentences and at most 2 places (each "**Name**: rent, why it fits, phone"). No tables, no headings, no long lists, under 100 words unless they asked for more detail. If they sound worried or lost, start with one kind sentence and one first step. End with: Guidance only, not legal advice."""
+    # The style reminder comes last: after thousands of characters of listings, Gemma follows what it read most recently.
     return prompt
 
 

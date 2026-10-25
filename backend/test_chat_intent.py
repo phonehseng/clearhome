@@ -83,7 +83,7 @@ class IntentTests(unittest.TestCase):
         for part in ("rental housing search", "Household: 2 people", "not a bedroom count", "accessible field is true", "confirm the pet policy",
                      "verified matches", "accessable with pets"):
             self.assertIn(part, prompt)
-        resources = json.loads(prompt.rsplit("\n", 1)[-1])
+        resources = json.loads(prompt.split("for the requested area):\n", 1)[1].split("\n", 1)[0])  # the line after the label
         self.assertTrue(resources and all(r["type"] in LISTINGS for r in resources))
 
 
