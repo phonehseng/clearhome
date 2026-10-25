@@ -371,6 +371,27 @@
     .cl-ping{width:9px;height:9px;border-radius:50%;background:#ff8a1f;box-shadow:0 0 0 0 #ff8a1fb3;animation:ch-ping 1.8s ease-out infinite}
     .cl-hero h1{font-size:clamp(48px,7vw,96px);line-height:1.02;letter-spacing:-.035em;color:#fff;margin:0;font-weight:800;text-shadow:0 10px 40px #1d3f9a40}
     .cl-hero h1 span{color:#fff}
+    /* A small green bird perched on the F of the headline (same drawing as the flock, one wing folded). Hover, tap or
+       press it and it takes off up and to the right, then it's gone for this visit. Positioned in em from "Find" itself,
+       so it stays on the letter at every size. */
+    .cl-hero h1 .perch{position:relative}
+    .perch-bird{position:absolute;left:-.02em;bottom:calc(100% - .32em);width:clamp(20px,.3em,28px);aspect-ratio:20/12;padding:0;border:0;background:none;font:inherit;line-height:0;cursor:pointer;
+      border-radius:6px;transition:opacity .4s .5s}
+    .perch-bird svg{display:block;width:100%;height:100%;overflow:visible}
+    .perch-bird:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    .split:not(.words-in) .perch-bird{opacity:0;transition:none}  /* lands once "Find" has risen into place */
+    .perch-bird :is(.wl,.wr){transform-box:fill-box}
+    .perch-bird .wl{transform-origin:right bottom;transform:rotate(-20deg)}
+    .perch-bird .wr{transform-origin:left bottom;opacity:0}
+    .perch-bird .pb-legs{transition:opacity .15s}
+    .perch-bird.away{pointer-events:none;animation:perch-away 1.05s cubic-bezier(.45,0,.6,1) forwards}
+    .perch-bird.away .pb-legs{opacity:0}
+    .perch-bird.away .wl{animation:perch-flap-l .24s ease-in-out infinite}
+    .perch-bird.away .wr{opacity:1;animation:perch-flap-r .24s ease-in-out infinite}
+    @keyframes perch-away{0%{transform:none}14%{transform:translate(3px,-14px)}78%{opacity:1}100%{transform:translate(250px,-240px) rotate(-8deg);opacity:0}}
+    @keyframes perch-flap-l{0%,100%{transform:rotate(10deg)}50%{transform:rotate(-55deg)}}
+    @keyframes perch-flap-r{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(55deg)}}
+    @media(prefers-reduced-motion:reduce){.perch-bird.away{animation:perch-fade .3s forwards}.perch-bird.away :is(.wl,.wr){animation:none}@keyframes perch-fade{to{opacity:0}}}
     .cl-sub{font-size:clamp(18px,2vw,22px);color:#f4f7ff;margin:22px auto 34px;max-width:560px}
     .cl-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
     .cl-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;background:#14203f;color:#fff;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 10px 30px #14203f33;transition:transform .15s,box-shadow .15s}
@@ -519,7 +540,7 @@
     <section class="cl-hero" aria-labelledby="hero-title">
       <div class="cl-hero-text">
         <p class="cl-chip cl-in"><span class="cl-ping" aria-hidden="true"></span>Northern Virginia &amp; Blacksburg</p>
-        <h1 id="hero-title">Find Your Way <span>Home.</span></h1>
+        <h1 id="hero-title"><span class="perch">Find<button type="button" class="perch-bird" aria-label="Let the bird fly away"><svg viewBox="-10 -7 20 12" aria-hidden="true"><path class="pb-legs" d="M-.5 1.7V4.6M1.5 1.7V4.6" stroke="#2f5f34" stroke-width=".9" stroke-linecap="round"/><g stroke="#3f8a4a" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#3f8a4a"/><circle cx="3.4" cy="-.3" r="1.2" fill="#3f8a4a"/></svg></button></span> Your Way <span>Home.</span></h1>
         <p class="cl-sub cl-in" style="--d:.35s">Checked homes, shelters and rent help. Ask in plain words.</p>
         <div class="cl-actions cl-in" style="--d:.5s"><a class="cl-btn" href="/app" data-start>Get Started for Free <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency">Need a place tonight?</a></div>
       </div>
@@ -845,6 +866,41 @@
         render(0);
         pinScene(howTrack, { distance: 1500, play: p => { played = true; render(p); }, loose: playOnce });
       }
+    }
+
+    // The bird perched on the headline: hovering it (or a tap, Enter or Space) sends it flying; it stays gone this visit.
+    const perch = document.querySelector('.perch-bird');
+    if (perch) {
+      const flyAway = () => {
+        if (perch.classList.contains('away')) return;  // one takeoff, however many hovers
+        perch.classList.add('away');
+        const gone = () => {
+          if (perch.hidden) return;
+          if (document.activeElement === perch) document.querySelector('.cl-hero .cl-btn')?.focus({ preventScroll: true });
+          perch.hidden = true;  // no invisible hit area left behind
+        };
+        perch.addEventListener('animationend', e => { if (e.target === perch) gone(); });
+        setTimeout(gone, 1400);  // in case the animation event never fires
+      };
+      perch.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') flyAway(); });
+      perch.addEventListener('click', flyAway);
+      // Feet exactly on top of the F at any font and size, from the font's own measurements (the CSS em offset gets it
+      // close without scripts). Measured once the headline's words have risen into place, and again on resize.
+      const seat = () => {
+        if (perch.classList.contains('away')) return;
+        const word = perch.parentElement.querySelector('.word') || perch.parentElement, cs = getComputedStyle(word);
+        const ctx = document.createElement('canvas').getContext('2d'); ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+        const probe = document.createElement('i'); probe.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+        word.append(probe);
+        const capTop = probe.getBoundingClientRect().top - ctx.measureText('F').actualBoundingBoxAscent;
+        probe.remove();
+        perch.style.bottom = '';
+        const r = perch.getBoundingClientRect(), feet = r.top + r.height * 11.6 / 12;
+        perch.style.bottom = `${parseFloat(getComputedStyle(perch).bottom) + feet - capTop - 1}px`;  // 1px into the letter, gripping it
+      };
+      setTimeout(seat, 1300);
+      document.fonts?.ready.then(() => setTimeout(seat, 1300));
+      addEventListener('resize', seat);
     }
   </script>
 
