@@ -13,8 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Keep selection available only for links and editable text. */
-    * { -webkit-user-select: none; user-select: none; }
+    /* Text can be selected and copied everywhere. */
     a[href], a[href] *,
     input:not([type]),
     input:is([type="text"], [type="search"], [type="email"], [type="url"], [type="tel"], [type="password"], [type="number"]),
@@ -63,7 +62,7 @@
     .header-links .emergency-link { display: flex; align-items: center; gap: 8px; background: #fbf5ec; border: 1px solid #eadfce; border-radius: 7px; padding: 8px 12px; color: #765539; }
 
     .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; padding: 64px 0 56px; }
-    .eyebrow { display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; color: var(--blue-2); margin-bottom: 14px; }
+    .eyebrow { display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-size:12px; font-weight: 700; letter-spacing: 1.8px; color: var(--blue-2); margin-bottom: 14px; }
     .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #6f8fd6; }
     h1 { font-size: clamp(38px, 5vw, 60px); line-height: 1.08; letter-spacing: -2px; font-weight: 800; margin-bottom: 20px; }
     h1 span { color: var(--blue-2); }
@@ -198,7 +197,6 @@
     @keyframes ch-pulse{0%,100%{box-shadow:0 0 0 0 #6f8fd680}50%{box-shadow:0 0 0 6px #6f8fd600}}
     @media (prefers-reduced-motion: reduce){.scroll-progress{display:none}.split .word{opacity:1;transform:none}}
     /* Nothing on the page can be highlighted (text, icons, images); only form fields can. */
-    body{-webkit-user-select:none;user-select:none}
     img,svg{-webkit-user-drag:none}
     :is(input,textarea,[contenteditable]){-webkit-user-select:text;user-select:text}
     /* Built with Google */
@@ -206,7 +204,7 @@
     .google-grid .card h3{margin:8px 0 6px}
     .google-grid .card p{font-size:14px;line-height:1.6}
     .google-grid code{font-size:12.5px;background:#e7edf8;padding:1px 6px;border-radius:6px;color:#23408f}
-    .g-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#e7edf8;color:#2f55b5}
+    .g-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#e7edf8;color:#2f55b5}
 
     .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .web-search-btn{margin-top:8px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px dashed #d9822b;background:#fff8ef;color:#8a4b0f;font-size:12.5px;font-weight:650;cursor:pointer}
@@ -542,7 +540,7 @@
     #google .flip .face{padding:18px;border-radius:14px}
     #google .card h3{font-size:17px;margin:6px 0 4px}
     #google .card p{font-size:13.5px;line-height:1.5}
-    #google .g-tag{font-size:10px;padding:2px 8px}
+    #google .g-tag{font-size:12px;padding:2px 8px}
     #google .flip-btn{padding-top:10px;font-size:12.5px}
     /* Open Source on GitHub, scaled down like the sections above: a narrower card with smaller type and buttons. */
     #github .repo-card{max-width:940px;margin:28px auto 0;padding:20px;gap:22px;border-radius:20px}
@@ -566,13 +564,13 @@
     #github{max-width:1040px;padding-top:64px}
     #github .cl-title{font-size:clamp(28px,3vw,36px)}
     #github .repo-card{max-width:720px;margin-top:22px;padding:14px;gap:16px;border-radius:16px}
-    #github .repo-tree{font-size:11px;padding:10px 12px 12px;gap:1px}
+    #github .repo-tree{font-size:12px;padding:10px 12px 12px;gap:1px}
     #github .repo-tree b{min-width:11.5em}
     #github .repo-card h3{font-size:17px}
     #github .repo-card p{font-size:13px;margin-bottom:10px}
     #github .repo-stats li{padding:3px 9px;font-size:11.5px}
     #github .repo-langs{height:6px}
-    #github .repo-langs-key{font-size:11px;margin-bottom:10px}
+    #github .repo-langs-key{font-size:12px;margin-bottom:10px}
     #github .repo-team{margin-bottom:12px}
     #github .repo-team a{font-size:11.5px}
     #github .repo-team img{width:18px;height:18px}
