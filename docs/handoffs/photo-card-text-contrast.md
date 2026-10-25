@@ -1,5 +1,7 @@
 # Handoff: subtle readability improvement on glass photo cards
 
+> **Status: done, then superseded.** d180427 raised small-text contrast on the glass photo cards from about 2:1 to over 6:1 (measured against each card's photo); 8437f67 then replaced the glass cards with full photos above solid detail panels.
+
 Implement, visually verify, commit, and push this user-requested refinement. The screenshot shows University Terrace — 1213K with dark text on a translucent, blurred property photo. The title and rent are readable, but the supporting text blends into the image. The user wants the font a little more visible while retaining the transparent photo/glass appearance.
 
 - Inspect the latest photo-card styles and all relevant variants before editing. Improve supporting-text contrast modestly: use a slightly darker text color and, where helpful, a small font-weight increase. Preserve the clear title/rent hierarchy and avoid making every line bold.
