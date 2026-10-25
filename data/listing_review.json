@@ -208,8 +208,8 @@
     },
     "nova-alexandria-city-potomac-west": {
       "state": "flagged",
-      "note": "Couldn't confirm an official website (site blocks automated checks); candidate: https://potomacwest.prospectportal.com/ → check it in a browser and add it, or confirm the property has none",
-      "on": "2026-10-25"
+      "on": "2026-10-25",
+      "note": "Website and phone to confirm in a browser or by phone: the property site (https://potomacwest.prospectportal.com/, which blocks automated checks) reportedly lists (703) 899-3170, while our 703-549-1349 comes from the city's 2023 guide → keep the number that reaches Potomac West leasing and add the site if it is theirs"
     },
     "nova-alexandria-city-station-650": {
       "state": "flagged",
@@ -678,8 +678,8 @@
     },
     "thin-pwc-glen-arbor": {
       "state": "flagged",
-      "note": "No official phone or website (HUD lists none) → find the leasing contact",
-      "on": "2026-10-24"
+      "on": "2026-10-25",
+      "note": "Renamed Elevations One (formerly Glen Arbor), 209 units at 60% AMI → find the leasing phone (Franklin Group Companies manages it, per listings) and confirm the address (14300 Jeffries Rd or 1905 Stevens Rd)"
     },
     "thin-pwc-somerset-pointe": {
       "state": "flagged",

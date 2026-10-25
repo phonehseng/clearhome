@@ -423,6 +423,45 @@ class LowIncomeAndEmergencyTests(unittest.TestCase):
         self.assertIn("arlington", [c["id"] for c in asked["choices"]])
 
 
+class CasualBrowsingTests(unittest.TestCase):
+    """Someone clicking around: questions about Clear Home, 'thanks', one word at a time."""
+
+    def chat(self, question, history=None):
+        with patch("advisor.stream_gemma", side_effect=no_gemma):
+            found = events(server.app.test_client().post("/api/ask/stream", json={"question": question, "chat": {}, "history": history or []}))
+        asked = next((e["text"] for e in found if e["kind"] == "question"), None)
+        return (asked or {}).get("text") or next((e["text"] for e in found if e["kind"] == "answer"), "")
+
+    def test_questions_about_clear_home_get_real_answers_instantly(self):
+        self.assertIn("Gemma 4", self.chat("who made this"))
+        self.assertIn("Pierce, Umair, Phone and Ryan", self.chat("are you chatgpt?"))
+        self.assertIn("verified homes", self.chat("how does this work"))
+        self.assertIn("never scrape", self.chat("where do you get your listings?"))
+        self.assertIn("free", self.chat("is this free?"))
+
+    def test_thanks_and_bye_never_bring_more_listings(self):
+        earlier = [{"role": "user", "text": "studio in arlington"}, {"role": "assistant", "text": "**Lenox Club**: $1,430"}]
+        self.assertIn("You're welcome", self.chat("cool thanks", earlier))
+        self.assertIn("Take care", self.chat("bye", earlier))
+        self.assertIn("Anything else", self.chat("ok", earlier))
+        for word in ("ok", "lol", "test", "whatever", "?"):
+            self.assertIn("What kind of help", self.chat(word), word)  # with nothing before it: the help buttons
+
+    def test_one_word_places_and_students_ask_what_for(self):
+        self.assertEqual(self.chat("blacksburg"), "What are you looking for in Blacksburg?")
+        self.assertEqual(self.chat("places for students"), "Which campus?")
+
+    def test_what_about_another_place_switches_to_it(self):
+        earlier = [{"role": "user", "text": "cheap apartments in arlington"}, {"role": "assistant", "text": "**Arbor Heights**: $1,299"}]
+        rows = advisor._records("what about blacksburg", earlier)
+        self.assertTrue(rows and all(r.get("jurisdiction") == "Montgomery County" for r in rows))
+        self.assertFalse(advisor.advice_question("whats the cheapest"))
+
+    def test_the_chats_own_notes_never_name_a_place(self):
+        composed = "apartments. My answers in this chat: no particular area, so give broad results across Northern Virginia."
+        self.assertEqual(advisor.named_records(composed), [])
+
+
 class AnswerStyleTests(unittest.TestCase):
     def test_prompt_keeps_sympathy_for_worried_people_and_names_the_budget_gap(self):
         prompt = advisor._prompt("studio in Arlington under $400", [], [])

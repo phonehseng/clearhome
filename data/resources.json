@@ -29579,12 +29579,12 @@
   },
   {
     "id": "thin-pwc-glen-arbor",
-    "name": "Glen Arbor",
-    "community": "Glen Arbor",
+    "name": "Elevations One (formerly Glen Arbor)",
+    "community": "Elevations One (formerly Glen Arbor)",
     "record_kind": "community",
     "floor_plan": "Community · 1- to 4-bedroom units per HUD data",
     "type": "affordable_listing",
-    "address": "14300 Jefferies Road, Woodbridge, VA 22191",
+    "address": "14300 Jeffries Road, Woodbridge, VA 22191",
     "city": "Woodbridge",
     "jurisdiction": "Prince William County",
     "area": "Prince William County",
@@ -29611,6 +29611,14 @@
       {
         "url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?where=HUD_ID%3D%27VAA20180015%27&outFields=PROJECT%2CPROJ_ADD%2CPROJ_CTY%2CPROJ_ZIP%2CN_UNITS%2CLI_UNITS%2CN_1BR%2CN_2BR%2CN_3BR%2CN_4BR%2CYR_PIS%2CTRGT_ELD%2CTRGT_FAM&returnGeometry=false&f=html",
         "role": "government"
+      },
+      {
+        "url": "https://www.pwcida.org/projects",
+        "role": "government"
+      },
+      {
+        "url": "https://www.agmfinancial.com/project/glen-arbor-apartments/",
+        "role": "corroboration"
       }
     ],
     "last_verified": "2026-10-24",
@@ -29625,7 +29633,7 @@
       "source_updated_on": "2024-12-09",
       "evidence": "HUD lists this property in its tax-credit database. That does not establish a currently available apartment or an open waitlist; contact leasing."
     },
-    "notes": "Source: HUD Low-Income Housing Tax Credit database (dataset last updated 2024-12-09). Tax-credit status does not mean every apartment is vacant or that rent is set by income; current rent and waitlist status require provider confirmation. No official property website or telephone number was found; HUD’s data lists no contact. The Census Geocoder spells the street Jeffries Rd.",
+    "notes": "Renovated and renamed Elevations One: the Prince William County IDA (bond projects) and AGM Financial describe the purchase and renovation of Glen Arbor Apartments, with all 209 units now restricted to households at or below 60% of area median income. Google Maps lists the old name, Glen Arbor Apartments, as permanently closed for that reason. Some listings give the leasing office as 1905 Stevens Rd. Source: HUD Low-Income Housing Tax Credit database (dataset last updated 2024-12-09). Current rent and waitlist status require provider confirmation; no official website or telephone number was found.",
     "catalog_batch": "thin-areas-2026-10-24",
     "affordability": {
       "status": "documented",

@@ -145,14 +145,16 @@ TONIGHT = re.compile(r"\b(emergency (?:housing|shelters?|places? to (?:stay|slee
 RENT_HELP = re.compile(r"\b(rent help|help (?:with|paying) (?:my |the )?rent|rent(?:al)? assistance|pay(?:ing)? (?:my |the )?rent|behind on rent|"
                        r"back rent|owe (?:my )?rent|evict\w*|security deposit|utility bills?|los(?:e|ing) (?:my|our|the) (?:apartment|home|house|place|housing)|can'?t afford (?:my |the )?rent)\b", re.I)
 RENTAL = re.compile(r"\b(apartments?|rentals?|for rent|to rent|rooms?|studios?|townhouses?|condos?|duplex|sublets?|subleases?|"
-                    r"low[- ]income|affordable|income[- ](?:based|restricted)|subsidi[sz]ed)\b", re.I)
+                    r"low[- ]income|affordable|income[- ](?:based|restricted)|subsidi[sz]ed|students?|student housing)\b", re.I)
 BEDROOMS = re.compile(r"\b(?:\d|one|two|three|four)[- ]?(?:bed(?:room)?s?|br|bd)\b", re.I)
 # "I need somewhere to live", "I need help": a need without the kind of help. Named topics (vouchers, a landlord) are not vague.
 VAGUE = re.compile(r"\b(somewhere|a place|housing|a home|new home|help|move|moving|relocat\w*)\b", re.I)
 SPECIFIC = re.compile(r"\b(vouchers?|section 8|hcv|public housing|wait ?lists?|housing authority|landlords?|lawyers?|legal|rights|repairs?|"
                       r"court|seniors?|elderly|veterans?|deposit|utilit\w*|mortgage|buy(?:ing)?|food|jobs?)\b", re.I)
 # A general question gets an answer, not a questionnaire. "Where can I find an apartment?" is a search, so "where" isn't here.
-GREETING = re.compile(r"^\s*(?:hi+|hello|hey+|hiya|howdy|yo|hola|good (?:morning|afternoon|evening)|sup|what'?s up)\b[\s!.?,]*(?:there|gemma)?[\s!.?]*$", re.I)
+GREETING = re.compile(r"^\s*(?:(?:hi+|hello|hey+|hiya|howdy|yo|hola|good (?:morning|afternoon|evening)|sup|what'?s up)\b[\s!.?,]*(?:there|gemma)?|"
+                      r"ok(?:ay)?|k+|cool|nice|lol+|lmao|haha+|hmm+|test(?:ing)?|surprise me|whatever|idk|dunno|i don'?t know|anything|nothing|"
+                      r"yes|yeah|yep|sure|no|nah|maybe|\?+|\.+|\d{1,4})[\s!.?]*$", re.I)
 INFO = re.compile(r"^\s*(what|what's|whats|how|why|who|explain|define|tell me about|is there|are there|does|do i|do you|do they|is it|is a|is an|are)\b", re.I)
 NO_BUDGET = re.compile(r"\b(no (?:set |real )?budget|any (?:price|budget)|price doesn'?t matter|whatever it costs)\b", re.I)
 BARE_NUMBER = re.compile(r"\$?\s*(\d{3,5})(?:\s*(?:a|per|/)\s*(?:month|mo))?")
@@ -378,8 +380,13 @@ def next_question(request, state, profile=None):
                         skip=False, unsure=True)
     free = lambda field: field not in a and field not in state["asked"]  # not answered, and not asked yet for this request
     kind = a.get("help") or detect_help(t)
+    keys = places_in(t)
+    if kind is None and keys and len(t.split()) <= 3 and free("help"):  # just a place ("blacksburg"): what for?
+        return question("help", f"What are you looking for in {place_name(keys[0])}?", [(k, label) for k, label in
+                        (("rental", "Find a rental"), ("tonight", "Somewhere safe tonight"), ("rent_help", "Help paying rent"))],
+                        skip=False, unsure=True)
     if kind is None:
-        vague = VAGUE.search(t) and not SPECIFIC.search(t) and len(t.split()) <= 15
+        vague = (VAGUE.search(t) or re.fullmatch(r"\s*(?:rent|rents|renting)\s*[?.!]*", t, re.I)) and not SPECIFIC.search(t) and len(t.split()) <= 15
         return question("help", "What kind of help do you need first?", [(k, label) for k, label in
                         (("rental", "Find a rental"), ("tonight", "Somewhere safe tonight"), ("rent_help", "Help paying rent"))],
                         skip=False, unsure=True) if vague and free("help") else None

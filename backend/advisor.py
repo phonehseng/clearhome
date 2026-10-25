@@ -188,6 +188,12 @@ def _records(question, history=None):
     # room search can't fill it with apartments; only a follow-up without one ("how do I apply there?") borrows the last turns.
     own = search or any(w in question.lower() for words, _ in TOPICS for w in words)
     text = question if own else " ".join([question] + [t['text'] for t in (history or [])[-2:]])
+    if not own and history and any(k in question.lower() for k in PLACE_KEYS):
+        # "what about blacksburg?": the new place, with what they were looking for before (its own places left out)
+        earlier = " ".join(t['text'] for t in history[-2:] if t.get("role") == "user").lower()
+        for k in PLACE_KEYS:
+            earlier = re.sub(rf"\b{re.escape(k)}\b", " ", earlier)
+        text = f"{question} {earlier}"
     # A follow-up that names no place keeps the place it was about ("what about cheaper ones?" after rooms near Virginia Tech).
     if own and history and not any(k in question.lower() for k in PLACE_KEYS):
         earlier = " ".join(t['text'] for t in history[-2:]).lower()
@@ -225,7 +231,7 @@ def _records(question, history=None):
         programs.sort(key=lambda r: r.get("waitlist_status") != "open")
         rows = rows[:MAX_RECORDS - 2] + programs[:2]
     named = named_records(question)  # "what is the rent at Signature at Reston?": that place first
-    if not named and not own and history:  # "how do I apply there?": the places the last answer named
+    if not named and not own and history and not any(k in question.lower() for k in PLACE_KEYS):  # "how do I apply there?": the places the last answer named
         named = named_records(next((t["text"] for t in reversed(history) if t.get("role") == "assistant"), ""))[:4]
     return (named + [r for r in rows if r not in named])[:MAX_RECORDS] if named else rows
 
@@ -499,7 +505,7 @@ HOUSING_WORDS = re.compile(r"\b(something|somewhere|a place|place to (?:live|ren
                            r"rentals?|to rent|lease|condo|townhouse|duplex)\b", re.I)
 BUDGET_ANY = re.compile(r"(?:under|below|less than|at most|max(?:imum)?|up to|budget(?: is| of)?|afford|around|about|\$)\s*\$?\s*(\d{3,5})(?!\d)", re.I)
 NEAR_ANY = re.compile(r"\b(near|close to|walking distance|minutes? from|by campus)\b", re.I)
-CAMPUS = re.compile(r"\b(campus|university|college)\b", re.I)
+CAMPUS = re.compile(r"\b(campus|university|college|students?|student housing)\b", re.I)
 CLARIFY_MARK = "Which campus?"
 PLACE_MARK = "or which city?"  # ends near_place.py's "Which Walmart, or which city?", so the reply keeps the request too
 _NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
@@ -719,7 +725,7 @@ THINKING_STEPS = [(0, "reading the listings and checking each of your requiremen
                   (50, "writing your answer (a careful answer can take up to two minutes)")]
 
 
-THINK_SECONDS = 45  # past this, Gemma stops thinking and answers straight away
+THINK_SECONDS = 25  # past this, Gemma stops thinking and answers straight away
 
 
 def _thinking_step(seconds):
@@ -855,7 +861,8 @@ LOW_INCOME = re.compile(r"\b(?:low[- ]income|income[- ](?:based|restricted|quali
 
 
 # "What about cheaper ones?", "any closer options?": a follow-up about places, not advice.
-PLACE_TALK = re.compile(r"\b(?:cheaper|closer|bigger|smaller|nicer|newer|ones|options|listings|those|these|there|them|that one|that place)\b", re.I)
+PLACE_TALK = re.compile(r"\b(?:cheap\w*|lowest|least expensive|closer|bigger|smaller|nicer|newer|ones|options|listings|those|these|there|them|"
+                        r"that one|that place|what about|how about)\b", re.I)
 
 
 LIVE_COUNT = re.compile(r"\b(?:how many (?:open |free |empty )?(?:beds|units|spots|spaces|rooms|apartments)|open beds|beds? (?:open|available|left|free)|"
@@ -944,13 +951,15 @@ _PLACE_WORDS = {w for k, _ in AREAS for w in k.split()}
 def named_records(question):
     """Places in the list that the question names ("what is the rent at Signature at Reston?"), each community once: every
     word that sets the name apart must be in the question."""
-    asked = set(re.findall(r"[a-z0-9]+", (question or "").lower()))
+    said = (question or "").split(" My answers in this chat:")[0]  # their words, not the chat's own notes ("broad results")
+    asked = set(re.findall(r"[a-z0-9]+", said.lower()))
     found, seen = [], set()
     for r in filter_catalog(load_catalog()):
         key = " ".join(re.findall(r"[a-z0-9]+", (r.get("community") or r.get("name") or "").lower()))
         own = set(key.split()) - _GENERIC - _PLACE_WORDS
-        whole = f" {re.sub(r'^the ', '', key)} " in f" {' '.join(re.findall(r'[a-z0-9]+', (question or '').lower()))} "  # "the mill at blacksburg"
-        if key in seen or not own or not own <= asked or not (whole or any(len(w) >= 5 or (w.isdigit() and len(w) >= 3) for w in own)):
+        whole = f" {re.sub(r'^the ', '', key)} " in f" {' '.join(re.findall(r'[a-z0-9]+', said.lower()))} "  # "the mill at blacksburg"
+        distinct = any(len(w) >= 5 or (w.isdigit() and len(w) >= 3) for w in own) and not (len(own) == 1 and len(next(iter(own))) < 8)
+        if key in seen or not own or not own <= asked or not (whole or distinct):  # "West Broad" only when said in full
             continue
         seen.add(key)
         found.append(r)
@@ -1007,6 +1016,72 @@ def boundary_answer(text):
         return None
     return Boundary("I can't play a role or write legal notices. I can explain how evictions, notices and leases work in Virginia "
                        "in plain words, or point you to free legal aid who can help with your situation. What would help most?")
+
+
+# Questions about Clear Home itself, answered the same way every time.
+ABOUT = [
+    (re.compile(r"\b(?:who (?:made|built|created|designed|runs|owns) (?:this|you|it|clear home)|who are you|what are you|what(?:'s| is) your name|"
+                r"are you (?:chat ?gpt|gpt|claude|gemini|a bot|an ai|ai|human|a person|real)|what (?:model|ai|llm|language model)|which (?:model|ai)|"
+                r"what are you built on|what powers you)\b", re.I),
+     "I'm Gemma, the assistant in **Clear Home**. I run on Google's Gemma 4 (26B), served from the team's own Google Cloud Run GPU, and I "
+     "answer only from Clear Home's verified list of homes, shelters and programs in Northern Virginia and Blacksburg. Clear Home was built "
+     "by Pierce, Umair, Phone and Ryan for GDG Build with AI × Hacktoberfest 2026 at Virginia Tech.\n\nWhat are you looking for? A place to "
+     "rent, somewhere safe tonight, or help paying rent?"),
+    (re.compile(r"^\s*(?:what(?:'s| is) (?:this|clear home|this site|this app)|what (?:can|do) you do|how (?:does|do) (?:this|it|you|clear home) work|"
+                r"what is this for|how do i use (?:this|it))\b", re.I),
+     "**Clear Home** helps you find a place to live in Northern Virginia and Blacksburg. Tell me what you need in plain words, like "
+     "\"cheap rooms near Virginia Tech\" or \"I'm behind on rent in Alexandria\", and I'll:\n"
+     "• find verified homes that fit your budget and area, with real walking and driving times from Google Maps\n"
+     "• point you to rent help, legal aid and Section 8 programs, with their waitlist status\n"
+     "• show shelters and nearby hotels if you need a place tonight\n\n"
+     "I only use our verified list, and I'll say what to confirm with the provider. What are you looking for?"),
+    (re.compile(r"\bwhere (?:do|does|did) (?:you|this|clear home|the data|your data|your listings|the listings|listings) (?:get|come|find|from)|"
+                r"where (?:is|are) (?:your|the) (?:data|listings|information) from|what(?:'s| is) your source", re.I),
+     "Every place comes from Clear Home's verified list: {records} records checked against property websites and public agencies (HUD, and "
+     "county and city housing offices), most recently on October 25, 2026, when we confirmed each one with Google Maps and its own pages. "
+     "Rents are what providers advertise, or our labeled estimates. We never scrape sites like Zillow or Apartments.com. Call the provider "
+     "to confirm before you pay anything."),
+    (re.compile(r"\b(?:is (?:this|it|clear home) free|does (?:this|it) cost|how much (?:does|is) (?:this|clear home|it) cost|do i (?:have to|need to) pay (?:for this|to use))\b", re.I),
+     "Yes, Clear Home is free: no account, no sign-up, and your chat isn't saved. Housing programs set their own rents and fees, and I'll say "
+     "what each one asks."),
+    (re.compile(r"\b(?:can i trust (?:this|you|it)|is (?:this|it) (?:legit|accurate|real|reliable|safe)|how accurate|are (?:these|the listings) real)\b", re.I),
+     "You can check everything I tell you: each card links to its source, and I only use our verified list (no made-up places). Openings and "
+     "rents change, so call the provider to confirm, and never pay a deposit before you've seen the place and signed a lease."),
+    (re.compile(r"\b(?:what|which) (?:areas?|places|cities|counties|regions) (?:do you|does this|does clear home) (?:cover|serve|work|include)|where do you (?:cover|work)\b", re.I),
+     "Northern Virginia (Arlington, Alexandria, Fairfax, Falls Church, Loudoun, Prince William and Manassas) and Blacksburg, including rooms "
+     "near Virginia Tech. Outside those areas, call 211 for local housing help."),
+]
+
+
+class About(Instant):
+    engine = "Clear Home (instant, no AI)"
+
+
+def about_answer(text):
+    t = text or ""
+    for pattern, answer in ABOUT:
+        if pattern.search(t):
+            return About(answer.replace("{records}", f"{len(load_catalog()):,}"))
+    return None
+
+
+THANKS = re.compile(r"^\s*(?:(?:ok(?:ay)?|cool|great|awesome|perfect|nice|alright)[\s,!.]*)?(?:thanks?(?: you)?(?: so much| a lot)?|thx|ty|tysm|appreciate it)\b[\s!.]*(?:gemma)?[\s!.]*$", re.I)
+BYE = re.compile(r"^\s*(?:ok(?:ay)?[\s,]*)?(?:bye+|goodbye|good bye|see (?:you|ya)|later|cya|that'?s all|i'?m done|done)\b[\s!.]*$", re.I)
+FILLER = re.compile(r"^\s*(?:ok(?:ay)?|k+|cool|nice|lol+|lmao|haha+|hmm+|test(?:ing)?|great|awesome|wow|whatever|idk|dunno|i don'?t know|"
+                    r"nothing|nah|\?+|\.+|\d{1,4})[\s!.?]*$", re.I)
+
+
+def social_answer(text, history=None):
+    """'Thanks', 'bye', and 'ok'/'cool' after an answer: a short friendly reply, never more listings. With no conversation
+    yet, 'ok' and 'test' are left to the chat's own first question (the help buttons)."""
+    t = text or ""
+    if THANKS.match(t):
+        return About("You're welcome! If you want to look again, tell me an area, a budget or what you need. For urgent help any time, call **211**.")
+    if BYE.match(t):
+        return About("Take care! Clear Home is here any time. For urgent help, call **211**, or **911** in an emergency.")
+    if FILLER.match(t) and history:
+        return About("Anything else I can help with? You can ask for more options, another area, a different budget, or how to apply.")
+    return None
 
 
 def fair_housing_answer(text):
