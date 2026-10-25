@@ -268,7 +268,7 @@
     .g-tag.gemini{background:#ede7fb;color:#5b3fb5}
     .g-tag.maps{background:#e6f4ea;color:#137333}
     .g-tag.cloud{background:#e8f0fe;color:#1a56c4}
-    /* Flip cards: tap a card (or its button) to see how we use the service; it flips back once scrolled out of view. */
+    /* Flip cards: they turn over one by one as you scroll down through the grid; a tap (or the button) flips one by hand. */
     .google-grid .card.flip{padding:0;background:none;border:0;box-shadow:none;overflow:visible;perspective:1000px;cursor:pointer}
     .google-grid .card.flip::before{content:none}
     .flip-in{display:grid;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -671,8 +671,9 @@
       }, { passive: true });
     }
 
-    // Built-with-Google flip cards: the back says how we use each service; a flipped card turns back once you scroll past it.
-    const flips = document.querySelectorAll('.flip');
+    // Built-with-Google flip cards: the back says how we use each service. Scrolling down through the grid turns them over
+    // one by one, in order, and scrolling back up turns them back; a tap flips one by hand.
+    const flips = [...document.querySelectorAll('.flip')];
     const setFlip = (card, on) => {
       const [front, back] = card.querySelectorAll('.face');
       card.classList.toggle('flipped', on);
@@ -684,11 +685,23 @@
       setFlip(card, on);
       if (e.target.closest('.flip-btn')) card.querySelector(on ? '.back .flip-btn' : '.front .flip-btn').focus();
     }));
-    if ('IntersectionObserver' in window) {
-      const flipBack = new IntersectionObserver(entries => entries.forEach(e => {
-        if (!e.isIntersecting && e.target.classList.contains('flipped')) setFlip(e.target, false);
-      }), { threshold: 0.4 });
-      flips.forEach(card => flipBack.observe(card));
+    const flipGrid = document.querySelector('.google-grid');
+    if (flipGrid && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const turned = flips.map(() => false);  // what scrolling last asked for, so a tapped card stays put until its turn comes round again
+      let queued = false;
+      const syncFlips = () => {
+        queued = false;
+        // 0 when the grid's top is 70% of the way down the screen, 1 when its bottom is halfway up.
+        const r = flipGrid.getBoundingClientRect(), progress = (innerHeight * .7 - r.top) / (r.height + innerHeight * .2);
+        flips.forEach((card, i) => {
+          const on = progress > (i + .5) / flips.length;
+          if (on === turned[i] || card.contains(document.activeElement)) return;  // never flip the card a keyboard user is on
+          turned[i] = on; setFlip(card, on);
+        });
+      };
+      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(syncFlips); } }, { passive: true });
+      addEventListener('resize', syncFlips);
+      syncFlips();
     }
   </script>
 
