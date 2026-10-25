@@ -445,10 +445,10 @@
     .site-header .header-links{flex:1;gap:2px;font-size:14px}
     .site-header .header-links>a:not(.cl-nav-btn){padding:8px 12px;border-radius:8px;color:#ffffffd9!important;font-weight:500;text-decoration:none;transition:background .15s,color .15s,opacity .25s,visibility .25s}
     .site-header .header-links>a:not(.cl-nav-btn):hover{color:#fff!important;background:#ffffff1f;text-decoration:none}
-    .site-header .header-links .cl-nav-btn{margin-left:auto;display:inline-flex;align-items:center;padding:10px 20px;border-radius:12px;color:#fff!important;font-size:15px;font-weight:600;text-decoration:none;
-      background:radial-gradient(120% 120% at 70% 85%,#7aa6ff 0%,#3b66d6 55%,#2f55b5 100%);
-      box-shadow:0 10px 24px #23408f40,inset 0 1px 0 #ffffff66,inset 0 -2px 6px #14203f2e;transition:transform .15s,box-shadow .15s}
-    .site-header .header-links .cl-nav-btn:hover{transform:translateY(-1px);box-shadow:0 14px 30px #23408f55,inset 0 1px 0 #ffffff66,inset 0 -2px 6px #14203f2e}
+    /* Same navy pill as the page's other buttons, just smaller for the header. */
+    .site-header .header-links .cl-nav-btn{margin-left:auto;display:inline-flex;align-items:center;padding:10px 20px;border-radius:999px;color:#fff!important;font-size:15px;font-weight:700;text-decoration:none;
+      background:#14203f;box-shadow:0 8px 22px #14203f33;transition:transform .15s,box-shadow .15s}
+    .site-header .header-links .cl-nav-btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px #14203f40}
     .site-header.scrolled :is(.brand,.header-links>a:not(.cl-nav-btn)){opacity:0;visibility:hidden}
     .cl-hero{padding-top:140px}
     @media (max-width: 860px){.site-header .header-links>a.cl-nav-btn{display:inline-flex}.site-header .header-inner{height:60px}.cl-hero{padding-top:110px}}
