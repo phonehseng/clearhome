@@ -857,8 +857,8 @@ def quick_nearby(question, profile=None):
         homes.sort(key=lambda r: (not isinstance(r.get("monthly_rent"), (int, float)), r.get("monthly_rent") or 0))
     place = landmark[0].title().replace("Gmu", "George Mason University") if landmark else area
     if not homes:
-        return (f"I don't have a verified home in {area} that fits your choices yet. Try a higher budget or a nearby area, "
-                "or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
+        return (f"Here's how to keep looking in {area}: try a nearby area or a different budget, or call 211 for local housing help. "
+                "Our list doesn't have a match for those choices yet.\n\nThis is guidance, not legal advice.")
     lines = [f"Here are the lowest-rent verified homes {'near ' + place if landmark else 'in ' + area}:" if cheap
              else f"Here are verified homes closest to {place}:" if landmark else f"Here are verified homes in {area}:"]
     for r in homes[:5]:

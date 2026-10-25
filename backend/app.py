@@ -572,6 +572,7 @@ def ask_advisor_stream():
         # A question goes as its words (for the transcript) plus its answer choices as data; no cards or map moves yet.
         updates = ([("engine", engine), ("answer", instant)] + ([("question", instant.question)] if asking else [("cards", cards_for(instant))])
                    + ([("lines", instant.lines)] if getattr(instant, "lines", None) else [])  # crisis answers: call and text buttons
+                   + ([("suggest", list(instant.suggest))] if getattr(instant, "suggest", None) else [])  # no match: one-tap next searches
                    if instant else stream_ask(question, history))
         sent = False
         if chat is not None:  # the conversation's answers, for the page to send back with the next message

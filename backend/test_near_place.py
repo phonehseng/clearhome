@@ -101,7 +101,7 @@ class NearPlaceTests(unittest.TestCase):
         for question in ("give me something close to walmart in blacksburg", "cheapest place close to walmart in blacksburg"):
             with self.subTest(question):
                 text, _ = self.answer(question)
-                self.assertTrue(text.startswith("Verified homes within a 15-minute walk of Walmart Supercenter (1 Test Rd)"), text)  # the result first
+                self.assertTrue(text.startswith("Here are verified homes within a 15-minute walk of Walmart Supercenter (1 Test Rd)"), text)  # the result first
                 self.assertIn("The Walmart nearest Blacksburg is Walmart Supercenter, 1 Test Rd, Blacksburg", text)
                 self.assertIn("I took walking distance as about 15 minutes on foot", text)  # the default is said, at the end
                 self.assertLess(text.index("**Near The Store**"), text.index("I took walking distance"))
@@ -120,9 +120,10 @@ class NearPlaceTests(unittest.TestCase):
         self.assertIn("Near The Store", text)
         self.assertNotIn("Twelve Minutes Away", text)
         text, _ = self.answer("a 5 minute walk to walmart in blacksburg")
-        self.assertIn("None of the verified homes that fit your choices is within a 5-minute walk", text)
-        self.assertIn("longer than your limit", text)
-        self.assertIn("**Near The Store**: 8 min walk", text.split("longer than your limit")[1])
+        self.assertTrue(text.startswith("Here are the best options near Walmart Supercenter (1 Test Rd)"), text)  # never "None of ..."
+        self.assertIn("each a bit more than a 5-minute walk", text)
+        self.assertIn("**Near The Store**: 8 min walk", text)
+        self.assertNotIn("None of", text)
         self.assertNotIn("Cheap Across The Highway", text)  # a two-hour walk isn't even an "almost"
 
     def test_failed_and_unknown_routes_are_never_close(self, *_):
@@ -183,7 +184,7 @@ class NearPlaceTests(unittest.TestCase):
                    "location": {"latitude": 37.2200, "longitude": -80.4139}}]
         text, google = self.answer("walking distance from the walmart on richmond hwy", FakeGoogle(places=on_hwy))
         self.assertEqual(google.queries, ["Walmart richmond hwy, VA"])
-        self.assertTrue(text.startswith("Verified homes within a 15-minute walk of one of these stores"), text)
+        self.assertTrue(text.startswith("Here are verified homes within a 15-minute walk of one of these stores"), text)
         self.assertIn('The 2 Walmart stores matching "richmond hwy"', text)
         text, _ = self.answer("walking distance from the walmart at 7910 richmond hwy", FakeGoogle(places=on_hwy))
         self.assertIn("Walmart, 7910 Richmond Hwy", text.splitlines()[1])

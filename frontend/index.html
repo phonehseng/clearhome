@@ -1975,7 +1975,7 @@
       const status = botSay('Reading your question…', 'loading');
       let note = 'Reading your question…';
       const timer = setInterval(() => { status.textContent = `${note} (${Math.round((Date.now() - started) / 1000)}s)`; }, 1000);
-      let answer = '', bubble = null, engine = '', asked = null, state = null, lines = null, more = [], ok = false;
+      let answer = '', bubble = null, engine = '', asked = null, state = null, lines = null, more = [], suggest = [], ok = false;
       const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); pinTurn(); };
       const finish = () => { clearInterval(timer); status.remove(); };
       const stale = () => resets !== chatReset;  // the chat was reset while this reply was on its way
@@ -1999,6 +1999,7 @@
             else if (event.kind === 'question') { asked = event.text; }
             else if (event.kind === 'lines') { if (Array.isArray(event.text)) lines = event.text; }
             else if (event.kind === 'more') { if (Array.isArray(event.text)) more = event.text; }
+            else if (event.kind === 'suggest') { if (Array.isArray(event.text)) suggest = event.text.filter(t => typeof t === 'string' && t.length < 120).slice(0, 3); }
             else if (event.kind === 'status') { note = event.text; status.textContent = note; }
             else if (event.kind === 'thinking') { note = `Gemma is thinking: ${event.text}`; status.textContent = note; }
             else if (event.kind === 'chunk') { if (!answer) finish(); answer += event.text; show(answer); }
@@ -2014,7 +2015,7 @@
         if (asked) showQuestion(bubble, asked, keyboard, answer);
         else if (keyboard) chatInput.focus({ preventScroll: true });
         if (engine) { const by = el('div', (asked ? 'Asked by ' : 'Answered by ') + engine, { class: 'msg-engine' }); let after = bubble; while (/chat-(cards|lines)/.test(after.nextElementSibling?.className || '')) after = after.nextElementSibling; after.after(by); pinTurn(); }
-        if (!asked) showNext(more, /Gemma 4 26B/.test(engine) && !lines);  // short answers: more on request
+        if (!asked) showNext(more, /Gemma 4 26B/.test(engine) && !lines, suggest);  // short answers: more on request; no match: next searches
         history.push({ role: 'user', text: question }, { role: 'assistant', text: answer });
         if (state && resets === chatReset) chat = state;  // only once the whole reply arrived, so a failed one leaves the open question open
         ok = true;
@@ -2031,8 +2032,10 @@
     }
     // Gemma names at most two places and keeps it short. "Show more options" adds the other places it weighed, from the
     // verified list with no AI call; "Tell me more" asks Gemma to go into detail.
-    function showNext(more, tellMore) {
+    function showNext(more, tellMore, suggest = []) {
       const row = el('div', null, { class: 'chat-next', role: 'group', 'aria-label': 'More from this answer' });
+      // Next searches when nothing matched (each one changes one thing); a tap asks it like a typed message.
+      suggest.forEach(text => { const b = el('button', text, { type: 'button' }); b.addEventListener('click', () => ask(text)); row.append(b); });
       if (more.length) {
         const b = el('button', `Show ${more.length} more option${more.length === 1 ? '' : 's'}`, { type: 'button' });
         b.addEventListener('click', () => { const spot = el('div'); row.before(spot); showCards(spot, '', more); spot.remove(); b.remove(); if (!row.children.length) row.remove(); });

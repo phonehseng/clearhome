@@ -380,7 +380,7 @@ def measure(found, want, profile=None):
     cheap = bool(CHEAP.search(want["text"]))
     # Quickest trip first (lowest rent first for "cheapest"); the name breaks ties so the order never shuffles.
     out["matches"].sort(key=lambda t: (rent(t[3]), t[0], t[3]["name"]) if cheap else (t[0], rent(t[3]), t[3]["name"]))
-    out["over"].sort(key=lambda t: (t[0], t[3]["name"]))
+    out["over"].sort(key=lambda t: (rent(t[3]), t[0], t[3]["name"]) if cheap else (t[0], t[3]["name"]))  # "cheapest": lowest rent first here too
     if not want["at_least"] and not want["metres"]:  # a 190-minute walk isn't a useful "almost": up to twice the limit only
         out["over"] = [t for t in out["over"] if t[0] <= 2 * want["minutes"] * 60]
     if not out["matches"] and not out["over"] and mode == "WALK" and out["nearest"]:
@@ -447,8 +447,10 @@ def compose(found, want, result):
             lines.append(f"Nearest verified homes in a straight line (not a {ROUTE_WORD[mode]} route, so not confirmed as close): {near}.")
         return Answer("\n".join(lines) + "\n\nThis is guidance, not legal advice.")
     matches = result["matches"]
-    lines = [f"Verified homes {rule} {target}, measured with Google Maps {ROUTE_WORD[mode]} routes:" if matches
-             else f"None of the verified homes that fit your choices is {rule} {target} by Google Maps {ROUTE_WORD[mode]} routes."]
+    # "within a 15-minute walk of" -> "a 15-minute walk", for saying how the best options differ from what was asked.
+    limit_words = rule.split(" of")[0].replace("within ", "").replace("at least ", "at least ")
+    lines = [f"Here are verified homes {rule} {target}, measured with Google Maps {ROUTE_WORD[mode]} routes:" if matches
+             else f"Here are the best options near {target}."]
     if found.get("chain") or many:
         lines.append(found["label"] + ".")
     shown = matches[:MAX_SHOWN]
@@ -460,15 +462,18 @@ def compose(found, want, result):
     alt = []
     if not matches:
         if result["over"]:
-            lines.append(f"Closest by {ROUTE_WORD[mode]} route, but longer than your limit:")
+            cheap = bool(CHEAP.search(want["text"]))
+            lines[0] = (f"Here are the best options near {target}: the {'lowest-priced' if cheap else 'closest'} ones, "
+                        f"each a bit more than {limit_words} by Google Maps {ROUTE_WORD[mode]} routes.")
             alt = result["over"][:3]
         elif result.get("by_car"):
-            lines.append("None is within walking range. Closest by car instead (a broader option, not a walk):")
+            lines[0] = f"Here are the closest homes to {target} by car; they're farther than an easy walk."
             alt = result["by_car"][:3]
         for t in alt:
             lines.append(_line(t, stores, "DRIVE" if t in result.get("by_car", []) else mode, pool_all, many))
         if not alt:
-            lines.append("Try a longer trip or a nearby town, or call 211 for local housing help.")
+            lines[0] = (f"Here's how to keep looking near {target}: try a longer trip or a nearby town, "
+                        "or call 211 for local housing help. Our list doesn't have a home close enough to measure yet.")
     missing = len(result["pool"]) - len(result["routes"])
     if missing:
         lines.append(f"Google found no {ROUTE_WORD[mode]} route for {missing} nearby home{'' if missing == 1 else 's'}, so {'it is' if missing == 1 else 'they are'} left out rather than guessed.")
@@ -478,11 +483,25 @@ def compose(found, want, result):
         lines.append(_default_note(want))
     lines.append("Advertised rents and openings aren't guaranteed, so confirm with the property.\n\nThis is guidance, not legal advice.")
     answer = Answer("\n".join(lines))
+    # Nothing within the limit: one-tap next searches, each backed by what was just measured.
+    if not matches:
+        what = "Rooms" if re.search(r"\brooms?\b", want["text"], re.I) else "Homes"
+        follow = []
+        if alt and not want["metres"] and not want["at_least"] and t_mode_ok(alt, result):
+            longest = max(t[0] for t in alt) / 60
+            follow.append(f"{what} within a {int(-(-longest // 5) * 5)}-minute {'walk' if mode == 'WALK' else 'drive' if mode == 'DRIVE' else 'bus ride'} of {target}")
+        follow.append(f"Help paying rent near {target}")
+        answer.suggest = follow
     answer.directions = {}
     for t in shown + alt:
         h = t[3]
         answer.directions[(h.get("community") or h["name"]).casefold()] = _directions(h, stores[t[2]], "DRIVE" if t in result.get("by_car", []) else mode)
     return answer
+
+
+def t_mode_ok(alt, result):
+    """The fallback list was measured in the asked mode (not the by-car stand-in), so a longer limit in that mode is real."""
+    return not any(t in result.get("by_car", []) for t in alt)
 
 
 def _default_note(want):

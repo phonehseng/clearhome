@@ -229,10 +229,14 @@ def _filters(question, profile):
     return filters
 
 
-def _homes_near(name, lat, lon, question, profile):
-    filters = _filters(question, profile)
+class Reply(str):
+    """An instant answer plus follow-up questions the chat offers as one-tap buttons (each sends that question)."""
+    suggest = ()
+
+
+def _within(filters, lat, lon):
+    """(miles, record) for each verified community that fits the filters within MAX_MILES, one per community."""
     seen, homes = set(), []
-    pool = filter_catalog(load_catalog(), {"types": ["affordable_listing", "rental_listing"]})  # for rent estimates
     for r in filter_catalog(load_catalog(), filters):
         if r.get("lat") is None:
             continue
@@ -243,7 +247,65 @@ def _homes_near(name, lat, lon, question, profile):
         d = _miles(lat, lon, r["lat"], r["lon"])
         if d <= MAX_MILES:
             homes.append((d, r))
+    return homes
+
+
+def _lowest_rent(homes, pool):
+    def price(item):
+        d, r = item
+        if isinstance(r.get("monthly_rent"), (int, float)):
+            return (0, r["monthly_rent"], d)
+        est = rent_estimate(r, pool)
+        return (1, est["low"], d) if est else (2, 0, d)
+    return sorted(homes, key=price)
+
+
+def _next_best(name, lat, lon, filters, pool):
+    """Nothing fits: the smallest single change that finds homes (no budget limit, or a whole home instead of a room),
+    as (heading, homes, follow-ups). The original request is never changed; these are shown as next-best options."""
+    room = filters.get("rental_space") == "room"
+    what = "rooms" if room else "homes"
+    budget = filters.get("max_budget_per_month")
+    tries = []
+    if budget:
+        tries.append(({k: v for k, v in filters.items() if k != "max_budget_per_month"}, f"the lowest-priced {what} nearby, over your budget"))
+    if room:
+        whole = {k: v for k, v in filters.items() if k != "rental_space"}
+        tries.append((whole, f"the lowest-priced whole apartments nearby{' within your budget' if budget else ''}"))
+        if budget:
+            tries.append(({k: v for k, v in whole.items() if k != "max_budget_per_month"}, "the lowest-priced whole apartments nearby"))
+    for relaxed, label in tries:
+        found = _lowest_rent(_within(relaxed, lat, lon), pool)[:3]
+        if found:
+            rents = [r["monthly_rent"] for _, r in found if isinstance(r.get("monthly_rent"), (int, float))]
+            follow = []
+            if budget and rents and "max_budget_per_month" not in relaxed:
+                follow.append(f"{what.capitalize()} near {name} under ${int(-(-min(rents) // 50) * 50):,}")
+            if room and "rental_space" not in relaxed:
+                follow.append(f"Whole apartments near {name}, cheapest first")
+            follow.append(f"Help paying rent near {name}")
+            return label, [r for _, r in found], follow[:3]
+    return None, [], [f"Help paying rent near {name}", "Shelter or a place to stay tonight"]
+
+
+def _homes_near(name, lat, lon, question, profile):
+    filters = _filters(question, profile)
+    pool = filter_catalog(load_catalog(), {"types": ["affordable_listing", "rental_listing"]})  # for rent estimates
+    homes = _within(filters, lat, lon)
     cheap = bool(CHEAP.search(question or ""))
+    alternative = follow = None
+    if not homes:
+        # Nothing fits: say so first, plainly, then the next-best homes (labeled), never a dead end.
+        alternative, found, follow = _next_best(name, lat, lon, filters, pool)
+        what = "room" if filters.get("rental_space") == "room" else "home"
+        budget = f" under ${filters['max_budget_per_month']:,.0f} a month" if filters.get("max_budget_per_month") else ""
+        missing = f"(our list has no {what}{budget} within {MAX_MILES} miles of {name} yet)"
+        if not found:
+            reply = Reply(f"Here's how to keep looking near {name}: call 211 for local housing help, or try one of these. {missing.capitalize()}."
+                          "\n\nThis is guidance, not legal advice.")
+            reply.suggest = follow
+            return reply
+        homes, cheap = [(0, r) for r in found], False
     if cheap:
         # "Cheapest room near X": lowest listed rent first (estimates after listed rents), nearest breaks ties.
         def price(item):
@@ -262,7 +324,8 @@ def _homes_near(name, lat, lon, question, profile):
     commute = _commutes(homes, lat, lon)
     what = "rooms" if filters.get("rental_space") == "room" else "homes"
     limit = f" under ${filters['max_budget_per_month']:,.0f}/month" if filters.get("max_budget_per_month") else ""
-    lines = [f"Lowest-rent verified {what}{limit} within {MAX_MILES} miles of {name}:" if cheap else f"Closest verified {what}{limit} to {name}:"]
+    lines = ([f"Here are the best options near {name}: {alternative} {missing}."] if alternative else
+             [f"Lowest-rent verified {what}{limit} within {MAX_MILES} miles of {name}:" if cheap else f"Closest verified {what}{limit} to {name}:"])
     bases = {}
     for i, r in enumerate(homes):
         est = None if isinstance(r.get("monthly_rent"), (int, float)) else rent_estimate(r, pool)
@@ -284,7 +347,9 @@ def _homes_near(name, lat, lon, question, profile):
         lines.append(f"* Estimated from {' and '.join(bases)}: these homes don't publish rents, so ask the provider for the real price.")
     lines.append(("Commute times are from Google and change with traffic and schedules. " if commute else "Distances are straight-line. ")
                  + "Advertised rents and openings aren't guaranteed, so confirm with the property.\n\nThis is guidance, not legal advice.")
-    return "\n".join(lines)
+    reply = Reply("\n".join(lines))
+    reply.suggest = follow or ()
+    return reply
 
 
 # ---- "How far a walk is it?" --------------------------------------------------------------------------------
@@ -386,8 +451,8 @@ def walk_answer(question, profile=None, history=None):
     assumed = limit is None and not follow_up
     limit = TRIP_DEFAULTS["WALK"] if assumed else limit
     if not homes:
-        return (f"None of the verified homes that fit your choices is within a {limit or TRIP_DEFAULTS['WALK']}-minute walk of {name}. "
-                "Try a longer walk, a bus or a nearby town, or call 211 for local housing help."
+        return (f"Here's how to keep looking near {name}: try a longer walk, a bus or a nearby town, or call 211 for local housing help. "
+                f"Our list doesn't have a home within a {limit or TRIP_DEFAULTS['WALK']}-minute walk yet."
                 + (f"\n{WALK_ASSUMED}" if assumed else "") + "\n\nThis is guidance, not legal advice.")
     walked = _walk_minutes(homes, lat, lon)
     timed = []
@@ -406,12 +471,20 @@ def walk_answer(question, profile=None, history=None):
         elif follow_up:
             some = "it is" if len(timed) == 1 else f"all {len(timed)} are"
             head = (f"Yes, {some} {rule} {name}." if len(ok) == len(timed) else
-                    f"No, {'it is not' if len(timed) == 1 else 'none of them is'} {rule} {name}." if not ok else
+                    f"Here's how far each one is; {'it is' if len(timed) == 1 else 'they are'} more than {rule.split(' of')[0].split(' from')[0].replace('within ', '')} from {name}." if not ok else
                     f"{len(ok)} of the {len(timed)} are {rule} {name}.")
         else:
-            head = (f"Verified homes {rule} {name}:" if ok else
-                    f"None of the verified homes that fit your choices is {rule} {name}. Closest by walking route:")
-        shown = timed if follow_up else ok[:8] if ok else timed[:3]  # none fit: just the three closest
+            head = (f"Here are verified homes {rule} {name}:" if ok else
+                    f"Here are the best options near {name}, each a bit more than {rule.split(' of')[0].replace('within ', '')}:")
+        cheap = bool(CHEAP.search(question or ""))
+        price = lambda t: t[3]["monthly_rent"] if isinstance(t[3].get("monthly_rent"), (int, float)) else float("inf")
+        if cheap and not follow_up:  # "as cheap as possible": lowest rent first, among walks up to twice the limit
+            ok = sorted(ok, key=lambda t: (price(t), t[0]))
+            timed = sorted([t for t in timed if t[0] <= 2 * limit] or timed, key=lambda t: (price(t), t[0]))
+        if not ok and not follow_up and not at_least and walked:  # only measured walks; without Google the routes-unavailable note stays
+            head = (f"Here are the best options near {name}: the {'lowest-priced' if cheap else 'closest'} ones, "
+                    f"each a bit more than {rule.split(' of')[0].replace('within ', '')}:")
+        shown = timed if follow_up else ok[:8] if ok else timed[:3]  # none fit: just three
     else:
         head, shown = f"Walking times {'from' if follow_up else 'to'} {name}:", timed[:8]
     lines = [head]
@@ -425,7 +498,11 @@ def walk_answer(question, profile=None, history=None):
                   "so check the route on the map.")
                  + (" Campus is big, so your building can add or save several minutes." if re.search(r"universit|college|campus|virginia tech|george mason", name, re.I) else "")
                  + (f"\n{WALK_ASSUMED}" if assumed else "") + "\n\nThis is guidance, not legal advice.")
-    return "\n".join(lines)
+    reply = Reply("\n".join(lines))
+    if limit and not follow_up and not at_least and not any(fits(m, real) for m, real, _, _ in timed) and shown:
+        what = "Rooms" if re.search(r"\brooms?\b", question or "", re.I) else "Homes"
+        reply.suggest = [f"{what} within a {int(-(-max(t[0] for t in shown) // 5) * 5)}-minute walk of {name}", f"Help paying rent near {name}"]
+    return reply
 
 
 if __name__ == "__main__":
