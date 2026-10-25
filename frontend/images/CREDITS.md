@@ -10,5 +10,6 @@ Placeholder art for places that have no photo of their own. Each shows a kind of
 | `stock-help.jpg` | Keys and a light bulb (rent help and other programs) | [Light bulb and keys on table](https://commons.wikimedia.org/wiki/File:Light_bulb_and_keys_on_table.jpg), Wikimedia Commons | CC0 |
 | `placeholder-nova.jpg`, `placeholder-blacksburg.jpg` | The area's map (homes without a photo) | Our own Google map of the area, captured with its Google attribution | Google Maps terms |
 | `og-image.jpg` | The link preview (iMessage, Slack and other apps show it when someone shares the site) | A screenshot of our own front page, 1200 × 630 | Ours |
+| `trophy.png` | The trophy before the award line on the front page | [Fluent Emoji, Trophy (3D)](https://github.com/microsoft/fluentui-emoji), Microsoft, resized to 72 px | MIT |
 
 Resized to 640 px wide for the web (the link preview is 1200 px, the size link previews expect).

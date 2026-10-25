@@ -3023,7 +3023,7 @@ body {
   transform: none
 }
 /* always visible at full strength, like the logo */
-/* The hackathon result under the hero buttons: plain white text with a trophy, a soft shadow keeping it readable where
+/* The hackathon result under the hero buttons: plain white text after a trophy, a soft shadow keeping it readable where
    the hero fades lighter. */
 .cl-hero .cl-award {
   display: inline-flex;
@@ -3037,9 +3037,12 @@ body {
   text-shadow: 0 1px 10px #0b143366, 0 0 2px #0b143340;
   max-width: 100%
 }
-.cl-hero .cl-award svg {
+/* The trophy is a picture (Microsoft's Fluent 3D emoji), so it looks the same on every phone and computer. */
+.cl-hero .cl-award-cup {
   flex: none;
-  filter: drop-shadow(0 1px 4px #0b143366)
+  width: 1.35em;
+  height: 1.35em;
+  filter: drop-shadow(0 1px 3px #0b143340)
 }
 @media (max-width: 560px) {
   .cl-hero .cl-award {
