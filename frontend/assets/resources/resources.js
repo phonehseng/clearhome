@@ -68,8 +68,9 @@ const GROUPS = [
 const WAITLIST = { open: ['Waitlist open', 'open'], closed: ['Waitlist closed', 'closed'], unknown: ['Waitlist status unknown', ''] };
 let allPrograms = [];
 
-function programCard(p) {
-  const card = el('article', { class: 'item' });
+function programCard(p, rank) {
+  const card = el('article', { class: rank ? 'item ranked' : 'item' });
+  if (rank === 1) card.append(el('span', { class: 'badge fit' }, 'Best fit'));
   if (p.waitlist_status && WAITLIST[p.waitlist_status]) {
     const [label, cls] = WAITLIST[p.waitlist_status];
     card.append(el('span', { class: `badge ${cls}` }, label));
@@ -98,13 +99,24 @@ function programCard(p) {
   return card;
 }
 
-function renderPrograms() {
+function shownPrograms() {
   const area = document.getElementById('area').value;
+  return allPrograms.filter(p => !area || p.jurisdiction === area || (p.service_areas || []).includes(area) || (area !== 'Blacksburg' && p.jurisdiction === 'Northern Virginia'));
+}
+function renderPrograms() {
   const box = document.getElementById('programs');
   box.replaceChildren();
-  const shown = allPrograms.filter(p => !area || p.jurisdiction === area || (p.service_areas || []).includes(area) || (area !== 'Blacksburg' && p.jurisdiction === 'Northern Virginia'));
+  const shown = shownPrograms();
+  // Gemma's sort: its picks first, best fit first, then everything else in the usual groups.
+  const picks = (ranked || []).map(id => shown.find(p => p.id === id)).filter(Boolean);
+  if (picks.length) {
+    box.append(el('h3', { class: 'group-title' }, `Best fits for “${sortQuestion}”`));
+    const grid = el('div', { class: 'grid' });
+    picks.forEach((p, n) => grid.append(programCard(p, n + 1)));
+    box.append(grid);
+  }
   for (const [type, title] of GROUPS) {
-    const items = shown.filter(p => p.type === type);
+    const items = shown.filter(p => p.type === type && !picks.includes(p));
     if (!items.length) continue;
     box.append(el('h3', { class: 'group-title' }, title));
     const grid = el('div', { class: 'grid' });
@@ -118,10 +130,80 @@ fetch('/api/programs').then(r => r.json()).then(data => {
   const select = document.getElementById('area');
   [...new Set(allPrograms.map(p => p.jurisdiction))].filter(j => j !== 'Northern Virginia').sort()
     .forEach(j => select.append(el('option', { value: j }, j)));
-  select.addEventListener('change', () => { renderPrograms();
+  select.addEventListener('change', () => { resetSort();
     loadResourceHousing(); });
   renderPrograms();
 }).catch(() => { document.getElementById('programs').replaceChildren(el('p', { class: 'empty' }, 'Could not load programs. Call 211 for local help.')); });
+
+// Gemma sorts the programs at the top of the page. Two calls, so it feels instant: the first returns an order from the
+// words right away; the second has Gemma order them and say why (a repeated question comes back from its memory).
+const sortForm = document.getElementById('sort-form');
+const sortInput = document.getElementById('sort-input');
+const sortReply = document.getElementById('sort-reply');
+const sortText = document.getElementById('sort-text');
+const sortPicks = document.getElementById('sort-picks');
+const sortReset = document.getElementById('sort-reset');
+const SORT_HINT = sortText.textContent;
+let ranked = null, sortQuestion = '', sortRun = 0;
+
+function showSort(result) {
+  ranked = result.order || [];
+  sortText.textContent = result.note || '';
+  sortReset.hidden = false;
+  renderPrograms();
+  const shown = shownPrograms();
+  const top = ranked.map(id => shown.find(p => p.id === id)).filter(Boolean).slice(0, 3);
+  sortPicks.replaceChildren();
+  sortPicks.hidden = !top.length;
+  if (!top.length) return;
+  const grid = el('div', { class: 'grid' });
+  top.forEach((p, n) => grid.append(programCard(p, n + 1)));
+  const all = el('a', { class: 'sort-all', href: '#programs-section' }, `See all ${shown.length} programs, best fits first ↓`);
+  sortPicks.append(grid, all);
+}
+function resetSort() {
+  sortRun++;
+  ranked = null;
+  sortQuestion = '';
+  sortText.textContent = SORT_HINT;
+  delete sortReply.dataset.state;
+  sortReset.hidden = true;
+  sortPicks.hidden = true;
+  sortPicks.replaceChildren();
+  renderPrograms();
+}
+async function sortPrograms(question) {
+  const run = ++sortRun;
+  sortQuestion = question;
+  const ids = shownPrograms().map(p => p.id);
+  if (!ids.length) { sortText.textContent = 'Programs are still loading. Try again in a moment.'; return; }
+  sortReply.dataset.state = 'loading';
+  sortText.textContent = 'Sorting…';
+  const call = quick => fetch('/api/programs/sort', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ question, ids, quick }) }).then(r => r.json().then(data => { if (!r.ok || data.error) throw new Error(data.error); return data; }));
+  try {
+    const first = await call(true);
+    if (run !== sortRun) return;
+    showSort(first);
+    if (!first.final) {
+      const second = await call(false);
+      if (run !== sortRun) return;
+      showSort(second);
+    }
+  } catch (err) {
+    if (run === sortRun) sortText.textContent = err.message || 'Sorting didn’t work just now. Try again, or browse the programs below.';
+  }
+  if (run === sortRun) delete sortReply.dataset.state;
+}
+sortForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const question = sortInput.value.trim();
+  if (question) sortPrograms(question);
+});
+document.querySelectorAll('.sort-chip[data-q]').forEach(b => b.addEventListener('click', () => { sortInput.value = b.dataset.q;
+  sortPrograms(b.dataset.q); }));
+sortReset.addEventListener('click', () => { sortInput.value = '';
+  resetSort(); });
 
 // A few current listings.
 const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };

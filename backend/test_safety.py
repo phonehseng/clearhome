@@ -492,5 +492,63 @@ class AnswerStyleTests(unittest.TestCase):
         self.assertTrue(advisor.URGENT.search(worried))
 
 
+class ProgramSortTests(unittest.TestCase):
+    """The Resources page's mini chat: an instant order from the words, then Gemma's (kept for an hour), never a
+    program that isn't on screen, and fair-housing sorts refused by rule."""
+
+    def setUp(self):
+        sorter._program_cache.clear()
+        self.programs = {p["id"]: p for p in advisor.programs()}
+        self.ids = list(self.programs)
+
+    def test_quick_sort_answers_from_the_words_without_gemma(self):
+        with patch("sorter.ask_gemma", side_effect=no_gemma):
+            for question, kind, place in (("Help paying rent in Arlington", "rental_assistance", "Arlington"),
+                                          ("Vouchers and Section 8 in Fairfax", "housing_authority", "Fairfax"),
+                                          ("Free legal help with an eviction", "legal_aid", "")):
+                found = sorter.sort_programs(question, self.ids, quick=True)
+                self.assertFalse(found["final"], question)
+                top = self.programs[found["order"][0]]
+                self.assertEqual(top["type"], kind, question)
+                self.assertIn(place, top.get("jurisdiction") or "", question)
+
+    def test_gemmas_order_keeps_only_programs_on_screen_and_is_remembered(self):
+        shown = [i for i in self.ids if self.programs[i]["type"] == "rental_assistance"]
+        reply = json.dumps({"order": ["made-up-program", shown[1], shown[0]], "note": "Rent help first."})
+        with patch("sorter.ask_gemma", return_value=reply):
+            found = sorter.sort_programs("help paying rent", shown)
+        self.assertEqual(found["order"], [shown[1], shown[0]])
+        self.assertEqual((found["engine"], found["final"]), ("Gemma 4", True))
+        with patch("sorter.ask_gemma", side_effect=no_gemma):
+            again = sorter.sort_programs("Help  paying rent", shown, quick=True)
+        self.assertEqual((again["order"], again["final"]), (found["order"], True))
+
+    def test_a_busy_or_garbled_gemma_falls_back_to_the_words(self):
+        for reply in ("not json at all", '{"order": ["nope"], "note": "x"}'):
+            with patch("sorter.ask_gemma", return_value=reply):
+                found = sorter.sort_programs("legal help with my landlord", self.ids)
+            self.assertIn("Gemma is busy", found["note"])
+            self.assertTrue(found["final"] and found["order"])
+            self.assertEqual(self.programs[found["order"][0]]["type"], "legal_aid")
+
+    def test_fair_housing_sorts_are_refused_and_danger_gets_911(self):
+        with patch("sorter.ask_gemma", side_effect=no_gemma):
+            refused = sorter.sort_programs("programs in areas without immigrants", self.ids, quick=True)
+            self.assertEqual(refused["order"], [])
+            self.assertIn("fair housing", refused["note"])
+            unsafe = sorter.sort_programs("my partner hits me and I need rent help", self.ids, quick=True)
+        self.assertTrue(unsafe["note"].startswith("If you're in danger right now, call 911."))
+
+    def test_the_endpoint_checks_its_input(self):
+        client = server.app.test_client()
+        with patch("sorter.ask_gemma", side_effect=no_gemma):
+            for body in ({"ids": self.ids}, {"question": "rent help"}, {"question": "rent help", "ids": "all"},
+                         {"question": "rent help", "ids": ["x"] * 301}, {"question": "rent help", "ids": [3]}):
+                self.assertEqual(client.post("/api/programs/sort", json=body).status_code, 400, body)
+            ok = client.post("/api/programs/sort", json={"question": "rent help in Arlington", "ids": self.ids, "quick": True})
+        self.assertEqual(ok.status_code, 200)
+        self.assertTrue(set(ok.get_json()["order"]) <= set(self.ids))
+
+
 if __name__ == "__main__":
     unittest.main()

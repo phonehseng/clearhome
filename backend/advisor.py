@@ -836,7 +836,7 @@ def stream_ask(question, history=None):
 def programs():
     """Verified non-shelter help (vouchers, rent help, legal aid, other services) for the resources page."""
     keep = {"housing_authority", "rental_assistance", "legal_aid", "other"}
-    return [_compact(r) for r in load_catalog() if r.get("type") in keep and not isinstance(r.get("availability"), dict)]
+    return [{**_compact(r), "id": r["id"]} for r in load_catalog() if r.get("type") in keep and not isinstance(r.get("availability"), dict)]
 
 
 # Common places people mention that are outside Clear Home's service area.

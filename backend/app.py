@@ -374,6 +374,19 @@ def sort_listings():
     return jsonify(sorter.sort(expand_nicknames(redact(question)[0]), ids))
 
 
+@app.post("/api/programs/sort")
+def sort_programs():
+    """The mini Gemma chat on the Resources page: which programs on screen fit best. quick=true answers at once from the
+    words; the second call has Gemma order them and say why."""
+    body = _body()
+    question, ids = _text(body, "question", 300), body.get("ids")
+    if not question:
+        return jsonify(error="Tell Gemma what help you need, like \"help paying rent in Arlington\"."), 400
+    if not isinstance(ids, list) or not ids or len(ids) > 300 or not all(isinstance(i, str) and len(i) < 200 for i in ids):
+        return jsonify(error="ids must be the list of programs on screen."), 400
+    return jsonify(sorter.sort_programs(expand_nicknames(redact(question)[0]), ids, quick=body.get("quick") is True))
+
+
 @app.post("/api/hotels")
 def hotels_nearby():
     """Hotels and motels near a place from Google Places, cheapest first, for someone who needs a room tonight (no AI)."""

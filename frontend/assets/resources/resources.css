@@ -707,3 +707,147 @@ body {
     text-align: center
   }
 }
+
+/* Gemma's sort box at the top of the page: the programs that fit come first (an instant order from the words, then
+   Gemma's), with the best three shown right here. */
+.sort-chat {
+  margin: 18px 0 22px;
+  padding: 16px;
+  border-radius: 24px;
+  background: radial-gradient(120% 100% at 15% 0%, #ffffffeb, #ffffff00 60%), linear-gradient(140deg, #ffffffd9, #eef3ffb3);
+  border: 1px solid #ffffffe6;
+  box-shadow: inset 0 1px 0 #fff, 0 0 0 1px #23408f1a, 0 12px 32px #23408f1f;
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.sort-title {
+  margin: 0 0 10px 4px;
+  font-size: 18px;
+  color: var(--ink);
+}
+.sort-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sort-avatar {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #e8f0fe;
+}
+.sort-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #c9d5ea;
+  background: #fff;
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+}
+.sort-form input:focus-visible {
+  outline: 2px solid var(--blue-2);
+  outline-offset: 1px;
+}
+.sort-form button {
+  flex: none;
+  min-height: 48px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: 1px solid #ffffff33;
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  background: radial-gradient(120% 100% at 15% 0%, #ffffff38, #ffffff00 55%), linear-gradient(140deg, #14203fe6, #23408fbf);
+  box-shadow: inset 0 1px 0 #ffffff59, 0 8px 22px #14203f33;
+}
+.sort-form button:hover {
+  background: radial-gradient(120% 100% at 15% 0%, #ffffff4d, #ffffff00 55%), linear-gradient(140deg, #1d2e5af0, #2f55b5d1);
+}
+.sort-reply {
+  margin: 10px 6px 4px 52px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.sort-reply > b {
+  color: var(--blue);
+}
+.sort-reply[data-state=loading] #sort-text {
+  color: var(--muted);
+}
+.sort-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 0 52px;
+}
+.sort-chip {
+  min-height: 34px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  border: 1px solid #ffffffd9;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #14203f;
+  cursor: pointer;
+  background: radial-gradient(120% 100% at 15% 0%, #ffffffeb, #ffffff00 60%), linear-gradient(140deg, #ffffffbf, #eef3fd8f);
+  box-shadow: inset 0 1px 0 #fff, 0 0 0 1px #23408f24, 0 4px 12px #14203f12;
+}
+.sort-chip:hover {
+  background: radial-gradient(120% 100% at 15% 0%, #fff, #ffffff00 60%), linear-gradient(140deg, #ffffffe0, #e3ebfcb3);
+}
+.sort-picks {
+  margin-top: 14px;
+}
+.sort-picks .grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.sort-all {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--blue-2);
+}
+.item.ranked {
+  border-color: #6f8fd6;
+  box-shadow: 0 0 0 1px #6f8fd666, 0 10px 26px #23408f1a;
+}
+.badge.fit {
+  background: #23408f;
+  color: #fff;
+}
+@media (max-width: 860px) {
+  .sort-picks .grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .sort-chat {
+    padding: 12px;
+  }
+  .sort-reply,
+  .sort-chips {
+    margin-left: 4px;
+  }
+  .sort-form button {
+    padding: 10px 16px;
+  }
+}
