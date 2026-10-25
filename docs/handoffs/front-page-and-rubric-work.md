@@ -49,6 +49,35 @@ These don't block the rubric on their own, but each one is a visible or honesty 
 3. **Get Started on the light pages is still the blue gradient.** Over the blue hero it's a white pill with navy text (`frontend/site-header.css`, the `.ch-header.over-hero` rules). On Google Cloud, Resources, Review and `/app`, it stays the blue gradient (the base `.ch-header .header-links .cl-nav-btn` rule). The owner hasn't chosen whether the light pages should match the white pill or keep the blue. Ask before changing it.
 4. **Hero gradient and text selection need a sign-off.** These are covered in "Open decisions" items 6 and 7. They are listed here so they aren't missed.
 
+## External review (new pass, not yet checked)
+
+An outside reviewer went through the live site and the repo. Their points are below, grouped by priority. Each point is a claim to verify before changing anything. Line numbers are from the reviewer and may have moved. Search for the quoted text instead.
+
+### Priority 1: numbers and claims that must match the app
+
+1. **Coverage counts don't match what the app serves.** The front page shows 436 records, 33 shelters and 82 listings with numeric rent, dated October 24. The reviewer says the source file has 436 rows, but 17 are marked unverified, including two shelters and seven rent records, and the app filters unverified and duplicate records before showing results. **Fix:** either label the numbers as raw catalog counts, or calculate and date them from the same filtered catalog the app serves. `docs/DEMO_SCRIPT.md` (around line 27) already warns not to present these numbers as verified recommendations or available homes; keep the site consistent with it. The counts are in the "What's in the list" section of `frontend/about.html`.
+2. **Privacy and AI processing are not specific enough.** The site says "SSNs removed," and `docs/DEMO_SCRIPT.md` (around line 21) says redaction catches only some common patterns and is not a guarantee. **Fix:** say plainly (a) what is sent to Gemma or the Gemini API, (b) what redaction does and does not catch (it does not remove names or street addresses), and (c) whether conversations are retained. Ask people to use fictional examples and leave out names, addresses and other identifying details. Relevant text is in `frontend/about.html` (around line 691) and `frontend/index.html` (around line 1029).
+3. **Technical claims on the Google Cloud page need dates and measurements.** The page uses phrases like "Never breaks," quotes response times and GPU cost, and says fixes go live in minutes. **Fix:** remove guarantees. For each number, show when it was measured, what it measures, and what happens when the service is unavailable. The relevant text is in `frontend/google-cloud.html` (around line 266).
+
+### Priority 2: user journey and trust
+
+4. **Dark mode is missing.** The user guide (`docs/USER_GUIDE.md`, around line 54) says the site always uses a light color scheme and ignores the device setting. That contradicts an earlier request to follow the device's dark-mode setting. **Fix:** restore automatic dark mode, then test both themes on form controls, map panels, listing cards, focus indicators and dialogs.
+5. **The homepage video section is confusing.** "Every Verified Home, on One Map" introduces a video walkthrough, with a separate link to the live map. **Fix:** rename the section as a walkthrough, or embed the interactive map. Make the step from the example search to the full app obvious.
+6. **Form and chat look like two options with no difference explained.** The search page offers several ways to begin. **Fix:** state the difference in plain words, such as "Use filters to browse" and "Ask a question for guidance." Make sure an AI outage still leaves a clear path to search the reviewed listings. The area is around `frontend/index.html` line 992.
+7. **Listings should stay easy to scan.** Keep rent basis, availability, lease responsibility, eligibility, source and review date visible. Keep advertised rent separate from a current quote, and a waitlist separate from an available unit. Stale or conflicting details should be prominent, with a clear way to confirm with the provider. If the map service or its key fails, show a helpful message and keep the list usable instead of leaving a blank panel. Nearby-place results must separate a verified walking route from an estimate or an unavailable route.
+8. **Emergency help:** keep direct 911 and 211 links visible even when hotel or map lookups fail. Hotel results must stay labelled as unverified and estimated. The current UI already does this, so keep it that way.
+9. **The Resources page is very long.** **Fix:** add a compact contents menu or jump links to "Qualifying," "Programs" and "Rentals," and filters for location and assistance type. Put source links and review dates beside eligibility guidance, so that statements about income limits, vouchers and where to apply don't read as universal. The area is `frontend/resources.html` around line 239.
+10. **Listing Review is marked `noindex`, which does not restrict access.** The review page says decisions are local, and edit controls are disabled when they are unavailable. **Fix:** keep it out of ordinary navigation, and do not put private reviewer notes or non-public contact details on it (see `frontend/review.html` around lines 6 and 97).
+
+### Priority 3: evidence for the rubric
+
+11. **Impact evidence is missing.** There is no evidence of user interviews, community-partner input, a pilot or a measured outcome such as time to find a verified resource. **Fix:** collect documented feedback, and add a small privacy-conscious measure of whether Clear Home helps someone take a useful next step. Do not claim impact until that evidence exists. This overlaps with the "Stakeholder input" decision in "Open decisions," which the owner skipped for now. Revisit it before the final pitch.
+12. **AI evaluation.** The reviewer wants a measured check of answer accuracy and failure cases, and a demonstration of how each flow behaves when a service fails.
+13. **Accessibility re-check.** Run keyboard, screen-reader, contrast, focus and reduced-motion checks in both themes. (The axe checks already run on the solid-background pages pass, but they don't cover screen readers, keyboard use, or the dark theme.)
+14. **Feasibility.** Add dated cost and latency measurements, a named owner and process for keeping listings current, and a deployment and service-outage plan.
+
+**Suggested order:** items 1, 3 and 4 first, since they are numbers and claims the judges can check. Then 2 and 5 to 10 for the user journey. Items 11 to 14 need evidence the team has to gather.
+
 ## Open decisions (ask the team first)
 
 1. **Recommended, not yet confirmed by the team: change "verified" to "reviewed" everywhere.** Reason: the data shows AI-assisted review from official web pages, without phone confirmation. The team has not confirmed this yet.
