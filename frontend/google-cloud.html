@@ -99,7 +99,14 @@
       .hero { padding-top: 48px; }
       .svc { padding: 22px; }
     }
-  </style>
+      /* Service cards: one plain summary, then each point as a short bold headline with the detail underneath. */
+    .svc .what{color:var(--ink);font-size:16.5px;line-height:1.55}
+    .svc ul{list-style:none;padding:0;margin:18px 0 0;gap:14px}
+    .svc li{position:relative;padding-left:30px;line-height:1.5}
+    .svc li::before{content:'';position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:50%;background:#e8f0fe url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232f55b5' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center/12px no-repeat}
+    .svc li b{display:block;font-size:15px;color:var(--ink)}
+    .svc li span{display:block;font-size:14.5px;color:var(--muted)}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -158,23 +165,23 @@
           <h3>Cloud Run</h3>
           <p class="what">Hosts the whole website and its API as one container.</p>
           <ul>
-            <li>Runs in <code>us-east4</code>, the region closest to Northern Virginia.</li>
-            <li>Scales to zero when nobody is visiting, and is capped at two instances so costs stay predictable.</li>
-            <li>Listing photos are baked into the image, so pages never wait on a landlord’s website.</li>
-            <li>Example questions are answered when the server starts, so the resources page responds instantly.</li>
-            <li>The hosted copy is read-only: data changes are reviewed locally and shipped as code.</li>
+            <li><b>Close to you</b><span>Runs in <code>us-east4</code>, the Google region closest to Northern Virginia.</span></li>
+            <li><b>Costs stay low</b><span>Shuts down when nobody is visiting and never runs more than two copies.</span></li>
+            <li><b>Photos load fast</b><span>Listing photos are stored inside the app, so pages never wait on a landlord’s website.</span></li>
+            <li><b>Instant answers</b><span>Common questions are answered when the server starts, so the resources page responds right away.</span></li>
+            <li><b>Data stays safe</b><span>The live site is read-only. Data changes are reviewed on our computers first and shipped as code.</span></li>
           </ul>
         </article>
         <article class="svc ai">
           <span class="tag">GPU</span>
           <h3>Cloud Run GPUs</h3>
-          <p class="what">Our own NVIDIA L4 runs Gemma 4 26B (through Ollama) just for Clear House.</p>
+          <p class="what">Our own NVIDIA L4 graphics card runs Gemma 4 26B (through Ollama), just for Clear House.</p>
           <ul>
-            <li>Hidden “thinking” is turned off, so answers start in seconds instead of after a minute.</li>
-            <li>Private: it refuses public calls. The website signs each request with its own Google identity.</li>
-            <li>It can scale to zero and costs about $1 an hour while awake. During judging we keep one copy warm so the first answer is fast.</li>
-            <li>The chat wakes the GPU as soon as it scrolls into view, before you finish typing.</li>
-            <li>If the GPU is asleep or slow, the chat switches to the Gemini API after 20 seconds, so it never breaks.</li>
+            <li><b>Quick replies</b><span>Hidden “thinking” is turned off, so answers start in seconds instead of after a minute.</span></li>
+            <li><b>Private</b><span>It refuses public calls. The website signs each request with its own Google identity.</span></li>
+            <li><b>Pay only when used</b><span>It shuts down when idle and costs about $1 an hour while awake. During judging, one copy stays on so the first answer is fast.</span></li>
+            <li><b>Ready before you ask</b><span>The GPU wakes up as soon as the chat scrolls into view, before you finish typing.</span></li>
+            <li><b>Never breaks</b><span>If the GPU is asleep or slow, the chat switches to the Gemini API after 20 seconds.</span></li>
           </ul>
         </article>
         <article class="svc ai">
@@ -182,21 +189,21 @@
           <h3>Gemini API</h3>
           <p class="what">Runs Gemma 4 (<code>gemma-4-26b-a4b-it</code>) and Gemini with Google Search.</p>
           <ul>
-            <li>Gemma turns your message into filters, then writes the answer using only checked listings, streamed as it types.</li>
-            <li>Gemini with Google Search grounding looks for listings we don’t have yet. Only places that appear in the search results are kept, and the map marks them “not checked”.</li>
-            <li>Gemma rereads listing pages and hides ones that are no longer offered. It can hide listings, never add them.</li>
-            <li>SSNs and account numbers are removed before any text is sent.</li>
+            <li><b>Understands you</b><span>Gemma turns your message into search filters, then writes the answer using only checked listings, shown as it types.</span></li>
+            <li><b>Finds new places</b><span>Gemini with Google Search looks for listings we don’t have yet. Only places that appear in the search results are kept, and the map marks them “not checked”.</span></li>
+            <li><b>Removes stale listings</b><span>Gemma rereads listing pages and hides ones that are no longer offered. It can hide listings, never add them.</span></li>
+            <li><b>Protects your info</b><span>Social Security and account numbers are removed before any text is sent.</span></li>
           </ul>
         </article>
         <article class="svc maps">
           <span class="tag">Maps</span>
           <h3>Google Maps Platform</h3>
-          <p class="what">Maps JavaScript, Places API and Routes API.</p>
+          <p class="what">Three Google Maps tools: Maps JavaScript, Places API and Routes API.</p>
           <ul>
-            <li>Maps JavaScript draws the map with a pin for every checked home.</li>
-            <li>Places API finds the place you name (an employer, a hospital, a school), plus the supermarkets, pharmacies and transit stops near a home.</li>
-            <li>Routes API gives real drive and transit times from the closest homes, and true walking times to the store.</li>
-            <li>Separate server and browser keys, so the server key never reaches a web page.</li>
+            <li><b>The map</b><span>Maps JavaScript draws the map with a pin for every checked home.</span></li>
+            <li><b>Places nearby</b><span>Places API finds the place you name (an employer, a hospital, a school), plus the supermarkets, pharmacies and transit stops near a home.</span></li>
+            <li><b>Real travel times</b><span>Routes API gives real drive and transit times from the closest homes, and true walking times to the store.</span></li>
+            <li><b>Keys kept apart</b><span>The server and the browser use separate keys, so the server key never reaches a web page.</span></li>
           </ul>
         </article>
         <article class="svc">
@@ -204,8 +211,8 @@
           <h3>Secret Manager</h3>
           <p class="what">Holds the Gemini key and both Maps keys.</p>
           <ul>
-            <li>Keys are never in the code, the repository or the container image.</li>
-            <li>Rotating a key means adding a new secret version and redeploying, with no code change.</li>
+            <li><b>Never in the code</b><span>Keys are not in the code, the repository or the app image.</span></li>
+            <li><b>Easy to change</b><span>Swapping a key means adding a new version and redeploying, with no code change.</span></li>
           </ul>
         </article>
         <article class="svc">
@@ -213,8 +220,8 @@
           <h3>Cloud Build and Artifact Registry</h3>
           <p class="what">Turn our code into running containers.</p>
           <ul>
-            <li>Every deploy builds a fresh container from our Dockerfile in Cloud Build, so a pushed fix is live in minutes.</li>
-            <li>The 17 GB Gemma GPU image is built on a larger Cloud Build machine and stored in Artifact Registry next to the site.</li>
+            <li><b>Fixes go live fast</b><span>Every deploy builds a fresh container from our Dockerfile, so a pushed fix is live in minutes.</span></li>
+            <li><b>Room for the big AI image</b><span>The 17 GB Gemma GPU image is built on a larger Cloud Build machine and stored in Artifact Registry next to the site.</span></li>
           </ul>
         </article>
       </div>
