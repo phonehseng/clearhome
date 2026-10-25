@@ -15,7 +15,7 @@ import threading
 import time
 import urllib.request
 
-from advisor import CHEAP, LANDMARKS, OUTSIDE, URGENT, area_for, rent_estimate, requirements
+from advisor import CHEAP, LANDMARKS, OUTSIDE, TRIP_DEFAULTS, URGENT, WALK_ASSUMED, area_for, rent_estimate, requirements
 from catalog import filter_catalog, load_catalog
 from geocode import lookup as census_lookup
 
@@ -381,9 +381,14 @@ def walk_answer(question, profile=None, history=None):
                 homes.append(r)
         homes.sort(key=lambda r: _miles(lat, lon, r["lat"], r["lon"]))
         homes = homes[:25]
+    # "Walking distance" with no time is the standard 15-minute walk (said at the end); a follow-up with no time just
+    # lists the walking times it asked about.
+    assumed = limit is None and not follow_up
+    limit = TRIP_DEFAULTS["WALK"] if assumed else limit
     if not homes:
-        return (f"I don't have a verified home within walking range ({WALK_MILES} miles) of {name} that fits your choices. "
-                "Try a bus-friendly search, or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
+        return (f"None of the verified homes that fit your choices is within a {limit or TRIP_DEFAULTS['WALK']}-minute walk of {name}. "
+                "Try a longer walk, a bus or a nearby town, or call 211 for local housing help."
+                + (f"\n{WALK_ASSUMED}" if assumed else "") + "\n\nThis is guidance, not legal advice.")
     walked = _walk_minutes(homes, lat, lon)
     timed = []
     for i, r in enumerate(homes):
@@ -405,13 +410,13 @@ def walk_answer(question, profile=None, history=None):
                     f"{len(ok)} of the {len(timed)} are {rule} {name}.")
         else:
             head = (f"Verified homes {rule} {name}:" if ok else
-                    f"None of the verified homes is {rule} {name}. The closest walks are:")
-        shown = timed if follow_up else (ok or timed)[:8]
+                    f"None of the verified homes that fit your choices is {rule} {name}. Closest by walking route:")
+        shown = timed if follow_up else ok[:8] if ok else timed[:3]  # none fit: just the three closest
     else:
         head, shown = f"Walking times {'from' if follow_up else 'to'} {name}:", timed[:8]
     lines = [head]
     for minutes, real, miles, r in shown:
-        mark = "" if not limit else " ✓" if fits(minutes, real) else " ✗" if real or at_least else ""
+        mark = " ✓" if limit and follow_up and fits(minutes, real) else " ✗" if limit and follow_up and (real or at_least) else ""  # marks only answer a yes/no follow-up
         per = "/person/month" if r.get("rental_space") == "room" else "/month"
         rent = f"; from ${r['monthly_rent']:,.0f}{per}" if isinstance(r.get("monthly_rent"), (int, float)) else ""
         lines.append(f"- **{r.get('community') or r['name']}**: about {minutes} min walk{'' if real else ' (estimated)'}, {miles:.1f} mi{rent}{mark}")
@@ -419,7 +424,7 @@ def walk_answer(question, profile=None, history=None):
                   f"Walking times are estimated from straight-line distance (about {MINUTES_PER_MILE} minutes a mile on streets), "
                   "so check the route on the map.")
                  + (" Campus is big, so your building can add or save several minutes." if re.search(r"universit|college|campus|virginia tech|george mason", name, re.I) else "")
-                 + "\n\nThis is guidance, not legal advice.")
+                 + (f"\n{WALK_ASSUMED}" if assumed else "") + "\n\nThis is guidance, not legal advice.")
     return "\n".join(lines)
 
 

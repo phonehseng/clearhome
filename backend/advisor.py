@@ -208,7 +208,8 @@ def _prompt(question, history, rows, needs=None, walk=None, place=None):
                  "using its fields (furnished, lease_term_notes, lease_start/lease_end, utilities_notes, private_bathroom, cost, notes)."]
         if walk:
             name, _, _, minutes, at_least = walk
-            rule = (f"at least {minutes} minutes" if at_least else f"at most {minutes} minutes") if minutes else "as asked"
+            rule = ((f"at least {minutes} minutes" if at_least else f"at most {minutes} minutes") if minutes else
+                    f"at most {TRIP_DEFAULTS['WALK']} minutes (no time was given; end your answer with: {WALK_ASSUMED})")
             lines.append(f"Walking time: each listing's walk_minutes_to_* field is the measured walk to {name}. "
                          f"They asked for {rule}; use those numbers, never guess distances, and say the walk time for each home you mention. "
                          "A value marked estimated is a straight-line guess, not a measured walk: never count it as meeting the limit.")
@@ -479,6 +480,13 @@ def with_context(question, history=None):
     if len(h) >= 2 and h[-1].get("role") == "assistant" and any(m in h[-1].get("text", "") for m in (CLARIFY_MARK, PLACE_MARK)) and h[-2].get("role") == "user":
         return f"{question} (earlier in this chat: {h[-2]['text']})"
     return question
+
+
+# What people mean when they don't give a time, the same in every answer: "walking distance", "walkable" or "close to"
+# is about a 15-minute walk, "a short drive" is 15 minutes by car, and "by bus" is 30 minutes. Answers say the
+# assumption at the end, so the person can change it.
+TRIP_DEFAULTS = {"WALK": 15, "DRIVE": 15, "TRANSIT": 30}
+WALK_ASSUMED = "I took walking distance as about 15 minutes on foot. Want a different time? Just say so."
 
 
 def walk_target(question):

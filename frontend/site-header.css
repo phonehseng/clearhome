@@ -53,3 +53,13 @@ html{overscroll-behavior-y:none}
 .ch-header.over-hero .header-links .cl-nav-btn{color:#fff!important}
 .ch-header.over-hero .header-links .cl-nav-btn:hover{background:#23408f!important}
 
+
+/* Phones: nothing scrolls the page sideways. Safari zooms in on a text box whose font is under 16px (and stays zoomed,
+   so the page pans sideways), so every field is 16px on small screens; the page clips anything wider than the screen
+   (clip, unlike hidden, keeps sticky headers working); and the chat window only scrolls up and down. */
+html,body{overflow-x:clip}
+@media (max-width:820px){
+  input,textarea,select{font-size:16px!important}
+  #assistant-log,.start-msgs{overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom}
+  .msg,.start-msgs p{overflow-wrap:anywhere;min-width:0}
+}

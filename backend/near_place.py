@@ -17,7 +17,7 @@ import time
 from urllib.parse import quote
 
 import nearby
-from advisor import AREAS, CHEAP, PLACE_MARK, URGENT, Instant, rent_estimate, requirements
+from advisor import AREAS, CHEAP, PLACE_MARK, TRIP_DEFAULTS, URGENT, WALK_ASSUMED, Instant, rent_estimate, requirements
 from catalog import filter_catalog, load_catalog
 
 # Chains people name as a place to live near. Each is many stores, never one place. (name, spellings people type)
@@ -53,7 +53,7 @@ RANGE = re.compile(r"\b(\d{1,3})\s*(?:-|–|to)\s*(\d{1,3})\s*-?\s*min", re.I)
 MINUTES = re.compile(r"\b(\d{1,3})\s*-?\s*min(?:ute)?s?\b|\b(half an hour|an hour)\b", re.I)
 MILES = re.compile(r"\b(\d+(?:\.\d+)?|a|one|half a)\s*-?\s*(?:mi|miles?)\b", re.I)
 # A walk is what "close" means unless they say otherwise; the answer always says which limit it used.
-DEFAULT_MINUTES = {"WALK": 15, "DRIVE": 15, "TRANSIT": 30}
+DEFAULT_MINUTES = TRIP_DEFAULTS  # the same standard as every other answer (advisor.py)
 MODE_WORD = {"WALK": "walk", "DRIVE": "drive", "TRANSIT": "bus or train trip"}
 ROUTE_WORD = {"WALK": "walking", "DRIVE": "driving", "TRANSIT": "transit"}
 # Generous top speeds (metres a minute) for the straight-line prefilter, so it never drops a home a route could reach.
@@ -488,7 +488,7 @@ def compose(found, want, result):
 def _default_note(want):
     """Said out loud whenever no time was given, since there's no universal "close"."""
     if want["mode"] == "WALK":
-        return f"I took walking distance as about {want['minutes']} minutes on foot. Want a different time, or a 10-minute drive instead? Just say so."
+        return WALK_ASSUMED
     return f"I used up to {want['minutes']} minutes since no time was given. Want a different time? Just say so."
 
 
