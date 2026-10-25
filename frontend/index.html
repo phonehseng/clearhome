@@ -680,6 +680,15 @@
     .housing-card :is(details,.floor-plans-details){margin-top:6px}
     .housing-card .eligibility-details{padding-top:10px}
     .housing-card .eligibility-details summary,.floor-plans-details>summary{min-height:32px}
+    /* Listing cards without extra white space: a short photo strip that fills edge to edge (no empty bands),
+       tighter padding and gaps in the details panel. */
+    .housing-card.has-photo::before{aspect-ratio:16/9;max-height:200px;background:var(--card-photo) center/cover no-repeat,#edf2f8}
+    .housing-card.has-photo .card-glass{padding:16px}
+    .card-top{margin-bottom:10px}
+    .housing-card .housing-features{margin:4px 0 6px}
+    .housing-card .housing-actions{margin-top:8px}
+    .housing-card .housing-reviewed{margin-top:6px}
+    .share-toast{transition:opacity .3s,transform .3s}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -901,7 +910,8 @@
   // Share copies a link that opens the site with that listing pinned first and highlighted.
   let sharedListingId = new URLSearchParams(location.search).get('listing');
   const shareToast = document.getElementById('share-toast'); let shareToastTimer;
-  function notify(message) { shareToast.textContent = message; shareToast.classList.add('show'); clearTimeout(shareToastTimer); shareToastTimer = setTimeout(() => shareToast.classList.remove('show'), 2500); }
+  document.body.append(shareToast);  // inside the glass listings section a fixed message is placed against the section, off-screen
+  function notify(message) { shareToast.textContent = message; shareToast.classList.add('show'); clearTimeout(shareToastTimer); shareToastTimer = setTimeout(() => shareToast.classList.remove('show'), 2000); }
   async function copyText(text) {
     try { await navigator.clipboard.writeText(text); return true; } catch {}
     const area = document.createElement('textarea'); area.value = text; area.setAttribute('readonly',''); area.style.position = 'fixed'; area.style.opacity = '0'; document.body.append(area); area.select();
@@ -913,7 +923,7 @@
     button.title = 'Share: copy link'; button.setAttribute('aria-label', `Share ${row.community || row.name}: copy a link`);
     button.addEventListener('click', async () => {
       const url = new URL(location.pathname, location.origin); url.searchParams.set('listing', row.id);
-      notify(await copyText(url.href) ? 'Link copied. Paste it to send this listing to someone.' : 'Couldn’t copy the link. Try again.');
+      notify(await copyText(url.href) ? 'Link copied to clipboard.' : 'Couldn’t copy the link. Try again.');
     });
     return button;
   }
@@ -934,13 +944,13 @@
     const link = housingElement('a', '', label); link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
   }
   // Label a listing's main link by where it actually goes (see backend/source_audit.py).
-  const SOURCE_LABELS = { official_property_page: 'View Official Property Page ↗', owner_property_page: 'View Owner’s Property Page ↗',
-                          property_website: 'View Property Website ↗', official_directory: 'County Housing List ↗' };
+  const SOURCE_LABELS = { official_property_page: 'Official Page ↗', owner_property_page: 'Owner’s Page ↗',
+                          property_website: 'Website ↗', official_directory: 'County Housing List ↗' };
   const sourceLabel = (row, fallback) => SOURCE_LABELS[row.source_kind] || fallback;
   const ROLE_LABELS = { provider: 'Property Website', government: 'Official Government Page', directory: 'Official Directory or List', corroboration: 'Supporting Page' };
   function mapLink(row) {
     if (!row.address) return null;
-    const link = housingElement('a', '', 'Show on Map ↗');
+    const link = housingElement('a', '', 'Map ↗');
     link.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(row.address);
     link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
   }
@@ -1093,7 +1103,7 @@
       } else card.append(eligibilityDetails(row));
       const actions = housingElement('div','housing-actions');
       // The property's own site comes first; a county list (names, addresses, phones) is labeled as a list, not a property page.
-      const ownSite = row.website && row.website !== row.source_url && !['property_website','owner_property_page','official_property_page'].includes(row.source_kind) && !/\.gov\/|\/DocumentCenter\/|\.pdf($|\?)/i.test(row.website) ? sourceLink(row.website,'Property website ↗') : null; if (ownSite) actions.append(ownSite);
+      const ownSite = row.website && row.website !== row.source_url && !['property_website','owner_property_page','official_property_page'].includes(row.source_kind) && !/\.gov\/|\/DocumentCenter\/|\.pdf($|\?)/i.test(row.website) ? sourceLink(row.website,'Website ↗') : null; if (ownSite) actions.append(ownSite);
       const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-Price Source ↗':'View Source ↗')); if (source) { if (row.source_kind==='official_directory') source.title='The county’s list of income-restricted properties, with each one’s address and phone. Call the property to apply.'; actions.append(source); }
       const map = mapLink(row); if (map) actions.append(map);
       if (row.phone && (row.phone.match(/\d/g) || []).length >= 10) { const phone = housingElement('a','','Call'); phone.href=ClearHouseDial(row.phone); actions.append(phone); }
