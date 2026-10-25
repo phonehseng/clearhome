@@ -748,6 +748,18 @@
     .housing-card .next-step{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;min-height:42px;padding:10px 14px;border-radius:12px;background:#14203f;color:#fff!important;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:2px}
     .housing-card .next-step:hover{background:#23408f}
     .housing-card .next-step:focus-visible{outline:3px solid #315fbd;outline-offset:3px}
+    /* Tools page: glass stays on the two outer panels only (the tools area and the hero map). Everything inside
+       them is solid white with the site's light border and soft shadow, matching the home, Google Cloud and Resources pages. */
+    #tools :is(.tool-panel,.tab,.guidance-card,.assistant,.sort-chat,.chat-card,.opt-card,.walk-card,.result,.upload-box,.find-checks,.browse-filters,
+      .catalog-notice,.browse-message:not(:empty),.walk-status:not(:empty),.map-legend,.map-status:not(:empty),.web-results li,.emergency-card,.hero-copy,
+      .map-tab,.map-hood,.budget-shortcut button,.walk-toggle button,.filter-summary,.share-toast),
+    .listings-section :is(.housing-card:not(.has-photo),.catalog-notice,.browse-filters,.browse-message:not(:empty),.filter-summary,.listing-tabs,.more-options,.map-legend,.map-status:not(:empty),.sort-chat,.chat-card),
+    .listings-section .more-listings,.listings-section .show-programs{
+      background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:1px solid #d2dcf0!important;
+      box-shadow:0 4px 14px #14203f0f!important}
+    #tools .tab[aria-selected=true],#tools .map-tab[aria-pressed=true],.listings-section .budget-shortcut button[aria-pressed=true]{background:#14203f!important;border-color:#14203f!important;color:#fff!important}
+    #tools .tab[aria-selected=true] *{color:inherit}
+    .listings-section .housing-card.has-photo .card-glass{background:#fff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important;border:0!important}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
