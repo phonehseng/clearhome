@@ -1219,7 +1219,7 @@
     if (!hasPhone && !web) return null;
     const labels = {
       waitlist_open: ['Call to Join Waitlist', 'Join Waitlist'],
-      available_now: ['Call to Apply', 'Apply Online'], advertised_vacancy: ['Call to Apply', 'Apply Online'], leasing: ['Call to Apply', 'Apply Online'],
+      available_now: ['Contact to Apply', 'Apply on Provider Site'], advertised_vacancy: ['Contact to Apply', 'Apply on Provider Site'], leasing: ['Contact to Apply', 'Apply on Provider Site'],
       upcoming: ['Call About Move-In', 'Check Move-In Date'],
     }[status] || ['Call to Confirm Availability', 'Confirm Availability'];
     const link = housingElement('a', 'next-step', hasPhone ? labels[0] : labels[1]);
