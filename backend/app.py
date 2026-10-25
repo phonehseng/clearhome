@@ -182,6 +182,15 @@ def listings():
     return jsonify(listings=rows, count=len(rows), option_count=option_count, notice="Official-source web review, not a live vacancy feed. Confirm rent, eligibility and availability directly. Closed or overdue records are excluded.")
 
 
+@app.get("/api/coverage")
+def coverage():
+    """The front page's 'What's in the list' counts, taken from the same reviewed catalog the app serves."""
+    rows = load_catalog()
+    return jsonify(records=len(rows), shelters=sum(r.get("type") == "emergency_shelter" for r in rows),
+                   legal_aid=sum(r.get("type") == "legal_aid" for r in rows),
+                   with_rent=sum(r.get("monthly_rent") is not None for r in rows), as_of=date.today().isoformat())
+
+
 # Bookkeeping fields no page shows; leaving them out keeps the listings response small.
 INTERNAL_FIELDS = {'catalog_batch', 'verification_method', 'geocode_source', 'source_link_audit', 'review_notes', 'currency', 'record_kind'}
 PIN_FIELDS = ('id', 'community', 'name', 'floor_plan', 'lat', 'lon', 'monthly_rent', 'rent_basis', 'rental_space', 'source_url')
@@ -412,8 +421,9 @@ def web_search():
     location, _ = redact(location)
     try:
         result = live_search(location, queue_results=not READ_ONLY)
-    except Exception:
-        return jsonify(error="The web search didn't work this time. Please try again."), 502
+    except Exception as error:
+        reason = gemma_unavailable(error)  # a missing key or billing problem won't fix itself on a retry
+        return jsonify(error=f"{reason}, so the web search can't run. The reviewed listings still work." if reason else "The web search didn't work this time. Please try again."), (503 if reason else 502)
     return jsonify(result), (400 if "error" in result else 200)
 
 
@@ -552,8 +562,8 @@ def match():
         check_in_background()  # take down listings whose provider page no longer offers them
     try:
         filters, answer = find_help(message, include_unverified=bool(os.getenv("INCLUDE_UNVERIFIED")))
-    except Exception:
-        return jsonify(error="Something went wrong. Please try again, or call 211 for help."), 500
+    except Exception as error:
+        return _gemma_error(error)
     return jsonify(filters=filters, answer=answer)
 
 

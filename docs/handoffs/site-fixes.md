@@ -1,5 +1,7 @@
 # Handoff: fix the issues found in the full site check
 
+> **Status (2026-10-25), uncommitted:** issue 2 was already fixed (`overflow-x:clip`). Issues 3, 4 and 6 are done (211 is added only when the message doesn't already say it, on `/resources` and `/app`; `/api/match` uses `_gemma_error`; the live check is now `backend/check_gemma.py`). The web search now says when the AI isn't set up instead of "try again" (issue 5, last paragraph). 1a is done (Hunter's Park URL; The Parker and 8421 Broad moved to `lyvwellapartments.com`, already their listed website, now in `ALLOWED_HOSTS`), and 1d is done (The Fitzgerald uses its official exterior photo). Still open: 1b (The Blake no longer has a photo URL in the catalog; Saint James Plaza still needs a new photo), 1c and 1e (ask first), and issue 5's tests with real keys.
+
 A full local test of Clear Home on 2026-10-24 found the problems below. Fix each one, verify it, and push. Most of the site works and should not be touched: the find form, the map, listings browsing and filters, Show more/Show all, the photo dialog, the chat fallbacks and every page link passed. Pull first (`git pull`), because teammates push often and may already have changed these files.
 
 ## Ground rules (from the project owner)

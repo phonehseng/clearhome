@@ -104,6 +104,19 @@ class ListingsApiTests(unittest.TestCase):
         self.clock.start()
         self.addCleanup(self.clock.stop)
 
+    def test_coverage_counts_the_served_catalog_not_the_raw_file(self):
+        body=self.client.get('/api/coverage').get_json()
+        served=load_catalog()
+        self.assertEqual(body['records'],len(served))
+        self.assertEqual(body['shelters'],sum(r.get('type')=='emergency_shelter' for r in served))
+        self.assertLess(body['records'],len(json.loads(Path(catalog.RESOURCES_PATH).read_text(encoding='utf-8'))))  # unreviewed rows are left out
+
+    def test_match_says_why_when_ai_is_not_set_up(self):
+        with patch('app.find_help',side_effect=RuntimeError('Set GEMINI_API_KEY')):
+            response=self.client.post('/api/match',json={'message':'2 bedroom in Fairfax under 1500'})
+        self.assertEqual(response.status_code,503)
+        self.assertIn("isn't set up",response.get_json()['error'])
+
     def test_read_catalog_without_ai(self):
         response=self.client.get('/api/listings')
         self.assertEqual(response.status_code,200)

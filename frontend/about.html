@@ -656,8 +656,8 @@
 
     <section class="cl-section" id="map" aria-labelledby="map-title">
       <div class="pin-track map-track"><div class="pin-stage"><div class="pin-fit">
-      <h2 id="map-title" class="cl-title reveal">Every Verified Home, <span>on One Map</span></h2>
-      <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p>
+      <h2 id="map-title" class="cl-title reveal">A Walkthrough of <span>the Live Map</span></h2>
+      <p class="cl-lead reveal">A recording of the map in use: switch regions, pick a neighborhood, open a listing. Open the live map to try it yourself.</p>
       <div class="cl-frame reveal map-video-frame"><video id="map-video" class="map-video" src="/videos/map-tour.mp4?v=3" poster="/videos/map-tour.jpg?v=3" muted playsinline preload="metadata" aria-label="A recording of someone using the Clear Home map: browsing Northern Virginia, zooming into Ballston and Reston, opening listings, and switching to Blacksburg"></video><a class="map-video-cta" href="/app">Open the Live Map <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a></div>
       </div></div></div>
     </section>
@@ -665,12 +665,12 @@
     <section class="cl-section" id="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title" class="cl-title reveal">What’s in <span>the list</span></h2>
       <ul class="cl-numbers reveal">
-        <li><strong>436</strong><span>housing and shelter records across Northern Virginia and Blacksburg</span></li>
-        <li><strong>33</strong><span>emergency shelters</span></li>
-        <li><strong>5</strong><span>legal aid services</span></li>
-        <li><strong>82</strong><span>listings with a rent we could read</span></li>
+        <li><strong data-count="records">419</strong><span>reviewed housing and shelter records across Northern Virginia and Blacksburg</span></li>
+        <li><strong data-count="shelters">31</strong><span>emergency shelters</span></li>
+        <li><strong data-count="legal_aid">5</strong><span>legal aid services</span></li>
+        <li><strong data-count="with_rent">75</strong><span>listings with a rent we could read</span></li>
       </ul>
-      <p class="cl-lead reveal">Counts from our resource list as of October 24, 2026. The list grows as we review more sources.</p>
+      <p class="cl-lead reveal">Counted from the reviewed list the app serves, <span id="coverage-date">as of October 25, 2026</span>, after unreviewed, hidden and duplicate records are left out. These are records, not open beds or available homes: confirm with the provider. The list grows as we review more sources.</p>
     </section>
 
     <section class="cl-section" id="how" aria-labelledby="how-title">
@@ -688,7 +688,7 @@
           <span class="cl-query" aria-hidden="true">Homes near my office in Reston</span><ul class="cl-list" aria-hidden="true"><li><b>Signature at Reston</b><span>0.3 mi · 3 min drive</span></li><li><b>Exo</b><span>0.6 mi · 6 min drive</span></li><li><b>The Point at Rise</b><span>0.9 mi · 6 min drive</span></li></ul>
         </article>
       </div>
-      <ul class="cl-tags reveal" aria-label="Our promise"><li>Verified sources only</li><li>No accounts</li><li>SSNs removed</li><li>911 and 211 first</li></ul>
+      <ul class="cl-tags reveal" aria-label="Our promise"><li>Verified sources only</li><li>No accounts</li><li>ID numbers and contact info removed</li><li>911 and 211 first</li></ul>
       </div></div></div>
     </section>
 
@@ -1112,6 +1112,18 @@
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     addEventListener('resize', update);
     update();
+  })();
+</script>
+<script>
+  // Coverage counts from the same reviewed catalog the app serves; the numbers above stay if this fails.
+  (async () => {
+    try {
+      const r = await fetch('/api/coverage'); if (!r.ok) return;
+      const c = await r.json();
+      document.querySelectorAll('[data-count]').forEach(el => { if (Number.isInteger(c[el.dataset.count])) el.textContent = c[el.dataset.count].toLocaleString('en-US'); });
+      const day = new Date(c.as_of + 'T12:00:00');
+      if (!isNaN(day)) document.getElementById('coverage-date').textContent = 'as of ' + day.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    } catch {}
   })();
 </script>
 <script>

@@ -21,7 +21,7 @@ Finding safe, affordable housing is hard for low-income people, especially stude
 - **Listings stay current on their own.** A daily job has Gemini find new listings (thinking, Google Search, then a second reading of each source page with its quotes checked by code), renews listings still offered, takes down ones that are gone, then commits, pushes and redeploys. See [DEPLOY.md](DEPLOY.md), "Automatic listing upkeep".
 - **Save favorites.** Save listing cards to a Favorites tab and share a link to one.
 
-To avoid made-up information, the assistant only recommends places from our hand-verified resource list (`data/resources.json`, 436 records across both areas). Answers are informational and are not legal advice.
+To avoid made-up information, the assistant only recommends places from our hand-verified resource list (`data/resources.json`; the app serves the 419 reviewed records across both areas, and `/api/coverage` gives the current counts). Answers are informational and are not legal advice.
 
 ## Tech used
 

@@ -256,7 +256,7 @@
           <ul>
             <li><b>Close to you</b><span>Runs in <code>us-east4</code>, the Google region closest to Northern Virginia.</span></li>
             <li><b>Costs stay low</b><span>Shuts down when nobody is visiting and never runs more than two copies.</span></li>
-            <li><b>Photos load fast</b><span>Listing photos are stored inside the app, so pages never wait on a landlord’s website.</span></li>
+            <li><b>Photos load fast</b><span>Listing photos are stored inside the app, so pages don’t wait on a landlord’s website. A photo we couldn’t download is left off and the listing still shows.</span></li>
             <li><b>Instant answers</b><span>Common questions are answered when the server starts, so the resources page responds right away.</span></li>
             <li><b>Data stays safe</b><span>The live site is read-only. Data changes are reviewed on our computers first and shipped as code.</span></li>
           </ul>
@@ -266,11 +266,11 @@
           <h3>Cloud Run GPUs</h3>
           <p class="what">Our own NVIDIA L4 graphics card runs Gemma 4 26B (through Ollama), just for Clear Home.</p>
           <ul>
-            <li><b>Quick replies</b><span>Everyday questions skip hidden “thinking”, so answers start in seconds. Questions with specific needs (pets, furnished, roommates…) get time to check every home first.</span></li>
+            <li><b>Quick replies</b><span>Everyday questions skip hidden “thinking”, so answers start sooner (we haven’t published timed measurements yet). Questions with specific needs (pets, furnished, roommates…) get time to check every home first.</span></li>
             <li><b>Private</b><span>It refuses public calls. The website signs each request with its own Google identity.</span></li>
-            <li><b>Pay only when used</b><span>It shuts down when idle and costs about $1 an hour while awake. During judging, one copy stays on so the first answer is fast.</span></li>
-            <li><b>Ready before you ask</b><span>The GPU wakes up as soon as the chat scrolls into view, before you finish typing.</span></li>
-            <li><b>Never breaks</b><span>If the GPU is asleep or slow, the chat switches to the Gemini API after 20 seconds.</span></li>
+            <li><b>Pay only when used</b><span>It shuts down when idle. By Google’s list prices for an L4 on Cloud Run (checked October 2026) it costs roughly $1 an hour while awake; that’s an estimate, not a measured bill. During judging, one copy stays on so the first answer doesn’t wait for a cold start.</span></li>
+            <li><b>Ready before you ask</b><span>The GPU starts waking as soon as the chat scrolls into view. If it isn’t ready when you send, the answer comes from the Gemini API instead.</span></li>
+            <li><b>Falls back, step by step</b><span>If the GPU is asleep or slow, the chat switches to the Gemini API after 20 seconds. If that fails too, you get an answer built from the reviewed list without AI, plus the 211 helpline.</span></li>
           </ul>
         </article>
         <article class="svc ai">
@@ -309,7 +309,7 @@
           <h3>Cloud Build and Artifact Registry</h3>
           <p class="what">Turn our code into running containers.</p>
           <ul>
-            <li><b>Fixes go live fast</b><span>Every deploy builds a fresh container from our Dockerfile, so a pushed fix is live in minutes.</span></li>
+            <li><b>Fixes go live fast</b><span>Every deploy builds a fresh container from our Dockerfile, so a pushed fix usually goes live 4–6 minutes after the build starts (Cloud Build’s typical time for this app).</span></li>
             <li><b>Room for the big AI image</b><span>The 17 GB Gemma GPU image is built on a larger Cloud Build machine and stored in Artifact Registry next to the site.</span></li>
           </ul>
         </article>

@@ -51,6 +51,8 @@ These don't block the rubric on their own, but each one is a visible or honesty 
 
 ## External review (new pass, not yet checked)
 
+> **Status (2026-10-25), uncommitted:** done: 1 (`/api/coverage` counts the served catalog, 419/31/5/75, and the front page reads it; the copy says these are records, not open homes), 2 (the chat boxes on `/app` and `/resources` say what goes to the Gemini API, what redaction removes and doesn't, and that chats aren't saved; "SSNs removed" became "ID numbers and contact info removed"), 3 (Google Cloud page: "Never breaks" became the fallback chain, the $1/hour is labelled a list-price estimate, deploy time is 4–6 minutes), 5 (section renamed "A Walkthrough of the Live Map"), 6 (a line under "Or Filter Yourself" explains the difference and that filters work without the AI), 9 (jump links on `/resources`; no type filter yet), 10 (already true: `/review` isn't linked from any page). Fix soon 1 and 2 are done too, committed in 59f9b05 (`check_gemma.py`; discovery is `test_*.py` again, 177 tests pass). Not done: 4 (dark mode, a large change across every page), 7 and 8 (looked fine, not re-audited), 11–14 (need evidence from the team), and smaller gap 1 (redacting street addresses would break "near my office at …" lookups, which run on the redacted text; needs a team decision).
+
 An outside reviewer went through the live site and the repo. Their points are below, grouped by priority. Each point is a claim to verify before changing anything. Line numbers are from the reviewer and may have moved. Search for the quoted text instead.
 
 ### Priority 1: numbers and claims that must match the app

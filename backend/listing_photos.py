@@ -77,7 +77,7 @@ ALLOWED_HOSTS = {
     'medialibrarycf.entrata.com',
     'medialibrarycfo.entrata.com',
     'preserveatwestfields.com',
-    'rent.brookfieldproperties.com',
+    'lyvwellapartments.com',  # Lyv Well, Brookfield's new name for The Parker and 8421 Broad
     'res.cloudinary.com',
     'residentialone.mystagingwebsite.com',
     'resource.rentcafe.com',

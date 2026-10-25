@@ -26,7 +26,7 @@ The video shows the current product flow on `main`: regional overview, a real ca
 
 ## Claims to keep accurate
 
-- Homepage coverage numbers are dated counts from the source file, not available units, verified recommendations, or people helped. The current file has 436 rows, including 17 marked unverified; the app filters and deduplicates records before showing options. The video can skip those number cards.
+- Homepage coverage numbers are counted live from the reviewed catalog the app serves (unreviewed, hidden and duplicate records left out; 419 of the file's 436 rows on October 25, 2026). They are records, not available units, verified recommendations, or people helped. The video can skip those number cards.
 - Treat advertised prices as source-recorded amounts, not guaranteed current quotes. Confirm eligibility, rent, fees, dates, and vacancies with the provider.
 - The current site does not upload or analyze leases, submit applications, or guide electronic signing. Do not promise those features.
 - Do not claim measured user impact, community partnerships, WCAG certification, or operating costs unless the team has evidence for them.
