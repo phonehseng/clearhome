@@ -430,7 +430,9 @@
     /* One glass box at the bottom: the promise, then the fine print under a hairline. */
     .site-footer{flex-direction:column;align-items:stretch;gap:14px;margin-top:32px;border-top:0}
     .footer-promise{display:flex;align-items:center;gap:16px}
-    .footer-promise .trust-badge{margin-left:0}
+    .footer-promise-copy{min-width:0}
+    .footer-promise-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 20px}
+    .footer-promise .trust-badge{display:inline-flex;margin-left:0;white-space:normal}
     .footer-promise>svg{color:var(--muted);flex-shrink:0}
     .footer-promise h2{font-size:13px;font-weight:600;color:var(--ink)}
     .footer-promise p{font-size:11px;line-height:1.9;color:var(--muted);margin-top:3px}
@@ -736,7 +738,7 @@
     </div>
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
   </section>
-</main><footer class="container site-footer" id="our-promise" aria-labelledby="promise-title"><div class="footer-promise"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#shield"/></svg><div><h2 id="promise-title">Real resources only.</h2><p>Always confirm with the provider.</p></div><span class="trust-badge">People first. Always.</span></div><div class="footer-notes"><p>AI can make mistakes. Not legal advice. Don’t share your SSN or bank details.</p></div></footer>
+</main><footer class="container site-footer" id="our-promise" aria-labelledby="promise-title"><div class="footer-promise"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#shield"/></svg><div class="footer-promise-copy"><div class="footer-promise-heading"><h2 id="promise-title">Real resources only.</h2><span class="trust-badge">People first. Always.</span></div><p>Always confirm with the provider.</p></div></div><div class="footer-notes"><p>AI can make mistakes. Not legal advice. Don’t share your SSN or bank details.</p></div></footer>
 <dialog id="property-photo-dialog" class="photo-dialog" aria-labelledby="property-photo-title"><header><h2 id="property-photo-title">Community photo</h2><button type="button" id="close-property-photo" aria-label="Close photo preview">×</button></header><img id="property-photo-large" alt=""><p id="property-photo-caption"></p><div id="property-photo-source"></div></dialog>
 <script src="/rental-labels.js"></script>
 <script>
