@@ -16,6 +16,7 @@ FIELDS = ("name", "type", "jurisdiction", "city", "address", "phone", "website",
           "cost", "monthly_rent", "bedrooms", "minimum_age", "requirements", "how_to_apply", "waitlist_status",
           "source_url", "region", "rental_space", "price_unit", "rent_basis",
           "lease_type", "lease_responsibility", "lease_start", "lease_end", "payment_schedule", "shared_home_bedrooms",
+          "lease_term_notes", "furnished", "utilities_notes", "private_bathroom",
           # Emergency services: how to get in and where to go (only present on shelter and intake records).
           "intake_steps", "intake_hours", "public_intake_address", "after_hours", "phone_role", "address_kind",
           "confidential_location", "referral_required", "intake_status", "intake_status_note", "distance_from_blacksburg", "transit", "links", "source_kind", "operator")
@@ -72,6 +73,7 @@ def _pick(resources, question):
     def score(r):
         text = f"{r.get('name', '')} {r.get('who_it_serves', '')} {r.get('requirements', '')}".lower()
         return ((r.get("type") in first) * 4 + sum(w in text for w in words)
+                + 3 * ("furnish" in q and r.get("furnished") is True and "unfurnish" not in q)  # asked for furnished: those first
                 - (r.get("jurisdiction") == "Northern Virginia"))  # local records before region-wide ones
 
     budget = re.search(r"(?:under|below|less than|at most|max(?:imum)?|up to|budget(?: is| of)?)\s*\$?\s*(\d{3,5})", q.replace(",", ""))
@@ -100,6 +102,9 @@ def _compact(row):
         est = rent_estimate(row)
         if est:
             out["rent_estimate_not_published"] = rent_estimate_text(est)
+    for k, v in row.items():
+        if k.startswith("walk_minutes_to_"):
+            out[k] = v
     if isinstance(row.get("availability"), dict):
         out["availability_status"] = row["availability"].get("status")
         out["availability_checked_on"] = row["availability"].get("checked_on")
@@ -159,8 +164,20 @@ def _ask(question, history=None):
     return ask_gemma(_prompt(question, history, _records(question, history)))
 
 
-def _prompt(question, history, rows):
+def _prompt(question, history, rows, needs=None, walk=None):
     resources = [_compact(r) for r in rows]
+    checklist = ""
+    if needs:
+        lines = [f"The person also asked about: {', '.join(needs)}. Before answering, check every listing against each of these, "
+                 "using its fields (furnished, lease_term_notes, lease_start/lease_end, utilities_notes, private_bathroom, cost, notes)."]
+        if walk:
+            name, _, _, minutes, at_least = walk
+            rule = (f"at least {minutes} minutes" if at_least else f"at most {minutes} minutes") if minutes else "as asked"
+            lines.append(f"Walking time: each listing's walk_minutes_to_* field is the measured walk to {name}. "
+                         f"They asked for {rule}; use those numbers, never guess distances, and say the walk time for each home you mention.")
+        lines.append("Recommend only listings that meet every requirement. If a needed field is missing or null (for example furnished is unknown), "
+                     "say it must be confirmed with the provider rather than assuming. If none meet everything, say so first, then give the closest options and what they miss.")
+        checklist = "\n".join(lines) + "\n\n"
     past = "\n".join(f"{turn['role']}: {turn['text']}" for turn in (history or [])[-4:])
     prompt = f"""You are a patient, plain-spoken housing advisor for people in Northern Virginia and Blacksburg, Virginia.
 Blacksburg includes student rooms near Virginia Tech. Northern Virginia and Blacksburg are separate service regions.
@@ -188,7 +205,7 @@ QUESTION START
 {question}
 QUESTION END
 
-Answer the question directly in your first sentence (don't start with "Based on the data"). Plain text only: no tables, no # headings, at most 5 short bullet points.
+{checklist}Answer the question directly in your first sentence (don't start with "Based on the data"). Plain text only: no tables, no # headings, at most 5 short bullet points.
 
 Resources (source-reviewed, for the requested area):
 {json.dumps(resources, ensure_ascii=False, separators=(",", ":"))}"""
@@ -260,6 +277,58 @@ def rent_estimate(r, rows=None):
 
 def rent_estimate_text(est):
     return f"about ${est['low']:,.0f}–${est['high']:,.0f}/month (estimate from {est['basis']}; ask the provider)"
+
+
+# ---- Requirements our filters don't cover -------------------------------------------------------------------
+# "furnished", "at least a 13 minute walk from campus", "no more than a 1 year lease": the app measures what it can
+# (walking minutes) and adds it to each listing, then Gemma thinks briefly to check every requirement.
+EXTRA_NEEDS = [
+    (r"\bwalk(?:s|ing|able)?\b", "walking time"), (r"\bfurnish", "furnished"), (r"\bunfurnish", "unfurnished"),
+    # Not "$900 a month" or "move in 2 months": only lease words or "12-month lease/term".
+    (r"\blease\b|\b(?:\d+|one|two|six|nine|twelve)[- ](?:year|month)s?[- ](?:long|lease|term|contract)\b|\b(?:short|long)[- ]term\b", "lease length"),
+    (r"\bpets?\b|\bdogs?\b|\bcats?\b", "pets"), (r"\bparking\b|\bgarage\b", "parking"),
+    (r"\butilit(?:y|ies)\b|\bwifi\b|\binternet\b", "utilities"), (r"\b(?:private|own) bath", "private bathroom"),
+    (r"\blaundry\b|\bwasher\b|\bdryer\b", "laundry"), (r"\bbus\b|\btransit\b", "transit"),
+    (r"\bsublet|\bsublease|\btakeover\b", "sublet"), (r"\bguarantor|\bco-?signer", "guarantor"),
+    (r"\bquiet\b|\bsafe neighborhood|\bnoise", "quiet area"), (r"\bgym\b|\bpool\b", "amenities"),
+]
+WALK_LIMIT = re.compile(r"\b(\d{1,3})\s*-?\s*min(?:ute)?s?\b", re.I)
+WALK_MORE = re.compile(r"\b(?:at least|more than|over|longer than|farther than|further than|no closer than|minimum)\b", re.I)
+
+
+def extra_needs(question):
+    """Plain names of requirements in the question that the fixed filters (area, budget, size, age) don't handle."""
+    q = (question or "").lower()
+    return [name for pattern, name in EXTRA_NEEDS if re.search(pattern, q)]
+
+
+def walk_target(question):
+    """(place name, lat, lon, minutes or None, at_least) for "N minute walk from X", or None.
+    A bare "campus" means Virginia Tech in Blacksburg and George Mason in Fairfax."""
+    q = (question or "").lower()
+    if not re.search(r"\bwalk", q):
+        return None
+    landmark = next((v for k, v in LANDMARKS.items() if re.search(rf"\b{re.escape(k)}\b", q)), None)
+    if not landmark and re.search(r"\bcampus\b", q):
+        landmark = LANDMARKS["gmu" if area_for(q) == "Fairfax County" else "virginia tech"]
+    if not landmark:
+        return None
+    limit = WALK_LIMIT.search(q)
+    minutes = int(limit.group(1)) if limit and 0 < int(limit.group(1)) <= 180 else None
+    return landmark[3], landmark[1], landmark[2], minutes, bool(minutes and WALK_MORE.search(q))
+
+
+def add_walk_times(rows, target):
+    """Each listing gets walk_minutes_to_<place> (Google walking time when available, else a labeled estimate)."""
+    import nearby  # nearby imports this module, so load it only when needed
+    name, lat, lon = target[:3]
+    homes = [r for r in rows if r.get("lat") is not None and r.get("type") in ("affordable_listing", "rental_listing")]
+    walked = nearby._walk_minutes(homes, lat, lon)
+    field = "walk_minutes_to_" + re.sub(r"\W+", "_", name).strip("_").lower()
+    for i, r in enumerate(homes):
+        miles = nearby._miles(lat, lon, r["lat"], r["lon"])
+        r[field] = walked.get(i) or f"about {round(miles * nearby.MINUTES_PER_MILE)} (estimated from {miles:.1f} mi)"
+    return field
 
 
 def cards_for(text, limit=6):
@@ -338,7 +407,7 @@ def cards_for(text, limit=6):
 
 # What the chat says while Gemma reasons, by seconds since it started. Gemma's raw notes are never shown:
 # they're half-sentences in prompt jargon and can mention records it later drops.
-THINKING_STEPS = [(0, "reading the listings and programs we found"), (8, "checking rents, eligibility and phone numbers"),
+THINKING_STEPS = [(0, "reading the listings and checking each of your requirements"), (8, "checking rents, eligibility and phone numbers"),
                   (18, "picking the best matches for you"), (30, "writing your answer (a long question can take up to a minute)")]
 
 
@@ -359,12 +428,19 @@ def stream_ask(question, history=None):
             yield "cards", cards_for(hit[1])
             return
     rows = _records(question, history)
+    needs, walk = extra_needs(question), walk_target(question)
+    if walk:
+        rows = [dict(r) for r in rows]  # the catalog's own rows are never changed
+        try:
+            add_walk_times(rows, walk)
+        except Exception:
+            walk = None  # no walking times: Gemma says to check the route instead of guessing
     names = list(dict.fromkeys(r.get("community") or r["name"] for r in rows))[:3]
     found = f"{len(rows)} reviewed resource{'' if len(rows) == 1 else 's'}" if rows else "our reviewed resources"
     yield "status", (f"Checking {found}" + (f", like {', '.join(names)}" if names else "") + ". Gemma is thinking…")
     parts, step, started = [], None, None
     try:
-        for is_thought, text in stream_gemma(_prompt(question, history, rows), thoughts=True):
+        for is_thought, text in stream_gemma(_prompt(question, history, rows, needs, walk), thoughts=True, think=bool(needs)):
             if is_thought in ("engine", "status"):
                 yield is_thought, text
                 continue
@@ -410,13 +486,13 @@ def programs():
 OUTSIDE = r"\b(richmond|baltimore|maryland|silver spring|bethesda|rockville|washington,? dc|d\.?c\.?|norfolk|virginia beach|chesapeake|charlottesville|roanoke|fredericksburg|stafford|winchester|harrisonburg|lynchburg|frederick)\b"
 
 
-# Well-known places people ask to live near: (area, approximate latitude, longitude).
+# Well-known places people ask to live near: (area, approximate latitude, longitude, display name).
 LANDMARKS = {
-    "george mason": ("Fairfax County", 38.8297, -77.3074), "gmu": ("Fairfax County", 38.8297, -77.3074),
-    "virginia tech": ("Blacksburg", 37.2284, -80.4234), "vt campus": ("Blacksburg", 37.2284, -80.4234),
-    "nova community college": ("Fairfax County", 38.8325, -77.2365), "nvcc": ("Fairfax County", 38.8325, -77.2365),
-    "marymount": ("Arlington County", 38.8968, -77.1270), "pentagon": ("Arlington County", 38.8719, -77.0563),
-    "inova fairfax": ("Fairfax County", 38.8572, -77.2276),
+    "george mason": ("Fairfax County", 38.8297, -77.3074, "George Mason University"), "gmu": ("Fairfax County", 38.8297, -77.3074, "George Mason University"),
+    "virginia tech": ("Blacksburg", 37.2284, -80.4234, "Virginia Tech"), "vt campus": ("Blacksburg", 37.2284, -80.4234, "Virginia Tech"),
+    "nova community college": ("Fairfax County", 38.8325, -77.2365, "NOVA Community College"), "nvcc": ("Fairfax County", 38.8325, -77.2365, "NOVA Community College"),
+    "marymount": ("Arlington County", 38.8968, -77.1270, "Marymount University"), "pentagon": ("Arlington County", 38.8719, -77.0563, "the Pentagon"),
+    "inova fairfax": ("Fairfax County", 38.8572, -77.2276, "Inova Fairfax Hospital"),
 }
 
 

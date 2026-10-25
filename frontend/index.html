@@ -1186,6 +1186,10 @@
     // Gemma sometimes answers in markdown; turn tables, headings and list marks into clean lines of text.
     function tidy(text) {
       return text.split('\n').map(line => {
+        // Markdown escapes (\* \_ \#) show as the plain character; a line wrapped in *italics* (Gemma's footnotes) loses the stars.
+        line = line.replace(/\\\*/g, '✱').replace(/\\([_#|`\-])/g, '$1');
+        if (/^\s*\*[^*\s](.*[^*\s])?\*\s*$/.test(line)) line = line.trim().slice(1, -1);
+        line = line.replace(/✱/g, '*');
         const t = line.trim();
         if (/^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?$/.test(t) || /^-{3,}$|^\*{3,}$/.test(t)) return null;  // table rules, dividers
         if (/^\|.*\|$/.test(t)) return '• ' + t.slice(1, -1).split('|').map(c => c.trim()).filter(Boolean).join(' · ');  // table row

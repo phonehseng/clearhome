@@ -404,7 +404,7 @@ def _chat_request():
         if profile.get(key) is True: about.append(label)
     # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
     # Both shortcuts read the person's own words, not the profile note added below.
-    instant = nearby.answer(question, profile) or quick_nearby(question, profile)  # "near George Mason" etc.: catalog, no AI
+    instant = nearby.answer(question, profile, history) or quick_nearby(question, profile)  # "near George Mason" etc.: catalog, no AI
     if about:
         question = f"{question}\n\n(About me: {'; '.join(about)}.)"
     return question, history, instant

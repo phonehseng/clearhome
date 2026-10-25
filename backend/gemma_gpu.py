@@ -2,7 +2,7 @@
 
 The GPU service is private: on Cloud Run this app signs each call with its own identity (an ID token
 from the metadata server). Locally, set GEMMA_GPU_TOKEN to `gcloud auth print-identity-token` to try it.
-Thinking is turned off, so answers start in seconds instead of after a minute of hidden reasoning.
+Thinking is off by default, so answers start in seconds; questions with unusual requirements turn on a brief think.
 If the GPU is still starting (it scales to zero) or fails, callers fall back to the Gemini API.
 
 Usage: python backend/gemma_gpu.py "What is a housing choice voucher?"
@@ -59,27 +59,38 @@ def _mark_cold(seconds=90):
     _cold_until = time.time() + seconds
 
 
-def stream(prompt):
-    """Yield answer text from the GPU as it's written. Raises if the GPU isn't ready, so callers can fall back."""
+def stream_parts(prompt, think=False):
+    """Yield (is_thought, text) from the GPU as it's written. Raises if the GPU isn't ready, so callers can fall back.
+    think=True lets Gemma reason briefly first (for questions with requirements our filters don't cover)."""
     try:
         resp = requests.post(f"{url()}/api/chat", headers=_auth(), stream=True, timeout=(10, FIRST_BYTE_SECONDS),
                              json={"model": MODEL, "messages": [{"role": "user", "content": prompt}], "stream": True,
-                                   "think": False, "options": {"temperature": 0.3, "num_predict": 900}})
+                                   # Thinking shares the token budget with the answer, so it gets more room.
+                                   "think": think, "options": {"temperature": 0.3, "num_predict": 3000 if think else 900}})
         resp.raise_for_status()
         for line in resp.iter_lines():
             if not line:
                 continue
             data = json.loads(line)
-            text = (data.get("message") or {}).get("content")
+            message = data.get("message") or {}
             _mark_ready()
-            if text:
-                yield text
+            if message.get("thinking"):
+                yield True, message["thinking"]
+            if message.get("content"):
+                yield False, message["content"]
             if data.get("done"):
                 return
     except Exception as error:
         print(f"Gemma GPU unavailable, using the Gemini API instead: {type(error).__name__}: {str(error)[:200]}", flush=True)
         _mark_cold()
         raise
+
+
+def stream(prompt, think=False):
+    """Yield only the answer text (no thinking) as it's written."""
+    for is_thought, text in stream_parts(prompt, think):
+        if not is_thought:
+            yield text
 
 
 def ask(prompt):

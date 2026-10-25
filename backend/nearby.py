@@ -15,7 +15,7 @@ import threading
 import time
 import urllib.request
 
-from advisor import CHEAP, LANDMARKS, OUTSIDE, URGENT, area_for, rent_estimate
+from advisor import CHEAP, LANDMARKS, OUTSIDE, URGENT, area_for, extra_needs, rent_estimate
 from catalog import filter_catalog, load_catalog
 from geocode import lookup as census_lookup
 
@@ -90,7 +90,7 @@ def locate(place):
     found = None
     landmark = next((v for k, v in LANDMARKS.items() if re.search(rf"\b{re.escape(k)}\b", key)), None)
     if landmark:
-        found = (place.upper() if len(place) <= 4 else place.title(), landmark[1], landmark[2])
+        found = (landmark[3] if len(landmark) > 3 else place.upper() if len(place) <= 4 else place.title(), landmark[1], landmark[2])
     elif STREET.match(place):
         region = "Blacksburg, VA" if area_for(place) == "Blacksburg" else "VA"
         try:
@@ -149,8 +149,11 @@ def _coords(profile):
     return None
 
 
-def answer(question, profile=None):
-    """Text answer for a "near X" question, or None if the question isn't one."""
+def answer(question, profile=None, history=None):
+    """Text answer for a "near X" or "how far a walk" question, or None if the question isn't one."""
+    walk = walk_answer(question, profile, history)
+    if walk:
+        return walk
     me = _coords(profile)
     if me and NEAR_ME.search(question or "") and not URGENT.search(question):
         inside = any(_miles(me[0], me[1], lat, lon) <= r for _, lat, lon, r in REGIONS)
@@ -177,7 +180,8 @@ def answer(question, profile=None):
     return _homes_near(name, lat, lon, question, profile)
 
 
-def _homes_near(name, lat, lon, question, profile):
+def _filters(question, profile):
+    """Catalog filters from the question and the find form: age group, budget, room or whole home."""
     profile = profile or {}
     filters = {"types": ["affordable_listing", "rental_listing"], "age": 62 if profile.get("senior") else 30,
                "age_group": "senior" if profile.get("senior") else "general"}
@@ -188,6 +192,11 @@ def _homes_near(name, lat, lon, question, profile):
         filters["max_budget_per_month"] = profile["budget"]
     if re.search(r"\b(rooms?|roommates?|shared)\b", question or "", re.I):
         filters["rental_space"] = "room"
+    return filters
+
+
+def _homes_near(name, lat, lon, question, profile):
+    filters = _filters(question, profile)
     seen, homes = set(), []
     pool = filter_catalog(load_catalog(), {"types": ["affordable_listing", "rental_listing"]})  # for rent estimates
     for r in filter_catalog(load_catalog(), filters):
@@ -241,6 +250,134 @@ def _homes_near(name, lat, lon, question, profile):
         lines.append(f"* Estimated from {' and '.join(bases)}: these homes don't publish rents, so ask the provider for the real price.")
     lines.append(("Commute times are from Google and change with traffic and schedules. " if commute else "Distances are straight-line. ")
                  + "Advertised rents and openings aren't guaranteed, so confirm with the property.\n\nThis is guidance, not legal advice.")
+    return "\n".join(lines)
+
+
+# ---- "How far a walk is it?" --------------------------------------------------------------------------------
+# "are these at least 13 minutes' walk from Virginia Tech", "rooms within a 10 minute walk of VT campus".
+# Walking times come from Google Routes (WALK); without a key they're estimated from distance and labeled so.
+WALK = re.compile(r"\bwalk(?:s|ing|able)?\b", re.I)
+WALK_FROM = re.compile(r"\bwalk(?:s|ing|able)?\b(?:\s+(?:time|distance))?.*?\b(?:from|to|of)\s+(?:the\s+)?(.+?)(?:[?!]|\.(?:\s|$)|$)", re.I)
+MINUTES = re.compile(r"\b(\d{1,3})\s*-?\s*(?:min(?:ute)?s?)\b", re.I)
+AT_LEAST = re.compile(r"\b(?:at least|more than|over|longer than|farther than|further than|no closer than|minimum)\b", re.I)
+THESE = re.compile(r"\b(?:these|those|them|they|each|any of (?:them|these)|the (?:ones|places|listings|homes|rooms|apartments) (?:you|above))\b", re.I)
+WALK_MILES = 3  # beyond this nobody walks; homes farther away are left out of a "within N minutes" search
+MINUTES_PER_MILE = 25  # ~3 mph with a 1.25 street-detour factor, only when Google can't give a real walking time
+
+
+def _walk_minutes(homes, lat, lon):
+    """{index: minutes} walking from each home to the place (Google Routes), or {} if unavailable."""
+    if not _key() or not homes:
+        return {}
+    out = {}
+    for start in range(0, len(homes), 25):  # the matrix takes at most 25 origins per call
+        batch = homes[start:start + 25]
+        try:
+            rows = _post(MATRIX_URL, {"origins": [{"waypoint": {"location": {"latLng": {"latitude": h["lat"], "longitude": h["lon"]}}}} for h in batch],
+                                      "destinations": [{"waypoint": {"location": {"latLng": {"latitude": lat, "longitude": lon}}}}],
+                                      "travelMode": "WALK"}, "originIndex,duration,condition")
+        except Exception:
+            return {}
+        for row in rows if isinstance(rows, list) else []:
+            if row.get("condition") == "ROUTE_EXISTS" and row.get("duration"):
+                out[start + row["originIndex"]] = round(int(str(row["duration"]).rstrip("s")) / 60)
+    return out
+
+
+def _named_in(text, rows):
+    """Reviewed homes the previous answer named, in the order it named them (one per community)."""
+    low, found = (text or "").casefold(), []
+    for r in rows:
+        if r.get("lat") is None:
+            continue
+        names = [n for n in (r.get("name"), r.get("community")) if n]
+        hits = [low.find(n.casefold()) for n in names if len(n) > 3 and n.casefold() in low]
+        if hits:
+            found.append((min(hits), r))
+    seen, out = set(), []
+    for _, r in sorted(found, key=lambda x: x[0]):
+        key = (r.get("community") or r["name"]).casefold()
+        if key not in seen:
+            seen.add(key)
+            out.append(r)
+    return out
+
+
+def walk_answer(question, profile=None, history=None):
+    """Walking times between homes and a place, or None if the question isn't about walking to a place."""
+    if not WALK.search(question or "") or URGENT.search(question):
+        return None
+    if any(need != "walking time" for need in extra_needs(question)):
+        return None  # "furnished, under $1000, a 13 minute walk from campus": Gemma checks it all, with walking times added
+
+    m = WALK_FROM.search(question)
+    if not m:
+        return None
+    place = FILLER_END.sub("", re.split(r"\s+(?:from|to)\s+|[,;]", m.group(1).strip())[0])
+    place = re.sub(r"\b(?:campus|area)\b$", lambda x: "campus" if re.search(r"\bvt\b", place, re.I) else "", place, flags=re.I).strip() or place
+    if NOT_A_PLACE.match(place) or WORKPLACE.match(place) and not place[WORKPLACE.match(place).end():].strip():
+        return None
+    found = locate(place)
+    if not found:
+        return None
+    name, lat, lon = found
+    if name == "outside":
+        return ("That place looks outside the areas Clear House covers (Northern Virginia and Blacksburg). "
+                "For other areas, call 211 for local housing help.")
+    limit = MINUTES.search(question)
+    limit = int(limit.group(1)) if limit and 0 < int(limit.group(1)) <= 180 else None
+    at_least = bool(limit and AT_LEAST.search(question))
+    rows = filter_catalog(load_catalog(), {"types": ["affordable_listing", "rental_listing"]})
+    earlier = next((t.get("text") for t in reversed(history or []) if t.get("role") == "assistant"), "")
+    # Homes named in the question itself ("from Union Blacksburg"), else the ones the last answer listed ("are these ...").
+    homes = [r for r in _named_in(question, rows) if place.casefold() not in (r.get("community") or r["name"]).casefold()]
+    if not homes and THESE.search(question):
+        homes = _named_in(earlier, rows)
+    follow_up = bool(homes)
+    if not follow_up:
+        # A fresh question: every reviewed home that fits the filters within walking range of the place.
+        seen = set()
+        for r in filter_catalog(load_catalog(), _filters(question, profile)):
+            key = (r.get("community") or r["name"]).casefold()
+            if r.get("lat") is not None and key not in seen and _miles(lat, lon, r["lat"], r["lon"]) <= WALK_MILES:
+                seen.add(key)
+                homes.append(r)
+        homes.sort(key=lambda r: _miles(lat, lon, r["lat"], r["lon"]))
+        homes = homes[:25]
+    if not homes:
+        return (f"I don't have a reviewed home within walking range ({WALK_MILES} miles) of {name} that fits your choices. "
+                "Try a bus-friendly search, or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
+    walked = _walk_minutes(homes, lat, lon)
+    timed = []
+    for i, r in enumerate(homes):
+        miles = _miles(lat, lon, r["lat"], r["lon"])
+        timed.append((walked.get(i, round(miles * MINUTES_PER_MILE)), i in walked, miles, r))
+    timed.sort(key=lambda t: t[0])
+    if limit:
+        ok = [t for t in timed if (t[0] >= limit if at_least else t[0] <= limit)]
+        rule = f"at least a {limit}-minute walk from" if at_least else f"within a {limit}-minute walk of"
+        if follow_up:
+            some = "it is" if len(timed) == 1 else f"all {len(timed)} are"
+            head = (f"Yes, {some} {rule} {name}." if len(ok) == len(timed) else
+                    f"No, {'it is not' if len(timed) == 1 else 'none of them is'} {rule} {name}." if not ok else
+                    f"{len(ok)} of the {len(timed)} are {rule} {name}.")
+        else:
+            head = (f"Reviewed homes {rule} {name}:" if ok else
+                    f"None of the reviewed homes is {rule} {name}. The closest walks are:")
+        shown = timed if follow_up or not ok else ok[:8]
+    else:
+        head, shown = f"Walking times {'from' if follow_up else 'to'} {name}:", timed[:8]
+    lines = [head]
+    for minutes, real, miles, r in shown:
+        mark = "" if not limit else (" ✓" if (minutes >= limit if at_least else minutes <= limit) else " ✗")
+        per = "/person/month" if r.get("rental_space") == "room" else "/month"
+        rent = f"; from ${r['monthly_rent']:,.0f}{per}" if isinstance(r.get("monthly_rent"), (int, float)) else ""
+        lines.append(f"- **{r.get('community') or r['name']}**: about {minutes} min walk{'' if real else ' (estimated)'}, {miles:.1f} mi{rent}{mark}")
+    lines.append(("Walking times are from Google Maps." if walked else
+                  f"Walking times are estimated from straight-line distance (about {MINUTES_PER_MILE} minutes a mile on streets), "
+                  "so check the route on the map.")
+                 + (" Campus is big, so your building can add or save several minutes." if re.search(r"universit|college|campus|virginia tech|george mason", name, re.I) else "")
+                 + "\n\nThis is guidance, not legal advice.")
     return "\n".join(lines)
 
 

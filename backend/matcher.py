@@ -64,21 +64,24 @@ def ask_gemma(prompt, attempts=2):
             time.sleep(2)
 
 
-def stream_gemma(prompt, thoughts=False):
+def stream_gemma(prompt, thoughts=False, think=False):
     """Yield Gemma's answer text as it's written, so the chat can show it word by word.
     With thoughts=True, yields (is_thought, text) pairs so the chat can also show what Gemma is working on,
-    starting with ("engine", <which model and where>) so the page can say exactly what answered."""
+    starting with ("engine", <which model and where>) so the page can say exactly what answered.
+    think=True turns on Gemma's reasoning on our GPU (the Gemini API version always reasons)."""
     import gemma_gpu  # our own Gemma 4 GPU first: no hidden reasoning, so words start in seconds
     if thoughts and gemma_gpu.url() and (gemma_gpu.asleep() or not gemma_gpu.available()):
         yield "status", "Gemma is warming up (it sleeps when nobody's asking). The first answer can take up to a minute; after that it's quick."
     if gemma_gpu.available():
         started = False
         try:
-            for text in gemma_gpu.stream(prompt):
+            for is_thought, text in gemma_gpu.stream_parts(prompt, think):
+                if is_thought and not thoughts:
+                    continue
                 if not started and thoughts:
-                    yield "engine", f"Gemma 4 26B ({gemma_gpu.MODEL}) on our own Cloud Run L4 GPU"
+                    yield "engine", f"Gemma 4 26B ({gemma_gpu.MODEL}) on our own Cloud Run L4 GPU" + (", thinking briefly first" if think else "")
                 started = True
-                yield (False, text) if thoughts else text
+                yield (is_thought, text) if thoughts else text
             return
         except Exception:
             if started:
