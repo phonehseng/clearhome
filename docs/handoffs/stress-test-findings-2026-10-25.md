@@ -1,5 +1,7 @@
 # Handoff: stress-test findings and fixes
 
+> **Status: done.** All three are fixed with regression tests in `backend/test_safety.py` (195 tests pass) and were rechecked in the browser. (1) Resetting the chat cancels the reply still on its way; an old reply or error never renders, and Send works at once. (2) `/api/options` and `/api/housing/search` return a JSON 400 naming the field for arrays, objects and unknown values, and the chat state check no longer crashes on a list in `pending.field`. (3) A budget or income out of range, or one the browser can't read, gets an inline message beside the field and doesn't search; the API returns 400 for invalid supplied numbers and fractional household or bedroom counts, while blank values still mean no limit.
+
 ## Scope and result
 
 Tested commit `683e35f422ebb9a3260369740261c4dd05f28574` on October 25, 2026, using an isolated copy of the repository. Application code and catalog data in the working checkout were not edited. This file records findings to fix; the issues below remain outstanding.

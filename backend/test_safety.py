@@ -132,5 +132,61 @@ class PromptGuardTests(unittest.TestCase):
             self.assertEqual(client.post("/api/ask/stream", json={"question": "   "}).status_code, 400)
 
 
+class InputValidationTests(unittest.TestCase):
+    """Malformed values get a JSON 400 that names the field: never a crash, and never a quietly broader search."""
+
+    def setUp(self):
+        self.client = server.app.test_client()
+
+    def options(self, **body):
+        return self.client.post("/api/options", json={"location": "Blacksburg", **body})
+
+    def test_rental_space_must_be_one_of_the_choices(self):
+        for bad in ([], {}, ["room"], "castle", 3):
+            r = self.options(rental_space=bad)
+            self.assertEqual(r.status_code, 400, bad)
+            self.assertIn("rental_space", r.get_json()["fields"])
+        for ok in ("room", "entire_home", "all", "", None):
+            self.assertEqual(self.options(rental_space=ok).status_code, 200, ok)
+        self.assertEqual(self.options().status_code, 200)
+
+    def test_invalid_numbers_are_reported_not_ignored(self):
+        for field, bad in (("budget", -1), ("budget", "abc"), ("budget", True), ("budget", 250_000), ("income", -5),
+                           ("household", 2.9), ("household", 0), ("bedrooms", 1.9), ("bedrooms", 7)):
+            r = self.options(**{field: bad})
+            self.assertEqual(r.status_code, 400, (field, bad))
+            self.assertIn(field, r.get_json()["fields"])
+        infinite = self.client.post("/api/options", data='{"location": "Blacksburg", "budget": Infinity}', content_type="application/json")
+        self.assertEqual(infinite.status_code, 400)
+
+    def test_blank_and_valid_numbers_still_work(self):
+        everything = self.options(budget=None).get_json()
+        self.assertEqual(self.options(budget="").status_code, 200)
+        tiny = self.options(budget=1).get_json()
+        self.assertGreater(len(everything["listings"]), len(tiny["listings"]))  # a real budget still filters
+        for field, ok in (("household", 2), ("household", 2.0), ("bedrooms", 0), ("income", 40000)):
+            self.assertEqual(self.options(**{field: ok}).status_code, 200, (field, ok))
+
+    def test_walk_search_rejects_malformed_choices(self):
+        with patch("walkable.search", return_value={"results": []}) as search:
+            for filters in ({"requiredAmenity": []}, {"requiredAmenity": {}}, {"requiredAmenity": "spa"}, {"maxWalkingMinutes": "10"},
+                            {"maxWalkingMinutes": 12}, {"sort": ["rent"]}, {"bedrooms": 1.9}, {"maxMonthlyRent": -1}):
+                r = self.client.post("/api/housing/search", json={"filters": {"location": "Arlington", **filters}})
+                self.assertEqual(r.status_code, 400, filters)
+                self.assertIn(next(iter(filters)), r.get_json()["fields"])
+            search.assert_not_called()
+            ok = self.client.post("/api/housing/search", json={"filters": {"location": "Arlington", "requiredAmenity": "supermarket",
+                                                                         "maxWalkingMinutes": 10, "bedrooms": None, "sort": "best"}})
+        self.assertEqual(ok.status_code, 200)
+        self.assertEqual(search.call_args[0][1]["amenity"], "supermarket")
+
+    def test_malformed_chat_state_is_ignored_not_a_crash(self):
+        with patch("advisor.stream_gemma", return_value=iter([(False, "Call 211.")])):
+            for pending in ({"field": [], "id": "q_area_1"}, {"field": {}, "id": []}, ["area"], "area"):
+                r = self.client.post("/api/ask/stream", json={"question": "apartments in Reston", "chat": {"pending": pending, "asked": [[], {}]}})
+                r.get_data()  # read the stream to the end
+                self.assertEqual(r.status_code, 200, pending)
+
+
 if __name__ == "__main__":
     unittest.main()

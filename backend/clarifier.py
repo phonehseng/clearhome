@@ -252,7 +252,7 @@ def load_state(raw):
     request = redact(request.strip()[:1500])[0] if isinstance(request, str) and request.strip() else None
     asked = [f for f in raw.get("asked") if isinstance(f, str) and f in FIELDS] if isinstance(raw.get("asked"), list) else []
     pending = raw.get("pending")
-    if not (isinstance(pending, dict) and pending.get("field") in FIELDS and isinstance(pending.get("id"), str)
+    if not (isinstance(pending, dict) and isinstance(pending.get("field"), str) and pending["field"] in FIELDS and isinstance(pending.get("id"), str)
             and QID.fullmatch(pending["id"]) and pending["id"].startswith(f"q_{pending['field']}_")):
         pending = None
     return {"request": request, "answers": answers, "asked": list(dict.fromkeys(asked))[:8],

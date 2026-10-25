@@ -843,6 +843,8 @@
     .call-links a[href="tel:911"]:hover{background:#912018}
     .tonight-links span{font-size:13.5px;color:#5a3a0e}
     /* Hotline buttons under a crisis answer in the chat. */
+    .field-error{margin:6px 2px 0;font-size:13.5px;font-weight:600;color:#b42318}
+    .input-wrapper:has([aria-invalid="true"]),select[aria-invalid="true"]{border-color:#b42318!important;box-shadow:0 0 0 3px #b4231826}
     .chat-lines{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
     .chat-lines a{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:999px;background:#23408f;color:#fff;font-size:14.5px;font-weight:700;text-decoration:none}
     .chat-lines a:hover{background:#1a3170}
@@ -1754,7 +1756,9 @@
     // Gemma's follow-up questions: when a request is missing something that changes the answer (which area, what kind of
     // help), the reply is one question with answer buttons. The server sends it as data (never HTML) plus this
     // conversation's answers ("state"), which go back with each message; the server checks every value.
-    let chat = {}, busy = false, chatReset = 0;  // chatReset counts resets, so a reply still on its way can't bring old answers back
+    let chat = {}, busy = false, chatReset = 0, inflight = null;  // chatReset counts resets, so a reply still on its way can't bring old answers back
+    // Starting over (the find form's results): cancel the reply on its way and free the composer at once.
+    const cancelChat = () => { chatReset++; inflight?.abort(); inflight = null; busy = false; chatForm.querySelector('button').disabled = false; };
     const PLACEHOLDER = chatInput.placeholder, ANSWER_HINT = 'Or type your own answer';
     function closeQuestions() {  // a new message closes any open question, so a late click can't answer a stale one
       const open = [...log.querySelectorAll('fieldset.chat-q:not(:disabled)')];
@@ -1808,8 +1812,10 @@
       let answer = '', bubble = null, engine = '', asked = null, state = null, lines = null, ok = false;
       const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); pinTurn(); };
       const finish = () => { clearInterval(timer); status.remove(); };
+      const stale = () => resets !== chatReset;  // the chat was reset while this reply was on its way
+      const controller = new AbortController(); inflight = controller;
       try {
-        const controller = new AbortController(); const stop = setTimeout(() => controller.abort(), 180000);  // a careful think on specific needs can take two minutes
+        const stop = setTimeout(() => controller.abort(), 180000);  // a careful think on specific needs can take two minutes
         const res = await fetch('/api/ask/stream', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile: { ...profile, ...oneShot }, chat, ...(reply ? { reply } : {}) }), signal: controller.signal });
         oneShot = {};
         if (!res.ok || !res.body) { const data = await res.json().catch(() => ({})); throw new Error(data.error || 'Something went wrong.'); }
@@ -1821,6 +1827,7 @@
           while ((cut = buffer.indexOf('\n\n')) >= 0) {
             const line = buffer.slice(0, cut).replace(/^data: /, ''); buffer = buffer.slice(cut + 2);
             let event; try { event = JSON.parse(line); } catch { continue; }
+            if (stale()) throw new DOMException('reset', 'AbortError');
             if (event.kind === 'engine') { engine = event.text; }
             else if (event.kind === 'state') { if (event.text && typeof event.text === 'object') state = event.text; }
             else if (event.kind === 'question') { asked = event.text; }
@@ -1834,6 +1841,7 @@
           }
         }
         clearTimeout(stop); finish();
+        if (stale()) throw new DOMException('reset', 'AbortError');
         if (!answer) throw new Error('No answer came back.');
         if (lines) showLines(bubble, lines);
         if (asked) showQuestion(bubble, asked, keyboard, answer);
@@ -1844,10 +1852,12 @@
         ok = true;
       } catch (err) {
         finish();
+        if (stale()) return false;  // reset meanwhile: an old reply or error never shows in the new chat, and cancelChat freed the composer
         const msg = err.name === 'AbortError' ? 'This is taking too long, the AI service is busy. Please try again in a minute.' : err instanceof TypeError ? 'We could not reach the assistant. Check your connection and try again.' : (err.message || 'We could not reach the assistant.');
         botSay(/211/.test(msg) ? msg : msg + ' For urgent help, call 211.', 'error');  // the server's message may already say 211
         if (!reply) closed.forEach(box => { if (box.dataset.qid === chat.pending?.id) { box.disabled = false; delete box.dataset.state; chatInput.placeholder = ANSWER_HINT; } });  // still the open question: answer it again
       }
+      if (inflight === controller) inflight = null;
       button.disabled = false; busy = false;
       return ok;
     }
@@ -1951,8 +1961,27 @@
     // Other parts of the page (like the live web search) post short updates here.
     window.clearHomeAssistantNote = text => { if (!log.querySelector('.msg')) return; botSay(text, 'update'); };
 
+    // A field the search can't use gets a message beside it (read out by screen readers) instead of a quietly broader search.
+    const fieldErrors = {
+      show(id, message) {
+        const input = document.getElementById(id), at = input.closest('.input-wrapper') || input;
+        let note = document.getElementById(id + '-error');
+        if (!note) { note = el('p', '', { id: id + '-error', class: 'field-error', role: 'alert' }); at.after(note); }
+        note.textContent = message; input.setAttribute('aria-invalid', 'true'); input.setAttribute('aria-describedby', id + '-error'); input.focus();
+      },
+      clear() {
+        form.querySelectorAll('.field-error').forEach(n => n.remove());
+        form.querySelectorAll('[aria-invalid]').forEach(n => { n.removeAttribute('aria-invalid'); n.removeAttribute('aria-describedby'); });
+      },
+    };
+    form.addEventListener('input', e => { if (e.target.hasAttribute('aria-invalid')) fieldErrors.clear(); });
     form.addEventListener('submit', async e => {
       e.preventDefault();
+      // Blank budget or income means no limit; a number out of range, or one the browser couldn't read, is asked about.
+      fieldErrors.clear();
+      const wrong = [['budget', 'Enter a monthly budget from $0 to $100,000, or leave it blank.'], ['income', 'Enter a yearly income from $0 to $10,000,000, or leave it blank.']]
+        .find(([id]) => { const f = document.getElementById(id).validity; return f.badInput || f.rangeUnderflow || f.rangeOverflow; });
+      if (wrong) { fieldErrors.show(...wrong); return; }
       const v = id => document.getElementById(id).value.trim();
       const checked = id => document.getElementById(id).checked;
       profile = { location: v('location'), budget: v('budget') ? Number(v('budget')) : null, income: v('income') ? Number(v('income')) : null,
@@ -1964,7 +1993,11 @@
       try {
         const res = await fetch('/api/options', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(profile) });
         const data = await res.json();
-        if (!res.ok || data.error) throw new Error(data.error || 'We could not load options.');
+        if (!res.ok || data.error) {
+          const bad = Object.keys(data.fields || {}).find(id => document.getElementById(id));
+          if (bad) fieldErrors.show(bad, data.fields[bad]);
+          throw new Error(data.error || 'We could not load options.');
+        }
         results.replaceChildren();
         if (profile.tonight) {
           results.append(el('p', 'In danger right now? Call 911. For shelter tonight, call 211 or the intake line below. Don’t wait for an AI answer.', { class: 'notice-urgent' }));
@@ -1998,7 +2031,7 @@
           results.append(more);
         }
         // The assistant introduces itself once options are on screen; chatting is optional.
-        log.replaceChildren(); history = []; chat = {}; chatReset++; chatInput.placeholder = PLACEHOLDER; turnStart = null; log.style.paddingBottom = ''; log.classList.remove('chatting'); document.getElementById('assistant-chips').hidden = true;
+        cancelChat(); log.replaceChildren(); history = []; chat = {}; chatInput.placeholder = PLACEHOLDER; turnStart = null; log.style.paddingBottom = ''; log.classList.remove('chatting'); document.getElementById('assistant-chips').hidden = true;
         const counts = [`${homeCount} home${homeCount === 1 ? '' : 's'}`];
         if (data.programs_relevant) counts.push(`${data.programs.length} program${data.programs.length === 1 ? '' : 's'}`);
         if (profile.tonight) counts.unshift(`${data.shelters.length} shelter option${data.shelters.length === 1 ? '' : 's'}`);

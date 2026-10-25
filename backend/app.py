@@ -305,21 +305,41 @@ def _gemma_error(error, fallback="Something went wrong. Please try again, or cal
 def find_options():
     """Instant matches for the find form (no AI): listings, programs, and shelters when it's urgent."""
     body = _body()
-    def number(key, kind=float, low=0, high=10_000_000):
+    fields = {}  # field -> what to fix: a value that was sent but isn't valid is reported, never read as "no limit"
+
+    def number(key, problem, whole=False, low=0, high=10_000_000):
+        """A number from the form, or None when it was left blank."""
         raw = body.get(key)
-        if isinstance(raw, bool):  # true/false aren't numbers here
+        if raw is None or (isinstance(raw, str) and not raw.strip()):
             return None
         try:
-            value = kind(raw)
-            return value if math.isfinite(value) and low <= value <= high else None
+            value = None if isinstance(raw, bool) else float(raw)  # true/false aren't numbers here
         except (TypeError, ValueError, OverflowError):
+            value = None
+        if value is None or not math.isfinite(value) or not low <= value <= high or (whole and not value.is_integer()):
+            fields[key] = problem
             return None
-    profile = {"location": str(body.get("location") or "")[:100], "budget": number("budget"), "bedrooms": number("bedrooms", int, 0, 6),
+        return int(value) if whole else value
+
+    def text(key, limit):
+        raw = body.get(key)
+        if raw is not None and not isinstance(raw, str):
+            fields[key] = f"{key} must be text."
+        return raw[:limit] if isinstance(raw, str) else ""
+
+    profile = {"location": text("location", 100), "budget": number("budget", "Enter a monthly budget from $0 to $100,000, or leave it blank.", high=100_000),
+               "bedrooms": number("bedrooms", "Bedrooms must be a whole number from 0 (studio) to 6.", True, 0, 6),
                "accessible": body.get("accessible") is True, "senior": body.get("senior") is True, "tonight": body.get("tonight") is True,
-               "voucher": body.get("voucher") is True, "income": number("income"), "household": number("household", int, 1, 20),
-               "situation": redact(str(body.get("situation") or "")[:1700])[0]}
-    if body.get('rental_space') in {'room', 'entire_home'}:
-        profile['rental_space'] = body['rental_space']
+               "voucher": body.get("voucher") is True, "income": number("income", "Enter a yearly income from $0 to $10,000,000, or leave it blank."),
+               "household": number("household", "Household size must be a whole number from 1 to 20.", True, 1, 20),
+               "situation": redact(text("situation", 1700))[0]}
+    space = body.get("rental_space")
+    if isinstance(space, str) and space in ("room", "entire_home"):
+        profile["rental_space"] = space
+    elif space not in (None, "", "all"):
+        fields["rental_space"] = "rental_space must be all, room or entire_home."
+    if fields:
+        return jsonify(error=" ".join(dict.fromkeys(fields.values())), fields=fields), 400
     result = options(profile)
     return jsonify(result), (400 if "error" in result else 200)
 
@@ -357,18 +377,30 @@ def housing_walk_search():
     body = _body()
     prompt = redact(str(body.get("prompt") or "")[:500])[0]
     raw = body.get("filters") if isinstance(body.get("filters"), dict) else {}
-    overrides = {}
+    overrides, fields = {}, {}
+    # A choice that was sent but isn't one of the allowed values is reported (400), not ignored or crashed on.
+    for key, allowed in (("requiredAmenity", tuple(walkable.AMENITIES)), ("maxWalkingMinutes", (5, 10, 15, 20)), ("sort", ("best", "rent", "walk"))):
+        value = raw.get(key)
+        if value is not None and not (type(value) in (str, int) and value in allowed):
+            fields[key] = f"{key} must be one of: {', '.join(map(str, allowed))}."
+    if raw.get("bedrooms") is not None and not (type(raw["bedrooms"]) is int and 0 <= raw["bedrooms"] <= 6):
+        fields["bedrooms"] = "bedrooms must be a whole number from 0 to 6."
+    rent = raw.get("maxMonthlyRent")
+    if rent is not None and not (type(rent) in (int, float) and math.isfinite(rent) and 0 < rent < 100_000):
+        fields["maxMonthlyRent"] = "maxMonthlyRent must be a number above 0 and under 100,000."
+    if fields:
+        return jsonify(error=" ".join(fields.values()), fields=fields), 400
     if isinstance(raw.get("location"), str) and raw["location"].strip():
         overrides["location"] = raw["location"].strip()[:100]
     if isinstance(raw.get("maxMonthlyRent"), (int, float)) and 0 < raw["maxMonthlyRent"] < 100_000:
         overrides["max_rent"] = float(raw["maxMonthlyRent"])
-    if raw.get("requiredAmenity") in walkable.AMENITIES:
+    if raw.get("requiredAmenity") is not None:
         overrides["amenity"] = raw["requiredAmenity"]
-    if raw.get("maxWalkingMinutes") in (5, 10, 15, 20):
+    if raw.get("maxWalkingMinutes") is not None:
         overrides["max_walk_minutes"] = raw["maxWalkingMinutes"]
     if isinstance(raw.get("strict"), bool):
         overrides["strict"] = raw["strict"]
-    if raw.get("sort") in ("best", "rent", "walk"):
+    if raw.get("sort") is not None:
         overrides["sort"] = raw["sort"]
     if isinstance(raw.get("bedrooms"), int) and 0 <= raw["bedrooms"] <= 6:
         overrides["bedrooms"] = raw["bedrooms"]
