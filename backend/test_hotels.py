@@ -81,6 +81,46 @@ class HotelTests(unittest.TestCase):
         self.assertEqual(junk.status_code, 200)  # no place: the whole region
         self.assertEqual(junk.get_json()["area"], "Northern Virginia")
 
+    def test_nightly_estimate_by_brand_tier(self):
+        est = lambda name: hotels.estimate(name, None, "Arlington County")
+        motel, quality, hampton, hilton, independent = (est("Motel 6 Falls Church"), est("Quality Inn Arlington"), est("Hampton Inn by Hilton Alexandria"),
+                                                         est("Hilton Alexandria Mark Center"), est("Arlington Lodge"))
+        self.assertEqual((motel["low"], motel["high"]), hotels.NIGHTLY["Northern Virginia"]["economy"])
+        self.assertLess(motel["low"], quality["low"]); self.assertLess(quality["low"], hampton["low"]); self.assertLess(hampton["low"], hilton["low"])
+        self.assertEqual(hampton["basis"], "Hampton Inn is an upper-midscale chain; typical Northern Virginia rate")  # not read as a full Hilton
+        self.assertEqual(est("Days Inn by Wyndham")["low"], motel["low"])  # not read as a Wyndham
+        self.assertEqual(est("Tru by Hilton")["low"], hampton["low"])
+        self.assertEqual(est("Truckers Rest Motel")["basis"], independent["basis"])  # "Tru" only as a whole word
+        self.assertEqual((independent["low"], independent["high"]), (motel["low"], motel["high"]))  # unknown independents: the economy range
+        self.assertEqual(independent["basis"], "Not a chain we know; typical Northern Virginia economy rate")
+
+    def test_blacksburg_nights_cost_less_than_northern_virginia(self):
+        for name in ("Super 8 Christiansburg", "Comfort Inn", "Holiday Inn Express", "Mountain View Motel"):
+            nova, bburg = hotels.estimate(name, None, "Fairfax County"), hotels.estimate(name, None, "Blacksburg")
+            self.assertLess(bburg["low"], nova["low"]); self.assertLess(bburg["high"], nova["high"])
+            self.assertIn("typical Blacksburg", bburg["basis"])
+
+    def test_google_price_level_wins_over_the_brand(self):
+        pricey = hotels.estimate("Motel 6 Falls Church", "PRICE_LEVEL_EXPENSIVE", "Northern Virginia")
+        self.assertEqual((pricey["low"], pricey["high"]), hotels.NIGHTLY["Northern Virginia"]["upscale"])
+        self.assertEqual(pricey["basis"], "Google lists it as Expensive; typical Northern Virginia rate")
+        cheap = hotels.estimate("Hampton Inn", "PRICE_LEVEL_INEXPENSIVE", "Blacksburg")
+        self.assertEqual((cheap["low"], cheap["high"]), hotels.NIGHTLY["Blacksburg"]["economy"])
+        self.assertEqual(hotels.estimate("Hampton Inn", "PRICE_LEVEL_UNSPECIFIED", "Blacksburg")["basis"], "Hampton Inn is an upper-midscale chain; typical Blacksburg rate")
+
+    def test_every_hotel_gets_an_estimate_without_changing_googles_order(self):
+        google = {"places": [place("Hampton Inn Arlington"), place("Red Roof Inn Arlington"), place("Budget Inn", "PRICE_LEVEL_INEXPENSIVE")]}
+        with patch("hotels._post", return_value=google):
+            found = hotels.near("Arlington")["hotels"]
+        # Google's order is roughly nearest first, so a guessed price doesn't reorder it (only Google's own price level does).
+        self.assertEqual([h["name"] for h in found], ["Budget Inn", "Hampton Inn Arlington", "Red Roof Inn Arlington"])
+        self.assertEqual(found[0]["estimate"]["basis"], "Google lists it as Inexpensive; typical Northern Virginia rate")
+        self.assertEqual(set(found[1]["estimate"]), {"low", "high", "basis"})
+        self.assertEqual(found[1]["estimate"]["low"], hotels.NIGHTLY["Northern Virginia"]["upper midscale"][0])
+        with patch("hotels._post", return_value={"places": [place("Red Roof Inn Christiansburg", lat=37.15, lon=-80.41)]}):
+            bburg = hotels.near("Blacksburg")["hotels"][0]["estimate"]
+        self.assertEqual((bburg["low"], bburg["high"]), hotels.NIGHTLY["Blacksburg"]["economy"])
+
     def test_only_questions_about_tonight_get_hotels(self):
         self.assertEqual(hotels.place_for("Where can I sleep tonight?", {"location": "Reston"}), "Reston")
         self.assertEqual(hotels.place_for("Somewhere safe to sleep tonight in Arlington", {"location": "Blacksburg"}), "Arlington County")
