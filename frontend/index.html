@@ -9,7 +9,35 @@
   <link rel="icon" href="/favicon.ico?v=2" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
   <title>Clear House — Your next step starts here</title>
+  <script>
+    // Arriving from the front page's Gemma intro (Skip or a first question): the page starts under the intro's dark blue
+    // and clears through a blur. The one-use marker is read before the first paint, so a reload, a direct visit or
+    // back/forward never replays it, and a stale one (slow or failed navigation) is ignored.
+    (() => {
+      try {
+        const at = Number(sessionStorage.getItem('ch:app-entry'));
+        sessionStorage.removeItem('ch:app-entry');
+        const age = Date.now() - at;
+        if (!at || age < 0 || age > 8000 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const root = document.documentElement, done = () => root.classList.remove('app-entry', 'app-entry-clear');
+        let clearing = false;
+        const clear = () => { if (clearing) return; clearing = true; root.classList.add('app-entry-clear'); setTimeout(done, 900); };
+        // Clear as soon as the page is on screen; never wait for the map, fonts or the chat.
+        addEventListener('DOMContentLoaded', () => { requestAnimationFrame(() => requestAnimationFrame(clear)); setTimeout(clear, 150); });
+        setTimeout(clear, 2500);  // whatever happens, the veil never stays up
+        addEventListener('pageshow', e => { if (e.persisted) done(); });
+        root.classList.add('app-entry');
+      } catch {}
+    })();
+  </script>
   <style>
+    /* Arrival from the Gemma intro (script above): the intro's dark blue fades first, then the blur under it clears.
+       Both layers ignore clicks and are removed once the page is sharp. */
+    html.app-entry::before,html.app-entry::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:2147483646}
+    html.app-entry::before{background:#eaf1ff1f;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:opacity .6s cubic-bezier(.2,.7,.2,1) .15s}
+    html.app-entry::after{z-index:2147483647;transition:opacity .4s ease;
+      background:radial-gradient(60% 50% at 20% 25%,#2f55b566,transparent 70%),radial-gradient(50% 45% at 80% 75%,#6f8fd64d,transparent 70%),linear-gradient(135deg,#081029,#0d1738 45%,#16306f)}
+    html.app-entry-clear::before,html.app-entry-clear::after{opacity:0}
     /* Keep selection available only for links and editable text. */
     * { -webkit-user-select: none; user-select: none; }
     a[href], a[href] *,
