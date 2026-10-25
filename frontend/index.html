@@ -804,10 +804,6 @@
     .listings-section{margin-top:36px}
     :is(#tools,.listings-section,.listings-drawer)>.section-heading{align-items:center;margin-bottom:24px;padding:0!important}
     :is(#tools,.listings-section,.listings-drawer)>.section-heading h2{display:flex;align-items:center;gap:14px;font-size:clamp(24px,2.3vw,30px);line-height:1.2;font-weight:700;letter-spacing:-.7px;color:var(--ink)}
-    :is(#tools,.listings-section,.listings-drawer)>.section-heading h2::before{content:'';flex:none;width:44px;height:44px;border-radius:14px;
-      background:var(--icon) center/22px no-repeat,linear-gradient(150deg,#5b8af5,#23408f);box-shadow:inset 0 1px 0 #ffffff59,0 6px 16px #23408f40}
-    #tools{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m16 16 5 5'/%3E%3C/svg%3E")}
-    .listings-section{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8'/%3E%3C/svg%3E")}
     .catalog-label{padding:6px 12px;border-radius:999px;background:#e2eafb;color:#23408f;font-size:12px;font-weight:700;letter-spacing:.08em}
 
     /* "What Do You Need?": the panel sits flat on the section glass, so the chat is the one card. Its heading stays for
@@ -951,7 +947,6 @@
     @media(max-width:560px){
       #tools,.listings-section{padding:20px 16px;border-radius:22px}
       :is(#tools,.listings-section,.listings-drawer)>.section-heading h2{gap:12px;font-size:23px}
-      :is(#tools,.listings-section,.listings-drawer)>.section-heading h2::before{width:38px;height:38px;border-radius:12px;background-size:19px}
       :is(.assistant-head,.assistant-log,.assistant-chips,.assistant-form){padding-left:14px;padding-right:14px}
       .hero-copy>p{font-size:16px}
       .hero-map-wrap{padding:10px;border-radius:22px}
