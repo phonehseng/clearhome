@@ -1147,11 +1147,32 @@
     .tools-row{align-items:stretch}
     #tools .tools-row .emergency-card{display:flex;flex-direction:column}
     #tools .emergency-card .tonight-gemma{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:auto;min-height:48px;padding:11px 16px;
-      border-radius:999px;text-decoration:none;font-weight:700;font-size:15px;color:#fff;
-      background:radial-gradient(120% 100% at 15% 0%,#ffffff38,#ffffff00 55%),linear-gradient(140deg,#14203fe6,#23408fbf);border:1px solid #ffffff33;
-      box-shadow:inset 0 1px 0 #ffffff59,0 8px 22px #14203f33;-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6)}
+      border-radius:999px;text-decoration:none;font-weight:700;font-size:15px;color:#14203f;
+      background:radial-gradient(120% 100% at 15% 0%,#fffffff2,#ffffff00 60%),linear-gradient(140deg,#ffffffd9,#f1f5fdb3);border:1px solid #ffffffe6;
+      box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #23408f12,0 0 0 1px #23408f2e,0 8px 22px #14203f1f;-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6)}
     #tools .emergency-card .tonight-links{margin-bottom:14px}
-    #tools .emergency-card .tonight-gemma:hover{background:radial-gradient(120% 100% at 15% 0%,#ffffff4d,#ffffff00 55%),linear-gradient(140deg,#1d2e5af0,#2f55b5d1)}
+    #tools .emergency-card .tonight-gemma:hover{background:radial-gradient(120% 100% at 15% 0%,#fff,#ffffff00 60%),linear-gradient(140deg,#ffffffeb,#e3ebfcc7);
+      box-shadow:inset 0 1px 0 #fff,0 0 0 1px #3b63c466,0 10px 24px #14203f29}
+    /* Links on result cards (shelters, hotels, homes, programs): glass pills with room around the words; phone numbers are solid
+       navy call buttons, like the shelters' own. */
+    #tools .opt-card .opt-links{gap:8px;align-items:center;padding-top:10px}
+    #tools .opt-card .opt-links a:not([href^="tel:"]){display:inline-flex;align-items:center;gap:4px;min-height:38px;padding:7px 14px;border-radius:999px;font-size:13.5px;font-weight:650}
+    #tools .opt-card .opt-links a[href^="tel:"]{min-height:40px;padding:8px 15px;border-radius:999px;background:#23408f;color:#fff!important;text-decoration:none;font-size:14.5px;font-weight:700}
+    #tools .opt-card .opt-links a[href^="tel:"]:hover{background:#1a3170}
+    #tools .chat-card-actions{gap:6px}
+    #tools .chat-card-actions a{padding:5px 12px;border-radius:999px;min-height:34px}
+    /* The options panel (shelters, hotels and the rest) has a title and an X that closes it. */
+    #tools .find-results{scroll-margin-top:100px}
+    #tools .results-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    #tools .results-head h3{margin:0;font-size:19px;line-height:1.3;color:var(--ink)}
+    #tools .find-results .results-close{flex:none;display:grid;place-items:center;width:42px;height:42px;min-height:0;padding:0;border-radius:50%;cursor:pointer;color:#14203f!important;
+      background:radial-gradient(120% 100% at 15% 0%,#ffffffeb,#ffffff00 60%),linear-gradient(140deg,#ffffffbf,#eef3fd8f)!important;border:1px solid #ffffffd9!important;
+      box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #23408f0d,0 0 0 1px #23408f24,0 6px 16px #14203f14!important;
+      backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6)}
+    #tools .find-results .results-close:hover{background:radial-gradient(120% 100% at 15% 0%,#fff,#ffffff00 60%),linear-gradient(140deg,#ffffffe0,#e3ebfcb3)!important;
+      box-shadow:inset 0 1px 0 #fff,0 0 0 1px #3b63c466,0 8px 20px #14203f1f!important}
+    #tools .find-results .results-close:focus-visible{outline:3px solid #2f55b5;outline-offset:3px}
+    @media(max-width:820px){#tools .find-results .results-close{width:48px;height:48px}}
     #tools .emergency-card .tonight-gemma:focus-visible{outline:3px solid #2f55b5;outline-offset:3px}
       /* Listings with no photo: the area's map (our own Google map, no pins) under frosted liquid glass, the same size as a photo. */
     .housing-card.map-photo{position:relative}
@@ -1242,7 +1263,7 @@
       </div>
       <details class="assistant-privacy" id="assistant-privacy"><summary>Gemma can make mistakes. Please use made-up details; chats aren’t saved.</summary><p>Gemma 4 answers on our own server in Google Cloud, so your message doesn’t go to an outside AI company. If that server is busy, Google’s Gemini API answers instead, and on its free tier Google may use what’s sent to improve its products. Before either sees it, we remove SSNs, card and account numbers, email addresses and phone numbers. Names and street addresses are not removed, so please use made-up details. Clear Home doesn’t save chats.</p></details>
     </div>
-    <div class="tools-row"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Look for shelters or hotels tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div><a class="tonight-gemma" href="/?tonight"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Talk to Gemma: I need a place tonight</a></section></div>
+    <div class="tools-row"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Look for shelters or hotels tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div><a class="tonight-gemma" href="/?tonight" aria-label="I need a place tonight: talk it through with Gemma"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-8l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>I need a place tonight</a></section></div>
     <div class="tools-results"><div class="walk-results">
     <p class="walk-status" id="walk-status" role="status" aria-live="polite"></p>
     <div class="walk-toggle" id="walk-toggle" hidden><button type="button" data-view="list" aria-pressed="true">List</button><button type="button" data-view="map" aria-pressed="false">Map</button></div>
@@ -1889,6 +1910,8 @@
     // Our team hasn't verified them, so they say so, and a Google Maps link shows more.
     const HOTEL_NOTE = 'Not verified by our team, and prices are estimates: call to ask tonight’s rate and whether a room is free. If the cost is a problem, ask 211 whether help paying for a room is available.';
     const hotelsShown = new Set();  // places whose hotels are already on screen, so the chat doesn't list them twice
+    const panelHotels = new Set();  // the ones the options panel lists (forgotten when it's closed)
+    const hotelsOnPanel = place => { hotelsShown.add(place); panelHotels.add(place); };
     const hotelSearch = place => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('hotels near ' + place);
     const hotelMeta = h => [h.kind, typeof h.rating === 'number' ? `★ ${h.rating.toFixed(1)}${h.ratings ? ` (${h.ratings.toLocaleString('en-US')})` : ''}` : null].filter(Boolean).join(' · ');
     // An estimate, never a quote: the nightly range, then a line saying what it rests on (Google's price level, the chain, or neither).
@@ -1923,9 +1946,9 @@
       const box = el('section');
       const note = el('p', 'Looking up hotels and motels on Google Maps…', { class: 'opt-empty' });
       box.append(el('h4', 'Hotels & Motels'), note);
-      hotelsShown.add(place.toLowerCase());
+      hotelsOnPanel(place.toLowerCase());
       fetchHotels(place).then(data => {
-        hotelsShown.add(data.place.toLowerCase());
+        hotelsOnPanel(data.place.toLowerCase());
         if (!data.hotels.length) { note.textContent = 'We couldn’t list hotels here right now. Google Maps can show what’s nearby.'; box.append(hotelMore(safeUrl(data.search_url) || hotelSearch(place))); return; }
         note.textContent = `Budget hotels and motels from Google Maps. ${HOTEL_NOTE}`; note.className = 'hotel-note';
         const grid = el('div', null, { class: 'opt-grid' });
@@ -2218,6 +2241,19 @@
       },
     };
     form.addEventListener('input', e => { if (e.target.hasAttribute('aria-invalid')) fieldErrors.clear(); });
+    // The options panel's title, with an X that closes it and goes back to the "Need a Safe Place Tonight?" card.
+    function resultsHead(title) {
+      const x = el('button', null, { type: 'button', class: 'results-close', 'aria-label': 'Close these options' });
+      x.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+      x.addEventListener('click', () => {
+        results.hidden = true; results.replaceChildren();
+        panelHotels.forEach(p => hotelsShown.delete(p)); panelHotels.clear();
+        document.getElementById('emergency').focus();
+      });
+      const head = el('div', null, { class: 'results-head' });
+      head.append(el('h3', title), x);
+      return head;
+    }
     form.addEventListener('submit', async e => {
       e.preventDefault();
       // Blank budget or income means no limit; a number out of range, or one the browser couldn't read, is asked about.
@@ -2241,7 +2277,7 @@
           if (bad) fieldErrors.show(bad, data.fields[bad]);
           throw new Error(data.error || 'We could not load options.');
         }
-        results.replaceChildren();
+        results.replaceChildren(resultsHead(profile.tonight ? `Tonight in ${data.area}` : `Your options in ${data.area}`));
         if (profile.tonight) {
           results.append(el('p', 'In danger right now? Call 911. For shelter tonight, call 211 or the intake line below. Don’t wait for an AI answer.', { class: 'notice-urgent' }));
           // Free shelters beside paid hotels, each column saying up front what it costs.
@@ -2282,7 +2318,7 @@
         const extra = v('situation');
         if (extra) ask(extra);
       } catch (err) {
-        results.replaceChildren(el('p', err.message, { class: 'opt-empty' }));
+        results.replaceChildren(resultsHead('Your options'), el('p', err.message, { class: 'opt-empty' }));
       }
       button.disabled = false;
     });
