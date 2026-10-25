@@ -50,15 +50,30 @@
     section { padding: 44px 0; }
     h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.02em; margin: 0; text-align: center; }
     .sub { text-align: center; color: var(--muted); margin: 10px auto 0; max-width: 620px; }
-    .arch { margin-top: 30px; padding: 26px; border-radius: 26px; background: linear-gradient(160deg, #0d1738, #16306f); color: #eef3ff; box-shadow: 0 30px 80px #14203f33; }
-    .arch-row { display: grid; grid-template-columns: 1fr auto 1.3fr auto 1.6fr; align-items: center; gap: 14px; }
-    .node { padding: 14px 16px; border-radius: 16px; background: #ffffff14; border: 1px solid #ffffff2e; }
-    .node b { display: block; font-size: 15px; }
-    .node small { color: #b7c3e6; font-size: 12.5px; }
-    .node.main { background: #ffffff24; border-color: #9fbff5a6; box-shadow: 0 0 0 1px #7aa6ff26, 0 12px 32px #2f55b540; }  /* site blue, not gold */
+    .arch { margin-top: 34px; padding: clamp(18px, 3vw, 36px); border-radius: 28px; background: radial-gradient(ellipse at 52% 0%, #e7efff 0%, transparent 60%), #f8faff; border: 1px solid #d9e3f3; box-shadow: 0 18px 56px #203a6b0b, inset 0 1px 0 #fff; }
+    .arch-row { display: grid; grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1.2fr) 28px minmax(0, 1.45fr); align-items: center; gap: 14px; }
+    .flow-stage { min-width: 0; }
+    .stage-label { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; color: #52617b; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .stage-label span { display: grid; place-items: center; width: 23px; height: 23px; border: 1px solid #d7e1f0; border-radius: 50%; background: #fff; color: #315ab4; letter-spacing: 0; font-size: 10px; flex-shrink: 0; }
+    .node { display: flex; align-items: flex-start; gap: 12px; padding: 18px; border-radius: 18px; background: #fff; border: 1px solid #e0e6f0; box-shadow: 0 4px 12px #243b6105; min-width: 0; }
+    .node > div { min-width: 0; }
+    .node b { display: block; font-size: 14px; font-weight: 700; line-height: 1.4; letter-spacing: -.02em; color: #172440; }
+    .node small { display: block; margin-top: 5px; color: #52617b; font-size: 12px; line-height: 1.65; overflow-wrap: anywhere; }
+    .node.main { padding-block: 24px; background: linear-gradient(135deg, #fff, #f1f6ff); border-color: #b4caf3; box-shadow: 0 8px 24px #3767c510, 0 0 0 4px #eaf1fd; }
+    .node-icon { flex: 0 0 34px; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; color: #315fbd; background: #edf3ff; }
+    .node-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .node-icon.green { color: #217449; background: #eaf5ee; }
+    .node-icon.red { color: #b04338; background: #fff0ed; }
+    .node-icon.yellow { color: #88620b; background: #fff7df; }
     .stack { display: grid; gap: 10px; }
-    .arrow { color: #9fbff5; font-size: 22px; text-align: center; }
-    .arch-foot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed #ffffff33; }
+    .arrow { display: grid; place-items: center; color: #6585b7; font-size: 22px; margin-top: 37px; }
+    .arch-support { margin-top: 28px; padding-top: 22px; border-top: 1px solid #dce5f2; }
+    .arch-support-label { margin: 0 0 12px; color: #52617b; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .arch-foot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .arch-foot .node { box-shadow: none; }
+    .arch-foot .node b { font-size: 13px; }
+    .arch-color-line { display: flex; gap: 4px; width: 64px; margin: 0 auto 18px; }
+    .arch-color-line i { height: 4px; flex: 1; border-radius: 4px; }
 
     /* Service cards */
     .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 30px; }
@@ -90,7 +105,10 @@
     @media (max-width: 900px) {
       .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .arch-row { grid-template-columns: 1fr; }
-      .arrow { transform: rotate(90deg); }
+      .arrow { transform: rotate(90deg); margin: -4px 0; }
+      .stage-label { margin-bottom: 10px; }
+      .arch-row { gap: 18px; }
+      .node.main { padding-block: 20px; }
       .arch-foot, .controls { grid-template-columns: 1fr; }
       .services { grid-template-columns: 1fr; }
     }
@@ -152,24 +170,37 @@
     </div>
 
     <section class="container" aria-labelledby="arch-title">
+      <div class="arch-color-line" aria-hidden="true"><i style="background:#4285f4"></i><i style="background:#ea4335"></i><i style="background:#fbbc04"></i><i style="background:#34a853"></i></div>
       <h2 id="arch-title">How It Fits Together</h2>
-      <p class="sub">One request, start to finish. Everything on the right is a Google service.</p>
-      <div class="arch" role="img" aria-label="A visitor's browser talks to the Clear House website on Cloud Run. The website calls Gemma 4 on a private Cloud Run GPU, the Gemini API, and Google Maps Platform. Secret Manager holds the keys, and Cloud Build with Artifact Registry builds every release.">
+      <p class="sub">From your first question to a helpful answer.<br>One connected system, built on Google Cloud.</p>
+      <div class="arch" role="group" aria-label="Clear House architecture: browser, website, Google services, and release infrastructure">
         <div class="arch-row">
-          <div class="node"><b>Your browser</b><small>Map from Maps JavaScript</small></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="node main"><b>Cloud Run: clear-house</b><small>Flask website and API, us-east4</small></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="stack">
-            <div class="node"><b>Cloud Run GPU: gemma4</b><small>Gemma 4 26B on an NVIDIA L4, private</small></div>
-            <div class="node"><b>Gemini API</b><small>Gemma 4 fallback, Google Search grounding</small></div>
-            <div class="node"><b>Google Maps Platform</b><small>Places API and Routes API</small></div>
+          <div class="flow-stage">
+            <p class="stage-label"><span>01</span> Your device</p>
+            <div class="node"><span class="node-icon " aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span><div><b>Your browser</b><small>Explore housing and maps with Maps JavaScript.</small></div></div>
+          </div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="flow-stage">
+            <p class="stage-label"><span>02</span> Clear House</p>
+            <div class="node main"><span class="node-icon " aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 18a5 5 0 0 1-1-9.9 6 6 0 0 1 11.6-1A5.5 5.5 0 0 1 18 18Z"/><path d="m10 10-2 3 2 3m4-6 2 3-2 3"/></svg></span><div><b>Cloud Run</b><small>Our Flask website and API.<br>clear-house · us-east4</small></div></div>
+          </div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="flow-stage">
+            <p class="stage-label"><span>03</span> Google services</p>
+            <div class="stack">
+              <div class="node"><span class="node-icon " aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M10 10h4v4h-4zM9 3v3m6-3v3M9 18v3m6-3v3M3 9h3m-3 6h3m12-6h3m-3 6h3"/></svg></span><div><b>Cloud Run GPU</b><small>Private Gemma 4 26B on NVIDIA L4.</small></div></div>
+              <div class="node"><span class="node-icon red" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c0 6-3 9-9 9 6 0 9 3 9 9 0-6 3-9 9-9-6 0-9-3-9-9Z"/></svg></span><div><b>Gemini API</b><small>AI fallback and Google Search grounding.</small></div></div>
+              <div class="node"><span class="node-icon green" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b>Google Maps Platform</b><small>Nearby places and walking routes.</small></div></div>
+            </div>
           </div>
         </div>
-        <div class="arch-foot">
-          <div class="node"><b>Secret Manager</b><small>Gemini and Maps keys</small></div>
-          <div class="node"><b>Cloud Build</b><small>Builds each release from our Dockerfile</small></div>
-          <div class="node"><b>Artifact Registry</b><small>Stores the site and GPU images</small></div>
+        <div class="arch-support">
+          <p class="arch-support-label">Supporting every release</p>
+          <div class="arch-foot">
+            <div class="node"><span class="node-icon yellow" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="9" r="5"/><path d="m12 12 8 8m-5-5 3-3m0 6 3-3"/></svg></span><div><b>Secret Manager</b><small>Stores Gemini and Maps keys.</small></div></div>
+            <div class="node"><span class="node-icon " aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 7 4-4 4 4M12 3v12m-7-3v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></span><div><b>Cloud Build</b><small>Builds releases from our Dockerfile.</small></div></div>
+            <div class="node"><span class="node-icon green" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 5v9l9 5 9-5V8M12 13v9M7.5 5.5l9 5"/></svg></span><div><b>Artifact Registry</b><small>Stores website and GPU images.</small></div></div>
+          </div>
         </div>
       </div>
     </section>
