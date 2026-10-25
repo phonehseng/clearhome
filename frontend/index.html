@@ -81,6 +81,18 @@
     .more-listings:hover{transform:translateY(-1px);box-shadow:0 6px 16px #23408f1f;border-color:#6f8fd6;background:#f3f6fd}
     .more-listings:active{transform:translateY(0);box-shadow:none}
     .card-reveal{animation:card-in .4s ease-out both}
+    /* All listings / Favorites switch, and the save button on each card. */
+    .listing-tabs{display:inline-flex;gap:4px;padding:4px;margin:4px 0 18px;background:#edf1f5;border-radius:10px}
+    .listing-tabs button{min-height:40px;padding:8px 16px;border:0;border-radius:7px;background:transparent;color:#465b73;font-size:14px;font-weight:600;cursor:pointer}
+    .listing-tabs button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 4px #182c541f}
+    .listing-tabs .favorite-count{display:inline-block;min-width:20px;margin-left:6px;padding:1px 6px;border-radius:10px;background:#dfe6ee;font-size:11px;text-align:center}
+    .listing-tabs button[aria-pressed=true] .favorite-count{background:#fbe3e3;color:#a3343a}
+    .listings-section[data-list=favorites] :is(#browse-form,.budget-shortcut,.browse-hint){display:none}
+    .favorite-btn{display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:5px 11px;border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);font-size:12px;font-weight:600;cursor:pointer;transition:background .15s ease,border-color .15s ease}
+    .favorite-btn:hover{border-color:#d9a3a6;background:#fdf3f3}
+    .favorite-btn svg{fill:none;stroke:currentColor;stroke-width:1.8}
+    .favorite-btn[aria-pressed=true]{border-color:#e7b7ba;background:#fbe3e3;color:#a3343a}
+    .favorite-btn[aria-pressed=true] svg{fill:currentColor}
     @keyframes card-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
     @media(prefers-reduced-motion:reduce){.card-reveal{animation:none}.more-listings:hover{transform:none}}
     @media(max-width:1050px){.listings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browse-filters{grid-template-columns:1fr 1fr}.browse-filters .primary{min-height:45px}.header-links{gap:16px}}
@@ -660,6 +672,7 @@
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
     <div class="section-heading"><div><h2 id="listings-title">Explore rentals & housing waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
     <p class="catalog-notice">Listed doesn’t mean vacant. Confirm rent, fees and eligibility with the provider.</p>
+    <div class="listing-tabs" role="group" aria-label="Which listings to show"><button type="button" data-list="all" aria-pressed="true">All listings</button><button type="button" data-list="favorites" aria-pressed="false">Favorites<span class="favorite-count" id="favorite-count">0</span></button></div>
     <form id="browse-form" class="browse-filters"><div><label for="browse-category">Housing type</label><select id="browse-category" name="housing_type"><option value="all">Affordable & regular rentals</option><option value="affordable">Affordable housing & waitlists</option><option value="regular">Regular rentals</option></select></div>
       <div><label for="browse-location">City or county</label><select id="browse-location" name="location"><option value="">All supported areas</option><option>Northern Virginia</option><option value="Blacksburg">Blacksburg, VA</option><option>Alexandria City</option><option>Arlington County</option><option>Fairfax City</option><option>Fairfax County</option><option>Falls Church City</option><option>Loudoun County</option><option>Manassas City</option><option>Manassas Park City</option><option>Prince William County</option></select></div>
       <div><label for="browse-space">Rental space</label><select id="browse-space" name="rental_space"><option value="all">Rooms & whole apartments</option><option value="room">Rooms for rent</option><option value="entire_home">Whole apartments</option></select></div>
@@ -693,6 +706,29 @@
   const moreListings = document.getElementById('show-more-listings');
   const allListings = document.getElementById('show-all-listings');
   let housingRows = [], visibleHousingCount = 6, browseRequest = null;
+  // Favorites live in this browser only (no account), saved as the listing itself so they show whatever the filters are.
+  const FAVORITES_KEY = 'clearhouse.favorites';
+  let favorites = {}; try { favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || {}; } catch { favorites = {}; }
+  let showingFavorites = false;
+  const shownRows = () => showingFavorites ? Object.values(favorites) : housingRows;
+  const favoriteCount = document.getElementById('favorite-count');
+  function saveFavorites() { try { localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites)); } catch {} favoriteCount.textContent = Object.keys(favorites).length; }
+  function favoriteButton(row) {
+    const button = housingElement('button','favorite-btn'); button.type = 'button';
+    const draw = () => { const saved = Boolean(favorites[row.id]); button.setAttribute('aria-pressed', String(saved));
+      button.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9Z"/></svg>';
+      button.append(saved ? 'Saved' : 'Save'); button.setAttribute('aria-label', `${saved ? 'Remove' : 'Save'} ${row.community || row.name} ${saved ? 'from' : 'to'} favorites`); };
+    button.addEventListener('click', () => { if (favorites[row.id]) delete favorites[row.id]; else favorites[row.id] = row; saveFavorites(); if (showingFavorites) renderHousing(); else draw(); });
+    draw(); return button;
+  }
+  const listingTabs = [...document.querySelectorAll('.listing-tabs button')];
+  listingTabs.forEach(tab => tab.addEventListener('click', () => {
+    showingFavorites = tab.dataset.list === 'favorites';
+    listingTabs.forEach(t => t.setAttribute('aria-pressed', String(t === tab)));
+    document.getElementById('listings').dataset.list = tab.dataset.list;
+    visibleHousingCount = 6; renderHousing();
+  }));
+  saveFavorites();
   const statusLabels = {available_now:'Advertised available now',advertised_vacancy:'Vacancy advertised · confirm date',upcoming:'Upcoming availability',leasing:'Now leasing · confirm a unit',waitlist_open:'Open waitlist · no immediate placement',contact_for_availability:'Contact for availability'};
   function housingElement(tag, className, content) {
     const node = document.createElement(tag); if (className) node.className = className; if (content !== undefined) node.textContent = content; return node;
@@ -755,7 +791,8 @@
     listingsGrid.replaceChildren();
     const hasPhoto = row => (row.floor_plans?.length ? row.floor_plans : [row]).some(p => p.photo);
     // Listings with a photo always come first; the sort is stable, so the chosen order (like rent low to high) holds within each group.
-    const ordered = [...housingRows].sort((a, b) => hasPhoto(b) - hasPhoto(a));
+    const rows = shownRows();
+    const ordered = [...rows].sort((a, b) => hasPhoto(b) - hasPhoto(a));
     ordered.slice(0,visibleHousingCount).forEach(row => {
       const plans = row.floor_plans?.length ? row.floor_plans : [row];
       const availability = row.availability || {};
@@ -831,6 +868,7 @@
         details.append(options);card.append(details);
       } else card.append(eligibilityDetails(row));
       const actions = housingElement('div','housing-actions');
+      actions.append(favoriteButton(row));
       const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-price source ↗':'View source ↗')); if (source) actions.append(source);
       const map = mapLink(row); if (map) actions.append(map);
       if (row.phone && /^\+?[0-9 ()-]+$/.test(row.phone)) { const phone = housingElement('a','','Call leasing office'); phone.href='tel:'+row.phone.replace(/[^0-9+]/g,''); actions.append(phone); }
@@ -845,11 +883,12 @@
       listingsGrid.append(card);
     });
     listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
-    moreListings.hidden = visibleHousingCount >= housingRows.length;
-    allListings.hidden = moreListings.hidden || housingRows.length-visibleHousingCount <= 18; // with 18 or fewer left, Show more already reveals them all
-    moreListings.textContent = `Show more communities (${Math.max(0,housingRows.length-visibleHousingCount)} remaining)`;
+    moreListings.hidden = visibleHousingCount >= rows.length;
+    allListings.hidden = moreListings.hidden || rows.length-visibleHousingCount <= 18; // with 18 or fewer left, Show more already reveals them all
+    moreListings.textContent = `Show more communities (${Math.max(0,rows.length-visibleHousingCount)} remaining)`;
     allListings.textContent = 'Show all communities';
     browseMessage.dataset.state = 'success';
+    if (showingFavorites) { browseMessage.textContent = rows.length ? `${rows.length} saved listing${rows.length === 1 ? '' : 's'}. Saved on this device only; details are as of when you saved them.` : 'No favorites yet. Select Save on any listing to keep it here for later.'; return; }
     browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs. Floor plans are grouped together.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
   }
   async function loadHousing() {
@@ -880,7 +919,7 @@
   browseForm.addEventListener('submit',event=>{event.preventDefault();filtersChanged=true;updateBudgetShortcut();loadHousing();});
   function revealCommunities(count){
     const firstNewIndex=visibleHousingCount;
-    visibleHousingCount=Math.min(housingRows.length,visibleHousingCount+count);
+    visibleHousingCount=Math.min(shownRows().length,visibleHousingCount+count);
     renderHousing();
     // New cards fade in a few at a time, and the page glides to the first one.
     [...listingsGrid.children].slice(firstNewIndex).forEach((c,i)=>{c.classList.add('card-reveal');c.style.animationDelay=`${Math.min(i,11)*35}ms`;});
@@ -888,7 +927,7 @@
     if(firstNewCard){firstNewCard.tabIndex=-1;firstNewCard.focus({preventScroll:true});firstNewCard.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}
   }
   moreListings.addEventListener('click',()=>revealCommunities(18));
-  allListings.addEventListener('click',()=>revealCommunities(housingRows.length));
+  allListings.addEventListener('click',()=>revealCommunities(shownRows().length));
   const initialFilters=new URLSearchParams(location.search);for(const key of ['location','max_rent','rental_space','age_group']){const field=browseForm.elements.namedItem(key);if(field&&initialFilters.has(key))field.value=initialFilters.get(key);}
   document.getElementById('blacksburg-student-rooms').addEventListener('click',()=>{document.getElementById('browse-location').value='Blacksburg';document.getElementById('browse-space').value='room';document.getElementById('browse-age-group').value='general';document.getElementById('browse-category').value='all';document.getElementById('browse-status').value='';document.getElementById('browse-sort').value='rent_asc';rentFilter.value='1000';document.getElementById('location').value='Blacksburg';document.getElementById('browse-location').dispatchEvent(new Event('change'));browseForm.requestSubmit();});
   loadHousing();
