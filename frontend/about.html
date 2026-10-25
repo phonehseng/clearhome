@@ -405,9 +405,11 @@
       background-size:160% 160%,160% 160%,100% 100%;animation:start-in .45s ease both,start-drift 18s ease-in-out infinite alternate}
     .start[open]{display:grid;place-items:center}
     .start::backdrop{background:transparent}
-    .start.leaving{animation:start-out .2s ease both}
+    .start.leaving{animation:none}
+    .start.leaving .start-card{animation:start-card-out .24s ease both}
     @keyframes start-in{from{opacity:0}to{opacity:1}}
-    @keyframes start-out{to{opacity:0}}
+    @keyframes start-card-out{to{opacity:0;filter:blur(12px);transform:translateY(-6px)}}
+    @media(prefers-reduced-motion:reduce){.start,.start-card,.start.leaving .start-card,.start-typing i{animation:none}}
     @keyframes start-drift{from{background-position:0% 0%,100% 100%,0 0}to{background-position:100% 60%,0% 30%,0 0}}
     .start-card{width:min(420px,100%);padding:18px;border-radius:24px;background:#ffffff14;border:1px solid #ffffff2e;box-shadow:0 30px 80px #0006;
       backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:start-rise .5s .1s cubic-bezier(.2,.7,.2,1) both}
@@ -487,7 +489,7 @@
         <a href="#map">Map</a>
         <a href="/google-cloud">Built with Google Cloud</a>
         <a href="#github">GitHub</a>
-        <a class="cl-nav-btn" href="/app" data-start>Get started</a>
+        <a class="cl-nav-btn" href="/app" data-start>Get Started</a>
       </nav>
     </div>
   </header>
@@ -496,29 +498,29 @@
     <section class="cl-hero" aria-labelledby="hero-title">
       <div class="cl-hero-text">
         <p class="cl-chip cl-in"><span class="cl-ping" aria-hidden="true"></span>Northern Virginia &amp; Blacksburg</p>
-        <h1 id="hero-title">Find your way <span>home.</span></h1>
+        <h1 id="hero-title">Find Your Way <span>Home.</span></h1>
         <p class="cl-sub cl-in" style="--d:.35s">Checked homes, shelters and rent help. Ask in plain words.</p>
-        <div class="cl-actions cl-in" style="--d:.5s"><a class="cl-btn" href="/app" data-start>Get started for free <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency">Need a place tonight?</a></div>
+        <div class="cl-actions cl-in" style="--d:.5s"><a class="cl-btn" href="/app" data-start>Get Started for Free <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency">Need a place tonight?</a></div>
       </div>
       <div class="cl-hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><defs><clipPath id="cl-planet"><path d="M0 260A490 490 0 0 1 470 260Z"/></clipPath></defs><path d="M0 260A490 490 0 0 1 470 260Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20" clip-path="url(#cl-planet)"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><g class="tree t1"><path d="M76 230v-55" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/></g><g class="tree t2"><path d="M415 236v-93" stroke="#72855c" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/></g><g class="grass" transform="translate(46 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(428 241)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 229v-22m-9 9h26m-17 13v-22m9 22v-22" stroke="#f8f5e4" stroke-width="4"/><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg></div>
     </section>
 
     <section class="cl-section" id="map" aria-labelledby="map-title">
-      <h2 id="map-title" class="cl-title reveal">Every checked home, <span>on one map</span></h2>
+      <h2 id="map-title" class="cl-title reveal">Every Checked Home, <span>on One Map</span></h2>
       <p class="cl-lead reveal">Switch regions, pick a neighborhood, or look near you.</p>
-      <div class="cl-frame reveal"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></div>
+      <div class="cl-frame reveal"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></div>
     </section>
 
     <section class="cl-section" id="how" aria-labelledby="how-title">
-      <h2 id="how-title" class="cl-title reveal">How Clear House <span>helps</span></h2>
+      <h2 id="how-title" class="cl-title reveal">How Clear House <span>Helps</span></h2>
       <div class="cl-duo">
         <article class="cl-card blue reveal from-left">
-          <h3>Ask <em>Gemma 4</em> anything</h3>
+          <h3>Ask <em>Gemma 4</em> Anything</h3>
           <p>Answers stream in seconds, only from checked resources.</p>
           <div class="cl-chat" aria-hidden="true"><span class="me">Who helps with back rent in Alexandria?</span><span class="ai">Call <b>City of Alexandria Rent Relief</b> at 703-746-5700…</span></div>
         </article>
         <article class="cl-card reveal from-right">
-          <h3>Search <em>near my office</em></h3>
+          <h3>Search <em>Near My Office</em></h3>
           <p>Closest homes with real drive and transit times.</p>
           <ul class="cl-list" aria-hidden="true"><li><b>Signature at Reston</b><span>0.3 mi · 3 min drive</span></li><li><b>Exo</b><span>0.6 mi · 6 min drive</span></li><li><b>The Point at Rise</b><span>0.9 mi · 6 min drive</span></li></ul>
         </article>
@@ -529,20 +531,20 @@
     <section class="cl-section" id="google" aria-labelledby="google-title">
       <h2 id="google-title" class="cl-title reveal">Built with <span>Google Cloud</span></h2>
       <div class="google-grid stagger">
-        <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Writes every chat answer.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Turns your message into filters, then writes the answer using only checked listings, streamed as it types. It also rereads listing pages and hides ones that are gone.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Our own L4 GPU: answers in ~3 s.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Gemma 4 runs on our private Cloud Run service with an NVIDIA L4 GPU. Thinking is off so replies start fast; if the GPU is asleep, the Gemini API answers instead.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-gemini flip"><div class="flip-in"><div class="face front"><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Finds new listings on the web.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Searches the web with Google Search grounding for listings we don’t have yet. Only places in the search results are kept, and the map marks them “not checked”.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>The map, pins and Street View.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>Draws the map in the app with a pin for every checked home, so you can see where a place is before you call.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds “near my office”.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds the place you name (an employer, a hospital, a school) and the supermarkets, pharmacies and transit stops near a home.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Real commute times.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Drive and transit times from the closest homes to your place, and true walking times to the store. Real routes, not straight lines.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-cloud flip"><div class="flip-in"><div class="face front"><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site and the GPU.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site in Northern Virginia (us-east4). Keys live in Secret Manager, and at most two copies run, so costs stay small.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
-        <div class="card reveal g-cloud flip"><div class="flip-in"><div class="face front"><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Ships every release.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Every deploy builds a fresh container from our Dockerfile, so a pushed fix is live in minutes.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Writes every chat answer.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Turns your message into filters, then writes the answer using only checked listings, streamed as it types. It also rereads listing pages and hides ones that are gone.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Our own L4 GPU: answers in ~3 s.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Gemma 4 runs on our private Cloud Run service with an NVIDIA L4 GPU. Thinking is off so replies start fast; if the GPU is asleep, the Gemini API answers instead.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-gemini flip"><div class="flip-in"><div class="face front"><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Finds new listings on the web.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Searches the web with Google Search grounding for listings we don’t have yet. Only places in the search results are kept, and the map marks them “not checked”.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>The map, pins and Street View.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>Draws the map in the app with a pin for every checked home, so you can see where a place is before you call.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds “near my office”.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds the place you name (an employer, a hospital, a school) and the supermarkets, pharmacies and transit stops near a home.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Real commute times.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Drive and transit times from the closest homes to your place, and true walking times to the store. Real routes, not straight lines.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-cloud flip"><div class="flip-in"><div class="face front"><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site and the GPU.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site in Northern Virginia (us-east4). Keys live in Secret Manager, and at most two copies run, so costs stay small.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-cloud flip"><div class="flip-in"><div class="face front"><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Ships every release.</p><button class="flip-btn" type="button" aria-expanded="false">How We Use It <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Every deploy builds a fresh container from our Dockerfile, so a pushed fix is live in minutes.</p><button class="flip-btn" type="button">Flip Back <span aria-hidden="true">↺</span></button></div></div></div>
       </div>
-      <a class="cl-more reveal" href="/google-cloud">More information: how we use Google Cloud <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <a class="cl-more reveal" href="/google-cloud">More Information: How We Use Google Cloud <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a>
     </section>
 
     <section class="cl-section" id="github" aria-labelledby="github-title">
-      <h2 id="github-title" class="cl-title reveal">Open source, <span>on GitHub</span></h2>
+      <h2 id="github-title" class="cl-title reveal">Open Source, <span>on GitHub</span></h2>
       <div class="repo-card reveal">
         <a class="repo-tree" href="https://github.com/phonehseng/clearhouse" target="_blank" rel="noopener" aria-label="Open the Clear House repository on GitHub">
           <span class="repo-tree-head"><i></i><i></i><i></i> clearhouse</span>
@@ -561,14 +563,14 @@
           <ul class="repo-stats" id="repo-stats"><li>Python + JavaScript</li><li>Flask · Gemma 4 · Google Maps · Cloud Run</li></ul>
           <div class="repo-langs" id="repo-langs" aria-hidden="true"></div><div class="repo-langs-key" id="repo-langs-key"></div>
           <div class="repo-team" id="repo-team" aria-label="Team"></div>
-          <div class="repo-actions"><a class="primary-gh" href="https://github.com/phonehseng/clearhouse" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View the code on GitHub</a><a class="ghost-gh" href="https://github.com/phonehseng/clearhouse/commits/main" target="_blank" rel="noopener">See the latest commits ↗</a></div>
+          <div class="repo-actions"><a class="primary-gh" href="https://github.com/phonehseng/clearhouse" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View the Code on GitHub</a><a class="ghost-gh" href="https://github.com/phonehseng/clearhouse/commits/main" target="_blank" rel="noopener">See the Latest Commits ↗</a></div>
         </div>
       </div>
     </section>
 
     <section class="cl-section cl-end cta reveal" aria-labelledby="cta-title">
-      <h2 id="cta-title" class="cl-title">Ready when <span>you are.</span></h2>
-      <a class="cl-btn" href="/app" data-start>Get started for free <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <h2 id="cta-title" class="cl-title">Ready When <span>You Are.</span></h2>
+      <a class="cl-btn" href="/app" data-start>Get Started for Free <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a>
       <p class="cl-urgent" id="emergency">In danger? Call <a href="tel:911">911</a>. Need shelter tonight? Call <a href="tel:211">211</a>.</p>
     </section>
   </main>
@@ -578,14 +580,14 @@
     <div class="start-card">
       <div class="start-head"><img src="/logo.svg" alt="" width="38" height="38"><div><strong id="start-title">Ask Gemma 4</strong><span>Clear House assistant</span></div><a class="start-skip" href="/app">Skip</a></div>
       <div class="start-msgs" aria-live="polite"><p class="start-typing" aria-label="Gemma is typing"><i></i><i></i><i></i></p></div>
-      <form class="start-form" id="start-form"><label class="visually-hidden" for="start-input">Your reply to Gemma</label><input id="start-input" maxlength="1500" autocomplete="off" placeholder="Type your reply…" required><button type="submit" aria-label="Send"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></button></form>
+      <form class="start-form" id="start-form"><label class="visually-hidden" for="start-input">Your Reply to Gemma</label><input id="start-input" maxlength="1500" autocomplete="off" placeholder="Type your reply…" required><button type="submit" aria-label="Send"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></button></form>
       <p class="start-note">Free, no account. Answers come only from checked resources.</p>
     </div>
   </dialog>
 
   <div class="font-switcher" hidden>
     <button type="button" id="font-prev" aria-label="Previous font">◀</button>
-    <button type="button" id="font-next">Next font ▶</button>
+    <button type="button" id="font-next">Next Font ▶</button>
     <output id="font-name" aria-live="polite"></output>
   </div>
 
@@ -781,7 +783,22 @@
     const dlg = document.getElementById('start'); if (!dlg || !dlg.showModal) return;  // old browsers just follow the link
     const msgs = dlg.querySelector('.start-msgs'), input = document.getElementById('start-input');
     const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let greeted = false;
+    let greeted = false, leaving = false;
+    const openTools = () => {
+      if (leaving) return;
+      leaving = true;
+      dlg.classList.add('leaving');
+      dlg.setAttribute('aria-busy', 'true');
+      setTimeout(() => {
+        try { if (!calm) sessionStorage.setItem('ch:app-entry', String(Date.now())); } catch {}
+        location.href = '/app';
+      }, calm ? 0 : 240);
+    };
+    dlg.querySelector('.start-skip').addEventListener('click', e => {
+      if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault(); openTools();
+    });
+    dlg.addEventListener('cancel', e => { if (leaving) e.preventDefault(); });
     document.querySelectorAll('a[data-start]').forEach(a => a.addEventListener('click', e => {
       if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault(); dlg.classList.remove('leaving'); dlg.showModal(); input.focus();
@@ -793,7 +810,7 @@
     document.getElementById('start-form').addEventListener('submit', e => {
       e.preventDefault(); const q = input.value.trim(); if (!q) return;
       try { sessionStorage.setItem('ch:first-question', q); } catch {}
-      dlg.classList.add('leaving'); setTimeout(() => { location.href = '/app'; }, calm ? 0 : 180);
+      openTools();
     });
   })();
 </script>

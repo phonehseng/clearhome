@@ -9,7 +9,30 @@
   <link rel="icon" href="/favicon.ico?v=2" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
   <title>Clear House — Your next step starts here</title>
+  <script>
+    // Read before first paint, consume once, and never replay on a normal visit or reload.
+    (() => {
+      try {
+        const enteredAt = Number(sessionStorage.getItem('ch:app-entry'));
+        sessionStorage.removeItem('ch:app-entry');
+        const age = Date.now() - enteredAt;
+        if (!enteredAt || age < 0 || age > 8000 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const root = document.documentElement;
+        root.classList.add('app-arriving');
+        const clear = () => root.classList.remove('app-arriving');
+        root.addEventListener('animationend', e => { if (e.animationName === 'app-arrive') clear(); });
+        addEventListener('pageshow', e => { if (e.persisted) clear(); });
+        setTimeout(clear, 1200);
+      } catch {}
+    })();
+  </script>
   <style>
+    /* Only reveal through a blur when arriving from the Gemma introduction. */
+    html.app-arriving::after{content:'';position:fixed;inset:0;z-index:10000;pointer-events:none;
+      background:#0d1738eb;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+      animation:app-arrive .7s cubic-bezier(.2,.7,.2,1) both}
+    @keyframes app-arrive{from{opacity:1;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}to{opacity:0;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}}
+    @media(prefers-reduced-motion:reduce){html.app-arriving::after{display:none;animation:none}}
     /* Keep selection available only for links and editable text. */
     * { -webkit-user-select: none; user-select: none; }
     a[href], a[href] *,
@@ -676,30 +699,30 @@
   <symbol id="phone" viewBox="0 0 24 24"><path d="m7 3 4 5-3 3a14 14 0 0 0 5 5l3-3 5 4-2 4C11 22 2 13 3 5Z"/></symbol>
 </defs></svg>
 <a class="skip-link" href="#tools">Skip to housing tools</a>
-<header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>NoVA & Blacksburg</div><nav class="header-links" aria-label="Page navigation"><a href="/">About</a><a href="/resources">Resources</a><a href="#listings" class="browse-nav">Browse housing</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Clear House home"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear house<span class="brand-dot">.</span></a><div class="region-label"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg>NoVA & Blacksburg</div><nav class="header-links" aria-label="Page navigation"><a href="/">About</a><a href="/resources">Resources</a><a href="#listings" class="browse-nav">Browse Housing</a><a class="emergency-link" href="#emergency" aria-label="Need help now?"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg><span class="emergency-label">Need help now?</span></a></nav></div></header>
 <main class="container">
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A clearer path.<br><span>A place to call home.</span></h1><p>Checked homes, shelters and rent help.</p><a class="browse-link" href="#listings">Browse housing & waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official sources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></section>
-  <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What do you need?</h2></div><div class="tools"><div class="tool-workspace">
-    <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find housing help</strong><small>A place to start</small></span></button></div>
-    <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Ask, or search.</h3><span class="step-label">HOUSING SUPPORT</span></div>
+  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A Clearer Path.<br><span>A Place to Call Home.</span></h1><p>Checked homes, shelters and rent help.</p><a class="browse-link" href="#listings">Browse Housing & Waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official sources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></section>
+  <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What Do You Need?</h2></div><div class="tools"><div class="tool-workspace">
+    <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find Housing Help</strong><small>A Place to Start</small></span></button></div>
+    <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Ask, or Search.</h3><span class="step-label">HOUSING SUPPORT</span></div>
     <div class="assistant" id="assistant">
       <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="34" height="34"></span><div><strong>Ask Gemma 4</strong><span>Gemma 4 26B · answers only from checked resources</span></div></div>
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
       <div class="assistant-chips" id="assistant-chips"><button type="button">I’m behind on rent in Alexandria. Who can help this week?</button><button type="button">Somewhere safe to sleep tonight in Arlington</button><button type="button">Homes near my office at 1800 Tysons Blvd under $2,000</button><button type="button">A room near Virginia Tech under $700</button><button type="button">Is the Section 8 waitlist open in Fairfax?</button></div>
-      <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" placeholder="Ask anything about housing, or “near my office at …”"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
+      <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the Assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" placeholder="Ask anything about housing, or “near my office at …”"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
     </div>
-    <h4 class="find-or">Or filter yourself</h4><form id="find-form" novalidate>
-      <div class="input-row"><div class="loc-field"><label for="location">Where are you looking?</label><div class="input-wrapper has-pick"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg><input id="location" name="location" value="Northern Virginia" maxlength="100" autocomplete="off" list="location-places" placeholder="City, town, county or neighborhood"><datalist id="location-places"><option value="Northern Virginia"></option><option value="Blacksburg"></option><option value="Fairfax County"></option><option value="Arlington County"></option><option value="Alexandria City"></option><option value="Loudoun County"></option><option value="Prince William County"></option><option value="Fairfax City"></option><option value="Falls Church City"></option><option value="Manassas City"></option><option value="Manassas Park City"></option><option value="Fairfax"></option><option value="Reston"></option><option value="Herndon"></option><option value="Chantilly"></option><option value="Centreville"></option><option value="Tysons"></option><option value="McLean"></option><option value="Vienna"></option><option value="Falls Church"></option><option value="Annandale"></option><option value="Springfield"></option><option value="Burke"></option><option value="Lorton"></option><option value="Ballston"></option><option value="Clarendon"></option><option value="Crystal City"></option><option value="Columbia Pike"></option><option value="Old Town Alexandria"></option><option value="Del Ray"></option><option value="Leesburg"></option><option value="Ashburn"></option><option value="Sterling"></option><option value="South Riding"></option><option value="Manassas"></option><option value="Woodbridge"></option><option value="Dumfries"></option><option value="Gainesville"></option><option value="Virginia Tech"></option><option value="Christiansburg"></option></datalist></div><label class="visually-hidden" for="location-pick">Pick an area</label><select id="location-pick" class="location-pick"><option value="">Pick an area</option><optgroup label="Regions"><option>Northern Virginia</option><option>Blacksburg</option></optgroup><optgroup label="Fairfax County"><option>Fairfax</option><option>Reston</option><option>Herndon</option><option>Chantilly</option><option>Centreville</option><option>Tysons</option><option>McLean</option><option>Vienna</option><option>Annandale</option><option>Springfield</option><option>Burke</option><option>Lorton</option></optgroup><optgroup label="Arlington County"><option>Ballston</option><option>Clarendon</option><option>Crystal City</option><option>Columbia Pike</option></optgroup><optgroup label="Alexandria"><option>Old Town Alexandria</option><option>Del Ray</option></optgroup><optgroup label="Cities"><option>Fairfax City</option><option>Falls Church</option><option>Manassas</option><option>Manassas Park</option></optgroup><optgroup label="Loudoun County"><option>Leesburg</option><option>Ashburn</option><option>Sterling</option><option>South Riding</option></optgroup><optgroup label="Prince William County"><option>Woodbridge</option><option>Dumfries</option><option>Gainesville</option></optgroup><optgroup label="Blacksburg area"><option>Virginia Tech</option><option>Christiansburg</option></optgroup></select></div><div><label for="budget">Monthly budget <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="budget" name="budget" type="number" min="0" max="100000" placeholder="Your maximum" inputmode="decimal"><span>/ month</span></div></div></div>
+    <h4 class="find-or">Or Filter Yourself</h4><form id="find-form" novalidate>
+      <div class="input-row"><div class="loc-field"><label for="location">Where are you looking?</label><div class="input-wrapper has-pick"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg><input id="location" name="location" value="Northern Virginia" maxlength="100" autocomplete="off" list="location-places" placeholder="City, town, county or neighborhood"><datalist id="location-places"><option value="Northern Virginia"></option><option value="Blacksburg"></option><option value="Fairfax County"></option><option value="Arlington County"></option><option value="Alexandria City"></option><option value="Loudoun County"></option><option value="Prince William County"></option><option value="Fairfax City"></option><option value="Falls Church City"></option><option value="Manassas City"></option><option value="Manassas Park City"></option><option value="Fairfax"></option><option value="Reston"></option><option value="Herndon"></option><option value="Chantilly"></option><option value="Centreville"></option><option value="Tysons"></option><option value="McLean"></option><option value="Vienna"></option><option value="Falls Church"></option><option value="Annandale"></option><option value="Springfield"></option><option value="Burke"></option><option value="Lorton"></option><option value="Ballston"></option><option value="Clarendon"></option><option value="Crystal City"></option><option value="Columbia Pike"></option><option value="Old Town Alexandria"></option><option value="Del Ray"></option><option value="Leesburg"></option><option value="Ashburn"></option><option value="Sterling"></option><option value="South Riding"></option><option value="Manassas"></option><option value="Woodbridge"></option><option value="Dumfries"></option><option value="Gainesville"></option><option value="Virginia Tech"></option><option value="Christiansburg"></option></datalist></div><label class="visually-hidden" for="location-pick">Pick an Area</label><select id="location-pick" class="location-pick"><option value="">Pick an area</option><optgroup label="Regions"><option>Northern Virginia</option><option>Blacksburg</option></optgroup><optgroup label="Fairfax County"><option>Fairfax</option><option>Reston</option><option>Herndon</option><option>Chantilly</option><option>Centreville</option><option>Tysons</option><option>McLean</option><option>Vienna</option><option>Annandale</option><option>Springfield</option><option>Burke</option><option>Lorton</option></optgroup><optgroup label="Arlington County"><option>Ballston</option><option>Clarendon</option><option>Crystal City</option><option>Columbia Pike</option></optgroup><optgroup label="Alexandria"><option>Old Town Alexandria</option><option>Del Ray</option></optgroup><optgroup label="Cities"><option>Fairfax City</option><option>Falls Church</option><option>Manassas</option><option>Manassas Park</option></optgroup><optgroup label="Loudoun County"><option>Leesburg</option><option>Ashburn</option><option>Sterling</option><option>South Riding</option></optgroup><optgroup label="Prince William County"><option>Woodbridge</option><option>Dumfries</option><option>Gainesville</option></optgroup><optgroup label="Blacksburg area"><option>Virginia Tech</option><option>Christiansburg</option></optgroup></select></div><div><label for="budget">Monthly Budget <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="budget" name="budget" type="number" min="0" max="100000" placeholder="Your maximum" inputmode="decimal"><span>/ month</span></div></div></div>
       <label class="urgent-check"><input type="checkbox" id="tonight" name="tonight"> I need a safe place to stay tonight</label>
-      <details class="more-options" id="more-options"><summary>More options <span>(optional)</span></summary><div class="more-options-body">
-      <div class="input-row"><div><label for="income">Household income <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="income" name="income" type="number" min="0" max="10000000" placeholder="Before taxes" inputmode="decimal"><span>/ year</span></div></div><div><label for="household">People in your home <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="household" name="household" class="find-select"><option value="">Not sure</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6">6 or more</option></select></div></div>
+      <details class="more-options" id="more-options"><summary>More Options <span>(optional)</span></summary><div class="more-options-body">
+      <div class="input-row"><div><label for="income">Household Income <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="income" name="income" type="number" min="0" max="10000000" placeholder="Before taxes" inputmode="decimal"><span>/ year</span></div></div><div><label for="household">People in Your Home <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="household" name="household" class="find-select"><option value="">Not sure</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6">6 or more</option></select></div></div>
       <div class="input-row"><div><label for="bedrooms">Bedrooms <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="bedrooms" name="bedrooms" class="find-select"><option value="">Any</option><option value="0">Studio</option><option value="1">1 bedroom</option><option value="2">2 bedrooms</option><option value="3">3 bedrooms</option><option value="4">4 or more</option></select></div><div><label for="timing">When do you need to move? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><select id="timing" name="timing" class="find-select"><option value="">Not sure</option><option value="now">As soon as possible</option><option value="soon">In the next 3 months</option><option value="planning">Just planning ahead</option></select></div></div>
       <fieldset class="nearby-essentials" aria-describedby="nearby-help">
-        <legend>Nearby essentials <span class="opt">(optional)</span></legend>
+        <legend>Nearby Essentials <span class="opt">(optional)</span></legend>
         <p id="nearby-help" class="nearby-help">Walking time from each home to the place you pick.</p>
         <div class="nearby-grid">
-          <div><label for="find-amenity">Place to be near</label><select id="find-amenity" class="find-select"><option value="">No preference</option><option value="supermarket">Supermarket</option><option value="pharmacy">Pharmacy</option><option value="transit">Bus or train stop</option></select></div>
-          <div><label for="find-walk">Maximum walking time</label><select id="find-walk" class="find-select" aria-describedby="find-walk-note" disabled><option value="5">5 minutes</option><option value="10" selected>10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option></select></div>
+          <div><label for="find-amenity">Place to Be Near</label><select id="find-amenity" class="find-select"><option value="">No preference</option><option value="supermarket">Supermarket</option><option value="pharmacy">Pharmacy</option><option value="transit">Bus or train stop</option></select></div>
+          <div><label for="find-walk">Maximum Walking Time</label><select id="find-walk" class="find-select" aria-describedby="find-walk-note" disabled><option value="5">5 minutes</option><option value="10" selected>10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option></select></div>
         </div>
         <p id="find-walk-note" class="nearby-summary" aria-live="polite">Choose a place to be near to set a walking time.</p>
         <label class="nearby-soft"><input type="checkbox" id="find-walk-pref" disabled> The walk is nice to have, not a must</label>
@@ -709,7 +732,7 @@
         <div class="find-check"><label><input type="checkbox" id="senior" name="senior"> Someone in my home is 62 or older</label><button type="button" class="find-help" aria-label="About the age option" aria-expanded="false" aria-controls="tip-senior">!</button><span class="find-tip" id="tip-senior" role="tooltip" hidden>Helps us find senior housing options. Age rules vary by property.</span></div>
         <div class="find-check"><label><input type="checkbox" id="voucher" name="voucher"> I have a housing voucher</label><button type="button" class="find-help" aria-label="About the housing voucher option" aria-expanded="false" aria-controls="tip-voucher">!</button><span class="find-tip" id="tip-voucher" role="tooltip" hidden>A housing voucher helps pay rent. Ask the provider whether your voucher can be used.</span></div>
       </fieldset>
-      <label for="situation">Anything else we should know? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="situation" name="situation" maxlength="1700" aria-describedby="situation-hint situation-count" placeholder="For example: I’m a student and need to move next month."></textarea><div class="textarea-hint"><span id="situation-hint">If you write something here, our assistant will answer it after your options. Keep personal details out.</span><span class="character-count" id="situation-count">0 / 1,700</span></div><div class="examples"><span>Need a starting point?</span><button type="button" data-example="I’m a student looking for an affordable room near campus. My move-in date is flexible.">I’m a student</button><button type="button" data-example="I’m looking for affordable housing for my family. What programs or assistance might help us?">Housing for my family</button><button type="button" data-example="I need a safe place to stay tonight. Please help me find emergency shelter resources.">I need a place tonight</button></div></div></details><div class="form-bottom"><span class="privacy-note"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Recommendations from verified resources only</span><button class="primary" type="submit"><span>Show my options</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div>
+      <label for="situation">Anything else we should know? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="situation" name="situation" maxlength="1700" aria-describedby="situation-hint situation-count" placeholder="For example: I’m a student and need to move next month."></textarea><div class="textarea-hint"><span id="situation-hint">If you write something here, our assistant will answer it after your options. Keep personal details out.</span><span class="character-count" id="situation-count">0 / 1,700</span></div><div class="examples"><span>Need a starting point?</span><button type="button" data-example="I’m a student looking for an affordable room near campus. My move-in date is flexible.">I’m a student</button><button type="button" data-example="I’m looking for affordable housing for my family. What programs or assistance might help us?">Housing for my family</button><button type="button" data-example="I need a safe place to stay tonight. Please help me find emergency shelter resources.">I need a place tonight</button></div></div></details><div class="form-bottom"><span class="privacy-note"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Recommendations from verified resources only</span><button class="primary" type="submit"><span>Show My Options</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div>
     </form>
     <div class="walk-results">
     <p class="walk-status" id="walk-status" role="status" aria-live="polite"></p>
@@ -721,31 +744,31 @@
     </div>
     <div class="find-results" id="find-results" role="region" aria-live="polite" aria-label="Your options" hidden></div>
     </section>
-  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>Three steps</h3><ol class="steps"><li><span class="step-number">1</span><div><strong>Say what you need</strong></div></li><li><span class="step-number">2</span><div><strong>See checked options</strong></div></li><li><span class="step-number">3</span><div><strong>Call to confirm</strong></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a safe place tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div></section></aside></div></section>
+  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>Three Steps</h3><ol class="steps"><li><span class="step-number">1</span><div><strong>Say what you need</strong></div></li><li><span class="step-number">2</span><div><strong>See checked options</strong></div></li><li><span class="step-number">3</span><div><strong>Call to confirm</strong></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div></section></aside></div></section>
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
-    <div class="section-heading"><div><h2 id="listings-title">Explore rentals & housing waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
+    <div class="section-heading"><div><h2 id="listings-title">Explore Rentals & Housing Waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
     <p class="catalog-notice">Listed doesn’t mean vacant. Confirm rent, fees and eligibility with the provider.</p>
-    <div class="listing-tabs" role="group" aria-label="Which listings to show"><button type="button" data-list="all" aria-pressed="true">All listings</button><button type="button" data-list="favorites" aria-pressed="false">Favorites<span class="favorite-count" id="favorite-count">0</span></button></div>
-    <div class="budget-shortcut"><span class="quick-label">Quick picks</span><button type="button" id="blacksburg-student-rooms">Blacksburg student rooms · under $1,000</button><button type="button" id="budget-under-1500" aria-pressed="false">Up to $1,500 / month</button></div>
+    <div class="listing-tabs" role="group" aria-label="Which listings to show"><button type="button" data-list="all" aria-pressed="true">All Listings</button><button type="button" data-list="favorites" aria-pressed="false">Favorites<span class="favorite-count" id="favorite-count">0</span></button></div>
+    <div class="budget-shortcut"><span class="quick-label">Quick picks</span><button type="button" id="blacksburg-student-rooms">Blacksburg Student Rooms · Under $1,000</button><button type="button" id="budget-under-1500" aria-pressed="false">Up to $1,500 / Month</button></div>
     <form id="browse-form" class="browse-filters">
-      <div class="filter-main"><div><label for="browse-location">City or county</label><select id="browse-location" name="location"><option value="">All supported areas</option><option>Northern Virginia</option><option value="Blacksburg">Blacksburg, VA</option><option>Alexandria City</option><option>Arlington County</option><option>Fairfax City</option><option>Fairfax County</option><option>Falls Church City</option><option>Loudoun County</option><option>Manassas City</option><option>Manassas Park City</option><option>Prince William County</option></select></div><div><label for="browse-space">Rental space</label><select id="browse-space" name="rental_space"><option value="all">Rooms & whole apartments</option><option value="room">Rooms for rent</option><option value="entire_home">Whole apartments</option></select></div><div><label for="browse-rent">Maximum monthly rent</label><input id="browse-rent" name="max_rent" type="number" min="0" placeholder="Any budget" inputmode="decimal"></div><div><label for="browse-sort">Sort by</label><select id="browse-sort" name="sort"><option value="rent_asc">Lowest advertised rent</option><option value="recommended">Availability first</option></select></div></div>
-      <div class="filter-bar"><details class="more-filters" id="more-filters"><summary>More filters <span class="more-filters-note">Housing type, eligibility, availability</span><span class="more-filters-count" id="more-filters-count" hidden></span></summary>
-        <div class="filter-more"><div><label for="browse-category">Housing type</label><select id="browse-category" name="housing_type"><option value="all">Affordable & regular rentals</option><option value="affordable">Affordable housing & waitlists</option><option value="regular">Regular rentals</option></select></div><div><label for="browse-age-group">Eligibility</label><select id="browse-age-group" name="age_group"><option value="general">Exclude senior-only housing</option><option value="senior">Senior housing</option><option value="all">All eligibility groups</option></select></div><div><label for="browse-status">Availability</label><select id="browse-status" name="status"><option value="">Openings & waitlists</option><option value="available_now">Advertised available now</option><option value="advertised_vacancy">Advertised vacancies</option><option value="upcoming">Upcoming availability</option><option value="leasing">Now leasing</option><option value="waitlist_open">Open waitlists</option><option value="contact_for_availability">Contact for availability</option></select></div></div></details>
-        <button class="primary" type="submit">Update results</button></div>
+      <div class="filter-main"><div><label for="browse-location">City or County</label><select id="browse-location" name="location"><option value="">All supported areas</option><option>Northern Virginia</option><option value="Blacksburg">Blacksburg, VA</option><option>Alexandria City</option><option>Arlington County</option><option>Fairfax City</option><option>Fairfax County</option><option>Falls Church City</option><option>Loudoun County</option><option>Manassas City</option><option>Manassas Park City</option><option>Prince William County</option></select></div><div><label for="browse-space">Rental Space</label><select id="browse-space" name="rental_space"><option value="all">Rooms & whole apartments</option><option value="room">Rooms for rent</option><option value="entire_home">Whole apartments</option></select></div><div><label for="browse-rent">Maximum Monthly Rent</label><input id="browse-rent" name="max_rent" type="number" min="0" placeholder="Any budget" inputmode="decimal"></div><div><label for="browse-sort">Sort By</label><select id="browse-sort" name="sort"><option value="rent_asc">Lowest advertised rent</option><option value="recommended">Availability first</option></select></div></div>
+      <div class="filter-bar"><details class="more-filters" id="more-filters"><summary>More Filters <span class="more-filters-note">Housing Type, Eligibility, Availability</span><span class="more-filters-count" id="more-filters-count" hidden></span></summary>
+        <div class="filter-more"><div><label for="browse-category">Housing Type</label><select id="browse-category" name="housing_type"><option value="all">Affordable & regular rentals</option><option value="affordable">Affordable housing & waitlists</option><option value="regular">Regular rentals</option></select></div><div><label for="browse-age-group">Eligibility</label><select id="browse-age-group" name="age_group"><option value="general">Exclude senior-only housing</option><option value="senior">Senior housing</option><option value="all">All eligibility groups</option></select></div><div><label for="browse-status">Availability</label><select id="browse-status" name="status"><option value="">Openings & waitlists</option><option value="available_now">Advertised available now</option><option value="advertised_vacancy">Advertised vacancies</option><option value="upcoming">Upcoming availability</option><option value="leasing">Now leasing</option><option value="waitlist_open">Open waitlists</option><option value="contact_for_availability">Contact for availability</option></select></div></div></details>
+        <button class="primary" type="submit">Update Results</button></div>
     </form>
     
     <p class="browse-hint">Room prices are per person. Fees and utilities may be extra.</p>
     <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p><div class="share-toast" id="share-toast" role="status" aria-live="polite"></div>
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
     <div class="listing-reveal-actions">
-      <button id="show-more-listings" class="more-listings" type="button" hidden>Show more communities</button>
-      <button id="show-all-listings" class="more-listings" type="button" hidden>Show all communities</button>
+      <button id="show-more-listings" class="more-listings" type="button" hidden>Show More Communities</button>
+      <button id="show-all-listings" class="more-listings" type="button" hidden>Show All Communities</button>
     </div>
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
   </section>
 </main><footer class="container site-footer"><div class="footer-notes"><p>Always confirm with the provider. AI can make mistakes. Not legal advice. Don’t share your SSN or bank details.</p></div></footer>
-<dialog id="property-photo-dialog" class="photo-dialog" aria-labelledby="property-photo-title"><header><h2 id="property-photo-title">Community photo</h2><button type="button" id="close-property-photo" aria-label="Close photo preview">×</button></header><img id="property-photo-large" alt=""><p id="property-photo-caption"></p><div id="property-photo-source"></div></dialog>
+<dialog id="property-photo-dialog" class="photo-dialog" aria-labelledby="property-photo-title"><header><h2 id="property-photo-title">Community Photo</h2><button type="button" id="close-property-photo" aria-label="Close photo preview">×</button></header><img id="property-photo-large" alt=""><p id="property-photo-caption"></p><div id="property-photo-source"></div></dialog>
 <script src="/rental-labels.js"></script>
 <script>
   const photoDialog = document.getElementById('property-photo-dialog');
@@ -829,13 +852,13 @@
     const link = housingElement('a', '', label); link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
   }
   // Label a listing's main link by where it actually goes (see backend/source_audit.py).
-  const SOURCE_LABELS = { official_property_page: 'View official property page ↗', owner_property_page: 'View owner’s property page ↗',
-                          property_website: 'View property website ↗', official_directory: 'County housing list ↗' };
+  const SOURCE_LABELS = { official_property_page: 'View Official Property Page ↗', owner_property_page: 'View Owner’s Property Page ↗',
+                          property_website: 'View Property Website ↗', official_directory: 'County Housing List ↗' };
   const sourceLabel = (row, fallback) => SOURCE_LABELS[row.source_kind] || fallback;
-  const ROLE_LABELS = { provider: 'Property website', government: 'Official government page', directory: 'Official directory or list', corroboration: 'Supporting page' };
+  const ROLE_LABELS = { provider: 'Property Website', government: 'Official Government Page', directory: 'Official Directory or List', corroboration: 'Supporting Page' };
   function mapLink(row) {
     if (!row.address) return null;
-    const link = housingElement('a', '', 'Show on map ↗');
+    const link = housingElement('a', '', 'Show on Map ↗');
     link.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(row.address);
     link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
   }
@@ -848,32 +871,32 @@
   }
   function eligibilityDetails(row) {
       const availability = row.availability || {};
-      const details = housingElement('details','eligibility-details'); details.append(housingElement('summary','','Eligibility & important details'));
+      const details = housingElement('details','eligibility-details'); details.append(housingElement('summary','','Eligibility & Important Details'));
       details.dataset.key='eligibility:'+row.id;
       const information=housingElement('div','eligibility-grid');
       const groups=[
-        ['Housing category & program',row.affordability?.program],
-        ['Room or apartment',ClearHouseRental.space(row)],
-        ['Lease & responsibility',[ClearHouseRental.lease(row),row.lease_responsibility].filter(Boolean).join('. ')],
-        ['Lease dates & payments',[ClearHouseRental.term(row),row.payment_schedule].filter(Boolean).join('. ')],
-                ['Who can apply',[row.minimum_age ? `Age requirement: ${row.minimum_age} and older.` : null,row.who_it_serves].filter(Boolean).join(' ')],
-        ['Before you apply',row.requirements],
-        ['Rent & additional costs',row.cost],
-        ['Availability & timing',[statusLabels[availability.status],availability.available_from ? 'Advertised move-in: '+reviewedDate(availability.available_from)+'.' : null,availability.evidence].filter(Boolean).join(' ')],
+        ['Housing Category & Program',row.affordability?.program],
+        ['Room or Apartment',ClearHouseRental.space(row)],
+        ['Lease & Responsibility',[ClearHouseRental.lease(row),row.lease_responsibility].filter(Boolean).join('. ')],
+        ['Lease Dates & Payments',[ClearHouseRental.term(row),row.payment_schedule].filter(Boolean).join('. ')],
+                ['Who Can Apply',[row.minimum_age ? `Age requirement: ${row.minimum_age} and older.` : null,row.who_it_serves].filter(Boolean).join(' ')],
+        ['Before You Apply',row.requirements],
+        ['Rent & Additional Costs',row.cost],
+        ['Availability & Timing',[statusLabels[availability.status],availability.available_from ? 'Advertised move-in: '+reviewedDate(availability.available_from)+'.' : null,availability.evidence].filter(Boolean).join(' ')],
         ['Accessibility',row.accessibility_notes || 'Ask the provider about accessible units and features.'],
-        ['Confirm with leasing',row.notes],
+        ['Confirm with Leasing',row.notes],
         ['Units', row.unit_count ? `${row.unit_count} apartments.` : null],
         ['Utilities', row.utilities_notes || row.utilities || 'Not published by the source. Ask the leasing office which utilities are included.'],
         ['Amenities', Array.isArray(row.amenities) && row.amenities.length ? row.amenities.join(' · ') : 'Not published by the source.'],
-        ['Leasing contact', row.phone || 'Not published by the source.'],
-        ['How to apply or join the waitlist', row.application_info || row.how_to_apply || 'Ask the leasing office how to apply.']
+        ['Leasing Contact', row.phone || 'Not published by the source.'],
+        ['How to Apply or Join the Waitlist', row.application_info || row.how_to_apply || 'Ask the leasing office how to apply.']
       ];
       groups.forEach(([title,text])=>{if(!text)return;const group=housingElement('section','eligibility-item');group.append(housingElement('h4','',title),housingElement('p','',text));information.append(group);});
       details.append(information,housingElement('div','eligibility-footer','The provider makes the final eligibility decision. Confirm costs and availability before applying or paying.'));
-      if(row.affordability){const proof=housingElement('div','eligibility-item');proof.append(housingElement('h4','',row.type==='rental_listing'?'Rental source':'Affordability source'),housingElement('p','',row.affordability.evidence));const link=sourceLink(row.affordability.source_url,'Read source evidence ↗');if(link)proof.append(link);information.append(proof);}
+      if(row.affordability){const proof=housingElement('div','eligibility-item');proof.append(housingElement('h4','',row.type==='rental_listing'?'Rental Source':'Affordability Source'),housingElement('p','',row.affordability.evidence));const link=sourceLink(row.affordability.source_url,'Read Source Evidence ↗');if(link)proof.append(link);information.append(proof);}
       const sourceList=housingElement('section','eligibility-item');sourceList.append(housingElement('h4','','Sources'));
       const seen=new Set();[{url:row.source_url,role:row.source_kind==='official_directory'?'directory':'main'},...(row.sources||[])].forEach(src=>{if(!src.url||seen.has(src.url))return;seen.add(src.url);
-        const link=sourceLink(src.url,(src.role==='main'?sourceLabel(row,'Main source ↗'):(ROLE_LABELS[src.role]||'Source')+' ↗'));if(link){const line=housingElement('p','');line.append(link);sourceList.append(line);}});
+        const link=sourceLink(src.url,(src.role==='main'?sourceLabel(row,'Main Source ↗'):(ROLE_LABELS[src.role]||'Source')+' ↗'));if(link){const line=housingElement('p','');line.append(link);sourceList.append(line);}});
       information.append(sourceList);
       return details;
   }
@@ -905,7 +928,7 @@
           document.getElementById('property-photo-title').textContent=row.community || row.name;
           const large=document.getElementById('property-photo-large');large.src=photoUrl;large.alt=photo.alt || row.community;large.referrerPolicy='no-referrer';
           document.getElementById('property-photo-caption').textContent=photo.caption || 'Community photo; actual unit may differ.';
-          const source=document.getElementById('property-photo-source');source.replaceChildren();const link=sourceLink(photo.source_url,'Photo from the provider’s listing ↗');if(link)source.append(link);
+          const source=document.getElementById('property-photo-source');source.replaceChildren();const link=sourceLink(photo.source_url,'Photo from the Provider’s Listing ↗');if(link)source.append(link);
           photoDialog.showModal();document.body.style.overflow='hidden';
         });card.append(button);
       }  // no photo: show nothing rather than a placeholder
@@ -944,7 +967,7 @@
       if (plans.length > 1) {
         const details=housingElement('details','floor-plans-details');
         details.dataset.key='plans:'+row.id;
-        details.append(housingElement('summary','',`${plans.length} floor plans & eligibility`));
+        details.append(housingElement('summary','',`${plans.length} Floor Plans & Eligibility`));
         const options=housingElement('div','floor-plan-list');
         plans.forEach(plan=>{
           const option=housingElement('section','floor-plan-option');
@@ -967,7 +990,7 @@
       const actions = housingElement('div','housing-actions');
       // The property's own site comes first; a county list (names, addresses, phones) is labeled as a list, not a property page.
       const ownSite = row.website && row.website !== row.source_url && !['property_website','owner_property_page','official_property_page'].includes(row.source_kind) && !/\.gov\/|\/DocumentCenter\/|\.pdf($|\?)/i.test(row.website) ? sourceLink(row.website,'Property website ↗') : null; if (ownSite) actions.append(ownSite);
-      const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-price source ↗':'View source ↗')); if (source) { if (row.source_kind==='official_directory') source.title='The county’s list of income-restricted properties, with each one’s address and phone. Call the property to apply.'; actions.append(source); }
+      const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-Price Source ↗':'View Source ↗')); if (source) { if (row.source_kind==='official_directory') source.title='The county’s list of income-restricted properties, with each one’s address and phone. Call the property to apply.'; actions.append(source); }
       const map = mapLink(row); if (map) actions.append(map);
       if (row.phone && (row.phone.match(/\d/g) || []).length >= 10) { const phone = housingElement('a','','Call'); phone.href=ClearHouseDial(row.phone); actions.append(phone); }
       const reviewDates=plans.map(p=>p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
@@ -983,8 +1006,8 @@
     listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
     moreListings.hidden = visibleHousingCount >= rows.length;
     allListings.hidden = moreListings.hidden || rows.length-visibleHousingCount <= 18; // with 18 or fewer left, Show more already reveals them all
-    moreListings.textContent = `Show more communities (${Math.max(0,rows.length-visibleHousingCount)} remaining)`;
-    allListings.textContent = 'Show all communities';
+    moreListings.textContent = `Show More Communities (${Math.max(0,rows.length-visibleHousingCount)} remaining)`;
+    allListings.textContent = 'Show All Communities';
     browseMessage.dataset.state = 'success';
     if (showingFavorites) { browseMessage.textContent = rows.length ? `${rows.length} saved listing${rows.length === 1 ? '' : 's'}. Saved on this device only; details are as of when you saved them.` : 'No favorites yet. Select Save on any listing to keep it here for later.'; return; }
     browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs. Floor plans are grouped together.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
@@ -1132,7 +1155,7 @@
       }
       const steps = r.intake_steps || r.how_to_apply;
       if (steps || r.intake_hours || r.after_hours || r.requirements) {
-        const d = el('details'); d.append(el('summary', 'How to get in'));
+        const d = el('details'); d.append(el('summary', 'How to Get In'));
         if (steps) d.append(el('p', steps));
         if (r.intake_hours) d.append(el('p', 'Intake hours: ' + r.intake_hours));
         if (r.requirements) d.append(el('p', 'Who it’s for: ' + r.requirements));
@@ -1144,7 +1167,7 @@
       if (r.confidential_location) c.append(el('span', 'The location is kept private for safety. Call to arrange intake.', { class: 'shelter-where' }));
       else if (addr) {
         const where = el('span', 'Go to: ' + addr + ' ', { class: 'shelter-where' });
-        where.append(el('a', 'Get directions ↗', { href: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addr), target: '_blank', rel: 'noopener' }));
+        where.append(el('a', 'Get Directions ↗', { href: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addr), target: '_blank', rel: 'noopener' }));
         c.append(where);
       } else if (r.address && r.address_kind === 'office, not a walk-in shelter') c.append(el('span', 'Office address (not a walk-in shelter): ' + r.address, { class: 'shelter-where' }));
       if (r.transit) c.append(el('span', 'Getting there: ' + r.transit, { class: 'shelter-where' }));
@@ -1298,7 +1321,7 @@
         card.append(media, body); box.append(card);
       });
       if (cards.length > SHOWN) {
-        const more = el('button', `Show ${cards.length - SHOWN} more`, { type: 'button', class: 'chat-cards-more' });
+        const more = el('button', `Show ${cards.length - SHOWN} More`, { type: 'button', class: 'chat-cards-more' });
         more.addEventListener('click', () => { box.querySelectorAll('.chat-card[hidden]').forEach(c => { c.hidden = false; }); more.remove(); pinTurn(); });
         box.append(more);
       }
@@ -1343,7 +1366,7 @@
         results.replaceChildren();
         if (profile.tonight) {
           results.append(el('p', 'In danger right now? Call 911. For shelter tonight, call 211 or the intake line below. Don’t wait for an AI answer.', { class: 'notice-urgent' }));
-          results.append(group('Shelters and intake lines', data.shelters, 'shelter', 'Call 211 for shelter tonight.'));
+          results.append(group('Shelters and Intake Lines', data.shelters, 'shelter', 'Call 211 for shelter tonight.'));
         }
         const amenity = profile.tonight ? '' : v('find-amenity');
         let homeCount = data.listings.length;
@@ -1354,17 +1377,17 @@
         } else {
           window.clearWalkSearch();
           window.clearHouseMapFocus?.(data.listings, `Map shows the ${data.listings.length} homes that fit your choices.`);
-          results.append(group('Homes you could apply for', data.listings, 'listing',
+          results.append(group('Homes You Could Apply For', data.listings, 'listing',
             `No reviewed listings match these choices in ${data.area}. Try a higher budget, any bedroom count, or a nearby area. Gemma is also searching the web; see the map above.`));
         }
         // Programs only when there's a sign the person needs them (income, voucher, tonight, or what they wrote).
         if (data.programs_relevant) {
-          results.append(group('Programs that can help', data.programs, 'program', 'Call 211 for local programs.'));
+          results.append(group('Programs That Can Help', data.programs, 'program', 'Call 211 for local programs.'));
         } else if (data.income_note) {
           results.append(el('p', data.income_note, { class: 'opt-empty' }));
         } else if (data.programs.length) {
           const more = el('button', 'Need help paying rent? Show assistance programs', { type: 'button', class: 'show-programs' });
-          more.addEventListener('click', () => { more.replaceWith(group('Programs that can help', data.programs, 'program', 'Call 211 for local programs.')); });
+          more.addEventListener('click', () => { more.replaceWith(group('Programs That Can Help', data.programs, 'program', 'Call 211 for local programs.')); });
           results.append(more);
         }
         // The assistant introduces itself once options are on screen; chatting is optional.
@@ -1486,9 +1509,9 @@
       if (result.match_reasons.length) ul.append(el('li', 'Why it matches: ' + result.match_reasons.join('; ')));
       body.append(ul);
       const actions = el('div', null, { class: 'walk-actions' });
-      const src = safeUrl(h.official_source_url); if (src) actions.append(el('a', 'Official source', { href: src, target: '_blank', rel: 'noopener' }));
-      const dir = directionsUrl(h, a); if (dir) actions.append(el('a', 'Walking directions', { href: dir, target: '_blank', rel: 'noopener' }));
-      const show = el('button', 'Show on map', { type: 'button' }); show.addEventListener('click', e => { e.stopPropagation(); showOnMap(result); setView('map'); }); actions.append(show);
+      const src = safeUrl(h.official_source_url); if (src) actions.append(el('a', 'Official Source', { href: src, target: '_blank', rel: 'noopener' }));
+      const dir = directionsUrl(h, a); if (dir) actions.append(el('a', 'Walking Directions', { href: dir, target: '_blank', rel: 'noopener' }));
+      const show = el('button', 'Show on Map', { type: 'button' }); show.addEventListener('click', e => { e.stopPropagation(); showOnMap(result); setView('map'); }); actions.append(show);
       body.append(actions); c.append(body);
       c.addEventListener('click', () => showOnMap(result));
       c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showOnMap(result); } });

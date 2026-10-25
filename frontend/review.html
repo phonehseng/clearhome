@@ -81,12 +81,12 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="32" height="32">clear house<span class="brand-dot">.</span></a>
-      <nav aria-label="Main"><a href="/app">Find housing</a><a href="/resources">Resources</a></nav>
+      <nav aria-label="Main"><a href="/app">Find Housing</a><a href="/resources">Resources</a></nav>
     </div>
   </header>
   <main class="container">
     <div class="page-head">
-      <h1>Listing review</h1>
+      <h1>Listing Review</h1>
       <p class="lead">Every record in the catalog, for the team to check by hand. <strong>Verify</strong> after calling or checking the official page, <strong>Flag</strong> what needs a human check, and <strong>Hide</strong> anything wrong: hidden records leave every list, map and chat answer.</p>
       <p class="banner" id="banner" hidden></p>
     </div>
@@ -202,7 +202,7 @@
       $('count').textContent = `${shown.length} of ${records.length} records`;
       const list = $('list'); list.replaceChildren(...shown.slice(0, page).map(card));
       if (shown.length > page) {
-        const more = el('button', `Show ${Math.min(60, shown.length - page)} more`, { type: 'button', class: 'more' });
+        const more = el('button', `Show ${Math.min(60, shown.length - page)} More`, { type: 'button', class: 'more' });
         more.addEventListener('click', () => { page += 60; render(false); }); list.append(more);
       }
     }
