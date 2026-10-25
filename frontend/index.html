@@ -215,6 +215,13 @@
     .opt-card details summary{cursor:pointer;font-weight:650;min-height:32px;display:flex;align-items:center}
     .opt-card details p{margin:4px 0}
     .shelter-where{font-size:12.5px;color:var(--muted)}
+    /* Hotels and motels from Google Maps: orange "not checked" badge, like the web-search pins on the map. */
+    .opt-badge.web{background:#fff1e0!important;color:#8a4b0f!important}
+    .hotel-note{margin:0 0 10px;font-size:12.5px;line-height:1.5;color:var(--muted)}
+    .hotel-more{display:inline-block;margin-top:10px;font-size:13px;font-weight:650;color:#2f55b5}
+    .chat-hotels{display:grid;gap:8px;width:100%;animation:msg-in .3s ease-out}
+    .chat-hotels .chat-cards{animation:none}
+    .chat-hotels .hotel-note,.chat-hotels .hotel-more{margin:0}
     .web-search-btn{margin-top:8px;min-height:38px;padding:7px 14px;border-radius:999px;border:1px dashed #d9822b;background:#fff8ef;color:#8a4b0f;font-size:12.5px;font-weight:650}
     .web-search-btn:hover{background:#fdeedd}
     /* Nearby essentials: one group, read top to bottom; the walking time only applies once a place is chosen. */
@@ -722,7 +729,7 @@
     </div>
     <div class="find-results" id="find-results" role="region" aria-live="polite" aria-label="Your options" hidden></div>
     </section>
-  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>Three Steps</h3><ol class="steps"><li><span class="step-number">1</span><div><strong>Say what you need</strong></div></li><li><span class="step-number">2</span><div><strong>See checked options</strong></div></li><li><span class="step-number">3</span><div><strong>Call to confirm</strong></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div></section></aside></div></section>
+  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>Three Steps</h3><ol class="steps"><li><span class="step-number">1</span><div><strong>Say what you need</strong></div></li><li><span class="step-number">2</span><div><strong>See checked options</strong></div></li><li><span class="step-number">3</span><div><strong>Call to confirm</strong></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Shelters and hotels tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div></section></aside></div></section>
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
     <div class="section-heading"><div><h2 id="listings-title">Explore Rentals & Housing Waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
@@ -1211,6 +1218,46 @@
       box.append(grid);
       return box;
     }
+    // Somewhere to stay tonight besides a shelter: budget hotels and motels near the area from Google Maps.
+    // Our team hasn't checked them, so they say so, and a Google Maps link shows more.
+    const HOTEL_NOTE = 'Not checked by our team: call to ask tonight’s rate and whether a room is free. If the cost is a problem, ask 211 whether help paying for a room is available.';
+    const hotelsShown = new Set();  // places whose hotels are already on screen, so the chat doesn't list them twice
+    const hotelSearch = place => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('hotels near ' + place);
+    const hotelMeta = h => [h.kind, typeof h.rating === 'number' ? `★ ${h.rating.toFixed(1)}${h.ratings ? ` (${h.ratings.toLocaleString('en-US')})` : ''}` : null, h.price].filter(Boolean).join(' · ');
+    const hotelMore = url => el('a', 'See More Hotels on Google Maps ↗', { href: url, target: '_blank', rel: 'noopener', class: 'hotel-more' });
+    async function fetchHotels(place) {
+      const res = await fetch('/api/hotels', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ place }) });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || 'Hotels could not be loaded.');
+      return data;
+    }
+    function hotelCard(h) {
+      const c = el('article', null, { class: 'opt-card' });
+      c.append(el('span', 'Google Maps · not checked by us', { class: 'opt-badge web' }), el('strong', h.name));
+      if (hotelMeta(h)) c.append(el('span', hotelMeta(h), { class: 'meta' }));
+      if (h.address) c.append(el('span', h.address, { class: 'meta' }));
+      const links = el('div', null, { class: 'opt-links' });
+      if (h.phone) links.append(el('a', `Call ${h.phone}`, { href: tel(h.phone) }));
+      const site = safeUrl(h.website); if (site) links.append(el('a', 'Website ↗', { href: site, target: '_blank', rel: 'noopener' }));
+      const map = safeUrl(h.maps_url); if (map) links.append(el('a', 'Google Maps ↗', { href: map, target: '_blank', rel: 'noopener' }));
+      c.append(links);
+      return c;
+    }
+    function hotelGroup(place) {
+      const box = el('section');
+      const note = el('p', 'Looking up hotels and motels on Google Maps…', { class: 'opt-empty' });
+      box.append(el('h4', 'Hotels and Motels Nearby'), note);
+      hotelsShown.add(place.toLowerCase());
+      fetchHotels(place).then(data => {
+        hotelsShown.add(data.place.toLowerCase());
+        if (!data.hotels.length) { note.textContent = 'We couldn’t list hotels here right now. Google Maps can show what’s nearby.'; box.append(hotelMore(safeUrl(data.search_url) || hotelSearch(place))); return; }
+        note.textContent = `Budget hotels and motels from Google Maps. ${HOTEL_NOTE}`; note.className = 'hotel-note';
+        const grid = el('div', null, { class: 'opt-grid' });
+        data.hotels.forEach(h => grid.append(hotelCard(h)));
+        box.append(grid, hotelMore(safeUrl(data.search_url) || hotelSearch(place)));
+      }).catch(() => { note.textContent = 'Hotels couldn’t be loaded right now. Google Maps can show what’s nearby.'; box.append(hotelMore(hotelSearch(place))); });
+      return box;
+    }
     // Plain text with **bold** names; built from text nodes, so nothing from the server runs as HTML.
     // Gemma sometimes answers in markdown; turn tables, headings and list marks into clean lines of text.
     function tidy(text) {
@@ -1263,7 +1310,7 @@
       const show = text => { if (!bubble) { bubble = botSay(''); } setText(bubble, text); pinTurn(); };
       const finish = () => { clearInterval(timer); status.remove(); };
       try {
-        const controller = new AbortController(); const stop = setTimeout(() => controller.abort(), 120000);
+        const controller = new AbortController(); const stop = setTimeout(() => controller.abort(), 180000);  // a careful think on specific needs can take two minutes
         const res = await fetch('/api/ask/stream', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, history, profile: { ...profile, ...oneShot } }), signal: controller.signal });
         oneShot = {};
         if (!res.ok || !res.body) { const data = await res.json().catch(() => ({})); throw new Error(data.error || 'Something went wrong.'); }
@@ -1280,6 +1327,7 @@
             else if (event.kind === 'thinking') { note = `Gemma is thinking: ${event.text}`; status.textContent = note; }
             else if (event.kind === 'chunk') { if (!answer) finish(); answer += event.text; show(answer); }
             else if (event.kind === 'cards') { if (bubble && Array.isArray(event.text) && event.text.length) showCards(bubble, answer, event.text); }
+            else if (event.kind === 'hotels') { if (bubble && Array.isArray(event.text?.hotels)) showHotels(bubble, event.text); }
             else if (event.kind === 'answer' || event.kind === 'fallback') { finish(); answer = event.text; show(answer); if (event.kind === 'fallback') bubble.dataset.state = 'notice'; }
           }
         }
@@ -1292,6 +1340,35 @@
         botSay((err.name === 'AbortError' ? 'This is taking too long, the AI service is busy. Please try again in a minute.' : (err.message || 'We could not reach the assistant.')) + ' For urgent help, call 211.', 'error');
       }
       button.disabled = false;
+    }
+    // Hotels and motels for a "somewhere to stay tonight" question, under the answer and its cards.
+    const BED = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18V6M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></svg>';
+    function showHotels(bubble, data) {
+      const place = data.place.toLowerCase();
+      if (hotelsShown.has(place) || hotelsShown.has(place.replace(/, va$/, ''))) return;  // already listed with the form's options
+      hotelsShown.add(place);
+      const box = el('div', null, { class: 'chat-hotels' });
+      box.append(el('p', data.hotels.length ? `Budget hotels and motels near ${data.place}, from Google Maps. ${HOTEL_NOTE}` : `Need a hotel instead? Google Maps shows what’s near ${data.place}.`, { class: 'hotel-note' }));
+      if (data.hotels.length) {
+        const list = el('div', null, { class: 'chat-cards', role: 'list', 'aria-label': `Hotels and motels near ${data.place}` });
+        data.hotels.slice(0, 4).forEach(h => {
+          const card = el('article', null, { class: 'chat-card', role: 'listitem', 'aria-label': h.name });
+          const media = el('div', null, { class: 'chat-card-media', 'aria-hidden': 'true' }); media.innerHTML = BED;
+          const body = el('div', null, { class: 'chat-card-body' });
+          body.append(el('span', 'Google Maps · not checked by us', { class: 'opt-badge web' }), el('span', h.name, { class: 'chat-card-title' }));
+          if (hotelMeta(h)) body.append(el('span', hotelMeta(h), { class: 'chat-card-meta' }));
+          if (h.address) body.append(el('span', h.address, { class: 'chat-card-address' }));
+          const links = el('div', null, { class: 'chat-card-actions' });
+          if (h.phone) links.append(el('a', h.phone, { href: tel(h.phone), 'aria-label': `Call ${h.name}: ${h.phone}` }));
+          const site = safeUrl(h.website); if (site) links.append(el('a', 'Website ↗', { href: site, target: '_blank', rel: 'noopener', 'aria-label': `${h.name} website (opens in a new tab)` }));
+          const map = safeUrl(h.maps_url); if (map) links.append(el('a', 'Map ↗', { href: map, target: '_blank', rel: 'noopener', 'aria-label': `${h.name} on Google Maps (opens in a new tab)` }));
+          if (links.childNodes.length) body.append(links);
+          card.append(media, body); list.append(card);
+        });
+        box.append(list);
+      }
+      box.append(hotelMore(safeUrl(data.search_url) || hotelSearch(data.place)));
+      (bubble.nextElementSibling?.classList.contains('chat-cards') ? bubble.nextElementSibling : bubble).after(box); pinTurn();
     }
     // Cards for the places Gemma named, under its answer, with the names in the answer linked to them.
     const CARD_STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
@@ -1373,6 +1450,7 @@
         if (profile.tonight) {
           results.append(el('p', 'In danger right now? Call 911. For shelter tonight, call 211 or the intake line below. Don’t wait for an AI answer.', { class: 'notice-urgent' }));
           results.append(group('Shelters and Intake Lines', data.shelters, 'shelter', 'Call 211 for shelter tonight.'));
+          results.append(hotelGroup(profile.location || data.area));
         }
         const amenity = profile.tonight ? '' : v('find-amenity');
         let homeCount = data.listings.length;

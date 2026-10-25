@@ -192,6 +192,7 @@ Rules:
 - When you recommend a resource, give its name, phone and how to apply, and mention its source_url.
 - Typical documents to prepare: photo ID, Social Security numbers or immigration documents for household members, proof of income (pay stubs, benefit letters), and your current lease or eviction notice. Say the program decides the final list.
 - If the person may be unsafe or without shelter tonight, start with: call 911 in an emergency, or 211 for shelter.
+- Hotels and motels nearby are listed from Google Maps under your answer when someone needs a place tonight. Never name a hotel or motel yourself; you may say the list is below.
 - Never ask for or repeat SSNs, bank details or other sensitive data.
 - Keep it short and plain: a direct answer first, then up to 5 bullet points. Use **bold** only for names. End with one line saying this is guidance, not legal advice.
 - If the question is not about housing, gently steer back to housing help.
@@ -281,12 +282,16 @@ def rent_estimate_text(est):
 
 # ---- Requirements our filters don't cover -------------------------------------------------------------------
 # "furnished", "at least a 13 minute walk from campus", "no more than a 1 year lease": the app measures what it can
-# (walking minutes) and adds it to each listing, then Gemma thinks briefly to check every requirement.
+# (walking minutes) and adds it to each listing, then Gemma thinks it through, checking every home against every requirement.
 EXTRA_NEEDS = [
     (r"\bwalk(?:s|ing|able)?\b", "walking time"), (r"\bfurnish", "furnished"), (r"\bunfurnish", "unfurnished"),
     # Not "$900 a month" or "move in 2 months": only lease words or "12-month lease/term".
     (r"\blease\b|\b(?:\d+|one|two|six|nine|twelve)[- ](?:year|month)s?[- ](?:long|lease|term|contract)\b|\b(?:short|long)[- ]term\b", "lease length"),
-    (r"\bpets?\b|\bdogs?\b|\bcats?\b", "pets"), (r"\bparking\b|\bgarage\b", "parking"),
+    (r"\bpets?\b|\bdogs?\b|\bcats?\b|\bservice animals?\b|\bemotional support\b|\besa\b", "pets"), (r"\bparking\b|\bgarage\b", "parking"),
+    (r"\broommates?\b|\bshared (?:room|apartment|house|home)\b", "roommates"), (r"\bmove[- ]?in (?:date|by|on)\b", "move-in date"),
+    (r"\bsmok(?:e|ing|er)\b|\bvap(?:e|ing)\b", "smoking"), (r"\bground floor\b|\bfirst floor\b|\belevators?\b|\bstairs\b", "floor access"),
+    # "tax credit" apartments are a housing type, not a screening question.
+    (r"\b(?:bad|no|poor|low) credit\b|\bcredit (?:check|score|history)\b|\beviction (?:history|record)\b|\b(?:criminal|background) (?:record|check)", "screening rules"),
     (r"\butilit(?:y|ies)\b|\bwifi\b|\binternet\b", "utilities"), (r"\b(?:private|own) bath", "private bathroom"),
     (r"\blaundry\b|\bwasher\b|\bdryer\b", "laundry"), (r"\bbus\b|\btransit\b", "transit"),
     (r"\bsublet|\bsublease|\btakeover\b", "sublet"), (r"\bguarantor|\bco-?signer", "guarantor"),
@@ -408,7 +413,8 @@ def cards_for(text, limit=6):
 # What the chat says while Gemma reasons, by seconds since it started. Gemma's raw notes are never shown:
 # they're half-sentences in prompt jargon and can mention records it later drops.
 THINKING_STEPS = [(0, "reading the listings and checking each of your requirements"), (8, "checking rents, eligibility and phone numbers"),
-                  (18, "picking the best matches for you"), (30, "writing your answer (a long question can take up to a minute)")]
+                  (18, "picking the best matches for you"), (30, "double-checking each home against what you need"),
+                  (50, "writing your answer (a careful answer can take up to two minutes)")]
 
 
 def _thinking_step(seconds):

@@ -64,7 +64,7 @@ class ChatStreamTests(unittest.TestCase):
         self.assertIn("Alexandria", fallback)  # real local rent-help programs, not apartments
 
     def test_shelter_question_is_never_answered_with_apartments(self):
-        with patch("advisor.stream_gemma", return_value=iter([(False, "Call 211 tonight.")])):
+        with patch("advisor.stream_gemma", return_value=iter([(False, "Call 211 tonight.")])), patch("hotels._key", return_value=""):
             got = events(self.client.post("/api/ask/stream", json={"question": "I was kicked out by my landlord, where can I sleep tonight?",
                                                                     "profile": {"location": "Arlington", "tonight": True}}))
         self.assertNotIn("answer", [e["kind"] for e in got])  # no instant "homes near" list

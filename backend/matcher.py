@@ -79,7 +79,7 @@ def stream_gemma(prompt, thoughts=False, think=False):
                 if is_thought and not thoughts:
                     continue
                 if not started and thoughts:
-                    yield "engine", f"Gemma 4 26B ({gemma_gpu.MODEL}) on our own Cloud Run L4 GPU" + (", thinking briefly first" if think else "")
+                    yield "engine", f"Gemma 4 26B ({gemma_gpu.MODEL}) on our own Cloud Run L4 GPU" + (", thinking it through first" if think else "")
                 started = True
                 yield (is_thought, text) if thoughts else text
             return

@@ -2,7 +2,7 @@
 
 The GPU service is private: on Cloud Run this app signs each call with its own identity (an ID token
 from the metadata server). Locally, set GEMMA_GPU_TOKEN to `gcloud auth print-identity-token` to try it.
-Thinking is off by default, so answers start in seconds; questions with unusual requirements turn on a brief think.
+Thinking is off by default, so answers start in seconds; questions with specific needs (pets, furnished, lease length...) let Gemma think them through.
 If the GPU is still starting (it scales to zero) or fails, callers fall back to the Gemini API.
 
 Usage: python backend/gemma_gpu.py "What is a housing choice voucher?"
@@ -61,12 +61,12 @@ def _mark_cold(seconds=90):
 
 def stream_parts(prompt, think=False):
     """Yield (is_thought, text) from the GPU as it's written. Raises if the GPU isn't ready, so callers can fall back.
-    think=True lets Gemma reason briefly first (for questions with requirements our filters don't cover)."""
+    think=True lets Gemma reason first (for questions with requirements our filters don't cover), with room to check every home."""
     try:
         resp = requests.post(f"{url()}/api/chat", headers=_auth(), stream=True, timeout=(10, FIRST_BYTE_SECONDS),
                              json={"model": MODEL, "messages": [{"role": "user", "content": prompt}], "stream": True,
-                                   # Thinking shares the token budget with the answer, so it gets more room.
-                                   "think": think, "options": {"temperature": 0.3, "num_predict": 3000 if think else 900}})
+                                   # Thinking shares the token budget with the answer, so it gets plenty of room to check every home.
+                                   "think": think, "options": {"temperature": 0.3, "num_predict": 6000 if think else 900}})
         resp.raise_for_status()
         for line in resp.iter_lines():
             if not line:

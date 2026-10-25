@@ -14,6 +14,7 @@ from flask import Flask, Response, jsonify, request, send_from_directory, send_f
 
 from advisor import AREAS, ask, cards_for, options, programs, quick_nearby, stream_ask, warm_examples
 from live_search import search as live_search
+import hotels
 import nearby
 import walkable
 from matcher import gemma_unavailable, find_help
@@ -294,6 +295,15 @@ def find_options():
     return jsonify(result), (400 if "error" in result else 200)
 
 
+@app.post("/api/hotels")
+def hotels_nearby():
+    """Hotels and motels near a place from Google Places, cheapest first, for someone who needs a room tonight (no AI)."""
+    found = hotels.near(_text(_body(), "place", 100))
+    if found is None:
+        return jsonify(error="Clear House covers Northern Virginia and Blacksburg, VA. Try Blacksburg, Reston, or Woodbridge."), 400
+    return jsonify(found)
+
+
 @app.get("/api/maps-config")
 def maps_config():
     """The browser Maps key (restricted to this site's addresses), or null so the page uses its fallback."""
@@ -442,15 +452,32 @@ def ask_advisor_stream():
     question, history, instant = _chat_request()
     if question is None:
         return instant
+    # Somewhere to stay tonight: hotels and motels nearby are looked up while Gemma writes, and sent after its answer.
+    body = _body()
+    place = hotels.place_for(redact(_text(body, "question"))[0], body.get("profile") if isinstance(body.get("profile"), dict) else {})
+    rooms = hotels.lookup_later(place) if place else None
+
+    def hotels_event():
+        try:
+            found = rooms.result(timeout=10) if rooms else None
+        except Exception:
+            found = None
+        return f"data: {json.dumps({'kind': 'hotels', 'text': found})}\n\n" if found else ""
 
     def events():
         engine = "Instant answer from our checked list with Google Maps Platform (Places + Routes); no AI needed"
         updates = [("engine", engine), ("answer", instant), ("cards", cards_for(instant))] if instant else stream_ask(question, history)
+        sent = False
         try:
             for kind, text in updates:
+                if kind == "done":  # hotels go just before the end
+                    sent = True
+                    yield hotels_event()
                 yield f"data: {json.dumps({'kind': kind, 'text': text})}\n\n"
         except Exception:
             yield f"data: {json.dumps({'kind': 'fallback', 'text': 'Something went wrong. Please try again, or call 211 for help.'})}\n\n"
+        if not sent:
+            yield hotels_event()  # answers that end without "done" (instant, fallback)
     return Response(stream_with_context(events()), mimetype="text/event-stream",
                     headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 

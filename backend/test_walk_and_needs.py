@@ -59,8 +59,14 @@ class WalkTests(unittest.TestCase):
                   "cheap rooms in blacksburg", "I walk my dog every morning"]:
             with self.subTest(q):
                 self.assertIsNone(nearby.answer(q, {}, []) if "walk" in q else None)
-        for q in ["2 bedroom in arlington under 1500 a month", "I need to move in 2 months", "cheap rooms in blacksburg"]:
+        for q in ["2 bedroom in arlington under 1500 a month", "I need to move in 2 months", "cheap rooms in blacksburg",
+                  "Is the tax credit apartment in Reston open?"]:
             self.assertEqual(advisor.extra_needs(q), [])
+
+    def test_specific_situations_let_gemma_think(self):
+        self.assertEqual(advisor.extra_needs("Furnished room near VT that allows my emotional support cat"), ["furnished", "pets"])
+        self.assertEqual(advisor.extra_needs("A roommate setup, move-in by Jan 5, no smoking"), ["roommates", "move-in date", "smoking"])
+        self.assertEqual(advisor.extra_needs("Apartments with no credit check on the ground floor"), ["floor access", "screening rules"])
 
 
 class ThinkingTests(unittest.TestCase):
