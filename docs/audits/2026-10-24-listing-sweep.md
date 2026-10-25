@@ -79,3 +79,12 @@ Implemented: phone links now dial only the first real number (extensions wait fo
 ## Follow-up: map locations
 
 Implemented: 32 of the housing records without coordinates now have them, from OpenStreetMap Nominatim (coordinates only; no listing facts). Each point was checked to fall inside the record's own county or city outline (NoVA) or near Blacksburg. `geocode_source` says whether it matched the exact address or only the street. Still without a pin: addresses neither the Census nor OpenStreetMap knows yet (mostly new construction), the two street-only addresses, and Linden Green (Simpson Road is too long for a street-level pin).
+
+## Follow-up: property websites (2026-10-25)
+
+197 housing communities linked only to a county or city list (for example Fairfax County's "privately owned" page, which has no per-property links). Each was searched for the owner's or manager's own page; a site was accepted only when a readable page named the community at its address, or when a readable official page (owner, manager, city) linked that exact site. Listing sites (Apartments.com, Zillow and the like) were not used.
+
+- Implemented: 134 communities (135 records) now have `website`, also listed in `sources` with role `provider`. Cards show "Property website" first, and a county directory link is labeled "County housing list".
+- Fixed from the property's or owner's own page: addresses for Russell at Reston Station (11500 Commerce Park Dr), Cortland at McLean (1350 Beverly Rd), Overture Fair Ridge (3955 Fair Ridge Dr), Key Gardens (5125 Columbia Pike) and The Ashtons (5712 N 10th Rd), each re-pinned with the Census geocoder; phones for Beverly Park, Lynhaven and Parc Square (ours was Wesley's emergency maintenance line), Knightsbridge, Whitefield Commons, Preserve at Westfields (was a Charlotte number), Beasley Square and Annie B. Rose House (city senior housing page), and Lake Ridge Fellowship House (owner page).
+- Flagged on /review: 63 communities whose site couldn't be confirmed (usually the site blocks automated checks; the candidate URL is in the note) or wasn't found, plus renamed properties, possible address typos, and phone numbers that differ from the official page (many are call-tracking lines, so a person should call).
+
