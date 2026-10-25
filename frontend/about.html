@@ -889,7 +889,7 @@
     // turns over as it reaches the middle of the screen, and back when you scroll up past it.
     const flipTrack = document.querySelector('.google-track');
     if (flipTrack && !calmPage) {
-      const LEAD = 60, TURN = 190, GAP = 80, TAIL = 180, distance = LEAD + GAP * (flips.length - 1) + TURN + TAIL;
+      const LEAD = 30, TURN = 100, GAP = 40, TAIL = 90, distance = LEAD + GAP * (flips.length - 1) + TURN + TAIL;
       const turned = flips.map(() => false);  // which side scrolling last asked for
       const byHand = new Map();  // card -> the side scrolling wanted when it was tapped
       const inner = card => card.querySelector('.flip-in');
@@ -947,7 +947,7 @@
         show(i);
         if (i + 1 < STOPS.length) timer = setTimeout(() => tour(i + 1), STOP_MS);
       };
-      pinScene(mapTrack, { distance: 520,
+      pinScene(mapTrack, { distance: 500,
         play: p => { clearTimeout(timer); show(p <= 0 ? -1 : Math.min(STOPS.length - 1, Math.floor(p * STOPS.length))); },
         loose: () => {
           if (toured) return;
@@ -1011,7 +1011,7 @@
           requestAnimationFrame(tick);
         };
         render(0);
-        pinScene(howTrack, { distance: 1100, play: p => { played = true; render(p); }, loose: playOnce });
+        pinScene(howTrack, { distance: 550, play: p => { played = true; render(p); }, loose: playOnce });
       }
     }
   </script>
