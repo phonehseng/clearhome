@@ -799,9 +799,9 @@
     /* The two big sections: more air, and a heading that reads first, with an icon tile in the site blue. */
     #tools,.listings-section{background:var(--glare),var(--glass-bg);box-shadow:var(--rim),var(--lift);padding:32px;border-radius:28px}
     .listings-section{margin-top:36px}
-    :is(#tools,.listings-section)>.section-heading{align-items:center;margin-bottom:24px;padding:0!important}
-    :is(#tools,.listings-section)>.section-heading h2{display:flex;align-items:center;gap:14px;font-size:clamp(24px,2.3vw,30px);line-height:1.2;font-weight:700;letter-spacing:-.7px;color:var(--ink)}
-    :is(#tools,.listings-section)>.section-heading h2::before{content:'';flex:none;width:44px;height:44px;border-radius:14px;
+    :is(#tools,.listings-section,.listings-drawer)>.section-heading{align-items:center;margin-bottom:24px;padding:0!important}
+    :is(#tools,.listings-section,.listings-drawer)>.section-heading h2{display:flex;align-items:center;gap:14px;font-size:clamp(24px,2.3vw,30px);line-height:1.2;font-weight:700;letter-spacing:-.7px;color:var(--ink)}
+    :is(#tools,.listings-section,.listings-drawer)>.section-heading h2::before{content:'';flex:none;width:44px;height:44px;border-radius:14px;
       background:var(--icon) center/22px no-repeat,linear-gradient(150deg,#5b8af5,#23408f);box-shadow:inset 0 1px 0 #ffffff59,0 6px 16px #23408f40}
     #tools{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m16 16 5 5'/%3E%3C/svg%3E")}
     .listings-section{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8'/%3E%3C/svg%3E")}
@@ -943,8 +943,8 @@
 
     @media(max-width:560px){
       #tools,.listings-section{padding:20px 16px;border-radius:22px}
-      :is(#tools,.listings-section)>.section-heading h2{gap:12px;font-size:23px}
-      :is(#tools,.listings-section)>.section-heading h2::before{width:38px;height:38px;border-radius:12px;background-size:19px}
+      :is(#tools,.listings-section,.listings-drawer)>.section-heading h2{gap:12px;font-size:23px}
+      :is(#tools,.listings-section,.listings-drawer)>.section-heading h2::before{width:38px;height:38px;border-radius:12px;background-size:19px}
       :is(.assistant-head,.assistant-log,.assistant-chips,.assistant-form){padding-left:14px;padding-right:14px}
       .hero-copy>p{font-size:16px}
       .hero-map-wrap{padding:10px;border-radius:22px}
@@ -970,6 +970,29 @@
     #tools .primary,#tools .assistant-form .primary,#tools .find-form .primary{background:#14203f!important;color:#fff;box-shadow:0 6px 16px #14203f26}
     #tools .primary:hover{background:#23408f!important}
     #tools .assistant-chips button,#tools .examples button{background:#fff;border:1px solid var(--line);border-radius:999px;color:var(--ink)}
+      /* Simple /app: the chat first, the map beside "Need a Safe Place Tonight?", tonight results, then rentals in a drop-down. */
+    #tools.simple-tools{display:grid;gap:22px;margin-top:28px}
+    #tools.simple-tools .assistant{margin:0}
+    #tools.simple-tools .assistant-log:not(.chatting){min-height:0}
+    .tools-row{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,1fr);gap:22px;align-items:start}
+    .tools-row .hero-map-wrap{min-width:0}
+    .tools-row .hero-map{height:340px}
+    .tools-results .find-results:not([hidden]){margin-top:0}
+    @media(max-width:860px){.tools-row{grid-template-columns:1fr}.tools-row .hero-map{height:280px}}
+    #tools .assistant-privacy{margin:0;padding:10px 18px 14px;font-size:13px;color:var(--muted)}
+    #tools .assistant-privacy summary{width:fit-content;cursor:pointer;text-decoration:underline;text-decoration-color:#9fb0d3;text-underline-offset:3px}
+    #tools .assistant-privacy summary:focus-visible{outline:3px solid #f2b84b;outline-offset:2px;border-radius:4px}
+    #tools .assistant-privacy p{margin:8px 0 0;line-height:1.55}
+    .listings-drawer>summary{list-style:none;cursor:pointer;margin-bottom:0!important}
+    .listings-drawer>summary::-webkit-details-marker{display:none}
+    .listings-drawer[open]>summary{margin-bottom:24px!important}
+    .listings-drawer>summary:focus-visible{outline:3px solid #f2b84b;outline-offset:6px;border-radius:14px}
+    .listings-drawer .drawer-hint{display:inline-flex;align-items:center;gap:8px;margin-left:12px;padding:9px 16px;border-radius:999px;background:#14203f;color:#fff;font-size:14px;font-weight:700;white-space:nowrap}
+    .listings-drawer .drawer-hint::before{content:'Show'}
+    .listings-drawer[open] .drawer-hint::before{content:'Hide'}
+    .listings-drawer .drawer-hint::after{content:'';width:8px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+    .listings-drawer[open] .drawer-hint::after{transform:translateY(2px) rotate(-135deg)}
+    @media(max-width:560px){.listings-drawer .catalog-label{display:none}}
   </style>
 </head>
 <body>
@@ -1037,23 +1060,29 @@
     </div>
   </header>
 <main class="container">
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A Clearer Path.<br><span>A Place to Call Home.</span></h1><p>Verified homes, shelters and rent help.</p><a class="browse-link" href="#listings">Browse Housing & Waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official sources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></section>
-  <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What Do You Need?</h2></div><div class="tools"><div class="tool-workspace">
-    <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find Housing Help</strong><small>A Place to Start</small></span></button></div>
-    <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Ask, or Search.</h3><span class="step-label">HOUSING SUPPORT</span></div>
+  <section id="tools" class="simple-tools" aria-label="Ask Clear Home">
+    <h1 class="visually-hidden">Clear Home: housing help for Northern Virginia and Blacksburg</h1>
     <div class="assistant" id="assistant">
-      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="34" height="34"></span><div><strong>Ask Gemma 4</strong><span>Gemma 4 26B · answers only from verified resources</span></div></div>
+      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="34" height="34"></span><div><strong>Ask about housing</strong><span>Gemma 4 · answers from verified places only</span></div></div>
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
       <div class="assistant-chips" id="assistant-chips" role="group" aria-label="Example housing questions">
         <button type="button">Rooms near Virginia Tech under $700</button>
         <button type="button">Rent help in Alexandria</button>
         <button type="button">Shelter tonight in Arlington</button>
-        <button type="button">Section 8 waitlists in Fairfax</button>
       </div>
       <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the Assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" aria-describedby="assistant-privacy" placeholder="Ask anything about housing, or “near my office at …”"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
-      <p class="assistant-privacy" id="assistant-privacy">Gemma 4 answers on our own server in Google Cloud, so your message doesn’t go to an outside AI company. If that server is busy, Google’s Gemini API answers instead, and on its free tier Google may use what’s sent to improve its products. Before either sees it, we remove SSNs, card and account numbers, email addresses and phone numbers. Names and street addresses are not removed, so please use made-up details. Clear Home doesn’t save chats.</p>
+      <details class="assistant-privacy" id="assistant-privacy"><summary>Please use made-up details. Chats aren’t saved.</summary><p>Gemma 4 answers on our own server in Google Cloud, so your message doesn’t go to an outside AI company. If that server is busy, Google’s Gemini API answers instead, and on its free tier Google may use what’s sent to improve its products. Before either sees it, we remove SSNs, card and account numbers, email addresses and phone numbers. Names and street addresses are not removed, so please use made-up details. Clear Home doesn’t save chats.</p></details>
     </div>
-    <h4 class="find-or">Or Filter Yourself</h4><p class="find-or-note">Ask Gemma for guidance in your own words, or use these filters to browse the reviewed listings yourself. The filters don’t need the AI, so they keep working if it’s down.</p><form id="find-form" novalidate>
+    <div class="tools-row"><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Look for shelters or hotels tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div></section></div>
+    <div class="tools-results"><div class="walk-results">
+    <p class="walk-status" id="walk-status" role="status" aria-live="polite"></p>
+    <div class="walk-toggle" id="walk-toggle" hidden><button type="button" data-view="list" aria-pressed="true">List</button><button type="button" data-view="map" aria-pressed="false">Map</button></div>
+    <div class="walk-layout" id="walk-layout" hidden>
+      <div class="walk-cards" id="walk-cards"></div>
+      <div class="walk-map-col"><div class="walk-map" id="walk-map" role="region" aria-label="Map of the selected home and nearby place"></div><p class="walk-map-text" id="walk-map-text"></p></div>
+    </div>
+    </div><div class="find-results" id="find-results" role="region" aria-live="polite" aria-label="Your options" hidden></div></div>
+    <div class="find-engine" hidden><h4 class="find-or">Or Filter Yourself</h4><p class="find-or-note">Ask Gemma for guidance in your own words, or use these filters to browse the reviewed listings yourself. The filters don’t need the AI, so they keep working if it’s down.</p><form id="find-form" novalidate>
       <div class="input-row"><div class="loc-field"><label for="location">Where are you looking?</label><div class="input-wrapper has-pick"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#pin"/></svg><input id="location" name="location" value="Northern Virginia" maxlength="100" autocomplete="off" list="location-places" placeholder="City, town, county or neighborhood"><datalist id="location-places"><option value="Northern Virginia"></option><option value="Blacksburg"></option><option value="Fairfax County"></option><option value="Arlington County"></option><option value="Alexandria City"></option><option value="Loudoun County"></option><option value="Prince William County"></option><option value="Fairfax City"></option><option value="Falls Church City"></option><option value="Manassas City"></option><option value="Manassas Park City"></option><option value="Fairfax"></option><option value="Reston"></option><option value="Herndon"></option><option value="Chantilly"></option><option value="Centreville"></option><option value="Tysons"></option><option value="McLean"></option><option value="Vienna"></option><option value="Falls Church"></option><option value="Annandale"></option><option value="Springfield"></option><option value="Burke"></option><option value="Lorton"></option><option value="Ballston"></option><option value="Clarendon"></option><option value="Crystal City"></option><option value="Columbia Pike"></option><option value="Old Town Alexandria"></option><option value="Del Ray"></option><option value="Leesburg"></option><option value="Ashburn"></option><option value="Sterling"></option><option value="South Riding"></option><option value="Manassas"></option><option value="Woodbridge"></option><option value="Dumfries"></option><option value="Gainesville"></option><option value="Virginia Tech"></option><option value="Christiansburg"></option></datalist></div><label class="visually-hidden" for="location-pick">Pick an Area</label><select id="location-pick" class="location-pick"><option value="">Pick an area</option><optgroup label="Regions"><option>Northern Virginia</option><option>Blacksburg</option></optgroup><optgroup label="Fairfax County"><option>Fairfax</option><option>Reston</option><option>Herndon</option><option>Chantilly</option><option>Centreville</option><option>Tysons</option><option>McLean</option><option>Vienna</option><option>Annandale</option><option>Springfield</option><option>Burke</option><option>Lorton</option></optgroup><optgroup label="Arlington County"><option>Ballston</option><option>Clarendon</option><option>Crystal City</option><option>Columbia Pike</option></optgroup><optgroup label="Alexandria"><option>Old Town Alexandria</option><option>Del Ray</option></optgroup><optgroup label="Cities"><option>Fairfax City</option><option>Falls Church</option><option>Manassas</option><option>Manassas Park</option></optgroup><optgroup label="Loudoun County"><option>Leesburg</option><option>Ashburn</option><option>Sterling</option><option>South Riding</option></optgroup><optgroup label="Prince William County"><option>Woodbridge</option><option>Dumfries</option><option>Gainesville</option></optgroup><optgroup label="Blacksburg area"><option>Virginia Tech</option><option>Christiansburg</option></optgroup></select></div><div><label for="budget">Monthly Budget <span style="font-weight:400;color:var(--muted)">(optional)</span></label><div class="input-wrapper"><span>$</span><input id="budget" name="budget" type="number" min="0" max="100000" placeholder="Your maximum" inputmode="decimal"><span>/ month</span></div></div></div>
       <label class="urgent-check"><input type="checkbox" id="tonight" name="tonight"> I need a safe place to stay tonight</label>
       <details class="more-options" id="more-options"><summary>More Options <span>(optional)</span></summary><div class="more-options-body">
@@ -1075,21 +1104,11 @@
         <div class="find-check"><label><input type="checkbox" id="voucher" name="voucher"> I have a housing voucher</label><button type="button" class="find-help" aria-label="About the housing voucher option" aria-expanded="false" aria-controls="tip-voucher">!</button><span class="find-tip" id="tip-voucher" role="tooltip" hidden>A housing voucher helps pay rent. Ask the provider whether your voucher can be used.</span></div>
       </fieldset>
       <label for="situation">Anything else we should know? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="situation" name="situation" maxlength="1700" aria-describedby="situation-hint situation-count" placeholder="For example: I’m a student and need to move next month."></textarea><div class="textarea-hint"><span id="situation-hint">If you write something here, our assistant will answer it after your options. Keep personal details out.</span><span class="character-count" id="situation-count">0 / 1,700</span></div><div class="examples"><span>Need a starting point?</span><button type="button" data-example="I’m a student looking for an affordable room near campus. My move-in date is flexible.">I’m a student</button><button type="button" data-example="I’m looking for affordable housing for my family. What programs or assistance might help us?">Housing for my family</button><button type="button" data-example="I need a safe place to stay tonight. Please help me find emergency shelter resources.">I need a place tonight</button></div></div></details><div class="form-bottom"><span class="privacy-note"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Recommendations from verified resources only</span><button class="primary" type="submit"><span>Show My Options</span><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#arrow"/></svg></button></div>
-    </form>
-    <div class="walk-results">
-    <p class="walk-status" id="walk-status" role="status" aria-live="polite"></p>
-    <div class="walk-toggle" id="walk-toggle" hidden><button type="button" data-view="list" aria-pressed="true">List</button><button type="button" data-view="map" aria-pressed="false">Map</button></div>
-    <div class="walk-layout" id="walk-layout" hidden>
-      <div class="walk-cards" id="walk-cards"></div>
-      <div class="walk-map-col"><div class="walk-map" id="walk-map" role="region" aria-label="Map of the selected home and nearby place"></div><p class="walk-map-text" id="walk-map-text"></p></div>
-    </div>
-    </div>
-    <div class="find-results" id="find-results" role="region" aria-live="polite" aria-label="Your options" hidden></div>
-    </section>
-  </div><section class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>Three Steps</h3><ol class="steps"><li><span class="step-number">1</span><div><strong>Say what you need</strong></div></li><li><span class="step-number">2</span><div><strong>See verified options</strong></div></li><li><span class="step-number">3</span><div><strong>Call to confirm</strong></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Look for shelters or hotels tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div></section></section></div></section>
+    </form></div>
+  </section>
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
-    <div class="section-heading"><div><h2 id="listings-title">Explore Rentals & Housing Waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
+    <details class="listings-drawer" id="listings-drawer"><summary class="section-heading"><div><h2 id="listings-title">Explore Rentals & Housing Waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span><span class="drawer-hint" aria-hidden="true"></span></summary><div class="listings-body">
     <p class="catalog-notice">Listed doesn’t mean vacant. Confirm rent, fees and eligibility with the provider.</p>
     <div class="listing-tabs" role="group" aria-label="Which listings to show"><button type="button" data-list="all" aria-pressed="true">All Listings</button><button type="button" data-list="favorites" aria-pressed="false">Favorites<span class="favorite-count" id="favorite-count">0</span></button></div>
     <div class="budget-shortcut"><span class="quick-label">Quick picks</span><button type="button" id="blacksburg-student-rooms">Blacksburg Student Rooms · Under $1,000</button><button type="button" id="budget-under-1500" aria-pressed="false">Up to $1,500 / Month</button></div>
@@ -1113,6 +1132,7 @@
       <button id="show-all-listings" class="more-listings" type="button" hidden>Show All Communities</button>
     </div>
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
+  </div></details>
   </section>
 </main><footer class="cl-footer">
     <div class="container cl-footer-top">
@@ -1195,6 +1215,10 @@
   }));
   // Share copies a link that opens the site with that listing pinned first and highlighted.
   let sharedListingId = new URLSearchParams(location.search).get('listing');
+  // Explore Rentals is a drop-down: closed at first, opened by a link to #listings or a shared listing.
+  const listingsDrawer = document.getElementById('listings-drawer');
+  if (location.hash === '#listings' || sharedListingId) listingsDrawer.open = true;
+  addEventListener('hashchange', () => { if (location.hash === '#listings') listingsDrawer.open = true; });
   const shareToast = document.getElementById('share-toast'); let shareToastTimer;
   document.body.append(shareToast);  // inside the glass listings section a fixed message is placed against the section, off-screen
   function notify(message) { shareToast.textContent = message; shareToast.classList.add('show'); clearTimeout(shareToastTimer); shareToastTimer = setTimeout(() => shareToast.classList.remove('show'), 2000); }
