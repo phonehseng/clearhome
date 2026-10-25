@@ -1,5 +1,7 @@
 # Handoff: blur transition when skipping Gemma
 
+> **Status: done** in 208f705, for both Skip and a first question: the card blurs away on the intro's blue and the tools page clears in from the same blue, with a one-use marker read before first paint (no replay on reload, direct visits or back/forward).
+
 ## Request
 
 When a user opens the Gemma 4 introduction and selects **Skip**, transition smoothly to the main tools page (`/app`). The destination currently appears abruptly. Blur and fade out the introduction, then reveal the tools page through a blur that gradually clears. Make this feel like one continuous transition, without a flash of the homepage between screens.

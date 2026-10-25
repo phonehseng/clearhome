@@ -1,5 +1,7 @@
 # Handoff: smoother Browse housing navigation and cleaner header
 
+> **Status: done.** Smooth Browse housing scroll, header link polish and removing Our promise landed in 3f70c67; the shared site header (0075f0d) carries it to every page.
+
 Implement, visually verify, commit, and push these user-requested changes. This handoff alone does not fulfill the implementation request.
 
 ## Requested changes

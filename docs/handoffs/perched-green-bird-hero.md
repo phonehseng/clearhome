@@ -1,5 +1,7 @@
 # Handoff: green bird perched on the homepage headline
 
+> **Status: built, then removed.** aaf65fd added the perched bird (later restyled to match the flock, in orange); 5edcca8 removed it at the user's request.
+
 ## User request
 
 Add a small green bird, visually matching the birds already flying on the site, perched on the **top-left of the F** in **“Find Your Way Home.”** on the main homepage. When the cursor hovers over the bird, it should take off and fly away.

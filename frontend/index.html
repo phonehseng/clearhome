@@ -769,7 +769,12 @@
     <div class="assistant" id="assistant">
       <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="34" height="34"></span><div><strong>Ask Gemma 4</strong><span>Gemma 4 26B · answers only from checked resources</span></div></div>
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
-      <div class="assistant-chips" id="assistant-chips"><button type="button">I’m behind on rent in Alexandria. Who can help this week?</button><button type="button">Somewhere safe to sleep tonight in Arlington</button><button type="button">Homes near my office at 1800 Tysons Blvd under $2,000</button><button type="button">A room near Virginia Tech under $700</button><button type="button">Is the Section 8 waitlist open in Fairfax?</button></div>
+      <div class="assistant-chips" id="assistant-chips" role="group" aria-label="Example housing questions">
+        <button type="button">Rooms near Virginia Tech under $700</button>
+        <button type="button">Rent help in Alexandria</button>
+        <button type="button">Shelter tonight in Arlington</button>
+        <button type="button">Section 8 waitlists in Fairfax</button>
+      </div>
       <form class="assistant-form" id="assistant-form"><label for="assistant-input" class="visually-hidden">Message the Assistant</label><textarea id="assistant-input" rows="1" maxlength="1500" placeholder="Ask anything about housing, or “near my office at …”"></textarea><button class="primary" type="submit"><span>Send</span></button></form>
     </div>
     <h4 class="find-or">Or Filter Yourself</h4><form id="find-form" novalidate>
@@ -1599,7 +1604,7 @@
     wake.observe(document.getElementById('assistant'));
     const chips = document.getElementById('assistant-chips');
     chips.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { chips.hidden = true; ask(b.textContent); } });
-    botSay("Hi, I'm Gemma, the Clear House assistant. Ask me about vouchers, rent help, shelters, or homes near a place, like your office or campus. I only use our checked resources.");
+    botSay("Hi, I'm Gemma. Find homes near work or campus, or ask about rent help, shelters, and vouchers. I use our checked resources.");
 
     // "Pick an area" fills the box and moves the map there, the same as typing a place.
     document.getElementById('location-pick').addEventListener('change', e => {

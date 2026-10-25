@@ -1,5 +1,7 @@
 # Handoff: fix housing intent and multi-constraint chat answers
 
+> **Status: done** in 59bd4e7. Root cause: the message wasn't read as a rental search, a bare "campus" defaulted to all of Northern Virginia, the typo dropped accessibility and "2 person" was ignored, so Gemma got programs and an emergency line. Now a bare campus gets one instant question that repeats every requirement, the reply keeps the request, rental searches get listings only, and Gemma is told the household size and to confirm unknown pet and accessibility details. Tests: `backend/test_chat_intent.py`; checked end to end with the real Gemma. Data limit: no listing records a pet policy or confirmed accessibility yet, so answers can only say to confirm them.
+
 Please investigate and implement this high-impact Gemma chat correction, validate it end to end, and commit and push the actual fix. Thank you for the work on the existing experience; this request focuses on making its answers reliably address what people ask.
 
 ## Exact reproduction from the user

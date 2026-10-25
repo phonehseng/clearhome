@@ -191,7 +191,7 @@
     .promises li.visible svg{animation:ch-pop .55s .1s both}
     .eyebrow.visible::before{animation:ch-pulse 2.4s ease-in-out infinite}
     /* Same blue as the Ask Gemma 4 card, with a soft light that sweeps across as you scroll. */
-    .cta{background:radial-gradient(700px circle at calc(var(--sweep, 0) * 100%) 0%, #ffffff2e 0%, transparent 60%),linear-gradient(160deg,#4f7ff0,#2f55b5)}
+    .cta{background:radial-gradient(700px circle at calc(var(--sweep, 0) * 100%) 0%, #ffffff2e 0%, transparent 60%),linear-gradient(160deg,#2f55b5,#4f7ff0)}  /* dark to light */
     @keyframes ch-pop{0%{transform:scale(0) rotate(-20deg);opacity:0}65%{transform:scale(1.18) rotate(4deg);opacity:1}100%{transform:none}}
     @keyframes ch-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
     @keyframes ch-spin-in{from{transform:rotate(-120deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
@@ -275,7 +275,19 @@
     .pin-track.pinned .pin-stage{position:sticky;top:0;box-sizing:border-box;height:calc(100vh / var(--page-zoom, 1));display:flex;flex-direction:column;align-items:center;justify-content:center}
     .pin-track.pinned .pin-fit{transform:translateY(calc((.5 - var(--p, 0)) * 28px))}
     .google-track.pinned .google-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .scene-progress{position:absolute;left:50%;top:84px;display:none;align-items:center;gap:12px;transform:translateX(-50%);
+    /* Birds crossing each pinned scene in the background (the hero's flock), moved by the same gliding scroll progress
+       as the scene: scrolling down sends them across, scrolling up brings them back. Their wings keep flapping. */
+    .scene-birds{position:absolute;inset:0;z-index:0;display:none;overflow:hidden;pointer-events:none;container-type:size}
+    .pin-track.pinned .scene-birds{display:block}
+    .pin-track.pinned .pin-fit{position:relative;z-index:1}
+    .scene-birds i{position:absolute;left:0;top:var(--y);width:calc(30px * var(--size));aspect-ratio:20/8.5;
+      transform:translateX(calc((var(--p, 0) * var(--s) + var(--o)) * 100cqw));
+      transform:translate(calc((var(--p, 0) * var(--s) + var(--o)) * 100cqw), calc(sin(var(--p, 0) * var(--s) * 14rad) * 16px))}
+    .scene-birds svg{display:block;width:100%;height:100%;overflow:visible}
+    .scene-birds :is(.wl,.wr){transform-box:fill-box;animation:wing-l var(--flap) ease-in-out infinite}
+    .scene-birds .wl{transform-origin:right bottom}
+    .scene-birds .wr{transform-origin:left bottom;animation-name:wing-r}
+    .scene-progress{position:absolute;left:50%;top:24px;z-index:51;display:none;align-items:center;gap:12px;transform:translateX(-50%);
       font-size:12px;font-weight:600;letter-spacing:.02em;color:#5b6b85;white-space:nowrap;transition:opacity .35s}
     .pin-track.pinned .scene-progress{display:flex}
     .scene-progress b{position:relative;width:160px;height:4px;border-radius:4px;background:#d6e0f3;overflow:hidden}
@@ -801,12 +813,23 @@
     // waits for a threshold), the stage drifts gently, and a progress bar at the bottom fills as you go. Narrow or short
     // windows scroll freely and call loose() instead; reduced motion skips the scenes (callers show the finished state).
     const calmPage = matchMedia('(prefers-reduced-motion: reduce)').matches, siteHeader = document.querySelector('.site-header');
+    const BIRD = '<svg viewBox="-10 -6 20 8.5"><g stroke="#7e9bc8" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/>'
+      + '<path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7e9bc8"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7e9bc8"/></svg>';
+    let scenes = 0;
     function pinScene(track, { distance, play, loose, fitTo }) {
       const stage = track.firstElementChild, fit = stage.firstElementChild;
       const bar = document.createElement('div');
       bar.className = 'scene-progress'; bar.setAttribute('aria-hidden', 'true');
       bar.append('Keep scrolling', document.createElement('b'), document.createElement('i'));
       stage.append(bar);
+      // A few birds cross the background: speed, start (as a share of the width, off to the left), height, size and
+      // flap speed, varied per scene so no two look the same.
+      const birds = document.createElement('div');
+      birds.className = 'scene-birds'; birds.setAttribute('aria-hidden', 'true');
+      const turn = (scenes++ % 3) * .07;
+      birds.innerHTML = [[1.5, -.3, 14, 1, 1.1], [1.8, -.62, 24, .75, .95], [1.3, -.2, 76, .9, 1.25], [1.65, -.48, 86, .65, 1]]
+        .map(([s, o, y, size, flap]) => `<i style="--s:${s + turn};--o:${o - turn};--y:${(y + turn * 60) % 92}%;--size:${size};--flap:${flap}s">${BIRD}</i>`).join('');
+      stage.prepend(birds);
       let pinned = false;
       // Wide screens zoom the whole page (html zoom), so window sizes are divided by it to get CSS pixels.
       const zoom = () => parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
@@ -817,9 +840,9 @@
         pinned = false;
         if (innerWidth < 900) return;
         track.classList.add('pinned');
-        const top = siteHeader ? siteHeader.offsetHeight : 0, room = innerHeight / zoom() - top - 76;  // the progress bar sits above
-        stage.style.paddingTop = `${top + 44}px`;
-        bar.style.top = `${top + 14}px`;
+        const top = siteHeader ? siteHeader.offsetHeight : 0, room = innerHeight / zoom() - top - 44;
+        stage.style.paddingTop = `${top + 12}px`;
+        bar.style.top = `${Math.max(8, (top - bar.offsetHeight) / 2)}px`;  // in the header's row, at the very top of the window
         fit.style.width = `${stage.clientWidth}px`;  // zoom then shrinks it evenly, keeping its columns
         if (fitTo) fitTo(room);
         const scale = Math.min(1, room / fit.offsetHeight);
