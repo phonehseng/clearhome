@@ -436,7 +436,17 @@
     .cl-title span.word{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:inherit}
     .cl-title>span:not(.word){background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#2f55b5}
     .cl-end .cl-title>span:not(.word){color:#9fbff5}
-    .cl-end .cl-btn{margin:0;padding:11px 18px;min-height:44px;font-size:14px;background:#fff;color:#14203f;box-shadow:none;justify-content:center}
+    .cl-end .cl-btn{margin:0;padding:11px 18px;min-height:44px;font-size:14px;justify-content:center;
+      color:#f7faff;background:linear-gradient(135deg,#ffffff30,#ffffff14);border:1px solid #ffffff59;
+      backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);
+      box-shadow:inset 0 1px 0 #ffffff66,inset 0 -1px 0 #ffffff0d,0 4px 14px #050d2526;
+      transition:background .15s,border-color .15s,box-shadow .15s,transform .15s}
+    .cl-end .cl-btn:hover{background:linear-gradient(135deg,#ffffff40,#ffffff20);border-color:#ffffff85;
+      box-shadow:inset 0 1px 0 #ffffff80,0 6px 18px #050d2533;transform:translateY(-1px)}
+    .cl-end .cl-btn:active{transform:translateY(0)}
+    .cl-end .cl-btn:focus-visible{outline:3px solid #b5d1ff;outline-offset:4px}
+    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.cl-end .cl-btn{background:#293b65}.cl-end .cl-btn:hover{background:#344b7b}}
+    @media(prefers-reduced-motion:reduce){.cl-end .cl-btn{transition:none}}
     .cl-end .cl-urgent{grid-column:1 / -1;max-width:none;margin:0;padding-top:16px;border-top:1px solid #ffffff26;color:#c9d4ed;font-size:13px;line-height:1.65}
     @media(max-width:640px){.cl-section.cl-end{grid-template-columns:1fr;justify-items:start;gap:16px;padding:24px;margin-bottom:36px}.cl-end .cl-title{font-size:28px}.cl-end .cl-urgent{padding-top:14px}}
     .cl-end .cl-urgent a{color:#ffd66b}
@@ -856,19 +866,19 @@
         }) });
     }
 
-    // The map. Pinned while it flies from all of Northern Virginia to a neighborhood, to Reston, then to Blacksburg; the
-    // caption changes at each stop and the progress bar fills in between. Scrolling back up goes back; once someone uses
-    // the map themselves, scrolling leaves it be. Narrow screens just show the map.
+    // The map. Pinned (wide screens): as you scroll it flies from all of Northern Virginia to a neighborhood, to Reston,
+    // then to Blacksburg, with a caption for each stop and the progress bar filling in between; scrolling back up goes
+    // back. Phones and short windows get the same tour once, on a timer, when the map comes into view. Either way it
+    // stops for good as soon as someone uses the map.
     const mapTrack = document.querySelector('.map-track');
     if (mapTrack && !calmPage) {
       const STOPS = [['Northern Virginia', 'Every checked home across Northern Virginia.'], ['Arlington (Ballston)', 'Zoom into a neighborhood, like Ballston in Arlington.'],
                      ['Reston', 'Or look near work, like Reston.'], ['Blacksburg', 'And Blacksburg, right by Virginia Tech.']];
-      const lead = mapTrack.querySelector('.cl-lead'), mapBox = mapTrack.querySelector('#listing-map'), frame = mapTrack.querySelector('.cl-frame');
+      const STOP_MS = 3200, lead = mapTrack.querySelector('.cl-lead'), mapBox = mapTrack.querySelector('#listing-map'), frame = mapTrack.querySelector('.cl-frame');
       const intro = lead.textContent;
-      let stop = -1, driving = true;
-      const handsOn = () => { driving = false; };
-      frame.addEventListener('pointerdown', handsOn);
-      frame.addEventListener('keydown', handsOn);
+      let stop = -1, driving = true, toured = false, timer = null;
+      const handsOn = () => { driving = false; clearTimeout(timer); };
+      ['pointerdown', 'keydown'].forEach(type => frame.addEventListener(type, handsOn, { passive: true }));  // not wheel: scrolling past the map isn't using it
       const show = i => {
         if (i === stop) return;
         stop = i;
@@ -876,9 +886,19 @@
         lead.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
         if (i >= 0 && driving) window.clearHouseMapGoTo?.(STOPS[i][0]);
       };
+      const tour = i => {  // the timed version
+        if (!driving) return;
+        if (!window.clearHouseMapGoTo) { timer = setTimeout(() => tour(i), 400); return; }  // map still loading
+        show(i);
+        if (i + 1 < STOPS.length) timer = setTimeout(() => tour(i + 1), STOP_MS);
+      };
       pinScene(mapTrack, { distance: 1000,
-        play: p => show(p <= 0 ? -1 : Math.min(STOPS.length - 1, Math.floor(p * STOPS.length))),
-        loose: () => show(-1),
+        play: p => { clearTimeout(timer); show(p <= 0 ? -1 : Math.min(STOPS.length - 1, Math.floor(p * STOPS.length))); },
+        loose: () => {
+          if (toured) return;
+          const r = frame.getBoundingClientRect(); if (r.top > innerHeight * .6 || r.bottom < innerHeight * .3) return;
+          toured = true; tour(0);
+        },
         // A Google map shouldn't be zoomed with CSS (clicks land in the wrong place), so the map gets shorter instead.
         fitTo: room => { mapBox.style.height = ''; if (room == null) return; const extra = mapTrack.querySelector('.pin-fit').offsetHeight - room; if (extra > 0) mapBox.style.height = `${Math.max(300, mapBox.offsetHeight - extra)}px`; } });
     }
