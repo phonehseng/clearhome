@@ -739,6 +739,15 @@
     .housing-card .housing-actions{margin-top:8px}
     .housing-card .housing-reviewed{margin-top:6px}
     .share-toast{transition:opacity .3s,transform .3s}
+    /* Active-filter summary above results, and the card's next-step button. */
+    .filter-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:16px 0 4px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .filter-summary-text{font-size:13px;color:var(--ink);line-height:1.5;margin:0;flex:1;min-width:200px}
+    .filter-reset{min-height:36px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:13px;font-weight:600;cursor:pointer}
+    .filter-reset:hover:not(:disabled){border-color:#9db2e3;background:#f6f9ff}
+    .filter-reset:disabled{opacity:.5;cursor:default}
+    .housing-card .next-step{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;min-height:42px;padding:10px 14px;border-radius:12px;background:#14203f;color:#fff!important;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:2px}
+    .housing-card .next-step:hover{background:#23408f}
+    .housing-card .next-step:focus-visible{outline:3px solid #315fbd;outline-offset:3px}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -1082,6 +1091,7 @@
       <p class="sort-reply" id="sort-reply" role="status" aria-live="polite"><b>Gemma:</b> <span id="sort-text">Tell me what matters most and I’ll move the best fits to the top.</span> <button type="button" class="sort-chip" id="sort-sample" data-q="Cheapest rooms near Virginia Tech first">Try “Cheapest rooms near Virginia Tech first”</button><button type="button" class="sort-chip" id="sort-reset" hidden>Reset order</button></p>
     </div>
     <p class="browse-hint">Room prices are per person. Fees and utilities may be extra.</p>
+    <div class="filter-summary" id="filter-summary"><p class="filter-summary-text" id="filter-summary-text" aria-live="polite"></p><button type="button" class="filter-reset" id="filter-reset">Reset filters</button></div>
     <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p><div class="share-toast" id="share-toast" role="status" aria-live="polite"></div>
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
     <div class="listing-reveal-actions">
@@ -1200,6 +1210,22 @@
   const statusLabels = {available_now:'Advertised available now',advertised_vacancy:'Vacancy advertised · confirm date',upcoming:'Upcoming availability',leasing:'Now leasing · confirm a unit',waitlist_open:'Open waitlist · no immediate placement',contact_for_availability:'Contact for availability'};
   function housingElement(tag, className, content) {
     const node = document.createElement(tag); if (className) node.className = className; if (content !== undefined) node.textContent = content; return node;
+  }
+  // The card's main action follows the listing's status. A phone number wins for calls; otherwise the provider's own page.
+  function nextStepLink(row) {
+    const status = row.availability?.status || '';
+    const hasPhone = Boolean(row.phone && (row.phone.match(/\d/g) || []).length >= 10);
+    const web = [row.website, row.source_url].find(u => { try { return new URL(u).protocol === 'https:' && row.source_kind !== 'official_directory'; } catch { return false; } });
+    if (!hasPhone && !web) return null;
+    const labels = {
+      waitlist_open: ['Call to Join Waitlist', 'Join Waitlist'],
+      available_now: ['Contact to Apply', 'Apply on Provider Site'], advertised_vacancy: ['Contact to Apply', 'Apply on Provider Site'], leasing: ['Contact to Apply', 'Apply on Provider Site'],
+      upcoming: ['Call About Move-In', 'Check Move-In Date'],
+    }[status] || ['Call to Confirm Availability', 'Confirm Availability'];
+    const link = housingElement('a', 'next-step', hasPhone ? labels[0] : labels[1]);
+    if (hasPhone) link.href = ClearHomeDial(row.phone);
+    else { link.href = web; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.append(' ↗'); }
+    return link;
   }
   function sourceLink(url, label) {
     try { const parsed = new URL(url); if (parsed.protocol !== 'https:') return null; } catch { return null; }
@@ -1365,11 +1391,11 @@
         details.append(options);card.append(details);
       } else card.append(eligibilityDetails(row));
       const actions = housingElement('div','housing-actions');
+      const nextStep = nextStepLink(row); if (nextStep) actions.append(nextStep);
       // The property's own site comes first; a county list (names, addresses, phones) is labeled as a list, not a property page.
       const ownSite = row.website && row.website !== row.source_url && !['property_website','owner_property_page','official_property_page'].includes(row.source_kind) && !/\.gov\/|\/DocumentCenter\/|\.pdf($|\?)/i.test(row.website) ? sourceLink(row.website,'Website ↗') : null; if (ownSite) actions.append(ownSite);
       const source = sourceLink(row.source_url,sourceLabel(row,plans.length>1?'Starting-Price Source ↗':'View Source ↗')); if (source) { if (row.source_kind==='official_directory') source.title='The county’s list of income-restricted properties, with each one’s address and phone. Call the property to apply.'; actions.append(source); }
       const map = mapLink(row); if (map) actions.append(map);
-      if (row.phone && (row.phone.match(/\d/g) || []).length >= 10) { const phone = housingElement('a','','Call'); phone.href=ClearHomeDial(row.phone); actions.append(phone); }
       const reviewDates=plans.map(p=>p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
       const reviewed=reviewDates[0]===reviewDates[reviewDates.length-1] ? reviewedDate(reviewDates[0]) : `${reviewedDate(reviewDates[0])} – ${reviewedDate(reviewDates[reviewDates.length-1])}`;
       card.append(actions,housingElement('p','housing-reviewed',`Source reviewed ${reviewed}`));
@@ -1432,6 +1458,27 @@
   // "More filters" shows how many of its filters are changed from the default.
   function updateMoreCount(){const changed=[['browse-category','all'],['browse-age-group','general'],['browse-status','']].filter(([id,def])=>document.getElementById(id).value!==def).length;const badge=document.getElementById('more-filters-count');badge.hidden=!changed;badge.textContent=`${changed} on`;}
   browseForm.addEventListener('submit',updateMoreCount);
+  // Active-filter summary: names only the filters that differ from the defaults, so a wrong filter is easy to spot.
+  const FILTER_DEFAULTS = { location:'', housing_type:'all', rental_space:'all', age_group:'general', status:'', max_rent:'', sort:'rent_asc' };
+  const filterSummaryText = document.getElementById('filter-summary-text');
+  const filterReset = document.getElementById('filter-reset');
+  function updateFilterSummary() {
+    const parts = [];
+    for (const [name, def] of Object.entries(FILTER_DEFAULTS)) {
+      const field = browseForm.elements.namedItem(name); if (!field) continue;
+      const value = String(field.value || '').trim(); if (value === def) continue;
+      if (name === 'max_rent') parts.push(`up to $${Number(value).toLocaleString('en-US')} / month`);
+      else parts.push(field.tagName === 'SELECT' ? field.options[field.selectedIndex].text : value);
+    }
+    filterSummaryText.textContent = parts.length ? `Showing: ${parts.join(' · ')}` : 'Showing all supported areas, all housing types and all availability.';
+    filterReset.disabled = parts.length === 0;
+  }
+  filterReset.addEventListener('click', () => {
+    for (const [name, def] of Object.entries(FILTER_DEFAULTS)) { const field = browseForm.elements.namedItem(name); if (field) field.value = def; }
+    updateBudgetShortcut(); browseForm.requestSubmit();
+  });
+  browseForm.addEventListener('submit', updateFilterSummary);
+  updateFilterSummary();
   // Mini Gemma chat above the listings: a few lines back, and the best fits move to the top of the list below.
   const sortForm = document.getElementById('sort-form'), sortInput = document.getElementById('sort-input'), sortSend = document.getElementById('sort-send');
   const sortReply = document.getElementById('sort-reply'), sortText = document.getElementById('sort-text');
