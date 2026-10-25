@@ -226,7 +226,8 @@ def _homes_near(name, lat, lon, question, profile):
         est = None if isinstance(r.get("monthly_rent"), (int, float)) else rent_estimate(r, pool)
         if est:
             bases.setdefault(est["basis"], None)
-        rent = (f"from ${r['monthly_rent']:,.0f}/month" if isinstance(r.get("monthly_rent"), (int, float))
+        per = "/person/month" if r.get("rental_space") == "room" else "/month"
+        rent = (f"from ${r['monthly_rent']:,.0f}{per}" if isinstance(r.get("monthly_rent"), (int, float))
                 else f"est. ${est['low']:,.0f}–${est['high']:,.0f}/month*" if est else "rent: ask the provider")
         miles = _miles(lat, lon, r["lat"], r["lon"])
         trip = ["at or next to this address" if miles < 0.1 else f"{miles:.1f} mi away"]
