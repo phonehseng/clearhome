@@ -9,7 +9,30 @@
   <link rel="icon" href="/favicon.ico?v=2" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
   <title>Clear House — Your next step starts here</title>
+  <script>
+    // Read before first paint, consume once, and never replay on a normal visit or reload.
+    (() => {
+      try {
+        const enteredAt = Number(sessionStorage.getItem('ch:app-entry'));
+        sessionStorage.removeItem('ch:app-entry');
+        const age = Date.now() - enteredAt;
+        if (!enteredAt || age < 0 || age > 8000 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const root = document.documentElement;
+        root.classList.add('app-arriving');
+        const clear = () => root.classList.remove('app-arriving');
+        root.addEventListener('animationend', e => { if (e.animationName === 'app-arrive') clear(); });
+        addEventListener('pageshow', e => { if (e.persisted) clear(); });
+        setTimeout(clear, 1200);
+      } catch {}
+    })();
+  </script>
   <style>
+    /* Only reveal through a blur when arriving from the Gemma introduction. */
+    html.app-arriving::after{content:'';position:fixed;inset:0;z-index:10000;pointer-events:none;
+      background:#0d1738eb;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+      animation:app-arrive .7s cubic-bezier(.2,.7,.2,1) both}
+    @keyframes app-arrive{from{opacity:1;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}to{opacity:0;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}}
+    @media(prefers-reduced-motion:reduce){html.app-arriving::after{display:none;animation:none}}
     /* Keep selection available only for links and editable text. */
     * { -webkit-user-select: none; user-select: none; }
     a[href], a[href] *,
