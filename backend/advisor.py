@@ -108,7 +108,7 @@ def _compact(row):
         if est:
             out["rent_estimate_not_published"] = rent_estimate_text(est)
     for k, v in row.items():
-        if k.startswith("walk_minutes_to_"):
+        if k.startswith(("walk_minutes_to_", "drive_minutes_to_", "transit_minutes_to_")):
             out[k] = v
     if isinstance(row.get("availability"), dict):
         out["availability_status"] = row["availability"].get("status")
@@ -168,11 +168,22 @@ def _records(question, history=None):
     return _pick(filter_catalog(load_catalog()), text, listings_only=search)
 
 
+def _near_place(question, history=None):
+    """For "close to walmart"-style questions, near_place.py's measured homes (or the answer itself); None otherwise."""
+    import near_place  # near_place imports this module, so load it only when needed
+    want = near_place.read(question, history)
+    return (want, near_place.for_gemma(want, history)) if want else (None, None)
+
+
 def _ask(question, history=None):
-    return ask_gemma(_prompt(question, history, _records(question, history)))
+    _, place = _near_place(question, history)
+    if place and "text" in place:
+        return place["text"]
+    rows = place["rows"] if place else _records(question, history)
+    return ask_gemma(_prompt(question, history, rows, place=place and place["note"]))
 
 
-def _prompt(question, history, rows, needs=None, walk=None):
+def _prompt(question, history, rows, needs=None, walk=None, place=None):
     resources = [_compact(r) for r in rows]
     checklist = ""
     if needs:
@@ -182,7 +193,8 @@ def _prompt(question, history, rows, needs=None, walk=None):
             name, _, _, minutes, at_least = walk
             rule = (f"at least {minutes} minutes" if at_least else f"at most {minutes} minutes") if minutes else "as asked"
             lines.append(f"Walking time: each listing's walk_minutes_to_* field is the measured walk to {name}. "
-                         f"They asked for {rule}; use those numbers, never guess distances, and say the walk time for each home you mention.")
+                         f"They asked for {rule}; use those numbers, never guess distances, and say the walk time for each home you mention. "
+                         "A value marked estimated is a straight-line guess, not a measured walk: never count it as meeting the limit.")
         lines.append("Recommend only listings that meet every requirement. If a needed field is missing or null (for example furnished is unknown), "
                      "say it must be confirmed with the provider rather than assuming. If none meet everything, say so first, then give the closest options and what they miss. "
                      "Group them as verified matches (every requirement confirmed by the fields) and possible matches to confirm; say plainly when there are no verified matches.")
@@ -201,6 +213,8 @@ def _prompt(question, history, rows, needs=None, walk=None):
     if "pets" in (needs or []):
         notes.append("Pets: say pets are allowed only when a listing's fields say so; otherwise say to confirm the pet policy. "
                      "An assistance animal is a separate accommodation request, not a pet.")
+    if place:
+        notes.append(place)
     if notes:
         checklist += "\n".join(notes) + "\n\n"
     past = "\n".join(f"{turn['role']}: {turn['text']}" for turn in (history or [])[-4:])
@@ -346,6 +360,7 @@ BUDGET_ANY = re.compile(r"(?:under|below|less than|at most|max(?:imum)?|up to|bu
 NEAR_ANY = re.compile(r"\b(near|close to|walking distance|minutes? from|by campus)\b", re.I)
 CAMPUS = re.compile(r"\b(campus|university|college)\b", re.I)
 CLARIFY_MARK = "Which campus or city?"
+PLACE_MARK = "or which city?"  # ends near_place.py's "Which Walmart, or which city?", so the reply keeps the request too
 _NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
 
 
@@ -416,7 +431,7 @@ def with_context(question, history=None):
     """A reply to the chat's own follow-up question ("Virginia Tech, total for both of us") keeps the earlier request.
     The reply comes first, so its answers win over anything it corrects."""
     h = history or []
-    if len(h) >= 2 and h[-1].get("role") == "assistant" and CLARIFY_MARK in h[-1].get("text", "") and h[-2].get("role") == "user":
+    if len(h) >= 2 and h[-1].get("role") == "assistant" and any(m in h[-1].get("text", "") for m in (CLARIFY_MARK, PLACE_MARK)) and h[-2].get("role") == "user":
         return f"{question} (earlier in this chat: {h[-2]['text']})"
     return question
 
@@ -519,6 +534,7 @@ def cards_for(text, limit=6):
             "address": r.get("address"), "waitlist_status": r.get("waitlist_status"), "availability_status": avail.get("status"),
             "has_photo": bool(r.get("photo")), "lat": r.get("lat"), "lon": r.get("lon"),
             "rent_estimate": rent_estimate(r),
+            "directions": (getattr(text, "directions", None) or {}).get(key),  # near_place.py: the route to the same store
             "names": sorted({key} | extra.get(key, set()) | {b for b in bold if norm(b) and (norm(b) in norm(key) or norm(key) in norm(b) or norm(b) in acronyms(key))}),
         }.items() if v not in (None, "")})
     return cards
@@ -547,8 +563,18 @@ def stream_ask(question, history=None):
             yield "answer", hit[1]
             yield "cards", cards_for(hit[1])
             return
-    rows = _records(question, history)
-    needs, walk = extra_needs(question), walk_target(question)
+    import near_place
+    want = near_place.read(question, history)
+    if want:  # "close to walmart, allows pets": find the store and measure the trips first, so Gemma sees only homes that fit
+        yield "status", near_place.progress(want)
+    place = near_place.for_gemma(want, history) if want else None
+    if place and "text" in place:  # a question to ask, no store found, or no home close enough: nothing for Gemma to weigh
+        yield "engine", getattr(place["text"], "engine", "Instant answer from our verified list with Google Maps Platform (Places + Routes); no AI needed")
+        yield "answer", place["text"]
+        yield "cards", cards_for(place["text"])
+        return
+    rows = place["rows"] if place else _records(question, history)
+    needs, walk = extra_needs(question), None if place else walk_target(question)
     if housing_search(question):  # several requirements at once: give Gemma time to check every home against each
         needs += ["accessibility"] * bool(ACCESSIBLE.search(question)) + ["household size"] * bool(household_size(question))
     if walk:
@@ -559,10 +585,17 @@ def stream_ask(question, history=None):
             walk = None  # no walking times: Gemma says to check the route instead of guessing
     names = list(dict.fromkeys(r.get("community") or r["name"] for r in rows))[:3]
     found = f"{len(rows)} reviewed resource{'' if len(rows) == 1 else 's'}" if rows else "our reviewed resources"
+    if place:
+        found = f"the {len(rows)} reviewed home{'' if len(rows) == 1 else 's'} {near_place._rule(want)} it"
     yield "status", (f"Checking {found}" + (f", like {', '.join(names)}" if names else "") + ". Gemma is thinking…")
+    # Cards for the answer link each home to directions to the same store when the homes were measured to one.
+    cards = (lambda text: cards_for(near_place.with_directions(text, place["directions"]))) if place else cards_for
+    # Without Gemma, measured homes fall back to the same no-AI answer (store, limit, times), never a generic list.
+    fallback = ((lambda reason: near_place.with_directions(f"{reason}, so here is what Google Maps measured:\n\n{place['fallback']}", place["fallback"].directions))
+                if place else (lambda reason: fallback_answer(rows, reason)))
     parts, step, started = [], None, None
     try:
-        for is_thought, text in stream_gemma(_prompt(question, history, rows, needs, walk), thoughts=True, think=bool(needs)):
+        for is_thought, text in stream_gemma(_prompt(question, history, rows, needs, walk, place=place and place["note"]), thoughts=True, think=bool(needs)):
             if is_thought in ("engine", "status"):
                 yield is_thought, text
                 continue
@@ -579,20 +612,20 @@ def stream_ask(question, history=None):
     except Exception as error:
         if parts:
             yield "chunk", "\n\n(The answer was cut off. Please ask again.)"
-            yield "cards", cards_for("".join(parts))
+            yield "cards", cards("".join(parts))
         else:
-            text = fallback_answer(rows, gemma_unavailable(error) or "The AI service didn't answer")
+            text = fallback(gemma_unavailable(error) or "The AI service didn't answer")
             yield "engine", "Our verified list (Gemma couldn't answer this time)"
             yield "fallback", text
             yield "cards", cards_for(text)
         return
     if not parts:  # Gemma used its whole reply on thinking
-        text = fallback_answer(rows, "Gemma didn't finish an answer this time")
+        text = fallback("Gemma didn't finish an answer this time")
         yield "engine", "Our verified list (Gemma didn't finish this time)"
         yield "fallback", text
         yield "cards", cards_for(text)
         return
-    yield "cards", cards_for("".join(parts))
+    yield "cards", cards("".join(parts))
     if parts and not history:
         _remember(key, "".join(parts))
     yield "done", ""

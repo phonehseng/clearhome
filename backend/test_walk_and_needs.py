@@ -40,12 +40,22 @@ class WalkTests(unittest.TestCase):
         self.assertIn("about 10 min walk, ", text)
         self.assertIn("from Google Maps", text)
 
-    @patch.object(nearby, "_key", return_value="")
+    @patch.object(nearby, "_key", return_value="test")
     def test_fresh_question_filters_by_the_walk(self, _):
-        text = nearby.answer("rooms within a 15 minute walk of virginia tech", {})
+        def fake_post(url, body, mask):  # 6, 9, 12... minutes: only the first few fit
+            return [{"originIndex": i, "duration": f"{360 + 180 * i}s", "condition": "ROUTE_EXISTS"} for i in range(len(body["origins"]))]
+        with patch.object(nearby, "_post", side_effect=fake_post):
+            text = nearby.answer("rooms within a 15 minute walk of virginia tech", {})
         self.assertTrue(text.startswith("Reviewed homes within a 15-minute walk of Virginia Tech"), text)
         minutes = [int(m) for m in __import__("re").findall(r"about (\d+) min walk", text)]
         self.assertTrue(minutes and all(m <= 15 for m in minutes))
+
+    @patch.object(nearby, "_key", return_value="")
+    def test_straight_line_estimates_never_count_as_within_a_walk(self, _):
+        text = nearby.answer("rooms within a 15 minute walk of virginia tech", {})
+        self.assertTrue(text.startswith("Google walking routes aren't available right now, so I can't verify"), text)
+        self.assertNotIn("✓", text)
+        self.assertLessEqual(text.count("\n- "), 8)
 
     def test_walking_with_other_requirements_goes_to_gemma(self):
         q = ("i am in blacksburg and i want housing that is furnished for 1 year, under 1000 a month and at least "

@@ -17,6 +17,7 @@ from live_search import search as live_search
 import hotels
 import sorter
 import nearby
+import near_place
 import walkable
 from matcher import gemma_unavailable, find_help
 from catalog import REVIEW_PATH, REVIEW_STATES, filter_catalog, group_listings, load_catalog, load_reviews, validate_resources, STATUSES
@@ -448,9 +449,11 @@ def _chat_request():
     for key, label in (("tonight", "needs a safe place tonight"), ("accessible", "needs an accessible home"), ("senior", "someone is 62 or older"), ("voucher", "already has a housing voucher")):
         if profile.get(key) is True: about.append(label)
     # A rental search near "campus" without saying which: ask first, repeating what was understood (no AI).
+    # "Close to walmart": which store (asked when no town is known), then only homes a measured walk away (near_place.py).
     # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
     # These shortcuts read the person's own words, not the profile note added below.
-    instant = clarify(question, profile) or nearby.answer(question, profile, history) or quick_nearby(question, profile)  # "near George Mason" etc.: catalog, no AI
+    instant = (clarify(question, profile) or near_place.answer(question, profile, history) or nearby.answer(question, profile, history)
+               or quick_nearby(question, profile))  # "near George Mason" etc.: catalog, no AI
     if about:
         question = f"{question}\n\n(About me: {'; '.join(about)}.)"
     return question, history, instant

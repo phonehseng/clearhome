@@ -36,6 +36,12 @@ NOT_A_PLACE = re.compile(r"^(?:\$|\d+\s*(?:%|dollars|people|months?|weeks?|days?
                          r"(?:next|this|last) (?:week|month|year)|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b|christmas|thanksgiving|today|tomorrow|tonight|the weekend|midnight|noon)", re.I)
 FILLER_END = re.compile(r"\s+(?:please|thanks|thank you|(?:(?:for|around|about|under|below|less than|up to|max|at most)\s+)+\$?\s*\d[\d,]*.*|"
                         r"\$\s*\d[\d,]*.*|for (?:me|my family|\d+ people).*|with .*)$", re.I)
+# A lowercase name still counts as a place when it names a kind of place ("fair oaks mall"), but not a generic one
+# ("the metro station") or any one of a kind ("a train station"), which isn't one place to measure from.
+KIND = re.compile(r"\b(?:mall|hospital|medical center|library|station|airport|university|college|church|high school|middle school|"
+                  r"elementary|community center|rec center|town center|shopping center|plaza|clinic|courthouse|headquarters|hq)\b", re.I)
+GENERIC = {"the", "a", "an", "my", "our", "metro", "train", "bus", "subway", "grocery", "local", "nearest", "closest", "big", "new", "public",
+           "community", "shopping", "medical", "town", "rec", "high", "middle", "elementary", "main", "city", "county"}
 BUDGET = re.compile(r"(?:under|below|around|about|less than|up to|max(?:imum)?|budget(?: is| of)?|afford|\$)\s*\$?\s*(\d{3,5})(?!\d)", re.I)
 _cache, _lock = {}, threading.Lock()
 
@@ -61,7 +67,9 @@ def extract_place(question):
         place = rest
     # A real place is a street address, a landmark we know, or a name (a capitalized word like "Inova").
     known = any(re.search(rf"\b{re.escape(k)}\b", place.lower()) for k in LANDMARKS) or area_for(place) not in (None, "Northern Virginia")
-    if len(place) < 3 or not (STREET.match(place) or known or re.search(r"\b[A-Z][A-Za-z]", place)):
+    named = (KIND.search(place) and not re.match(r"(?:a|an|any|some)\b", place, re.I)
+             and any(w not in GENERIC and not KIND.fullmatch(w) for w in re.findall(r"[a-z]+", place.lower())))
+    if len(place) < 3 or not (STREET.match(place) or known or named or re.search(r"\b[A-Z][A-Za-z]", place)):
         return None, None
     return place, None
 
@@ -79,15 +87,21 @@ def _post(url, body, mask):
         return json.load(resp)
 
 
+def outside(text):
+    """A place outside the service area ("in Richmond"), but not a street named after one ("Richmond Hwy")."""
+    t = re.sub(r"\b\w+\s+(?:hwy|highway|rd|road|st|street|ave|avenue|blvd|boulevard|pike|dr|drive|ln|lane|way)\b", " ", (text or "").lower())
+    return bool(re.search(OUTSIDE, t))
+
+
 def locate(place):
     """(name, latitude, longitude) for a place inside a service region, or None."""
     key = place.lower()
-    if re.search(OUTSIDE, key):
+    if outside(key):
         return ("outside", None, None)
     with _lock:
         if key in _cache:
             return _cache[key]
-    found = None
+    found, failed = None, False
     landmark = next((v for k, v in LANDMARKS.items() if re.search(rf"\b{re.escape(k)}\b", key)), None)
     if landmark:
         found = (landmark[3] if len(landmark) > 3 else place.upper() if len(place) <= 4 else place.title(), landmark[1], landmark[2])
@@ -110,13 +124,14 @@ def locate(place):
             if p:
                 found = (f"{p['displayName']['text']} ({p.get('formattedAddress', '')})", p["location"]["latitude"], p["location"]["longitude"])
         except Exception:
-            found = None
+            found, failed = None, True  # not remembered, so asking again in a minute can work
     if found and not any(_miles(found[1], found[2], lat, lon) <= r for _, lat, lon, r in REGIONS):
         found = ("outside", found[1], found[2])
-    with _lock:
-        if len(_cache) > 500:  # keyed on user text, so keep it bounded
-            _cache.clear()
-        _cache[key] = found
+    if not failed:
+        with _lock:
+            if len(_cache) > 500:  # keyed on user text, so keep it bounded
+                _cache.clear()
+            _cache[key] = found
     return found
 
 
@@ -355,10 +370,15 @@ def walk_answer(question, profile=None, history=None):
         miles = _miles(lat, lon, r["lat"], r["lon"])
         timed.append((walked.get(i, round(miles * MINUTES_PER_MILE)), i in walked, miles, r))
     timed.sort(key=lambda t: t[0])
+    # A straight-line estimate never makes a home "within" a walk: only a measured Google route can.
+    fits = lambda minutes, real: minutes >= limit if at_least else real and minutes <= limit
     if limit:
-        ok = [t for t in timed if (t[0] >= limit if at_least else t[0] <= limit)]
+        ok = [t for t in timed if fits(t[0], t[1])]
         rule = f"at least a {limit}-minute walk from" if at_least else f"within a {limit}-minute walk of"
-        if follow_up:
+        if not at_least and not walked:
+            head = (f"Google walking routes aren't available right now, so I can't verify which homes are {rule} {name}. "
+                    "Straight-line estimates only, not measured walks:")
+        elif follow_up:
             some = "it is" if len(timed) == 1 else f"all {len(timed)} are"
             head = (f"Yes, {some} {rule} {name}." if len(ok) == len(timed) else
                     f"No, {'it is not' if len(timed) == 1 else 'none of them is'} {rule} {name}." if not ok else
@@ -366,12 +386,12 @@ def walk_answer(question, profile=None, history=None):
         else:
             head = (f"Reviewed homes {rule} {name}:" if ok else
                     f"None of the reviewed homes is {rule} {name}. The closest walks are:")
-        shown = timed if follow_up or not ok else ok[:8]
+        shown = timed if follow_up else (ok or timed)[:8]
     else:
         head, shown = f"Walking times {'from' if follow_up else 'to'} {name}:", timed[:8]
     lines = [head]
     for minutes, real, miles, r in shown:
-        mark = "" if not limit else (" ✓" if (minutes >= limit if at_least else minutes <= limit) else " ✗")
+        mark = "" if not limit else " ✓" if fits(minutes, real) else " ✗" if real or at_least else ""
         per = "/person/month" if r.get("rental_space") == "room" else "/month"
         rent = f"; from ${r['monthly_rent']:,.0f}{per}" if isinstance(r.get("monthly_rent"), (int, float)) else ""
         lines.append(f"- **{r.get('community') or r['name']}**: about {minutes} min walk{'' if real else ' (estimated)'}, {miles:.1f} mi{rent}{mark}")
