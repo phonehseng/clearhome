@@ -540,6 +540,10 @@
     /* The box is the whole window so that, in short wide windows, the picture is only ever cropped at the top
        of the screen, never in a straight line across the middle (which glass panels make look like a cut). */
     .scene{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+    /* Kept quiet behind the tools: the picture fades out toward the top of the window (the ground, trees and grass
+       show softly along the bottom; the big roofs never sit behind the text), under a light blue wash at the top. */
+    .scene{opacity:.5;-webkit-mask-image:linear-gradient(to top,#000 0,#000 12%,#0000 58%);mask-image:linear-gradient(to top,#000 0,#000 12%,#0000 58%)}
+    html{background:radial-gradient(1100px 560px at 8% -140px,#dbe6fb,#dbe6fb00 70%),radial-gradient(900px 520px at 100% -60px,#e2f0f6,#e2f0f600 70%),#eef3fc}
     .sc-stage{position:absolute;left:50%;bottom:0;width:max(100%,126vh);aspect-ratio:470/260;transform:translateX(-50%);container-type:inline-size}
     .sc-stage>*{position:absolute;inset:0}
     .sc-layer{transform:translateY(calc(var(--sy,0) * var(--depth) * -1cqw))}
