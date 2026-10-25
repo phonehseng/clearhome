@@ -318,5 +318,35 @@ class StreamTests(unittest.TestCase):
         self.assertEqual(body["chat"]["pending"]["field"], "help")
 
 
+class EdgeCaseTests(unittest.TestCase):
+    """Ryan's edge cases: budget periods and "not a room" corrections."""
+
+    def fresh(self):
+        return {"request": None, "answers": {}, "asked": [], "pending": None}
+
+    def test_yearly_budget_becomes_monthly_and_stays_so_in_follow_ups(self):
+        state = self.fresh()
+        c.resolve("Find an entire one bedroom apartment in Blacksburg for $12,000 total a year.", state, {}, None)
+        self.assertEqual((state["answers"]["budget"], state["answers"]["basis"]), (1000, "total"))
+        _, request = c.resolve("Find an entire one bedroom apartment in Fairfax.", state, {}, None)
+        self.assertIn("under $1000 a month", request)
+        self.assertNotIn("12000 a month", request)
+        self.assertEqual(c.read_fields("my rent budget is 9600 yearly")["budget"], 800)
+
+    def test_weekly_amounts_and_incomes_are_not_rent_budgets(self):
+        self.assertNotIn("budget", c.read_fields("a room for $300 a week"))
+        self.assertEqual(c.read_fields("I make $30,000 a year and need a place under $900")["budget"], 900)
+        self.assertEqual(c.read_fields("under $1,200 a month in Reston")["budget"], 1200)
+
+    def test_what_they_said_no_to_does_not_count(self):
+        self.assertEqual(c.read_fields("I don't want a room; I need an entire apartment in Blacksburg")["space"], "entire_home")
+        self.assertEqual(c.read_fields("not a whole apartment, just a room")["space"], "room")
+        self.assertNotIn("space", c.read_fields("a room or a whole place, either works"))
+        state = self.fresh()
+        c.resolve("I need a room in Blacksburg under $1200", state, {}, None)
+        c.resolve("I don't want a room; I need an entire apartment in Blacksburg under $1200", state, {}, None)
+        self.assertEqual(state["answers"]["space"], "entire_home")
+
+
 if __name__ == "__main__":
     unittest.main()

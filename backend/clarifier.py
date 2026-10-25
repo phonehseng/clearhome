@@ -158,6 +158,8 @@ BUDGET_TEXT = re.compile(r"(?:under|below|less than|at most|max(?:imum)?|up to|b
                          r"(?:\s*(?:a|per|/)\s*(?:month|mo)\b)?", re.I)
 PER_PERSON = re.compile(r"\bper (?:person|head)\b|\beach (?:person|of us)\b", re.I)
 TOTAL = re.compile(r"\b(?:total|combined)\b|\bfor (?:both|all) of us\b", re.I)
+NOT_SPACE = re.compile(r"\b(?:not|no|don'?t want|do not want|don'?t need|do not need|never|without|instead of)\s+(?:a\s+|an\s+|the\s+|just\s+a\s+|any\s+)?"
+                       r"(?:shared\s+)?(?:rooms?|roommates?|(?:whole|entire)\s+(?:place|apartment|home|house|unit)|(?:apartment|place|home|house)\s+to\s+myself)\b", re.I)
 ROOM = re.compile(r"\b(?:rooms?|roommates?|shared (?:apartment|house|home|room))\b", re.I)
 WHOLE = re.compile(r"\b(?:entire|whole (?:place|apartment|home|house|unit)|my own place|to myself|studios?|townhouses?|condos?|"
                    r"(?:\d|one|two|three|four)[- ]?(?:bed(?:room)?s?|br|bd))\b", re.I)
@@ -169,9 +171,36 @@ SKIP_WORDS = re.compile(r"(skip|skip (?:it|this|this one|that)|pass|rather not s
 UNSURE_WORDS = re.compile(r"(not sure|unsure|i'?m not sure|i don'?t know|idk|dunno|no idea|no preference|anywhere|either)", re.I)
 
 
+# A yearly rent budget ("$12,000 total a year") is rewritten as its monthly amount, so every step after this (the
+# questions, the request Gemma reads, the place searches) uses the same number: "$1000 total a month (12000 dollars per
+# year)". The note in brackets is worded so it isn't read as a budget again. An income ("I make $30,000 a year") isn't a
+# budget, and a weekly amount isn't guessed at: the budget question asks instead.
+YEARLY = re.compile(r"(\$?)(\d{4,6})(?!\d)(\s*(?:total\s+|in total\s+|combined\s+)?)(?:a|per|each|every|/)\s*(?:year|yr)\b"
+                    r"|(\$?)(\d{4,6})(?!\d)\s*(?:annually|yearly)\b", re.I)
+WEEKLY = re.compile(r"\s*(?:total\s+)?(?:a|per|each|every|/)\s*(?:week|wk)\b|\s*weekly\b", re.I)
+EARNINGS = re.compile(r"\b(?:income|make|makes|making|earn|earns|earning|salary|wages?|paid|paycheck)\b[^.;!?$]{0,25}\$?\s*$", re.I)
+
+
+def _monthly(text):
+    def per_month(m):
+        sign, amount, middle = (m.group(1), m.group(2), m.group(3) or " ") if m.group(2) else (m.group(4), m.group(5), " ")
+        if EARNINGS.search(text[max(0, m.start() - 40):m.start()]):
+            return m.group(0)
+        return f"{sign}{round(int(amount) / 12)}{middle}a month ({amount} dollars per year)"
+    return YEARLY.sub(per_month, text)
+
+
 def _plain(text):
-    """$1,200 -> $1200, so budgets read the same however they're typed."""
-    return re.sub(r"(?<=\d),(?=\d{3}\b)", "", text or "")
+    """$1,200 -> $1200 and a yearly budget -> its monthly amount, so budgets read the same however they're typed."""
+    return _monthly(re.sub(r"(?<=\d),(?=\d{3}\b)", "", text or ""))
+
+
+def _budget_in(t):
+    """The first rent budget in the words: not an income, not a weekly amount, and in range."""
+    for m in BUDGET_ANY.finditer(t):
+        if _budget(int(m.group(1))) and not WEEKLY.match(t[m.end():]) and not EARNINGS.search(t[max(0, m.start() - 40):m.end() - len(m.group(1))]):
+            return int(m.group(1))
+    return None
 
 
 def detect_help(text):
@@ -194,19 +223,21 @@ def read_fields(text, pending=None):
     keys = places_in(t)
     if keys and len({_region(k) for k in keys}) == 1:  # Blacksburg and Arlington at once is a conflict, asked about instead
         found["area"] = next((k for k in keys if k in LANDMARKS), keys[0])
-    budget = BUDGET_ANY.search(t)
-    if budget and _budget(int(budget.group(1))):
-        found["budget"] = int(budget.group(1))
+    budget = _budget_in(t)
+    if budget:
+        found["budget"] = budget
     elif NO_BUDGET.search(t):
         found["budget"] = "none"
     if PER_PERSON.search(t):
         found["basis"] = "per_person"
     elif TOTAL.search(t):
         found["basis"] = "total"
-    if ROOM.search(t):
-        found["space"] = "room"
-    elif WHOLE.search(t):
-        found["space"] = "entire_home"
+    # "Not a room, an entire apartment": what they said no to doesn't count. Both still named ("a room or a whole place")
+    # is no preference read from the words, so the room-or-whole-place question asks.
+    kept = NOT_SPACE.sub(" ", t)
+    room, whole = bool(ROOM.search(kept)), bool(WHOLE.search(kept))
+    if room != whole:
+        found["space"] = "room" if room else "entire_home"
     beds = BEDROOMS.search(t)
     if beds:
         n = re.match(r"\d|[a-z]+", beds.group(0).lower()).group(0)
