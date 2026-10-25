@@ -22,6 +22,9 @@ ACCOUNT_LABELED_RE = re.compile(
 )
 # Any unlabeled run of 12 to 17 digits looks like a bank account number.
 LONG_NUMBER_RE = re.compile(r"(?<!\d)\d{12,17}(?!\d)")
+# Email addresses, and US phone numbers such as 703-555-0100, (703) 555 0100 or +1 703 555 0100.
+EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}")
+PHONE_RE = re.compile(r"(?<![\d-])(?:\+?1[\s.-]?)?(?:\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}(?!\d)")
 
 # Letters OCR often mistakes for digits.
 OCR_DIGIT_LOOKALIKES = str.maketrans({"O": "0", "o": "0", "D": "0", "I": "1", "l": "1", "|": "1",
@@ -63,7 +66,7 @@ def redact(text, ocr=False):
 
     Pass ocr=True for text that came from OCR, so misread digits are repaired first.
     """
-    counts = {"ssn": 0, "card": 0, "account": 0}
+    counts = {"ssn": 0, "card": 0, "account": 0, "contact": 0}
     if ocr:
         text = _fix_ocr_numbers(text)
 
@@ -95,6 +98,13 @@ def redact(text, ocr=False):
     text = SSN_LABELED_RE.sub(ssn_labeled, text)
     text = ACCOUNT_LABELED_RE.sub(account_labeled, text)
     text = LONG_NUMBER_RE.sub(long_number, text)
+
+    def contact(m):
+        counts["contact"] += 1
+        return "[REDACTED CONTACT]"
+
+    text = EMAIL_RE.sub(contact, text)
+    text = PHONE_RE.sub(contact, text)
     return text, counts
 
 
