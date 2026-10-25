@@ -125,8 +125,11 @@
     .share-btn:hover{border-color:#a9c1dc;background:#f1f6fc}
     .share-btn svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
     .housing-card.shared-highlight{outline:3px solid #2f6fb5;outline-offset:4px;scroll-margin-top:24px}
-    .share-toast{position:fixed;left:50%;bottom:24px;z-index:1000;max-width:calc(100% - 32px);padding:10px 16px;border-radius:20px;background:#13263f;color:#fff;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translate(-50%,16px);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+    .share-toast{position:fixed;left:50%;bottom:24px;z-index:1000;max-width:calc(100% - 32px);padding:11px 18px;border-radius:999px;color:#fff;font-size:14px;font-weight:600;background:linear-gradient(140deg,#14203fd9 0%,#14203fb8 55%,#14203fcc 100%);backdrop-filter:blur(16px) saturate(1.6);-webkit-backdrop-filter:blur(16px) saturate(1.6);border:1px solid #ffffff3d;box-shadow:inset 0 1px 0 #ffffff47,inset 0 -1px 0 #ffffff14,inset 0 0 18px #ffffff12,0 12px 32px #0b143347;transform:translate(-50%,16px);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}
     .share-toast.show{opacity:1;transform:translate(-50%,0)}
+    /* Darkened liquid glass: a smoky navy pane the page shows through, with a light rim and a soft glare. */
+    .share-toast::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 80% at 18% 0%,#ffffff30 0%,#ffffff00 55%)}
+    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.share-toast{background:#14203ff2}}
     @keyframes card-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
     @media(prefers-reduced-motion:reduce){.card-reveal{animation:none}.more-listings:hover{transform:none}}
     @media(max-width:1050px){.listings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.browse-filters{grid-template-columns:1fr 1fr}.browse-filters .primary{min-height:45px}.header-links{gap:16px}}
