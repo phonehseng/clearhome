@@ -328,4 +328,4 @@ if __name__ == '__main__':
     errors = validate_resources(rows)
     if errors:
         raise SystemExit('\n'.join(errors))
-    print(f'Catalog valid: {len(rows)} records; {len({r.get("community") for r in rows if r.get("type") == "affordable_listing"})} housing communities.')
+    print(f'Catalog valid: {len(rows)} records; {len({community_key(r) for r in rows if r.get("type") in HOUSING_TYPES})} housing communities.')

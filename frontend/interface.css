@@ -1,0 +1,39 @@
+/* Keep useful listing and explanatory text copyable, overriding older blanket rules. */
+* { -webkit-user-select: auto; user-select: auto; }
+body { -webkit-user-select: text; user-select: text; }
+
+/* Avoid accidental selection while operating controls. */
+:where(button, button *, [role="button"], [role="button"] *, select, option,
+       summary, nav a, .header-links a, .brand, .brand *, .hero-art, .hero-art *,
+       .tab-icon, .step-number, .eyebrow, .housing-status, .photo-expand-mark) {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+:where(img, svg) {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Preserve editing, copying, keyboard focus and screen-reader access. */
+:where(input, textarea, [contenteditable="true"]) {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.photo-source-notice {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.photo-attribution {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+}

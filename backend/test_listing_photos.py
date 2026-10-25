@@ -21,8 +21,40 @@ class Response:
     def iter_content(self,size): yield self.data
 
 class PhotoTests(unittest.TestCase):
-    def test_catalog_photo_sources_are_attributed_and_allowed(self):
+    def test_coverage_reports_missing_photos_for_each_floor_plan(self):
         from catalog import load_catalog
+        from photo_audit import coverage_report
+        row = next(r for r in load_catalog() if r.get('photo'))
+        other_plan = {**row, 'id': 'another-plan-without-photo'}
+        other_plan.pop('photo', None)
+        with tempfile.TemporaryDirectory() as directory, \
+                patch('photo_audit.load_catalog', return_value=[row, other_plan]), \
+                patch('photo_audit.CACHE_DIR', Path(directory)):
+            report = coverage_report()
+        self.assertEqual(report['summary']['housing_records'], 2)
+        self.assertEqual(report['missing_photo_record_ids'], ['another-plan-without-photo'])
+        self.assertEqual(report['summary']['communities_with_unconfirmed_delivery'], 1)
+        self.assertFalse(report['summary']['complete'])
+
+    def test_coverage_requires_valid_downloaded_image_bytes(self):
+        import hashlib
+        from catalog import load_catalog
+        from photo_audit import coverage_report
+        row = next(r for r in load_catalog() if r.get('photo'))
+        key = hashlib.sha256(row['photo']['url'].encode()).hexdigest()
+        with tempfile.TemporaryDirectory() as directory, \
+                patch('photo_audit.load_catalog', return_value=[row]), \
+                patch('photo_audit.CACHE_DIR', Path(directory)):
+            cached = Path(directory) / (key + '.image')
+            cached.write_bytes(b'<html>not an image</html>')
+            self.assertFalse(coverage_report()['summary']['complete'])
+            cached.write_bytes(self.png)
+            report = coverage_report()
+            self.assertTrue(report['summary']['complete'])
+            self.assertEqual(report['communities'][0]['status'], 'needs_larger_original')
+
+    def test_catalog_photo_sources_are_attributed_and_allowed(self):
+        from catalog import load_catalog, HOUSING_TYPES
         for row in load_catalog():
             photo = row.get('photo')
             if not photo:
@@ -36,13 +68,20 @@ class PhotoTests(unittest.TestCase):
                 self.assertEqual(urlsplit(photo['source_url']).scheme, 'https')
                 for field in ('alt', 'credit', 'reviewed_on', 'caption'):
                     self.assertTrue(photo.get(field))
+                self.assertIn(photo.get('kind', 'photo'), {'photo', 'rendering'})
+                if photo.get('kind') == 'rendering':
+                    self.assertIn('rendering', photo['alt'].lower())
+                    self.assertIn('not a current photo', photo['caption'].lower())
+                if urlsplit(photo['url']).hostname == 'upload.wikimedia.org':
+                    self.assertEqual(photo['license_name'], 'CC BY-SA 4.0')
+                    self.assertEqual(photo['license_url'], 'https://creativecommons.org/licenses/by-sa/4.0/')
+                    self.assertIn('Beyond My Ken', photo['credit'])
 
     def test_photo_review_queue_matches_missing_communities(self):
         from catalog import load_catalog, community_key, HOUSING_TYPES
         directory = Path(__file__).resolve().parent.parent / 'data'
         rows = [r for r in load_catalog() if r['type'] in HOUSING_TYPES]
-        photographed = {community_key(r) for r in rows if r.get('photo')}
-        missing = {r['id'] for r in rows if community_key(r) not in photographed}
+        missing = {r['id'] for r in rows if not r.get('photo')}
         queue = json.loads((directory / 'photo_review.json').read_text())
         self.assertEqual({rid for c in queue['communities'] for rid in c['record_ids']}, missing)
         manifest = json.loads((directory / 'photo_sources.json').read_text())
@@ -50,7 +89,7 @@ class PhotoTests(unittest.TestCase):
         for item in manifest['communities']:
             for rid in item['record_ids']:
                 with self.subTest(resource=rid):
-                    if item['status'] == 'official_photo_source_reviewed':
+                    if item['status'] in {'official_photo_source_reviewed', 'official_rendering_source_reviewed', 'licensed_archive_photo_reviewed'}:
                         self.assertEqual(by_id[rid]['photo']['url'], item['image_url'])
                         self.assertEqual(by_id[rid]['photo']['source_url'], item['source_url'])
                     else:

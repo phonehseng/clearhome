@@ -220,6 +220,7 @@ def search(prompt, overrides=None):
         elif walk["route_status"] == "no_places":
             reasons.append(f"No {label} found nearby")
         availability = listing.get("availability") or {}
+        photo = listing.get('photo') or {}
         results.append({
             "housing": {
                 "id": listing["id"], "name": listing.get("community") or listing.get("name"), "floor_plan": listing.get("floor_plan"),
@@ -228,6 +229,8 @@ def search(prompt, overrides=None):
                 "monthly_rent_display": _display_rent(listing), "eligibility_summary": listing.get("who_it_serves"),
                 "availability_status": availability.get("status"), "official_source_url": listing.get("source_url"),
                 "phone": listing.get("phone"), "has_photo": bool(listing.get("photo")), "last_verified": listing.get("last_verified"),
+                "photo_url": photo.get("url"), "photo_source_url": photo.get("source_url"), "image_kind": photo.get("kind", "photo"),
+                "photo_credit": photo.get("credit"), "photo_license_url": photo.get("license_url"), "photo_license_name": photo.get("license_name"),
             },
             "nearby_amenity": best, "other_options": walk["options"][1:], "route_status": walk["route_status"],
             "within_limit": within, "match_reasons": reasons,

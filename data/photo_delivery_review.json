@@ -1,0 +1,1572 @@
+{
+  "reviewed_on": "2026-10-24",
+  "method": "Web connector opened each unique canonical image URL. Returned-image status is connector delivery evidence only, not a native-pixel quality check or a guarantee of browser/CDN availability. Tool failures remain unconfirmed, not declared broken.",
+  "native_dimensions_verified": false,
+  "summary": {
+    "image_returned_by_web_review": 178,
+    "delivery_not_confirmed": 51,
+    "not_yet_reviewed": 31
+  },
+  "images": [
+    {
+      "id": "arbor-heights-two-bedroom",
+      "community": "Arbor Heights",
+      "url": "https://cdngeneral.rentcafe.com/dmslivecafe/2/85707/3_233251_1663741.jpg?quality=90&width=750",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "glen-ridge-three-bedroom-60",
+      "community": "Glen Ridge Commons",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_2160%2Ch_1440%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_385%2Car_0.9166666666666689%2Cg_auto/s3/2/4254/glenridgecommons_may2025-14.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "riverwoods-two-bedroom",
+      "community": "Riverwoods Apartment Communities",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_4242%2Ch_2490%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_419%2Car_1.354838709677418%2Cg_auto/s3/2/97184/riverwoods_c1_living_room_at_the_riverwoods_apartments_in_woodbridge_va_16-07-26_14_41%281%29.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "atlantic-boulevard",
+      "community": "Atlantic Boulevard Apartments",
+      "url": "https://assets.apartmenthomeliving.com/imgs/829805208/1382-922-117-B/atlantic-boulevard-apartments-sterling-va-20166-27628662-building-photo-1.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "linden-senior",
+      "community": "The Linden Senior Residences",
+      "url": "https://capi.myleasestar.com/v2/dimg/179378212/1920x1080/179378212.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "arbelo-two-bedroom",
+      "community": "Arbelo Apartments",
+      "url": "https://medialibrarycfo.entrata.com/101025/MLv3/9/36/2025/09/09/083954/68c03c39755f28.89249752941.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "spire-one-bedroom",
+      "community": "The Spire",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1773%2Ch_1182%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.4%2Cg_auto/s3/2/85707/the%20spire%20alexandria%20va_header_2resized.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "witter-place-closed",
+      "community": "Witter Place Apartments",
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2026/09/Witter-Place-Playground.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "brentwood-one-bedroom",
+      "community": "Brentwood Apartment Homes",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_2512%2Ch_1664%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_419%2Car_1.354838709677418%2Cg_auto/s3/2/97184/1%20bedroom%20living%20room%20at%20brentwood%20apartments%20in%20manassa%20va%281%29.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "west-wood-oaks-two-bedroom",
+      "community": "West Wood Oaks",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1070%2Ch_710%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.05%2Cg_auto/s3/2/104933/bbq-area-west-wood-oaks-fairfax-va-pj03552-ph-6.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "park-place-senior-one-bedroom",
+      "community": "Park Place Senior",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_4500%2Ch_3000%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_419%2Car_0.9999999999999989%2Cg_auto/s3/2/199798/park%20place%20senior-poi-010.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "broad-washington-adu",
+      "community": "Broad & Washington",
+      "url": "https://cms.broadandwashington.com/wp-content/uploads/2025/04/housing-for-all.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "reserve-eisenhower-brookdale",
+      "community": "The Reserve at Eisenhower Apartments",
+      "url": "https://media.equityapartments.com/images/c_crop%2Cx_0%2Cy_0%2Cw_1920%2Ch_1080/c_fill%2Cw_1920%2Ch_1080/q_auto%2Cf_auto/2293-3/the-reserve-at-eisenhower-apartments-building",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "coan-pond-residences-efficiency",
+      "community": "Coan Pond Residences",
+      "url": "https://www.fairfaxcounty.gov/housing/sites/housing/files/Assets/images/coanpond.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "redbud-glen-one-bedroom",
+      "community": "Redbud Glen (formerly Little River Glen IV)",
+      "url": "https://static.wixstatic.com/media/6eeae7_b192a20083aa466f9cc005a35862ad73~mv2.png/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "little-river-glen-one-bedroom",
+      "community": "Little River Glen",
+      "url": "https://static.wixstatic.com/media/6eeae7_c324b88e3a8043ce8afa8f460441a9fd~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "olley-glen-one-bedroom",
+      "community": "Olley Glen",
+      "url": "https://static.wixstatic.com/media/6eeae7_613b3f736ce74d859a6f00e695d27332~mv2.gif/v1/fill/w_800,h_498,al_c/6eeae7_613b3f736ce74d859a6f00e695d27332~mv2.gif",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "gum-springs-glen-two-bedroom",
+      "community": "Gum Springs Glen",
+      "url": "https://static.wixstatic.com/media/6eeae7_334f6684f2c34408968f2430e45d4583~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "morris-glen-one-bedroom",
+      "community": "Morris Glen",
+      "url": "https://static.wixstatic.com/media/6eeae7_90f8c19ccf3e43bd97dc58b34fce34f6~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "herndon-harbor-house-senior-apartment",
+      "community": "Herndon Harbor House I and II",
+      "url": "https://static.wixstatic.com/media/6eeae7_5c3b98601d4b408abd68937758ed6fad~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "atrium-at-metro-west-two-bedroom-two-bath",
+      "community": "Atrium at Metro West",
+      "url": "https://static.wixstatic.com/media/6eeae7_abac36f507ff43609202e2c8bdb91168~mv2.png/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "saintsbury-plaza-two-bedroom",
+      "community": "Saintsbury Plaza",
+      "url": "https://static.wixstatic.com/media/6eeae7_09462f45e1b2483db140ed30f01874aa~mv2.jpg/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "crest-of-alexandria-two-bedroom",
+      "community": "Crest of Alexandria",
+      "url": "https://static.wixstatic.com/media/6eeae7_5482ecef241b4b959dc5c0c97b85287f~mv2.png/v1/fill/w_1400,h_930,al_c,q_85,enc_auto/photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "lindsay-hill-senior-apartments",
+      "community": "Lindsay Hill Senior Apartments",
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2019/08/2868.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "virginia-gardens-one-bedroom",
+      "community": "Virginia Gardens",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Virginia-Gardens-Featured%402x-1030x644.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "gates-ballston-studio",
+      "community": "Gates of Ballston",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Gates-of-Ballston-Featured%402x-1030x644.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "harvey-hall-studio",
+      "community": "Harvey Hall",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Harvey-Hall-Featured%402x-1030x644.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "terwilliger-place-community",
+      "community": "Terwilliger Place",
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Building-1.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "fields-manassas-community",
+      "community": "The Fields of Manassas",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cw_576%2Car_1.384%2Cg_auto/s3/2/101498/031_7431_willoughby_lane-_the_fields_of_manassas_287388_516339.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-bailey-s-crossing",
+      "community": "Bailey’s Crossing",
+      "url": "https://medialibrarycfo.entrata.com/15077/MLv3/3/21/2022/2/9/1141/5db320e471bac6.48157916949.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-courts-at-huntington-station",
+      "community": "The Courts at Huntington Station",
+      "url": "https://embed-ssl.wistia.com/deliveries/bd8890d82dd3eb4b2b78d46497c9225d.webp?image_crop_resized=1280x720",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-ridgeleigh-at-van-dorn-metro",
+      "community": "The Ridgeleigh at Van Dorn Metro",
+      "url": "https://media.apts247.info/ae/aeaecec0b15b407eabc47ae37747a7e5/galleries/community/amenities/0O7A1359.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-shelby",
+      "community": "The Shelby",
+      "url": "https://lirp.cdn-website.com/6a4f9087/dms3rep/multi/opt/10-23%2BLP%2Bpool-1920w.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-preserve-at-westfields",
+      "community": "Preserve at Westfields",
+      "url": "https://preserveatwestfields.com/assets/images/cache/UqpiFfeFNW7hKXSngcnyY2kgsXNFYPcnpAGEUtaX-c57f5e04dfda5bbf37e14ff41fd2c788.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-sully-at-westfields",
+      "community": "Sully at Westfields",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cw_576%2Car_1.384%2Cg_auto/s3/2/101498/jcp-kettler-thesully-23%282%29.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-emerson",
+      "community": "The Emerson",
+      "url": "https://emersonlife.com/assets/images/cache/1-The-Emerson-Building-Exterior-16ad3049798f31240fe40a45160cc097.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-avalon-mosaic",
+      "community": "Avalon Mosaic",
+      "url": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/2KC6NFYEGVJORFQOLC2FRG5BFU.jpg?auth=07a153e088d8895be064515a6019cb6b6793a6983a7edc906ff187160da073e0&height=1090&quality=85&smart=true&width=2400",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-fairfax-county-camden-monument-place",
+      "community": "Camden Monument Place",
+      "url": "https://images.ctfassets.net/pg6xj64qk0kh/3SBWSCDnr9IE8RkeENgDbr/56f8805e7d017068f6c8e842ec82583f/camden-monument-place-apartments-fairfax-virginia-parking-garage-2.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-fairchase-apartments",
+      "community": "Fairchase Apartments",
+      "url": "https://media.equityapartments.com/images/c_crop%2Cx_0%2Cy_0%2Cw_1920%2Ch_1080/c_fill%2Cw_1920%2Ch_1080/q_80/4111-26/fairchase-apartments-kitchen.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-gables-centerpointe",
+      "community": "Gables Centerpointe",
+      "url": "https://www.gables.com/_next/image?q=75&url=https%3A%2F%2Fcdngables.azureedge.net%2Fv3%2Fassets%2Fblte729c2e09de05641%2Fblt009582903d213ed6%2F65172c6ca452a295a58b40c1%2FCenterpointe_Courtyard_1.png&w=1080",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-halstead-square",
+      "community": "Halstead Square",
+      "url": "https://d1kldynkubiuhd.cloudfront.net/eyJidWNrZXQiOiJ1YXQtc3RyYXBpLXVwbG9hZHMtYm96enV0by1yZXZhbXAiLCJrZXkiOiJjbXMtdXBsb2FkLWNtcy11cGxvYWQtcHJvcGVydHktcDA1NTgxMTItRXh0ZXJpb3ItMTc2MDYyNDIzMzg0MC0xNzYwNjI0MjMzODQ4LmpwZyJ9?aspectRatio=16%3A9&focalX=0.5&focalY=0.5&format=webp&q=75&width=1920",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-jefferson-at-fair-oaks",
+      "community": "Jefferson at Fair Oaks",
+      "url": "https://medialibrarycfo.entrata.com/19705/MLv3/9/36/2025/03/04/083138/67c71cda8d80a7.16595305792.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-modera-mosaic",
+      "community": "Modera Mosaic",
+      "url": "https://medialibrarycf.entrata.com/14034/MLv3/3/21/2022/2/10/15361/612945adcb5be4.08699611502.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-overture-fair-ridge",
+      "community": "Overture Fair Ridge",
+      "url": "https://medialibrarycfo.entrata.com/15190/MLv3/3/21/2024/12/17/112434/19081_100065540_5c65a85a9708b2.66637305314.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-prosperity-flats",
+      "community": "Prosperity Flats",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/84017/dsc_7862.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-radiant-fairfax-ridge",
+      "community": "Radiant Fairfax Ridge",
+      "url": "https://media.equityapartments.com/images/c_crop%2Cx_0%2Cy_0%2Cw_1920%2Ch_1080/c_fill%2Cw_1920%2Ch_1080/q_auto%2Cf_auto/4262-4/radiant-fairfax-ridge-apartments-resident-lounge",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-apartments-at-regents-park",
+      "community": "The Apartments at Regents Park",
+      "url": "https://www.regentsparkapartments.com/wp-content/uploads/2022/01/RegentsPark_Ext_Building_Facade_June2020.jpg?x67240",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-fairfax-county-the-ridgewood-by-windsor",
+      "community": "The Ridgewood by Windsor",
+      "url": "https://d1uty3jitgnf7i.cloudfront.net/wp-content/uploads/2022/01/OurCommunity_Exterior5_Ridgewood1.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-fairfax-county-the-loren",
+      "community": "The Loren",
+      "url": "https://liveloren.com/assets/images/cache/bFKclQbYFdjEa4RAzR6po7kXB44bKxThyjXnCRPM-37dc4a72edd5adad46eb0a7031079803.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-vantage-mosaic",
+      "community": "Vantage Mosaic",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/8131/p0546534_vantagemosaic_ext_amenities_grillingarea_sept2016.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-belvoir-square-apartments",
+      "community": "Belvoir Square Apartments",
+      "url": "https://medialibrarycfo.entrata.com/1608/MLv3/9/36/2025/02/27/014019/67c0cdb3a3caa3.57609361370.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-discovery-square",
+      "community": "Discovery Square",
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cg_center%2Ch_667%2Cw_1000/v1742324933/g5/g5-c-5g5sw5287-grady-management/g5-cl-1ojpk0nf5h-grady-management-herndon-va/uploads/57-web-or-mls-_DSC4543_wpzk24.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-dulles-center-apartments",
+      "community": "Dulles Center Apartments",
+      "url": "https://res.cloudinary.com/g5-assets-cld/image/upload/x_0%2Cy_3%2Ch_1362%2Cw_2042%2Cc_crop/q_auto%2Cf_auto%2Cfl_lossy%2Cg_center%2Ch_800%2Cw_1200/g5/g5-c-5g5sw5287-grady-management/g5-cl-1pmufx41es-grady-management-inc-herndon-va/uploads/23-web-or-mls-_DSC6992_cov7oz.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-passport-apartments",
+      "community": "Passport Apartments",
+      "url": "https://www.simpsonpropertygroup.com/Uploads2/CommunitySliderImagesV2_resized/Passport_Exterior_06_HIGH_2022_plane.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-ian",
+      "community": "The Ian",
+      "url": "https://s7d9.scene7.com/is/image/greystarprod/20490BDG1",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-point-at-monroe-place",
+      "community": "The Point at Monroe Place",
+      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/3/21/2022/2/4/7760/5fd7a74565ba90.83179564287.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-point-at-ridgeline",
+      "community": "The Point at Ridgeline",
+      "url": "https://medialibrarycf.entrata.com/17202/MLv3/3/27/2022/2/24/6778/5f4423ff7be1a5.43913630310.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-van-metre-at-woodland-park",
+      "community": "Van Metre at Woodland Park",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_2048%2Ch_1365%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.05%2Cg_auto/s3/2/43370/vanmetre-woodlandpark-13.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-vista-laurel-highlands",
+      "community": "Vista Laurel Highlands",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/8131/p1412955_vistalh_ext_courtyard_oct2021.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-ovation-at-park-crest",
+      "community": "Ovation at Park Crest",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cw_540%2Car_1.384%2Cg_auto/s3/2/8131/ovation_ext_frontentrance_homevisit_jan2024.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-vinson-hall",
+      "community": "Vinson Hall",
+      "url": "https://assets.website-files.com/60818030729d0614715a0e94/6083f2f3099cd2af742416a3_7e8689fb-8.0-about-us-content-1024x819.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-point-at-dunn-loring",
+      "community": "The Point at Dunn Loring",
+      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/5/29/2022/3/8/7791/5fd7b8ee2fcf38.94024373576.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-avalon-dunn-loring",
+      "community": "Avalon Dunn Loring",
+      "url": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/U67YF66KFRMVXE5EMQXLLTRAR4.jpg?auth=7b5d7973e551d53897e6c8af5f66018595b5889f5906005d551c2f0dbdb318c0&height=1090&quality=85&smart=true&width=2400",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-fairfax-county-the-reserve-at-tysons-corner",
+      "community": "The Reserve at Tysons Corner",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1920%2Ch_1080%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/121499/tyson-slider4.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-aventon-to-aspire-huntington-station",
+      "community": "Aventon to Aspire Huntington Station",
+      "url": "https://aspirehuntingtonstation.com/assets/images/cache/07-Aventon-Huntington-Station-Apartment-Living-Area1-8b5443bcba5ba8eee1206a94f8e2fb96.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-belhaven",
+      "community": "The Belhaven",
+      "url": "https://cdn.fairfieldresidential.com/images/7X9SNlQLFGErzUV01BW1Tf9FhVN36gWZu22annAc.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-parker",
+      "community": "The Parker",
+      "url": "https://rent.brookfieldproperties.com/wp-content/uploads/2024/05/The-Parker_Ext_Building_LeasingOffice_Oct2015_Web.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-fairfax-county-vista-at-fairfax-corner",
+      "community": "Vista At Fairfax Corner",
+      "url": "https://vistafairfaxcorner.com/assets/images/cache/gallery_2_vista_fairfax_3040-04c74a3df936aa2f53a92049659b17b8.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-alta-nova",
+      "community": "Alta Nova",
+      "url": "https://altanovaapts.com/assets/images/cache/I8VP8SZjYEpj1PTTyrsTTSAYuTtsOGrxHQxywyOZ-20c1e630734ee83ab22e9471c0dae06d.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-three-collective",
+      "community": "Three Collective",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Car_1.384%2Cg_auto/s3/2/92213/_dsc5089_v2.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-makers-rise",
+      "community": "Makers Rise",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/43370/makers-rise_evening-exterior.png",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-station-on-silver",
+      "community": "Station on Silver",
+      "url": "https://www.udr.com/globalassets/communities/station-on-silver/images/community_stationonsilver_2020_bdg3_ek-1.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-cortland-at-mclean",
+      "community": "Cortland At McLean",
+      "url": "https://cortland.com/assets/images/cache/1.1.22.1.4-Ashby-at-McLean-Courtyard-2024-LR-e8f785a6f1e3c77ef04842afa831ea06.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-arbor-at-halley-rise",
+      "community": "Arbor At Halley Rise",
+      "url": "https://thearborathalleyrise.com/assets/images/Kettler_TheArboratHalleyRise_23.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-blvd-haley",
+      "community": "BLVD Haley",
+      "url": "https://blvdhaley.com/assets/images/cache/noWgJ8aXjAMyQSX3mjFTcF5k3ciOMWoLCMXObL2t-34e606f8b8d5631afb30294e1d669773.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-blvd-reston-station",
+      "community": "BLVD Reston Station",
+      "url": "https://blvdreston.com/assets/images/cache/gallery_8_blvd__2831-44bdf9508af12fb35f6f20bf8e540dc3.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-exo",
+      "community": "Exo",
+      "url": "https://medialibrarycfo.entrata.com/15077/MLv3/3/21/2025/02/21/013551/67b8e3a73be544.87327926599.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-faraday-park",
+      "community": "Faraday Park",
+      "url": "https://uat-strapi-uploads-bozzuto-revamp.s3.us-west-2.amazonaws.com/cms-upload-cms-upload-property-p1356777-Lobby-1760623928575-1760623928578.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-russell-at-reston-station",
+      "community": "Russell at Reston Station",
+      "url": "https://russellapts.com/assets/images/cache/RussellatRestonStation_Exteriors_July2025_HighRes-2-c60035706e00b3e984577fbc3611bb55.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-signature-at-reston-town-center",
+      "community": "Signature at Reston Town Center",
+      "url": "https://www.simpsonpropertygroup.com/Uploads2/CommunityNeighborhoodImages/Signature_BuildingExterior1.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-skymark",
+      "community": "Skymark",
+      "url": "https://cms.skymarkreston.com/wp-content/uploads/2024/12/Skymark_EXT_Exterior_BirdseyeSunset4_DavidMadison_112024_compressed-1024x777.webp",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-fairfax-county-the-avant-at-reston-town-center",
+      "community": "The Avant at Reston Town Center",
+      "url": "https://www.carmelpartners.com/wp-content/uploads/2023/10/The-Avant-48-2048x1364.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-fairfax-county-the-edmund",
+      "community": "The Edmund",
+      "url": "https://www.harborgroupmanagement.com/sites/g/files/iswmfx141/files/styles/gallery_full/public/2025-01/download_2.png?itok=TDx5tDh2",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-point-at-rise",
+      "community": "The Point at Rise",
+      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/5/29/2025/12/10/081415/69398e47a62509.48241400821.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-hanover-springfield",
+      "community": "Hanover Springfield",
+      "url": "https://medialibrarycfo.entrata.com/3156/MLv3/9/36/2025/12/31/090108/695548c4312210.19084083226.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-8421-broad",
+      "community": "8421 Broad",
+      "url": "https://rent.brookfieldproperties.com/wp-content/uploads/2024/05/HDP_170731_19_FS_Web.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-adaire",
+      "community": "Adaire",
+      "url": "https://cdn.carmel-apartments.com/system/uploads/fae/image/asset/36312/metro-2.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-brentford-at-the-mile",
+      "community": "Brentford at the Mile",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/johncolephoto-kettler-brentfordmile2-13.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-haden",
+      "community": "Haden",
+      "url": "https://livehaden.com/assets/images/cache/0222B-dc7802a2065ba08fb7948ad027c66e38.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-highgate-at-the-mile",
+      "community": "Highgate at the Mile",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/037_7915_jones_branch_drive__201215_255636.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-lumen",
+      "community": "Lumen",
+      "url": "https://lumentysons.com/assets/images/cache/20190907_9452-e872d0f620356ff6ac0362e54a779814.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-nouvelle",
+      "community": "Nouvelle",
+      "url": "https://livenouvelle.com/assets/images/cache/exterior-6130ecad9921e6ff21f6f0ab80eefee9.JPG",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-heming",
+      "community": "The Heming",
+      "url": "https://www.liveheming.com/wp-content/uploads/2024/09/Heming_INT_Apartments_Nightstand_RayCaviccho062024.jpg.webp?x95611=",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-fairfax-county-the-jones-at-tysons",
+      "community": "The Jones at Tysons",
+      "url": "https://uat-strapi-uploads-bozzuto-revamp.s3.us-west-2.amazonaws.com/cms-upload-cms-upload-property-p1858181-2852217_HanoverTysons_INT_OlmoBorgheseSchemeKitchen_June22-1760629128415-1760629128420.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-point-at-mclean",
+      "community": "The Point at Mclean",
+      "url": "https://medialibrarycfo.entrata.com/17202/MLv3/9/36/2026/01/26/095838/69779d3d9887c7.84923783851.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-the-rylan",
+      "community": "The Rylan",
+      "url": "https://rylantysons.com/assets/images/cache/Rylan-Front-Wide-Across-Street-Morning-241-eac94a40181fabb56ce7993c9d2f6fad.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-vita",
+      "community": "VITA",
+      "url": "https://assets.macerichepicenter.com/FileManager/Property/Albums/TysonsCornerCenter/10661/VITA_Gallery1.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-the-carlin",
+      "community": "The Carlin",
+      "url": "https://gravelcdn.nyc3.digitaloceanspaces.com/sites/66/2022/04/04132642/Carlin-260x200-9.jpeg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-claridge-house",
+      "community": "Claridge House",
+      "url": "https://images1.apartments.com/i2/KMXEKrieDL6iacQ51CiNWr3jquh95GU-HRjPSfzkc7I/111/image.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-culpepper-gardens",
+      "community": "Culpepper Gardens",
+      "url": "https://images.squarespace-cdn.com/content/v1/5f4fde63fa39ac5601b24d24/1602632940318-0MROQARYAFWHP637QQWR/20180613_154532.jpg?format=1000w",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-hunter-s-park-at-cherrydale",
+      "community": "Hunter’s Park at Cherrydale",
+      "url": "https://www.arlingtonva.us/files/sharedassets/public/housing/images/hunters-park-patio-ahc-inc.jpg?h=3456&w=5184",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-arlington-county-the-jordan",
+      "community": "The Jordan",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/5465/p1580515_jordan_09_photogallery.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-placemakr",
+      "community": "Placemakr",
+      "url": "https://www.placemakr.com/hs-fs/hubfs/0-pm-corp-website-brand-refresh/property-pages/Marymount%20Ballston/PMRIXEY-P2BDB%20%28Premium%20Two%20Bed%20with%20Balcony%2C%20Unit%201401%29/PMRIXEY-Prem2BedBalcony_26.jpg?length=1200&name=PMRIXEY-Prem2BedBalcony_26.jpg&width=1200",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-the-waycroft",
+      "community": "The Waycroft",
+      "url": "https://thewaycroft.com/wp-content/uploads/2020/07/living-room-large-windows.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-ballston-park-at-historic-buckingham-village",
+      "community": "Ballston Park at Historic Buckingham Village",
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/21/2022/2/10/93177/61534905c22950.18105306589.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-buckingham-gardens",
+      "community": "Buckingham Gardens",
+      "url": "https://images1.apartments.com/i2/yK6EmpD8AdiNAbeVf-_VB7odX43iJJ3c3xYUeTcYmmo/111/buckingham-gardens-arlington-va-primary-photo.jpg?p=1",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-arlington-county-the-cadence",
+      "community": "The Cadence",
+      "url": "https://capi.myleasestar.com/v2/dimg/176993434/1920x1080/176993434.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-knightsbridge-apts",
+      "community": "Knightsbridge Apts",
+      "url": "https://wesleyhousing.org/wp-content/uploads/Wesley-Housing-Properties-Under-Development-Knightsbridge-1030x641.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-the-madison-at-ballston-station",
+      "community": "The Madison at Ballston Station",
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/27/2024/12/18/094852/6762fcf44fd860.08686446102.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-whitefield-commons",
+      "community": "Whitefield Commons",
+      "url": "https://capi.myleasestar.com/v2/dimg-crop/176895465/420x550/176895465.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-arlington-county-the-spectrum",
+      "community": "The Spectrum",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/85707/spectrum-thumb.png",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-the-earl",
+      "community": "The Earl",
+      "url": "https://theearlapartments.com/assets/images/cache/XIR9qaTRhmlzbAORBTi66pmydJ96pXFacNNYWeoR-f4e3038de446b1c08c9c859313eec9ad.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-ten-at-clarendon",
+      "community": "Ten at Clarendon",
+      "url": "https://images.squarespace-cdn.com/content/v1/667aea9953deb9770e328812/0eb3548a-f9e8-47e2-a6d1-2b2261191f57/HDP_171116_04V3_FS.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-vpoint",
+      "community": "vPoint",
+      "url": "https://capi.myleasestar.com/v2/dimg-crop/45844360/572x350/45844360.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-wholey-legacy-homes",
+      "community": "Wholey Legacy Homes",
+      "url": "https://capi.myleasestar.com/v2/dimg/174678003/1920x1080/174678003.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-oakwood-meadow-senior-residences",
+      "community": "Oakwood Meadow Senior Residences",
+      "url": "https://capi.myleasestar.com/v2/dimg/151300645/1920x1080/151300645.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-fairfax-county-ilda-s-overlook-senior-residences",
+      "community": "Ilda’s Overlook Senior Residences",
+      "url": "https://capi.myleasestar.com/v2/dimg/164187206/1920x1080/164187206.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-loudoun-view-senior-residences",
+      "community": "Loudoun View Senior Residences",
+      "url": "https://capi.myleasestar.com/v2/dimg/158129585/1920x1080/158129585.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-arlington-mill",
+      "community": "Arlington Mill",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1920%2Ch_1280%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_419%2Car_0.9767441860465115%2Cg_auto/s3/2/92891/arlington%20mill_va_kitchen_new%20hero_icp_2761.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-gilliam-place",
+      "community": "Gilliam Place",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92891/gilliam%20place%20apartments_va_new%20gallery%20image%20%2812%29.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-courthouse-crossings",
+      "community": "Courthouse Crossings",
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Courthouse-Crossing.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-columbia-hills-apartments",
+      "community": "Columbia Hills Apartments",
+      "url": "https://capi.myleasestar.com/v2/dimg/66208464/1920x1080/66208464.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-columbia-grove",
+      "community": "Columbia Grove",
+      "url": "https://capi.myleasestar.com/v2/dimg/66459712/1920x1080/66459712.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-the-springs",
+      "community": "The Springs",
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Springs.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-queens-court",
+      "community": "Queens Court",
+      "url": "https://capi.myleasestar.com/v2/dimg/69743124/1920x1080/69743124.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-parc-rosslyn",
+      "community": "Parc Rosslyn",
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto%2Cf_auto%2Cc_fill%2Cg_center%2Ch_667%2Cw_1000/v1649457723/g5/g5-c-5smeemg8y-paradigm-companies/g5-cl-1ly834bqj5-paradigm-companies-arlington-va/uploads/Port_ParcRosslyn_4_q4heug.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-marbella",
+      "community": "Marbella",
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Marbella.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-cameron-commons",
+      "community": "Cameron Commons",
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Cameron-Commons.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-calvert-manor",
+      "community": "Calvert Manor",
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Calvert-Manor.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-leckey-gardens",
+      "community": "Leckey Gardens",
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Leckey-Gardens.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-buchanan-gardens",
+      "community": "Buchanan Gardens",
+      "url": "https://capi.myleasestar.com/v2/dimg/161727998/1920x1080/161727998.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-the-barkalow",
+      "community": "The Barkalow",
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-Barkalow.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-unity-homes-at-ballston",
+      "community": "Unity Homes at Ballston",
+      "url": "https://truegroundhousing.org/wp-content/uploads/JPE_9881_-RT-scaled-4.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-arlington-county-fisher-house",
+      "community": "Fisher House",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/92891/fisher%20house_va_new%20gallery%20image%20%286%29.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-arlington-county-arna-valley-view",
+      "community": "Arna Valley View",
+      "url": "https://truegroundhousing.org/wp-content/uploads/True-Ground-ArnaValley.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-loudoun-county-acclaim-at-ashburn",
+      "community": "Acclaim at Ashburn",
+      "url": "https://www.avanath.com/wp-content/uploads/2018/08/000_8882-1024x684.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-loudoun-county-ashburn-chase",
+      "community": "Ashburn Chase",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/110733/tm_ashburn_chase_2803-1200x.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-atley-on-the-greenway",
+      "community": "Atley on the Greenway",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1800%2Ch_1200%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/3/686299/living%20room%20and%20dining%20area%20at%20atley%20on%20the%20greenway%20apartments%20in%20ashburn%20va.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-blvd-commons",
+      "community": "BLVD Commons",
+      "url": "https://blvdcommons.com/assets/images/cache/gallery_3_blvd__2830-20f7293f3f81d55948ec4e5ecb4a06a8.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-blvd-gramercy-east-blvd-flats",
+      "community": "BLVD Gramercy East & BLVD Flats",
+      "url": "https://blvdgramercyeast.com/assets/images/cache/rotator_3_blvd__2833-58ea83fb1f29c53fd971d13b881e28f4.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-the-grove-at-flynn-s-crossing",
+      "community": "The Grove at Flynn’s Crossing",
+      "url": "https://www.evergreenreg.com/wp-content/uploads/2025/05/Grove-at-Flynns-Crossing-1.webp",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-vyne-one-loudoun",
+      "community": "Vyne One Loudoun",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/img_6124.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-waxpool-apartments",
+      "community": "Waxpool Apartments",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/110733/dji_20240306104324_0477_d.jpeg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-the-william",
+      "community": "The William",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/jcp-kettler-thewilliam-day1-37.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-the-abbey-the-devon-at-south-riding",
+      "community": "The Abbey & The Devon at South Riding",
+      "url": "https://images1.apartments.com/i2/Hf6iEoVhuSL9KgaUQ4_BYhSorn2Jh7tNUtY_Qq_NJX0/110/the-abbey-at-south-riding-south-riding-va-building-photo.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-bell-ashburn-farms",
+      "community": "Bell Ashburn Farms",
+      "url": "https://www.bellashburnfarms.com/wp-content/uploads/sites/80/2022/04/BellAshburnFarms_Model_Living_1.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-loudoun-county-braddock-terrace",
+      "community": "Braddock Terrace",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/109082/braddock%206.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-tgm-moorefield",
+      "community": "TGM Moorefield",
+      "url": "https://tgmmoorefield.com/wp-content/uploads/sites/65/2024/09/tgm-moorefield-aerial-view-and-landscape-design.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-loudoun-county-shreveport-ridge",
+      "community": "Shreveport Ridge",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/3/650536/photogal1.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-the-woods-at-brambleton",
+      "community": "The Woods at Brambleton",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1024%2Ch_768%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/3/650566/photo_gal5.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-the-woods-at-westpark",
+      "community": "The Woods at Westpark",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.4%2Cg_auto/s3/2/110733/51312910041_207496ab2a_o.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-acclaim-at-sterling",
+      "community": "Acclaim at Sterling",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/57804/avanath_006%20-sterling%20dji_0244_5_6_7_8.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-cascades-crossing",
+      "community": "Cascades Crossing",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/84017/p1693021-5-1-photogallery.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-the-commons-at-potomac-square",
+      "community": "The Commons at Potomac Square",
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/x_-2%2Cy_371%2Ch_1226%2Cw_2502%2Cc_crop/q_auto%2Cf_auto%2Cfl_lossy%2Cg_center%2Ch_588%2Cw_1200/v1725892016/g5/g5-c-5vee2vhsk-fca-management-llc/g5-cl-1p4co92ykv-fca-management-llc-sterling-va/uploads/000_4613_1_nwimyu.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-the-elms-at-arcola",
+      "community": "The Elms at Arcola",
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto%2Cf_auto%2Cfl_lossy/v1666031493/g5/g5-c-5weyr3gl3-legend-management-group/g5-cl-1n20g75azp-legend-management-group-dulles-va/uploads/cywcoccswx3poilfvzyp.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-heronview-apartments",
+      "community": "Heronview Apartments",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/109082/02-dji_0166.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-lerner-windmill-parc",
+      "community": "Lerner Windmill Parc",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/227691/windmill%20parc%20apartment%20community%20sign.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-stone-springs-apartments",
+      "community": "Stone Springs Apartments",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/109082/bldg%20ext%281%29.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-the-wyatt",
+      "community": "The Wyatt",
+      "url": "https://s7d9.scene7.com/is/image/greystarprod/22188BDG2",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-llewellyn-village",
+      "community": "Llewellyn Village",
+      "url": "https://windyhillfoundation.org/wp-content/uploads/2017/03/Llewelyn-Village-Apartments.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-maple-avenue-apartments",
+      "community": "Maple Avenue Apartments",
+      "url": "https://www.armigermanagement.com/admin/uploads/IMG_4280.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-purcellville-east",
+      "community": "Purcellville East",
+      "url": "https://images1.apartments.com/i2/nhuuSh_yEShqWmBnh6vWdxPTsl4IfDSC4o5tOrk329o/116/purcellville-east-apartments-purcellville-va-primary-photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-loudoun-county-purcellville-pointe",
+      "community": "Purcellville Pointe",
+      "url": "https://medialibrarycfo.entrata.com/100025/MLv3/9/36/2025/05/06/094539/681a2ea32ade91.31554564730.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-loudoun-county-levis-hill-house",
+      "community": "Levis Hill House",
+      "url": "https://windyhillfoundation.org/wp-content/uploads/2017/03/Levis-Hill-House.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-loudoun-county-madison-house",
+      "community": "Madison House",
+      "url": "https://residentialone.mystagingwebsite.com/wp-content/uploads/2023/09/senior-apartments-leesburg-virginia-750x750-1.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-alexandria-city-annie-b-rose-house",
+      "community": "Annie B. Rose House",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/120987/abrh-exterior05.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-claridge-house-alexandria",
+      "community": "Claridge House Alexandria",
+      "url": "https://images1.apartments.com/i2/Q3Vb4nCTZN8WFTkfZ7gnEJ2tj4ASP-K8ahLfMV7d2bo/111/claridge-house-of-alexandria-alexandria-va-primary-photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-alexandria-city-foxchase",
+      "community": "Foxchase",
+      "url": "https://s7d9.scene7.com/is/image/aimcoprod/Foxchase-Gadsby-GeneralExterior1-1?%24large-desktop-1990px%24=&fmt=webp",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-new-brookside-apartments",
+      "community": "New Brookside Apartments",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/120987/_bnp0651.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-olde-towne-west-iii",
+      "community": "Olde Towne West III",
+      "url": "https://images1.apartments.com/i2/0dktMPbKuxapCP7IJ3pKLEIU3V8pjYcWHeYgc72KhKI/111/olde-towne-west-alexandria-va-building-photo.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-acclaim-at-alexandria",
+      "community": "Acclaim at Alexandria",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/57804/avanath_026%20alexandriastation%20dsc_2609_10_11_12_13.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-beasley-square",
+      "community": "Beasley Square",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/1323_Duke_Street_at_South_West%2C_Alexandria.jpg?utm_campaign=index&utm_content=original&utm_source=commons.wikimedia.org",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-alexandria-city-beverly-park",
+      "community": "Beverly Park",
+      "url": "https://wesleypropertymanagement.com/wp-content/uploads/Wesley-Property-Management-Communities-Gallery-Beverly-Park-4.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-bloom-at-braddock",
+      "community": "The Bloom at Braddock",
+      "url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/21/2025/01/31/123802/679d2699c54211.70813974373.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-brent-place",
+      "community": "Brent Place",
+      "url": "https://images.squarespace-cdn.com/content/v1/6388ffb60b70956b8d39a40b/0014c1fc-7fef-4f05-9c59-87c6dda94457/2020-03-02.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-ellsworth",
+      "community": "The Ellsworth",
+      "url": "https://www.housingalexandria.org/wp-content/uploads/2023/04/exterior-11-22-scaled.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-alexandria-city-the-waypoint-at-fairlington",
+      "community": "The Waypoint at Fairlington",
+      "url": "https://capi.myleasestar.com/v2/dimg/177677061/1920x1080/177677061.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-fields-of-alexandria",
+      "community": "The Fields of Alexandria",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/063_4309_duke_street_309523_576019.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-fields-of-old-town",
+      "community": "The Fields of Old Town",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_6064%2Ch_4040%2Cc_crop/q_auto%2Cf_auto%2Cc_fill%2Cw_576%2Car_1%2Cg_auto/s3/2/101498/old%20town-poi-16.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-jackson-crossing",
+      "community": "Jackson Crossing",
+      "url": "https://www.alexandriava.gov/sites/default/files/styles/crop_card_image/public/2024-09/Jackson%20Crossing%20Full%20View%20%28landscape.jpg?h=e2915dde&itok=k-rbM62x",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-lacy-court",
+      "community": "Lacy Court",
+      "url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/21/2025/09/11/121430/68c31186b0eec5.06180989287.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-alexandria-city-the-lineage",
+      "community": "The Lineage",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/233585/pratumcompanies_6061-031_625_n_patrick_street_305645_610041.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-longview-terrace",
+      "community": "Longview Terrace",
+      "url": "https://www.housingalexandria.org/wp-content/uploads/2023/04/longview_i1.webp",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-lynhaven",
+      "community": "Lynhaven",
+      "url": "https://wesleypropertymanagement.com/wp-content/uploads/Wesley-Property-Management-Lynhaven-Apartments-Side-View.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-nexus-west-alex",
+      "community": "Nexus West Alex",
+      "url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/21/2025/12/17/092215/6942d8b787a7b0.82652582647.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-parc-square",
+      "community": "Parc Square",
+      "url": "https://capi.myleasestar.com/v2/dimg-crop/177664083/420x550/177664083.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-alexandria-city-parcview",
+      "community": "Parcview",
+      "url": "https://capi.myleasestar.com/v2/dimg/177408740/1920x1080/177408740.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-parkstone-alexandria",
+      "community": "Parkstone Alexandria",
+      "url": "https://capi.myleasestar.com/v2/dimg/157786160/1920x1080/157786160.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-square-at-511",
+      "community": "The Square at 511",
+      "url": "https://medialibrarycfo.entrata.com/101025/MLv3/3/27/2025/12/01/011806/692df7fecac306.08314136247.png",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-potomac-west",
+      "community": "Potomac West",
+      "url": "https://images1.apartments.com/i2/jCYZNgK9HlktMoy1PQrK3PPUi-733SVDTot5BkmCAJ4/116/potomac-west-apartments-alexandria-va-primary-photo.jpg?p=1",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-alexandria-city-saint-james-plaza",
+      "community": "Saint James Plaza",
+      "url": "https://www.huduser.gov/portal/sites/default/files/images/Edge-IP-1-102119.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-station-at-potomac-yard",
+      "community": "The Station at Potomac Yard",
+      "url": "https://www.housingalexandria.org/wp-content/uploads/2023/04/station_i9.webp",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-alate-old-town",
+      "community": "Alate Old Town",
+      "url": "https://alateoldtown.com/wp-content/uploads/2025/08/gallery_alate_old_town_48_exterior_1.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-alexandria-city-alexan-florence",
+      "community": "Alexan Florence",
+      "url": "https://d1kldynkubiuhd.cloudfront.net/eyJidWNrZXQiOiJ1YXQtc3RyYXBpLXVwbG9hZHMtYm96enV0by1yZXZhbXAiLCJrZXkiOiJjbXMtdXBsb2FkLWNtcy11cGxvYWQtcHJvcGVydHktcDEzNzE3MzQtRml0bmVzc19DZW50ZXItMTc2MDYyMjg1NDkzMy0xNzYwNjIyODU0OTM4LmpwZyJ9?aspectRatio=16%3A9&focalX=0.5&focalY=0.5&format=webp&q=75&width=1920",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-bradley",
+      "community": "The Bradley",
+      "url": "https://cdn.fairfieldresidential.com/2020/01/Concierge-Desk-at-The-Bradley-Alexandria-VA.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-carlyle-place",
+      "community": "Carlyle Place",
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/27/2024/03/12/114725/65f0952d12edb6.64722843187.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-del-ray-central-fuse",
+      "community": "Del Ray Central (Fuse)",
+      "url": "https://s7d9.scene7.com/is/image/greystarprod/12044BDG4",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-foundry",
+      "community": "The Foundry",
+      "url": "https://resource.rentcafe.com/image/upload/w_1504%2Ch_1299%2Cc_crop/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/3013/the%20foundry_exterior%20%289%29_highres_oct2020.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-gables-old-town-north",
+      "community": "Gables Old Town North",
+      "url": "https://cdn.rentcafe.com/dmslivecafe/3/891787/Pool%20Area.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-grayson",
+      "community": "The Grayson",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/2834/graysonpatio.png",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-halstead-tower-by-windsor",
+      "community": "Halstead Tower by Windsor",
+      "url": "https://d1uty3jitgnf7i.cloudfront.net/wp-content/uploads/2022/01/1OurCommunity_P1_Halstead1.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-alexandria-city-the-ives-at-oakville",
+      "community": "The Ives at Oakville",
+      "url": "https://cms.oakvilleva.com/wp-content/uploads/2024/08/Oakville_IvesAmenity_INT_Clubroom1_KDawkins_July2024-scaled.webp",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-alexandria-city-meridian-at-eisenhower-station",
+      "community": "Meridian at Eisenhower Station",
+      "url": "https://medialibrarycf.entrata.com/17698/MLv3/3/27/2022/4/13/90411/613be78f02f685.64471901318.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-meridian-2250",
+      "community": "Meridian 2250",
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/3/27/2024/09/28/072912/66f804a876c116.81013162405.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-notch-8",
+      "community": "Notch 8",
+      "url": "https://liveatnotch8.com/assets/images/cache/ePXJ8orNUOoj75uYkDv7m0vb1YzOtM1QMNi7gVDq-2ac0ba979dd15c9e90f5325b23e96778.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-parc-meridian",
+      "community": "Parc Meridian",
+      "url": "https://g5-assets-cld-res.cloudinary.com/image/upload/x_0%2Cy_252%2Ch_1119%2Cw_1678%2Cc_crop/q_auto%2Cf_auto%2Cc_fill%2Cg_center%2Ch_667%2Cw_1000/v1706046500/g5/g5-c-5smeemg8y-paradigm-companies/g5-cl-1ly834bqj5-paradigm-companies-arlington-va/uploads/Vertical_Nighttime_Exterior_From_Across_Eisenhower_Ave_yfyr31.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-park-ford",
+      "community": "Park + Ford",
+      "url": "https://lowe-re.com/app/uploads/2022/10/Side-by-Side-Spring-2048x1401.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-platform",
+      "community": "Platform",
+      "url": "https://cdn.carmel-apartments.com/system/uploads/fae/image/asset/27465/27.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-residences-at-carlyle-square",
+      "community": "The Residences at Carlyle Square",
+      "url": "https://images.squarespace-cdn.com/content/v1/664f9a2e28814f09f62cdb26/1716492893546-Q2UUDPPN4ZI3GMOCPEV1/Post%2BCarlyle%2BSquare%2BExterior%2BImage-141581.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-the-raeburn",
+      "community": "The Raeburn",
+      "url": "https://cms.oakvilleva.com/wp-content/uploads/2025/02/1.Oakville_Raeburn_INT_Amenities_Lobby_KipDawkins_Feb2025-jpg.webp",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-alexandria-city-station-650",
+      "community": "Station 650",
+      "url": "https://images.squarespace-cdn.com/content/v1/664f9a2e28814f09f62cdb26/1716492893758-3WSMPRARWZMMTJTK24JX/exterior.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-alexandria-city-bell-old-town",
+      "community": "Bell Old Town",
+      "url": "https://www.belloldtown.com/wp-content/uploads/sites/195/2025/05/BellOldTown_Game-Room-1_May2025_HighRes.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-alexandria-city-tuscany-apartments",
+      "community": "Tuscany Apartments",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/89430/065_260_yoakum_pkwy_267288_447355.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-prince-william-county-the-fitzgerald",
+      "community": "The Fitzgerald",
+      "url": "https://thefitzapts.com/wp-content/uploads/2024/03/Clubhouse.png",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-prince-william-county-joyfield-flats-at-woodbridge",
+      "community": "Joyfield Flats at Woodbridge",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_4000%2Ch_3000%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_576%2Car_1.44%2Cg_auto/s3/2/55533/standardcommunities-joyfieldapts-1%281%29.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-prince-william-county-the-landing-at-mason-s-bridge",
+      "community": "The Landing at Mason’s Bridge",
+      "url": "https://lawsoncompanies.com/wp-content/uploads/2021/03/LAMB-1.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "nova-prince-william-county-the-flats-at-neabsco",
+      "community": "The Flats at Neabsco",
+      "url": "https://cdngeneral.rentcafe.com/dmslivecafe/3/888598/Pool.jpg?crop=%280%2C0%2C300%2C200%29&cropxunits=300&cropyunits=200&quality=85&scale=both",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-prince-william-county-park-landing",
+      "community": "Park Landing",
+      "url": "https://capi.myleasestar.com/v2/dimg/174723970/1920x1080/174723970.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-prince-william-county-the-harbor-at-quantico-creek",
+      "community": "The Harbor at Quantico Creek",
+      "url": "https://images1.apartments.com/i2/nPA37tSfUR8eNLZopwH7ACDeQm4NCS_nKZ7rsbHuA5c/116/the-harbor-at-quantico-creek-dumfries-va-primary-photo.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-falls-church-city-455-tinner-hill",
+      "community": "455 Tinner Hill",
+      "url": "https://capi.myleasestar.com/v2/dimg/175898830/1920x1080/175898830.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "nova-falls-church-city-the-alder-at-west-falls",
+      "community": "The Alder at West Falls",
+      "url": "https://uat-strapi-uploads-bozzuto-revamp.s3.us-west-2.amazonaws.com/cms-upload-cms-upload-property-p1752918-2853373_6.TheAlder_INT_Apartments_Bedroom_462_KevinCarney_Feb2025-1760628748435-1760628748439.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-falls-church-city-the-read-building",
+      "community": "The Read Building",
+      "url": "https://images1.apartments.com/i2/AqMMbOvOEc-6RFv1ypdgva7Rw9mG49hPrtTRrxOGI2Y/111/read-building-falls-church-va-building-photo.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-falls-church-city-the-fields-of-falls-church",
+      "community": "The Fields of Falls Church",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1500%2Ch_1073%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_420%2Car_1.05%2Cg_auto/s3/3/690609/img1_fld_flch_ext1_4c_300.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "nova-broadfalls-two-bedroom",
+      "community": "Broadfalls Apartments",
+      "url": "https://resource.rentcafe.com/image/upload/x_0%2Cy_0%2Cw_1600%2Ch_1066%2Cc_crop/q_auto%2Cf_auto%2Cc_lfill%2Cw_576%2Car_1.92%2Cg_auto/s3/2/59578/11_809westbroadstreet_broadfalls_571_frontview_hiressmaller.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "arlington-view-terrace-two-bedroom",
+      "community": "Arlington View Terrace",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Terraces-at-Arlington-View-West-2@2x-1030x644.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "taylor-square-one-bedroom",
+      "community": "Taylor Square Apartments",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Taylor-Square-Featured%402x-1030x644.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "the-shelton-two-bedroom",
+      "community": "The Shelton",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Shelton-Featured%402x-1030x644.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "the-macedonian-two-bedroom",
+      "community": "The Macedonian",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Macedonian-Featured%402x-1030x644.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "fort-henry-gardens-two-bedroom",
+      "community": "Fort Henry Gardens",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Fort-Henry-Gardens-2%402x-1030x644.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "key-gardens-one-bedroom",
+      "community": "Key Gardens",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Key-Gardens-Featured%402x-1030x644.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "serrano-apartments-one-bedroom",
+      "community": "Serrano Apartments",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/85707/barbara%20darter%205535%20columbia%20pike%20%2816%20of%2030%29.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "westover-apartments-one-bedroom",
+      "community": "Westover Apartments",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-Westover-Apartments-Featured%402x-1030x644.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "the-ashtons-one-bedroom",
+      "community": "The Ashtons",
+      "url": "https://ahcommunities.org/wp-content/uploads/AHC-Our-Communities-The-Ashtons-Featured%402x-1030x644.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "the-fields-of-arlington-one-bedroom",
+      "community": "The Fields of Arlington",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto%2Cc_limit%2Cw_1200/s3/2/101498/leasing%20office.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "lenox-club-studio",
+      "community": "Lenox Club",
+      "url": "https://resource.rentcafe.com/image/upload/q_auto%2Cf_auto/s3/2/85201/lenoxclub_9a_exterior3.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "blacksburg-stonegate-apartments-s22-room-in-3-bedroom-apartment",
+      "community": "Stonegate Apartments",
+      "url": "https://images.cdn.appfolio.com/granitesl/images/a5800906-350b-4358-b892-6d01231a0f85/medium.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "blacksburg-university-terrace-1213k-1213k-individual-bedroom-agreement",
+      "community": "University Terrace — 1213K",
+      "url": "https://images.cdn.appfolio.com/granitesl/images/612f214b-68ff-48ac-bdb9-4230aed1326f/medium.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "blacksburg-1711-apartments-unit-04-private-bedroom",
+      "community": "1711 Apartments",
+      "url": "https://images.cdn.appfolio.com/granitesl/images/4b384edc-f743-40a9-a6ba-1c72d8e8be26/large.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "blacksburg-alight-blacksburg-fireplace-bedroom-in-2-1",
+      "community": "Alight Blacksburg",
+      "url": "https://alight-blacksburg.com/wp-content/uploads/sites/19/2023/02/Alight-Blacksburg-POI-11.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "blacksburg-terrace-view-2x1-5-t3-private-bedroom",
+      "community": "Terrace View",
+      "url": "https://images.squarespace-cdn.com/content/v1/647f3f67a8d30515dd10eb3b/fe008e74-bb9e-4a23-9530-3efca1d19031/2025.10.07_TerraceView_Pool_002.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "blacksburg-collegiate-suites-hunters-ridge-bedroom-in-shared-apartment-confirm-layout",
+      "community": "Collegiate Suites & Hunters Ridge",
+      "url": "https://images.squarespace-cdn.com/content/v1/64b57d78e189f7418cd1ce6a/c254682b-6309-4a88-892b-10e8f947c927/Collegiate%2BSuites%2B%26%2BHunters%2BRidge%2Bof%2BBlacksburg%2B%7C%2BStudent%2BApartments%2Bnear%2BVirginia%2BTech%2B%7C%2BClubhouse",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "blacksburg-maple-ridge-townhomes-bedroom-in-shared-townhome-confirm-layout",
+      "community": "Maple Ridge Townhomes",
+      "url": "https://images.squarespace-cdn.com/content/v1/64b5ab92ede2a068c43b1b4b/83f17419-2677-4968-a927-f99702f57615/Maple%2BRidge%2BTownhomes-POI-001.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "blacksburg-the-edge-apartments-townhomes-d1-private-bedroom",
+      "community": "The Edge Apartments & Townhomes",
+      "url": "https://cmgleasing.com/upload/property_gallery/Property-12016-PropertyGalleryImage-Sized_0006_BSB.Edge12.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "blacksburg-union-blacksburg-d2-furnished-pool-view-bedroom",
+      "community": "Union Blacksburg",
+      "url": "https://medialibrarycfo.entrata.com/15027/MLv3/9/36/2024/10/08/105549/67056415af3eb8.62351006442.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "blacksburg-the-mill-at-blacksburg-3-bedroom-whole-apartment",
+      "community": "The Mill at Blacksburg",
+      "url": "https://www.blacksburgmill.com/wp-content/uploads/2019/09/The-Mill-Apartments-Blacksburg.jpg",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "blacksburg-legacy-on-main-2-3-bedroom-community-confirm-rent",
+      "community": "Legacy on Main",
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2026/06/LegacyOnMain-July2026.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "blacksburg-cedar-crest-apartments-1-3-bedroom-townhomes-confirm-rent",
+      "community": "Cedar Crest Apartments",
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2019/08/CedarCrest.exterior.20-3-scaled.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "blacksburg-ellett-road-community-1-2-bedroom-community-confirm-eligibility",
+      "community": "Ellett Road Community",
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2022/06/ElletRd.Exterior-5.22-4.jpg",
+      "status": "image_returned_by_web_review"
+    },
+    {
+      "id": "margot-junior-one-to-two-bedroom",
+      "community": "Margot",
+      "url": "https://www.carrprop.com/wp-content/uploads/2026/01/01_hero_slider_margot_exterior.webp",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "ramsey-homes-three-bedroom",
+      "community": "Ramsey Homes",
+      "url": "https://www.arha.us/sites/default/files/2019-01/RAMSEY%20HOMES.png",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "community-lodgings-elbert-avenue-one-to-three-bedroom",
+      "community": "Community Lodgings Elbert Avenue Apartments",
+      "url": "https://communitylodgings.org/wp-content/uploads/2025/02/3912Elbert3-crop.webp",
+      "status": "delivery_not_confirmed"
+    },
+    {
+      "id": "blacksburg-brexx-talmadge-5x5-5-room-in-5-bedroom-apartment",
+      "community": "Brexx at Blacksburg",
+      "url": "https://www.brexxblacksburg.com/wp-content/uploads/2026/09/brexx-blacksburg-hero-1-1349x758-c-default.webp",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "blacksburg-shawnee-apartments-2-bedroom-entire-apartment",
+      "community": "Shawnee Apartments",
+      "url": "https://cmgleasing.com/upload/property_gallery/Shawnee_Gallery_Exterior_2_1530x960px.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "poland-hill-senior",
+      "community": "Poland Hill Senior Apartments",
+      "url": "https://fitchirick.com/wp-content/uploads/2025/09/Poland-Hill-Sign-Ext_Clean_20241023_1024x707-min.webp",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "wingler-house",
+      "community": "Wingler House Apartments",
+      "url": "https://www.qpmgmt.com/wp-content/uploads/2019/01/WinglerHouse10-1.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "virginia-lane-middleburg",
+      "community": "Virginia Lane",
+      "url": "https://windyhillfoundation.org/wp-content/uploads/2025/01/virginia-lane.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "blacksburg-fieldstone-apartments-lancaster-3-bedroom-apartment",
+      "community": "Fieldstone Apartments",
+      "url": "https://www.goparkproperties.com/wp-content/uploads/2024/08/Fieldstone.webp",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "blacksburg-the-highlands-at-huckleberry-ridge-glen-3-bedroom-whole-apartment",
+      "community": "The Highlands at Huckleberry Ridge",
+      "url": "https://www.goparkproperties.com/wp-content/uploads/2024/08/Highlands.webp",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "christiansburg-linden-grove-3-bedroom-townhome-whole-home",
+      "community": "Linden Grove",
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2019/08/LindenGrove.exterior.20-4-scaled.jpg",
+      "status": "not_yet_reviewed"
+    },
+    {
+      "id": "christiansburg-linden-green-apartments-1-4-bedroom-community-waitlist-closed",
+      "community": "Linden Green Apartments",
+      "url": "https://www.communityhousingpartners.org/wp-content/uploads/2019/08/466.jpg",
+      "status": "not_yet_reviewed"
+    }
+  ]
+}

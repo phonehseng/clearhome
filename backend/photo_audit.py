@@ -22,7 +22,10 @@ def audit(download=False):
     for rows in communities.values():
         row = next((r for r in rows if r.get('photo')), rows[0])
         photo = row.get('photo')
-        item = dict(community=row.get('community') or row['name'], record_ids=[r['id'] for r in rows])
+        item = dict(community=row.get('community') or row['name'],
+                    record_ids=[r['id'] for r in rows],
+                    missing_photo_record_ids=[r['id'] for r in rows if not r.get('photo')],
+                    rendering_record_ids=[r['id'] for r in rows if (r.get('photo') or {}).get('kind') == 'rendering'])
         if not photo:
             item['status'] = 'missing_official_photo'
         else:
@@ -42,8 +45,38 @@ def audit(download=False):
     return report
 
 
+def coverage_report(download=False):
+    """Separate catalog coverage from downloaded-image checks; unknown is not a pass."""
+    communities = audit(download)
+    record_count = sum(len(c['record_ids']) for c in communities)
+    missing_ids = [rid for c in communities for rid in c['missing_photo_record_ids']]
+    verified_images = {'large_image', 'needs_larger_original'}
+    unchecked = [c['community'] for c in communities
+                 if c['status'] not in verified_images and c['status'] != 'missing_official_photo']
+    return {
+        'summary': {
+            'housing_records': record_count,
+            'records_with_image': record_count - len(missing_ids),
+            'records_without_image': len(missing_ids),
+            'records_with_rendering': sum(len(c['rendering_record_ids']) for c in communities),
+            'communities': len(communities),
+            'communities_without_photo': sum(c['status'] == 'missing_official_photo' for c in communities),
+            'communities_with_unconfirmed_delivery': len(unchecked),
+            'complete': bool(communities) and not missing_ids and all(c['status'] in verified_images for c in communities),
+        },
+        'missing_photo_record_ids': missing_ids,
+        'communities': communities,
+    }
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--download', action='store_true')
+    parser.add_argument('--require-complete', action='store_true',
+                        help='Report every housing record and exit 1 for missing or unvalidated photos.')
     args = parser.parse_args()
+    if args.require_complete:
+        report = coverage_report(args.download)
+        print(json.dumps(report, indent=2, ensure_ascii=False))
+        raise SystemExit(0 if report['summary']['complete'] else 1)
     print(json.dumps(audit(args.download), indent=2, ensure_ascii=False))
