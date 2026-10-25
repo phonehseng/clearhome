@@ -135,13 +135,12 @@ fetch('/api/programs').then(r => r.json()).then(data => {
   renderPrograms();
 }).catch(() => { document.getElementById('programs').replaceChildren(el('p', { class: 'empty' }, 'Could not load programs. Call 211 for local help.')); });
 
-// Gemma sorts the programs at the top of the page. Two calls, so it feels instant: the first returns an order from the
+// Gemma sorts the program cards right below its box. Two calls, so it feels instant: the first returns an order from the
 // words right away; the second has Gemma order them and say why (a repeated question comes back from its memory).
 const sortForm = document.getElementById('sort-form');
 const sortInput = document.getElementById('sort-input');
 const sortReply = document.getElementById('sort-reply');
 const sortText = document.getElementById('sort-text');
-const sortPicks = document.getElementById('sort-picks');
 const sortReset = document.getElementById('sort-reset');
 const SORT_HINT = sortText.textContent;
 let ranked = null, sortQuestion = '', sortRun = 0;
@@ -151,15 +150,6 @@ function showSort(result) {
   sortText.textContent = result.note || '';
   sortReset.hidden = false;
   renderPrograms();
-  const shown = shownPrograms();
-  const top = ranked.map(id => shown.find(p => p.id === id)).filter(Boolean).slice(0, 3);
-  sortPicks.replaceChildren();
-  sortPicks.hidden = !top.length;
-  if (!top.length) return;
-  const grid = el('div', { class: 'grid' });
-  top.forEach((p, n) => grid.append(programCard(p, n + 1)));
-  const all = el('a', { class: 'sort-all', href: '#programs-section' }, `See all ${shown.length} programs, best fits first ↓`);
-  sortPicks.append(grid, all);
 }
 function resetSort() {
   sortRun++;
@@ -168,8 +158,6 @@ function resetSort() {
   sortText.textContent = SORT_HINT;
   delete sortReply.dataset.state;
   sortReset.hidden = true;
-  sortPicks.hidden = true;
-  sortPicks.replaceChildren();
   renderPrograms();
 }
 async function sortPrograms(question) {

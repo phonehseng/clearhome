@@ -708,10 +708,10 @@ body {
   }
 }
 
-/* Gemma's sort box at the top of the page: the programs that fit come first (an instant order from the words, then
-   Gemma's), with the best three shown right here. */
+/* Gemma's sort box right above the program cards: the programs that fit move to the top of the list (an instant order
+   from the words, then Gemma's). */
 .sort-chat {
-  margin: 18px 0 22px;
+  margin: 4px 0 22px;
   padding: 16px;
   border-radius: 24px;
   background: radial-gradient(120% 100% at 15% 0%, #ffffffeb, #ffffff00 60%), linear-gradient(140deg, #ffffffd9, #eef3ffb3);
@@ -813,19 +813,6 @@ body {
 .sort-chip:hover {
   background: radial-gradient(120% 100% at 15% 0%, #fff, #ffffff00 60%), linear-gradient(140deg, #ffffffe0, #e3ebfcb3);
 }
-.sort-picks {
-  margin-top: 14px;
-}
-.sort-picks .grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-.sort-all {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: 650;
-  color: var(--blue-2);
-}
 .item.ranked {
   border-color: #6f8fd6;
   box-shadow: 0 0 0 1px #6f8fd666, 0 10px 26px #23408f1a;
@@ -833,11 +820,6 @@ body {
 .badge.fit {
   background: #23408f;
   color: #fff;
-}
-@media (max-width: 860px) {
-  .sort-picks .grid {
-    grid-template-columns: 1fr;
-  }
 }
 @media (max-width: 560px) {
   .sort-chat {
