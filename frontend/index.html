@@ -438,6 +438,10 @@
       mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6'/%3E%3C/svg%3E") center/contain no-repeat}
     
     @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card.has-photo .card-glass{background:#fffffff0}}
+    /* Readability on photo cards: a slightly stronger tint and darker supporting text (room type, caveats, fees,
+       floor plans), so small print holds up over dark photos too; the photo still shows through the glass. */
+    .housing-card.has-photo .card-glass{--muted:#2f3b52;background:linear-gradient(140deg,#ffffffc7 0%,#ffffffb0 55%,#ffffffbd 100%)}
+    .housing-card.has-photo :is(.housing-category,.housing-location,.housing-plan,.housing-features,.rent-caveat,details p){font-weight:500}
 
     /* Every card is liquid glass and cards in a row line up (same height, links at the bottom). */
     .listings-grid{align-items:stretch}
