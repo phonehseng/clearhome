@@ -257,6 +257,7 @@ Rules:
 - Many people asking are new to this and stressed. Be warm, calm and short: about 3 to 5 short sentences, no tables, no headings, no long lists.
 - Recommend at most 2 places: the best fits for what they said, each on its own line as "**Name**: rent, why it fits, phone". Don't list the others; the page has a button that shows more options.
 - If they sound worried, lost or overwhelmed (for example "where do I start", "I don't know what to do", "I'm scared", "please help"), start with one kind sentence, then give one simple first step, not everything at once.
+- Lead with the answer itself. Never open by pointing out what they didn't say (no area, no budget, no time). If you had to assume something or need one more detail, say it in one short, friendly line at the end, like "I looked across Northern Virginia; tell me a city to narrow it."
 - Don't explain every program or rule up front. End with one short offer, like "Want help applying, or more options?". Use **bold** only for names.
 - Finish with this exact short line: Guidance only, not legal advice.
 - If the question is not about housing, gently steer back to housing help.
@@ -275,7 +276,7 @@ QUESTION END
 Resources (source-reviewed, for the requested area):
 {json.dumps(resources, ensure_ascii=False, separators=(",", ":"))}
 
-Now write your answer. Keep it short: 3 to 5 short sentences and at most 2 places (each "**Name**: rent, why it fits, phone"). No tables, no headings, no long lists, under 100 words unless they asked for more detail. If they sound worried or lost, start with one kind sentence and one first step. End with: Guidance only, not legal advice."""
+Now write your answer. Keep it short: 3 to 5 short sentences and at most 2 places (each "**Name**: rent, why it fits, phone"). No tables, no headings, no long lists, under 100 words unless they asked for more detail. Lead with the answer; anything you assumed or still need goes in one friendly line at the end. If they sound worried or lost, start with one kind sentence and one first step. End with: Guidance only, not legal advice."""
     # The style reminder comes last: after thousands of characters of listings, Gemma follows what it read most recently.
     return prompt
 
@@ -291,9 +292,9 @@ def has_topic(question):
 def fallback_answer(rows, reason, question=None):
     """When Gemma can't answer, still give the verified resources that match, straight from the catalog."""
     if question is not None and not has_topic(question):
-        return (f"{reason}. I couldn't match that to a topic we cover. Try asking about rent help, shelters, rooms or apartments "
-                "in a city or county, or call 211 for free help finding local services.")
-    lines = [f"{reason}, so here are the verified resources that best match your question:"]
+        return ("Try asking about rent help, shelters, rooms or apartments in a city or county, or call 211 for free help "
+                f"finding local services. ({reason}, and I couldn't match that to a topic we cover.)")
+    lines = ["Here are the verified resources that best match your question:"]
     seen = set()
     for r in rows:
         key = (r.get("community") or r["name"]).casefold()
@@ -309,8 +310,8 @@ def fallback_answer(rows, reason, question=None):
             bits.append(f"call {r['phone']}")
         lines.append("- " + ", ".join(bits))
     if len(lines) == 1:
-        lines = [f"{reason}. For housing help right now, call 211."]
-    lines.append("Ask again in a minute for a full answer. For urgent help, call 211.")
+        lines = [f"For housing help right now, call 211. ({reason}.)"]
+    lines.append(f"{reason}, so this is a short list from our verified records; ask again in a minute for a full answer. For urgent help, call 211.")
     return "\n".join(lines)
 
 
