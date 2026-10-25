@@ -546,6 +546,20 @@
     .map-video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#e6eefc;object-fit:cover}
     .map-video-cta{display:inline-flex;align-items:center;gap:8px;margin:12px 4px 0;font-size:14px;font-weight:650;color:#2f55b5;text-decoration:none}
     .map-video-cta:hover{text-decoration:underline}
+    /* Video controls over the recording: a pause button, a progress bar and the time, so it reads as a video, not the live map. */
+    .map-player{position:relative;border-radius:14px;overflow:hidden}
+    .map-player .map-video{border-radius:0}
+    .map-player-bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:12px;padding:28px 16px 12px;
+      background:linear-gradient(to top,#0b1633cc,#0b163300);color:#fff}
+    .map-player-bar[hidden]{display:none}
+    .map-player-bar button{flex:none;display:grid;place-items:center;width:34px;height:34px;padding:0;border:1px solid #ffffff55;border-radius:50%;
+      background:#ffffff2b;color:#fff;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+    .map-player-bar button:hover{background:#ffffff45}
+    .map-player-bar button:focus-visible{outline:2px solid #ffd66b;outline-offset:2px}
+    .map-player-track{flex:1;display:flex;align-items:center;height:18px;cursor:pointer}
+    .map-player-line{flex:1;height:5px;border-radius:99px;background:#ffffff4d;overflow:hidden}
+    .map-player-fill{height:100%;background:#fff;transform:scaleX(0);transform-origin:left}
+    .map-player-time{flex:none;font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;text-shadow:0 1px 2px #0008}
     #map .map-tabs{margin-bottom:12px;gap:6px}
     @media(max-width:820px){#map{padding-top:40px}#map #listing-map{height:280px}}
     @media(max-width:560px){
@@ -661,7 +675,7 @@
       <div class="pin-track map-track"><div class="pin-stage"><div class="pin-fit">
       <h2 id="map-title" class="cl-title reveal">A Walkthrough of <span>the Live Map</span></h2>
       <p class="cl-lead reveal">A recording of the map in use: switch regions, pick a neighborhood, open a listing. Open the live map to try it yourself.</p>
-      <div class="cl-frame reveal map-video-frame"><video id="map-video" class="map-video" src="/videos/map-tour.mp4?v=3" poster="/videos/map-tour.jpg?v=3" muted playsinline preload="metadata" aria-label="A recording of someone using the Clear Home map: browsing Northern Virginia, zooming into Ballston and Reston, opening listings, and switching to Blacksburg"></video><a class="map-video-cta" href="/app">Open the Live Map <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+      <div class="cl-frame reveal map-video-frame"><div class="map-player"><video id="map-video" class="map-video" src="/videos/map-tour.mp4?v=3" poster="/videos/map-tour.jpg?v=3" muted playsinline preload="metadata" aria-label="A recording of someone using the Clear Home map: browsing Northern Virginia, zooming into Ballston and Reston, opening listings, and switching to Blacksburg"></video><div class="map-player-bar" id="map-player-bar" hidden><button type="button" aria-label="Pause the video"></button><div class="map-player-track" role="progressbar" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="map-player-line"><div class="map-player-fill"></div></div></div><span class="map-player-time">0:00 / 0:45</span></div></div><a class="map-video-cta" href="/app">Open the Live Map <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a></div>
       </div></div></div>
     </section>
 
@@ -989,15 +1003,37 @@
         mapLead.textContent = STOPS[i][1];
         mapLead.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
       });
-      if (calmPage) mapVideo.controls = true;
+      if (calmPage) mapVideo.controls = true;  // the browser's own controls, progress bar included
       else {
         mapVideo.loop = true;
+        // Our controls over the video: pause/play, a progress bar (click to jump) and the time. Paused by the person, it
+        // stays paused while scrolling.
+        const bar = document.getElementById('map-player-bar'), toggle = bar.querySelector('button'), track = bar.querySelector('.map-player-track');
+        const fill = bar.querySelector('.map-player-fill'), time = bar.querySelector('.map-player-time');
+        const PAUSE = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="2.5" y="2" width="3.2" height="10" rx="1"/><rect x="8.3" y="2" width="3.2" height="10" rx="1"/></svg>';
+        const PLAY = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M4 2.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L4.9 1.7a.6.6 0 0 0-.9.5Z"/></svg>';
+        const clock = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
+        let held = false;
+        const draw = () => {
+          const d = mapVideo.duration || 0, part = d ? mapVideo.currentTime / d : 0;
+          fill.style.transform = `scaleX(${part})`; time.textContent = `${clock(mapVideo.currentTime)} / ${clock(d)}`;
+          track.setAttribute('aria-valuenow', Math.round(part * 100));
+        };
+        const tick = () => { draw(); if (!mapVideo.paused) requestAnimationFrame(tick); };
+        const icon = playing => { toggle.innerHTML = playing ? PAUSE : PLAY; toggle.setAttribute('aria-label', playing ? 'Pause the video' : 'Play the video'); };
+        mapVideo.addEventListener('play', () => { icon(true); requestAnimationFrame(tick); });
+        mapVideo.addEventListener('pause', () => { icon(false); draw(); });
+        mapVideo.addEventListener('loadedmetadata', draw);
+        mapVideo.addEventListener('seeked', draw);
+        toggle.addEventListener('click', () => { held = !mapVideo.paused; if (held) mapVideo.pause(); else mapVideo.play().catch(() => {}); });
+        track.addEventListener('click', e => { const r = track.getBoundingClientRect(); if (mapVideo.duration) mapVideo.currentTime = Math.min(Math.max((e.clientX - r.left) / r.width, 0), .999) * mapVideo.duration; draw(); });
+        icon(false); bar.hidden = false;
         // Load it as it nears the screen, play while it's mostly on screen, pause once it's scrolled away (checked on
         // scroll, so it doesn't depend on observers).
         const check = () => {
           const r = mapVideo.getBoundingClientRect(), seen = r.top < innerHeight * .8 && r.bottom > innerHeight * .2;
           if (r.top < innerHeight * 2 && r.bottom > -innerHeight) mapVideo.preload = 'auto';
-          if (seen && mapVideo.paused) mapVideo.play().catch(() => {});
+          if (seen && mapVideo.paused && !held) mapVideo.play().catch(() => {});
           else if (!seen && !mapVideo.paused) mapVideo.pause();
         };
         addEventListener('scroll', check, { passive: true });
