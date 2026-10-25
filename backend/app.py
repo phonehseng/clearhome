@@ -66,6 +66,12 @@ def site_icon():
     return send_from_directory(FRONTEND, name, max_age=86400)
 
 
+@app.get("/images/<path:name>")
+def images(name):
+    """Site artwork, like the region maps shown on listings that have no photo yet."""
+    return send_from_directory(os.path.join(FRONTEND, "images"), name, max_age=86400)
+
+
 @app.get("/")
 def about():
     return send_from_directory(FRONTEND, "about.html")

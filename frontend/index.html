@@ -1153,6 +1153,15 @@
     #tools .emergency-card .tonight-links{margin-bottom:14px}
     #tools .emergency-card .tonight-gemma:hover{background:radial-gradient(120% 100% at 15% 0%,#ffffff4d,#ffffff00 55%),linear-gradient(140deg,#1d2e5af0,#2f55b5d1)}
     #tools .emergency-card .tonight-gemma:focus-visible{outline:3px solid #2f55b5;outline-offset:3px}
+      /* Listings with no photo: the area's map (our own Google map, no pins) under frosted liquid glass, the same size as a photo. */
+    .housing-card.map-photo{position:relative}
+    .housing-card.map-photo::before{background:var(--card-photo) center/cover no-repeat,#edf2f8}
+    .housing-card .map-photo-glass{position:absolute;top:0;left:0;width:100%;aspect-ratio:16/9;max-height:200px;display:grid;place-items:center;
+      background:linear-gradient(140deg,#ffffff8c,#ffffff33 55%,#ffffff66);-webkit-backdrop-filter:blur(2.5px) saturate(1.3);backdrop-filter:blur(2.5px) saturate(1.3);
+      border-bottom:1px solid #e3e9f2;pointer-events:none}
+    .housing-card .map-photo-label{display:inline-flex;align-items:center;padding:8px 15px;border-radius:999px;font-size:13px;font-weight:700;color:#14203f;
+      background:linear-gradient(140deg,#ffffffd9,#ffffff99);border:1px solid #ffffffe6;box-shadow:inset 0 1px 0 #fff,0 6px 16px #14203f1f}
+    .housing-card .map-photo-credit{position:absolute;right:8px;bottom:6px;padding:1px 6px;border-radius:6px;font-size:10px;color:#3d4a66;background:#ffffffcc}
   </style>
 </head>
 <body>
@@ -1505,6 +1514,15 @@
       const photoUrl = '/media/listings/' + encodeURIComponent(photoRow.id);
       let displayedPhotoUrl = photoUrl;
       const safePhoto = photo && sourceLink(photo.url, 'Photo') && sourceLink(photo.source_url, 'Photo source');
+      // No photo yet: a map of the listing's area under frosted glass (never a picture of another home).
+      if (!safePhoto) {
+        const blacksburg = /blacksburg|christiansburg|radford|montgomery/i.test(`${row.region || ''} ${row.jurisdiction || ''}`);
+        card.classList.add('has-photo', 'map-photo'); card.style.setProperty('--card-photo', `url("/images/placeholder-${blacksburg ? 'blacksburg' : 'nova'}.jpg")`);
+        const cover = housingElement('div', 'map-photo-glass'); cover.setAttribute('role', 'img');
+        cover.setAttribute('aria-label', `Map of the ${blacksburg ? 'Blacksburg' : 'Northern Virginia'} area; no photo of this property yet`);
+        cover.append(housingElement('span', 'map-photo-label', 'Photo coming soon'), housingElement('small', 'map-photo-credit', 'Map data © Google'));
+        card.append(cover);
+      }
       if (safePhoto) {
         card.classList.add('has-photo'); card.style.setProperty('--card-photo', `url("${photoUrl}")`);
         const button = housingElement('button','property-photo'); button.type='button'; button.setAttribute('aria-label',`Enlarge ${imageLabel} of ${row.community || row.name}`); button.setAttribute('aria-haspopup','dialog');
@@ -1612,7 +1630,7 @@
       }
       if (card.classList.contains('has-photo')) {  // keep details together below the dedicated photo area
         const glass = housingElement('div','card-glass');
-        [...card.children].filter(n => !n.classList.contains('property-photo')).forEach(n => glass.append(n));
+        [...card.children].filter(n => !n.classList.contains('property-photo') && !n.classList.contains('map-photo-glass')).forEach(n => glass.append(n));
         card.append(glass);
       }
       if (gemmaOrder?.has(row.id)) { card.dataset.gemmaRank = gemmaOrder.get(row.id) + 1; card.title = `Gemma's pick #${gemmaOrder.get(row.id) + 1}`; }
