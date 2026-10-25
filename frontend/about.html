@@ -268,6 +268,20 @@
     .g-tag.gemini{background:#ede7fb;color:#5b3fb5}
     .g-tag.maps{background:#e6f4ea;color:#137333}
     .g-tag.cloud{background:#e8f0fe;color:#1a56c4}
+    /* Pinned scroll scenes (wide screens): the map, How Clear House Helps and the flip cards each stay on screen while
+       scrolling plays them, then the page carries on. Everything moves with the scroll itself, the stage drifts a little,
+       and a progress bar fills along the bottom, so the page never looks frozen. The script sets each track's height. */
+    .pin-track.pinned .pin-stage{position:sticky;top:0;box-sizing:border-box;height:calc(100vh / var(--page-zoom, 1));display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .pin-track.pinned .pin-fit{transform:translateY(calc((.5 - var(--p, 0)) * 28px))}
+    .google-track.pinned .google-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .scene-progress{position:absolute;left:50%;bottom:24px;display:none;align-items:center;gap:12px;transform:translateX(-50%);
+      font-size:12px;font-weight:600;letter-spacing:.02em;color:#5b6b85;white-space:nowrap;transition:opacity .35s}
+    .pin-track.pinned .scene-progress{display:flex}
+    .scene-progress b{position:relative;width:160px;height:4px;border-radius:4px;background:#d6e0f3;overflow:hidden}
+    .scene-progress b::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,#6f8fd6,#2f55b5);transform-origin:left;transform:scaleX(var(--p, 0))}
+    .scene-progress i{width:7px;height:7px;margin-top:-4px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);animation:scene-nudge 1.3s ease-in-out infinite}
+    .scene-progress.done{opacity:0}
+    @keyframes scene-nudge{0%,100%{translate:0 -2px}50%{translate:0 3px}}
     /* The sample chat and search in How Clear House Helps: lines appear as the scene plays, and Gemma's answer is typed
        over its own invisible full text, so nothing around it moves. */
     .cl-chat .demo,.cl-list .demo{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
@@ -345,8 +359,8 @@
 
     /* Default size: the site reads best a bit larger, like 125% browser zoom, on desktop screens. Smaller
        laptops get a gentler step and phones/tablets stay at 100% so layouts never get cramped. */
-    @media (min-width: 1100px){html{zoom:1.1} #listing-map,#walk-map{zoom:calc(1/1.1);width:auto} #listing-map{height:462px}}
-    @media (min-width: 1400px){html{zoom:1.25} #listing-map,#walk-map{zoom:.8;width:auto} #listing-map{height:525px}}
+    @media (min-width: 1100px){html{zoom:1.1;--page-zoom:1.1} #listing-map,#walk-map{zoom:calc(1/1.1);width:auto} #listing-map{height:462px}}
+    @media (min-width: 1400px){html{zoom:1.25;--page-zoom:1.25} #listing-map,#walk-map{zoom:.8;width:auto} #listing-map{height:525px}}
     /* Cards that slide in from the side start just past the edge; clip that so the page never swipes sideways. */
     html,body{overflow-x:clip}
     /* Google Maps can't draw inside a zoomed page, so the map boxes undo the zoom. width:auto keeps them exactly as wide as their column
@@ -363,28 +377,25 @@
     .cl-ping{width:9px;height:9px;border-radius:50%;background:#ff8a1f;box-shadow:0 0 0 0 #ff8a1fb3;animation:ch-ping 1.8s ease-out infinite}
     .cl-hero h1{font-size:clamp(48px,7vw,96px);line-height:1.02;letter-spacing:-.035em;color:#fff;margin:0;font-weight:800;text-shadow:0 10px 40px #1d3f9a40}
     .cl-hero h1 span{color:#fff}
-    /* A small green bird perched on the F of the headline (same drawing as the flock, one wing folded). Hover, tap or
+    /* A small orange bird perched on the F of the headline (the same drawing as the flock, in orange). Hover, tap or
        press it and it takes off up and to the right, then it's gone for this visit. Positioned in em from "Find" itself,
        so it stays on the letter at every size. */
     .cl-hero h1 .perch{position:relative}
-    .perch-bird{position:absolute;left:-.02em;bottom:calc(100% - .32em);width:clamp(24px,.36em,34px);aspect-ratio:32/26;padding:0;border:0;background:none;font:inherit;line-height:0;cursor:pointer;
+    .perch-bird{position:absolute;left:-.02em;bottom:calc(100% - .32em);width:clamp(26px,.4em,38px);aspect-ratio:20/12;padding:0;border:0;background:none;font:inherit;line-height:0;cursor:pointer;
       border-radius:6px;transition:opacity .4s .5s}
     .perch-bird svg{display:block;width:100%;height:100%;overflow:visible}
     .perch-bird:focus-visible{outline:2px solid #fff;outline-offset:3px}
     .split:not(.words-in) .perch-bird{opacity:0;transition:none}  /* lands once "Find" has risen into place */
-    .perch-bird .pb-fly{opacity:0}
-    .perch-bird :is(.pb-wing-back,.pb-wing-front){transform-box:view-box}
-    .perch-bird .pb-wing-back{transform-origin:15px 12.4px}
-    .perch-bird .pb-wing-front{transform-origin:17.6px 12.2px}
-    .perch-bird :is(.pb-legs,.pb-wing){transition:opacity .12s}
+    .perch-bird :is(.wl,.wr){transform-box:fill-box}
+    .perch-bird .wl{transform-origin:right bottom}
+    .perch-bird .wr{transform-origin:left bottom}
+    .perch-bird .pb-legs{transition:opacity .15s}
     .perch-bird.away{pointer-events:none;animation:perch-away 1.05s cubic-bezier(.45,0,.6,1) forwards}
-    .perch-bird.away :is(.pb-legs,.pb-wing){opacity:0}
-    .perch-bird.away .pb-fly{opacity:1}
-    .perch-bird.away .pb-wing-front{animation:perch-flap .2s ease-in-out infinite alternate}
-    .perch-bird.away .pb-wing-back{animation:perch-flap .2s ease-in-out -.07s infinite alternate}
+    .perch-bird.away .pb-legs{opacity:0}
+    .perch-bird.away .wl{animation:wing-l .55s ease-in-out infinite}
+    .perch-bird.away .wr{animation:wing-r .55s ease-in-out infinite}
     @keyframes perch-away{0%{transform:none}14%{transform:translate(3px,-14px)}78%{opacity:1}100%{transform:translate(250px,-240px) rotate(-8deg);opacity:0}}
-    @keyframes perch-flap{from{transform:rotate(8deg)}to{transform:rotate(-125deg)}}
-    @media(prefers-reduced-motion:reduce){.perch-bird.away{animation:perch-fade .3s forwards}.perch-bird.away .pb-fly{opacity:0}.perch-bird.away :is(.pb-legs,.pb-wing){opacity:1}@keyframes perch-fade{to{opacity:0}}}
+    @media(prefers-reduced-motion:reduce){.perch-bird.away{animation:perch-fade .3s forwards}.perch-bird.away :is(.wl,.wr){animation:none}@keyframes perch-fade{to{opacity:0}}}
     .cl-sub{font-size:clamp(18px,2vw,22px);color:#f4f7ff;margin:22px auto 34px;max-width:560px}
     .cl-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
     .cl-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;background:#14203f;color:#fff;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 10px 30px #14203f33;transition:transform .15s,box-shadow .15s}
@@ -569,7 +580,7 @@
     <section class="cl-hero" aria-labelledby="hero-title">
       <div class="cl-hero-text">
         <p class="cl-chip cl-in"><span class="cl-ping" aria-hidden="true"></span>Northern Virginia &amp; Blacksburg</p>
-        <h1 id="hero-title"><span class="perch">Find<button type="button" class="perch-bird" aria-label="Let the bird fly away"><svg viewBox="0 0 32 26" aria-hidden="true"><g class="pb-fly"><path class="pb-wing-back" d="M16.8 12.4Q16 2.4 8 .8Q8.4 5 10.8 8.6Q12.2 10.8 13.4 13Z" fill="#2f7d3a"/></g><path class="pb-legs" d="M14.6 19.6 13.8 24.2M17.6 19.4 17.9 24.2M13.8 24.2h2.4M13.8 24.2l1.8-.9M17.9 24.2h2.4M17.9 24.2l1.8-.9" stroke="#4a3f33" stroke-width=".85" stroke-linecap="round" fill="none"/><path d="M10 15.2 1.2 21.6l3.4.9 7.6-5.2Z" fill="#2f7d3a"/><ellipse cx="15.4" cy="14.4" rx="8.2" ry="6.1" transform="rotate(-16 15.4 14.4)" fill="#43a04f"/><ellipse cx="17.6" cy="16.3" rx="5.1" ry="3.4" transform="rotate(-16 17.6 16.3)" fill="#bfe3a8"/><circle cx="22.4" cy="8.6" r="4.7" fill="#43a04f"/><path d="M26.6 7.9 30.4 9l-3.8 1.2Z" fill="#f4b740"/><circle cx="23.9" cy="7.7" r="1.05" fill="#17233b"/><circle cx="24.25" cy="7.35" r=".38" fill="#fff"/><path class="pb-wing" d="M20.6 10.8Q15.4 7.2 10 11.2Q7.4 13.6 5.4 17.8Q12 17.8 17.4 15.2Q20.4 13.6 20.6 10.8Z" fill="#2f7d3a"/><path class="pb-wing" d="M18.8 11.2Q15 9.6 11.6 12.2" stroke="#5cb868" stroke-width=".8" stroke-linecap="round" fill="none"/><g class="pb-fly"><path class="pb-wing-front" d="M19.4 12Q19.6 1 12.4-1Q12.2 3.6 14 7.6Q15.2 10.4 16.2 13Z" fill="#3a9446"/></g></svg></button></span> Your Way <span>Home.</span></h1>
+        <h1 id="hero-title"><span class="perch">Find<button type="button" class="perch-bird" aria-label="Let the bird fly away"><svg viewBox="-10 -6.5 20 12" aria-hidden="true"><path class="pb-legs" d="M-.2 1.7-.6 4.7M1.5 1.7 1.8 4.7M-1.6 4.7h1.8M1 4.7h1.8" stroke="#8a4b0f" stroke-width=".75" stroke-linecap="round" fill="none"/><g stroke="#f28b30" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#f28b30"/><circle cx="3.4" cy="-.3" r="1.2" fill="#f28b30"/></svg></button></span> Your Way <span>Home.</span></h1>
         <p class="cl-sub cl-in" style="--d:.35s">Checked homes, shelters and rent help. Ask in plain words.</p>
         <div class="cl-actions cl-in" style="--d:.5s"><a class="cl-btn" href="/app" data-start>Get Started for Free <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency">Need a place tonight?</a></div>
       </div>
@@ -759,30 +770,122 @@
       setFlip(card, on);
       if (e.target.closest('.flip-btn')) card.querySelector(on ? '.back .flip-btn' : '.front .flip-btn').focus();
     }));
-    // Scroll scenes: the page always scrolls freely (nothing is pinned); each scene reacts to where it sits on screen.
-    const calmPage = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function scrollScene(onScroll) {
-      let queued = false;
-      const sync = () => { queued = false; onScroll(); };
+    // Scroll scenes. On wide screens a scene stays pinned on screen while the next `distance` px of scrolling play it, then
+    // the page carries on. So the page never looks frozen, everything in a scene moves with the scroll itself (nothing
+    // waits for a threshold), the stage drifts gently, and a progress bar at the bottom fills as you go. Narrow or short
+    // windows scroll freely and call loose() instead; reduced motion skips the scenes (callers show the finished state).
+    const calmPage = matchMedia('(prefers-reduced-motion: reduce)').matches, siteHeader = document.querySelector('.site-header');
+    function pinScene(track, { distance, play, loose, fitTo }) {
+      const stage = track.firstElementChild, fit = stage.firstElementChild;
+      const bar = document.createElement('div');
+      bar.className = 'scene-progress'; bar.setAttribute('aria-hidden', 'true');
+      bar.append('Keep scrolling', document.createElement('b'), document.createElement('i'));
+      stage.append(bar);
+      let pinned = false, queued = false;
+      // Wide screens zoom the whole page (html zoom), so window sizes are divided by it to get CSS pixels.
+      const zoom = () => parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+      const layout = () => {
+        track.classList.remove('pinned');
+        fit.style.zoom = fit.style.width = track.style.height = stage.style.paddingTop = '';
+        fitTo?.(null);
+        pinned = false;
+        if (innerWidth < 900) return;
+        track.classList.add('pinned');
+        const top = siteHeader ? siteHeader.offsetHeight : 0, room = innerHeight / zoom() - top - 72;  // room for the progress bar too
+        stage.style.paddingTop = `${top}px`;
+        fit.style.width = `${stage.clientWidth}px`;  // zoom then shrinks it evenly, keeping its columns
+        if (fitTo) fitTo(room);
+        const scale = Math.min(1, room / fit.offsetHeight);
+        if (scale < (fitTo ? .98 : .6)) { track.classList.remove('pinned'); fit.style.width = stage.style.paddingTop = ''; fitTo?.(null); return; }
+        if (scale < 1 && !fitTo) fit.style.zoom = scale;
+        track.style.height = `${innerHeight / zoom() + distance}px`;
+        pinned = true;
+      };
+      const sync = () => {
+        queued = false;
+        if (!pinned) { loose?.(); return; }
+        const p = Math.min(1, Math.max(0, -track.getBoundingClientRect().top / (distance * zoom())));
+        stage.style.setProperty('--p', p.toFixed(4));
+        bar.classList.toggle('done', p > .97);
+        play(p);
+      };
+      const relayout = () => { layout(); sync(); };
       addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(sync); } }, { passive: true });
-      addEventListener('resize', sync);
-      sync();
+      addEventListener('resize', relayout);
+      addEventListener('load', relayout);
+      document.fonts?.ready.then(relayout);
+      relayout();
+      return () => pinned;
     }
+    const ease = t => t * t * (3 - 2 * t);
 
-    // Flip cards: each card turns over as it reaches the middle of the screen, and back when you scroll up past it.
+    // Flip cards. Pinned: each card turns with the scroll itself, in overlapping waves, so every bit of scrolling turns
+    // something; a tapped card keeps its side until the scroll carries it past halfway again. Narrow screens: each card
+    // turns over as it reaches the middle of the screen, and back when you scroll up past it.
     const flipTrack = document.querySelector('.google-track');
     if (flipTrack && !calmPage) {
-      const turned = flips.map(() => false);  // what scrolling last asked for, so a tapped card stays put until its turn comes round again
-      const turn = wanted => flips.forEach((card, i) => {
-        const on = wanted(card, i);
-        if (on === turned[i] || card.contains(document.activeElement)) return;  // never flip the card a keyboard user is on
-        turned[i] = on; setFlip(card, on);
-      });
-      scrollScene(() => turn(card => { const r = card.getBoundingClientRect(); return r.top + r.height / 2 < innerHeight * .55; }));
+      const LEAD = 60, TURN = 190, GAP = 80, TAIL = 180, distance = LEAD + GAP * (flips.length - 1) + TURN + TAIL;
+      const turned = flips.map(() => false);  // which side scrolling last asked for
+      const byHand = new Map();  // card -> the side scrolling wanted when it was tapped
+      const inner = card => card.querySelector('.flip-in');
+      const show = (card, i, on) => { if (on !== card.classList.contains('flipped')) setFlip(card, on); turned[i] = on; };
+      let isPinned = () => false;
+      flips.forEach((card, i) => card.addEventListener('click', () => {
+        if (!isPinned()) return;
+        byHand.set(card, turned[i]);
+        inner(card).style.transition = 'transform .6s cubic-bezier(.2,.7,.2,1)';
+        inner(card).style.transform = `rotateY(${card.classList.contains('flipped') ? 180 : 0}deg)`;
+      }));
+      isPinned = pinScene(flipTrack, { distance,
+        play: p => {
+          const at = p * distance - LEAD;
+          flips.forEach((card, i) => {
+            const deg = 180 * ease(Math.min(1, Math.max(0, (at - i * GAP) / TURN))), on = deg > 90;
+            if (card.contains(document.activeElement)) return;  // never turn the card a keyboard user is on
+            if (byHand.has(card)) { if (byHand.get(card) === on) return; byHand.delete(card); }
+            inner(card).style.transition = 'none';
+            inner(card).style.transform = `rotateY(${deg.toFixed(1)}deg)`;
+            if (on !== turned[i] || on !== card.classList.contains('flipped')) show(card, i, on);
+          });
+        },
+        loose: () => flips.forEach((card, i) => {
+          inner(card).style.transition = inner(card).style.transform = '';
+          const r = card.getBoundingClientRect(), on = r.top + r.height / 2 < innerHeight * .55;
+          if (on === turned[i] || card.contains(document.activeElement)) return;
+          show(card, i, on);
+        }) });
     }
 
-    // How Clear House Helps: a sample chat plays once as it comes into view (each question appears, then Gemma types its
-    // answer) and the near-my-office search fills in. The chat quotes real records from our checked list.
+    // The map. Pinned while it flies from all of Northern Virginia to a neighborhood, to Reston, then to Blacksburg; the
+    // caption changes at each stop and the progress bar fills in between. Scrolling back up goes back; once someone uses
+    // the map themselves, scrolling leaves it be. Narrow screens just show the map.
+    const mapTrack = document.querySelector('.map-track');
+    if (mapTrack && !calmPage) {
+      const STOPS = [['Northern Virginia', 'Every checked home across Northern Virginia.'], ['Arlington (Ballston)', 'Zoom into a neighborhood, like Ballston in Arlington.'],
+                     ['Reston', 'Or look near work, like Reston.'], ['Blacksburg', 'And Blacksburg, right by Virginia Tech.']];
+      const lead = mapTrack.querySelector('.cl-lead'), mapBox = mapTrack.querySelector('#listing-map'), frame = mapTrack.querySelector('.cl-frame');
+      const intro = lead.textContent;
+      let stop = -1, driving = true;
+      const handsOn = () => { driving = false; };
+      frame.addEventListener('pointerdown', handsOn);
+      frame.addEventListener('keydown', handsOn);
+      const show = i => {
+        if (i === stop) return;
+        stop = i;
+        lead.textContent = i < 0 ? intro : STOPS[i][1];
+        lead.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
+        if (i >= 0 && driving) window.clearHouseMapGoTo?.(STOPS[i][0]);
+      };
+      pinScene(mapTrack, { distance: 1000,
+        play: p => show(p <= 0 ? -1 : Math.min(STOPS.length - 1, Math.floor(p * STOPS.length))),
+        loose: () => show(-1),
+        // A Google map shouldn't be zoomed with CSS (clicks land in the wrong place), so the map gets shorter instead.
+        fitTo: room => { mapBox.style.height = ''; if (room == null) return; const extra = mapTrack.querySelector('.pin-fit').offsetHeight - room; if (extra > 0) mapBox.style.height = `${Math.max(300, mapBox.offsetHeight - extra)}px`; } });
+    }
+
+    // How Clear House Helps: a sample chat (each question appears, then Gemma types its answer) and the near-my-office
+    // search filling in. Pinned, the scroll itself types it, so scrolling back up rewinds; narrow screens play it once as
+    // it comes into view. The chat quotes real records from our checked list.
     const howTrack = document.querySelector('.how-track');
     if (howTrack) {
       const TALK = [{ me: 'I’m behind on rent in Arlington. Who can help?', at: .03 },
@@ -833,7 +936,7 @@
           requestAnimationFrame(tick);
         };
         render(0);
-        scrollScene(playOnce);
+        pinScene(howTrack, { distance: 1100, play: p => { played = true; render(p); }, loose: playOnce });
       }
     }
 
@@ -861,11 +964,12 @@
         const ctx = document.createElement('canvas').getContext('2d'); ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
         const probe = document.createElement('i'); probe.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
         word.append(probe);
-        const capTop = probe.getBoundingClientRect().top - ctx.measureText('F').actualBoundingBoxAscent;
+        const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;  // wide screens zoom the page
+        const capTop = probe.getBoundingClientRect().top - ctx.measureText('F').actualBoundingBoxAscent * zoom;
         probe.remove();
         perch.style.bottom = '';
-        const r = perch.getBoundingClientRect(), feet = r.top + r.height * 24.4 / 26;
-        perch.style.bottom = `${parseFloat(getComputedStyle(perch).bottom) + feet - capTop - 1}px`;  // 1px into the letter, gripping it
+        const r = perch.getBoundingClientRect(), feet = r.top + r.height * 11.5 / 12;
+        perch.style.bottom = `${parseFloat(getComputedStyle(perch).bottom) + (feet - capTop - 1) / zoom}px`;  // 1px into the letter, gripping it
       };
       setTimeout(seat, 1300);
       document.fonts?.ready.then(() => setTimeout(seat, 1300));
