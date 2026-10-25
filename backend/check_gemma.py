@@ -1,6 +1,6 @@
 """Quick check that your API key works and the model responds.
 
-Usage: python backend/test_gemma.py [model-name]
+Usage: python backend/check_gemma.py [model-name]
 """
 import os
 import sys

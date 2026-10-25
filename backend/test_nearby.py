@@ -45,7 +45,7 @@ class NearbyTests(unittest.TestCase):
     @patch.object(nearby, "_key", return_value="")
     def test_near_me_uses_the_shared_location(self, _):
         text = nearby.answer("Homes near my current location", {"coords": {"lat": 38.8816, "lon": -77.0910}})
-        self.assertIn("Closest reviewed homes", text)
+        self.assertIn("Closest verified homes", text)
         self.assertIn("your location", text)
         self.assertIn("outside the areas", nearby.answer("near me", {"coords": {"lat": 40.71, "lon": -74.0}}))
         self.assertIn("Near me", nearby.answer("anything near me?", {}))  # no location shared: explain how
@@ -56,7 +56,7 @@ class NearbyTests(unittest.TestCase):
         rows = filter_catalog(load_catalog())
         home = next(r for r in rows if r["type"] == "affordable_listing" and r.get("monthly_rent") is None and r.get("lat"))
         est = rent_estimate(home, rows)
-        self.assertTrue(est and est["low"] <= est["high"] and "similar reviewed homes" in est["basis"])
+        self.assertTrue(est and est["low"] <= est["high"] and "similar verified homes" in est["basis"])
         self.assertIsNone(home.get("monthly_rent"))  # the record itself is never changed
         priced = next(r for r in rows if isinstance(r.get("monthly_rent"), (int, float)))
         self.assertIsNone(rent_estimate(priced, rows))  # a published rent is never replaced by an estimate
@@ -69,7 +69,7 @@ class NearbyTests(unittest.TestCase):
     @patch.object(nearby, "census_lookup", return_value=TYSONS)
     def test_street_address_lists_closest_homes_with_commutes(self, *_):
         text = nearby.answer("near my office at 1800 Tysons Blvd")
-        self.assertIn("Closest reviewed homes to 1800 Tysons Blvd", text)
+        self.assertIn("Closest verified homes to 1800 Tysons Blvd", text)
         self.assertIn("10 min by car", text)
         self.assertEqual(text.count("\n- "), nearby.MAX_HOMES)
 

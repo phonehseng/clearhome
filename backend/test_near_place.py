@@ -19,7 +19,7 @@ OFFICE = {"id": "w2", "displayName": {"text": "Walmart Labs"}, "formattedAddress
 
 
 def home(id, name, rent, north, seconds):
-    """A reviewed home `north` degrees of latitude from the store, whose walking route takes `seconds` (None: no route)."""
+    """A verified home `north` degrees of latitude from the store, whose walking route takes `seconds` (None: no route)."""
     return {"id": id, "name": name, "type": "affordable_listing", "lat": round(STORE["latitude"] + north, 6), "lon": STORE["longitude"],
             "monthly_rent": rent, "rental_space": "entire_home", "phone": "540-555-0100", "seconds": seconds}
 
@@ -118,7 +118,7 @@ class NearPlaceTests(unittest.TestCase):
         self.assertIn("Near The Store", text)
         self.assertNotIn("Twelve Minutes Away", text)
         text, _ = self.answer("a 5 minute walk to walmart in blacksburg")
-        self.assertIn("None of the reviewed homes that fit your choices is within a 5-minute walk", text)
+        self.assertIn("None of the verified homes that fit your choices is within a 5-minute walk", text)
         self.assertIn("longer than your limit", text)
         self.assertIn("**Near The Store**: 8 min walk", text.split("longer than your limit")[1])
         self.assertNotIn("Cheap Across The Highway", text)  # a two-hour walk isn't even an "almost"
@@ -130,7 +130,7 @@ class NearPlaceTests(unittest.TestCase):
         self.assertNotIn(HOMES[4]["lat"], google.origins)  # far homes aren't even routed
         text, _ = self.answer("give me something close to walmart in blacksburg", FakeGoogle(routes_fail=True))
         self.assertIn("didn't answer just now", text)
-        self.assertIn("not verified as close", text)
+        self.assertIn("not confirmed as close", text)
         self.assertNotIn("**", text)  # nothing is presented as a result (no cards)
         self.assertNotIn("min walk", text)
         with patch.object(nearby, "_key", return_value=""):

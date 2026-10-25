@@ -88,7 +88,7 @@ python backend/catalog.py --check
 python -m unittest discover -s backend -p 'test_[abchlnrw]*.py' -v
 ```
 
-The current filename pattern selects offline suites for catalog/matching, expansion, categories, Blacksburg, chat behavior/streaming, nearby/walking, image handling, review and adding listings. `test_gemma.py` is a live API smoke script and is intentionally excluded. Emergency-service tests can be run separately:
+The current filename pattern selects offline suites for catalog/matching, expansion, categories, Blacksburg, chat behavior/streaming, nearby/walking, image handling, review and adding listings. The live API smoke script is `check_gemma.py`, so discovery never picks it up. Emergency-service tests can be run separately:
 
 ```bash
 python -m unittest discover -s backend -p 'test_emergency_services.py' -v
@@ -96,7 +96,7 @@ python -m unittest discover -s backend -p 'test_emergency_services.py' -v
 
 Do not run broad `test_*.py` discovery assuming every file is offline. If a new suite's name falls outside these patterns, run it explicitly or update the documented command. Mocked external responses verify application behavior, not current service availability, housing facts or route accuracy.
 
-An optional AI check is `python backend/test_gemma.py`; it needs working credentials and makes real calls. Live Maps, provider-download and GPU checks are separate integration exercises and may consume service quota.
+An optional AI check is `python backend/check_gemma.py`; it needs working credentials and makes real calls. Live Maps, provider-download and GPU checks are separate integration exercises and may consume service quota.
 
 ## Browser checklist
 

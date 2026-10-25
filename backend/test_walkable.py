@@ -67,7 +67,7 @@ class WalkableTests(unittest.TestCase):
     def test_no_supermarket_found(self):
         out = self.run_search("supermarket within 10 minutes", places=())
         self.assertEqual(out["results"], [])
-        self.assertTrue(any("No reviewed home" in w for w in out["warnings"]))
+        self.assertTrue(any("No verified home" in w for w in out["warnings"]))
 
     def test_dollar_store_tagged_grocery_is_not_a_supermarket(self):
         dollar = {**PLACE, "id": "place-2", "displayName": {"text": "Dollar Store"}, "primaryType": "discount_store"}

@@ -46,7 +46,7 @@ class WalkTests(unittest.TestCase):
             return [{"originIndex": i, "duration": f"{360 + 180 * i}s", "condition": "ROUTE_EXISTS"} for i in range(len(body["origins"]))]
         with patch.object(nearby, "_post", side_effect=fake_post):
             text = nearby.answer("rooms within a 15 minute walk of virginia tech", {})
-        self.assertTrue(text.startswith("Reviewed homes within a 15-minute walk of Virginia Tech"), text)
+        self.assertTrue(text.startswith("Verified homes within a 15-minute walk of Virginia Tech"), text)
         minutes = [int(m) for m in __import__("re").findall(r"about (\d+) min walk", text)]
         self.assertTrue(minutes and all(m <= 15 for m in minutes))
 

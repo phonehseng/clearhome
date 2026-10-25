@@ -286,7 +286,7 @@ def rent_estimate(r, rows=None):
     """A rent range for a home that doesn't publish one, so people aren't left with "ask the provider" only.
 
     First the provider's own dollar figures (in its cost note); otherwise the middle half of published rents at
-    similar reviewed homes nearby (same kind of home, same room-or-whole-home, within 5 miles, else the county).
+    similar verified homes nearby (same kind of home, same room-or-whole-home, within 5 miles, else the county).
     Returns {"low", "high", "basis"} or None. Always presented as an estimate, never as the home's rent."""
     if isinstance(r.get("monthly_rent"), (int, float)):
         return None
@@ -308,10 +308,10 @@ def rent_estimate(r, rows=None):
         near = [x for x in same if isinstance(x.get("lat"), (int, float)) and _miles((r["lat"], r["lon"]), (x["lat"], x["lon"])) <= 5]
         got = pick(near)
         if got:
-            return {"low": got[0], "high": got[1], "basis": f"{got[2]} similar reviewed homes within 5 miles"}
+            return {"low": got[0], "high": got[1], "basis": f"{got[2]} similar verified homes within 5 miles"}
     got = pick([x for x in same if x.get("jurisdiction") == r.get("jurisdiction")])
     if got:
-        return {"low": got[0], "high": got[1], "basis": f"{got[2]} similar reviewed homes in {r.get('jurisdiction')}"}
+        return {"low": got[0], "high": got[1], "basis": f"{got[2]} similar verified homes in {r.get('jurisdiction')}"}
     return None
 
 
@@ -591,9 +591,9 @@ def stream_ask(question, history=None):
         except Exception:
             walk = None  # no walking times: Gemma says to check the route instead of guessing
     names = list(dict.fromkeys(r.get("community") or r["name"] for r in rows))[:3]
-    found = f"{len(rows)} reviewed resource{'' if len(rows) == 1 else 's'}" if rows else "our reviewed resources"
+    found = f"{len(rows)} verified resource{'' if len(rows) == 1 else 's'}" if rows else "our verified resources"
     if place:
-        found = f"the {len(rows)} reviewed home{'' if len(rows) == 1 else 's'} {near_place._rule(want)} it"
+        found = f"the {len(rows)} verified home{'' if len(rows) == 1 else 's'} {near_place._rule(want)} it"
     yield "status", (f"Checking {found}" + (f", like {', '.join(names)}" if names else "") + ". Gemma is thinking…")
     # Cards for the answer link each home to directions to the same store when the homes were measured to one.
     cards = (lambda text: cards_for(near_place.with_directions(text, place["directions"]))) if place else cards_for
@@ -792,10 +792,10 @@ def quick_nearby(question, profile=None):
         homes.sort(key=lambda r: (not isinstance(r.get("monthly_rent"), (int, float)), r.get("monthly_rent") or 0))
     place = landmark[0].title().replace("Gmu", "George Mason University") if landmark else area
     if not homes:
-        return (f"I don't have a reviewed home in {area} that fits your choices yet. Try a higher budget or a nearby area, "
+        return (f"I don't have a verified home in {area} that fits your choices yet. Try a higher budget or a nearby area, "
                 "or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
-    lines = [f"Here are the lowest-rent reviewed homes {'near ' + place if landmark else 'in ' + area}:" if cheap
-             else f"Here are reviewed homes closest to {place}:" if landmark else f"Here are reviewed homes in {area}:"]
+    lines = [f"Here are the lowest-rent verified homes {'near ' + place if landmark else 'in ' + area}:" if cheap
+             else f"Here are verified homes closest to {place}:" if landmark else f"Here are verified homes in {area}:"]
     for r in homes[:5]:
         per = "/person/month" if r.get("rental_space") == "room" else "/month"
         rent = f"from ${r['monthly_rent']:,.0f}{per}" if isinstance(r.get("monthly_rent"), (int, float)) else "rent: ask the provider"

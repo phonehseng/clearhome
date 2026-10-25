@@ -62,7 +62,7 @@ jobs:
       - name: Catalog and tests still pass
         run: |
           python backend/catalog.py --check
-          python -m unittest discover -s backend -p "test_[!g]*.py"
+          python -m unittest discover -s backend -p "test_*.py"
 
       - name: Commit and push
         id: push

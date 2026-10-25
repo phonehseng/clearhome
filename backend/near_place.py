@@ -3,7 +3,7 @@
 No AI. A keyword script reads the place and the trip ("close" means a walk unless they say drive or bus). A chain name
 is not one place: Google Places finds the real stores nearest the town they name (or the find form's area, or one said
 earlier in the chat), and with no town at all the chat asks which store first. Google Routes then measures the trip
-from each reviewed home, and only measured trips within the limit count as close. Straight-line distance only narrows
+from each verified home, and only measured trips within the limit count as close. Straight-line distance only narrows
 which homes get routed; it is never shown as a walk, and a home Google can't route is never called close.
 
 Usage: python backend/near_place.py "give me something close to walmart in blacksburg"
@@ -303,7 +303,7 @@ def _resolve_place(want):
 
 # ---- Measuring the trip from each home ------------------------------------------------------------------------
 def _homes(text, profile=None):
-    """Reviewed homes that fit the budget, room-or-home, bedroom and age choices: one per community (its lowest rent)."""
+    """Verified homes that fit the budget, room-or-home, bedroom and age choices: one per community (its lowest rent)."""
     profile = dict(profile or {})
     if re.search(r"\b62 or older\b|\bseniors?\b", text or "", re.I):
         profile["senior"] = True
@@ -441,13 +441,13 @@ def compose(found, want, result):
         near = ", ".join(f"{h.get('community') or h['name']} ({min(nearby._miles(h['lat'], h['lon'], s['lat'], s['lon']) for s in stores):.1f} mi)" for h in result["nearest"])
         lines.append(f"Google Maps {ROUTE_WORD[mode]} routes didn't answer just now, so I can't say which homes are {rule} {it}. Please ask again in a minute.")
         if near:
-            lines.append(f"Nearest reviewed homes in a straight line (not a {ROUTE_WORD[mode]} route, so not verified as close): {near}.")
+            lines.append(f"Nearest verified homes in a straight line (not a {ROUTE_WORD[mode]} route, so not confirmed as close): {near}.")
         return Answer("\n".join(lines) + "\n\nThis is guidance, not legal advice.")
     matches = result["matches"]
     if matches:
-        lines.append(f"Reviewed homes {rule} {it}, measured with Google Maps {ROUTE_WORD[mode]} routes:")
+        lines.append(f"Verified homes {rule} {it}, measured with Google Maps {ROUTE_WORD[mode]} routes:")
     else:
-        lines.append(f"None of the reviewed homes that fit your choices is {rule} {it} by Google Maps {ROUTE_WORD[mode]} routes, so I won't call any of them close.")
+        lines.append(f"None of the verified homes that fit your choices is {rule} {it} by Google Maps {ROUTE_WORD[mode]} routes, so I won't call any of them close.")
     if not want["stated"]:
         lines[0] += " " + _default_note(want)
     shown = matches[:MAX_SHOWN]
@@ -467,7 +467,7 @@ def compose(found, want, result):
         for t in alt:
             lines.append(_line(t, stores, "DRIVE" if t in result.get("by_car", []) else mode, pool_all, many))
         if not alt:
-            lines.append("I don't have a reviewed home near enough to measure. Try a longer trip, a nearby town, or call 211 for local housing help.")
+            lines.append("I don't have a verified home near enough to measure. Try a longer trip, a nearby town, or call 211 for local housing help.")
     missing = len(result["pool"]) - len(result["routes"])
     if missing:
         lines.append(f"Google found no {ROUTE_WORD[mode]} route for {missing} nearby home{'' if missing == 1 else 's'}, so {'it is' if missing == 1 else 'they are'} left out rather than guessed.")
@@ -513,7 +513,7 @@ def answer(question, profile=None, history=None):
 
 
 def progress(want):
-    return f"Finding {'the ' + want['chain'] if want['chain'] else want['place']} and checking {ROUTE_WORD[want['mode']]} routes from reviewed homes…"
+    return f"Finding {'the ' + want['chain'] if want['chain'] else want['place']} and checking {ROUTE_WORD[want['mode']]} routes from verified homes…"
 
 
 def for_gemma(want, history=None):

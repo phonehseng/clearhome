@@ -87,11 +87,11 @@ python backend/app.py
 Open http://localhost:8000.
 
 - The map, "near my office" and walking-distance answers also need `GOOGLE_MAPS_SERVER_API_KEY` and `GOOGLE_MAPS_BROWSER_API_KEY` in `.env` (see [WALKABILITY.md](WALKABILITY.md)). Without them the map falls back to Leaflet.
-- `python backend/test_gemma.py` checks that your key works.
+- `python backend/check_gemma.py` checks that your key works.
 - Browse readable housing cards without an AI key at `http://localhost:8000/app#listings`. The raw JSON data endpoint is `http://localhost:8000/api/listings`.
 - Check listings by hand at `http://localhost:8000/review`: **Verify** after a call or a look at the official page, **Flag** what needs a human check, **Hide** anything wrong (hidden records leave every list, map and chat answer). Decisions are saved to `data/listing_review.json` on your own computer only; commit that file and redeploy to publish them. The hosted site shows the page read-only.
 - `python backend/catalog.py --check` validates the source catalog.
-- `python -m unittest discover -s backend -p "test_[!g]*.py"` runs every offline test (catalog, matching, chat, API, photos, walking times). No keys or network needed. It skips `test_gemma.py`, which calls the real API. On Windows, set `PYTHONUTF8=1` first (`$env:PYTHONUTF8=1` in PowerShell) so the data files are read as UTF-8.
+- `python -m unittest discover -s backend -p "test_*.py"` runs every offline test (catalog, matching, chat, API, photos, walking times). No keys or network needed. The live API check is `check_gemma.py`, outside that pattern. On Windows, set `PYTHONUTF8=1` first (`$env:PYTHONUTF8=1` in PowerShell) so the data files are read as UTF-8.
 - `python backend/listing_photos.py` downloads the providers' listing photos for local use and before a deploy.
 - The catalog includes openings and waitlists across Northern Virginia, plus Blacksburg student rooms and affordable communities. See [source verification notes](data/VERIFICATION.md) for dated evidence and [catalog maintenance](data/README.md) for weekly review rules. Verification is AI-assisted review of official web sources, not phone confirmation or a live vacancy feed. Closed and overdue records are excluded from matching.
 

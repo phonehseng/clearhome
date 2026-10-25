@@ -372,7 +372,7 @@ def housing_walk_search():
 
 @app.post("/api/housing/route")
 def housing_walk_route():
-    """Walking route line from a reviewed home to a place an earlier search returned."""
+    """Walking route line from a verified home to a place an earlier search returned."""
     body = _body()
     home = next((r for r in load_catalog() if r.get("id") == body.get("housing_id")), None)
     if not home or home.get("lat") is None or not isinstance(body.get("place_id"), str):

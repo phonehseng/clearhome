@@ -225,9 +225,9 @@
         if (here) { fillWhere(here); markTab(here === 'Blacksburg' ? 'blacksburg' : 'nova'); fillHoods(here === 'Blacksburg' ? 'blacksburg' : 'nova'); }
         state.focused = [[lat, lon]]; view?.center({ lat, lng: lon }, 13); setStatus('Showing homes near you.');
         if (window.clearHomeAsk) window.clearHomeAsk('Homes near my current location', { coords: { lat, lon } });
-        else {  // front page: no chat, so fit the map to the 8 closest reviewed homes
+        else {  // front page: no chat, so fit the map to the 8 closest verified homes
           const near = state.pins.map(p => [Math.hypot(p.lat - lat, (p.lon - lon) * Math.cos(lat * Math.PI / 180)), p]).sort((a, b) => a[0] - b[0]).slice(0, 8);
-          if (near.length) { state.focused = [[lat, lon], ...near.map(([, p]) => [p.lat, p.lon])]; view?.focus(state.focused); setStatus('Showing the 8 closest reviewed homes to you. Tap a pin for details.'); }
+          if (near.length) { state.focused = [[lat, lon], ...near.map(([, p]) => [p.lat, p.lon])]; view?.focus(state.focused); setStatus('Showing the 8 closest verified homes to you. Tap a pin for details.'); }
         }
       }, err => {
         nearBtn.removeAttribute('aria-busy');

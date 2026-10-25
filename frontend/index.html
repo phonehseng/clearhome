@@ -1977,7 +1977,7 @@
 </script>
 
 <script>
-  // Walking-distance search: reviewed homes + Google Places + Google Routes walking times.
+  // Walking-distance search: verified homes + Google Places + Google Routes walking times.
   (() => {
     if (!document.getElementById('walk-layout')) return;
     const statusEl = document.getElementById('walk-status'), layout = document.getElementById('walk-layout');
@@ -2075,7 +2075,7 @@
     // Called by the "Find housing help" form when someone picks a place they want to live near.
     window.clearWalkSearch = () => { setStatus(''); cards.replaceChildren(); layout.hidden = true; toggle.hidden = true; };
     window.runWalkSearch = async filters => {
-      setStatus('Checking reviewed homes and real walking routes…', 'loading'); cards.replaceChildren(); layout.hidden = true; toggle.hidden = true;
+      setStatus('Checking verified homes and real walking routes…', 'loading'); cards.replaceChildren(); layout.hidden = true; toggle.hidden = true;
       try {
         const res = await fetch('/api/housing/search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt: '', filters }) });
         const data = await res.json();

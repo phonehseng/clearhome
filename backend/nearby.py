@@ -239,13 +239,13 @@ def _homes_near(name, lat, lon, question, profile):
     else:
         homes = [r for _, r in sorted(homes, key=lambda x: x[0])[:MAX_HOMES]]
     if not homes:
-        return (f"I don't have a reviewed {'room' if filters.get('rental_space') == 'room' else 'home'} within {MAX_MILES} miles of {name}"
+        return (f"I don't have a verified {'room' if filters.get('rental_space') == 'room' else 'home'} within {MAX_MILES} miles of {name}"
                 + (f" under ${filters['max_budget_per_month']:,.0f} a month" if filters.get("max_budget_per_month") else "") + " that fits your choices. "
                 "Try a higher budget, or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
     commute = _commutes(homes, lat, lon)
     what = "rooms" if filters.get("rental_space") == "room" else "homes"
     limit = f" under ${filters['max_budget_per_month']:,.0f}/month" if filters.get("max_budget_per_month") else ""
-    lines = [f"Lowest-rent reviewed {what}{limit} within {MAX_MILES} miles of {name}:" if cheap else f"Closest reviewed {what}{limit} to {name}:"]
+    lines = [f"Lowest-rent verified {what}{limit} within {MAX_MILES} miles of {name}:" if cheap else f"Closest verified {what}{limit} to {name}:"]
     bases = {}
     for i, r in enumerate(homes):
         est = None if isinstance(r.get("monthly_rent"), (int, float)) else rent_estimate(r, pool)
@@ -302,7 +302,7 @@ def _walk_minutes(homes, lat, lon):
 
 
 def _named_in(text, rows):
-    """Reviewed homes the previous answer named, in the order it named them (one per community)."""
+    """Verified homes the previous answer named, in the order it named them (one per community)."""
     low, found = (text or "").casefold(), []
     for r in rows:
         if r.get("lat") is None:
@@ -352,7 +352,7 @@ def walk_answer(question, profile=None, history=None):
         homes = _named_in(earlier, rows)
     follow_up = bool(homes)
     if not follow_up:
-        # A fresh question: every reviewed home that fits the filters within walking range of the place.
+        # A fresh question: every verified home that fits the filters within walking range of the place.
         seen = set()
         for r in filter_catalog(load_catalog(), _filters(question, profile)):
             key = (r.get("community") or r["name"]).casefold()
@@ -362,7 +362,7 @@ def walk_answer(question, profile=None, history=None):
         homes.sort(key=lambda r: _miles(lat, lon, r["lat"], r["lon"]))
         homes = homes[:25]
     if not homes:
-        return (f"I don't have a reviewed home within walking range ({WALK_MILES} miles) of {name} that fits your choices. "
+        return (f"I don't have a verified home within walking range ({WALK_MILES} miles) of {name} that fits your choices. "
                 "Try a bus-friendly search, or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
     walked = _walk_minutes(homes, lat, lon)
     timed = []
@@ -384,8 +384,8 @@ def walk_answer(question, profile=None, history=None):
                     f"No, {'it is not' if len(timed) == 1 else 'none of them is'} {rule} {name}." if not ok else
                     f"{len(ok)} of the {len(timed)} are {rule} {name}.")
         else:
-            head = (f"Reviewed homes {rule} {name}:" if ok else
-                    f"None of the reviewed homes is {rule} {name}. The closest walks are:")
+            head = (f"Verified homes {rule} {name}:" if ok else
+                    f"None of the verified homes is {rule} {name}. The closest walks are:")
         shown = timed if follow_up else (ok or timed)[:8]
     else:
         head, shown = f"Walking times {'from' if follow_up else 'to'} {name}:", timed[:8]

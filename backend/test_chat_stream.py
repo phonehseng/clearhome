@@ -54,7 +54,7 @@ class ChatStreamTests(unittest.TestCase):
         self.assertTrue(got[-1]["text"])  # the catalog answer's programs come back as cards
 
     def test_catalog_answer_when_gemma_billing_fails(self):
-        def broken(prompt, thoughts=False):
+        def broken(prompt, thoughts=False, think=False):
             raise RuntimeError("402 RESOURCE_EXHAUSTED: Your prepayment credits are depleted")
             yield
         with patch("advisor.stream_gemma", side_effect=broken):

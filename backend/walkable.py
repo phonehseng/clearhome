@@ -241,7 +241,7 @@ def search(prompt, overrides=None):
     else:
         results.sort(key=lambda x: (not x["within_limit"], (x["nearby_amenity"] or {}).get("walk_seconds") or 1e9) if sort in ("best", "walk") else 0)
     if not results:
-        warnings.append(f"No reviewed home in {filters['area']} has a verified {label} within a {filters['max_walk_minutes']}-minute walk"
+        warnings.append(f"No verified home in {filters['area']} has a {label} within a {filters['max_walk_minutes']}-minute walk"
                         + (f" under ${filters['max_rent']:,.0f}." if filters["max_rent"] else ".")
                         + " Try a longer walk, a higher budget, or treating the walk as a preference.")
     return {"configured": True, "filters": filters, "results": results, "warnings": warnings}
