@@ -144,7 +144,7 @@
       fillHoods(tabs.find(t => t.getAttribute('aria-pressed') === 'true')?.dataset.region || 'nova');
       state.homes.forEach(l => addPin({ lat: l.lat, lon: l.lon, color: '#2f55b5', title: l.community || l.name,
         popup: popup([l.community || l.name, l.floor_plan, typeof l.monthly_rent === 'number' ? ClearHouseRental.price(l) : null,
-                      STATUS[l.availability?.status], 'Reviewed by our team'], l.source_url, 'Provider page') }));
+                      STATUS[l.availability?.status], 'Reviewed by our team'], l.source_url, 'Provider Page') }));
     }).catch(() => {});
 
     // Same place names the server understands; longest first so "manassas park" wins over "manassas".
@@ -258,10 +258,10 @@
         window.clearHouseAssistantNote?.(`Update: I found ${results.length} more listing${results.length === 1 ? '' : 's'} on the web in ${data.area}. They're the orange pins on the map, not checked by our team yet.`);
         results.forEach(r => {
           const lines = [r.name, r.address, r.rent_text, r.income_text, 'Found on the web, not checked by our team'];
-          if (typeof r.lat === 'number') addWebPin({ lat: r.lat, lon: r.lon, color: '#d9822b', title: r.name, popup: popup(lines, r.source_url, 'Source page') });
+          if (typeof r.lat === 'number') addWebPin({ lat: r.lat, lon: r.lon, color: '#d9822b', title: r.name, popup: popup(lines, r.source_url, 'Source Page') });
           const li = el('li'); li.append(el('strong', r.name));
           [r.address, r.rent_text, r.income_text].filter(Boolean).forEach(t => li.append(el('div', t)));
-          const link = safeUrl(r.source_url); if (link) li.append(el('a', 'Source page', { href: link, target: '_blank', rel: 'noopener' }));
+          const link = safeUrl(r.source_url); if (link) li.append(el('a', 'Source Page', { href: link, target: '_blank', rel: 'noopener' }));
           webList.append(li);
         });
         webList.hidden = false;

@@ -106,6 +106,23 @@
     .svc li::before{content:'';position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:50%;background:#e8f0fe url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232f55b5' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center/12px no-repeat}
     .svc li b{display:block;font-size:15px;color:var(--ink)}
     .svc li span{display:block;font-size:14.5px;color:var(--muted)}
+    /* Footer: brand and page links on one row, the team credit underneath. */
+    .cl-footer{border-top:1px solid var(--line);padding:34px 0 40px;margin-top:24px;color:var(--muted)}
+    .cl-footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .cl-footer-brand{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font-size:18px;font-weight:700;letter-spacing:-.4px}
+    .cl-footer-brand img{width:28px;height:28px;border-radius:8px;box-shadow:0 3px 10px #23408f33}
+    .cl-footer-brand span{color:#8d99ad;margin-left:-8px}
+    .cl-footer-links{display:flex;flex-wrap:wrap;gap:4px}
+    .cl-footer-links a{padding:7px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:background .15s,color .15s}
+    .cl-footer-links a:hover{color:var(--blue-2);background:#e2eafb}
+    .cl-footer-credit{margin:18px auto 0;padding-top:18px;border-top:1px solid #d2dcf099;font-size:13.5px;line-height:1.6}
+    .cl-footer-credit b{color:var(--ink);font-weight:600}
+    @media (max-width: 640px){.cl-footer-top{flex-direction:column;align-items:center;text-align:center}.cl-footer-links{justify-content:center}.cl-footer-credit{text-align:center}}
+    .cl-footer{text-align:left}
+    .cl-footer-note{margin:18px auto 0;padding-top:18px;border-top:1px solid #d2dcf099;font-size:13.5px;line-height:1.6}
+    .cl-footer-note + .cl-footer-credit{margin-top:6px;padding-top:0;border-top:0}
+    .cl-footer-links a[aria-current="page"]{color:var(--blue-2);background:#e2eafb}
+    @media (max-width: 640px){.cl-footer-note{text-align:center}}
 </style>
 </head>
 <body>
@@ -115,7 +132,7 @@
       <nav class="header-links" aria-label="Main">
         <a href="/">About</a>
         <a href="/google-cloud" aria-current="page">Built with Google Cloud</a>
-        <a class="cta" href="/app">Get started</a>
+        <a class="cta" href="/app">Get Started</a>
       </nav>
     </div>
   </header>
@@ -123,7 +140,7 @@
   <main>
     <div class="container hero">
       <span class="eyebrow"><span class="g-dots" aria-hidden="true"><i style="background:#4285f4"></i><i style="background:#ea4335"></i><i style="background:#fbbc04"></i><i style="background:#34a853"></i></span>Built with Google Cloud</span>
-      <h1>Every part of Clear House <span>runs on Google.</span></h1>
+      <h1>Every Part of Clear House <span>Runs on Google.</span></h1>
       <p class="lead">The website, the AI that answers questions, the map, and how each release ships. Here is exactly how we use Google Cloud, and how we get the most out of it on a small budget.</p>
       <ul class="stats">
         <li><strong>us-east4</strong><span>Hosted in Northern Virginia, next to the people it serves</span></li>
@@ -134,7 +151,7 @@
     </div>
 
     <section class="container" aria-labelledby="arch-title">
-      <h2 id="arch-title">How it fits together</h2>
+      <h2 id="arch-title">How It Fits Together</h2>
       <p class="sub">One request, start to finish. Everything on the right is a Google service.</p>
       <div class="arch" role="img" aria-label="A visitor's browser talks to the Clear House website on Cloud Run. The website calls Gemma 4 on a private Cloud Run GPU, the Gemini API, and Google Maps Platform. Secret Manager holds the keys, and Cloud Build with Artifact Registry builds every release.">
         <div class="arch-row">
@@ -157,7 +174,7 @@
     </section>
 
     <section class="container" aria-labelledby="svc-title">
-      <h2 id="svc-title">What each service does</h2>
+      <h2 id="svc-title">What Each Service Does</h2>
       <p class="sub">And what we do to push it further than the defaults.</p>
       <div class="services">
         <article class="svc">
@@ -228,7 +245,7 @@
     </section>
 
     <section class="container" aria-labelledby="ctl-title">
-      <h2 id="ctl-title">Full power, kept in check</h2>
+      <h2 id="ctl-title">Full Power, Kept in Check</h2>
       <p class="sub">Using a GPU and live AI on a hackathon budget means building in limits from day one.</p>
       <div class="controls">
         <div class="control"><b>Pay only while in use</b><p>The website scales to zero and is capped at two copies. The GPU runs at most one copy and can scale to zero.</p></div>
@@ -238,11 +255,18 @@
     </section>
 
     <div class="container end">
-      <h2>See it working</h2>
+      <h2>See It Working</h2>
       <p class="sub">Ask Gemma about housing, rent help or shelters in Northern Virginia and Blacksburg.</p>
-      <a class="btn" href="/app">Get started for free <span aria-hidden="true">→</span></a>
+      <a class="btn" href="/app">Get Started for Free <span aria-hidden="true">→</span></a>
     </div>
   </main>
-  <footer><div class="container">Clear House · AI can make mistakes. Always confirm with the provider.</div></footer>
+  <footer class="cl-footer">
+    <div class="container cl-footer-top">
+      <a class="cl-footer-brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="28" height="28">clear house<span>.</span></a>
+      <nav class="cl-footer-links" aria-label="Footer"><a href="/#map">Map</a><a href="/google-cloud" aria-current="page">Built with Google Cloud</a><a href="/#github">GitHub</a><a href="/app">Open Clear House</a></nav>
+    </div>
+    <p class="container cl-footer-note">AI can make mistakes. Always confirm with the provider.</p>
+    <p class="container cl-footer-credit">Made by Pierce, Umair, Phone and Ryan for <b>GDG Build with AI × Hacktoberfest 2026</b>.</p>
+  </footer>
 </body>
 </html>
