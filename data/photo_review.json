@@ -3,20 +3,6 @@
   "note": "Pending work, not verified photo metadata. Do not use logos, stock photos or another property to fill these entries.",
   "communities": [
     {
-      "community": "Indigo at McLean Station",
-      "jurisdiction": "Fairfax County",
-      "record_ids": [
-        "indigo-studio-std",
-        "indigo-one-bedroom-a14",
-        "indigo-two-bedroom-d"
-      ],
-      "official_source": "https://www.indigomcleanstation.com/floorplans/mclean-VA/indigo-at-mclean-station/a-st-d-1163197-6/",
-      "provider_website": "https://www.indigomcleanstation.com/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
       "community": "Bell Vienna Metro",
       "jurisdiction": "Fairfax County",
       "record_ids": [
@@ -25,176 +11,8 @@
       "official_source": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
       "provider_website": null,
       "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
-      "community": "Aperture",
-      "jurisdiction": "Fairfax County",
-      "record_ids": [
-        "nova-fairfax-county-aperture"
-      ],
-      "official_source": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
-      "community": "The Point at Reston",
-      "jurisdiction": "Fairfax County",
-      "record_ids": [
-        "nova-fairfax-county-the-point-at-reston"
-      ],
-      "official_source": "https://www.fairfaxcounty.gov/housing/rentalhousing/privately-owned",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
-      "community": "Ashburn Meadows",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "nova-loudoun-county-ashburn-meadows"
-      ],
-      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208/2026-Apartment-Guide-WEB_English",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
-      "community": "The Blake",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "nova-alexandria-city-the-blake"
-      ],
-      "official_source": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
-      "community": "The Point at Eisenhower Square",
-      "jurisdiction": "Alexandria City",
-      "record_ids": [
-        "nova-alexandria-city-the-point-at-eisenhower-square"
-      ],
-      "official_source": "https://alexandriava.gov/sites/default/files/2023-10/Affordable_Moderately-PricedRentalHousingOptionsGuide_English.pdf",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
-      "community": "West Broad",
-      "jurisdiction": "Falls Church City",
-      "record_ids": [
-        "nova-falls-church-city-west-broad"
-      ],
-      "official_source": "https://fallschurchva.gov/2451/Available-Apartments-and-Condominiums",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Photo removed because its credit page returned an error or denied automated access. Verify a property-specific image and working credit page before restoring."
-    },
-    {
-      "community": "Pheasant Run Townhomes",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-pheasant-run-townhomes-433-janie-lane-4-bedroom-townhome"
-      ],
-      "official_source": "https://rainespropertymanagement.com/rentals/20592",
-      "provider_website": "https://rainespropertymanagement.com/rentals/20592",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
-    },
-    {
-      "community": "Oak Manor",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-oak-manor-108-nottingham-court-4-bedroom-townhome"
-      ],
-      "official_source": "https://rainespropertymanagement.com/rentals/19669",
-      "provider_website": "https://rainespropertymanagement.com/rentals/19669",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
-    },
-    {
-      "community": "Piedmont",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "blacksburg-piedmont-1738-donlee-drive-3-bedroom-home"
-      ],
-      "official_source": "https://rainespropertymanagement.com/rentals/24054",
-      "provider_website": "https://rainespropertymanagement.com/rentals/24054",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; provider photos may show a similar unit, so none is used yet."
-    },
-    {
-      "community": "Cascades Village",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "cascades-village"
-      ],
-      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
-      "provider_website": "https://cascadesvillage.com/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Evans Ridge Apartments",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "evans-ridge"
-      ],
-      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
-      "provider_website": "https://www.evansridgeapartments.com/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Leesburg Apartments",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "leesburg-apartments"
-      ],
-      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
-      "provider_website": "https://www.liveleesburgapartments.com/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Potomac Station Apartments",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "potomac-station"
-      ],
-      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
-      "provider_website": "https://www.potomacstation.com/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "View at Broadlands",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "view-at-broadlands"
-      ],
-      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
-      "provider_website": "https://www.viewatbroadlands.com/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+      "photo_reviewed_on": "2026-10-25",
+      "review_note": "Checked again on 2026-10-25: no photo on an official property or manager page. Only directories or listing aggregators show this property, and their photos aren't used."
     },
     {
       "community": "William Watters House",
@@ -205,20 +23,8 @@
       "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
       "provider_website": null,
       "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Woods at Birchwood",
-      "jurisdiction": "Loudoun County",
-      "record_ids": [
-        "woods-at-birchwood"
-      ],
-      "official_source": "https://www.loudoun.gov/DocumentCenter/View/221208",
-      "provider_website": "https://www.thewoodsatbirchwood.com/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+      "photo_reviewed_on": "2026-10-25",
+      "review_note": "Checked again on 2026-10-25: no photo on an official property or manager page. Only directories or listing aggregators show this property, and their photos aren't used."
     },
     {
       "community": "Burke Lake Gardens",
@@ -229,32 +35,8 @@
       "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800021717%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
       "provider_website": null,
       "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Chantilly Mews",
-      "jurisdiction": "Fairfax County",
-      "record_ids": [
-        "thin-fairfax-chantilly-mews"
-      ],
-      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800022120%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Evergreen House",
-      "jurisdiction": "Fairfax County",
-      "record_ids": [
-        "thin-fairfax-evergreen-house"
-      ],
-      "official_source": "https://www.qpmgmt.com/properties/evergreen-house/",
-      "provider_website": "https://www.qpmgmt.com/properties/evergreen-house/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+      "photo_reviewed_on": "2026-10-25",
+      "review_note": "Checked again on 2026-10-25: no photo on an official property or manager page. Only directories or listing aggregators show this property, and their photos aren't used."
     },
     {
       "community": "Forest Glen at Sully Station",
@@ -265,8 +47,8 @@
       "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?where=HUD_ID%3D%27VAA20170019%27&outFields=PROJECT%2CPROJ_ADD%2CPROJ_CTY%2CPROJ_ZIP%2CN_UNITS%2CLI_UNITS%2CN_1BR%2CN_2BR%2CN_3BR%2CN_4BR%2CYR_PIS%2CTRGT_ELD%2CTRGT_FAM&returnGeometry=false&f=html",
       "provider_website": null,
       "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+      "photo_reviewed_on": "2026-10-25",
+      "review_note": "Checked again on 2026-10-25: no photo on an official property or manager page. Only directories or listing aggregators show this property, and their photos aren't used."
     },
     {
       "community": "Strawbridge Square",
@@ -277,8 +59,8 @@
       "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800022084%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
       "provider_website": null,
       "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+      "photo_reviewed_on": "2026-10-25",
+      "review_note": "Checked again on 2026-10-25: no photo on an official property or manager page. Only directories or listing aggregators show this property, and their photos aren't used."
     },
     {
       "community": "Summit Oaks",
@@ -289,20 +71,8 @@
       "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800022090%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
       "provider_website": null,
       "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Wedgewood Apartments",
-      "jurisdiction": "Fairfax County",
-      "record_ids": [
-        "thin-fairfax-wedgewood-apartments"
-      ],
-      "official_source": "https://www.fcrha.org/properties/wedgewood-apartments/1",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+      "photo_reviewed_on": "2026-10-25",
+      "review_note": "Checked again on 2026-10-25: no photo on an official property or manager page. Only directories or listing aggregators show this property, and their photos aren't used."
     },
     {
       "community": "Christiansburg Bluff",
@@ -313,20 +83,8 @@
       "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800021752%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
       "provider_website": null,
       "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Henley Place Apartments",
-      "jurisdiction": "Montgomery County",
-      "record_ids": [
-        "thin-montgomery-henley-place"
-      ],
-      "official_source": "https://www.communityhousingpartners.org/properties/henley-place-apartments/",
-      "provider_website": "https://www.communityhousingpartners.org/properties/henley-place-apartments/",
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+      "photo_reviewed_on": "2026-10-25",
+      "review_note": "Checked again on 2026-10-25: no photo on an official property or manager page. Only directories or listing aggregators show this property, and their photos aren't used."
     },
     {
       "community": "Glen Arbor",
@@ -337,32 +95,20 @@
       "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?where=HUD_ID%3D%27VAA20180015%27&outFields=PROJECT%2CPROJ_ADD%2CPROJ_CTY%2CPROJ_ZIP%2CN_UNITS%2CLI_UNITS%2CN_1BR%2CN_2BR%2CN_3BR%2CN_4BR%2CYR_PIS%2CTRGT_ELD%2CTRGT_FAM&returnGeometry=false&f=html",
       "provider_website": null,
       "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+      "photo_reviewed_on": "2026-10-25",
+      "review_note": "Checked again on 2026-10-25: no photo on an official property or manager page. Only directories or listing aggregators show this property, and their photos aren't used."
     },
     {
-      "community": "Lake Ridge Fellowship House",
-      "jurisdiction": "Prince William County",
+      "community": "Henley Place Apartments",
+      "jurisdiction": "Montgomery County",
       "record_ids": [
-        "thin-pwc-lake-ridge-fellowship-house"
+        "thin-montgomery-henley-place"
       ],
-      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=PROPERTY_ID%3D%27800021921%27&outFields=PROPERTY_NAME_TEXT%2CSTD_ADDR%2CSTD_CITY%2CSTD_ZIP5%2CPROPERTY_ON_SITE_PHONE_NUMBER%2CMGMT_AGENT_ORG_NAME%2CTOTAL_UNIT_COUNT%2CTOTAL_ASSISTED_UNIT_COUNT%2CCLIENT_GROUP_NAME%2CPROGRAM_TYPE1%2CHAS_ACTIVE_ASSISTANCE_IND&returnGeometry=false&f=html",
-      "provider_website": null,
+      "official_source": "https://www.communityhousingpartners.org/properties/henley-place-apartments/",
+      "provider_website": "https://www.communityhousingpartners.org/properties/henley-place-apartments/",
       "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
-    },
-    {
-      "community": "Somerset Pointe",
-      "jurisdiction": "Prince William County",
-      "record_ids": [
-        "thin-pwc-somerset-pointe"
-      ],
-      "official_source": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0/query?where=HUD_ID%3D%27VAA20020561%27&outFields=PROJECT%2CPROJ_ADD%2CPROJ_CTY%2CPROJ_ZIP%2CN_UNITS%2CLI_UNITS%2CN_1BR%2CN_2BR%2CN_3BR%2CN_4BR%2CYR_PIS%2CTRGT_ELD%2CTRGT_FAM&returnGeometry=false&f=html",
-      "provider_website": null,
-      "status": "needs_verified_property_photo",
-      "photo_reviewed_on": "2026-10-24",
-      "review_note": "Added by research on 2026-10-24; no verified photo of this property found yet."
+      "photo_reviewed_on": "2026-10-25",
+      "review_note": "The property page has photos (for example 2019/08/608.jpg), but the provider refuses automated downloads, so none is used."
     }
   ]
 }

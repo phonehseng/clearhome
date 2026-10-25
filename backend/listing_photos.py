@@ -21,6 +21,9 @@ CACHE_DIR = Path(__file__).resolve().parent.parent / '.cache' / 'listing-photos'
 # Exact image hosts reviewed in data/photo_sources.json and existing catalog sources.
 ALLOWED_HOSTS = {
     'www.goparkproperties.com',  # Park Properties, manager of Fieldstone and The Highlands (Blacksburg)
+    'www.amurcon.com',  # Amurcon, manager of Chantilly Mews
+    'www.fellowshipsquare.org',  # Fellowship Square, owner of Lake Ridge Fellowship House
+    'rainespropertymanagement.com',  # Raines / ACI Rental Management, Blacksburg listings
     'alateoldtown.com',
     'cms.oakvilleva.com',
     'cms.skymarkreston.com',

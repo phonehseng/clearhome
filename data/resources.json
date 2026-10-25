@@ -68,7 +68,15 @@
     "lat": 38.920169,
     "lon": -77.212352,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "property_website"
+    "source_kind": "property_website",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/9/36/2026/06/16/112012/6a3185cc0ba984.05032308611.jpg",
+      "source_url": "https://www.indigomcleanstation.com/",
+      "alt": "Indigo at McLean Station: resident lounge",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "indigo-one-bedroom-a14",
@@ -139,7 +147,15 @@
     "lat": 38.920169,
     "lon": -77.212352,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "property_website"
+    "source_kind": "property_website",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/9/36/2026/06/16/112012/6a3185cc0ba984.05032308611.jpg",
+      "source_url": "https://www.indigomcleanstation.com/",
+      "alt": "Indigo at McLean Station: resident lounge",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "indigo-two-bedroom-d",
@@ -206,7 +222,15 @@
     "lat": 38.920169,
     "lon": -77.212352,
     "geocode_source": "US Census Geocoder",
-    "source_kind": "property_website"
+    "source_kind": "property_website",
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/17698/MLv3/9/36/2026/06/16/112012/6a3185cc0ba984.05032308611.jpg",
+      "source_url": "https://www.indigomcleanstation.com/",
+      "alt": "Indigo at McLean Station: resident lounge",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "arbor-heights-one-bedroom",
@@ -9621,7 +9645,15 @@
     },
     "lat": 38.949928,
     "lon": -77.340436,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.liveaperture.com/wp-content/uploads/2017/10/5W.jpg",
+      "source_url": "https://www.liveaperture.com/",
+      "alt": "Aperture: resident lounge",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-avalon-dunn-loring",
@@ -11084,7 +11116,15 @@
     },
     "lat": 38.949126,
     "lon": -77.350382,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0,y_0,w_1920,h_1280,c_crop/q_auto,f_auto,c_lfill,w_576,h_370,g_auto/s3/2/315627/p2479142_01_hp-4_flash.jpg",
+      "source_url": "https://www.thepointatreston.com/",
+      "alt": "The Point at Reston: resident lounge",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-fairfax-county-the-avant-at-reston-town-center",
@@ -15217,7 +15257,15 @@
     },
     "lat": 39.034004,
     "lon": -77.464996,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_499,y_10,w_2598,h_2598,c_crop/q_auto,f_auto,c_lfill,w_576,h_420,g_auto/s3/2/158702/exterior-front%20elevation-_dsc8814.jpeg",
+      "source_url": "https://www.ashburnmeadows.com/",
+      "alt": "Ashburn Meadows: clubhouse exterior",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-loudoun-county-atley-on-the-greenway",
@@ -19474,7 +19522,15 @@
     },
     "lat": 38.833924,
     "lon": -77.119714,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://res.cloudinary.com/g5-assets-cld/image/upload/x_-1,y_208,h_752,w_1505,c_crop/q_auto,f_auto,fl_lossy,g_center,h_1000,w_2000/g5/g5-c-60my76eob-starwood-capital-fka-highmark-residential/g5-cl-1qxxhlg8ru-starwood-capital-fka-highmark-residential-scg-global-holdings-l-l-c-alexandria-va/uploads/TheBlake_2_n9t1km.jpg",
+      "source_url": "https://www.theblakealexandria.com/",
+      "alt": "The Blake: building entrance",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-alexandria-city-the-bradley",
@@ -19763,6 +19819,14 @@
       "checked_on": "2026-10-24",
       "method": "Official-source web review; no direct provider confirmation.",
       "individual_eligibility_confirmed": false
+    },
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0,y_0,w_2200,h_1469,c_crop/q_auto,f_auto,c_lfill,w_576,h_370,g_auto/s3/2/315627/p2469353_16_1_photogallery.jpg",
+      "source_url": "https://www.thepointateisenhowersquare.com/",
+      "alt": "The Point at Eisenhower Square: model kitchen",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
     }
   },
   {
@@ -21632,7 +21696,15 @@
     },
     "lat": 38.880115,
     "lon": -77.167676,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.westbroad.com/wp-content/uploads/2025/05/WestBroad_Int_Amenities_Clubroom_Feb2016_compressed-1.jpg?x46034",
+      "source_url": "https://www.westbroad.com/",
+      "alt": "West Broad: resident clubroom",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "nova-falls-church-city-the-read-building",
@@ -24975,12 +25047,12 @@
     "lon": -80.397477,
     "geocode_source": "US Census Geocoder",
     "photo": {
-      "url": "https://www.blacksburgmill.com/wp-content/uploads/2019/09/The-Mill-Apartments-Blacksburg.jpg",
-      "source_url": "https://www.blacksburgmill.com/",
-      "alt": "The Mill at Blacksburg — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+      "url": "https://www.blacksburgmill.com/wp-content/uploads/2025/07/the-mill-003-scaled.jpg",
+      "source_url": "https://www.blacksburgmill.com/gallery/",
+      "alt": "The Mill at Blacksburg: apartment buildings",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
     }
   },
   {
@@ -25061,12 +25133,12 @@
     "lon": -80.397477,
     "geocode_source": "US Census Geocoder",
     "photo": {
-      "url": "https://www.blacksburgmill.com/wp-content/uploads/2019/09/The-Mill-Apartments-Blacksburg.jpg",
-      "source_url": "https://www.blacksburgmill.com/",
-      "alt": "The Mill at Blacksburg — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+      "url": "https://www.blacksburgmill.com/wp-content/uploads/2025/07/the-mill-003-scaled.jpg",
+      "source_url": "https://www.blacksburgmill.com/gallery/",
+      "alt": "The Mill at Blacksburg: apartment buildings",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
     }
   },
   {
@@ -25147,12 +25219,12 @@
     "lon": -80.397477,
     "geocode_source": "US Census Geocoder",
     "photo": {
-      "url": "https://www.blacksburgmill.com/wp-content/uploads/2019/09/The-Mill-Apartments-Blacksburg.jpg",
-      "source_url": "https://www.blacksburgmill.com/",
-      "alt": "The Mill at Blacksburg — official community photograph",
-      "credit": "Official property, owner or public-agency website",
-      "reviewed_on": "2026-10-24",
-      "caption": "Official community photo; may show an exterior, shared amenity, or model apartment. The offered unit may differ."
+      "url": "https://www.blacksburgmill.com/wp-content/uploads/2025/07/the-mill-003-scaled.jpg",
+      "source_url": "https://www.blacksburgmill.com/gallery/",
+      "alt": "The Mill at Blacksburg: apartment buildings",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
     }
   },
   {
@@ -26589,7 +26661,14 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Provider advertises $1,600 per month for the whole 4-bedroom home. Additional fees, deposits, and utilities may apply; confirm the written total.",
-    "photo": null,
+    "photo": {
+      "url": "https://rainespropertymanagement.com/property/image?Filename=Prop_020592_01",
+      "source_url": "https://rainespropertymanagement.com/rentals/20592",
+      "alt": "Pheasant Run Townhomes: townhome exterior",
+      "credit": "Property manager's listing",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "lat": 37.249029,
     "lon": -80.416851,
     "geocode_source": "US Census Geocoder"
@@ -26668,7 +26747,14 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Provider advertises $1,900 per month for the whole 4-bedroom home. Additional fees, deposits, and utilities may apply; confirm the written total.",
-    "photo": null,
+    "photo": {
+      "url": "https://rainespropertymanagement.com/property/image?Filename=Prop_019669_01",
+      "source_url": "https://rainespropertymanagement.com/rentals/19669",
+      "alt": "Oak Manor: building exterior",
+      "credit": "Property manager's listing",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "lat": 37.224447,
     "lon": -80.44695,
     "geocode_source": "US Census Geocoder"
@@ -26747,7 +26833,14 @@
       "individual_eligibility_confirmed": false
     },
     "cost": "Provider advertises $1,750 per month for the whole 3-bedroom home. Additional fees, deposits, and utilities may apply; confirm the written total.",
-    "photo": null,
+    "photo": {
+      "url": "https://rainespropertymanagement.com/property/image?Filename=Prop_024054_01",
+      "source_url": "https://rainespropertymanagement.com/rentals/24054",
+      "alt": "Piedmont: living room",
+      "credit": "Property manager's listing",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "lat": 37.212637,
     "lon": -80.392046,
     "geocode_source": "US Census Geocoder"
@@ -26805,7 +26898,14 @@
     },
     "notes": "Listed under Older Adult Communities in the 2026 county guide: 122 one-bedroom and 28 two-bedroom units. Exact minimum age not confirmed (property website could not be read). Year built 2001.",
     "area": "Loudoun County",
-    "photo": null,
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_fill,w_1200,ar_1.384,g_auto/s3/2/57804/avanath_002%20drone%20-cascadesvillagen--dji_0482_3_4_5_6.jpg",
+      "source_url": "https://www.cascadesvillage.com/photogallery",
+      "alt": "Cascades Village: aerial view of the community",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "Loudoun County guide: Low-Income Housing Tax Credit (LIHTC)",
@@ -26874,7 +26974,14 @@
     },
     "notes": "2026 county guide: 90 two-bedroom and 60 three-bedroom units. Year built 1996. Property website could not be read, so tax-credit unit share and current rents are unconfirmed.",
     "area": "Loudoun County",
-    "photo": null,
+    "photo": {
+      "url": "https://medialibrarycfo.entrata.com/fit-in/1200x900/17698/MLv3/3/21/2025/03/31/121317/67eadb3be423f0.91923434830.jpg",
+      "source_url": "https://www.evansridgeapartments.com/",
+      "alt": "Evans Ridge Apartments: building exterior",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "Loudoun County guide: Low-Income Housing Tax Credit (LIHTC)",
@@ -26943,7 +27050,14 @@
     },
     "notes": "2026 county guide: 80 one-bedroom, 158 two-bedroom and 167 three-bedroom units. Year built 1973. Property website could not be read, so tax-credit unit share and current rents are unconfirmed.",
     "area": "Loudoun County",
-    "photo": null,
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0,y_230,w_1640,h_1279,c_crop/q_auto,f_auto,c_limit,w_1200/s3/2/97184/leesburg2 (1).jpg",
+      "source_url": "https://www.liveleesburgapartments.com/",
+      "alt": "Leesburg Apartments: buildings and pool",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "Loudoun County guide: Low-Income Housing Tax Credit (LIHTC)",
@@ -27090,7 +27204,14 @@
     },
     "notes": "2026 county guide: 120 two-bedroom and 30 three-bedroom units. Year built 2002. Property website could not be read, so tax-credit unit share and current rents are unconfirmed.",
     "area": "Loudoun County",
-    "photo": null,
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0,y_0,w_2992,h_2000,c_crop/q_auto,f_auto,c_lfill,w_576,ar_1.3714285714285714,g_auto/s3/2/158702/exterior-pool-dsc4007%20-%20edited%20-%20rca.jpg",
+      "source_url": "https://www.potomacstation.com/",
+      "alt": "Potomac Station Apartments: buildings and pool",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "Loudoun County guide: Low-Income Housing Tax Credit (LIHTC)",
@@ -27159,7 +27280,14 @@
     },
     "notes": "2026 county guide: 37 one-bedroom, 48 two-bedroom and 8 three-bedroom units; opened 2024. Property website could not be read.",
     "area": "Loudoun County",
-    "photo": null,
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_1110/s3/2/109082/vbl%205.jpg",
+      "source_url": "https://www.viewatbroadlands.com/photogallery",
+      "alt": "View at Broadlands: aerial view of the building",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "Loudoun County guide: Low-Income Housing Tax Credit (LIHTC)",
@@ -27375,7 +27503,14 @@
     },
     "notes": "Listed under Older Adult Communities in the 2026 county guide: 45 one-bedroom and 38 two-bedroom units; opened 2019. Exact minimum age not confirmed (property website could not be read).",
     "area": "Loudoun County",
-    "photo": null,
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0,y_134,w_1440,h_826,c_crop/q_auto,f_auto,c_lfill,w_576,h_320,g_auto/s3/3/785676/p1421819_3379024485_6.jpg",
+      "source_url": "https://www.thewoodsatbirchwood.com/",
+      "alt": "Woods at Birchwood: building exterior",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "affordability": {
       "status": "documented",
       "program": "Loudoun County guide: Low-Income Housing Tax Credit (LIHTC)",
@@ -28939,7 +29074,15 @@
     },
     "lat": 38.891818,
     "lon": -77.425776,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.amurcon.com/app/uploads/Chantilly-Mews.jpeg",
+      "source_url": "https://www.amurcon.com/communities/chantilly-mews/",
+      "alt": "Chantilly Mews: community sign and leasing office",
+      "credit": "Property manager's website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "thin-fairfax-forest-glen-at-sully-station",
@@ -29073,7 +29216,15 @@
     },
     "lat": 38.83498,
     "lon": -77.184478,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.qpmgmt.com/wp-content/uploads/2024/02/Evergreen1.jpg",
+      "source_url": "https://www.qpmgmt.com/properties/evergreen-house/",
+      "alt": "Evergreen House: building exterior and sign",
+      "credit": "Property manager's website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "thin-fairfax-wedgewood-apartments",
@@ -29140,7 +29291,15 @@
     },
     "lat": 38.829451,
     "lon": -77.209257,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://static.wixstatic.com/media/6eeae7_d17ea98c5ce84bc083a228a08e6155b1~mv2.jpg/v1/fill/w_1200,h_798,al_c,q_85/Fairfax-Wedgewood%20Apts-6915.jpg",
+      "source_url": "https://www.fcrha.org/properties/wedgewood-apartments/1",
+      "alt": "Wedgewood Apartments: building exterior",
+      "credit": "Fairfax County Redevelopment and Housing Authority",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "thin-fairfax-strawbridge-square",
@@ -29408,7 +29567,15 @@
     },
     "lat": 38.675503,
     "lon": -77.279397,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://www.fellowshipsquare.org/wp-content/uploads/2021/06/lakeridgeexterior700x330.jpg",
+      "source_url": "https://www.fellowshipsquare.org/housing/our-properties/",
+      "alt": "Lake Ridge Fellowship House: building exterior",
+      "credit": "Property manager's website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "thin-pwc-glen-arbor",
@@ -29534,7 +29701,15 @@
     },
     "lat": 38.795581,
     "lon": -77.628081,
-    "geocode_source": "US Census Geocoder"
+    "geocode_source": "US Census Geocoder",
+    "photo": {
+      "url": "https://cdngeneral.rentcafe.com/dmslivecafe/2/233585/8_106a9268.jpg?width=550&quality=80&height=450&mode=crop",
+      "source_url": "https://www.rentcafe.com/housing/va/gainesville/somerset-pointe-apartments/default.aspx",
+      "alt": "Somerset Pointe: model kitchen",
+      "credit": "Property's RentCafe listing",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    }
   },
   {
     "id": "thin-montgomery-henley-place",
@@ -29902,7 +30077,14 @@
       "method": "Listing-site review; no provider confirmation.",
       "individual_eligibility_confirmed": false
     },
-    "photo": null,
+    "photo": {
+      "url": "https://resource.rentcafe.com/image/upload/x_0,y_0,w_1024,h_768,c_crop/q_auto,f_auto,c_fill,w_576,ar_1.975,g_auto/s3/2/2373/model_living_smiths_landing_16_reddoor_edit.jpg",
+      "source_url": "https://www.smithslandingapartments.com/",
+      "alt": "Smiths Landing Apartments: model living room",
+      "credit": "Official property website",
+      "reviewed_on": "2026-10-25",
+      "caption": "Community or model-home photo; the offered apartment may differ."
+    },
     "lat": 37.223514,
     "lon": -80.442633,
     "geocode_source": "US Census Geocoder"
