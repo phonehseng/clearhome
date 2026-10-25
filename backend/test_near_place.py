@@ -235,5 +235,25 @@ class NearPlaceTests(unittest.TestCase):
         self.assertNotIn("directions", next(iter(advisor.cards_for("**Union Blacksburg**"))))
 
 
+class KindsOfPlaceTests(unittest.TestCase):
+    """'Walking distance of a market' in Reston: any grocery store near Reston, not one named 'market' somewhere else."""
+
+    def test_a_market_is_a_kind_of_place(self):
+        want = near_place.read("I need a place in Reston below 2000 a month within walking distance of a market")
+        self.assertEqual(want["chain"], "grocery store")
+        self.assertEqual(near_place.read("close to a pharmacy in Arlington")["chain"], "pharmacy")
+        self.assertIsNone(near_place.read("homes near my office in Reston") and near_place.read("homes near my office in Reston")["chain"])
+
+    def test_kinds_match_by_type_not_name(self):
+        self.assertTrue(near_place._brand("Wegmans", "grocery store", ["supermarket", "store"]))
+        self.assertFalse(near_place._brand("Super A Market Office", "grocery store", ["corporate_office"]))
+        self.assertTrue(near_place._brand("Walmart Supercenter", "Walmart"))
+
+    def test_homes_without_a_published_rent_stay_when_the_estimate_fits(self):
+        homes = near_place._homes("a place in Reston under 2000")
+        names = {h.get("community") or h["name"] for h in homes}
+        self.assertIn("Signature at Reston Town Center", names)  # rent not published; estimate about $1,150 to $1,540
+
+
 if __name__ == "__main__":
     unittest.main()

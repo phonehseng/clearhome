@@ -29,6 +29,20 @@ CHAINS = [("Walmart", r"wal+[- ]?m[ae]rts?|wal+[- ]?mat|walmart's"), ("Target", 
           ("Rite Aid", r"rite ?aid"), ("Dollar General", r"dollar general"), ("Dollar Tree", r"dollar tree"), ("Food City", r"food city"),
           ("Sam's Club", r"sam'?s club"), ("BJ's", r"bj'?s(?: wholesale)?"), ("Best Buy", r"best ?buy"), ("IKEA", r"ikea"),
           ("Starbucks", r"starbucks?"), ("Planet Fitness", r"planet fitness")]
+# Kinds of places ("a market", "a grocery store"): many stores of any brand, matched by Google's place type, and only ones
+# close to the town they named. (name, spellings people type, Google place types, plural)
+KINDS = [("grocery store", r"grocer(?:y|ies)(?: stores?)?|supermarkets?|food (?:stores?|markets?)|markets?", {"supermarket", "grocery_store", "market"}, "grocery stores"),
+         ("pharmacy", r"pharmac(?:y|ies)|drug ?stores?", {"pharmacy", "drugstore"}, "pharmacies"),
+         ("gym", r"gyms?|fitness (?:centers?|clubs?)", {"gym", "fitness_center"}, "gyms"),
+         ("coffee shop", r"coffee ?shops?|cafes?", {"cafe", "coffee_shop"}, "coffee shops")]
+KIND_TYPES = {name: types for name, _, types, _ in KINDS}
+KIND_MILES = 4  # a grocery store "in Reston" is one near Reston, not the nearest one with "market" in its name
+CHAINS = CHAINS + [(name, pattern) for name, pattern, _, _ in KINDS]
+
+
+def _many(chain):
+    """'Walmart stores', 'grocery stores'."""
+    return next((plural for name, _, _, plural in KINDS if name == chain), f"{chain} stores")
 _NORM = lambda s: re.sub(r"[^a-z]", "", s.lower())
 _FUZZY = {_NORM(name): name for name, _ in CHAINS if len(_NORM(name)) >= 5}  # "walmrat"; never short ones ("aldie" is a town)
 # Google also lists offices and departments under a brand ("Walmart Labs"); only places people shop or visit count.
@@ -188,7 +202,9 @@ def _region(area):
     return nearby.REGIONS[1] if area == "Blacksburg" else nearby.REGIONS[0]
 
 
-def _brand(name, chain):
+def _brand(name, chain, types=()):
+    if chain in KIND_TYPES:  # a kind of place: any brand, by its Google type
+        return bool(set(types) & KIND_TYPES[chain])
     return _NORM(chain).rstrip("s") in _NORM(name)  # "Lowe's Home Improvement", "Wal-Mart Supercenter"
 
 
@@ -205,7 +221,7 @@ def _stores_search(query, center, radius_m, chain):
         for p in data.get("places") or []:
             name = (p.get("displayName") or {}).get("text") or ""
             types = set(p.get("types") or [])
-            if not p.get("location") or p.get("businessStatus") in ("CLOSED_PERMANENTLY", "CLOSED_TEMPORARILY") or not _brand(name, chain):
+            if not p.get("location") or p.get("businessStatus") in ("CLOSED_PERMANENTLY", "CLOSED_TEMPORARILY") or not _brand(name, chain, types):
                 continue
             if not (types & STORE_TYPES or any(t.endswith("_store") for t in types)):
                 continue  # "Walmart Labs" is an office
@@ -220,7 +236,7 @@ def _stores_search(query, center, radius_m, chain):
 
 
 def _ask(chain, want, broad=False):
-    text = (f"Northern Virginia has many {chain} stores. " if broad else "") + f"Which {chain}, {PLACE_MARK} A town (like Christiansburg or Reston) or a street (like Richmond Hwy) is enough."
+    text = (f"Northern Virginia has many {_many(chain)}. " if broad else "") + f"Which {chain}, {PLACE_MARK} A town (like Christiansburg or Reston) or a street (like Richmond Hwy) is enough."
     if not want["stated"] and want["mode"] == "WALK":
         text += " And is a 10–15 minute walk what you mean by close?"
     return Instant(text)
@@ -276,7 +292,8 @@ def resolve(want, profile=None, history=None):
         stores = _stores_search(f"{chain} near {town[0]}, VA", center, 20000.0, chain)
         if stores:
             stores = sorted(stores, key=lambda s: nearby._miles(center[0], center[1], s["lat"], s["lon"]))
-            stores = [s for s in stores if nearby._miles(center[0], center[1], s["lat"], s["lon"]) <= nearby.MAX_MILES][:MAX_STORES]
+            near = KIND_MILES if chain in KIND_TYPES else nearby.MAX_MILES
+            stores = [s for s in stores if nearby._miles(center[0], center[1], s["lat"], s["lon"]) <= near][:MAX_STORES]
         where = f"nearest {town[0].title()}"
     if stores is None:
         return {"say": f"I couldn't reach Google Maps to find the {chain} just now, so I can't tell which homes are close to it. Please ask again in a minute."}
@@ -285,7 +302,7 @@ def resolve(want, profile=None, history=None):
     if len(stores) == 1:
         label = (f"The {chain} {where} is " if not street else "") + f"{stores[0]['name']}, {stores[0]['address']}"
     else:
-        label = f"The {len(stores)} {chain} stores {where}: " + "; ".join(f"{s['name']}, {s['address']}" for s in stores)
+        label = f"The {len(stores)} {_many(chain)} {where}: " + "; ".join(f"{s['name']}, {s['address']}" for s in stores)
     return {"stores": stores, "label": label, "chain": chain}
 
 
@@ -313,8 +330,15 @@ def _homes(text, profile=None):
         filters["bedrooms"] = int(beds.group(1))
     elif re.search(r"\bstudio\b", text or "", re.I):
         filters["bedrooms"] = 0
+    pool = filter_catalog(load_catalog(), filters)
+    cap = filters.get("max_budget_per_month")
+    if cap:  # homes that don't publish a rent stay in when our estimate starts within the budget (the answer says it's an estimate)
+        loose = {k: v for k, v in filters.items() if k != "max_budget_per_month"}
+        seen = {r["id"] for r in pool}
+        pool += [r for r in filter_catalog(load_catalog(), loose) if r["id"] not in seen and not isinstance(r.get("monthly_rent"), (int, float))
+                 and (rent_estimate(r) or {}).get("low", float("inf")) <= cap]
     best = {}
-    for r in filter_catalog(load_catalog(), filters):
+    for r in pool:
         if r.get("lat") is None:
             continue
         key = (r.get("community") or r["name"]).casefold()
