@@ -175,11 +175,11 @@
     .housing-card:has(.property-photo:hover),.housing-card:has(.property-photo:focus-visible){z-index:3}
     .housing-card:has(.property-photo) :is(.housing-status,h3,.housing-plan){margin-right:98px}
     .housing-card .housing-status{font-size:10px;line-height:1.6}
-    .property-photo{position:absolute;right:19px;top:20px;width:84px;height:80px;padding:5px;border-radius:17px;background:linear-gradient(135deg,#ffffffb3,#ffffff26);border:1px solid #ffffffb3;box-shadow:0 8px 24px #182c5426,inset 0 1px 0 #fff9;backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);z-index:2}
+    .property-photo{position:absolute;right:19px;top:20px;width:84px;height:80px;padding:5px;border-radius:17px;background:linear-gradient(135deg,#ffffffb3,#ffffff26);border:1px solid #ffffffb3;box-shadow:0 8px 24px #182c5426,inset 0 1px 0 #fff9;backdrop-filter:none;-webkit-backdrop-filter:none;z-index:2}
     .property-photo>img{width:100%;height:100%;display:block;object-fit:cover;border-radius:12px}
     .photo-expand-mark{position:absolute;bottom:7px;right:7px;display:grid;place-items:center;width:21px;height:21px;border-radius:7px;background:#12203db3;color:white;font-size:15px;backdrop-filter:blur(8px)}
-    .photo-hover{position:absolute;right:-5px;top:-5px;width:285px;max-width:calc(100vw - 70px);padding:8px;border:1px solid #ffffffa6;border-radius:19px;background:#f5f8ffed;box-shadow:0 18px 55px #0b143359;backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);opacity:0;visibility:hidden;transform:scale(.94);transform-origin:top right;transition:opacity .18s,transform .18s,visibility .18s;pointer-events:none;color:#14203f}
-    .photo-hover img{display:block;width:100%;height:185px;object-fit:cover;border-radius:12px}
+    .photo-hover{position:absolute;right:-5px;top:-5px;width:285px;max-width:calc(100vw - 70px);padding:8px;border:1px solid #ffffffa6;border-radius:19px;background:#fff;box-shadow:0 12px 32px #0b143326;opacity:0;visibility:hidden;transform:scale(.94);transform-origin:top right;transition:opacity .18s,transform .18s,visibility .18s;pointer-events:none;color:#14203f}
+    .photo-hover img{display:block;width:100%;height:185px;object-fit:contain;border-radius:12px}
     .photo-hover small{display:block;text-align:left;padding:8px 5px 3px;font-size:11px;line-height:1.6}
     @media(hover:hover) and (pointer:fine){.property-photo:hover .photo-hover,.property-photo:focus-visible .photo-hover{visibility:visible;opacity:1;transform:scale(1)}}
     .photo-unavailable{position:absolute;right:19px;top:20px;width:84px;min-height:68px;padding:13px 8px;border:1px solid var(--line);border-radius:14px;background:var(--sage);color:var(--muted);font-size:10px;text-align:center}
@@ -415,15 +415,13 @@
     @media(max-width:860px){.walk-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.walk-layout{grid-template-columns:1fr}.walk-toggle:not([hidden]){display:flex}
       .walk-layout[data-view=list] .walk-map-col{display:none}.walk-layout[data-view=map] .walk-cards{display:none}.walk-map{height:340px;position:static}}
 
-    /* Photo cards: the community photo fills the card; details sit on an iOS-style liquid-glass panel. */
-    .housing-card.has-photo{background:var(--card-photo) center/cover no-repeat,var(--sage);padding:170px 12px 12px;border-color:transparent;overflow:hidden;box-shadow:0 14px 34px #0b143326}
-    .housing-card.has-photo::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(180deg,#0b143300 35%,#0b143352 100%)}
-    .housing-card.has-photo .card-glass{position:relative;flex:1;display:flex;flex-direction:column;padding:18px;border-radius:18px;
-      background:linear-gradient(140deg,#ffffffa3 0%,#ffffff6b 55%,#ffffff8f 100%);
-      backdrop-filter:blur(7px) saturate(1.4);-webkit-backdrop-filter:blur(7px) saturate(1.4);
-      border:1px solid #ffffffcc;box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff59,inset 0 0 22px #ffffff40,0 8px 26px #0b14332e}
-    .housing-card.has-photo .card-glass::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-      background:radial-gradient(120% 60% at 15% 0%,#ffffff8c 0%,#ffffff00 45%)}
+    /* Give the property image its own space; details stay on a solid reading surface. */
+    .housing-card.has-photo{background:#fff;padding:0;border:1px solid #dce4f0;overflow:hidden;box-shadow:0 6px 20px #14203f0d}
+    .housing-card.has-photo::before{content:'';display:block;position:relative;flex:none;width:100%;aspect-ratio:4/3;max-height:340px;
+      background:var(--card-photo) center/contain no-repeat,#edf2f8;border-bottom:1px solid #e3e9f2}
+    .housing-card>.card-glass{display:flex;flex-direction:column;flex:1;min-width:0}
+    .housing-card.has-photo .card-glass{position:relative;padding:20px;border-radius:0;background:#fff;
+      backdrop-filter:none;-webkit-backdrop-filter:none;border:0;box-shadow:none;--muted:#4b5a7a}
     .housing-card.has-photo :is(.housing-status,h3,.housing-plan){margin-right:0}
     .housing-card.has-photo .property-photo{width:auto;height:auto;top:12px;right:12px;padding:7px 11px;border-radius:999px;font-size:12px}
     .housing-card.has-photo .property-photo>img{display:none}
@@ -437,23 +435,12 @@
       -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6'/%3E%3C/svg%3E") center/contain no-repeat;
       mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6'/%3E%3C/svg%3E") center/contain no-repeat}
     
-    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card.has-photo .card-glass{background:#fffffff0}}
-    /* Readability on photo cards: a slightly stronger tint and darker supporting text (room type, caveats, fees,
-       floor plans), so small print holds up over dark photos too; the photo still shows through the glass. */
-    .housing-card.has-photo .card-glass{--muted:#2f3b52;background:linear-gradient(140deg,#ffffffc7 0%,#ffffffb0 55%,#ffffffbd 100%)}
     .housing-card.has-photo :is(.housing-category,.housing-location,.housing-plan,.housing-features,.rent-caveat,details p){font-weight:500}
-
-    /* Every card is liquid glass and cards in a row line up (same height, links at the bottom). */
     .listings-grid{align-items:stretch}
-    .housing-card{height:100%}
-    .housing-card:not(.has-photo){background:linear-gradient(140deg,#ffffffb3 0%,#ffffff85 55%,#ffffffa6 100%);
-      backdrop-filter:blur(22px) saturate(1.8);-webkit-backdrop-filter:blur(22px) saturate(1.8);
-      border:1px solid #ffffffcc;border-radius:18px;box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff59,inset 0 0 22px #ffffff40,0 10px 30px #0b143321}
-    .housing-card:not(.has-photo)::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
-      background:radial-gradient(120% 55% at 15% 0%,#ffffff99 0%,#ffffff00 45%)}
+    .housing-card:not(.has-photo){background:#fff;border:1px solid #dce4f0;border-radius:18px;
+      backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 6px 20px #14203f0d}
     .housing-card.has-photo{border-radius:18px}
-    
-    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card:not(.has-photo){background:#fffffff0}}
+    @media(max-width:560px){.housing-card.has-photo .card-glass{padding:18px}}
 
     /* Liquid glass everywhere on the tools page, so text stays readable over the background drawing. */
     :root{--glass-bg:linear-gradient(140deg,#ffffffc4 0%,#ffffff9c 55%,#ffffffb8 100%);--glass-border:#ffffffd9;
@@ -1119,7 +1106,7 @@
         const license=sourceLink(photo.license_url,photo.license_name || 'Image license');if(license)credit.append(license);
         card.append(credit);
       }
-      if (card.classList.contains('has-photo')) {  // details sit on a liquid-glass panel over the photo
+      if (card.classList.contains('has-photo')) {  // keep details together below the dedicated photo area
         const glass = housingElement('div','card-glass');
         [...card.children].filter(n => !n.classList.contains('property-photo')).forEach(n => glass.append(n));
         card.append(glass);
