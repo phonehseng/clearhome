@@ -200,5 +200,43 @@ class InputValidationTests(unittest.TestCase):
                 self.assertEqual(r.status_code, 200, pending)
 
 
+class OutsideAreaTests(unittest.TestCase):
+    """A place Clear Home doesn't cover gets a plain answer with 211, never homes or programs from another area."""
+
+    def ask(self, question, chat=False):
+        body = {"question": question, **({"chat": {}} if chat else {})}
+        with patch("advisor.stream_gemma", side_effect=no_gemma):
+            return events(server.app.test_client().post("/api/ask/stream", json=body))
+
+    def test_outside_place_is_said_plainly_without_gemma(self):
+        found = self.ask("show me apartments in Richmond")
+        answer = next(e["text"] for e in found if e["kind"] == "answer")
+        self.assertIn("I don't have verified homes or programs in Richmond", answer)
+        self.assertIn("**211**", answer)
+        self.assertNotIn("911", answer)
+        self.assertFalse(any(e["kind"] == "cards" and e["text"] for e in found))
+
+    def test_tonight_somewhere_else_starts_with_911(self):
+        answer = next(e["text"] for e in self.ask("I need somewhere to sleep tonight in Norfolk") if e["kind"] == "answer")
+        self.assertTrue(answer.startswith("If you're in danger right now, call **911**."))
+
+    def test_chat_asks_where_after_saying_it(self):
+        found = self.ask("show me apartments in Richmond", chat=True)
+        self.assertEqual(next(e["text"] for e in found if e["kind"] == "question")["field"], "area")
+        self.assertIn("only covers Northern Virginia and Blacksburg", next(e["text"] for e in found if e["kind"] == "answer"))
+
+    def test_places_we_cover_are_not_caught(self):
+        for question in ("apartments in Arlington near DC", "a room near Virginia Tech", "what is a housing voucher?"):
+            self.assertIsNone(advisor.outside_answer(question), question)
+
+
+class AnswerStyleTests(unittest.TestCase):
+    def test_prompt_keeps_sympathy_for_worried_people_and_names_the_budget_gap(self):
+        prompt = advisor._prompt("studio in Arlington under $400", [], [])
+        self.assertIn("Don't open with sympathy", prompt)
+        self.assertIn("above your $400 budget", prompt)
+        self.assertNotIn("say so first", prompt)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -382,11 +382,12 @@ def next_question(request, state, profile=None):
     keys = places_in(t)
     conflict = keys if len({_region(k) for k in keys}) > 1 and "area" not in a else None
     has_area = "area" in a or bool(keys and not conflict) or _profile_area(profile)
+    away = OUTSIDE_NOTE if not keys and re.search(OUTSIDE, t, re.I) else ""  # "apartments in Richmond": say we don't cover it
     if kind == "tonight":
-        return _area_question("tonight") if not has_area and free("area") else None
+        return _area_question("tonight", intro=away) if not has_area and free("area") else None
     if kind == "rent_help":
         if not has_area and free("area"):
-            return _area_question("rent_help", conflict)
+            return _area_question("rent_help", conflict, intro=away)
         if free("situation") and not any(p.search(t) for *_, p in SITUATIONS):
             return question("situation", "What do you need help paying? Pick all that apply.",
                             [(k, label) for k, label, *_ in SITUATIONS], multi=True, skip=False, unsure=True)
@@ -399,7 +400,7 @@ def next_question(request, state, profile=None):
         if CAMPUS.search(t) and not conflict:
             return question("area", CLARIFY_MARK, CAMPUS_CHOICES, skip=False, unsure=True,
                             intro=f"Got it: a place {', '.join(understood(t))}.")
-        return _area_question("rental", conflict)
+        return _area_question("rental", conflict, intro=away)
     budget = a.get("budget") or (isinstance(profile.get("budget"), (int, float)) and not isinstance(profile["budget"], bool) and profile["budget"] > 0 and int(profile["budget"]))
     area = a.get("area") if a.get("area") in PLACES else (keys[0] if keys and not conflict else None)
     region = _region(area) if area else ("Blacksburg" if _profile_area(profile) == "Blacksburg" else "Northern Virginia" if _profile_area(profile) else None)

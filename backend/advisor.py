@@ -214,7 +214,7 @@ def _prompt(question, history, rows, needs=None, walk=None, place=None):
                          f"They asked for {rule}; use those numbers, never guess distances, and say the walk time for each home you mention. "
                          "A value marked estimated is a straight-line guess, not a measured walk: never count it as meeting the limit.")
         lines.append("Recommend only listings that meet every requirement. If a needed field is missing or null (for example furnished is unknown), "
-                     "say it must be confirmed with the provider rather than assuming. If none meet everything, say so first, then give the closest options and what they miss. "
+                     "say it must be confirmed with the provider rather than assuming. If none meet everything, start with \"Here are the closest options:\" and say what each one misses. "
                      "Group them as verified matches (every requirement confirmed by the fields) and possible matches to confirm; say plainly when there are no verified matches.")
         checklist = "\n".join(lines) + "\n\n"
     people = household_size(question)
@@ -254,7 +254,9 @@ Rules:
 - Fair housing: never help exclude other people, or steer anyone toward or away from a place, because of race, color, religion, national origin, sex, sexual orientation, gender identity, disability, familial status (having children), elderliness, military status, or source of income such as a housing voucher. All are protected under Virginia's fair housing law. If asked to (for example "no Section 8 tenants" or "a neighborhood without a certain group"), say kindly that you can't help with that part and help with the housing need itself. Describe places by facts such as rent, transit and distance, never by who lives there. A person's own needs (an accessible home, senior housing for themselves or family, room for their kids, a landlord who takes their voucher) are fine to search for.
 - Hotels and motels nearby are listed from Google Maps under your answer when someone needs a place tonight. Never name a hotel or motel yourself; you may say the list is below.
 - Never ask for or repeat SSNs, bank details or other sensitive data.
-- Many people asking are new to this and stressed. Be warm, calm and short: about 3 to 5 short sentences, no tables, no headings, no long lists.
+- Be warm, calm and short: about 3 to 5 short sentences, no tables, no headings, no long lists.
+- Don't open with sympathy ("I'm sorry you're...", "I know this is hard") unless they sound worried; for a plain search, the first sentence is the result.
+- If their budget is below every option's rent or estimate, don't say "none". Start with the lowest-priced options and say plainly what they cost next to their budget (for example "The lowest rents I found start around $1,430, above your $400 budget:"), then mention that 211 can help with rent assistance.
 - Recommend at most 2 places: the best fits for what they said, each on its own line as "**Name**: rent, why it fits, phone". Don't list the others; the page has a button that shows more options.
 - If they sound worried, lost or overwhelmed (for example "where do I start", "I don't know what to do", "I'm scared", "please help"), start with one kind sentence, then give one simple first step, not everything at once.
 - Lead with the answer itself. Never open by pointing out what they didn't say (no area, no budget, no time). If you had to assume something or need one more detail, say it in one short, friendly line at the end, like "I looked across Northern Virginia; tell me a city to narrow it."
@@ -276,7 +278,7 @@ QUESTION END
 Resources (source-reviewed, for the requested area):
 {json.dumps(resources, ensure_ascii=False, separators=(",", ":"))}
 
-Now write your answer. Keep it short: 3 to 5 short sentences and at most 2 places (each "**Name**: rent, why it fits, phone"). No tables, no headings, no long lists, under 100 words unless they asked for more detail. Lead with the answer; anything you assumed or still need goes in one friendly line at the end. If they sound worried or lost, start with one kind sentence and one first step. End with: Guidance only, not legal advice."""
+Now write your answer. Keep it short: 3 to 5 short sentences and at most 2 places (each "**Name**: rent, why it fits, phone"). No tables, no headings, no long lists, under 100 words unless they asked for more detail. Lead with the answer; anything you assumed or still need goes in one friendly line at the end. Only if they sound worried or lost, start with one kind sentence and one first step; otherwise no "I'm sorry" opener. End with: Guidance only, not legal advice."""
     # The style reminder comes last: after thousands of characters of listings, Gemma follows what it read most recently.
     return prompt
 
@@ -601,7 +603,7 @@ def _card(r, directions=None, names=()):
             "rental_space": r.get("rental_space"), "phone": r.get("phone"), "source_url": r.get("source_url"),
             "website": r.get("website") if r.get("website") and not re.search(r"\.gov/|/DocumentCenter/|\.pdf\b", r["website"]) else None,
             "address": r.get("address"), "waitlist_status": r.get("waitlist_status"), "availability_status": avail.get("status"),
-            "has_photo": bool(r.get("photo")), "lat": r.get("lat"), "lon": r.get("lon"),
+            "has_photo": bool(r.get("photo")), "photo_url": (r.get("photo") or {}).get("url"), "lat": r.get("lat"), "lon": r.get("lon"),
             "rent_estimate": rent_estimate(r),
             "directions": directions,
             "names": sorted(names) or None,
@@ -711,6 +713,22 @@ def programs():
 
 # Common places people mention that are outside Clear Home's service area.
 OUTSIDE = r"\b(richmond|baltimore|maryland|silver spring|bethesda|rockville|washington,? dc|d\.?c\.?|norfolk|virginia beach|chesapeake|charlottesville|roanoke|fredericksburg|stafford|winchester|harrisonburg|lynchburg|frederick)\b"
+OUTSIDE_NAMES = {"dc": "Washington, DC", "d.c.": "Washington, DC", "d.c": "Washington, DC", "washington dc": "Washington, DC", "washington, dc": "Washington, DC"}
+
+
+def outside_answer(question):
+    """A place Clear Home doesn't cover (Richmond, Maryland...) and none it does: say so plainly, with 211, instead of
+    answering with homes or programs from somewhere else. None otherwise."""
+    t = (question or "").lower()
+    m = re.search(OUTSIDE, t)
+    if not m or area_for(t):
+        return None
+    place = OUTSIDE_NAMES.get(m.group(1), m.group(1).title())
+    tonight = DANGER.search(t) or STAY_NOW.search(t) or re.search(r"\b(?:tonight|homeless|nowhere to|on the street|unsafe|in danger)", t)
+    danger = "If you're in danger right now, call **911**. " if tonight else ""
+    return Instant(f"{danger}Clear Home covers Northern Virginia and Blacksburg right now, so I don't have verified homes or programs in {place}. "
+                   "For housing help there, call **211**: it's free, open any hour, and works anywhere in Virginia. "
+                   "If you'd like to look in Northern Virginia or Blacksburg instead, just tell me where.")
 
 
 # Well-known places people ask to live near: (area, approximate latitude, longitude, display name).

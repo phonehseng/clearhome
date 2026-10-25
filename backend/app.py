@@ -12,7 +12,7 @@ from datetime import date
 
 from flask import Flask, Response, g, jsonify, request, send_from_directory, send_file, stream_with_context
 
-from advisor import AREAS, ask, cards_for, clarify, options, programs, quick_nearby, stream_ask, warm_examples, with_context
+from advisor import AREAS, ask, cards_for, clarify, options, outside_answer, programs, quick_nearby, stream_ask, warm_examples, with_context
 import clarifier
 import crisis
 from live_search import search as live_search
@@ -193,7 +193,9 @@ def listings():
 def coverage():
     """The front page's 'What's in the list' counts, taken from the same reviewed catalog the app serves."""
     rows = load_catalog()
-    return jsonify(records=len(rows), shelters=sum(r.get("type") == "emergency_shelter" for r in rows),
+    # Communities as the listings page counts them: homes and waitlists, floor plans grouped (senior-only included).
+    browsable = [r for r in filter_catalog(rows, {"types": ["affordable_listing", "rental_listing", "housing_authority"]}) if isinstance(r.get("availability"), dict)]
+    return jsonify(records=len(rows), communities=len(group_listings(browsable)), shelters=sum(r.get("type") == "emergency_shelter" for r in rows),
                    legal_aid=sum(r.get("type") == "legal_aid" for r in rows),
                    with_rent=sum(r.get("monthly_rent") is not None for r in rows), as_of=date.today().isoformat())
 
@@ -519,7 +521,8 @@ def _chat_request():
     # "Close to walmart": which store (asked when no town is known), then only homes a measured walk away (near_place.py).
     # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
     # These shortcuts read the person's own words, not the profile note added below.
-    instant = lifeline or (asking or (None if chat is not None else clarify(question, profile)) or near_place.answer(question, profile, history)
+    # A place we don't cover (Richmond, Maryland...): said plainly, with 211, instead of homes from elsewhere.
+    instant = lifeline or (asking or outside_answer(question) or (None if chat is not None else clarify(question, profile)) or near_place.answer(question, profile, history)
                or nearby.answer(question, profile, history) or quick_nearby(question, profile))  # "near George Mason" etc.: catalog, no AI
     if chat is not None and isinstance(instant, clarifier.Question) and not asking:
         clarifier.record(chat, instant)  # near_place.py or nearby.py asked ("which Walmart?"): that's the open question now
