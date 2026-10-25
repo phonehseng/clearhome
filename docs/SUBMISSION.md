@@ -68,7 +68,7 @@ Leaflet and OpenStreetMap (map fallback) · GitHub Actions · HUD and local open
 - **Live site:** https://clearhome.live (backup: https://clear-house-875094537886.us-east4.run.app)
 - **GitHub:** https://github.com/phonehseng/clearhome (MIT license)
 - **How it's built:** https://clearhome.live/google-cloud
-- **Video:** add the link once it's uploaded
+- **Video:** https://drive.google.com/file/d/1U0Hd8VLAR6zEuiqLvSKKWC79sg3cA298/view?usp=sharing
 - **Team:** Pierce, Umair, Phone and Ryan
 
 ## Why one MLH track: Best Use of Google Cloud
