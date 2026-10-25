@@ -375,23 +375,24 @@
        press it and it takes off up and to the right, then it's gone for this visit. Positioned in em from "Find" itself,
        so it stays on the letter at every size. */
     .cl-hero h1 .perch{position:relative}
-    .perch-bird{position:absolute;left:-.02em;bottom:calc(100% - .32em);width:clamp(20px,.3em,28px);aspect-ratio:20/12;padding:0;border:0;background:none;font:inherit;line-height:0;cursor:pointer;
+    .perch-bird{position:absolute;left:-.02em;bottom:calc(100% - .32em);width:clamp(24px,.36em,34px);aspect-ratio:32/26;padding:0;border:0;background:none;font:inherit;line-height:0;cursor:pointer;
       border-radius:6px;transition:opacity .4s .5s}
     .perch-bird svg{display:block;width:100%;height:100%;overflow:visible}
     .perch-bird:focus-visible{outline:2px solid #fff;outline-offset:3px}
     .split:not(.words-in) .perch-bird{opacity:0;transition:none}  /* lands once "Find" has risen into place */
-    .perch-bird :is(.wl,.wr){transform-box:fill-box}
-    .perch-bird .wl{transform-origin:right bottom;transform:rotate(-20deg)}
-    .perch-bird .wr{transform-origin:left bottom;opacity:0}
-    .perch-bird .pb-legs{transition:opacity .15s}
+    .perch-bird .pb-fly{opacity:0}
+    .perch-bird :is(.pb-wing-back,.pb-wing-front){transform-box:view-box}
+    .perch-bird .pb-wing-back{transform-origin:15px 12.4px}
+    .perch-bird .pb-wing-front{transform-origin:17.6px 12.2px}
+    .perch-bird :is(.pb-legs,.pb-wing){transition:opacity .12s}
     .perch-bird.away{pointer-events:none;animation:perch-away 1.05s cubic-bezier(.45,0,.6,1) forwards}
-    .perch-bird.away .pb-legs{opacity:0}
-    .perch-bird.away .wl{animation:perch-flap-l .24s ease-in-out infinite}
-    .perch-bird.away .wr{opacity:1;animation:perch-flap-r .24s ease-in-out infinite}
+    .perch-bird.away :is(.pb-legs,.pb-wing){opacity:0}
+    .perch-bird.away .pb-fly{opacity:1}
+    .perch-bird.away .pb-wing-front{animation:perch-flap .2s ease-in-out infinite alternate}
+    .perch-bird.away .pb-wing-back{animation:perch-flap .2s ease-in-out -.07s infinite alternate}
     @keyframes perch-away{0%{transform:none}14%{transform:translate(3px,-14px)}78%{opacity:1}100%{transform:translate(250px,-240px) rotate(-8deg);opacity:0}}
-    @keyframes perch-flap-l{0%,100%{transform:rotate(10deg)}50%{transform:rotate(-55deg)}}
-    @keyframes perch-flap-r{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(55deg)}}
-    @media(prefers-reduced-motion:reduce){.perch-bird.away{animation:perch-fade .3s forwards}.perch-bird.away :is(.wl,.wr){animation:none}@keyframes perch-fade{to{opacity:0}}}
+    @keyframes perch-flap{from{transform:rotate(8deg)}to{transform:rotate(-125deg)}}
+    @media(prefers-reduced-motion:reduce){.perch-bird.away{animation:perch-fade .3s forwards}.perch-bird.away .pb-fly{opacity:0}.perch-bird.away :is(.pb-legs,.pb-wing){opacity:1}@keyframes perch-fade{to{opacity:0}}}
     .cl-sub{font-size:clamp(18px,2vw,22px);color:#f4f7ff;margin:22px auto 34px;max-width:560px}
     .cl-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
     .cl-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;background:#14203f;color:#fff;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 10px 30px #14203f33;transition:transform .15s,box-shadow .15s}
@@ -540,7 +541,7 @@
     <section class="cl-hero" aria-labelledby="hero-title">
       <div class="cl-hero-text">
         <p class="cl-chip cl-in"><span class="cl-ping" aria-hidden="true"></span>Northern Virginia &amp; Blacksburg</p>
-        <h1 id="hero-title"><span class="perch">Find<button type="button" class="perch-bird" aria-label="Let the bird fly away"><svg viewBox="-10 -7 20 12" aria-hidden="true"><path class="pb-legs" d="M-.5 1.7V4.6M1.5 1.7V4.6" stroke="#2f5f34" stroke-width=".9" stroke-linecap="round"/><g stroke="#3f8a4a" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#3f8a4a"/><circle cx="3.4" cy="-.3" r="1.2" fill="#3f8a4a"/></svg></button></span> Your Way <span>Home.</span></h1>
+        <h1 id="hero-title"><span class="perch">Find<button type="button" class="perch-bird" aria-label="Let the bird fly away"><svg viewBox="0 0 32 26" aria-hidden="true"><g class="pb-fly"><path class="pb-wing-back" d="M16.8 12.4Q16 2.4 8 .8Q8.4 5 10.8 8.6Q12.2 10.8 13.4 13Z" fill="#2f7d3a"/></g><path class="pb-legs" d="M14.6 19.6 13.8 24.2M17.6 19.4 17.9 24.2M13.8 24.2h2.4M13.8 24.2l1.8-.9M17.9 24.2h2.4M17.9 24.2l1.8-.9" stroke="#4a3f33" stroke-width=".85" stroke-linecap="round" fill="none"/><path d="M10 15.2 1.2 21.6l3.4.9 7.6-5.2Z" fill="#2f7d3a"/><ellipse cx="15.4" cy="14.4" rx="8.2" ry="6.1" transform="rotate(-16 15.4 14.4)" fill="#43a04f"/><ellipse cx="17.6" cy="16.3" rx="5.1" ry="3.4" transform="rotate(-16 17.6 16.3)" fill="#bfe3a8"/><circle cx="22.4" cy="8.6" r="4.7" fill="#43a04f"/><path d="M26.6 7.9 30.4 9l-3.8 1.2Z" fill="#f4b740"/><circle cx="23.9" cy="7.7" r="1.05" fill="#17233b"/><circle cx="24.25" cy="7.35" r=".38" fill="#fff"/><path class="pb-wing" d="M20.6 10.8Q15.4 7.2 10 11.2Q7.4 13.6 5.4 17.8Q12 17.8 17.4 15.2Q20.4 13.6 20.6 10.8Z" fill="#2f7d3a"/><path class="pb-wing" d="M18.8 11.2Q15 9.6 11.6 12.2" stroke="#5cb868" stroke-width=".8" stroke-linecap="round" fill="none"/><g class="pb-fly"><path class="pb-wing-front" d="M19.4 12Q19.6 1 12.4-1Q12.2 3.6 14 7.6Q15.2 10.4 16.2 13Z" fill="#3a9446"/></g></svg></button></span> Your Way <span>Home.</span></h1>
         <p class="cl-sub cl-in" style="--d:.35s">Checked homes, shelters and rent help. Ask in plain words.</p>
         <div class="cl-actions cl-in" style="--d:.5s"><a class="cl-btn" href="/app" data-start>Get Started for Free <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency">Need a place tonight?</a></div>
       </div>
@@ -895,7 +896,7 @@
         const capTop = probe.getBoundingClientRect().top - ctx.measureText('F').actualBoundingBoxAscent;
         probe.remove();
         perch.style.bottom = '';
-        const r = perch.getBoundingClientRect(), feet = r.top + r.height * 11.6 / 12;
+        const r = perch.getBoundingClientRect(), feet = r.top + r.height * 24.4 / 26;
         perch.style.bottom = `${parseFloat(getComputedStyle(perch).bottom) + feet - capTop - 1}px`;  // 1px into the letter, gripping it
       };
       setTimeout(seat, 1300);
