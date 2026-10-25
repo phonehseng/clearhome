@@ -587,6 +587,11 @@
     /* Google Maps can't draw inside a zoomed page, so the map boxes undo the zoom. width:auto keeps them exactly as wide as their column
        (a percentage width doesn't shrink with zoom in current Chrome, so 110%/125% hung off the right edge and the page swiped sideways). */
     html,body{overflow-x:clip}  /* never swipe sideways */
+    /* "Need help now?" in the navy header: a white glass pill with a warm orange icon, like the front page's area chip. */
+    .site-header .header-links .emergency-link{background:#ffffff17!important;border:1px solid #ffffff42!important;border-radius:999px;color:#fff!important;
+      box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:8px 15px;font-weight:600;transition:background .15s,border-color .15s}
+    .site-header .header-links .emergency-link svg{color:#ffb15c}
+    .site-header .header-links .emergency-link:hover{background:#ffffff2b!important;border-color:#ffffff73!important;text-decoration:none}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
