@@ -722,6 +722,186 @@
   <link rel="stylesheet" href="/interface.css">
   <link rel="stylesheet" href="/site-header.css">
   <script src="/site-header.js" defer></script>
+  <style>
+    /* Readability pass, loaded last so it wins over the layers above: clear section headings, fewer nested boxes,
+       bigger key facts (rent, availability, phone), text at AA or better, one button system, and liquid glass
+       (blur, a light rim, a soft glare) on a few key surfaces, with solid fallbacks. */
+    :root{--muted:#3d4a66;--line:#d3ddf1;--field-line:#7d8bab;--pill-line:#c3cfe8;
+      --glare:radial-gradient(130% 75% at 12% 0%,#ffffffb3 0%,#ffffff00 58%);
+      --rim:inset 0 1px 0 #fff,inset 0 0 0 1px #ffffff8c,inset 0 -1px 0 #ffffff59;
+      --lift:0 1px 2px #0b14330d,0 16px 40px #0b14331f}
+    .housing-card.has-photo .card-glass{--muted:#3d4a66}
+    :is(input,textarea)::placeholder{color:#5b6680}
+    :focus-visible{outline-color:#c26a00}  /* amber that still reaches 3:1 on white and on the page blue */
+
+    /* Hero: two glass cards side by side (the words, the map), each with a soft glare from the top left. */
+    .hero{align-items:stretch}
+    .hero .hero-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:var(--glare),var(--glass-bg)!important;box-shadow:var(--rim),var(--lift)}
+    .hero-copy>p{font-size:17px;line-height:1.6;color:var(--muted)}
+    .hero-tags{font-size:13px;color:var(--muted)}
+    .browse-link{min-height:46px;padding:11px 22px;margin-top:22px;border:0;border-radius:999px;background:#23408f;color:#fff;font-size:14.5px;
+      box-shadow:inset 0 1px 0 #ffffff2e,0 6px 16px #23408f33}
+    .browse-link:hover{background:#1a3170}
+    .hero-map-wrap{padding:12px;border-radius:26px;background:var(--glare),var(--glass-bg);border:1px solid var(--glass-border);
+      box-shadow:var(--rim),var(--lift);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur)}
+    .hero-map-wrap .map-tabs{margin-bottom:10px}
+    .hero-map-wrap .map-hood{flex:1 1 130px;max-width:none}
+    .hero-map-wrap .hero-map{border-radius:16px;border-color:#c9d5ec}
+    .hero-map-wrap .map-meta{margin-top:8px}
+    .hero-map-wrap .map-status:not(:empty){background:none!important;border:0!important;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:2px 4px}
+    .map-meta .map-status{font-size:13.5px;color:var(--muted)}
+
+    /* The two big sections: more air, and a heading that reads first, with an icon tile in the site blue. */
+    #tools,.listings-section{background:var(--glare),var(--glass-bg);box-shadow:var(--rim),var(--lift);padding:32px;border-radius:28px}
+    .listings-section{margin-top:36px}
+    :is(#tools,.listings-section)>.section-heading{align-items:center;margin-bottom:24px;padding:0!important}
+    :is(#tools,.listings-section)>.section-heading h2{display:flex;align-items:center;gap:14px;font-size:clamp(24px,2.3vw,30px);line-height:1.2;font-weight:700;letter-spacing:-.7px;color:var(--ink)}
+    :is(#tools,.listings-section)>.section-heading h2::before{content:'';flex:none;width:44px;height:44px;border-radius:14px;
+      background:var(--icon) center/22px no-repeat,linear-gradient(150deg,#5b8af5,#23408f);box-shadow:inset 0 1px 0 #ffffff59,0 6px 16px #23408f40}
+    #tools{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m16 16 5 5'/%3E%3C/svg%3E")}
+    .listings-section{--icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8'/%3E%3C/svg%3E")}
+    .catalog-label{padding:6px 12px;border-radius:999px;background:#e2eafb;color:#23408f;font-size:12px;font-weight:700;letter-spacing:.08em}
+
+    /* "What Do You Need?": the panel sits flat on the section glass, so the chat is the one card. Its heading stays for
+       screen readers (it names the tab panel) but is no longer a second title under the section's. */
+    #tools .tool-panel{background:none!important;border:0!important;box-shadow:none;padding:0}
+    #tools .panel-heading{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    #tools .assistant{margin-top:0;background:#fff!important;border:1px solid var(--line)!important;border-radius:22px;box-shadow:0 1px 2px #0b14330a,0 12px 30px #0b143314;backdrop-filter:none;-webkit-backdrop-filter:none}
+    .assistant-head{padding:16px 20px;background:linear-gradient(180deg,#f3f6fe,#fff)}
+    .assistant-head strong{font-size:16.5px;font-weight:700}
+    .assistant-head span{font-size:13px;color:var(--muted)}
+    .assistant-log{padding:18px 20px}
+    .msg{font-size:15px}
+    .assistant-chips{padding:0 20px 14px}
+    .assistant-form{padding:14px 20px 18px;align-items:end}
+    .assistant-form textarea{min-height:48px;border-radius:14px;border-color:var(--field-line);font-size:15px}
+    /* "Or filter yourself" divides the chat from the form. */
+    .find-or{display:flex;align-items:center;gap:14px;margin:32px 0 18px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .find-or::before,.find-or::after{content:'';flex:1;height:1px;background:var(--line)}
+    #find-form :is(.input-row,.nearby-grid) label,#find-form label[for=situation],.browse-filters label{font-size:14px;font-weight:650;color:var(--ink);margin-bottom:7px}
+    .input-wrapper,#find-form textarea,.find-select,.browse-filters :is(input,select){border-color:var(--field-line);border-radius:12px}
+    .input-wrapper{min-height:48px;background:#fff}
+    .input-wrapper input,#find-form textarea,.find-select,.browse-filters :is(input,select){font-size:15px}
+    .find-select{min-height:48px}
+    .input-wrapper span{font-size:13px;color:var(--muted)}
+    .urgent-check{display:inline-flex;margin:2px 0 16px;padding:10px 14px;border-radius:12px;background:#fdf3e3;border:1px solid #efd7ae;color:#6b4710;font-size:14px}
+    .more-options{border-radius:14px;border-color:var(--line);background:#ffffffb8}
+    .more-options>summary{font-size:15px;min-height:48px}
+    .nearby-essentials{border:0;padding:0;margin:8px 0 18px}
+    .nearby-essentials legend{font-size:15px;padding:0;margin-bottom:4px}
+    .find-checks label,.nearby-soft,.walk-pref{font-size:14px}
+    .find-checks legend{font-size:14px}
+    .textarea-hint,.examples,.privacy-note{font-size:13px;color:var(--muted)}
+    .form-bottom{border-top:0;padding-top:0;margin-top:22px}
+    /* Sidebar: steps on light glass with solid numbers; the emergency card stays warm, as warm glass. */
+    #tools .guidance-card{background:var(--glare),var(--glass-bg)!important;border:1px solid var(--glass-border)!important;box-shadow:var(--rim),0 8px 24px #0b143314;border-radius:22px}
+    .guidance-card h3{font-size:18px;font-weight:700}
+    .steps{gap:14px}
+    .steps li{align-items:center}
+    .steps .step-number{width:28px;height:28px;background:#23408f;color:#fff;font-size:13.5px;font-weight:700}
+    .steps strong{font-size:15px;font-weight:600}
+    .emergency-card{border-radius:22px;background:var(--glare),linear-gradient(140deg,#fdf5e8f2,#fbefdad1)!important;border-color:#ecd5ad!important}
+    .emergency-card h3{font-size:17px;font-weight:700;color:#5a3a0e}
+    .emergency-card p{margin:8px 0 14px;font-size:15px;color:#4f3713}
+    .call-links{flex-wrap:wrap}
+    .call-links a{flex:1 1 auto;justify-content:center;min-height:44px;padding:10px 16px;border:0;border-radius:999px;background:#23408f;color:#fff;font-size:14.5px;font-weight:700;box-shadow:0 6px 14px #23408f2e}
+    .call-links a:hover{background:#1a3170}
+    .call-links a[href="tel:911"]{background:#b42318;box-shadow:0 6px 14px #b423182e}
+    .call-links a[href="tel:911"]:hover{background:#912018}
+    .tonight-links span{font-size:13.5px;color:#5a3a0e}
+
+    /* Listings: the notice reads as a note, then the switch, quick picks, filters, Gemma's sort bar and the cards. */
+    #listings .catalog-notice{display:flex;gap:10px;align-items:flex-start;margin:0 0 22px;padding:12px 16px!important;border:0!important;border-radius:14px;background:#e6edfb!important;font-size:14.5px;line-height:1.6;color:var(--ink)}
+    #listings .catalog-notice::before{content:'';flex:none;width:18px;height:18px;margin-top:2px;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2323408f' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v6M12 7.6v.4'/%3E%3C/svg%3E") center/contain no-repeat}
+    .listing-tabs{background:#e2e9f7}
+    .listing-tabs button{color:#2c3a5a;font-size:14.5px}
+    .listings-section .budget-shortcut{gap:8px 10px}
+    .quick-label{font-size:12.5px}
+    .more-filters>summary{font-size:15px}
+    .more-filters-note{font-size:13.5px}
+    /* Gemma's sort bar: the clearest glass on the page. */
+    .sort-chat{margin:22px 0 10px;padding:12px;border-radius:26px;background:var(--glare),linear-gradient(140deg,#ffffffd9,#eef3ffb3);border:1px solid #ffffffe6;box-shadow:var(--rim),0 12px 32px #23408f1f}
+    .sort-form input{min-height:48px;border-color:var(--field-line);font-size:15px}
+    .sort-reply{font-size:14.5px}
+    .sort-reply>b{color:#23408f}
+    .listings-section .browse-hint{margin-top:12px;padding:0!important;font-size:13.5px;color:var(--muted)}
+    .listings-section .browse-message:not([data-state=error]){margin:10px 0 18px;padding:0;font-size:15px;font-weight:600;color:var(--ink)}
+
+    /* Listing cards: name, rent and availability read first; the fine print stays quieter. */
+    .listings-grid{gap:20px}
+    .housing-card.has-photo,.housing-card:not(.has-photo){border-radius:22px;border-color:#d6dff0;box-shadow:0 1px 2px #0b14330d,0 12px 30px #0b143317}
+    .listings-grid .housing-card[data-gemma-rank]{box-shadow:0 0 0 3px #2f55b5,0 14px 34px #0b143326}
+    .housing-card.has-photo .card-glass{padding:18px 20px 20px}
+    .housing-card .housing-status{gap:7px;align-items:flex-start;padding:4px 11px;border-radius:14px;font-size:13px;line-height:1.5;font-weight:700;background:#e2eafb;color:#1f3a85}
+    .housing-card .housing-status::before{content:'';width:7px;height:7px;margin-top:6px;border-radius:50%;background:currentColor;flex:none}
+    .housing-card .housing-status:is([data-status=available_now],[data-status=advertised_vacancy]){background:#dcf3e3;color:#17552c}
+    .housing-card .housing-status[data-status=waitlist_open]{background:#fcefd6;color:#6b4710}
+    .housing-card .housing-status:is([data-status=contact_for_availability],[data-status=""],[data-status=mixed]){background:#eceff5;color:#374462}
+    .housing-card h3{font-size:19px;line-height:1.35;font-weight:700;margin-bottom:4px}
+    .housing-card .housing-category{font-size:13px;color:var(--muted)}
+    .housing-card .housing-location{display:flex;gap:6px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--ink);margin:6px 0 2px}
+    .housing-card .housing-location::before{content:'';flex:none;width:15px;height:15px;margin-top:2px;background:#2f55b5;
+      -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2'%3E%3Cpath d='M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='2.5'/%3E%3C/svg%3E") center/contain no-repeat;
+      mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2'%3E%3Cpath d='M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='2.5'/%3E%3C/svg%3E") center/contain no-repeat}
+    .housing-card .housing-rent{margin:14px 0 8px;font-size:25px;line-height:1.2;font-weight:700;letter-spacing:-.6px;color:var(--ink)}
+    .housing-card .housing-rent small{display:inline-block;margin-left:4px;font-size:14px;font-weight:500;letter-spacing:0;white-space:nowrap;color:var(--muted)}
+    .housing-card .housing-rent:not(:has(small)){font-size:17px;letter-spacing:-.2px}  /* "Rent: confirm with provider" */
+    .housing-card .housing-plan{font-size:14px;line-height:1.55;color:#28344f}
+    .housing-card .housing-features{font-size:13.5px;line-height:1.6;color:var(--muted)}
+    .housing-card .housing-age{font-size:13.5px}
+    .housing-card summary{font-size:14px;font-weight:650;color:var(--ink)}
+    .housing-card details p,.housing-card .eligibility-item p{font-size:13.5px}
+    .eligibility-item h4{font-size:12.5px}
+    .housing-card .housing-reviewed{font-size:12.5px;color:var(--muted)}
+    .card-tools :is(.favorite-btn,.share-btn){width:40px;height:40px;border-color:var(--pill-line);background:#fffffff2}
+    .housing-actions a{min-height:40px;padding:8px 15px;border-color:var(--pill-line);background:#fff;font-size:13.5px}
+    .housing-actions a[href^="tel:"]{gap:7px;padding-left:13px;background:#23408f;border-color:#23408f;color:#fff}
+    .housing-actions a[href^="tel:"]:hover{background:#1a3170;border-color:#1a3170;color:#fff}
+    :is(.housing-actions,.opt-card) a[href^="tel:"]::before{content:'';flex:none;width:14px;height:14px;background:currentColor;
+      -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpath d='m7 3 4 5-3 3a14 14 0 0 0 5 5l3-3 5 4-2 4C11 22 2 13 3 5Z'/%3E%3C/svg%3E") center/contain no-repeat;
+      mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpath d='m7 3 4 5-3 3a14 14 0 0 0 5 5l3-3 5 4-2 4C11 22 2 13 3 5Z'/%3E%3C/svg%3E") center/contain no-repeat}
+    /* "View" over the photo: darkened liquid glass, like the "Link copied" toast, so it reads on any photo. */
+    .housing-card.has-photo .property-photo{padding:8px 13px 8px 11px;font-size:13px;color:#fff;border:1px solid #ffffff4d;
+      background:radial-gradient(120% 90% at 20% 0%,#ffffff29,#ffffff00 60%),linear-gradient(140deg,#14203fe0,#14203fbd);
+      box-shadow:inset 0 1px 0 #ffffff47,0 8px 20px #0b143347;backdrop-filter:blur(12px) saturate(1.6);-webkit-backdrop-filter:blur(12px) saturate(1.6)}
+    .housing-card.has-photo .property-photo:hover{background:radial-gradient(120% 90% at 20% 0%,#ffffff33,#ffffff00 60%),linear-gradient(140deg,#14203fed,#14203fd1);border-color:#ffffff80}
+    /* Find results: solid cards to read from, and phone numbers as clear call buttons. */
+    #tools .opt-card{background:#fff!important;border:1px solid var(--line)!important;border-radius:16px;box-shadow:0 6px 18px #0b143310;backdrop-filter:none;-webkit-backdrop-filter:none;font-size:14px}
+    .opt-card strong{font-size:15.5px}
+    .opt-card :is(.meta,details,.shelter-where,.hotel-note){font-size:13.5px}
+    .opt-card .opt-links a[href^="tel:"]{display:inline-flex;align-items:center;gap:6px;font-size:15px}
+    .shelter-call a{gap:7px;min-height:44px;padding:10px 16px;border-radius:999px;background:#23408f;font-size:15px}
+    .shelter-call a:hover{background:#1a3170}
+    .shelter-call small{font-size:12.5px}
+    .cost-tag{font-size:12px}
+
+    /* One button system. Primary: a solid navy pill. Chips: white pills with a navy-tinted border. */
+    :root .primary,#show-more-listings,.sort-form button{border:0;border-radius:999px;background:#23408f;color:#fff;font-weight:650;
+      box-shadow:inset 0 1px 0 #ffffff2e,0 6px 16px #23408f33}
+    :root .primary{min-height:46px;padding:11px 22px;font-size:14.5px}
+    :root .primary:hover,#show-more-listings:hover,.sort-form button:hover{background:#1a3170;filter:none;box-shadow:inset 0 1px 0 #ffffff2e,0 8px 20px #23408f47}
+    .sort-form button{min-height:48px;font-size:15px}
+    #show-more-listings{min-height:50px;padding:12px 28px;font-size:15.5px}
+    :is(.assistant-chips button,.examples button,.sort-chip,.chat-cards-more,.show-programs){min-height:38px;padding:8px 15px;border-radius:999px;border:1px solid var(--pill-line);background:#fff;color:var(--ink);font-size:13.5px;font-weight:600}
+    :is(.assistant-chips button,.examples button,.sort-chip,.chat-cards-more,.show-programs):hover{background:#eef3fd;border-color:#6f8fd6;color:#1a3170}
+    :is(.map-tab,.map-hood,.budget-shortcut button,.walk-toggle button){border-color:var(--pill-line)}
+
+    @media(max-width:560px){
+      #tools,.listings-section{padding:20px 16px;border-radius:22px}
+      :is(#tools,.listings-section)>.section-heading h2{gap:12px;font-size:23px}
+      :is(#tools,.listings-section)>.section-heading h2::before{width:38px;height:38px;border-radius:12px;background-size:19px}
+      :is(.assistant-head,.assistant-log,.assistant-chips,.assistant-form){padding-left:14px;padding-right:14px}
+      .hero-copy>p{font-size:16px}
+      .hero-map-wrap{padding:10px;border-radius:22px}
+      .housing-card .housing-rent{font-size:24px}
+      .urgent-check{display:flex}
+      .sort-avatar{display:none}  /* the logo already sits in the header; the field needs the width */
+    }
+    /* Without blur (or when the system asks for less transparency) the glass turns solid so text never sits on a busy backdrop. */
+    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.housing-card.has-photo .property-photo{background:#14203ff0}}
+    @media (prefers-reduced-transparency:reduce){:root{--glass-bg:#fffffff7;--glare:linear-gradient(#fff0,#fff0)}.housing-card.has-photo .property-photo{background:#14203ff0}}
+  </style>
 </head>
 <body>
 <div class="scene" aria-hidden="true"><div class="sc-stage">
