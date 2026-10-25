@@ -255,9 +255,9 @@
         const results = data.results || [];
         if (!results.length) { setStatus(`No new web listings with a confirmed source in ${data.area}. The blue pins are our reviewed listings.`); return; }
         setStatus(`Gemma found ${results.length} more on the web in ${data.area}. ${data.notice}`);
-        window.clearHouseAssistantNote?.(`Update: I found ${results.length} more listing${results.length === 1 ? '' : 's'} on the web in ${data.area}. They're the orange pins on the map, not checked by our team yet.`);
+        window.clearHouseAssistantNote?.(`Update: I found ${results.length} more listing${results.length === 1 ? '' : 's'} on the web in ${data.area}. They're the orange pins on the map, not verified by our team yet.`);
         results.forEach(r => {
-          const lines = [r.name, r.address, r.rent_text, r.income_text, 'Found on the web, not checked by our team'];
+          const lines = [r.name, r.address, r.rent_text, r.income_text, 'Found on the web, not verified by our team'];
           if (typeof r.lat === 'number') addWebPin({ lat: r.lat, lon: r.lon, color: '#d9822b', title: r.name, popup: popup(lines, r.source_url, 'Source Page') });
           const li = el('li'); li.append(el('strong', r.name));
           [r.address, r.rent_text, r.income_text].filter(Boolean).forEach(t => li.append(el('div', t)));

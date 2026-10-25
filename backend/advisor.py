@@ -239,8 +239,8 @@ Resources (source-reviewed, for the requested area):
 
 
 def fallback_answer(rows, reason):
-    """When Gemma can't answer, still give the checked resources that match, straight from the catalog."""
-    lines = [f"{reason}, so here are the checked resources that best match your question:"]
+    """When Gemma can't answer, still give the verified resources that match, straight from the catalog."""
+    lines = [f"{reason}, so here are the verified resources that best match your question:"]
     seen = set()
     for r in rows:
         key = (r.get("community") or r["name"]).casefold()
@@ -451,7 +451,7 @@ def add_walk_times(rows, target):
 
 
 def cards_for(text, limit=6):
-    """The checked records an answer talks about, in the order it mentions them, as small cards.
+    """The verified records an answer talks about, in the order it mentions them, as small cards.
 
     A script, not AI: **bold** names (and long names written out in full) are matched to the catalog,
     so the chat can turn them into links with the matching cards underneath."""
@@ -582,13 +582,13 @@ def stream_ask(question, history=None):
             yield "cards", cards_for("".join(parts))
         else:
             text = fallback_answer(rows, gemma_unavailable(error) or "The AI service didn't answer")
-            yield "engine", "Our checked list (Gemma couldn't answer this time)"
+            yield "engine", "Our verified list (Gemma couldn't answer this time)"
             yield "fallback", text
             yield "cards", cards_for(text)
         return
     if not parts:  # Gemma used its whole reply on thinking
         text = fallback_answer(rows, "Gemma didn't finish an answer this time")
-        yield "engine", "Our checked list (Gemma didn't finish this time)"
+        yield "engine", "Our verified list (Gemma didn't finish this time)"
         yield "fallback", text
         yield "cards", cards_for(text)
         return

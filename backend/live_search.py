@@ -1,6 +1,6 @@
 """Let Gemma search the web for affordable listings in a Northern Virginia area, live.
 
-Results are shown as "found on the web, not checked by our team". To keep them honest:
+Results are shown as "found on the web, not verified by our team". To keep them honest:
 - Gemma uses Google Search grounding, and a result is kept only if its source is one of the
   pages Google actually returned for the search.
 - Phone numbers are never taken from the web; people get the source link instead.
@@ -132,7 +132,7 @@ def search(location, queue_results=True):
     if queue_results and results:
         _queue_for_review(area, results)
     out = {"area": area, "results": results,
-           "notice": "Found on the web by AI just now. Not checked by our team: confirm rent, eligibility and availability with the property."}
+           "notice": "Found on the web by AI just now. Not verified by our team: confirm rent, eligibility and availability with the property."}
     with _cache_lock:
         _cache[key] = (time.time(), out)
     return out

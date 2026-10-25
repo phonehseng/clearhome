@@ -246,7 +246,7 @@
     .opt-card details summary{cursor:pointer;font-weight:650;min-height:32px;display:flex;align-items:center}
     .opt-card details p{margin:4px 0}
     .shelter-where{font-size:12.5px;color:var(--muted)}
-    /* Hotels and motels from Google Maps: orange "not checked" badge, like the web-search pins on the map. */
+    /* Hotels and motels from Google Maps: orange "not verified" badge, like the web-search pins on the map. */
     .opt-badge.web{background:#fff1e0!important;color:#8a4b0f!important}
     .hotel-note{margin:0 0 10px;font-size:12.5px;line-height:1.5;color:var(--muted)}
     .hotel-more{display:inline-block;margin-top:10px;font-size:13px;font-weight:650;color:#2f55b5}
@@ -765,12 +765,12 @@
     </div>
   </header>
 <main class="container">
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A Clearer Path.<br><span>A Place to Call Home.</span></h1><p>Checked homes, shelters and rent help.</p><a class="browse-link" href="#listings">Browse Housing & Waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official sources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not checked</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></section>
+  <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span class="eyebrow-lead">Housing support for</span> <span class="eyebrow-places">Blacksburg <span class="eyebrow-amp">&amp;</span> Northern&nbsp;Virginia</span></div><h1 id="hero-title">A Clearer Path.<br><span>A Place to Call Home.</span></h1><p>Verified homes, shelters and rent help.</p><a class="browse-link" href="#listings">Browse Housing & Waitlists <span aria-hidden="true">→</span></a><div class="hero-tags"><span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg>Official sources</span><span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#lock"/></svg>No account needed</span></div></div><div class="hero-map-wrap"><div class="map-tabs" role="group" aria-label="Choose a map area"><button type="button" class="map-tab" data-region="nova" aria-pressed="true">Northern Virginia</button><button type="button" class="map-tab" data-region="blacksburg" aria-pressed="false">Blacksburg</button><label class="visually-hidden" for="map-hood">Neighborhood</label><select id="map-hood" class="map-hood"><option value="">Neighborhood…</option></select><button type="button" class="map-tab near-me" id="near-me"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#pin"/></svg>Near Me</button></div><div id="listing-map" class="hero-map" role="region" aria-label="Map of reviewed housing in Northern Virginia and Blacksburg"></div><div class="map-meta"><div class="map-legend" aria-hidden="true"><span><i class="map-dot reviewed"></i>Reviewed listing</span><span><i class="map-dot web"></i>Found on the web, not verified</span></div><p class="map-status" id="map-status" role="status" aria-live="polite">Pick or type an area to zoom in.</p></div><ul class="web-results" id="web-results" hidden></ul></div></section>
   <section id="tools" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">What Do You Need?</h2></div><div class="tools"><div class="tool-workspace">
     <div class="tabs" role="tablist" aria-label="Housing tools" hidden><button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="panel-find"><span class="tab-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#home"/></svg></span><span><strong>1) Find Housing Help</strong><small>A Place to Start</small></span></button></div>
     <section class="tool-panel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0"><div class="panel-heading"><h3>Ask, or Search.</h3><span class="step-label">HOUSING SUPPORT</span></div>
     <div class="assistant" id="assistant">
-      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="34" height="34"></span><div><strong>Ask Gemma 4</strong><span>Gemma 4 26B · answers only from checked resources</span></div></div>
+      <div class="assistant-head"><span class="assistant-avatar" aria-hidden="true"><img src="/logo.svg" alt="" width="34" height="34"></span><div><strong>Ask Gemma 4</strong><span>Gemma 4 26B · answers only from verified resources</span></div></div>
       <div class="assistant-log" id="assistant-log" role="log" aria-live="polite"></div>
       <div class="assistant-chips" id="assistant-chips" role="group" aria-label="Example housing questions">
         <button type="button">Rooms near Virginia Tech under $700</button>
@@ -813,7 +813,7 @@
     </div>
     <div class="find-results" id="find-results" role="region" aria-live="polite" aria-label="Your options" hidden></div>
     </section>
-  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>Three Steps</h3><ol class="steps"><li><span class="step-number">1</span><div><strong>Say what you need</strong></div></li><li><span class="step-number">2</span><div><strong>See checked options</strong></div></li><li><span class="step-number">3</span><div><strong>Call to confirm</strong></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Shelters and hotels tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div></section></aside></div></section>
+  </div><aside class="support-sidebar" aria-label="Guidance and emergency support"><section class="guidance-card"><span class="guidance-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#shield"/></svg></span><h3>Three Steps</h3><ol class="steps"><li><span class="step-number">1</span><div><strong>Say what you need</strong></div></li><li><span class="step-number">2</span><div><strong>See verified options</strong></div></li><li><span class="step-number">3</span><div><strong>Call to confirm</strong></div></li></ol></section><section class="emergency-card" id="emergency" tabindex="-1"><h3><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#help"/></svg>Need a Safe Place Tonight?</h3><p>Shelter: call 211. Danger: call 911.</p><div class="call-links"><a href="tel:211"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#phone"/></svg>Call 211</a><a href="tel:911">Emergency: 911</a></div><div class="tonight-links"><span>Shelters and hotels tonight in:</span><button type="button" data-tonight="Blacksburg">Blacksburg</button><button type="button" data-tonight="Northern Virginia">Northern Virginia</button></div></section></aside></div></section>
 
   <section class="listings-section" id="listings" aria-labelledby="listings-title">
     <div class="section-heading"><div><h2 id="listings-title">Explore Rentals & Housing Waitlists</h2></div><span class="catalog-label">NOVA & BLACKSBURG</span></div>
@@ -1333,8 +1333,8 @@
       return box;
     }
     // Somewhere to stay tonight besides a shelter: budget hotels and motels near the area from Google Maps.
-    // Our team hasn't checked them, so they say so, and a Google Maps link shows more.
-    const HOTEL_NOTE = 'Not checked by our team: call to ask tonight’s rate and whether a room is free. If the cost is a problem, ask 211 whether help paying for a room is available.';
+    // Our team hasn't verified them, so they say so, and a Google Maps link shows more.
+    const HOTEL_NOTE = 'Not verified by our team: call to ask tonight’s rate and whether a room is free. If the cost is a problem, ask 211 whether help paying for a room is available.';
     const hotelsShown = new Set();  // places whose hotels are already on screen, so the chat doesn't list them twice
     const hotelSearch = place => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('hotels near ' + place);
     const hotelMeta = h => [h.kind, typeof h.rating === 'number' ? `★ ${h.rating.toFixed(1)}${h.ratings ? ` (${h.ratings.toLocaleString('en-US')})` : ''}` : null, h.price].filter(Boolean).join(' · ');
@@ -1347,7 +1347,7 @@
     }
     function hotelCard(h) {
       const c = el('article', null, { class: 'opt-card' });
-      c.append(el('span', 'Google Maps · not checked by us', { class: 'opt-badge web' }), el('strong', h.name));
+      c.append(el('span', 'Google Maps · not verified by us', { class: 'opt-badge web' }), el('strong', h.name));
       if (hotelMeta(h)) c.append(el('span', hotelMeta(h), { class: 'meta' }));
       if (h.address) c.append(el('span', h.address, { class: 'meta' }));
       const links = el('div', null, { class: 'opt-links' });
@@ -1469,7 +1469,7 @@
           const card = el('article', null, { class: 'chat-card', role: 'listitem', 'aria-label': h.name });
           const media = el('div', null, { class: 'chat-card-media', 'aria-hidden': 'true' }); media.innerHTML = BED;
           const body = el('div', null, { class: 'chat-card-body' });
-          body.append(el('span', 'Google Maps · not checked by us', { class: 'opt-badge web' }), el('span', h.name, { class: 'chat-card-title' }));
+          body.append(el('span', 'Google Maps · not verified by us', { class: 'opt-badge web' }), el('span', h.name, { class: 'chat-card-title' }));
           if (hotelMeta(h)) body.append(el('span', hotelMeta(h), { class: 'chat-card-meta' }));
           if (h.address) body.append(el('span', h.address, { class: 'chat-card-address' }));
           const links = el('div', null, { class: 'chat-card-actions' });
@@ -1607,7 +1607,7 @@
     wake.observe(document.getElementById('assistant'));
     const chips = document.getElementById('assistant-chips');
     chips.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { chips.hidden = true; ask(b.textContent); } });
-    botSay("Hi, I'm Gemma. Find homes near work or campus, or ask about rent help, shelters, and vouchers. I use our checked resources.");
+    botSay("Hi, I'm Gemma. Find homes near work or campus, or ask about rent help, shelters, and vouchers. I use our verified resources.");
 
     // "Pick an area" fills the box and moves the map there, the same as typing a place.
     document.getElementById('location-pick').addEventListener('change', e => {

@@ -22,7 +22,7 @@ LISTING_SITES = ('apartments.com', 'zillow.com', 'trulia.com', 'rent.com', 'hotp
                  'facebook.com', 'homefinder.com', 'apartmentguide.com', 'forrent.com', 'rentcafe.com', 'costar.com')
 JURISDICTIONS = sorted(NOVA_JURISDICTIONS) + ['Montgomery County']
 VERIFIED_METHOD = 'Hand-entered from official provider or public-agency web sources; no phone or in-person confirmation.'
-UNVERIFIED_METHOD = ('Hand-entered from listing sites; not yet checked against the property or a public agency. '
+UNVERIFIED_METHOD = ('Hand-entered from listing sites; not yet verified against the property or a public agency. '
                      'Withheld from answers until a teammate confirms it and marks it verified.')
 
 

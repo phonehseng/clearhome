@@ -14,9 +14,9 @@ Finding safe, affordable housing is hard for low-income people, especially stude
 
 - **Find affordable housing.** Matches a person's budget, location and accessibility needs to manually verified affordable and low-income housing listings. In Blacksburg the focus is student rooms under $1,000 per person, with individual and joint leases labeled.
 - **Find emergency help.** Points people to verified shelters and emergency housing resources, with urgent cases shown first.
-- **Ask Gemma, live.** A chat that streams its answer as Gemma writes it, grounded in the verified list. "Near my office at …" questions are answered instantly with distances and drive/transit times (Google Places + Routes), no AI needed, and walking-time questions ("within a 15 minute walk of VT") are measured, not guessed. If Gemma is unavailable, the chat still lists matching checked resources.
+- **Ask Gemma, live.** A chat that streams its answer as Gemma writes it, grounded in the verified list. "Near my office at …" questions are answered instantly with distances and drive/transit times (Google Places + Routes), no AI needed, and walking-time questions ("within a 15 minute walk of VT") are measured, not guessed. If Gemma is unavailable, the chat still lists matching verified resources.
 - **See it on a map.** Reviewed homes on Google Maps (Leaflet fallback) with Northern Virginia and Blacksburg tabs, plus homes within walking distance of a grocery store, pharmacy or transit stop.
-- **Find new listings on the web.** Gemma searches the web with Google Search grounding; results appear as orange pins labeled "not checked by our team yet".
+- **Find new listings on the web.** Gemma searches the web with Google Search grounding; results appear as orange pins labeled "not verified by our team yet".
 - **Save favorites.** Save listing cards to a Favorites tab and share a link to one.
 
 To avoid made-up information, the assistant only recommends places from our hand-verified resource list (`data/resources.json`, 436 records across both areas). Answers are informational and are not legal advice.
@@ -33,7 +33,7 @@ To avoid made-up information, the assistant only recommends places from our hand
 
 | Address | Page |
 |---|---|
-| `/` | Front page (`frontend/about.html`): the map of every checked home, how Clear House works, Built with Google Cloud, the open-source repo, and the "Get started" chat with Gemma (your first question carries over to the tools page). |
+| `/` | Front page (`frontend/about.html`): the map of every verified home, how Clear House works, Built with Google Cloud, the open-source repo, and the "Get started" chat with Gemma (your first question carries over to the tools page). |
 | `/app` | The tools (`frontend/index.html`): housing cards and filters, the map, the Gemma chat, walking distance, and Favorites. |
 | `/resources` | How qualifying works, programs and where to apply, rentals and student rooms, and example questions answered by Gemma (`frontend/resources.html`). |
 | `/google-cloud` | How the Google Cloud services fit together and what each one does (`frontend/google-cloud.html`). |
@@ -46,7 +46,7 @@ To avoid made-up information, the assistant only recommends places from our hand
 | `backend/app.py` | Flask server for the pages and the `/api/ask`, `/api/ask/stream`, `/api/options`, `/api/match`, `/api/live-search`, read-only `/api/listings`, and listing photo (`/media/listings/<id>`) endpoints. |
 | `backend/catalog.py` | Loads and validates `data/resources.json` and does the deterministic matching (budget, area, room type, eligibility). No network or AI calls. |
 | `backend/matcher.py` | Gemma turns the person's message into filters (types, budget, accessibility, urgency). Code picks matching entries from `data/resources.json`, then Gemma writes a plain-language answer using only those entries. |
-| `backend/advisor.py` | The chat: picks the most relevant checked records for a question, then streams Gemma's grounded answer (`/api/ask/stream`), with a no-AI fallback. |
+| `backend/advisor.py` | The chat: picks the most relevant verified records for a question, then streams Gemma's grounded answer (`/api/ask/stream`), with a no-AI fallback. |
 | `backend/gemma_gpu.py` | Calls Gemma 4 on our private Cloud Run GPU first when `GEMMA_GPU_URL` is set, and gives way to the Gemini API if it doesn't answer in time. |
 | `backend/nearby.py` | "Near my office / any place" answers: finds the place (Census geocoder or Google Places) and ranks homes by distance with drive and transit times. |
 | `backend/walkable.py` | Walking-distance search: reviewed homes + Google Places + Google Routes walking times. See [WALKABILITY.md](WALKABILITY.md). |
@@ -99,7 +99,7 @@ Open http://localhost:8000.
 - **Safety:** every page shows 911 and 211 up front. Urgent situations list shelters first. Answers say they are guidance, not legal advice.
 - **Prompt injection:** questions, chat history and catalog records are marked as data in the prompt, and the model is told not to follow instructions inside them.
 - **Privacy:** the site takes no file uploads. SSNs and account numbers are removed by pattern from everything people type before it is sent to Gemma, and we don't store requests. On the free Gemini API tier Google may use submitted text to improve its products, so a real deployment should use a paid key or Vertex AI. Names and addresses are not removed automatically, so the page asks people to keep personal details out.
-- **Web finds:** listings Gemma finds on the web are labeled as not checked by our team, keep only sources Google actually returned, and never show a phone number taken from the web.
+- **Web finds:** listings Gemma finds on the web are labeled as not verified by our team, keep only sources Google actually returned, and never show a phone number taken from the web.
 - **Accessibility:** labelled form fields, keyboard-navigable tabs, visible focus outlines, high-contrast text, and results announced to screen readers.
 - **Limits:** the AI can still make mistakes, and listings change, so answers point to real people (211, tenant legal aid, the provider) for decisions.
 

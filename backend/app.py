@@ -477,7 +477,7 @@ def ask_advisor_stream():
         return f"data: {json.dumps({'kind': 'hotels', 'text': found})}\n\n" if found else ""
 
     def events():
-        engine = getattr(instant, "engine", "Instant answer from our checked list with Google Maps Platform (Places + Routes); no AI needed")
+        engine = getattr(instant, "engine", "Instant answer from our verified list with Google Maps Platform (Places + Routes); no AI needed")
         updates = [("engine", engine), ("answer", instant), ("cards", cards_for(instant))] if instant else stream_ask(question, history)
         sent = False
         try:

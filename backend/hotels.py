@@ -1,7 +1,7 @@
 """Hotels and motels near a place, for someone who needs somewhere to stay tonight.
 
 No AI is involved. Google Places Text Search finds budget hotels and motels in or near the area; when Google knows a
-price level, cheaper ones come first (Google's own order otherwise). These places aren't checked by our team, so the page labels them as
+price level, cheaper ones come first (Google's own order otherwise). These places aren't verified by our team, so the page labels them as
 Google Maps results and says to call for tonight's rate. Without a Maps key (or if Google doesn't answer), the list
 is empty and the page still gets a Google Maps search link.
 
