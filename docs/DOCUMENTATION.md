@@ -10,7 +10,7 @@ This documentation describes the implementation in this repository, not a promis
 - **Changing the frontend or backend:** [Architecture](ARCHITECTURE.md), then [API reference](API.md).
 - **Maintaining listings or releasing changes:** [Maintenance and testing](MAINTENANCE.md).
 - **Deploying:** [Cloud Run deployment](../DEPLOY.md) and [optional GPU service](../gemma/README.md).
-- **Presenting the project:** [Two-minute video demo script](DEMO_SCRIPT.md).
+- **Presenting the project:** [Two-minute video demo script](DEMO_SCRIPT.md) and the [submission kit](SUBMISSION.md) (descriptions, tech list, track choice, checklist).
 
 ## Source-of-truth map
 
