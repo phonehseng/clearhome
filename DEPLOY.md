@@ -30,6 +30,41 @@ gcloud run deploy clear-house --source . --region us-east4 \
 
 `.gcloudignore` keeps `.env`, `.venv` and `.git` out of the upload.
 
+## Automatic deploys (every push to main)
+
+`cloudbuild.yaml` downloads the listing photos, builds the container and deploys it to Cloud Run. A Cloud Build
+trigger runs it whenever `main` changes on GitHub, so nobody has to run `gcloud run deploy` by hand. The service keeps
+its secrets, env vars and limits; only the code changes. No keys are stored in GitHub.
+
+One-time setup, from the project folder (needs the Owner or Editor role on the project):
+
+```bash
+PROJECT=$(gcloud config get-value project)
+NUMBER=$(gcloud projects describe $PROJECT --format='value(projectNumber)')
+gcloud services enable cloudbuild.googleapis.com run.googleapis.com artifactregistry.googleapis.com
+
+# Let the build deploy to Cloud Run (both accounts, since which one Cloud Build uses depends on the project's age).
+for SA in $NUMBER-compute@developer.gserviceaccount.com $NUMBER@cloudbuild.gserviceaccount.com; do
+  for ROLE in roles/run.admin roles/iam.serviceAccountUser roles/artifactregistry.writer roles/logging.logWriter; do
+    gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$SA --role=$ROLE --condition=None --quiet >/dev/null
+  done
+done
+```
+
+Then connect GitHub and create the trigger in the console (the GitHub connection needs a browser sign-in):
+
+1. Open **Cloud Build → Triggers** (console.cloud.google.com/cloud-build/triggers), pick region **us-east4**
+   (or **global**), and click **Connect repository**. Choose **GitHub (Cloud Build GitHub App)**, sign in, and select
+   `phonehseng/clearhouse`.
+2. Click **Create trigger**: name `clear-house-deploy`, event **Push to a branch**, branch `^main$`,
+   configuration **Cloud Build configuration file**, location `cloudbuild.yaml`. Service account: the
+   compute default (`…-compute@developer.gserviceaccount.com`). Save.
+3. Click **Run** on the trigger once to deploy the current `main` and check it works (about 4–6 minutes).
+   Builds and their logs are under **Cloud Build → History**.
+
+After that, merging a pull request or pushing to `main` updates the live site a few minutes later. Pushes to other
+branches don't deploy. The manual command above still works for a one-off deploy.
+
 ## Change the key
 
 ```bash
