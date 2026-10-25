@@ -50,7 +50,7 @@ AREAS = [  # longest names first, so "manassas park" wins over "manassas"
 # around a typo ("my boyfriuend beat me"), not the name of the person.
 DANGER = re.compile(r"\b(?:beat(?:s|en|ing)?|hit(?:s|ting)?|hurt(?:s|ing)?|chok(?:e|es|ed|ing)|punch(?:es|ed|ing)?|kick(?:s|ed|ing)?|"
                     r"slap(?:s|ped|ping)?|push(?:es|ed|ing)?|threaten(?:s|ed|ing)?|rap(?:e|ed)) (?:me|us|my (?:kids?|children|baby|son|daughter))\b(?! with)"
-                    r"|\b(?:abus\w*|assault\w*|domestic (?:violence|abuse)|violent|unsafe|in danger|not safe|afraid (?:of|for) (?:him|her|my)|"
+                    r"|\b(?:abus\w*|assault\w*|domestic (?:violence|abuse)|violent|unsafe|in danger|not safe|threat(?:en|ens|ened|ening)? (?:me|us|my)|threats? (?:to|against) (?:me|us|my)|stalk(?:s|ed|ing)? (?:me|us|my)|kill(?:ing|s)? (?:me|us|my)|with a (?:gun|knife|weapon)|afraid (?:of|for) (?:him|her|my)|"
                     r"scared (?:of|for) (?:him|her|my)|fle(?:e|eing|d) (?:from |my |the |him|her)|"
                     r"(?:get|got|getting) (?:out|away) (?:of |from )?(?:the |my |our |this )?(?:house|home|apartment|place|him|her)(?! lease)|"
                     r"(?:have|need|had|needs) to (?:leave|get out|run) (?:now|tonight|today|right now|the house|home|him|her))\b", re.I)  # not "have to leave by May"
