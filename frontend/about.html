@@ -449,6 +449,18 @@
     .cl-hero{padding-top:140px}
     @media (max-width: 860px){.site-header .header-links>a.cl-nav-btn{display:inline-flex}.site-header .header-inner{height:60px}.cl-hero{padding-top:110px}}
     @media (prefers-reduced-motion: reduce){.site-header :is(.brand,.header-links a){transition:none}}
+    /* Footer: brand and page links on one row, the team credit underneath. */
+    .cl-footer{border-top:1px solid var(--line);padding:34px 0 40px;margin-top:24px;color:var(--muted)}
+    .cl-footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .cl-footer-brand{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font-size:18px;font-weight:700;letter-spacing:-.4px}
+    .cl-footer-brand img{width:28px;height:28px;border-radius:8px;box-shadow:0 3px 10px #23408f33}
+    .cl-footer-brand span{color:#8d99ad;margin-left:-8px}
+    .cl-footer-links{display:flex;flex-wrap:wrap;gap:4px}
+    .cl-footer-links a{padding:7px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:background .15s,color .15s}
+    .cl-footer-links a:hover{color:var(--blue-2);background:#e2eafb}
+    .cl-footer-credit{margin:18px auto 0;padding-top:18px;border-top:1px solid #d2dcf099;font-size:13.5px;line-height:1.6}
+    .cl-footer-credit b{color:var(--ink);font-weight:600}
+    @media (max-width: 640px){.cl-footer-top{flex-direction:column;align-items:center;text-align:center}.cl-footer-links{justify-content:center}.cl-footer-credit{text-align:center}}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -577,7 +589,15 @@
     <output id="font-name" aria-live="polite"></output>
   </div>
 
-  <footer class="container">Made by Pierce, Umair, Phone and Ryan for GDG Build with AI x Hacktoberfest 2026.</footer>
+  <footer class="cl-footer">
+    <div class="container cl-footer-top">
+      <a class="cl-footer-brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="28" height="28">clear house<span>.</span></a>
+      <nav class="cl-footer-links" aria-label="Footer">
+        <a href="#map">Map</a><a href="/google-cloud">Built with Google Cloud</a><a href="#github">GitHub</a><a href="/app">Open Clear House</a>
+      </nav>
+    </div>
+    <p class="container cl-footer-credit">Made by Pierce, Umair, Phone and Ryan for <b>GDG Build with AI × Hacktoberfest 2026</b>.</p>
+  </footer>
 
   <script>
     // Debug only (add ?debug to the URL): cycle through font pairings to compare them.
