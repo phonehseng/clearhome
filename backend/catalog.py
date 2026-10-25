@@ -71,7 +71,8 @@ def community_key(row):
     address = ' '.join(abbreviations.get(word, word) for word in words)
     # A street without a building number must not merge unrelated properties.
     name = '' if words and words[0].isdigit() else _normalized(row.get('community') or row.get('name') or row.get('id'))
-    return ('community', _normalized(row.get('jurisdiction') or row.get('city')), address, name)
+    # A 55+ building and a family building can share one address (Fieldstone): they're separate communities.
+    return ('community', _normalized(row.get('jurisdiction') or row.get('city')), address, name, senior_only(row))
 
 
 def listing_key(row):
