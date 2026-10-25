@@ -403,17 +403,17 @@
     #google .card p{font-size:15px}
     #github .repo-card{margin-top:44px;text-align:left}
     /* The closing box keeps the old dark blue, with the light sweep that follows the scroll. */
-    .cl-end{width:min(1100px,calc(100% - 32px));margin:40px auto 90px;padding:84px 28px;border-radius:28px;box-shadow:0 30px 80px #14203f33}
-    .cl-end .cl-title{color:#fff}
+    .cl-section.cl-end{width:min(940px,calc(100% - 32px));margin:40px auto 56px;padding:30px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px 24px;text-align:left;border-radius:22px;box-shadow:0 12px 32px #14203f1a}
+    .cl-end .cl-title{color:#fff;font-size:clamp(26px,2.6vw,32px);line-height:1.15;letter-spacing:-.025em}
     .cl-end .cl-title span{background:linear-gradient(90deg,#9fbff5,#ffffff);-webkit-background-clip:text;background-clip:text;color:transparent}
     /* Headings: the word-by-word animation wraps every word in a span, which gave each word its own faded gradient.
        Words now take the heading's solid color; the highlighted phrase is solid blue (light blue on the dark band). */
     .cl-title span.word{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:inherit}
     .cl-title>span:not(.word){background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#2f55b5}
     .cl-end .cl-title>span:not(.word){color:#9fbff5}
-    .cl-end .cl-btn{margin-top:30px;background:#fff;color:#14203f}
-    .cl-end{padding-bottom:26px}
-    .cl-end .cl-urgent{color:#b7c3e6;margin-top:70px;font-size:13.5px}  /* small, at the bottom of the box */
+    .cl-end .cl-btn{margin:0;padding:11px 18px;min-height:44px;font-size:14px;background:#fff;color:#14203f;box-shadow:none;justify-content:center}
+    .cl-end .cl-urgent{grid-column:1 / -1;max-width:none;margin:0;padding-top:16px;border-top:1px solid #ffffff26;color:#c9d4ed;font-size:13px;line-height:1.65}
+    @media(max-width:640px){.cl-section.cl-end{grid-template-columns:1fr;justify-items:start;gap:16px;padding:24px;margin-bottom:36px}.cl-end .cl-title{font-size:28px}.cl-end .cl-urgent{padding-top:14px}}
     .cl-end .cl-urgent a{color:#ffd66b}
     .cl-urgent{margin-top:26px;color:#5b6b85;font-size:16px}
     .cl-urgent a{color:#c5221f;font-weight:700}
