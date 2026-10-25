@@ -781,6 +781,30 @@
       scrollScene(() => turn(card => { const r = card.getBoundingClientRect(); return r.top + r.height / 2 < innerHeight * .55; }));
     }
 
+    // The map: once it comes into view, a short tour flies from all of Northern Virginia to a neighborhood, to Reston, then
+    // to Blacksburg, with a caption for each stop. It plays once, and stops for good as soon as someone uses the map.
+    const mapTrack = document.querySelector('.map-track');
+    if (mapTrack && !calmPage) {
+      const STOPS = [['Northern Virginia', 'Every checked home across Northern Virginia.'], ['Arlington (Ballston)', 'Zoom into a neighborhood, like Ballston in Arlington.'],
+                     ['Reston', 'Or look near work, like Reston.'], ['Blacksburg', 'And Blacksburg, right by Virginia Tech.']];
+      const STOP_MS = 3200, lead = mapTrack.querySelector('.cl-lead'), frame = mapTrack.querySelector('.cl-frame');
+      let started = false, timer = null;
+      const stopTour = () => { clearTimeout(timer); timer = null; started = true; };
+      ['pointerdown', 'keydown'].forEach(type => frame.addEventListener(type, stopTour, { passive: true }));  // not wheel: scrolling past the map isn't using it
+      const show = i => {
+        if (!window.clearHouseMapGoTo) { timer = setTimeout(() => show(i), 400); return; }  // map still loading
+        lead.textContent = STOPS[i][1];
+        lead.animate?.([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
+        window.clearHouseMapGoTo(STOPS[i][0]);
+        if (i + 1 < STOPS.length) timer = setTimeout(() => show(i + 1), STOP_MS);
+      };
+      scrollScene(() => {
+        if (started) return;
+        const r = frame.getBoundingClientRect(); if (r.top > innerHeight * .6 || r.bottom < innerHeight * .3) return;
+        started = true; show(0);
+      });
+    }
+
     // How Clear House Helps: a sample chat plays once as it comes into view (each question appears, then Gemma types its
     // answer) and the near-my-office search fills in. The chat quotes real records from our checked list.
     const howTrack = document.querySelector('.how-track');
