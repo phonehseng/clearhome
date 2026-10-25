@@ -363,6 +363,29 @@ class EdgeCaseRoundTwoTests(unittest.TestCase):
         self.assertIsNone(advisor.boundary_answer("how do eviction notices work in Virginia?"))
 
 
+class EdgeCaseRoundThreeTests(unittest.TestCase):
+    def test_a_named_place_answers_from_its_record_without_ai(self):
+        with patch("advisor.stream_gemma", side_effect=no_gemma):
+            found = events(server.app.test_client().post("/api/ask/stream", json={"question": "what is the rent at Signature at Reston?", "chat": {}}))
+        answer = next(e["text"] for e in found if e["kind"] == "answer")
+        self.assertIn("Signature at Reston Town Center", answer)
+        self.assertIn("571-267-2887", answer)
+        self.assertIsNone(advisor.named_answer("tell me about arbor heights history"))
+
+    def test_common_legal_questions_get_what_to_explain(self):
+        for question, words in (("my landlord won't return my security deposit, what can I do?", "within 45 days"),
+                                ("is it legal for a landlord to refuse my housing voucher in Virginia?", "source-of-income"),
+                                ("how long does an eviction take in Virginia?", "unlawful detainer"),
+                                ("what documents do I need?", "proof of income"), ("how do I apply there?", "leasing office")):
+            prompt = advisor._prompt(question, [], advisor._records(question))
+            self.assertIn(words, prompt.rsplit("Now write your answer.", 1)[1], question)
+
+    def test_income_sets_the_budget_for_the_gap_line(self):
+        question = "I earn 30000 a year and need a 2 bedroom in Alexandria"
+        tail = advisor._prompt(question, [], advisor._records(question)).rsplit("Now write your answer.", 1)[1]
+        self.assertIn("above about $750 a month, 30% of your income", tail)
+
+
 class AnswerStyleTests(unittest.TestCase):
     def test_prompt_keeps_sympathy_for_worried_people_and_names_the_budget_gap(self):
         prompt = advisor._prompt("studio in Arlington under $400", [], [])

@@ -12,7 +12,7 @@ from datetime import date
 
 from flask import Flask, Response, g, jsonify, request, send_from_directory, send_file, stream_with_context
 
-from advisor import AREAS, advice_question, ask, boundary_answer, cards_for, clarify, expand_nicknames, fair_housing_answer, options, outside_answer, programs, quick_nearby, stream_ask, warm_examples, with_context
+from advisor import AREAS, advice_question, ask, boundary_answer, cards_for, clarify, expand_nicknames, fair_housing_answer, named_answer, options, outside_answer, programs, quick_nearby, stream_ask, warm_examples, with_context
 import clarifier
 import crisis
 from live_search import search as live_search
@@ -524,7 +524,7 @@ def _chat_request():
     # "Near my office at 1800 Tysons Blvd", "near Inova Fairfax Hospital": geocoded and ranked by distance, no AI.
     # These shortcuts read the person's own words, not the profile note added below.
     # A place we don't cover (Richmond, Maryland...): said plainly, with 211, instead of homes from elsewhere.
-    instant = lifeline or fair or (asking or outside_answer(question) or (None if chat is not None else clarify(question, profile)) or near_place.answer(question, profile, history)
+    instant = lifeline or fair or (asking or outside_answer(question) or named_answer(question) or (None if chat is not None else clarify(question, profile)) or near_place.answer(question, profile, history)
                or nearby.answer(question, profile, history) or quick_nearby(question, profile))  # "near George Mason" etc.: catalog, no AI
     if chat is not None and isinstance(instant, clarifier.Question) and not asking:
         clarifier.record(chat, instant)  # near_place.py or nearby.py asked ("which Walmart?"): that's the open question now

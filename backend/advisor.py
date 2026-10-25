@@ -242,14 +242,21 @@ def _prompt(question, history, rows, needs=None, walk=None, place=None):
                      "don't ask them to repeat what they want, don't offer sample questions, and don't add shelter or helpline referrals unless they asked for emergency help.")
     # A budget below every home here: the gap is worked out in code and given as the first line, so it's always said.
     cap = BUDGET_ANY.search((question or "").replace(",", "")) if housing_search(question) else None
+    income = monthly_income(question)
+    limit = int(cap.group(1)) if cap else (round(0.3 * income, -1) if income and housing_search(question) else None)
+    said = f"your ${limit:,.0f} budget" if cap else f"about ${limit:,.0f} a month, 30% of your income" if limit else ""
     prices = [p for p in ((r.get("monthly_rent") if isinstance(r.get("monthly_rent"), (int, float)) else (rent_estimate(r) or {}).get("low")) for r in rows)
-              if isinstance(p, (int, float))] if cap else []
+              if isinstance(p, (int, float))] if limit else []
     focus = []  # what this question needs most, repeated in the prompt's last line (Gemma follows what it read last)
-    if prices and min(prices) > int(cap.group(1)):
-        focus.append(f'Your first words must be: "The lowest rents I found start around ${min(prices):,.0f}, above your ${int(cap.group(1)):,} budget:"')
-        notes.append(f"Their budget is ${int(cap.group(1)):,} a month and every home below costs more. Start your answer with exactly: "
-                     f"\"The lowest rents I found start around ${min(prices):,.0f}, above your ${int(cap.group(1)):,} budget:\" "
+    if prices and min(prices) > limit:
+        focus.append(f'Your first words must be: "The lowest rents I found start around ${min(prices):,.0f}, above {said}:"')
+        notes.append(f"Their budget is about ${limit:,.0f} a month and every home below costs more. Start your answer with exactly: "
+                     f"\"The lowest rents I found start around ${min(prices):,.0f}, above {said}:\" "
                      "Then give the two lowest-priced homes, and end by saying 211 can help with rent assistance.")
+    for pattern, hint in HOW_TO:  # common how-to and legal questions: what a good answer explains
+        if pattern.search(question):
+            focus.append(hint)
+            break
     named = named_records(question)
     if named:
         name = named[0].get("community") or named[0]["name"]
@@ -267,7 +274,6 @@ def _prompt(question, history, rows, needs=None, walk=None, place=None):
     if asks_how(question):
         notes.append("They asked for advice or information, not for places. Answer the question itself first, in 3 to 5 plain sentences or short steps. "
                      "Don't list homes or apartments. Name a program or legal aid only if it directly helps, at most one or two.")
-    income = monthly_income(question)
     if income and not cap:
         notes.append(f"They earn about ${income:,.0f} a month. The usual guideline is rent at about 30% of income, about ${0.3 * income:,.0f} a month: "
                      "use that as their budget, say it's a rule of thumb, and never invent a different target.")
@@ -492,6 +498,7 @@ def housing_search(text):
     # The lease as a document ("before signing a lease", "breaking my lease") isn't a search for a place.
     t = re.sub(r"\b(?:sign(?:ing)?|break(?:ing)?|renew(?:ing)?|end(?:ing)?|read(?:ing)?)\s+(?:a |the |my |this |our )?lease\b|\b(?:my|our|this) lease\b", " ", t, flags=re.I)
     return bool(HOUSING_WORDS.search(t)) and any((BUDGET_ANY.search(t), NEAR_ANY.search(t), household_size(t), ACCESSIBLE.search(t), extra_needs(t),
+                                                  BEDS.search(t), INCOME.search(t.replace(",", "")),
                                                   re.search(r"\bfind a rental\b", t, re.I)))
 
 
@@ -797,6 +804,46 @@ SPANISH = re.compile(r"\b(?:necesito|busco|quiero|tengo|apartamento|vivienda|alq
 BEDS = re.compile(r"\b(?:(studio|efficiency)|(\d|one|two|three|four)[\s-]*(?:bed(?:room)?s?|br|bd|bdrm)\b)", re.I)
 
 
+# What a good answer to a common how-to or legal question explains (general Virginia rules; the person's case can differ).
+HOW_TO = [
+    (re.compile(r"\bsecurity deposit|\bdeposit back|\breturn (?:my |the )?deposit", re.I),
+     "Explain the Virginia rule first: the landlord must return the deposit, minus itemized deductions, within 45 days after the tenancy ends. "
+     "Then the steps: ask in writing with a forwarding address, keep photos and records, and if it isn't returned, legal aid or small claims court can help."),
+    (re.compile(r"\b(?:refuse|reject|deny|turn(?:ed)? down|won'?t (?:take|accept))\w*\b.{0,40}\b(?:vouchers?|section ?8|hcv)\b|\b(?:vouchers?|section ?8)\b.{0,40}\b(?:refuse|legal|allowed|discriminat)", re.I),
+     "Answer yes or no first: in Virginia, refusing a renter because they pay with a housing voucher is illegal source-of-income discrimination, "
+     "with narrow exceptions for some small landlords. Then how to report it: the Virginia Fair Housing Office, or HUD at 1-800-669-9777."),
+    (re.compile(r"\bhow long\b.{0,30}\bevict|\bevict\w*\b.{0,30}\b(?:take|process|steps|work)\b", re.I),
+     "Explain the general Virginia eviction steps: a written notice, then a court summons (an unlawful detainer), a court hearing, and only then "
+     "a writ carried out by the sheriff. Say it often takes several weeks, only a court can order it, and free legal aid can help at the hearing."),
+    (re.compile(r"\bwhat (?:documents|papers|paperwork)\b|\bdocuments? (?:do|will) i need\b", re.I),
+     "List the usual documents plainly: photo ID; Social Security cards or immigration papers for everyone in the household; proof of income "
+     "(pay stubs, benefit letters); recent bank statements; your current lease; any eviction notice. Say each program sets its own final list."),
+    (re.compile(r"\bhow (?:do|can|would) i apply\b|\bhow to apply\b", re.I),
+     "Explain how to apply in plain steps: call or visit the leasing office, ask for an application and whether there is a waitlist, bring ID and "
+     "proof of income, and ask about the application fee and income limits."),
+]
+PRICE_Q = re.compile(r"\b(?:rent|price|cost|how much|available|availability|vacanc\w*|open(?:ings?)?|phone|number|call|address|where is)\b", re.I)
+
+
+def named_answer(question):
+    """'What is the rent at Signature at Reston?': that place's rent (or our estimate), phone and status, straight from its record."""
+    named = named_records(question)
+    if not named or not PRICE_Q.search(question or ""):
+        return None
+    first = named[0]
+    key = first.get("community") or first["name"]
+    plans = [r for r in filter_catalog(load_catalog()) if (r.get("community") or r["name"]) == key]
+    rents = sorted((r["monthly_rent"], r.get("rental_space") == "room") for r in plans if isinstance(r.get("monthly_rent"), (int, float)))
+    if rents:
+        rent = f"advertised rents start at ${rents[0][0]:,.0f}{'/person' if rents[0][1] else ''}/month"
+    else:
+        est = rent_estimate(first)
+        rent = "doesn't publish its rent" + (f"; our estimate from {est['basis']} is about ${est['low']:,.0f}–${est['high']:,.0f}/month" if est else "")
+    where = first.get("city") or first.get("jurisdiction") or ""
+    call = f"Call {first['phone']} to confirm the rent, fees and whether a unit is open." if first.get("phone") else "Ask the provider to confirm the rent, fees and whether a unit is open."
+    return NamedPlace(f"**{key}**{f' ({where})' if where else ''}: {rent}. {call} Advertised rents and openings aren't guaranteed.\n\nThis is guidance, not legal advice.")
+
+
 def wanted_bedrooms(text):
     """'2 bedroom' -> 2, 'a studio' -> 0, None when they didn't say."""
     m = BEDS.search(text or "")
@@ -874,6 +921,10 @@ FAIR = re.compile(
 
 class FairHousing(Instant):
     engine = "Clear Home fair-housing check (instant, no AI)"
+
+
+class NamedPlace(Instant):
+    engine = "Instant answer from our verified list; no AI needed"
 
 
 class Boundary(Instant):

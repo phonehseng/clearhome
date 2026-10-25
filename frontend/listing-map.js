@@ -245,6 +245,9 @@
       const points = (rows || []).filter(r => typeof r.lat === 'number' && typeof r.lon === 'number').map(r => [r.lat, r.lon]).slice(0, 60);
       if (!points.length) return;
       state.focused = points; view?.focus(points);
+      // The tab follows the map: Blacksburg when most of the places are around Virginia Tech, Northern Virginia otherwise.
+      const region = points.filter(([lat, lon]) => lat < 37.8 && lon < -79.5).length * 2 > points.length ? 'blacksburg' : 'nova';
+      markTab(region); fillHoods(region);
       if (note) setStatus(note);
     };
 
