@@ -21,7 +21,7 @@
     const OUTLINE = { color: '#6f8fd6', weight: 1, fill: 0.03 }, HIGHLIGHT = { color: '#2f55b5', weight: 3, fill: 0.12 };
     const HOUSE = 'M3 11 12 3l9 8v10h-6v-6H9v6H3z';
     // What the map shows, kept apart from the map library so a fallback can redraw it.
-    const state = { boundaries: null, pins: [], webPins: [], selected: null, focused: null };
+    const state = { boundaries: null, pins: [], webPins: [], homes: null, selected: null, focused: null };
     // Start on the busiest part of Northern Virginia (Arlington to Fairfax) at a zoom where pins don't overlap.
     const START = { center: { lat: 38.86, lng: -77.19 }, zoom: 11 };
     const REGIONS = { nova: [START.center, START.zoom], blacksburg: [{ lat: 37.2296, lng: -80.4139 }, 13] };
@@ -139,8 +139,10 @@
       return box;
     }
     const STATUS = { available_now: 'Available now', advertised_vacancy: 'Vacancy advertised', upcoming: 'Coming soon', leasing: 'Now leasing', waitlist_open: 'Waitlist open', contact_for_availability: 'Call for availability' };
-    fetch('/api/listings').then(r => r.json()).then(data => {
-      (data.listings || []).filter(l => typeof l.lat === 'number').forEach(l => addPin({ lat: l.lat, lon: l.lon, color: '#2f55b5', title: l.community || l.name,
+    fetch('/api/listings?fields=pins').then(r => r.json()).then(data => {
+      state.homes = (data.listings || []).filter(l => typeof l.lat === 'number');
+      fillHoods(tabs.find(t => t.getAttribute('aria-pressed') === 'true')?.dataset.region || 'nova');
+      state.homes.forEach(l => addPin({ lat: l.lat, lon: l.lon, color: '#2f55b5', title: l.community || l.name,
         popup: popup([l.community || l.name, l.floor_plan, typeof l.monthly_rent === 'number' ? ClearHouseRental.price(l) : null,
                       STATUS[l.availability?.status], 'Reviewed by our team'], l.source_url, 'Provider page') }));
     }).catch(() => {});
@@ -164,9 +166,14 @@
       blacksburg: [['Virginia Tech campus', 37.2284, -80.4234], ['Downtown Blacksburg', 37.2296, -80.4139], ['North Main Street', 37.2480, -80.4180], ['Christiansburg', 37.1299, -80.4089]],
     };
     const hood = document.getElementById('map-hood');
+    // Only offer a neighborhood with at least two reviewed communities within 3 miles, so picking one never shows an empty map.
+    const milesApart = (a, b, c, d) => { const r = Math.PI / 180, h = Math.sin((c - a) * r / 2) ** 2 + Math.cos(a * r) * Math.cos(c * r) * Math.sin((d - b) * r / 2) ** 2; return 7917.6 * Math.asin(Math.sqrt(h)); };
+    const hasHomes = ([, lat, lon]) => !state.homes || new Set(state.homes.filter(p => milesApart(lat, lon, p.lat, p.lon) <= 3).map(p => p.community || p.name)).size >= 2;
     function fillHoods(region) {
+      const keep = hood.value;
       hood.replaceChildren(new Option(region === 'blacksburg' ? 'Area…' : 'Neighborhood…', ''));
-      HOODS[region].forEach(([name]) => hood.append(new Option(name, name)));
+      HOODS[region].filter(hasHomes).forEach(([name]) => hood.append(new Option(name, name)));
+      hood.value = [...hood.options].some(o => o.value === keep) ? keep : '';
     }
     fillHoods('nova');
     hood.addEventListener('change', () => {

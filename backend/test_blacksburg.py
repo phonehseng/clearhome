@@ -9,11 +9,22 @@ from advisor import area_for, options, _pick, program_need
 from prompt_tools import keyword_filters
 
 
+def plans(card):
+    """A grouped card's floor plans as the pages see them: each plan lists only what differs from its card."""
+    return [{**card, **plan} for plan in card['floor_plans']]
+
+
 class BlacksburgTests(unittest.TestCase):
     def setUp(self):
         self.rows = load_catalog()
         self.batch = [r for r in self.rows if r.get('catalog_batch') == 'blacksburg-students-2026-10-24']
         self.today = date(2026, 10, 24)
+
+    def test_family_and_senior_buildings_at_one_address_stay_separate(self):
+        from catalog import group_listings
+        rows = [r for r in filter_catalog(load_catalog()) if (r.get('community') or '').startswith('Fieldstone')]
+        names = sorted(c['community'] for c in group_listings(rows))
+        self.assertEqual(names, ['Fieldstone Apartments', 'Fieldstone Senior'])
 
     def test_catalog_and_offered_room_semantics(self):
         self.assertTrue(self.batch)
@@ -99,7 +110,7 @@ class BlacksburgApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         cards = response.get_json()['listings']
         self.assertGreater(len(cards), 3)
-        self.assertTrue(all(p['rental_space'] == 'room' and p['monthly_rent'] <= 1000 for c in cards for p in c['floor_plans']))
+        self.assertTrue(all(p['rental_space'] == 'room' and p['monthly_rent'] <= 1000 for c in cards for p in plans(c)))
         for query in ['age_group=bogus', 'rental_space=bogus']:
             self.assertEqual(self.client.get('/api/listings?' + query).status_code, 400)
         with self.client.get('/rental-labels.js') as response:

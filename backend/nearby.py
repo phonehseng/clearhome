@@ -15,7 +15,7 @@ import threading
 import time
 import urllib.request
 
-from advisor import LANDMARKS, OUTSIDE, URGENT, area_for, rent_estimate
+from advisor import CHEAP, LANDMARKS, OUTSIDE, URGENT, area_for, rent_estimate
 from catalog import filter_catalog, load_catalog
 from geocode import lookup as census_lookup
 
@@ -90,7 +90,7 @@ def locate(place):
     found = None
     landmark = next((v for k, v in LANDMARKS.items() if re.search(rf"\b{re.escape(k)}\b", key)), None)
     if landmark:
-        found = (place.title(), landmark[1], landmark[2])
+        found = (place.upper() if len(place) <= 4 else place.title(), landmark[1], landmark[2])
     elif STREET.match(place):
         region = "Blacksburg, VA" if area_for(place) == "Blacksburg" else "VA"
         try:
@@ -200,7 +200,18 @@ def _homes_near(name, lat, lon, question, profile):
         d = _miles(lat, lon, r["lat"], r["lon"])
         if d <= MAX_MILES:
             homes.append((d, r))
-    homes = [r for _, r in sorted(homes, key=lambda x: x[0])[:MAX_HOMES]]
+    cheap = bool(CHEAP.search(question or ""))
+    if cheap:
+        # "Cheapest room near X": lowest listed rent first (estimates after listed rents), nearest breaks ties.
+        def price(item):
+            d, r = item
+            if isinstance(r.get("monthly_rent"), (int, float)):
+                return (0, r["monthly_rent"], d)
+            est = rent_estimate(r, pool)
+            return (1, est["low"], d) if est else (2, 0, d)
+        homes = [r for _, r in sorted(homes, key=price)[:MAX_HOMES]]
+    else:
+        homes = [r for _, r in sorted(homes, key=lambda x: x[0])[:MAX_HOMES]]
     if not homes:
         return (f"I don't have a reviewed {'room' if filters.get('rental_space') == 'room' else 'home'} within {MAX_MILES} miles of {name}"
                 + (f" under ${filters['max_budget_per_month']:,.0f} a month" if filters.get("max_budget_per_month") else "") + " that fits your choices. "
@@ -208,13 +219,14 @@ def _homes_near(name, lat, lon, question, profile):
     commute = _commutes(homes, lat, lon)
     what = "rooms" if filters.get("rental_space") == "room" else "homes"
     limit = f" under ${filters['max_budget_per_month']:,.0f}/month" if filters.get("max_budget_per_month") else ""
-    lines = [f"Closest reviewed {what}{limit} to {name}:"]
+    lines = [f"Lowest-rent reviewed {what}{limit} within {MAX_MILES} miles of {name}:" if cheap else f"Closest reviewed {what}{limit} to {name}:"]
     bases = {}
     for i, r in enumerate(homes):
         est = None if isinstance(r.get("monthly_rent"), (int, float)) else rent_estimate(r, pool)
         if est:
             bases.setdefault(est["basis"], None)
-        rent = (f"from ${r['monthly_rent']:,.0f}/month" if isinstance(r.get("monthly_rent"), (int, float))
+        per = "/person/month" if r.get("rental_space") == "room" else "/month"
+        rent = (f"from ${r['monthly_rent']:,.0f}{per}" if isinstance(r.get("monthly_rent"), (int, float))
                 else f"est. ${est['low']:,.0f}–${est['high']:,.0f}/month*" if est else "rent: ask the provider")
         miles = _miles(lat, lon, r["lat"], r["lon"])
         trip = ["at or next to this address" if miles < 0.1 else f"{miles:.1f} mi away"]

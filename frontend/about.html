@@ -180,6 +180,7 @@
     .scroll-progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:50;transform-origin:0 50%;transform:scaleX(0);
       background:linear-gradient(90deg,#2f55b5,#6f8fd6,#ffd66b);pointer-events:none}
     .parallax{will-change:transform}
+    .cl-hero-art.parallax{transform-origin:50% 100%}
     .split .word{display:inline-block;opacity:0;transform:translateY(.55em) rotate(2deg);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i) * 55ms)}
     .split.words-in .word{opacity:1;transform:none}
     .cards{perspective:1000px}
@@ -267,6 +268,18 @@
     .g-tag.gemini{background:#ede7fb;color:#5b3fb5}
     .g-tag.maps{background:#e6f4ea;color:#137333}
     .g-tag.cloud{background:#e8f0fe;color:#1a56c4}
+    /* Flip cards: tap a card (or its button) to see how we use the service; it flips back once scrolled out of view. */
+    .google-grid .card.flip{padding:0;background:none;border:0;box-shadow:none;overflow:visible;perspective:1000px;cursor:pointer}
+    .google-grid .card.flip::before{content:none}
+    .flip-in{display:grid;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+    .flip.flipped .flip-in{transform:rotateY(180deg)}
+    .flip .face{grid-area:1/1;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;padding:26px;border-radius:14px;
+      background:var(--card);border:1px solid var(--line);box-shadow:0 2px 8px #14203f08;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .flip .face::before{content:'';position:absolute;inset:0 0 auto 0;height:4px;background:var(--accent,#4285f4)}
+    .flip .back{transform:rotateY(180deg);background:linear-gradient(160deg,#f6f9ff,#e8effc)}
+    .flip .back p{color:#14203f}
+    .flip-btn{margin-top:auto;padding:14px 0 0;border:0;background:none;font:inherit;font-size:13px;font-weight:700;color:#2f55b5;cursor:pointer}
+    .flip-btn:hover{text-decoration:underline}
     /* GitHub repository card */
     .repo-card{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:center;margin-top:26px;padding:22px;border-radius:22px;background:#0d1117;color:#e6edf3;box-shadow:0 24px 60px #0d111733;position:relative;overflow:hidden}
     .repo-card::before{content:'';position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#34a853,#fbbc04,#ea4335,#4285f4)}
@@ -277,10 +290,11 @@
     .repo-tree-head{color:#e6edf3!important;padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid #30363d;align-items:center}
     .repo-tree-head i{width:10px;height:10px;border-radius:50%;background:#ea4335;display:inline-block}
     .repo-tree-head i:nth-child(2){background:#fbbc04}.repo-tree-head i:nth-child(3){background:#34a853}
-    @media (max-width: 560px){.repo-tree b{min-width:0}}
     /* File names never shrink under their text. When a row has no room, the description moves under the name and wraps. */
     .repo-tree span:not(.repo-tree-head){flex-wrap:wrap;row-gap:0;white-space:normal}
     .repo-tree b{flex:none}
+    /* Phones: each file name sits above its note, so the two never overlap. */
+    @media (max-width: 560px){.repo-tree span:not(.repo-tree-head){display:block;white-space:normal;line-height:1.45;margin-bottom:6px}.repo-tree b{display:block;min-width:0;overflow-wrap:anywhere}}
     .repo-card img.repo-preview{width:100%;aspect-ratio:2/1;object-fit:cover;border-radius:14px;border:1px solid #30363d;background:#161b22}
     .repo-card h3{font-size:22px;margin:0 0 6px;color:#fff}
     .repo-card h3 a{color:inherit;text-decoration:none}
@@ -344,7 +358,6 @@
     .cl-hero-art svg{width:100%;height:100%;filter:hue-rotate(105deg) saturate(.9)}
     .cl-section{max-width:1200px;margin:0 auto;padding:120px 24px 0;text-align:center}
     .cl-title{font-size:clamp(36px,5vw,60px);letter-spacing:-.03em;line-height:1.08;margin:0;font-weight:700;color:#14203f}
-    .cl-title span{background:linear-gradient(90deg,#5b6b85,#a9b4c8);-webkit-background-clip:text;background-clip:text;color:transparent}
     .cl-lead{font-size:19px;color:#5b6b85;margin:16px auto 0;max-width:560px}
     .cl-frame{margin:44px auto 0;padding:22px;border-radius:32px;background:linear-gradient(180deg,#e6eefc,#f6f9ff);box-shadow:0 30px 80px #23408f1f;text-align:left}
     .cl-frame .hero-map{height:460px}
@@ -377,7 +390,8 @@
     .cl-title>span:not(.word){background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#2f55b5}
     .cl-end .cl-title>span:not(.word){color:#9fbff5}
     .cl-end .cl-btn{margin-top:30px;background:#fff;color:#14203f}
-    .cl-end .cl-urgent{color:#b7c3e6}
+    .cl-end{padding-bottom:26px}
+    .cl-end .cl-urgent{color:#b7c3e6;margin-top:70px;font-size:13.5px}  /* small, at the bottom of the box */
     .cl-end .cl-urgent a{color:#ffd66b}
     .cl-urgent{margin-top:26px;color:#5b6b85;font-size:16px}
     .cl-urgent a{color:#c5221f;font-weight:700}
@@ -422,7 +436,7 @@
         <p class="cl-sub cl-in" style="--d:.35s">Checked homes, shelters and rent help. Ask in plain words.</p>
         <div class="cl-actions cl-in" style="--d:.5s"><a class="cl-btn" href="/app">Open Clear House <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#arrow"/></svg></a><a class="cl-btn ghost" href="/app#emergency">Need a place tonight?</a></div>
       </div>
-      <div class="cl-hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><path d="M0 229c108-31 277-35 470-10v41H0Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><g class="tree t1"><path d="M76 230v-55" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/></g><g class="tree t2"><path d="M415 226v-83" stroke="#72855c" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/></g><g class="grass" transform="translate(40 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(450 233)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 226v-19m-9 9h26m-17 10v-19m9 19v-19" stroke="#f8f5e4" stroke-width="4"/><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg></div>
+      <div class="cl-hero-art" aria-hidden="true"><svg viewBox="0 0 470 260" fill="none"><circle cx="326" cy="97" r="67" fill="#e0e8ca"/><defs><clipPath id="cl-planet"><path d="M0 260A490 490 0 0 1 470 260Z"/></clipPath></defs><path d="M0 260A490 490 0 0 1 470 260Z" fill="#dce5d0"/><path d="M272 260c45-34 100-39 198-27" stroke="#f3f3e5" stroke-width="20" clip-path="url(#cl-planet)"/><path d="M119 127 183 80l65 47v105H119Z" fill="#f8efdb"/><path d="m110 130 73-55 74 55" stroke="#53725a" stroke-width="11" stroke-linejoin="round"/><path d="M139 147h28v35h-28zM201 147h28v35h-28z" fill="#afc2ae"/><path d="M153 147v35m62-35v35m-76-17h28m34 0h28" stroke="#f8efdb" stroke-width="3"/><path d="M171 232v-33a13 13 0 0 1 26 0v33" fill="#6b8a6b"/><circle cx="190" cy="215" r="2" fill="#eee7cd"/><path d="m260 151 59-43 61 43v80H260Z" fill="#bdcda7"/><path d="m253 155 66-48 68 48" stroke="#6f805e" stroke-width="10" stroke-linejoin="round"/><path d="M277 167h24v29h-24zM343 167h23v29h-23z" fill="#edf1dd"/><path d="M289 167v29m66-29v29" stroke="#a3b593" stroke-width="3"/><path d="M314 231v-33h17v33" fill="#7b8e6c"/><g class="tree t1"><path d="M76 230v-55" stroke="#72855c" stroke-width="5"/><ellipse cx="76" cy="161" rx="24" ry="37" fill="#a3b78a"/></g><g class="tree t2"><path d="M415 236v-93" stroke="#72855c" stroke-width="5"/><ellipse cx="414" cy="128" rx="29" ry="49" fill="#8fa574"/><ellipse cx="434" cy="156" rx="17" ry="29" fill="#a7bb8c"/></g><g class="bush"><ellipse cx="115" cy="233" rx="23" ry="10" fill="#91aa79"/></g><g class="bush k2"><ellipse cx="250" cy="232" rx="18" ry="9" fill="#91aa79"/></g><g class="grass" transform="translate(46 238)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(150 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(205 236)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(300 235)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(360 237)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><g class="grass" transform="translate(428 241)"><g class="blades"><path d="M0 0q-1-6-4-9M2 0q0-7 1-11M4 0q2-5 5-8" stroke="#7f9a68" stroke-width="1.6" stroke-linecap="round"/></g></g><path d="M104 224v-20m-13 10h26m-17 10v-20m9 20v-20M389 229v-22m-9 9h26m-17 13v-22m9 22v-22" stroke="#f8f5e4" stroke-width="4"/><g transform="translate(-30 66)"><g class="bird b1"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><g transform="translate(-30 52)"><g class="bird b2"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><g transform="translate(-30 82)"><g class="bird b3"><g class="bob"><g stroke="#7f9468" stroke-width="1.8" stroke-linecap="round" fill="none"><path class="wl" d="M0 0Q-4-5-9-3.5"/><path class="wr" d="M0 0Q4-5 9-3.5"/></g><ellipse cx=".6" cy=".4" rx="3.2" ry="1.5" fill="#7f9468"/><circle cx="3.4" cy="-.3" r="1.2" fill="#7f9468"/></g></g></g><path d="M49 82h20m-10-10v20" stroke="#bacba5" stroke-width="2"/></svg></div>
     </section>
 
     <section class="cl-section" id="map" aria-labelledby="map-title">
@@ -451,14 +465,14 @@
     <section class="cl-section" id="google" aria-labelledby="google-title">
       <h2 id="google-title" class="cl-title reveal">Built with <span>Google</span></h2>
       <div class="google-grid stagger">
-        <div class="card reveal g-ai"><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Writes every chat answer.</p></div>
-        <div class="card reveal g-ai"><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Our own L4 GPU: answers in ~3 s.</p></div>
-        <div class="card reveal g-gemini"><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Finds new listings on the web.</p></div>
-        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>The map, pins and Street View.</p></div>
-        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds “near my office”.</p></div>
-        <div class="card reveal g-maps"><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Real commute times.</p></div>
-        <div class="card reveal g-cloud"><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site and the GPU.</p></div>
-        <div class="card reveal g-cloud"><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Ships every release.</p></div>
+        <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Writes every chat answer.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">AI</span><h3>Gemma 4 26B</h3><p>Turns your message into filters, then writes the answer using only checked listings, streamed as it types. It also rereads listing pages and hides ones that are gone.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-ai flip"><div class="flip-in"><div class="face front"><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Our own L4 GPU: answers in ~3 s.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag ai">GPU</span><h3>Gemma on Cloud Run</h3><p>Gemma 4 runs on our private Cloud Run service with an NVIDIA L4 GPU. Thinking is off so replies start fast; if the GPU is asleep, the Gemini API answers instead.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-gemini flip"><div class="flip-in"><div class="face front"><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Finds new listings on the web.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag gemini">Search</span><h3>Gemini API</h3><p>Searches the web with Google Search grounding for listings we don’t have yet. Only places in the search results are kept, and the map marks them “not checked”.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>The map, pins and Street View.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Maps JavaScript</h3><p>Draws the map in the app with a pin for every checked home, so you can see where a place is before you call.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds “near my office”.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Places API</h3><p>Finds the place you name (an employer, a hospital, a school) and the supermarkets, pharmacies and transit stops near a home.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-maps flip"><div class="flip-in"><div class="face front"><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Real commute times.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag maps">Maps</span><h3>Routes API</h3><p>Drive and transit times from the closest homes to your place, and true walking times to the store. Real routes, not straight lines.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-cloud flip"><div class="flip-in"><div class="face front"><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site and the GPU.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag cloud">Cloud</span><h3>Cloud Run</h3><p>Hosts the site in Northern Virginia (us-east4). Keys live in Secret Manager, and at most two copies run, so costs stay small.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
+        <div class="card reveal g-cloud flip"><div class="flip-in"><div class="face front"><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Ships every release.</p><button class="flip-btn" type="button" aria-expanded="false">How we use it <span aria-hidden="true">↻</span></button></div><div class="face back" inert><span class="g-tag cloud">Cloud</span><h3>Cloud Build</h3><p>Every deploy builds a fresh container from our Dockerfile, so a pushed fix is live in minutes.</p><button class="flip-btn" type="button">Flip back <span aria-hidden="true">↺</span></button></div></div></div>
       </div>
     </section>
 
@@ -473,7 +487,7 @@
           <span><b>backend/walkable.py</b> walking times to groceries and bus stops</span>
           <span><b>frontend/listing-map.js</b> Google Maps with house pins</span>
           <span><b>gemma/Dockerfile</b> the 17 GB Gemma 4 GPU image</span>
-          <span><b>data/resources.json</b> 409 hand-checked records</span>
+          <span><b>data/resources.json</b> 430+ hand-checked records</span>
           <span><b>backend/test_*.py</b> tests that run offline</span>
         </a>
         <div>
@@ -568,6 +582,26 @@
         });
       }, { passive: true });
     }
+
+    // Built-with-Google flip cards: the back says how we use each service; a flipped card turns back once you scroll past it.
+    const flips = document.querySelectorAll('.flip');
+    const setFlip = (card, on) => {
+      const [front, back] = card.querySelectorAll('.face');
+      card.classList.toggle('flipped', on);
+      front.inert = on; back.inert = !on;
+      front.querySelector('.flip-btn').setAttribute('aria-expanded', on);
+    };
+    flips.forEach(card => card.addEventListener('click', e => {
+      const on = !card.classList.contains('flipped');
+      setFlip(card, on);
+      if (e.target.closest('.flip-btn')) card.querySelector(on ? '.back .flip-btn' : '.front .flip-btn').focus();
+    }));
+    if ('IntersectionObserver' in window) {
+      const flipBack = new IntersectionObserver(entries => entries.forEach(e => {
+        if (!e.isIntersecting && e.target.classList.contains('flipped')) setFlip(e.target, false);
+      }), { threshold: 0.4 });
+      flips.forEach(card => flipBack.observe(card));
+    }
   </script>
 
 <script>
@@ -608,7 +642,8 @@
       const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
       bar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
       if (y < innerHeight * 1.2) {
-        if (art) art.style.transform = `translate3d(0, ${y * 0.14}px, 0) scale(${1 + Math.min(y, 600) / 6000})`;
+        // Grows from its base line only: moving it down slid the houses past the hero's bottom edge, which cut them off flat.
+        if (art) art.style.transform = `scale(${1 + Math.min(y, 600) / 6000})`;
         if (heroText) heroText.style.transform = `translate3d(0, ${y * 0.06}px, 0)`;
       }
       if (cta) {
@@ -626,20 +661,29 @@
   // Live repository stats from GitHub's public API; the card still reads fine if this is blocked or rate-limited.
   (async () => {
     const repo = 'phonehseng/mlhhackathonbacteriagang', api = 'https://api.github.com/repos/' + repo;
-    const get = u => fetch(u, { headers: { Accept: 'application/vnd.github+json' } }).then(r => r.ok ? r.json() : Promise.reject(r.status));
+    // GitHub allows 60 calls an hour per visitor, so answers are kept for an hour in this browser.
+    const get = async u => {
+      try { const hit = JSON.parse(localStorage.getItem('gh:' + u) || 'null'); if (hit && Date.now() - hit.at < 3600e3) return hit.data; } catch {}
+      const r = await fetch(u, { headers: { Accept: 'application/vnd.github+json' } }); if (!r.ok) throw r.status;
+      const data = await r.json(); try { localStorage.setItem('gh:' + u, JSON.stringify({ at: Date.now(), data })); } catch {}
+      return data;
+    };
     const el = (tag, attrs = {}, text) => { const n = document.createElement(tag); Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v)); if (text != null) n.textContent = text; return n; };
+    const TEAM = ['phonehseng', 'BUmair', 'pywhitaker-dev', 'r01984'];
+    const team = document.getElementById('repo-team');
+    const showTeam = users => team.replaceChildren(...users.map(p => { const a = el('a', { href: p.html_url, target: '_blank', rel: 'noopener' }); a.append(el('img', { src: p.avatar_url + '&s=48', alt: '' }), document.createTextNode(p.login)); return a; }));
+    const profile = login => ({ login, html_url: 'https://github.com/' + login, avatar_url: 'https://github.com/' + login + '.png?' });
+    showTeam(TEAM.map(profile));  // the whole team shows even if GitHub's API is unreachable
     try {
       const [info, people, langs] = await Promise.all([get(api), get(api + '/contributors?per_page=20'), get(api + '/languages')]);
       const commits = people.reduce((n, p) => n + (p.contributions || 0), 0);
       const updated = new Date(info.pushed_at).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
       const stats = document.getElementById('repo-stats'); stats.replaceChildren();
       [[commits + '+', 'commits'], [Math.max(people.filter(p => p.type === 'User').length, 4), 'contributors'], ['Updated', updated], [info.stargazers_count, 'stars']].forEach(([b, t]) => { const li = el('li'); li.append(el('b', {}, String(b)), document.createTextNode(' ' + t)); stats.append(li); });
-      const team = document.getElementById('repo-team');
       // The whole team always shows, even while GitHub's cached contributor list lags behind new pushes.
-      const TEAM = ['phonehseng', 'BUmair', 'pywhitaker-dev', 'r01984'];
       const users = people.filter(p => p.type === 'User');
-      TEAM.forEach(login => { if (!users.some(p => p.login.toLowerCase() === login.toLowerCase())) users.push({ login, html_url: 'https://github.com/' + login, avatar_url: 'https://github.com/' + login + '.png?' }); });
-      users.forEach(p => { const a = el('a', { href: p.html_url, target: '_blank', rel: 'noopener' }); a.append(el('img', { src: p.avatar_url + '&s=48', alt: '' }), document.createTextNode(p.login)); team.append(a); });
+      TEAM.forEach(login => { if (!users.some(p => p.login.toLowerCase() === login.toLowerCase())) users.push(profile(login)); });
+      showTeam(users);
       const total = Object.values(langs).reduce((a, b) => a + b, 0), colors = { Python: '#3572A5', HTML: '#e34c26', JavaScript: '#f1e05a', CSS: '#663399', Dockerfile: '#384d54' };
       const bar = document.getElementById('repo-langs'), key = document.getElementById('repo-langs-key');
       Object.entries(langs).forEach(([name, bytes]) => { const pct = bytes / total * 100; if (pct < 1) return; bar.append(el('span', { style: `width:${pct}%;background:${colors[name] || '#8b949e'}` })); key.append(el('span', {}, `${name} ${pct.toFixed(0)}%`)); });

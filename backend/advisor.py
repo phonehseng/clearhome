@@ -275,16 +275,27 @@ def cards_for(text, limit=6):
     norm = lambda t: " ".join(re.sub(r"\([^)]*\)|[^a-z0-9]+", " ", t).split())
     acronyms = lambda t: set(re.findall(r"\(([a-z]{2,8})[,)]", t))
     found = {}
-    for r in filter_catalog(load_catalog()):
+    # A bold name that is only part of a record's name ("Fairfax County", "Alexandria") is a place, not a program:
+    # it counts only when it points at one or two records.
+    partial = {}
+    catalog = filter_catalog(load_catalog())
+    for r in catalog:
         name = r.get("community") or r["name"]
         key = name.casefold()
         if key in found:
             continue
         n = norm(key)
-        hit = (any(b == key or (len(norm(b)) >= 8 and (norm(b) in n or n in norm(b))) or norm(b) in acronyms(key) for b in bold)
-               or (len(key) >= 12 and key in low))
-        if hit:
+        if (any(b == key or (len(n) >= 8 and n in norm(b)) or norm(b) in acronyms(key) for b in bold)
+                or (len(key) >= 12 and key in low)):
             found[key] = r
+            continue
+        for b in bold:
+            if len(norm(b)) >= 8 and norm(b) in n:
+                partial.setdefault(b, {})[key] = r
+    for b, hits in partial.items():
+        if len(hits) <= 2:
+            for key, r in hits.items():
+                found.setdefault(key, r)
     # Short forms like "Arlington DHS" or "PathForward": every word of the bold name is in the record's full name
     # (brackets included, spaces ignored). Only counts when it points at one or two records, so "Fairfax County" doesn't.
     words = lambda t: re.findall(r"[a-z0-9]+", t)
@@ -294,7 +305,7 @@ def cards_for(text, limit=6):
         if len("".join(bw)) < 8 or any(b in k or norm(b) in norm(k) for k in found):
             continue
         hits = {}
-        for r in filter_catalog(load_catalog()):
+        for r in catalog:
             key = (r.get("community") or r["name"]).casefold()
             rw = words(key)
             if set(bw) <= set(rw) or "".join(bw) in "".join(rw):
@@ -316,6 +327,7 @@ def cards_for(text, limit=6):
             "id": r["id"], "name": r.get("community") or r["name"], "type": r.get("type"), "jurisdiction": r.get("jurisdiction"),
             "monthly_rent": r.get("monthly_rent"), "price_unit": r.get("price_unit"), "rent_basis": r.get("rent_basis"),
             "rental_space": r.get("rental_space"), "phone": r.get("phone"), "source_url": r.get("source_url"),
+            "website": r.get("website") if r.get("website") and not re.search(r"\.gov/|/DocumentCenter/|\.pdf\b", r["website"]) else None,
             "address": r.get("address"), "waitlist_status": r.get("waitlist_status"), "availability_status": avail.get("status"),
             "has_photo": bool(r.get("photo")), "lat": r.get("lat"), "lon": r.get("lon"),
             "rent_estimate": rent_estimate(r),
@@ -324,11 +336,14 @@ def cards_for(text, limit=6):
     return cards
 
 
-def _thinking_note(text):
-    """The latest complete line of Gemma's reasoning, cleaned of list marks, or None."""
-    lines = [re.sub(r"^[\s*#>\-\d.)]+|[*_`]", "", l).strip() for l in text.split("\n")[:-1]]
-    lines = [l for l in lines if 12 <= len(l) and not re.match(r"(draft|sentence|check|yes|no|persona|role|rules?|constraints?|instructions?|format|tone|goal|output|task|user|question)\b", l, re.I)]
-    return (lines[-1][:110] + ("…" if len(lines[-1]) > 110 else "")) if lines else None
+# What the chat says while Gemma reasons, by seconds since it started. Gemma's raw notes are never shown:
+# they're half-sentences in prompt jargon and can mention records it later drops.
+THINKING_STEPS = [(0, "reading the listings and programs we found"), (8, "checking rents, eligibility and phone numbers"),
+                  (18, "picking the best matches for you"), (30, "writing your answer (a long question can take up to a minute)")]
+
+
+def _thinking_step(seconds):
+    return [text for start, text in THINKING_STEPS if seconds >= start][-1]
 
 
 def stream_ask(question, history=None):
@@ -347,21 +362,21 @@ def stream_ask(question, history=None):
     names = list(dict.fromkeys(r.get("community") or r["name"] for r in rows))[:3]
     found = f"{len(rows)} reviewed resource{'' if len(rows) == 1 else 's'}" if rows else "our reviewed resources"
     yield "status", (f"Checking {found}" + (f", like {', '.join(names)}" if names else "") + ". Gemma is thinking…")
-    parts, thinking, last_note = [], "", 0.0
+    parts, step, started = [], None, None
     try:
         for is_thought, text in stream_gemma(_prompt(question, history, rows), thoughts=True):
-            if is_thought == "engine":
-                yield "engine", text
+            if is_thought in ("engine", "status"):
+                yield is_thought, text
                 continue
             if not is_thought:
                 parts.append(text)
                 yield "chunk", text
                 continue
-            # Every couple of seconds, share the line Gemma is reasoning about, so a long think shows progress.
-            thinking = (thinking + text)[-600:]
-            note = _thinking_note(thinking)
-            if note and time.time() - last_note > 2:
-                last_note = time.time()
+            # A long think shows plain progress steps, not Gemma's own notes.
+            started = started or time.time()
+            note = _thinking_step(time.time() - started)
+            if note != step:
+                step = note
                 yield "thinking", note
     except Exception as error:
         if parts:
@@ -401,6 +416,7 @@ LANDMARKS = {
     "virginia tech": ("Blacksburg", 37.2284, -80.4234), "vt campus": ("Blacksburg", 37.2284, -80.4234),
     "nova community college": ("Fairfax County", 38.8325, -77.2365), "nvcc": ("Fairfax County", 38.8325, -77.2365),
     "marymount": ("Arlington County", 38.8968, -77.1270), "pentagon": ("Arlington County", 38.8719, -77.0563),
+    "inova fairfax": ("Fairfax County", 38.8572, -77.2276),
 }
 
 
@@ -496,6 +512,10 @@ NEAR = re.compile(r"\b(near|close to|next to|walking distance|walk to|within \d+
 URGENT = re.compile(r"\b(tonight|shelter|homeless|nowhere to (?:go|sleep|stay)|kicked out|evict\w*|on the street|sleep(?:ing)? in (?:my|a) car|unsafe|in danger|abuse|behind on rent|back rent|can'?t pay)\b", re.I)
 
 
+# "Cheapest room near X": order by rent instead of distance.
+CHEAP = re.compile(r"\b(?:cheap(?:est|er)?|lowest (?:rent|price|cost)|least expensive|most affordable|inexpensive|low[- ]cost)\b", re.I)
+
+
 def quick_nearby(question, profile=None):
     """Answer "one near George Mason"-style questions straight from the catalog, with no AI call.
     Returns None when the question isn't a simple "near a place" request."""
@@ -509,7 +529,8 @@ def quick_nearby(question, profile=None):
         return None
     profile = profile or {}
     # Regular rentals (e.g. Blacksburg student rooms) are included but labeled, so they're never mistaken for subsidized housing.
-    filters = {"types": ["affordable_listing", "rental_listing"], "locations": [area], "age": 62 if profile.get("senior") else 30}
+    filters = {"types": ["affordable_listing", "rental_listing"], "locations": [area], "age": 62 if profile.get("senior") else 30,
+               "age_group": "senior" if profile.get("senior") else "general"}
     if isinstance(profile.get("budget"), (int, float)) and profile["budget"] > 0:
         filters["max_budget_per_month"] = profile["budget"]
     rows = filter_catalog(load_catalog(), filters)
@@ -528,13 +549,18 @@ def quick_nearby(question, profile=None):
             h = math.sin(dlat / 2) ** 2 + math.cos(math.radians(lat)) * math.cos(math.radians(r["lat"])) * math.sin(dlon / 2) ** 2
             return 3958.8 * 2 * math.asin(math.sqrt(h))
         homes.sort(key=lambda r: (miles(r) is None, miles(r) or 0))
+    cheap = bool(CHEAP.search(q))
+    if cheap:  # stable sort: listed rents first, lowest first; the nearest still wins a tie
+        homes.sort(key=lambda r: (not isinstance(r.get("monthly_rent"), (int, float)), r.get("monthly_rent") or 0))
     place = landmark[0].title().replace("Gmu", "George Mason University") if landmark else area
     if not homes:
         return (f"I don't have a reviewed home in {area} that fits your choices yet. Try a higher budget or a nearby area, "
                 "or call 211 for local housing help.\n\nThis is guidance, not legal advice.")
-    lines = [f"Here are reviewed homes closest to {place}:" if landmark else f"Here are reviewed homes in {area}:"]
+    lines = [f"Here are the lowest-rent reviewed homes {'near ' + place if landmark else 'in ' + area}:" if cheap
+             else f"Here are reviewed homes closest to {place}:" if landmark else f"Here are reviewed homes in {area}:"]
     for r in homes[:5]:
-        rent = f"from ${r['monthly_rent']:,.0f}/month" if isinstance(r.get("monthly_rent"), (int, float)) else "rent: ask the provider"
+        per = "/person/month" if r.get("rental_space") == "room" else "/month"
+        rent = f"from ${r['monthly_rent']:,.0f}{per}" if isinstance(r.get("monthly_rent"), (int, float)) else "rent: ask the provider"
         dist = ""
         if landmark and r.get("lat") is not None:
             dist = f", about {miles(r):.1f} mi away (straight line)"

@@ -22,3 +22,13 @@ window.ClearHouseRental = Object.freeze({
     return ({individual:'Individual bedroom agreement', joint:'Joint lease · responsibility for full apartment rent', confirm:'Lease responsibility: confirm with provider'})[row.lease_type] || '';
   }
 });
+
+/* A tel: link for a phone as written in the catalog. Only the first real number is dialed, so
+   "(703) 792-3366 (TTY: 711)" doesn't become 7037923366711; an extension waits for the call to connect. */
+window.ClearHouseDial = phone => {
+  const text = String(phone || '');
+  const m = text.match(/(\+?1[\s.-]?)?\(?(\d{3})\)?[\s.-]?(\d{3})[\s.-]?(\d{4})(?:\s*(?:ext\.?|extension|x)\s*(\d{1,6}))?/i);
+  if (m) return `tel:+1${m[2]}${m[3]}${m[4]}${m[5] ? ',' + m[5] : ''}`;
+  const short = text.match(/^\s*(\d{3})\b/);  // 211, 911, 988
+  return short ? 'tel:' + short[1] : 'tel:' + text.replace(/[^0-9+]/g, '');
+};

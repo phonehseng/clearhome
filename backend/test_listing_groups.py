@@ -13,6 +13,11 @@ from catalog import (community_key, deduplicate_listings, filter_catalog, group_
 TODAY = date(2026, 10, 24)
 
 
+def plans(card):
+    """A grouped card's floor plans as the pages see them: each plan lists only what differs from its card."""
+    return [{**card, **plan} for plan in card['floor_plans']]
+
+
 class CommunityTests(unittest.TestCase):
     def setUp(self):
         self.row = next(r for r in load_catalog() if r['id'] == 'arbor-heights-one-bedroom')
@@ -64,7 +69,7 @@ class CommunityTests(unittest.TestCase):
         cards = group_listings(rows, sort='rent_asc')
         self.assertTrue(cards)
         self.assertEqual(len({community_key(c) for c in cards}), len(cards))
-        self.assertTrue(all(p['monthly_rent'] <= 1500 for c in cards for p in c['floor_plans']))
+        self.assertTrue(all(p['monthly_rent'] <= 1500 for c in cards for p in plans(c)))
         prices = [c['monthly_rent'] for c in cards]
         self.assertEqual(prices, sorted(prices))
         unknown = dict(self.row, id='unknown', address='10 Unknown Rd, Arlington, VA', monthly_rent=None)
@@ -93,18 +98,30 @@ class GroupedApiTests(unittest.TestCase):
         self.assertEqual(sum(len(c['floor_plans']) for c in grouped['listings']), flat['count'])
         self.assertTrue(all('floor_plans' not in r for r in flat['listings']))
 
+    def test_grouped_plans_merge_back_to_full_records(self):
+        flat = {r['id']: r for r in self.client.get('/api/listings').get_json()['listings']}
+        for card in self.client.get('/api/listings?group_by=community').get_json()['listings']:
+            for plan in plans(card):
+                expected = {k: v for k, v in flat[plan['id']].items()}
+                self.assertEqual({k: v for k, v in plan.items() if k != 'floor_plans' and v is not None},
+                                 {k: v for k, v in expected.items() if v is not None})
+
+    def test_map_pins_are_small(self):
+        pins = self.client.get('/api/listings?fields=pins').get_json()['listings']
+        self.assertTrue(pins and all(isinstance(p['lat'], float) and set(p) <= {'id', 'community', 'name', 'floor_plan', 'lat', 'lon', 'monthly_rent', 'rent_basis', 'rental_space', 'source_url', 'availability'} for p in pins))
+
     def test_budget_and_availability_apply_before_grouping(self):
         response = self.client.get('/api/listings?group_by=community&max_rent=1500&status=available_now&sort=rent_asc')
         self.assertEqual(response.status_code, 200)
         cards = response.get_json()['listings']
         self.assertTrue(cards)
         self.assertTrue(all(p['monthly_rent'] <= 1500 and p['availability']['status'] == 'available_now'
-                            for c in cards for p in c['floor_plans']))
+                            for c in cards for p in plans(c)))
         self.assertEqual([c['monthly_rent'] for c in cards], sorted(c['monthly_rent'] for c in cards))
 
     def test_new_budget_options_have_sources_and_unknown_prices_do_not_match(self):
         cards = self.client.get('/api/listings?group_by=community&max_rent=1500').get_json()['listings']
-        ids = {p['id'] for c in cards for p in c['floor_plans']}
+        ids = {p['id'] for c in cards for p in plans(c)}
         self.assertTrue({'virginia-gardens-one-bedroom', 'gates-ballston-studio', 'harvey-hall-studio'} <= ids)
         self.assertNotIn('fields-manassas-community', ids)
         self.assertNotIn('terwilliger-place-community', ids)
