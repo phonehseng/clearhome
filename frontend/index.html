@@ -683,6 +683,12 @@
     .cl-footer-note + .cl-footer-credit{margin-top:6px;padding-top:0;border-top:0}
     .cl-footer-links a[aria-current="page"]{color:#2f55b5;background:#e2eafb}
     @media (max-width: 640px){.cl-footer-note{text-align:center}}
+    /* Listing cards hug their content: no stretched rows, no empty gap pushed above the details. */
+    .listings-grid{align-items:start}
+    .housing-card{height:auto}
+    .housing-card :is(details,.floor-plans-details){margin-top:6px}
+    .housing-card .eligibility-details{padding-top:10px}
+    .housing-card .eligibility-details summary,.floor-plans-details>summary{min-height:32px}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
