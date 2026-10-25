@@ -123,6 +123,37 @@ class ThinkingTests(unittest.TestCase):
         self.assertFalse(post.call_args_list[1].kwargs["json"]["think"])
 
 
+class ContextWindowTests(unittest.TestCase):
+    """Gemma's window: every call asks for the same 16k window the GPU service runs with, and no prompt is longer than
+    fits, so the GPU server never cuts off its start (the rules) or the question."""
+
+    def test_every_gpu_call_asks_for_the_services_window(self):
+        import os
+        import re
+        with open(os.path.join(os.path.dirname(__file__), "..", "gemma", "Dockerfile"), encoding="utf-8") as f:
+            dockerfile = f.read()
+        self.assertEqual(int(re.search(r"OLLAMA_CONTEXT_LENGTH=(\d+)", dockerfile).group(1)), gemma_gpu.CONTEXT_TOKENS)
+        resp = MagicMock(iter_lines=lambda: iter([json.dumps({"done": True}).encode()]))
+        with patch.dict("os.environ", {"GEMMA_GPU_URL": "https://gpu.example", "GEMMA_GPU_TOKEN": "t"}), \
+                patch.object(gemma_gpu.requests, "post", return_value=resp) as post:
+            list(gemma_gpu.stream_parts("q", think=True))
+            list(gemma_gpu.stream_parts("q", think=False))
+        for call in post.call_args_list:
+            self.assertEqual(call.kwargs["json"]["options"]["num_ctx"], gemma_gpu.CONTEXT_TOKENS)
+
+    def test_a_long_prompt_drops_its_least_relevant_listings_and_ends_with_the_question(self):
+        from catalog import load_catalog
+        rows = [r for r in load_catalog() if r.get("type") in ("affordable_listing", "rental_listing")][:80]
+        question = "cheap apartments anywhere, with parking and pets"
+        prompt = advisor._prompt(question, [], rows)
+        self.assertLessEqual(len(prompt), gemma_gpu.prompt_budget())
+        self.assertTrue(prompt.startswith("You are a patient"))  # the rules stay
+        self.assertIn(f'"name":"{rows[0]["name"]}"', prompt.replace('": "', '":"'))  # the best fits stay
+        tail = prompt.rsplit("Resources (source-reviewed", 1)[1]
+        self.assertIn(question, tail.split("Now write your answer.")[0])  # repeated after the listings
+        self.assertIn("never invented", tail)
+
+
 class WakeUpTests(unittest.TestCase):
     """Get Started wakes the GPU: the call is sent before the page gets its answer, only one goes out at a time, none
     while the GPU is awake, and a failed one lets the next visitor try again."""

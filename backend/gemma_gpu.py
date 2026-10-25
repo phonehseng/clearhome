@@ -19,6 +19,11 @@ import requests
 
 MODEL = os.environ.get("GEMMA_GPU_MODEL", "gemma4:26b")
 FIRST_BYTE_SECONDS = 20  # a cold GPU takes minutes to start; don't make anyone wait for that
+# Gemma's window per answer: the prompt plus everything it writes (thinking included) must fit. It must equal
+# OLLAMA_CONTEXT_LENGTH on the GPU service (gemma/Dockerfile): a different num_ctx makes Ollama reload the model, and a
+# prompt that doesn't fit is silently cut to its last half, losing the rules and the question.
+CONTEXT_TOKENS = 16384
+THINK_TOKENS, ANSWER_TOKENS = 6000, 900  # most Gemma may write with and without thinking
 _token, _lock = {"value": None, "expires": 0.0}, threading.Lock()
 _cold_until = 0.0  # after a failed call, skip the GPU briefly instead of waiting on it every time
 _ready_at = 0.0  # last time the GPU answered; Cloud Run lets an idle GPU sleep after about 15 minutes
@@ -36,6 +41,12 @@ def available():
 def asleep():
     """True when the GPU probably needs a cold start (minutes), so the page can say it's warming up."""
     return bool(url()) and time.time() - _ready_at > 12 * 60
+
+
+def prompt_budget(think=True):
+    """The longest prompt, in characters, that still fits Gemma's window with room for its answer (and thinking).
+    Our prompts are JSON-heavy, about 3 characters a token, so this errs on the safe side."""
+    return (CONTEXT_TOKENS - (THINK_TOKENS if think else ANSWER_TOKENS) - 256) * 3
 
 
 def _mark_ready():
@@ -69,7 +80,8 @@ def stream_parts(prompt, think=False):
         resp = requests.post(f"{url()}/api/chat", headers=_auth(), stream=True, timeout=(10, FIRST_BYTE_SECONDS),
                              json={"model": MODEL, "messages": [{"role": "user", "content": prompt}], "stream": True,
                                    # Thinking shares the token budget with the answer, so it gets plenty of room to check every home.
-                                   "think": think, "options": {"temperature": 0.3, "num_predict": 6000 if think else 900}})
+                                   "think": think, "options": {"temperature": 0.3, "num_ctx": CONTEXT_TOKENS,
+                                                               "num_predict": THINK_TOKENS if think else ANSWER_TOKENS}})
         resp.raise_for_status()
         for line in resp.iter_lines():
             if not line:
@@ -116,7 +128,8 @@ def warm():
         try:
             parts = urllib.parse.urlsplit(url())
             conn = (http.client.HTTPSConnection if parts.scheme == "https" else http.client.HTTPConnection)(parts.netloc, timeout=300)
-            body = json.dumps({"model": MODEL, "prompt": "hi", "stream": False, "think": False, "options": {"num_predict": 1}})
+            body = json.dumps({"model": MODEL, "prompt": "hi", "stream": False, "think": False,
+                               "options": {"num_predict": 1, "num_ctx": CONTEXT_TOKENS}})
             conn.request("POST", parts.path + "/api/generate", body, {"Content-Type": "application/json", **_auth()})
             sent.set()  # the GPU has the call and starts up; the answer (once the model is loaded) can take minutes
             if conn.getresponse().status == 200:
