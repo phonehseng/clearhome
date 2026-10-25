@@ -233,14 +233,14 @@
     .map-popup a{font-weight:600}
     .map-status:not(:empty),.walk-status:not(:empty){padding:7px 12px;border-radius:12px;width:fit-content;max-width:100%}
     .map-status:empty{display:none}
-    /* Map legend and status sit side by side; the status drops to the next line when there isn't room. */
+    /* Keep location status compact beneath the map. */
     .map-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
     .map-meta>.map-status{margin:0}
     .map-meta .map-status{flex:1 1 110px;max-width:max-content;font-size:12px;line-height:1.45}
     .house-pin{background:none;border:0;filter:drop-shadow(0 1px 2px #0006)}
     .house-pin:focus-visible{outline:3px solid #e0a100;border-radius:4px}
     .map-section .hero-map{height:420px}
-    .map-section .map-section .map-status:not(:empty){background:#ffffffcc;border:1px solid var(--line)}
+    .map-section .map-status:not(:empty){background:#ffffffcc;border:1px solid var(--line)}
     @media (min-width: 900px){.hero-art{align-self:end;margin-top:72px;translate:40px 28px}}
 
     /* Hero "ping": a perfect circle that glows orange like a notification, sitting just left of the first line. */
