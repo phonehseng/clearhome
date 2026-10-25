@@ -93,6 +93,20 @@ def outside(text):
     return bool(re.search(OUTSIDE, t))
 
 
+BARE_CAMPUS = re.compile(r"(?:the\s+|my\s+)?(?:campus|university|college|uni)", re.I)
+
+
+def campus_for(place, question, profile=None):
+    """A bare "campus" is the campus in the area the person named: Virginia Tech in Blacksburg, George Mason in Fairfax.
+    With no area to go on it's None, never a Google search for the word "campus" (that finds a "West Campus" anywhere)."""
+    if not BARE_CAMPUS.fullmatch((place or "").strip()):
+        return place
+    area = area_for(question)
+    if area in (None, "Northern Virginia") and isinstance((profile or {}).get("location"), str):
+        area = area_for(profile["location"])
+    return "virginia tech" if area == "Blacksburg" else "george mason" if area == "Fairfax County" else None
+
+
 def locate(place):
     """(name, latitude, longitude) for a place inside a service region, or None."""
     key = place.lower()
@@ -182,6 +196,9 @@ def answer(question, profile=None, history=None):
         return ("I can look near you if you tap **Near me** above the map and allow location, or tell me a place, "
                 "like \"near my office at 1800 Tysons Blvd\".")
     place, vague = extract_place(question)
+    if vague == "campus" or (place and BARE_CAMPUS.fullmatch(place)):
+        campus = campus_for("campus", question, profile)  # "near campus" in Blacksburg is Virginia Tech
+        place, vague = (campus, None) if campus else (None, vague)
     if vague:
         return (f"Happy to look near your {vague}. What's the address or the name of the place? For example: "
                 f"\"near my {vague} at 1800 Tysons Blvd\" or \"near Inova Fairfax Hospital\".")
@@ -332,8 +349,11 @@ def walk_answer(question, profile=None, history=None):
         return None
     place = FILLER_END.sub("", re.split(r"\s+(?:from|to)\s+|[,;]", m.group(1).strip())[0])
     place = re.sub(r"\b(?:campus|area)\b$", lambda x: "campus" if re.search(r"\bvt\b", place, re.I) else "", place, flags=re.I).strip() or place
-    if NOT_A_PLACE.match(place) or WORKPLACE.match(place) and not place[WORKPLACE.match(place).end():].strip():
+    if NOT_A_PLACE.match(place) or WORKPLACE.match(place) and not place[WORKPLACE.match(place).end():].strip() and not BARE_CAMPUS.fullmatch(place):
         return None
+    place = campus_for(place, question, profile)
+    if not place:
+        return None  # "walking range of campus" with no area: Gemma's walk check (or the which-campus question) handles it
     found = locate(place)
     if not found:
         return None
