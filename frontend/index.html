@@ -138,7 +138,7 @@
 
     /* Blue theme, matching the about page. The logo badge keeps its green. */
     :root{--bg:#eef3fc;--ink:#14203f;--muted:#4b5a7a;--line:#d2dcf0;--sage:#e2eafb;--blue:#23408f}
-    :focus-visible{outline-color:#e0a100}
+    :focus-visible{outline-color:#315fbd}
     :root .site-header{background:#0d1738;border-color:#0d1738}
     :root .brand,:root .header-links a:not(.emergency-link){color:#eef3ff}
     /* Header links: medium weight, even spacing, and a short underline that slides in on hover and keyboard focus. */
@@ -150,7 +150,7 @@
     .header-links a:not(.emergency-link):is(:hover,:focus-visible){color:#fff!important;background:#ffffff12}
     .header-links a:not(.emergency-link):is(:hover,:focus-visible)::after{transform:scaleX(1)}
     .header-links a:not(.emergency-link):active{background:#ffffff1f}
-    .header-links a:not(.emergency-link):focus-visible{outline:2px solid #ffd66b;outline-offset:2px}
+    .header-links a:not(.emergency-link):focus-visible{outline:2px solid #315fbd;outline-offset:2px}
     .header-links .emergency-link{margin-left:10px}
     #listings:focus{outline:none}  /* focused only so keyboard users continue from the listings */
     @media(max-width:820px){.header-links a:not(.emergency-link){padding:8px 9px;font-size:13.5px}.header-links a:not(.emergency-link)::after{left:9px;right:9px}}
@@ -287,7 +287,7 @@
     .map-tab[aria-pressed=true]{background:#23408f;border-color:#23408f;color:#fff}
     .map-tab.near-me{margin-left:auto}
     .map-hood{min-height:38px;padding:7px 30px 7px 12px;border-radius:999px;border:1px solid var(--glass-border,#ffffffb3);background:var(--glass-bg,#ffffffb8);font:inherit;font-size:13px;font-weight:600;color:var(--ink);max-width:180px}
-    .map-hood:focus-visible{outline:3px solid #e0a100;outline-offset:2px}
+    .map-hood:focus-visible{outline:3px solid #315fbd;outline-offset:2px}
     .map-tab.near-me[aria-busy=true]{opacity:.7;cursor:wait}
     .hero-map{height:300px;border-radius:18px;border:1px solid var(--line);overflow:hidden;background:var(--sage)}
     .map-status{font-size:13px;color:var(--muted);margin-top:6px;min-height:1.4em}
@@ -397,7 +397,7 @@
     .chat-card-actions{display:flex;flex-wrap:wrap;gap:2px 14px;margin-top:4px}
     .chat-card-actions a{display:inline-flex;align-items:center;min-height:30px;font-weight:600;font-size:12.5px}
     .chat-card.flash{box-shadow:0 0 0 3px #2f55b5}
-    .chat-card:focus-visible{outline:3px solid #e0a100;outline-offset:2px}
+    .chat-card:focus-visible{outline:3px solid #315fbd;outline-offset:2px}
     .chat-cards-more{justify-self:start;border:1px solid var(--line);background:var(--white);border-radius:999px;padding:6px 14px;min-height:36px;font-size:12.5px;font-weight:600}
     @media(prefers-reduced-motion:reduce){.chat-cards{animation:none}}
     .msg a.chat-ref{color:inherit;text-decoration:underline;text-decoration-color:#2f55b5;text-underline-offset:3px;cursor:pointer}
@@ -540,7 +540,7 @@
     .more-options-body{padding:4px 16px 16px}
     .show-programs{font:inherit;font-size:13px;font-weight:600;align-self:start;padding:9px 14px;border-radius:20px;border:1px solid var(--line);background:var(--white);color:inherit;cursor:pointer}
     .house-pin{background:none;border:0;filter:drop-shadow(0 1px 2px #0006)}
-    .house-pin:focus-visible{outline:3px solid #e0a100;border-radius:4px}
+    .house-pin:focus-visible{outline:3px solid #315fbd;border-radius:4px}
 
     /* Fewer boxes: each big section is ONE glass panel, and the pieces inside it sit flat on that glass. */
     #tools,.listings-section{background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
