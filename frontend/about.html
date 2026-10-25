@@ -278,6 +278,9 @@
     .repo-tree-head i{width:10px;height:10px;border-radius:50%;background:#ea4335;display:inline-block}
     .repo-tree-head i:nth-child(2){background:#fbbc04}.repo-tree-head i:nth-child(3){background:#34a853}
     @media (max-width: 560px){.repo-tree b{min-width:0}}
+    /* File names never shrink under their text. When a row has no room, the description moves under the name and wraps. */
+    .repo-tree span:not(.repo-tree-head){flex-wrap:wrap;row-gap:0;white-space:normal}
+    .repo-tree b{flex:none}
     .repo-card img.repo-preview{width:100%;aspect-ratio:2/1;object-fit:cover;border-radius:14px;border:1px solid #30363d;background:#161b22}
     .repo-card h3{font-size:22px;margin:0 0 6px;color:#fff}
     .repo-card h3 a{color:inherit;text-decoration:none}
