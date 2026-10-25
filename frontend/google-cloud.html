@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1738">
+  <meta name="description" content="How Clear House uses Google Cloud: Cloud Run, a private Cloud Run GPU for Gemma 4, the Gemini API, Google Maps Platform, Secret Manager, Cloud Build and Artifact Registry.">
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico?v=2" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+  <title>Clear House — Built with Google Cloud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #14203f; --muted: #4b5a7a; --line: #d2dcf0; --bg: #eef3fc; --blue: #23408f; --blue-2: #2f55b5; --navy: #0d1738; --card: #fff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Google Sans', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; line-height: 1.55; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid #e0a100; outline-offset: 3px; }
+    .container { width: min(1120px, calc(100% - 32px)); margin-inline: auto; }
+
+    /* Header, matching the front page. */
+    .site-header { background: var(--navy); color: #eef3ff; }
+    .header-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 10px 0; }
+    .brand { display: inline-flex; align-items: center; color: #fff; text-decoration: none; font-weight: 800; font-size: 22px; letter-spacing: -.6px; }
+    .brand img { margin-right: 10px; width: 38px; height: 38px; border-radius: 11px; box-shadow: 0 4px 14px #23408f40; }
+    .brand-dot { color: #8d99ad; }
+    .header-links { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .header-links a { padding: 9px 12px; border-radius: 10px; font-size: 14px; font-weight: 500; color: #dfe7fb; text-decoration: none; transition: background-color .18s, color .18s; }
+    .header-links a:hover, .header-links a:focus-visible { background: #ffffff12; color: #fff; }
+    .header-links a[aria-current="page"] { color: #fff; box-shadow: inset 0 -2px 0 #ffd66b; border-radius: 10px 10px 0 0; }
+    .header-links .cta { margin-left: 8px; padding: 9px 18px; border-radius: 999px; background: #fff; color: var(--ink); font-weight: 700; }
+    .header-links .cta:hover { background: #e8effc; color: var(--ink); }
+
+    /* Hero */
+    .hero { padding: 72px 0 40px; text-align: center; }
+    .eyebrow { display: inline-flex; gap: 8px; align-items: center; padding: 6px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--blue); }
+    .g-dots { display: inline-flex; gap: 3px; }
+    .g-dots i { width: 7px; height: 7px; border-radius: 50%; }
+    h1 { font-size: clamp(36px, 6vw, 62px); letter-spacing: -.03em; line-height: 1.06; margin: 20px 0 0; }
+    h1 span { color: var(--blue-2); }
+    .lead { max-width: 640px; margin: 18px auto 0; font-size: 19px; color: var(--muted); }
+    .stats { list-style: none; padding: 0; margin: 36px auto 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; max-width: 900px; }
+    .stats li { padding: 18px 14px; border-radius: 18px; background: #fff; border: 1px solid var(--line); }
+    .stats strong { display: block; font-size: 24px; letter-spacing: -.02em; color: var(--blue); }
+    .stats span { font-size: 13.5px; color: var(--muted); }
+
+    /* Architecture */
+    section { padding: 44px 0; }
+    h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.02em; margin: 0; text-align: center; }
+    .sub { text-align: center; color: var(--muted); margin: 10px auto 0; max-width: 620px; }
+    .arch { margin-top: 30px; padding: 26px; border-radius: 26px; background: linear-gradient(160deg, #0d1738, #16306f); color: #eef3ff; box-shadow: 0 30px 80px #14203f33; }
+    .arch-row { display: grid; grid-template-columns: 1fr auto 1.3fr auto 1.6fr; align-items: center; gap: 14px; }
+    .node { padding: 14px 16px; border-radius: 16px; background: #ffffff14; border: 1px solid #ffffff2e; }
+    .node b { display: block; font-size: 15px; }
+    .node small { color: #b7c3e6; font-size: 12.5px; }
+    .node.main { background: #ffffff24; border-color: #ffd66b88; }
+    .stack { display: grid; gap: 10px; }
+    .arrow { color: #ffd66b; font-size: 22px; text-align: center; }
+    .arch-foot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed #ffffff33; }
+
+    /* Service cards */
+    .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 30px; }
+    .svc { position: relative; overflow: hidden; padding: 28px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); box-shadow: 0 14px 40px #23408f12; }
+    .svc::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--accent, #4285f4); }
+    .svc .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: #e8f0fe; color: #1a56c4; }
+    .svc h3 { font-size: 22px; letter-spacing: -.01em; margin: 10px 0 4px; }
+    .svc .what { margin: 0; color: var(--muted); }
+    .svc ul { margin: 14px 0 0; padding-left: 20px; display: grid; gap: 7px; }
+    .svc li::marker { color: var(--blue-2); }
+    .svc code { font-size: 13px; background: #e7edf8; padding: 1px 6px; border-radius: 6px; color: var(--blue); }
+    .svc.wide { grid-column: 1 / -1; }
+    .ai { --accent: linear-gradient(90deg, #4285f4, #9b72cb, #d96570); }
+    .maps { --accent: linear-gradient(90deg, #34a853 0 25%, #fbbc04 25% 50%, #ea4335 50% 75%, #4285f4 75%); }
+    .ai .tag { background: #f3e8fd; color: #5b3fb5; }
+    .maps .tag { background: #e6f4ea; color: #137333; }
+
+    /* Cost and safety */
+    .controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 30px; }
+    .control { padding: 22px; border-radius: 18px; background: #fff; border: 1px solid var(--line); }
+    .control b { display: block; font-size: 16px; margin-bottom: 4px; }
+    .control p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .end { text-align: center; padding: 56px 0 80px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 15px 26px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 700; text-decoration: none; box-shadow: 0 10px 30px #14203f33; }
+    .btn:hover { background: var(--blue); }
+    footer { padding: 24px 0 40px; color: var(--muted); font-size: 13px; text-align: center; border-top: 1px solid var(--line); }
+
+    @media (max-width: 900px) {
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .arch-row { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); }
+      .arch-foot, .controls { grid-template-columns: 1fr; }
+      .services { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .header-links a:not(.cta) { padding: 8px 9px; font-size: 13.5px; }
+      .hero { padding-top: 48px; }
+      .svc { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Clear House home"><img src="/logo.svg" alt="" width="38" height="38">clear house<span class="brand-dot">.</span></a>
+      <nav class="header-links" aria-label="Main">
+        <a href="/">About</a>
+        <a href="/google-cloud" aria-current="page">Built with Google Cloud</a>
+        <a class="cta" href="/app">Get started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container hero">
+      <span class="eyebrow"><span class="g-dots" aria-hidden="true"><i style="background:#4285f4"></i><i style="background:#ea4335"></i><i style="background:#fbbc04"></i><i style="background:#34a853"></i></span>Built with Google Cloud</span>
+      <h1>Every part of Clear House <span>runs on Google.</span></h1>
+      <p class="lead">The website, the AI that answers questions, the map, and how each release ships. Here is exactly how we use Google Cloud, and how we get the most out of it on a small budget.</p>
+      <ul class="stats">
+        <li><strong>us-east4</strong><span>Hosted in Northern Virginia, next to the people it serves</span></li>
+        <li><strong>NVIDIA L4</strong><span>Our own private GPU running Gemma 4 26B</span></li>
+        <li><strong>~3 s</strong><span>Until a chat answer starts on the GPU</span></li>
+        <li><strong>Private</strong><span>The GPU only answers our own website</span></li>
+      </ul>
+    </div>
+
+    <section class="container" aria-labelledby="arch-title">
+      <h2 id="arch-title">How it fits together</h2>
+      <p class="sub">One request, start to finish. Everything on the right is a Google service.</p>
+      <div class="arch" role="img" aria-label="A visitor's browser talks to the Clear House website on Cloud Run. The website calls Gemma 4 on a private Cloud Run GPU, the Gemini API, and Google Maps Platform. Secret Manager holds the keys, and Cloud Build with Artifact Registry builds every release.">
+        <div class="arch-row">
+          <div class="node"><b>Your browser</b><small>Map from Maps JavaScript</small></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="node main"><b>Cloud Run: clear-house</b><small>Flask website and API, us-east4</small></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="stack">
+            <div class="node"><b>Cloud Run GPU: gemma4</b><small>Gemma 4 26B on an NVIDIA L4, private</small></div>
+            <div class="node"><b>Gemini API</b><small>Gemma 4 fallback, Google Search grounding</small></div>
+            <div class="node"><b>Google Maps Platform</b><small>Places API and Routes API</small></div>
+          </div>
+        </div>
+        <div class="arch-foot">
+          <div class="node"><b>Secret Manager</b><small>Gemini and Maps keys</small></div>
+          <div class="node"><b>Cloud Build</b><small>Builds each release from our Dockerfile</small></div>
+          <div class="node"><b>Artifact Registry</b><small>Stores the site and GPU images</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" aria-labelledby="svc-title">
+      <h2 id="svc-title">What each service does</h2>
+      <p class="sub">And what we do to push it further than the defaults.</p>
+      <div class="services">
+        <article class="svc">
+          <span class="tag">Compute</span>
+          <h3>Cloud Run</h3>
+          <p class="what">Hosts the whole website and its API as one container.</p>
+          <ul>
+            <li>Runs in <code>us-east4</code>, the region closest to Northern Virginia.</li>
+            <li>Scales to zero when nobody is visiting, and is capped at two instances so costs stay predictable.</li>
+            <li>Listing photos are baked into the image, so pages never wait on a landlord’s website.</li>
+            <li>Example questions are answered when the server starts, so the resources page responds instantly.</li>
+            <li>The hosted copy is read-only: data changes are reviewed locally and shipped as code.</li>
+          </ul>
+        </article>
+        <article class="svc ai">
+          <span class="tag">GPU</span>
+          <h3>Cloud Run GPUs</h3>
+          <p class="what">Our own NVIDIA L4 runs Gemma 4 26B (through Ollama) just for Clear House.</p>
+          <ul>
+            <li>Hidden “thinking” is turned off, so answers start in seconds instead of after a minute.</li>
+            <li>Private: it refuses public calls. The website signs each request with its own Google identity.</li>
+            <li>It can scale to zero and costs about $1 an hour while awake. During judging we keep one copy warm so the first answer is fast.</li>
+            <li>The chat wakes the GPU as soon as it scrolls into view, before you finish typing.</li>
+            <li>If the GPU is asleep or slow, the chat switches to the Gemini API after 20 seconds, so it never breaks.</li>
+          </ul>
+        </article>
+        <article class="svc ai">
+          <span class="tag">AI</span>
+          <h3>Gemini API</h3>
+          <p class="what">Runs Gemma 4 (<code>gemma-4-26b-a4b-it</code>) and Gemini with Google Search.</p>
+          <ul>
+            <li>Gemma turns your message into filters, then writes the answer using only checked listings, streamed as it types.</li>
+            <li>Gemini with Google Search grounding looks for listings we don’t have yet. Only places that appear in the search results are kept, and the map marks them “not checked”.</li>
+            <li>Gemma rereads listing pages and hides ones that are no longer offered. It can hide listings, never add them.</li>
+            <li>SSNs and account numbers are removed before any text is sent.</li>
+          </ul>
+        </article>
+        <article class="svc maps">
+          <span class="tag">Maps</span>
+          <h3>Google Maps Platform</h3>
+          <p class="what">Maps JavaScript, Places API and Routes API.</p>
+          <ul>
+            <li>Maps JavaScript draws the map with a pin for every checked home.</li>
+            <li>Places API finds the place you name (an employer, a hospital, a school), plus the supermarkets, pharmacies and transit stops near a home.</li>
+            <li>Routes API gives real drive and transit times from the closest homes, and true walking times to the store.</li>
+            <li>Separate server and browser keys, so the server key never reaches a web page.</li>
+          </ul>
+        </article>
+        <article class="svc">
+          <span class="tag">Security</span>
+          <h3>Secret Manager</h3>
+          <p class="what">Holds the Gemini key and both Maps keys.</p>
+          <ul>
+            <li>Keys are never in the code, the repository or the container image.</li>
+            <li>Rotating a key means adding a new secret version and redeploying, with no code change.</li>
+          </ul>
+        </article>
+        <article class="svc">
+          <span class="tag">Delivery</span>
+          <h3>Cloud Build and Artifact Registry</h3>
+          <p class="what">Turn our code into running containers.</p>
+          <ul>
+            <li>Every deploy builds a fresh container from our Dockerfile in Cloud Build, so a pushed fix is live in minutes.</li>
+            <li>The 17 GB Gemma GPU image is built on a larger Cloud Build machine and stored in Artifact Registry next to the site.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" aria-labelledby="ctl-title">
+      <h2 id="ctl-title">Full power, kept in check</h2>
+      <p class="sub">Using a GPU and live AI on a hackathon budget means building in limits from day one.</p>
+      <div class="controls">
+        <div class="control"><b>Pay only while in use</b><p>The website scales to zero and is capped at two copies. The GPU runs at most one copy and can scale to zero.</p></div>
+        <div class="control"><b>One switch to stop GPU costs</b><p>Removing one setting sends every chat back to the Gemini API, with no code change.</p></div>
+        <div class="control"><b>Nothing public that shouldn’t be</b><p>The GPU is private, keys live in Secret Manager, and the hosted site can’t change its own data.</p></div>
+      </div>
+    </section>
+
+    <div class="container end">
+      <h2>See it working</h2>
+      <p class="sub">Ask Gemma about housing, rent help or shelters in Northern Virginia and Blacksburg.</p>
+      <a class="btn" href="/app">Get started for free <span aria-hidden="true">→</span></a>
+    </div>
+  </main>
+  <footer><div class="container">Clear House · AI can make mistakes. Always confirm with the provider.</div></footer>
+</body>
+</html>
