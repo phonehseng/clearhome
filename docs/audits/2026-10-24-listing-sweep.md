@@ -75,3 +75,7 @@ Implemented: phone links now dial only the first real number (extensions wait fo
 
 - **Phone links:** `tel:` links are built by stripping every non-digit (`frontend/index.html` `tel()`, `frontend/resources.html` lines ~328 and ~379). With phone strings that are correct in the data, the dialed number comes out wrong: `(703) 792-3366 (TTY: 711)` → `tel:7037923366711`, `703-352-5090 ext. 1302` → `tel:70335250901302`, `1-800-SAY-TEEN (1-800-729-8336)` → `tel:180018007298336`. Affected records: `pwa-coordinated-entry-system-hotline`, `pwc-hilda-barg-homeless-prevention-center`, `pwc-ferlazzo-emergency-shelter`, `acts-beverly-warren-emergency-shelter`, `fairfax-hpp-rotating-sites-central-western`, `second-story-teens-in-crisis`.
 - **Merged cards:** `community_key()` drops the community name whenever the street address starts with a number. As a result, Fieldstone Apartments (family) and Fieldstone Senior (55+) at 300 Fieldstone Lane group into one listing card under whichever plan sorts first.
+
+## Follow-up: map locations
+
+Implemented: 32 of the housing records without coordinates now have them, from OpenStreetMap Nominatim (coordinates only; no listing facts). Each point was checked to fall inside the record's own county or city outline (NoVA) or near Blacksburg. `geocode_source` says whether it matched the exact address or only the street. Still without a pin: addresses neither the Census nor OpenStreetMap knows yet (mostly new construction), the two street-only addresses, and Linden Green (Simpson Road is too long for a street-level pin).
