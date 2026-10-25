@@ -534,7 +534,10 @@ def ask_advisor():
     try:
         return jsonify(answer=ask(question, history), **chat)
     except Exception as error:
-        return _gemma_error(error)
+        # Same fallback as the streaming chat: the verified resources that match, instead of an error box.
+        import advisor
+        reason = gemma_unavailable(error) or "The AI service didn't answer"
+        return jsonify(answer=advisor.fallback_answer(advisor._records(question, history)[:5], reason, question), **chat)
 
 
 @app.post("/api/gemma/warm")

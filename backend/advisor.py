@@ -279,8 +279,19 @@ Now write your answer. Keep it short: 3 to 5 short sentences and at most 2 place
     return prompt
 
 
-def fallback_answer(rows, reason):
+def has_topic(question):
+    """True when the question names something we have resources for (a topic, a place, housing, or an urgent need).
+    Without it the catalog would only guess, so the fallback says so instead of listing unrelated homes."""
+    q = (question or "").lower()
+    return bool(any(w in q for words, _ in TOPICS for w in words) or DANGER.search(q) or STAY_NOW.search(q)
+                or any(word in q for word, _ in AREAS) or housing_search(question))
+
+
+def fallback_answer(rows, reason, question=None):
     """When Gemma can't answer, still give the verified resources that match, straight from the catalog."""
+    if question is not None and not has_topic(question):
+        return (f"{reason}. I couldn't match that to a topic we cover. Try asking about rent help, shelters, rooms or apartments "
+                "in a city or county, or call 211 for free help finding local services.")
     lines = [f"{reason}, so here are the verified resources that best match your question:"]
     seen = set()
     for r in rows:
@@ -642,7 +653,7 @@ def stream_ask(question, history=None):
     cards = (lambda text: cards_for(near_place.with_directions(text, place["directions"]))) if place else cards_for
     # Without Gemma, measured homes fall back to the same no-AI answer (store, limit, times), never a generic list.
     fallback = ((lambda reason: near_place.with_directions(f"{reason}, so here is what Google Maps measured:\n\n{place['fallback']}", place["fallback"].directions))
-                if place else (lambda reason: fallback_answer(rows, reason)))
+                if place else (lambda reason: fallback_answer(rows, reason, question)))
     parts, step, started = [], None, None
     try:
         for is_thought, text in stream_gemma(_prompt(question, history, rows, needs, walk, place=place and place["note"]), thoughts=True, think=bool(needs)):
