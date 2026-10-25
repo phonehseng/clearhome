@@ -190,7 +190,7 @@
     .promises li.visible svg{animation:ch-pop .55s .1s both}
     .eyebrow.visible::before{animation:ch-pulse 2.4s ease-in-out infinite}
     /* Same blue as the Ask Gemma 4 card, with a soft light that sweeps across as you scroll. */
-    .cta{background:radial-gradient(700px circle at calc(var(--sweep, 0) * 100%) 0%, #ffffff2e 0%, transparent 60%),linear-gradient(160deg,#2f55b5,#4f7ff0)}  /* dark to light */
+    .cta{background:#14203f}  /* solid navy, like the GitHub card and the page's dark buttons */
     @keyframes ch-pop{0%{transform:scale(0) rotate(-20deg);opacity:0}65%{transform:scale(1.18) rotate(4deg);opacity:1}100%{transform:none}}
     @keyframes ch-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
     @keyframes ch-spin-in{from{transform:rotate(-120deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
@@ -628,6 +628,9 @@
     #github .repo-actions a{min-height:34px;padding:7px 12px;font-size:13px}
     /* The "Northern Virginia & Blacksburg" chip on the home hero: a solid white pill with navy text, like the site's other pills. */
     .cl-hero .cl-chip.cl-chip{background:#fff;border:1px solid #d2dcf0;color:#14203f;font-weight:600;box-shadow:0 4px 14px #14203f14;backdrop-filter:none;-webkit-backdrop-filter:none}
+    /* Closing banner: solid navy with a solid white button, no blue gradient or glass. */
+    .cl-end .cl-btn{background:#fff!important;color:#14203f!important;border:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:0 4px 14px #0b143333}
+    .cl-end .cl-btn:hover{background:#e7eefc!important;box-shadow:0 6px 18px #0b143344}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
