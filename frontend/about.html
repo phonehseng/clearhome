@@ -409,11 +409,9 @@
     .start{top:var(--start-top,0px);height:var(--start-h,100%)}
     @media(max-width:600px){.start[open]{place-items:start center;padding-top:max(28px,env(safe-area-inset-top))}.start .start-form input{font-size:16px}}
     .start::backdrop{background:transparent}
-    .start.leaving{animation:none}
-    .start.leaving .start-card{animation:start-card-out .24s ease both}
+    .start.leaving{animation:start-out .2s ease both}
     @keyframes start-in{from{opacity:0}to{opacity:1}}
-    @keyframes start-card-out{to{opacity:0;filter:blur(12px);transform:translateY(-6px)}}
-    @media(prefers-reduced-motion:reduce){.start,.start-card,.start.leaving .start-card,.start-typing i{animation:none}}
+    @keyframes start-out{to{opacity:0}}
     @keyframes start-drift{from{background-position:0% 0%,100% 100%,0 0}to{background-position:100% 60%,0% 30%,0 0}}
     .start-card{width:min(420px,100%);padding:18px;border-radius:24px;background:#ffffff14;border:1px solid #ffffff2e;box-shadow:0 30px 80px #0006;
       backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:start-rise .5s .1s cubic-bezier(.2,.7,.2,1) both}
@@ -788,22 +786,7 @@
     const dlg = document.getElementById('start'); if (!dlg || !dlg.showModal) return;  // old browsers just follow the link
     const msgs = dlg.querySelector('.start-msgs'), input = document.getElementById('start-input');
     const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let greeted = false, leaving = false;
-    const openTools = () => {
-      if (leaving) return;
-      leaving = true;
-      dlg.classList.add('leaving');
-      dlg.setAttribute('aria-busy', 'true');
-      setTimeout(() => {
-        try { if (!calm) sessionStorage.setItem('ch:app-entry', String(Date.now())); } catch {}
-        location.href = '/app';
-      }, calm ? 0 : 240);
-    };
-    dlg.querySelector('.start-skip').addEventListener('click', e => {
-      if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      e.preventDefault(); openTools();
-    });
-    dlg.addEventListener('cancel', e => { if (leaving) e.preventDefault(); });
+    let greeted = false;
     // iOS keeps the page full height when the keyboard opens, so size the intro to the visible part instead.
     const vv = window.visualViewport;
     const fit = () => { if (!vv) return; dlg.style.setProperty('--start-h', vv.height + 'px'); dlg.style.setProperty('--start-top', vv.offsetTop + 'px'); };
@@ -819,7 +802,7 @@
     document.getElementById('start-form').addEventListener('submit', e => {
       e.preventDefault(); const q = input.value.trim(); if (!q) return;
       try { sessionStorage.setItem('ch:first-question', q); } catch {}
-      openTools();
+      dlg.classList.add('leaving'); setTimeout(() => { location.href = '/app'; }, calm ? 0 : 180);
     });
   })();
 </script>
