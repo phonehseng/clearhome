@@ -222,6 +222,14 @@ def _prompt(question, history, rows, needs=None, walk=None, place=None):
     if housing_search(question):
         notes.append("This is a rental housing search: answer it with the matching listings below. Don't describe the list you were given, "
                      "don't ask them to repeat what they want, don't offer sample questions, and don't add shelter or helpline referrals unless they asked for emergency help.")
+    # A budget below every home here: the gap is worked out in code and given as the first line, so it's always said.
+    cap = BUDGET_ANY.search((question or "").replace(",", "")) if housing_search(question) else None
+    prices = [p for p in ((r.get("monthly_rent") if isinstance(r.get("monthly_rent"), (int, float)) else (rent_estimate(r) or {}).get("low")) for r in rows)
+              if isinstance(p, (int, float))] if cap else []
+    if prices and min(prices) > int(cap.group(1)):
+        notes.append(f"Their budget is ${int(cap.group(1)):,} a month and every home below costs more. Start your answer with exactly: "
+                     f"\"The lowest rents I found start around ${min(prices):,.0f}, above your ${int(cap.group(1)):,} budget:\" "
+                     "Then give the two lowest-priced homes, and end by saying 211 can help with rent assistance.")
     if people:
         notes.append(f"Household: {people} {'person' if people == 1 else 'people'} (a household size, not a bedroom count). Room prices are per person, so say "
                      f"whether each option works for {people} (separate rooms in one shared home, or a whole apartment) and what that would cost in total, from the listed prices only.")
@@ -830,7 +838,7 @@ def options(profile):
 NEAR = re.compile(r"\b(near|close to|next to|walking distance|walk to|within \d+ (?:mi|miles?))\b")
 # Someone who may be unsafe, without shelter or facing eviction needs shelter and help lines, not a list of
 # apartments near a place, so the no-AI shortcuts step aside for these.
-URGENT = re.compile(r"\b(tonight|shelter|homeless|nowhere to (?:go|sleep|stay)|kicked out|evict\w*|on the street|sleep(?:ing)? in (?:my|a) car|unsafe|in danger|abuse|behind on rent|back rent|can'?t pay)\b|" + DANGER.pattern + "|" + STAY_NOW.pattern, re.I)
+URGENT = re.compile(r"\b(tonight|shelter|homeless|nowhere to (?:go|sleep|stay)|kicked out|evict\w*|on the street|sleep(?:ing)? in (?:my|a) car|unsafe|in danger|abuse|behind on rent|back rent|can'?t pay|los(?:e|ing) (?:my|our|the) (?:apartment|home|house|place|housing)|can'?t afford (?:my |the )?rent)\b|" + DANGER.pattern + "|" + STAY_NOW.pattern, re.I)
 
 
 # "Cheapest room near X": order by rent instead of distance.

@@ -143,7 +143,7 @@ def question(field, text, choices, multi=False, skip=True, unsure=False, custom=
 TONIGHT = re.compile(r"\b(tonight|shelters?|homeless|nowhere to (?:go|sleep|stay)|on the street|sleep(?:ing)? in (?:my|a) car|kicked out|"
                      r"somewhere safe|safe place to (?:stay|sleep))\b", re.I)
 RENT_HELP = re.compile(r"\b(rent help|help (?:with|paying) (?:my |the )?rent|rent(?:al)? assistance|pay(?:ing)? (?:my |the )?rent|behind on rent|"
-                       r"back rent|owe (?:my )?rent|evict\w*|security deposit|utility bills?)\b", re.I)
+                       r"back rent|owe (?:my )?rent|evict\w*|security deposit|utility bills?|los(?:e|ing) (?:my|our|the) (?:apartment|home|house|place|housing)|can'?t afford (?:my |the )?rent)\b", re.I)
 RENTAL = re.compile(r"\b(apartments?|rentals?|for rent|to rent|rooms?|studios?|townhouses?|condos?|duplex|sublets?|subleases?)\b", re.I)
 BEDROOMS = re.compile(r"\b(?:\d|one|two|three|four)[- ]?(?:bed(?:room)?s?|br|bd)\b", re.I)
 # "I need somewhere to live", "I need help": a need without the kind of help. Named topics (vouchers, a landlord) are not vague.

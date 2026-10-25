@@ -237,6 +237,19 @@ class AnswerStyleTests(unittest.TestCase):
         self.assertIn("above your $400 budget", prompt)
         self.assertNotIn("say so first", prompt)
 
+    def test_a_budget_below_every_home_gets_the_gap_as_its_first_line(self):
+        low = "studio in Arlington under $400 a month"
+        self.assertIn("above your $400 budget:", advisor._prompt(low, [], advisor._records(low)))
+        high = "studio in Arlington under $2500 a month"
+        self.assertNotIn("Their budget is", advisor._prompt(high, [], advisor._records(high)))
+
+    def test_losing_a_home_is_rent_help_not_an_apartment_search(self):
+        import clarifier
+        worried = "I don't know where to start, I might lose my apartment in Fairfax next month"
+        self.assertFalse(advisor.housing_search(worried))
+        self.assertEqual(clarifier.detect_help(worried), "rent_help")
+        self.assertTrue(advisor.URGENT.search(worried))
+
 
 if __name__ == "__main__":
     unittest.main()
