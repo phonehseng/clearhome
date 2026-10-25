@@ -1009,7 +1009,7 @@
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="Clear Home front page"><span class="brand-mark"><img src="/logo.svg" alt="" width="40" height="40"></span>clear home<span class="brand-dot">.</span></a>
       <nav class="header-links" aria-label="Page navigation">
-        <a href="/#map">Map</a>
+        <a href="#listing-map">Map</a>
         <a href="/google-cloud">Built with Google Cloud</a>
         <a href="/#github">GitHub</a>
       </nav>
@@ -1087,7 +1087,7 @@
     <p id="browse-message" class="browse-message" role="status" aria-live="polite">Loading housing opportunities…</p><div class="share-toast" id="share-toast" role="status" aria-live="polite"></div>
     <div id="listings-grid" class="listings-grid" aria-busy="true"></div>
     <div class="listing-reveal-actions">
-      <button id="show-more-listings" class="more-listings" type="button" hidden>Show More Communities</button>
+      <button id="show-more-listings" class="more-listings" type="button" hidden>Show More Results</button>
       <button id="show-all-listings" class="more-listings" type="button" hidden>Show All Communities</button>
     </div>
     <noscript><p>Enable JavaScript to browse housing opportunities and use the housing tools.</p></noscript>
@@ -1392,11 +1392,11 @@
     listingsGrid.querySelectorAll('details').forEach(el=>{el.open=expanded.has(el.dataset.key);});
     moreListings.hidden = visibleHousingCount >= rows.length;
     allListings.hidden = moreListings.hidden || rows.length-visibleHousingCount <= 18; // with 18 or fewer left, Show more already reveals them all
-    moreListings.textContent = `Show More Communities (${Math.max(0,rows.length-visibleHousingCount)} remaining)`;
-    allListings.textContent = 'Show All Communities';
+    moreListings.textContent = `Show More Results (${Math.max(0,rows.length-visibleHousingCount)} remaining)`;
+    allListings.textContent = 'Show All Results';
     browseMessage.dataset.state = 'success';
     if (showingFavorites) { browseMessage.textContent = rows.length ? `${rows.length} saved listing${rows.length === 1 ? '' : 's'}. Saved on this device only; details are as of when you saved them.` : 'No favorites yet. Select Save on any listing to keep it here for later.'; return; }
-    browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs. Floor plans are grouped together.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
+    browseMessage.textContent = housingRows.length ? `Showing ${Math.min(visibleHousingCount,housingRows.length)} of ${housingRows.length} communities and programs. Each community lists all its floor plans together, so the count can be lower than the number of individual options.` : 'No current reviewed opportunities match these filters. Try another area or budget. Closed and overdue records are excluded; you can call 211 for local housing support.';
   }
   async function loadHousing() {
     if (browseRequest) browseRequest.abort();
