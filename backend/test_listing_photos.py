@@ -142,4 +142,31 @@ class PhotoTests(unittest.TestCase):
             self.assertEqual(client.get('/media/listings/no-photo').status_code,404)
             self.assertEqual(client.get('/media/listings/missing').status_code,404)
 
+    def test_cards_get_a_smaller_jpeg_and_small_photos_stay_as_they_are(self):
+        with tempfile.TemporaryDirectory() as directory:
+            big=Path(directory)/'big.image'
+            Image.new('RGBA',(2400,1600),(40,90,160,128)).save(big,format='PNG')
+            with patch('listing_photos.cached_photo',return_value=big):
+                card=listing_photos.card_photo(self.photo,800,directory)
+                self.assertEqual(listing_photos.card_photo(self.photo,800,directory),card)  # made once, then reused
+            with Image.open(card) as image:
+                self.assertEqual((image.format,image.size),('JPEG',(800,533)))
+            self.assertLess(card.stat().st_size,big.stat().st_size)
+            small=Path(directory)/'small.image';small.write_bytes(self.png)
+            with patch('listing_photos.cached_photo',return_value=small):
+                self.assertEqual(listing_photos.card_photo({'url':'https://resource.rentcafe.com/small.png'},800,directory),small)
+            with self.assertRaises(PhotoUnavailable):listing_photos.card_photo(self.photo,123,directory)
+
+    def test_photo_route_serves_the_card_size_and_refuses_other_widths(self):
+        from app import app
+        client=app.test_client()
+        with patch('app.load_catalog',return_value=[{'id':'test-home','photo':self.photo}]), tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'card.jpg';Image.new('RGB',(800,450),'white').save(path,format='JPEG')
+            with patch('app.card_photo',return_value=path) as card:
+                response=client.get('/media/listings/test-home?w=800')
+                self.assertEqual((response.status_code,response.mimetype),(200,'image/jpeg'))
+                response.close()
+                card.assert_called_once_with(self.photo,800)
+                self.assertEqual(client.get('/media/listings/test-home?w=5000').status_code,400)
+
 if __name__=='__main__': unittest.main()

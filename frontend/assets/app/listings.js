@@ -291,9 +291,8 @@ function eligibilityDetails(row) {
   return details;
 }
 
-function renderHousing() {
-  const expanded = new Set([...listingsGrid.querySelectorAll('details[open]')].map(el => el.dataset.key));
-  listingsGrid.replaceChildren();
+// The communities in the order shown: a shared listing, then Gemma's picks, then the chosen sort.
+function orderedHousing() {
   const hasPhoto = row => (row.floor_plans?.length ? row.floor_plans : [row]).some(p => p.photo);
   // Listings with a photo always come first; the sort is stable, so the chosen order (like rent low to high) holds within each group.
   const rows = shownRows();
@@ -309,186 +308,206 @@ function renderHousing() {
   const position = new Map(rows.map((row, i) => [row, i]));
   const ordered = [...rows].sort((a, b) => (b.id === sharedListingId) - (a.id === sharedListingId) || (rank(a) === rank(b) ? 0 : rank(a) - rank(b)) ||
     (byPhoto ? group.get(a) - group.get(b) || hasPhoto(b) - hasPhoto(a) : 0) || position.get(a) - position.get(b));
-  ordered.slice(0, visibleHousingCount).forEach(row => {
-    const plans = row.floor_plans?.length ? row.floor_plans : [row];
-    const availability = row.availability || {};
-    const statuses = new Set(plans.map(p => p.availability?.status));
-    const card = housingElement('article', 'housing-card');
-    card.dataset.listingId = row.id;
-    if (row.id === sharedListingId) card.classList.add('shared-highlight');
-    const photoRow = plans.find(p => p.photo) || row;
-    const photo = photoRow.photo;
-    const imageLabel = photo?.kind === 'rendering' ? 'provider rendering' : 'photo';
-    const photoUrl = listingPhotoSrc(photoRow.id, photo?.url);
-    let displayedPhotoUrl = photoUrl;
-    const safePhoto = photo && sourceLink(photo.url, 'Photo') && sourceLink(photo.source_url, 'Photo source');
-    // No photo, or one that won't load: a map of the listing's area under frosted glass (never a picture of another home).
-    const mapCover = () => {
-      const blacksburg = /blacksburg|christiansburg|radford|montgomery/i.test(`${row.region || ''} ${row.jurisdiction || ''}`);
-      card.classList.add('has-photo', 'map-photo');
-      card.style.setProperty('--card-photo', `url("/images/placeholder-${blacksburg ? 'blacksburg' : 'nova'}.jpg")`);
-      const cover = housingElement('div', 'map-photo-glass');
-      cover.setAttribute('role', 'img');
-      cover.setAttribute('aria-label', `Map of the ${blacksburg ? 'Blacksburg' : 'Northern Virginia'} area; no photo of this property yet`);
-      cover.append(housingElement('small', 'map-photo-credit', 'Map data © Google'));
-      card.prepend(cover);
-    };
-    if (!safePhoto) mapCover();
-    if (safePhoto) {
-      card.classList.add('has-photo');
-      card.style.setProperty('--card-photo', `url("${photoUrl}")`);
-      const button = housingElement('button', 'property-photo');
-      button.type = 'button';
-      button.setAttribute('aria-label', `Enlarge ${imageLabel} of ${row.community || row.name}`);
-      button.setAttribute('aria-haspopup', 'dialog');
-      // This image is a load/error probe even when the glass-card CSS hides it.
-      const image = document.createElement('img');
-      image.alt = photo.alt || `Community photo of ${row.community}`;
-      image.loading = 'eager';
-      image.referrerPolicy = 'no-referrer';
-      image.draggable = false;
-      button.append(image, housingElement('span', 'photo-expand-mark', photo.kind === 'rendering' ? 'Provider rendering · ⤢' : '⤢'));
-      const preview = housingElement('span', 'photo-hover');
-      preview.setAttribute('aria-hidden', 'true');
-      const large = image.cloneNode();
-      large.alt = '';
-      large.loading = 'lazy';
-      preview.append(large, housingElement('small', '', photo.caption || 'Community photo; actual unit may differ.'));
-      button.append(preview);
-      image.addEventListener('error', () => {
-        // A user's browser can load the same official image if its publisher
-        // rejects server downloads. Retry once; never substitute another home.
-        if (displayedPhotoUrl === photoUrl && new URL(photo.url).protocol === 'https:') {
-          displayedPhotoUrl = photo.url;
-          card.style.setProperty('--card-photo', `url(${JSON.stringify(displayedPhotoUrl)})`);
-          large.src = displayedPhotoUrl;
-          image.src = displayedPhotoUrl;
-          if (photoDialog.open && photoDialog.dataset.resourceId === photoRow.id) document.getElementById('property-photo-large').src = displayedPhotoUrl;
-          return;
-        }
-        button.remove();
-        mapCover();
-        if (photoDialog.open && photoDialog.dataset.resourceId === photoRow.id) { document.getElementById('property-photo-large').hidden = true;
-          document.getElementById('property-photo-caption').textContent = 'Image unavailable. Open the official source to view available property images.'; }
-      });
-      image.src = displayedPhotoUrl;
-      large.src = displayedPhotoUrl;
-      button.addEventListener('click', () => {
-        photoDialog.dataset.resourceId = photoRow.id;
-        document.getElementById('property-photo-title').textContent = (row.community || row.name) + (photo.kind === 'rendering' ? ' — provider rendering' : '');
-        const large = document.getElementById('property-photo-large');
-        large.hidden = false;
+  return { rows, ordered };
+}
+// A card's photo loads only as the card nears the screen: a long list on a phone used to fetch every photo at once.
+const photoObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => entries.forEach(entry => {
+  if (!entry.isIntersecting) return;
+  photoObserver.unobserve(entry.target);
+  entry.target.loadPhoto?.();
+}), { rootMargin: '800px 0px' }) : null;
+let housingRun = 0; // a new render stops cards still being added from the last one
+function housingCard(row) {
+  const plans = row.floor_plans?.length ? row.floor_plans : [row];
+  const availability = row.availability || {};
+  const statuses = new Set(plans.map(p => p.availability?.status));
+  const card = housingElement('article', 'housing-card');
+  card.dataset.listingId = row.id;
+  if (row.id === sharedListingId) card.classList.add('shared-highlight');
+  const photoRow = plans.find(p => p.photo) || row;
+  const photo = photoRow.photo;
+  const imageLabel = photo?.kind === 'rendering' ? 'provider rendering' : 'photo';
+  const photoUrl = listingPhotoSrc(photoRow.id, photo?.url);
+  const cardPhotoUrl = photoUrl + (photoUrl.includes('?') ? '&' : '?') + 'w=800';
+  let displayedPhotoUrl = photoUrl;
+  const safePhoto = photo && sourceLink(photo.url, 'Photo') && sourceLink(photo.source_url, 'Photo source');
+  // No photo, or one that won't load: a map of the listing's area under frosted glass (never a picture of another home).
+  const mapCover = () => {
+    const blacksburg = /blacksburg|christiansburg|radford|montgomery/i.test(`${row.region || ''} ${row.jurisdiction || ''}`);
+    card.classList.add('has-photo', 'map-photo');
+    card.style.setProperty('--card-photo', `url("/images/placeholder-${blacksburg ? 'blacksburg' : 'nova'}.jpg")`);
+    const cover = housingElement('div', 'map-photo-glass');
+    cover.setAttribute('role', 'img');
+    cover.setAttribute('aria-label', `Map of the ${blacksburg ? 'Blacksburg' : 'Northern Virginia'} area; no photo of this property yet`);
+    cover.append(housingElement('small', 'map-photo-credit', 'Map data © Google'));
+    card.prepend(cover);
+  };
+  if (!safePhoto) mapCover();
+  if (safePhoto) {
+    card.classList.add('has-photo');
+    const button = housingElement('button', 'property-photo');
+    button.type = 'button';
+    button.setAttribute('aria-label', `Enlarge ${imageLabel} of ${row.community || row.name}`);
+    button.setAttribute('aria-haspopup', 'dialog');
+    // This image is a load/error probe even when the glass-card CSS hides it.
+    const image = document.createElement('img');
+    image.alt = photo.alt || `Community photo of ${row.community}`;
+    image.loading = 'eager';
+    image.referrerPolicy = 'no-referrer';
+    image.draggable = false;
+    button.append(image, housingElement('span', 'photo-expand-mark', photo.kind === 'rendering' ? 'Provider rendering · ⤢' : '⤢'));
+    const preview = housingElement('span', 'photo-hover');
+    preview.setAttribute('aria-hidden', 'true');
+    const large = image.cloneNode();
+    large.alt = '';
+    large.loading = 'lazy';
+    preview.append(large, housingElement('small', '', photo.caption || 'Community photo; actual unit may differ.'));
+    button.append(preview);
+    image.addEventListener('error', () => {
+      // A user's browser can load the same official image if its publisher
+      // rejects server downloads. Retry once; never substitute another home.
+      if (displayedPhotoUrl === photoUrl && new URL(photo.url).protocol === 'https:') {
+        displayedPhotoUrl = photo.url;
+        card.style.setProperty('--card-photo', `url(${JSON.stringify(displayedPhotoUrl)})`);
         large.src = displayedPhotoUrl;
-        large.alt = photo.alt || row.community;
-        large.referrerPolicy = 'no-referrer';
-        large.draggable = false;
-        document.getElementById('property-photo-caption').textContent = photo.caption || 'Community photo; actual unit may differ.';
-        const source = document.getElementById('property-photo-source');
-        source.replaceChildren();
-        if (photo.credit) source.append(housingElement('p', '', photo.credit));
-        const link = sourceLink(photo.source_url, 'View image source ↗');
-        if (link) source.append(link);
-        const license = sourceLink(photo.license_url, photo.license_name || 'Image license');
-        if (license) source.append(document.createTextNode(' · '), license);
-        photoDialog.showModal();
-        document.body.style.overflow = 'hidden';
-      });
-      card.append(button);
-    } // no photo: show nothing rather than a placeholder
-    const status = housingElement('span', 'housing-status', statuses.size > 1 ? 'Availability varies by plan' : statusLabels[availability.status] || 'Contact for availability');
-    status.dataset.status = statuses.size > 1 ? 'mixed' : availability.status || '';
-    const tools = housingElement('div', 'card-tools');
-    tools.append(favoriteButton(row), shareButton(row));
-    const top = housingElement('div', 'card-top');
-    top.append(status, tools);
-    card.append(top);
-    card.append(housingElement('h3', '', row.community || row.name));
-    const categories = new Set(plans.map(p => p.type));
-    const category = categories.size > 1 ? 'Affordable & regular options' : row.type === 'rental_listing' ? row.rental_space === 'room' ? 'Student room · regular rental' : 'Regular rental · program status unconfirmed' : row.type === 'housing_authority' ? 'Housing program' : 'Income-restricted housing';
-    card.append(housingElement('p', 'housing-category', plans.length === 1 && row.floor_plan ? `${category} · ${row.floor_plan}` : category));
-    card.append(housingElement('p', 'housing-location', row.address || [row.city, row.jurisdiction].filter(Boolean).join(' · ')));
-    const ages = [...new Set(plans.map(p => p.minimum_age))];
-    if (ages.length === 1 && row.minimum_age) card.append(housingElement('p', 'housing-age', `For adults ${row.minimum_age}+`));
-    else if (ages.some(Boolean)) card.append(housingElement('p', 'housing-age', 'Some options have age requirements'));
-    const rent = housingElement('p', 'housing-rent');
-    if (typeof row.monthly_rent === 'number' && Number.isFinite(row.monthly_rent)) {
-      rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US',{maximumFractionDigits:0})}`;
-      rent.append(housingElement('small', '', ClearHomeRental.period(row)));
-    } else rent.textContent = 'Rent: confirm with provider';
-    card.append(rent);
-    // Condensed: what you get, the move-in note, then one muted line of extras and the rent caveat.
-    const space = ClearHomeRental.space(row);
-    const shared = row.rental_space === 'room' ? 'shared kitchen & living areas' : '';
-    if (space) card.append(housingElement('p', 'housing-plan', [space, shared].filter(Boolean).join(' · ')));
-    const term = ClearHomeRental.term(row);
-    if (term) card.append(housingElement('p', 'housing-plan', term));
-    const lease = ClearHomeRental.lease(row);
-    const features = [];
-    if (lease && !`${row.floor_plan||''} ${category}`.toLowerCase().includes(lease.toLowerCase())) features.push(lease);
-    const bedrooms = [...new Set(plans.map(p => p.bedrooms).filter(b => b != null))].sort((a, b) => a - b);
-    if (row.rental_space === 'room') { if (!space) features.push('Shared kitchen & living areas'); } else if (bedrooms.length) features.push(bedrooms.map(b => b === 0 ? 'Studio' : `${b} bed`).join(' / '));
-    if (plans.length === 1 && row.bathrooms) features.push(`${row.bathrooms} bath`);
-    if (plans.length > 1) features.push(`${plans.length} matching plans`);
-    features.push(plans.every(p => p.accessible === true) ? 'Accessible unit documented' : 'Confirm accessibility');
-    features.push(typeof row.monthly_rent !== 'number' ? 'Ask for rent & fees' : plans.length > 1 ? 'Lowest starting rent among plans' : 'Fees & utilities may be extra');
-    card.append(housingElement('p', 'housing-features', features.join(' · ')));
-    if (plans.length > 1) {
-      const details = housingElement('details', 'floor-plans-details');
-      details.dataset.key = 'plans:' + row.id;
-      details.append(housingElement('summary', '', `${plans.length} Floor Plans & Eligibility`));
-      const options = housingElement('div', 'floor-plan-list');
-      plans.forEach(plan => {
-        const option = housingElement('section', 'floor-plan-option');
-        option.append(housingElement('h4', '', plan.floor_plan || plan.name));
-        option.append(housingElement('p', 'option-price', rentLabel(plan)));
-        const planFeatures = [];
-        if (plan.rental_space === 'room') planFeatures.push(ClearHomeRental.space(plan));
-        else if (plan.bedrooms != null) planFeatures.push(plan.bedrooms === 0 ? 'Studio' : `${plan.bedrooms} bed`);
-        if (plan.bathrooms) planFeatures.push(`${plan.bathrooms} bath`);
-        if (plan.square_feet) planFeatures.push(`${plan.square_feet.toLocaleString('en-US')} sq ft`);
-        option.append(housingElement('p', 'housing-features', planFeatures.join(' · ')));
-        option.append(housingElement('p', 'option-status', statusLabels[plan.availability?.status] || 'Contact for availability'));
-        if (ClearHomeRental.term(plan)) option.append(housingElement('p', 'housing-plan', ClearHomeRental.term(plan)));
-        if (ClearHomeRental.lease(plan)) option.append(housingElement('p', 'housing-features', ClearHomeRental.lease(plan)));
-        option.append(eligibilityDetails(plan));
-        options.append(option);
-      });
-      details.append(options);
-      card.append(details);
-    } else card.append(eligibilityDetails(row));
-    const actions = housingElement('div', 'housing-actions');
-    const nextStep = nextStepLink(row);
-    if (nextStep) actions.append(nextStep);
-    // The property's own site comes first; a county list (names, addresses, phones) is labeled as a list, not a property page.
-    const ownSite = row.website && row.website !== row.source_url && !['property_website', 'owner_property_page', 'official_property_page'].includes(row.source_kind) && !/\.gov\/|\/DocumentCenter\/|\.pdf($|\?)/i.test(row.website) ? sourceLink(row.website, 'Website ↗') : null;
-    if (ownSite) actions.append(ownSite);
-    const source = sourceLink(row.source_url, sourceLabel(row, plans.length > 1 ? 'Starting-Price Source ↗' : 'View Source ↗'));
-    if (source) { if (row.source_kind === 'official_directory') source.title = 'The county’s list of income-restricted properties, with each one’s address and phone. Call the property to apply.';
-      actions.append(source); }
-    const map = mapLink(row);
-    if (map) actions.append(map);
-    const reviewDates = plans.map(p => p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
-    const reviewed = reviewDates[0] === reviewDates[reviewDates.length - 1] ? reviewedDate(reviewDates[0]) : `${reviewedDate(reviewDates[0])} – ${reviewedDate(reviewDates[reviewDates.length-1])}`;
-    card.append(actions, housingElement('p', 'housing-reviewed', `Source reviewed ${reviewed}`));
-    if (safePhoto && photo.license_url) {
-      const credit = housingElement('div', 'photo-attribution');
-      credit.append(housingElement('span', '', `Photo: ${photo.credit}`));
-      const imageSource = sourceLink(photo.source_url, 'Photo source');
-      if (imageSource) credit.append(imageSource);
+        image.src = displayedPhotoUrl;
+        if (photoDialog.open && photoDialog.dataset.resourceId === photoRow.id) document.getElementById('property-photo-large').src = displayedPhotoUrl;
+        return;
+      }
+      button.remove();
+      mapCover();
+      if (photoDialog.open && photoDialog.dataset.resourceId === photoRow.id) { document.getElementById('property-photo-large').hidden = true;
+        document.getElementById('property-photo-caption').textContent = 'Image unavailable. Open the official source to view available property images.'; }
+    });
+    // The card shows a smaller copy; the hover preview and the enlarged photo use the original.
+    card.loadPhoto = () => { card.style.setProperty('--card-photo', `url("${cardPhotoUrl}")`);
+      image.src = cardPhotoUrl;
+      large.src = displayedPhotoUrl; };
+    if (photoObserver) photoObserver.observe(card); else card.loadPhoto();
+    button.addEventListener('click', () => {
+      photoDialog.dataset.resourceId = photoRow.id;
+      document.getElementById('property-photo-title').textContent = (row.community || row.name) + (photo.kind === 'rendering' ? ' — provider rendering' : '');
+      const large = document.getElementById('property-photo-large');
+      large.hidden = false;
+      large.src = displayedPhotoUrl;
+      large.alt = photo.alt || row.community;
+      large.referrerPolicy = 'no-referrer';
+      large.draggable = false;
+      document.getElementById('property-photo-caption').textContent = photo.caption || 'Community photo; actual unit may differ.';
+      const source = document.getElementById('property-photo-source');
+      source.replaceChildren();
+      if (photo.credit) source.append(housingElement('p', '', photo.credit));
+      const link = sourceLink(photo.source_url, 'View image source ↗');
+      if (link) source.append(link);
       const license = sourceLink(photo.license_url, photo.license_name || 'Image license');
-      if (license) credit.append(license);
-      card.append(credit);
-    }
-    if (card.classList.contains('has-photo')) { // keep details together below the dedicated photo area
-      const glass = housingElement('div', 'card-glass');
-      [...card.children].filter(n => !n.classList.contains('property-photo') && !n.classList.contains('map-photo-glass')).forEach(n => glass.append(n));
-      card.append(glass);
-    }
-    if (gemmaOrder?.has(row.id)) { card.dataset.gemmaRank = gemmaOrder.get(row.id) + 1;
-      card.title = `Gemma's pick #${gemmaOrder.get(row.id) + 1}`; }
-    listingsGrid.append(card);
-  });
+      if (license) source.append(document.createTextNode(' · '), license);
+      photoDialog.showModal();
+      document.body.style.overflow = 'hidden';
+    });
+    card.append(button);
+  } // no photo: show nothing rather than a placeholder
+  const status = housingElement('span', 'housing-status', statuses.size > 1 ? 'Availability varies by plan' : statusLabels[availability.status] || 'Contact for availability');
+  status.dataset.status = statuses.size > 1 ? 'mixed' : availability.status || '';
+  const tools = housingElement('div', 'card-tools');
+  tools.append(favoriteButton(row), shareButton(row));
+  const top = housingElement('div', 'card-top');
+  top.append(status, tools);
+  card.append(top);
+  card.append(housingElement('h3', '', row.community || row.name));
+  const categories = new Set(plans.map(p => p.type));
+  const category = categories.size > 1 ? 'Affordable & regular options' : row.type === 'rental_listing' ? row.rental_space === 'room' ? 'Student room · regular rental' : 'Regular rental · program status unconfirmed' : row.type === 'housing_authority' ? 'Housing program' : 'Income-restricted housing';
+  card.append(housingElement('p', 'housing-category', plans.length === 1 && row.floor_plan ? `${category} · ${row.floor_plan}` : category));
+  card.append(housingElement('p', 'housing-location', row.address || [row.city, row.jurisdiction].filter(Boolean).join(' · ')));
+  const ages = [...new Set(plans.map(p => p.minimum_age))];
+  if (ages.length === 1 && row.minimum_age) card.append(housingElement('p', 'housing-age', `For adults ${row.minimum_age}+`));
+  else if (ages.some(Boolean)) card.append(housingElement('p', 'housing-age', 'Some options have age requirements'));
+  const rent = housingElement('p', 'housing-rent');
+  if (typeof row.monthly_rent === 'number' && Number.isFinite(row.monthly_rent)) {
+    rent.textContent = `From $${row.monthly_rent.toLocaleString('en-US',{maximumFractionDigits:0})}`;
+    rent.append(housingElement('small', '', ClearHomeRental.period(row)));
+  } else rent.textContent = 'Rent: confirm with provider';
+  card.append(rent);
+  // Condensed: what you get, the move-in note, then one muted line of extras and the rent caveat.
+  const space = ClearHomeRental.space(row);
+  const shared = row.rental_space === 'room' ? 'shared kitchen & living areas' : '';
+  if (space) card.append(housingElement('p', 'housing-plan', [space, shared].filter(Boolean).join(' · ')));
+  const term = ClearHomeRental.term(row);
+  if (term) card.append(housingElement('p', 'housing-plan', term));
+  const lease = ClearHomeRental.lease(row);
+  const features = [];
+  if (lease && !`${row.floor_plan||''} ${category}`.toLowerCase().includes(lease.toLowerCase())) features.push(lease);
+  const bedrooms = [...new Set(plans.map(p => p.bedrooms).filter(b => b != null))].sort((a, b) => a - b);
+  if (row.rental_space === 'room') { if (!space) features.push('Shared kitchen & living areas'); } else if (bedrooms.length) features.push(bedrooms.map(b => b === 0 ? 'Studio' : `${b} bed`).join(' / '));
+  if (plans.length === 1 && row.bathrooms) features.push(`${row.bathrooms} bath`);
+  if (plans.length > 1) features.push(`${plans.length} matching plans`);
+  features.push(plans.every(p => p.accessible === true) ? 'Accessible unit documented' : 'Confirm accessibility');
+  features.push(typeof row.monthly_rent !== 'number' ? 'Ask for rent & fees' : plans.length > 1 ? 'Lowest starting rent among plans' : 'Fees & utilities may be extra');
+  card.append(housingElement('p', 'housing-features', features.join(' · ')));
+  if (plans.length > 1) {
+    const details = housingElement('details', 'floor-plans-details');
+    details.dataset.key = 'plans:' + row.id;
+    details.append(housingElement('summary', '', `${plans.length} Floor Plans & Eligibility`));
+    const options = housingElement('div', 'floor-plan-list');
+    plans.forEach(plan => {
+      const option = housingElement('section', 'floor-plan-option');
+      option.append(housingElement('h4', '', plan.floor_plan || plan.name));
+      option.append(housingElement('p', 'option-price', rentLabel(plan)));
+      const planFeatures = [];
+      if (plan.rental_space === 'room') planFeatures.push(ClearHomeRental.space(plan));
+      else if (plan.bedrooms != null) planFeatures.push(plan.bedrooms === 0 ? 'Studio' : `${plan.bedrooms} bed`);
+      if (plan.bathrooms) planFeatures.push(`${plan.bathrooms} bath`);
+      if (plan.square_feet) planFeatures.push(`${plan.square_feet.toLocaleString('en-US')} sq ft`);
+      option.append(housingElement('p', 'housing-features', planFeatures.join(' · ')));
+      option.append(housingElement('p', 'option-status', statusLabels[plan.availability?.status] || 'Contact for availability'));
+      if (ClearHomeRental.term(plan)) option.append(housingElement('p', 'housing-plan', ClearHomeRental.term(plan)));
+      if (ClearHomeRental.lease(plan)) option.append(housingElement('p', 'housing-features', ClearHomeRental.lease(plan)));
+      option.append(eligibilityDetails(plan));
+      options.append(option);
+    });
+    details.append(options);
+    card.append(details);
+  } else card.append(eligibilityDetails(row));
+  const actions = housingElement('div', 'housing-actions');
+  const nextStep = nextStepLink(row);
+  if (nextStep) actions.append(nextStep);
+  // The property's own site comes first; a county list (names, addresses, phones) is labeled as a list, not a property page.
+  const ownSite = row.website && row.website !== row.source_url && !['property_website', 'owner_property_page', 'official_property_page'].includes(row.source_kind) && !/\.gov\/|\/DocumentCenter\/|\.pdf($|\?)/i.test(row.website) ? sourceLink(row.website, 'Website ↗') : null;
+  if (ownSite) actions.append(ownSite);
+  const source = sourceLink(row.source_url, sourceLabel(row, plans.length > 1 ? 'Starting-Price Source ↗' : 'View Source ↗'));
+  if (source) { if (row.source_kind === 'official_directory') source.title = 'The county’s list of income-restricted properties, with each one’s address and phone. Call the property to apply.';
+    actions.append(source); }
+  const map = mapLink(row);
+  if (map) actions.append(map);
+  const reviewDates = plans.map(p => p.availability?.checked_on || p.last_verified).filter(Boolean).sort();
+  const reviewed = reviewDates[0] === reviewDates[reviewDates.length - 1] ? reviewedDate(reviewDates[0]) : `${reviewedDate(reviewDates[0])} – ${reviewedDate(reviewDates[reviewDates.length-1])}`;
+  card.append(actions, housingElement('p', 'housing-reviewed', `Source reviewed ${reviewed}`));
+  if (safePhoto && photo.license_url) {
+    const credit = housingElement('div', 'photo-attribution');
+    credit.append(housingElement('span', '', `Photo: ${photo.credit}`));
+    const imageSource = sourceLink(photo.source_url, 'Photo source');
+    if (imageSource) credit.append(imageSource);
+    const license = sourceLink(photo.license_url, photo.license_name || 'Image license');
+    if (license) credit.append(license);
+    card.append(credit);
+  }
+  if (card.classList.contains('has-photo')) { // keep details together below the dedicated photo area
+    const glass = housingElement('div', 'card-glass');
+    [...card.children].filter(n => !n.classList.contains('property-photo') && !n.classList.contains('map-photo-glass')).forEach(n => glass.append(n));
+    card.append(glass);
+  }
+  if (gemmaOrder?.has(row.id)) { card.dataset.gemmaRank = gemmaOrder.get(row.id) + 1;
+    card.title = `Gemma's pick #${gemmaOrder.get(row.id) + 1}`; }
+  return card;
+}
+function renderHousing() {
+  const expanded = new Set([...listingsGrid.querySelectorAll('details[open]')].map(el => el.dataset.key));
+  housingRun++;
+  const { rows, ordered } = orderedHousing();
+  listingsGrid.replaceChildren(...ordered.slice(0, visibleHousingCount).map(housingCard));
   listingsGrid.querySelectorAll('details').forEach(el => { el.open = expanded.has(el.dataset.key); });
+  housingStatus(rows);
+}
+function housingStatus(rows) {
   moreListings.hidden = visibleHousingCount >= rows.length;
   allListings.hidden = moreListings.hidden || rows.length - visibleHousingCount <= 18; // with 18 or fewer left, Show more already reveals them all
   moreListings.textContent = `Show More Results (${Math.max(0,rows.length-visibleHousingCount)} remaining)`;
@@ -635,12 +654,23 @@ sortForm.addEventListener('submit', async e => {
 
 function revealCommunities(count) {
   const firstNewIndex = visibleHousingCount;
-  visibleHousingCount = Math.min(shownRows().length, visibleHousingCount + count);
-  renderHousing();
-  // New cards fade in a few at a time, and the page glides to the first one.
-  [...listingsGrid.children].slice(firstNewIndex).forEach((c, i) => { c.classList.add('card-reveal');
-    c.style.animationDelay = `${Math.min(i,11)*35}ms`; });
-  const firstNewCard = listingsGrid.children[firstNewIndex];
+  const { rows, ordered } = orderedHousing();
+  visibleHousingCount = Math.min(rows.length, visibleHousingCount + count);
+  // Only the new cards are added (the ones on screen stay as they are): the first dozen at once so the page can glide
+  // to them, the rest a batch at a time so a phone never freezes on a long list.
+  const run = ++housingRun;
+  const fresh = ordered.slice(firstNewIndex, visibleHousingCount);
+  const first = fresh.slice(0, 12).map(housingCard);
+  first.forEach((c, i) => { c.classList.add('card-reveal');
+    c.style.animationDelay = `${i*35}ms`; });
+  listingsGrid.append(...first);
+  housingStatus(rows);
+  let next = first.length;
+  const addMore = () => { if (run !== housingRun || next >= fresh.length) return;
+    listingsGrid.append(...fresh.slice(next, next += 24).map(housingCard));
+    setTimeout(addMore, 30); };
+  setTimeout(addMore, 120);
+  const firstNewCard = first[0];
   if (firstNewCard) { firstNewCard.tabIndex = -1;
     firstNewCard.focus({ preventScroll: true });
     firstNewCard.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); }

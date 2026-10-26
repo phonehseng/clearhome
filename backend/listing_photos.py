@@ -14,7 +14,7 @@ import time
 from urllib.parse import urlsplit
 
 import requests
-from PIL import Image
+from PIL import Image, ImageOps
 from catalog import load_catalog
 
 CACHE_DIR = Path(__file__).resolve().parent.parent / '.cache' / 'listing-photos'
@@ -191,6 +191,50 @@ def cached_photo(photo, cache_dir=None):
         except (requests.RequestException, OSError, ValueError, Image.DecompressionBombError) as exc:
             _FAILURES[key] = time.monotonic()+60
             raise PhotoUnavailable('Unable to download a valid provider photo.') from exc
+
+CARD_WIDTHS = {800}  # listing cards show the photo about 400 px wide and 200 px tall, so 800 px is sharp on phones
+
+
+def card_photo(photo, width, cache_dir=None):
+    """A smaller JPEG of a catalog photo for the listing cards, made once and kept next to the original.
+    Full-size originals averaged about 440 KB, and a long list loaded hundreds at once; enlarging a photo still opens
+    the original."""
+    if width not in CARD_WIDTHS:
+        raise PhotoUnavailable('Unsupported photo width.')
+    original = cached_photo(photo, cache_dir)
+    key = hashlib.sha256(f"{photo.get('url', '')}|w{width}".encode()).hexdigest()
+    directory = Path(cache_dir or CACHE_DIR)
+    path = directory / (key + '.jpg')
+    with _LOCK:
+        lock = _LOCKS.setdefault(key, threading.Lock())
+    with lock:
+        if path.is_file():
+            return path
+        try:
+            with Image.open(original) as image:
+                if image.width <= width and original.stat().st_size <= 200_000:
+                    return original  # already small
+                image = ImageOps.exif_transpose(image)
+                if image.mode in ('RGBA', 'LA', 'P'):  # transparent parts go white, not black
+                    image = image.convert('RGBA')
+                    flat = Image.new('RGB', image.size, 'white')
+                    flat.paste(image, mask=image.getchannel('A'))
+                    image = flat
+                else:
+                    image = image.convert('RGB')
+                image.thumbnail((width, width * 2), Image.LANCZOS)
+                directory.mkdir(parents=True, exist_ok=True)
+                handle = tempfile.NamedTemporaryFile(dir=directory, delete=False)
+                try:
+                    with handle:
+                        image.save(handle, 'JPEG', quality=80, optimize=True, progressive=True)
+                    os.replace(handle.name, path)
+                finally:
+                    Path(handle.name).unlink(missing_ok=True)
+            return path
+        except (OSError, ValueError, Image.DecompressionBombError):
+            return original  # the full photo still works; never break the card over a resize
+
 
 def photo_mimetype(path):
     with Image.open(path) as image:

@@ -24,7 +24,7 @@ import near_place
 import walkable
 from matcher import gemma_unavailable, find_help
 from catalog import REVIEW_PATH, REVIEW_STATES, filter_catalog, group_listings, load_catalog, load_reviews, validate_resources, STATUSES
-from listing_photos import cached_photo, photo_mimetype, PhotoUnavailable
+from listing_photos import CARD_WIDTHS, card_photo, cached_photo, photo_mimetype, PhotoUnavailable
 from redact import redact
 from sources import refresh_in_background
 from freshness import check_in_background
@@ -129,8 +129,12 @@ def listing_photo(resource_id):
     row = next((row for row in load_catalog() if row.get('id') == resource_id), None)
     if not row or not row.get('photo'):
         return jsonify(error="No provider photo is available for this listing."), 404
+    # ?w=800: the smaller copy the listing cards use; without it, the original (when someone enlarges the photo).
+    width = request.args.get('w', type=int)
+    if width is not None and width not in CARD_WIDTHS:
+        return jsonify(error="w must be one of " + ", ".join(map(str, sorted(CARD_WIDTHS))) + "."), 400
     try:
-        path = cached_photo(row['photo'])
+        path = card_photo(row['photo'], width) if width else cached_photo(row['photo'])
         response = send_file(path, mimetype=photo_mimetype(path), max_age=86400, conditional=True)
         response.headers['X-Content-Type-Options'] = 'nosniff'
         return response

@@ -1751,3 +1751,10 @@ select[aria-invalid="true"] {
     min-height: 48px
   }
 }
+
+/* Long lists stay smooth on phones: a listing card off screen isn't laid out or drawn (its glass blur included) until
+   it scrolls near; meanwhile it holds about one card's height so the page doesn't jump. */
+#listings-grid > .housing-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 620px
+}
