@@ -58,6 +58,14 @@ def _config(search):
         http_options=types.HttpOptions(timeout=180_000))
 
 
+def _same_site(host, seen):
+    """host is the domain Google returned or a subdomain of it (or the other way round), on a dot boundary:
+    "leasing.example.com" matches "example.com", "evil-example.com" and "com" don't."""
+    if not host or not seen or "." not in host or "." not in seen:
+        return False
+    return host == seen or host.endswith("." + seen) or seen.endswith("." + host)
+
+
 def _domain(url):
     host = urlsplit(url or "").hostname or ""
     return host[4:] if host.startswith("www.") else host
@@ -98,7 +106,7 @@ Only places that appear in your search results. Never guess a value: use null. I
         if not isinstance(item, dict) or not item.get("community"):
             continue
         url = str(item.get("source_url") or "")
-        if not url.startswith("https://") or not any(_domain(url).endswith(d) or d.endswith(_domain(url)) for d in seen if d):
+        if not url.startswith("https://") or not any(_same_site(_domain(url), d) for d in seen if d):
             continue  # not backed by a page Google actually returned
         found.append(item)
     return found[:MAX_PER_AREA]

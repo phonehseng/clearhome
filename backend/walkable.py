@@ -112,6 +112,8 @@ def _nearby(home, amenity, minutes):
             "location": p["location"],
             "photo": {"name": photo["name"], "attributions": [{"name": a.get("displayName"), "uri": a.get("uri")} for a in photo.get("authorAttributions", [])]} if photo else None,
         })
+        if len(_places_seen) > 20_000:  # a long-running server forgets old searches instead of growing forever
+            _places_seen.clear()
         _places_seen[p["id"]] = p["location"]
     return places[:MAX_PLACES]
 

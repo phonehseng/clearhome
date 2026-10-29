@@ -12,6 +12,7 @@ from datetime import date
 
 from flask import Flask, Response, g, jsonify, request, send_from_directory, send_file, stream_with_context
 
+from limits import limited
 from advisor import (AREAS, about_answer, advice_question, ask, boundary_answer, cards_for, clarify, expand_nicknames, fair_housing_answer,
                      named_answer, options, social_answer, outside_answer, programs, quick_nearby, stream_ask, warm_examples, with_context)
 import clarifier
@@ -34,6 +35,25 @@ FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
 READ_ONLY = os.environ.get("CLEARHOME_READ_ONLY") == "1"
 app = Flask(__name__, static_folder=None)
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024  # requests are small JSON; no uploads
+
+
+# Every response: no framing by other sites (clickjacking), no MIME sniffing, HTTPS only, and no plugins or <base> tricks.
+# A full script allowlist (CSP) is left out: Maps, Leaflet and the fonts load from several hosts.
+SECURITY_HEADERS = {
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Content-Security-Policy": "frame-ancestors 'self'; object-src 'none'; base-uri 'self'",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "geolocation=(self), camera=(), microphone=(), payment=()",
+}
+
+
+@app.after_request
+def security_headers(response):
+    for name, value in SECURITY_HEADERS.items():
+        response.headers.setdefault(name, value)
+    return response
 
 
 @app.after_request
@@ -324,6 +344,7 @@ def _gemma_error(error, fallback="Something went wrong. Please try again, or cal
 
 
 @app.post("/api/options")
+@limited("form")
 def find_options():
     """Instant matches for the find form (no AI): listings, programs, and shelters when it's urgent."""
     body = _body()
@@ -367,6 +388,7 @@ def find_options():
 
 
 @app.post("/api/listings/sort")
+@limited("sort")
 def sort_listings():
     """The mini Gemma chat above the listings: which of the communities on screen fit best, plus a few lines why."""
     body = _body()
@@ -379,6 +401,7 @@ def sort_listings():
 
 
 @app.post("/api/programs/sort")
+@limited("sort")
 def sort_programs():
     """The mini Gemma chat on the Resources page: which programs on screen fit best. quick=true answers at once from the
     words; the second call has Gemma order them and say why."""
@@ -392,6 +415,7 @@ def sort_programs():
 
 
 @app.post("/api/hotels")
+@limited("places")
 def hotels_nearby():
     """Hotels and motels near a place from Google Places, cheapest first, for someone who needs a room tonight (no AI)."""
     found = hotels.near(_text(_body(), "place", 100))
@@ -407,6 +431,7 @@ def maps_config():
 
 
 @app.post("/api/housing/search")
+@limited("places")
 def housing_walk_search():
     """Reviewed affordable homes near a supermarket, pharmacy or transit stop, with real walking times."""
     body = _body()
@@ -448,6 +473,7 @@ def housing_walk_search():
 
 
 @app.post("/api/housing/route")
+@limited("places")
 def housing_walk_route():
     """Walking route line from a verified home to a place an earlier search returned."""
     body = _body()
@@ -462,6 +488,7 @@ def housing_walk_route():
 
 
 @app.get("/api/place-photo")
+@limited("photos")
 def place_photo():
     """Google place photo, fetched server-side so the server key never reaches the browser."""
     try:
@@ -481,6 +508,7 @@ def boundaries():
 
 
 @app.post("/api/live-search")
+@limited("web")
 def web_search():
     """Gemma searches the web for affordable listings in a typed location. Results are labeled unreviewed."""
     location = str((_body()).get("location", "")).strip()[:100]
@@ -563,6 +591,7 @@ def _chat_request():
 
 
 @app.post("/api/ask")
+@limited("chat")
 def ask_advisor():
     question, history, instant = _chat_request()
     if question is None:
@@ -581,6 +610,7 @@ def ask_advisor():
 
 
 @app.post("/api/gemma/warm")
+@limited("warm")
 def warm_gemma():
     """Pages call this when someone presses Get Started or the chat comes into view, so our Gemma GPU (which sleeps
     when idle) wakes up before the first question."""
@@ -590,6 +620,7 @@ def warm_gemma():
 
 
 @app.post("/api/ask/stream")
+@limited("chat")
 def ask_advisor_stream():
     """The chat with live updates (server-sent events): what was found, then Gemma's answer as it's written."""
     question, history, instant = _chat_request()
@@ -636,6 +667,7 @@ def ask_advisor_stream():
 
 
 @app.post("/api/match")
+@limited("chat")
 def match():
     message = _text(_body(), "message")
     if not message:
