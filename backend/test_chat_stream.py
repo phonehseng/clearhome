@@ -36,6 +36,7 @@ class ChatStreamTests(unittest.TestCase):
         import gemma_gpu
         import matcher
         with patch.dict("os.environ", {"GEMMA_GPU_URL": "https://gpu.example"}), patch.object(gemma_gpu, "_ready_at", 0.0), \
+                patch.object(gemma_gpu, "warm"), \
                 patch.object(gemma_gpu, "stream", side_effect=RuntimeError("cold")), patch.object(matcher, "_get_client", side_effect=RuntimeError("no key")):
             kind, text = next(matcher.stream_gemma("hi", thoughts=True))
         self.assertEqual(kind, "status")

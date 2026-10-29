@@ -8,6 +8,7 @@ import json
 import os
 import re
 import sys
+import threading
 import time
 
 from dotenv import load_dotenv
@@ -46,11 +47,44 @@ def _get_client():
     return _client
 
 
-def ask_gemma(prompt, attempts=2):
+# While our Gemma GPU wakes up (it scales to zero, and a cold start takes minutes), a fast Gemini model on the Gemini API
+# answers instead: about a second to the first word, where Gemma 4 on the Gemini API always reasons first (a minute or
+# more on a full prompt). The GPU is woken in the background, so the next question gets Gemma. GEMINI_FAST_MODEL picks
+# the model; the "latest" name keeps working when Google retires a version.
+FAST_MODEL = os.environ.get("GEMINI_FAST_MODEL", "gemini-flash-lite-latest")
+FAST_ENGINE = f"Gemini ({FAST_MODEL}) via the Gemini API, answering right away while Gemma 4 26B wakes up on our GPU"
+WAKING_NOTE = "Gemma is warming up on our GPU (it sleeps when nobody's asking), so Gemini is answering this one right away."
+
+
+class StandIn(str):
+    """An answer from the fast Gemini model while Gemma woke up: shown with its own label, never saved as Gemma's."""
+    engine = FAST_ENGINE
+
+
+def _waking(gemma_gpu):
+    """True when our GPU is set up but asleep (or just failed): wake it in the background so the next answer is Gemma's."""
+    if not gemma_gpu.url() or not (gemma_gpu.asleep() or not gemma_gpu.available()):
+        return False
+    threading.Thread(target=gemma_gpu.warm, daemon=True).start()  # one wake-up at a time; a no-op while one is under way
+    return True
+
+
+def _fast_config():
+    from google.genai import types
+    return types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_level="minimal"))
+
+
+def ask_gemma(prompt, attempts=2, quick=True):
     """Call Gemma, retrying once on a temporary server error. Rate limits (429) aren't retried: waiting out
-    the free tier's per-minute limit would leave someone staring at a spinner."""
+    the free tier's per-minute limit would leave someone staring at a spinner. quick=False waits for Gemma even
+    while the GPU wakes (for checks no one is waiting on), instead of a fast Gemini answer."""
     import gemma_gpu  # our own Gemma 4 GPU first, when it's set up and awake
-    if gemma_gpu.available():
+    if quick and _waking(gemma_gpu):
+        try:
+            return StandIn(_get_client().models.generate_content(model=FAST_MODEL, contents=prompt, config=_fast_config()).text)
+        except Exception:
+            pass  # Gemma on the Gemini API below
+    elif gemma_gpu.available():
         try:
             return gemma_gpu.ask(prompt)
         except Exception:
@@ -68,11 +102,30 @@ def stream_gemma(prompt, thoughts=False, think=False):
     """Yield Gemma's answer text as it's written, so the chat can show it word by word.
     With thoughts=True, yields (is_thought, text) pairs so the chat can also show what Gemma is working on,
     starting with ("engine", <which model and where>) so the page can say exactly what answered.
-    think=True turns on Gemma's reasoning on our GPU (the Gemini API version always reasons)."""
+    think=True turns on Gemma's reasoning on our GPU (the Gemini API version always reasons). While the GPU wakes up,
+    a fast Gemini model answers instead (FAST_ENGINE), so the first words still come in about a second."""
     import gemma_gpu  # our own Gemma 4 GPU first: no hidden reasoning, so words start in seconds
-    if thoughts and gemma_gpu.url() and (gemma_gpu.asleep() or not gemma_gpu.available()):
-        yield "status", "Gemma is warming up (it sleeps when nobody's asking). The first answer can take up to a minute; after that it's quick."
-    if gemma_gpu.available():
+    if _waking(gemma_gpu):  # asleep: a fast Gemini answer now, while the GPU wakes for the next question
+        started = False
+        try:
+            if thoughts:
+                yield "status", WAKING_NOTE
+            for chunk in _get_client().models.generate_content_stream(model=FAST_MODEL, contents=prompt, config=_fast_config()):
+                for part in (chunk.candidates[0].content.parts or []) if chunk.candidates and chunk.candidates[0].content else []:
+                    if not part.text or getattr(part, "thought", False):
+                        continue
+                    if not started and thoughts:
+                        yield "engine", FAST_ENGINE
+                    started = True
+                    yield (False, part.text) if thoughts else part.text
+            if started:
+                return
+        except Exception:
+            if started:
+                raise  # part of an answer was already shown; don't start over with another model
+        if thoughts:
+            yield "status", "Gemma is warming up (it sleeps when nobody's asking). The first answer can take up to a minute; after that it's quick."
+    elif gemma_gpu.available():
         started = False
         try:
             for is_thought, text in gemma_gpu.stream_parts(prompt, think):

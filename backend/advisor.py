@@ -10,7 +10,7 @@ import time
 
 import gemma_gpu
 from catalog import filter_catalog, load_catalog, senior_only, serves_location
-from matcher import ask_gemma, gemma_unavailable, stream_gemma
+from matcher import FAST_ENGINE, StandIn, ask_gemma, gemma_unavailable, stream_gemma
 
 # Fields Gemma needs to answer; the rest (photos, internal review data) only adds tokens.
 FIELDS = ("name", "type", "jurisdiction", "city", "address", "phone", "website", "hours", "who_it_serves",
@@ -143,15 +143,16 @@ CACHE_SECONDS = 12 * 3600
 _cache, _cache_lock = {}, threading.Lock()
 
 
-def ask(question, history=None):
+def ask(question, history=None, quick=True):
+    """quick=False waits for Gemma while its GPU wakes up (for warm-ups no one is waiting on), instead of the fast stand-in."""
     key = " ".join(question.lower().split())
     if not history:
         with _cache_lock:
             hit = _cache.get(key)
         if hit and time.time() - hit[0] < CACHE_SECONDS:
             return hit[1]
-    answer = _ask(question, history)
-    if not history:
+    answer = _ask(question, history, quick)
+    if not history and not isinstance(answer, StandIn):  # a fast stand-in while the GPU woke isn't kept as Gemma's answer
         _remember(key, answer)
     return answer
 
@@ -174,7 +175,7 @@ def warm_examples(gap_seconds=25):
     def run():
         for question in EXAMPLES:
             try:
-                ask(question)
+                ask(question, quick=False)  # Gemma's answer to keep, not the stand-in while the GPU wakes
             except Exception:
                 pass  # a failed warm-up just means that button waits for Gemma
             time.sleep(gap_seconds)
@@ -244,12 +245,12 @@ def _near_place(question, history=None):
     return (want, near_place.for_gemma(want, history)) if want else (None, None)
 
 
-def _ask(question, history=None):
+def _ask(question, history=None, quick=True):
     _, place = _near_place(question, history)
     if place and "text" in place:
         return place["text"]
     rows = place["rows"] if place else _records(question, history)
-    return ask_gemma(_prompt(question, history, rows, place=place and place["note"]))
+    return ask_gemma(_prompt(question, history, rows, place=place and place["note"]), quick=quick)
 
 
 def _prompt(question, history, rows, needs=None, walk=None, place=None):
@@ -789,13 +790,14 @@ def stream_ask(question, history=None):
     # Without Gemma, measured homes fall back to the same no-AI answer (store, limit, times), never a generic list.
     fallback = ((lambda reason: near_place.with_directions(f"{reason}, so here is what Google Maps measured:\n\n{place['fallback']}", place["fallback"].directions))
                 if place else (lambda reason: fallback_answer(rows, reason, question)))
-    parts, step, started, notes = [], None, None, []
+    parts, step, started, notes, stand_in = [], None, None, [], False
     prompt = _prompt(question, history, rows, needs, walk, place=place and place["note"])
     try:
         # Gemma thinks first on every answer: it checks each place against what was asked before writing.
         reply = stream_gemma(prompt, thoughts=True, think=True)
         for is_thought, text in reply:
             if is_thought in ("engine", "status"):
+                stand_in = stand_in or (is_thought == "engine" and text == FAST_ENGINE)
                 yield is_thought, text
                 continue
             if not is_thought:
@@ -841,7 +843,7 @@ def stream_ask(question, history=None):
     shown = cards("".join(parts))
     yield "cards", shown
     yield "more", more_cards(rows, shown)  # the page offers these behind a "Show more options" button
-    if parts and not history:
+    if parts and not history and not stand_in:  # saved answers are labeled Gemma's, so a stand-in isn't saved
         _remember(key, "".join(parts))
     yield "done", ""
 

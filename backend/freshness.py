@@ -79,7 +79,7 @@ Return ONLY a JSON object: {{"verdict": "listed" | "not_listed" | "unclear", "ev
 - "not_listed" only if the page clearly shows this floor plan or community is unavailable, waitlist closed, sold out, or no longer offered.
 - "unclear" if the page has no relevant details (for example it needs JavaScript to load) or you are not sure."""
     try:
-        reply = ask_gemma(prompt)
+        reply = ask_gemma(prompt, quick=False)  # a take-down decision waits for Gemma, never the fast stand-in
         data = json.loads(re.search(r"\{.*\}", reply, re.DOTALL).group(0))
         verdict = data.get("verdict")
         return (verdict if verdict in ("listed", "not_listed", "unclear") else "unclear"), str(data.get("evidence", ""))[:200]
