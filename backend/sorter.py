@@ -93,9 +93,14 @@ Reply with ONLY a JSON object, no other text: {{"order": [ids, best fit first, a
 - Never invent prices, places or facts.
 - Fair housing: never sort or leave out places by who lives there (race, religion, national origin, family status, disability, source
   of income or any other protected group). If asked to, keep the usual order and say in the note that you can't sort that way."""
-    text = ask_gemma(prompt) or ""
-    match = re.search(r"\{.*\}", text, re.DOTALL)
-    return json.loads(match.group(0)) if match else {}
+    return _reply(ask_gemma(prompt))
+
+
+def _reply(text):
+    """Gemma's JSON (only its order and note) plus which model wrote it: Gemini answers while the Gemma GPU wakes up."""
+    match = re.search(r"\{.*\}", text or "", re.DOTALL)
+    found = json.loads(match.group(0)) if match else {}
+    return {"order": found.get("order"), "note": found.get("note"), "engine": getattr(text, "engine", "Gemma 4")} if found else {}
 
 
 def sort(question, ids):
@@ -125,7 +130,7 @@ def sort(question, ids):
         order = [i for i in dict.fromkeys(reply.get("order") or []) if isinstance(i, str) and i in allowed][:MAX_PICKS]
         note = " ".join(str(reply.get("note") or "").split())[:400]
         if order and note:
-            return {"order": order, "note": note, "engine": "Gemma 4"}
+            return {"order": order, "note": note, "engine": reply["engine"]}
     except Exception:
         pass
     best = [c["id"] for s, _, c in sorted(scored, key=lambda s: (-s[0], s[1])) if s > 0][:MAX_PICKS]
@@ -199,9 +204,7 @@ Reply with ONLY a JSON object, no other text: {{"order": [ids, best fit first, a
 - The note says in plain words what you put first and why. Never invent programs, phone numbers or facts.
 - Fair housing: never sort or leave out programs by who lives somewhere (race, religion, national origin, family status, disability,
   source of income or any other protected group). A person's own needs (help for seniors, a disability, a family) are fine."""
-    text = ask_gemma(prompt) or ""
-    match = re.search(r"\{.*\}", text, re.DOTALL)
-    return json.loads(match.group(0)) if match else {}
+    return _reply(ask_gemma(prompt))
 
 
 def sort_programs(question, ids, quick=False):
@@ -233,8 +236,9 @@ def sort_programs(question, ids, quick=False):
         order = [i for i in dict.fromkeys(reply.get("order") or []) if isinstance(i, str) and i in allowed][:PROGRAM_PICKS]
         note = " ".join(str(reply.get("note") or "").split())[:400]
         if order and note:
-            result = {"order": order, "note": safety + note, "engine": "Gemma 4"}
-            _program_cache[key] = (time.time(), result)
+            result = {"order": order, "note": safety + note, "engine": reply["engine"]}
+            if result["engine"] == "Gemma 4":  # a stand-in answer isn't kept: the next ask gets Gemma
+                _program_cache[key] = (time.time(), result)
             if len(_program_cache) > 300:
                 _program_cache.pop(next(iter(_program_cache)))
             return {**result, "final": True}
