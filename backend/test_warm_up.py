@@ -105,6 +105,13 @@ class WarmUpTests(unittest.TestCase):
             list(advisor.stream_ask("How do vouchers work in Alexandria?"))
         self.assertEqual(len(advisor._cache), 1)
 
+    def test_startup_warm_up_still_saves_gemmas_answers(self):
+        with self.asleep(), patch.object(gemma_gpu, "ask", side_effect=RuntimeError("cold")), patch.object(advisor, "EXAMPLES", ["What documents do I need to apply?"]), \
+                patch.object(advisor.threading, "Thread", side_effect=lambda target, daemon: SimpleNamespace(start=target)), patch.object(advisor.time, "sleep"):
+            advisor.warm_examples()  # nobody is waiting on these, so they wait for Gemma instead of the stand-in
+        self.assertNotIn(matcher.FAST_MODEL, self.models.calls)
+        self.assertEqual(list(advisor._cache), ["what documents do i need to apply?"])
+
     def test_sorting_says_which_model_sorted(self):
         ids = [r["id"] for r in sorter.filter_catalog(sorter.load_catalog()) if r.get("type") in ("affordable_listing", "rental_listing")][:5]
         with self.asleep(), patch("sorter._ask", side_effect=lambda q, cards: sorter._reply(matcher.StandIn('{"order": ["%s"], "note": "Cheapest."}' % cards[0]["id"]))):

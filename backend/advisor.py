@@ -143,14 +143,15 @@ CACHE_SECONDS = 12 * 3600
 _cache, _cache_lock = {}, threading.Lock()
 
 
-def ask(question, history=None):
+def ask(question, history=None, quick=True):
+    """quick=False waits for Gemma while its GPU wakes up (for warm-ups no one is waiting on), instead of the fast stand-in."""
     key = " ".join(question.lower().split())
     if not history:
         with _cache_lock:
             hit = _cache.get(key)
         if hit and time.time() - hit[0] < CACHE_SECONDS:
             return hit[1]
-    answer = _ask(question, history)
+    answer = _ask(question, history, quick)
     if not history and not isinstance(answer, StandIn):  # a fast stand-in while the GPU woke isn't kept as Gemma's answer
         _remember(key, answer)
     return answer
@@ -174,7 +175,7 @@ def warm_examples(gap_seconds=25):
     def run():
         for question in EXAMPLES:
             try:
-                ask(question)
+                ask(question, quick=False)  # Gemma's answer to keep, not the stand-in while the GPU wakes
             except Exception:
                 pass  # a failed warm-up just means that button waits for Gemma
             time.sleep(gap_seconds)
@@ -244,12 +245,12 @@ def _near_place(question, history=None):
     return (want, near_place.for_gemma(want, history)) if want else (None, None)
 
 
-def _ask(question, history=None):
+def _ask(question, history=None, quick=True):
     _, place = _near_place(question, history)
     if place and "text" in place:
         return place["text"]
     rows = place["rows"] if place else _records(question, history)
-    return ask_gemma(_prompt(question, history, rows, place=place and place["note"]))
+    return ask_gemma(_prompt(question, history, rows, place=place and place["note"]), quick=quick)
 
 
 def _prompt(question, history, rows, needs=None, walk=None, place=None):
